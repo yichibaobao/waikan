@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>外刊精读合集</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Home page: one 720px column. Same tokens as the reader pages so the two feel like one site. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#E8EDF3; --fg:#16202B; --muted:#58656F; --line:#D3DBE4;
+  --accent:#2B5C8E; --accent-soft:#DDE9F5; --on-accent:#FFFFFF; --good:#27693F; --good-soft:#DDF0E3;
+  --font-read:'Literata','Iowan Old Style',Georgia,'Songti SC','Noto Serif CJK SC',serif;
+  --font-ui:'IBM Plex Sans',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0E151C; --surface:#161F29; --surface-2:#1E2935; --fg:#E6ECF2; --muted:#9BA8B5; --line:#2A3846;
+    --accent:#7FB3E8; --accent-soft:#1B3047; --on-accent:#0E151C; --good:#6FCB93; --good-soft:#1A3326;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--font-ui);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* hero */
+.hero{padding-block:max(36px,env(safe-area-inset-top,0px)) 8px}
+.eyebrow{margin:0 0 6px;font:500 12px/1.2 var(--font-ui);letter-spacing:.1em;color:var(--accent)}
+h1{margin:0;font:600 clamp(30px,8vw,40px)/1.15 var(--font-read);letter-spacing:-.015em}
+.tagline{margin:8px 0 0;font-size:15.5px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 0}
+.stat{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.stat dt{margin:0;font-size:12px;color:var(--muted)}
+.stat dd{margin:2px 0 0;font:600 24px/1.2 var(--font-mono)}
+
+main{padding-block:20px 56px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:30px 0 10px}
+.sec-h h2{margin:0;font:600 17px/1.3 var(--font-ui)}
+.sec-h span{font-size:13px;color:var(--muted)}
+
+/* latest */
+.feat{display:block;padding:20px 20px 18px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius)}
+.feat:hover{border-color:var(--accent)}
+.feat-t{margin:0 0 8px;font:600 clamp(23px,6vw,28px)/1.2 var(--font-read);letter-spacing:-.01em;text-wrap:balance}
+.feat-d{margin:0 0 12px;font:italic 400 16.5px/1.6 var(--font-read);color:var(--muted);text-wrap:pretty}
+.cta{display:inline-block;margin-top:14px;padding:8px 16px;border-radius:8px;background:var(--accent);color:var(--on-accent);font:500 14px/1.2 var(--font-ui)}
+.meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12.5px;color:var(--muted)}
+.pill{padding:1px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.pr{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12.5px;color:var(--muted)}
+.pbar{flex:none;width:120px;height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden}
+.pbar i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
+
+/* calendar */
+.cal{padding:14px 14px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal-wd{text-align:center;font-size:11px;color:var(--muted)}
+.cell{display:flex;align-items:center;justify-content:center;aspect-ratio:1.5;border-radius:7px;background:var(--surface-2);font:400 12px/1 var(--font-mono);color:var(--muted)}
+.cell.has{background:var(--accent);color:var(--on-accent);font-weight:600}
+.cell.has:hover{filter:brightness(1.1)}
+.cell.today{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+.cell.fut{opacity:.35}
+
+/* list */
+.tools{display:grid;gap:10px;margin-bottom:6px}
+.search{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-size:16px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{appearance:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.month{margin:22px 0 8px;font:600 13px/1.3 var(--font-ui);letter-spacing:.04em;color:var(--muted)}
+.art{display:grid;grid-template-columns:52px 1fr;gap:14px;margin-bottom:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.art:hover{border-color:var(--accent)}
+.r-date{text-align:center;padding-top:2px}
+.r-date b{display:block;font:600 26px/1.1 var(--font-read)}
+.r-date span{font-size:12px;color:var(--muted)}
+.r-main{min-width:0}
+.r-t{margin:0 0 4px;font:600 18px/1.35 var(--font-read);text-wrap:balance}
+.r-d{margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:22px 16px;text-align:center;font-size:14px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+
+.foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
+.foot p{margin:0 0 6px}
+</style>
+</head>
+<body>
+
+<header class="hero in">
+  <p class="eyebrow">DAILY CLOSE READING</p>
+  <h1>外刊精读合集</h1>
+  <p class="tagline">每天一篇：逐句精读、攒词、自测。</p>
+  <dl class="stats" id="stats"></dl>
+</header>
+
+<main class="in">
+  <div id="featBox"></div>
+
+  <section id="calBox"></section>
+
+  <div class="sec-h"><h2 id="listH">往期文章</h2><span id="listN"></span></div>
+  <div class="tools" id="tools" hidden>
+    <input class="search" id="q" type="search" placeholder="搜索标题、主题或日期" autocomplete="off" aria-label="搜索文章">
+    <div class="chips" id="tags"></div>
+  </div>
+  <div id="list"></div>
+
+  <footer class="foot">
+    <p>学习进度（生词状态、造句、自测成绩）只保存在你当前设备的浏览器里，换手机或清理浏览器数据后不会同步。</p>
+    <p>标明“原创练习文章”的文章是为学习而写的仿外刊练习，不是真实外刊的转载。</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+const SITE = __SITE__;
+const A = SITE.articles;
+const WD = ['周日','周一','周二','周三','周四','周五','周六'];
+
+function $(s, r){ return (r || document).querySelector(s); }
+function h(tag, attrs){
+  const e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k){
+    const v = attrs[k];
+    if (v == null || v === false) return;
+    if (k === 'class') e.className = v;
+    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : String(v));
+  });
+  Array.prototype.slice.call(arguments, 2).forEach(function(kid){
+    [].concat(kid).forEach(function(k){
+      if (k == null || k === false) return;
+      e.append(k.nodeType ? k : document.createTextNode(String(k)));
+    });
+  });
+  return e;
+}
+function lsGet(k){ try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch(e){ return null; } }
+function pad(n){ return String(n).padStart(2, '0'); }
+function ymd(d){ return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function parse(s){ const p = s.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
+function dateLabel(s){ const d = parse(s); return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + WD[d.getDay()]; }
+
+/* per-article progress, read from the same browser storage the reader pages write to */
+A.forEach(function(a){
+  a.url = 'a/' + a.slug + '/';
+  let m = 0, l = 0;
+  const st = lsGet(a.lsKey);
+  if (st && st.vocab && typeof st.vocab === 'object') Object.keys(st.vocab).forEach(function(k){
+    const e = st.vocab[k];
+    if (e && e.s === 'mastered') m++; else if (e && e.s === 'learning') l++;
+  });
+  a.m = m; a.l = l;
+});
+
+function metaBits(a){
+  const out = [h('span', null, a.words + ' 词'), h('span', null, a.vocab + ' 个生词表达')];
+  a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
+  if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));
+  return out;
+}
+function progRow(a){
+  const bar = h('div', {class:'pbar'}, h('i'));
+  bar.style.setProperty('--p', (a.vocab ? a.m / a.vocab * 100 : 0) + '%');
+  const txt = a.m ? '已掌握 ' + a.m + ' / ' + a.vocab : a.l ? '学习中 ' + a.l + ' 个词' : '还没开始';
+  return h('div', {class:'pr'}, bar, h('span', null, txt));
+}
+
+/* header stats */
+function renderStats(){
+  const vocab = A.reduce(function(n, a){ return n + a.vocab; }, 0);
+  const mastered = A.reduce(function(n, a){ return n + a.m; }, 0);
+  const box = $('#stats');
+  [['文章', A.length + ' 篇'], ['累计生词', String(vocab)], ['我已掌握', String(mastered)]].forEach(function(p){
+    box.append(h('div', {class:'stat'}, h('dt', null, p[0]), h('dd', null, p[1])));
+  });
+}
+
+/* latest article */
+function renderFeat(show){
+  const box = $('#featBox');
+  box.replaceChildren();
+  if (!show) return;
+  if (!A.length){ box.append(h('p', {class:'empty'}, '还没有文章，敬请期待。')); return; }
+  const a = A[0];
+  box.append(h('a', {class:'feat', href:a.url},
+    h('p', {class:'eyebrow'}, '最新 · ' + dateLabel(a.date)),
+    h('h2', {class:'feat-t'}, a.title),
+    h('p', {class:'feat-d'}, a.deck),
+    h('div', {class:'meta-row'}, metaBits(a)),
+    progRow(a),
+    h('span', {class:'cta'}, '开始精读 →')
+  ));
+}
+
+/* calendar of the last five weeks */
+function streak(){
+  const days = {};
+  A.forEach(function(a){ days[a.date] = true; });
+  const uniq = Object.keys(days).sort().reverse();
+  if (!uniq.length) return 0;
+  let n = 1, d = parse(uniq[0]);
+  for (;;){
+    d.setDate(d.getDate() - 1);
+    if (days[ymd(d)]) n++; else break;
+  }
+  return n;
+}
+function renderCal(show){
+  const box = $('#calBox');
+  box.replaceChildren();
+  if (!show || !A.length) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const start = new Date(today); start.setDate(today.getDate() - ((today.getDay() + 6) % 7) - 28);
+  const byDate = {};
+  A.forEach(function(a){ if (!byDate[a.date]) byDate[a.date] = a; });
+  const grid = h('div', {class:'cal-grid', role:'list', 'aria-label':'最近五周的更新日历'});
+  ['一','二','三','四','五','六','日'].forEach(function(w){ grid.append(h('div', {class:'cal-wd', 'aria-hidden':'true'}, w)); });
+  const todayKey = ymd(today);
+  for (let i = 0; i < 35; i++){
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    const key = ymd(d), a = byDate[key];
+    const cls = 'cell' + (a ? ' has' : '') + (key === todayKey ? ' today' : '') + (d > today ? ' fut' : '');
+    grid.append(a
+      ? h('a', {class:cls, role:'listitem', href:a.url, 'aria-label':(d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日：' + a.title, title:a.title}, String(d.getDate()))
+      : h('div', {class:cls, role:'listitem', 'aria-label':(d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日'}, String(d.getDate())));
+  }
+  const monthKey = todayKey.slice(0, 7);
+  const inMonth = A.filter(function(a){ return a.date.slice(0, 7) === monthKey; }).length;
+  const s = streak();
+  box.append(
+    h('div', {class:'sec-h'}, h('h2', null, '更新日历'), h('span', null, '本月 ' + inMonth + ' 篇' + (s >= 2 ? ' · 连续更新 ' + s + ' 天' : ''))),
+    h('div', {class:'cal'}, grid)
+  );
+}
+
+/* list with search and topic filter */
+const view = {q:'', tag:'all'};
+function row(a){
+  const d = parse(a.date);
+  return h('a', {class:'art', href:a.url},
+    h('div', {class:'r-date'}, h('b', null, String(d.getDate())), h('span', null, WD[d.getDay()])),
+    h('div', {class:'r-main'},
+      h('h3', {class:'r-t'}, a.title),
+      h('p', {class:'r-d'}, a.deck),
+      h('div', {class:'meta-row'}, metaBits(a)),
+      progRow(a)
+    )
+  );
+}
+function renderTags(){
+  const box = $('#tags');
+  box.replaceChildren();
+  const count = {};
+  A.forEach(function(a){ a.tags.forEach(function(t){ count[t] = (count[t] || 0) + 1; }); });
+  const tags = Object.keys(count).sort(function(x, y){ return count[y] - count[x] || x.localeCompare(y, 'zh'); });
+  [['all', '全部 ' + A.length]].concat(tags.map(function(t){ return [t, t + ' ' + count[t]]; })).forEach(function(o){
+    box.append(h('button', {type:'button', class:'chip' + (view.tag === o[0] ? ' on' : ''), 'aria-pressed':String(view.tag === o[0]),
+      onclick:function(){ view.tag = o[0]; render(); }}, o[1]));
+  });
+}
+function match(a){
+  if (view.tag !== 'all' && a.tags.indexOf(view.tag) < 0) return false;
+  const q = view.q.trim().toLowerCase();
+  if (!q) return true;
+  return (a.title + ' ' + a.deck + ' ' + a.tags.join(' ') + ' ' + a.date + ' ' + dateLabel(a.date)).toLowerCase().indexOf(q) >= 0;
+}
+function render(){
+  const filtering = !!view.q.trim() || view.tag !== 'all';
+  renderFeat(!filtering);
+  renderCal(!filtering);
+  $('#tools').hidden = A.length < 6;
+  if (!$('#tools').hidden) renderTags();
+  $('#listH').textContent = filtering ? '搜索结果' : '往期文章';
+  const items = (filtering ? A : A.slice(1)).filter(match);
+  $('#listN').textContent = items.length ? items.length + ' 篇' : '';
+  const list = $('#list');
+  list.replaceChildren();
+  if (!items.length){
+    list.append(h('p', {class:'empty'}, filtering ? '没有符合条件的文章。' : '这里还没有往期文章。每天更新一篇，之后会按月份排在这里。'));
+    return;
+  }
+  let month = '';
+  items.forEach(function(a){
+    const m = a.date.slice(0, 7);
+    if (m !== month){
+      month = m;
+      const n = items.filter(function(x){ return x.date.slice(0, 7) === m; }).length;
+      list.append(h('p', {class:'month'}, m.slice(0, 4) + ' 年 ' + Number(m.slice(5)) + ' 月 · ' + n + ' 篇'));
+    }
+    list.append(row(a));
+  });
+}
+$('#q').addEventListener('input', function(){ view.q = this.value; render(); });
+renderStats();
+render();
+})();
+</script>
+</body>
+</html>

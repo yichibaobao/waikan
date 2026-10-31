@@ -1,0 +1,1890 @@
+{
+ "meta": {
+  "slug": "finders-keepers",
+  "date": "2026-10-31",
+  "title": "Finders, keepers? Not in Tokyo",
+  "deck": "In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.",
+  "short": "Finders, Keepers",
+  "tags": [
+   "城市观察",
+   "社会信任"
+  ],
+  "source": {
+   "type": "original"
+  },
+  "note": "这是一篇仿《经济学人》风格的原创练习文章，不是真实外刊的转载。文中的事实是概括性描述，仅供语言学习，请不要当作引用来源。",
+  "lsKey": "fk-state-v1"
+ },
+ "data": {
+  "title": "Finders, keepers? Not in Tokyo",
+  "sents": [
+   {
+    "i": 0,
+    "kind": "title",
+    "p": 0,
+    "n": 0,
+    "label": "标题",
+    "en": "Finders, keepers? Not in Tokyo",
+    "zh": "捡到就归自己？在东京可不是这样。",
+    "notes": [
+     "finders keepers 是英语俗语（完整版 finders keepers, losers weepers），意思是“谁捡到就归谁”，小孩争东西时常说。",
+     "标题用问句加 Not in Tokyo，直接点出反差：东京不吃这一套。"
+    ]
+   },
+   {
+    "i": 1,
+    "kind": "sub",
+    "p": 0,
+    "n": 0,
+    "label": "副标题",
+    "en": "In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama.",
+    "zh": "在世界上最繁忙的城市之一，一把被遗忘的雨伞引发了一场小小的市民大戏。",
+    "notes": [
+     "one of the + 最高级 + 复数名词：“最……之一”。",
+     "set off：引发、触发。",
+     "civic：市民的；a small civic drama 是调侃，把一把雨伞的小事说成“市民大戏”。"
+    ]
+   },
+   {
+    "i": 2,
+    "kind": "sub",
+    "p": 0,
+    "n": 0,
+    "label": "副标题",
+    "en": "The system that handles it says a lot about trust.",
+    "zh": "处理这件事的这套体系，很能说明信任是怎么回事。",
+    "notes": [
+     "that handles it 是定语从句，修饰 system，it 指上一句里被遗忘的雨伞。",
+     "say a lot about：说明了很多关于……的事情。",
+     "让“体系”来“说话”，是新闻英语里常见的拟人写法。"
+    ]
+   },
+   {
+    "i": 3,
+    "kind": "body",
+    "p": 1,
+    "n": 1,
+    "label": "第 1 句",
+    "en": "Every weekday morning, a small miracle goes largely unnoticed in Tokyo.",
+    "zh": "每个工作日的早晨，东京都有一个小小的奇迹发生，却几乎没人留意。",
+    "notes": [
+     "go unnoticed：没被注意到。go + 形容词表示“处于某种状态”，类似 go missing、go wrong。",
+     "largely = mostly，基本上。",
+     "a small miracle：把小事说成“奇迹”，制造悬念，下一句才揭晓是什么。"
+    ]
+   },
+   {
+    "i": 4,
+    "kind": "body",
+    "p": 1,
+    "n": 2,
+    "label": "第 2 句",
+    "en": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "zh": "一位通勤者瘫坐在电车上，打起瞌睡，醒来时已经坐过了一站，少了一把伞、一条围巾，更夸张的情况下，还少了一个塞满现金的信封。",
+    "notes": [
+     "主干是三个并列谓语：slumps onto、dozes off、wakes up。",
+     "slump onto：瘫坐在……上；doze off：打瞌睡；stuffed with：塞满。",
+     "one stop too late：晚了一站，也就是睡过站。",
+     "minus 在这里是介词，“少了……”，口语化的幽默用法，表示醒来时东西没了。",
+     "in the more spectacular cases 是插入语；spectacular 本义“壮观的”，这里是反语，指更离谱的情况。"
+    ]
+   },
+   {
+    "i": 5,
+    "kind": "body",
+    "p": 1,
+    "n": 3,
+    "label": "第 3 句",
+    "en": "By the time she has finished cursing, the item has often begun an improbable journey.",
+    "zh": "等她骂完的时候，那件东西往往已经踏上了一段出人意料的旅程。",
+    "notes": [
+     "by the time + 从句：“等到……的时候”。主句用现在完成时 has begun，表示到那时旅程已经开始。",
+     "finish doing sth.：finish 后面接动名词，所以是 finished cursing。",
+     "cursing：咒骂、骂脏话，这里指懊恼地发泄几句。",
+     "improbable：不太可能的，出人意料的。journey 把物品拟人化，引出下一句的流转路线。"
+    ]
+   },
+   {
+    "i": 6,
+    "kind": "body",
+    "p": 1,
+    "n": 4,
+    "label": "第 4 句",
+    "en": "It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is logged, labelled and stored.",
+    "zh": "它先从车站工作人员的桌上转到街区的交番，如果没人来认领，再转到中央失物招领处，在那里被登记、贴标签、存放起来。",
+    "notes": [
+     "goes from A to B and ... to C：一路写出物品的流转路径。",
+     "if nobody comes forward：come forward 是“站出来（认领、作证）”。",
+     "where it is logged, labelled and stored：where 引导非限制性定语从句，修饰 office；三个被动动词并列，节奏感强。logged 是 log 的过去分词，“登记在案”。",
+     "police box 就是日本的交番（koban），后文会再出现。lost-property office 是英式说法，美式常说 lost and found。",
+     "neighbourhood、labelled 是英式拼写，美式是 neighborhood、labeled。"
+    ]
+   },
+   {
+    "i": 7,
+    "kind": "body",
+    "p": 2,
+    "n": 5,
+    "label": "第 5 句",
+    "en": "The scale is staggering.",
+    "zh": "规模之大，令人吃惊。",
+    "notes": [
+     "staggering：令人震惊的，常形容数量或规模大。",
+     "上一句是长句，这里用一个短句收束，再展开数字，是英文评论文常见的节奏处理。"
+    ]
+   },
+   {
+    "i": 8,
+    "kind": "body",
+    "p": 2,
+    "n": 6,
+    "label": "第 6 句",
+    "en": "Police in the capital handle several million lost items a year.",
+    "zh": "首都的警方每年要处理好几百万件遗失物品。",
+    "notes": [
+     "the capital 指东京，避免重复 Tokyo。",
+     "several million：好几百万，million 前面有 several 时不加 s。",
+     "a year = per year，这里的 a 表示“每”。"
+    ]
+   },
+   {
+    "i": 9,
+    "kind": "body",
+    "p": 2,
+    "n": 7,
+    "label": "第 7 句",
+    "en": "By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.",
+    "zh": "单论数量，雨伞遥遥领先，但几乎没人来认领；便宜的雨伞，似乎是东京人唯一乐意丢掉的东西。",
+    "notes": [
+     "by sheer volume：单凭数量；sheer 表示“纯粹的”，起强调作用。",
+     "lead the pack：遥遥领先（pack 指赛跑里的大部队）。",
+     "yet 表转折，比 but 更正式；claim 在这里是“认领”。",
+     "分号连接两个相关的分句。the one possession (that) Tokyoites seem happy to lose 省略了关系代词 that；Tokyoites 是东京人。"
+    ]
+   },
+   {
+    "i": 10,
+    "kind": "body",
+    "p": 2,
+    "n": 8,
+    "label": "第 8 句",
+    "en": "Wallets are another story.",
+    "zh": "钱包就另当别论了。",
+    "notes": [
+     "X is another story：固定表达，“X 则另当别论”。",
+     "同类说法：that's a different story、that's another matter。",
+     "短句转折，把话题从雨伞切到钱包。"
+    ]
+   },
+   {
+    "i": 11,
+    "kind": "body",
+    "p": 2,
+    "n": 9,
+    "label": "第 9 句",
+    "en": "A striking share of them find their way back to their owners, cash and all.",
+    "zh": "其中相当大一部分都找到了回到失主手里的路，连里面的现金也一分不少。",
+    "notes": [
+     "a striking share of them：striking 是“显著的”，share 是“份额”；them 指钱包。谓语用复数 find，是按意义一致（them 是复数）。",
+     "find their way back to：找到回去的路，拟人手法，呼应前面的 journey。",
+     "cash and all：连现金在内也一样，and all 是口语用法，表示“连同……一起”。"
+    ]
+   },
+   {
+    "i": 12,
+    "kind": "body",
+    "p": 3,
+    "n": 10,
+    "label": "第 10 句",
+    "en": "Economists would start with incentives.",
+    "zh": "经济学家会先从激励机制说起。",
+    "notes": [
+     "would + 动词原形：表示“通常会这样做”，描述典型行为。",
+     "incentives：激励、诱因，经济学里的基本概念。",
+     "作者先借经济学家的视角起头，下一句马上给出具体的激励机制。"
+    ]
+   },
+   {
+    "i": 13,
+    "kind": "body",
+    "p": 3,
+    "n": 11,
+    "label": "第 11 句",
+    "en": "Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.",
+    "zh": "日本法律要求拾得者上交捡到的东西，同时赋予他们获得物品价值 5% 到 20% 报酬的权利，由失主支付。",
+    "notes": [
+     "oblige sb. to do sth.：责成某人做某事；entitle sb. to sth.：赋予某人……的权利。前者是义务，后者是权利，两个动词共用主语 law，对比工整。",
+     "hand in：上交。what they pick up 是名词性从句，作 hand in 的宾语。",
+     "a reward of between 5% and 20% of the item's value：价值为物品价值 5% 到 20% 的报酬。",
+     "payable by the owner：形容词短语后置，修饰 reward，“由失主支付”。"
+    ]
+   },
+   {
+    "i": 14,
+    "kind": "body",
+    "p": 3,
+    "n": 12,
+    "label": "第 12 句",
+    "en": "In practice, many finders reportedly waive it.",
+    "zh": "实际上，据说许多拾得者放弃了这笔报酬。",
+    "notes": [
+     "in practice：实际上（对应 in theory，理论上）。",
+     "reportedly：据报道、据说，说明信息是转述的，作者不为其担保，新闻文体常用。",
+     "waive：放弃（权利、费用）。it 指上一句的 reward。"
+    ]
+   },
+   {
+    "i": 15,
+    "kind": "body",
+    "p": 3,
+    "n": 13,
+    "label": "第 13 句",
+    "en": "Incentives, then, explain only part of the story.",
+    "zh": "这么看来，激励只能解释这个故事的一部分。",
+    "notes": [
+     "then 放在主语后面作插入语，表示“那么，由此看来”，语气比放在句首更含蓄。",
+     "only part of the story：只解释了一部分，为下文的 infrastructure and habit 铺垫。"
+    ]
+   },
+   {
+    "i": 16,
+    "kind": "body",
+    "p": 4,
+    "n": 14,
+    "label": "第 14 句",
+    "en": "The rest lies in infrastructure and habit.",
+    "zh": "其余的原因在于配套机制和习惯。",
+    "notes": [
+     "the rest：其余部分。",
+     "lie in：在于，表示原因或关键所在。",
+     "infrastructure：本义是基础设施，这里引申为配套的设施和制度；habit 是民众的行为习惯。一个偏“硬”，一个偏“软”。"
+    ]
+   },
+   {
+    "i": 17,
+    "kind": "body",
+    "p": 4,
+    "n": 15,
+    "label": "第 15 句",
+    "en": "The koban, the small police boxes found in nearly every neighbourhood, make doing the right thing cheap: there is almost always one within a short walk.",
+    "zh": "交番，也就是几乎每个街区都有的小型派出所，让做正确的事变得成本很低：走几步路，几乎总能找到一个。",
+    "notes": [
+     "The koban, the small police boxes ... 是同位语，解释 koban；found in nearly every neighbourhood 是过去分词作后置定语。koban 单复数同形，所以这里谓语用 make。",
+     "make doing the right thing cheap：make + 宾语 + 形容词；宾语是动名词短语，cheap 指成本低，不是价格便宜。",
+     "冒号后面补充说明：几乎总有一个在步行很短的距离内（within a short walk）。"
+    ]
+   },
+   {
+    "i": 18,
+    "kind": "body",
+    "p": 4,
+    "n": 16,
+    "label": "第 16 句",
+    "en": "The process itself is gloriously dull, a form, a receipt, a database entry.",
+    "zh": "整个流程本身乏味得恰到好处：填一张表，拿一张收据，录入一条数据。",
+    "notes": [
+     "gloriously dull：反语式夸赞。dull 本是贬义，但这里的“无聊”正是优点：简单、没有麻烦。",
+     "逗号后面三个名词并列（a form, a receipt, a database entry），列出流程的具体内容，没有 and，节奏利落。",
+     "the process itself：itself 强调“流程本身”。"
+    ]
+   },
+   {
+    "i": 19,
+    "kind": "body",
+    "p": 4,
+    "n": 17,
+    "label": "第 17 句",
+    "en": "Social scientists might call this lowering the cost of honesty.",
+    "zh": "社会科学家或许会把这称为降低诚实的成本。",
+    "notes": [
+     "might call this ...：might 让语气更谦逊，“或许会称之为”。",
+     "call A B：把 A 称为 B，这里 B 是动名词短语 lowering the cost of honesty。",
+     "the cost of honesty：把诚实看作要付成本的事，是经济学的思路，也是全文的核心比喻。"
+    ]
+   },
+   {
+    "i": 20,
+    "kind": "body",
+    "p": 5,
+    "n": 18,
+    "label": "第 18 句",
+    "en": "It is a lesson that travels.",
+    "zh": "这是一条可以推广到别处的经验。",
+    "notes": [
+     "a lesson that travels：that 引导定语从句；travel 在这里指“可以被带到别处适用”。",
+     "短句，承上启下，从东京的个案转向更普遍的结论。",
+     "It 指前面说的“降低诚实的成本”这个道理。"
+    ]
+   },
+   {
+    "i": 21,
+    "kind": "body",
+    "p": 5,
+    "n": 19,
+    "label": "第 19 句",
+    "en": "A much-cited experiment published in Science in 2019 left thousands of \"lost\" wallets at hotels, banks and offices in 40 countries.",
+    "zh": "2019 年发表在《科学》杂志上的一项被广泛引用的实验，在 40 个国家的酒店、银行和办公室里留下了数千个“遗失”的钱包。",
+    "notes": [
+     "much-cited：复合形容词（副词 + 过去分词），被大量引用的。",
+     "published in Science in 2019：过去分词短语作后置定语，修饰 experiment。Science 是期刊名。",
+     "“lost”加了引号，因为钱包是研究者故意留下的，并不是真的丢了。",
+     "thousands of：数以千计的。"
+    ]
+   },
+   {
+    "i": 22,
+    "kind": "body",
+    "p": 5,
+    "n": 20,
+    "label": "第 20 句",
+    "en": "Counterintuitively, wallets containing more money were more likely to be returned, not less.",
+    "zh": "违反直觉的是，装钱更多的钱包反而更有可能被送还，而不是更不可能。",
+    "notes": [
+     "counterintuitively：句首副词，修饰整句，“违反直觉的是”。",
+     "containing more money：现在分词短语作后置定语，修饰 wallets。",
+     "not less：省略了 likely to be returned，完整说法是 not less likely to be returned。"
+    ]
+   },
+   {
+    "i": 23,
+    "kind": "body",
+    "p": 5,
+    "n": 21,
+    "label": "第 21 句",
+    "en": "The researchers' explanation was that people dislike seeing themselves as thieves, and that this feeling grows with the size of the temptation.",
+    "zh": "研究者的解释是，人们不喜欢把自己看成小偷，而且这种感觉会随着诱惑的大小而增强。",
+    "notes": [
+     "The researchers' explanation was that ...：主系表结构，that 引导表语从句；后面 and that this feeling grows ... 是并列的第二个 that 从句。",
+     "dislike doing sth.：不喜欢做某事；see oneself as：把自己看作。",
+     "grow with the size of the temptation：随诱惑的大小而增强。",
+     "researchers' 是复数所有格，撇号在 s 后。"
+    ]
+   },
+   {
+    "i": 24,
+    "kind": "body",
+    "p": 6,
+    "n": 22,
+    "label": "第 22 句",
+    "en": "Honesty, in other words, is not merely a personal virtue.",
+    "zh": "换句话说，诚实不只是一种个人美德。",
+    "notes": [
+     "in other words：换句话说，用来引出总结。",
+     "not merely：不仅仅，暗示后面还有一层意思，下一句的 also 就接上了。",
+     "virtue：美德。"
+    ]
+   },
+   {
+    "i": 25,
+    "kind": "body",
+    "p": 6,
+    "n": 23,
+    "label": "第 23 句",
+    "en": "It is also a service that a society either provides or fails to provide.",
+    "zh": "它也是一种服务，社会要么提供，要么没能提供。",
+    "notes": [
+     "a service that a society either provides or fails to provide：that 引导定语从句，在从句中作 provides 和 fails to provide 的宾语。",
+     "either ... or ...：连接两个并列谓语。",
+     "fail to provide 比 not provide 更像“想做却没做到”，略带批评意味。"
+    ]
+   },
+   {
+    "i": 26,
+    "kind": "body",
+    "p": 6,
+    "n": 24,
+    "label": "第 24 句",
+    "en": "When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.",
+    "zh": "当做正确的事的成本降到几乎为零，大多数人都会去做；当成本降不下来，再多的道德劝诫也填补不了这个缺口。",
+    "notes": [
+     "两个 when 从句对称，用分号隔开：成本降下来，人们就去做；成本降不下来，说教也没用。",
+     "when it does not：省略了 fall to nearly zero，避免重复。",
+     "no amount of ... will ...：强调否定，“再多的……也不会……”。",
+     "exhortation：劝诫、规劝；fill the gap：填补缺口。",
+     "the cost of doing the right thing 呼应第 17 句的 cost of honesty。"
+    ]
+   },
+   {
+    "i": 27,
+    "kind": "body",
+    "p": 6,
+    "n": 25,
+    "label": "第 25 句",
+    "en": "Meanwhile, the umbrellas pile up in Iidabashi, a quiet monument to the one thing Tokyo cannot legislate: the rain.",
+    "zh": "与此同时，雨伞在饭田桥越堆越多，成了一座安静的纪念碑，纪念东京唯一无法立法规定的东西：雨。",
+    "notes": [
+     "meanwhile：与此同时，把话题从道理拉回到画面。",
+     "pile up：堆积。Iidabashi（饭田桥）是东京的地名，东京警视厅的遗失物中心在那一带。",
+     "a quiet monument to ...：同位语，指“雨伞堆积”这件事像一座安静的纪念碑；monument to 是“……的纪念碑”。",
+     "the one thing (that) Tokyo cannot legislate：省略了 that；legislate 是立法规定。冒号后点题：the rain。雨是法律管不了的，结尾幽默，也和开头的雨伞首尾呼应。"
+    ]
+   }
+  ],
+  "vocab": [
+   {
+    "id": 1,
+    "expr": "slump onto",
+    "zh": "瘫坐在……上",
+    "ctx": "A commuter slumps onto a train, dozes off, and wakes up one stop too late",
+    "m": [
+     "slumps onto"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "After the night shift, he [[slumped onto]] the sofa and fell asleep at once.",
+      "zh": "上完夜班，他一屁股瘫坐在沙发上，立刻睡着了。"
+     },
+     {
+      "en": "The exhausted hikers [[slumped onto]] the grass at the top of the hill.",
+      "zh": "筋疲力尽的徒步者们瘫坐在山顶的草地上。"
+     }
+    ],
+    "core": "slump onto",
+    "forms": [
+     "slump onto",
+     "slumps onto",
+     "slumped onto",
+     "slumping onto",
+     "slump into",
+     "slumps into",
+     "slumped into"
+    ],
+    "syn": []
+   },
+   {
+    "id": 2,
+    "expr": "doze off",
+    "zh": "打起瞌睡",
+    "ctx": "A commuter slumps onto a train, dozes off, and wakes up one stop too late",
+    "m": [
+     "dozes off"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "I kept [[dozing off]] during the boring lecture.",
+      "zh": "那堂课太无聊，我一直在打瞌睡。"
+     },
+     {
+      "en": "Grandpa [[dozed off]] in front of the TV again.",
+      "zh": "爷爷又在电视机前打起了瞌睡。"
+     }
+    ],
+    "core": "doze off",
+    "forms": [
+     "doze off",
+     "dozes off",
+     "dozed off",
+     "dozing off"
+    ],
+    "syn": []
+   },
+   {
+    "id": 3,
+    "expr": "stuffed with",
+    "zh": "塞满了……",
+    "ctx": "an envelope stuffed with cash",
+    "m": [
+     "stuffed with"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "The suitcase was [[stuffed with]] gifts for her family.",
+      "zh": "行李箱里塞满了给家人的礼物。"
+     },
+     {
+      "en": "His inbox is [[stuffed with]] unread emails.",
+      "zh": "他的收件箱里塞满了没读的邮件。"
+     }
+    ],
+    "core": "stuffed with",
+    "forms": [
+     "stuffed with",
+     "stuff with",
+     "stuffs with",
+     "stuffing with",
+     "be stuffed with"
+    ],
+    "syn": []
+   },
+   {
+    "id": 4,
+    "expr": "improbable",
+    "zh": "不太可能的，出人意料的",
+    "ctx": "the item has often begun an improbable journey",
+    "m": [
+     "improbable"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "It seems [[improbable]] that anyone would ignore such an offer.",
+      "zh": "有人会无视这样的提议，这似乎不太可能。"
+     },
+     {
+      "en": "The two friends met again in the most [[improbable]] place: a tiny airport in Iceland.",
+      "zh": "两个朋友在最出人意料的地方重逢了：冰岛的一个小机场。"
+     }
+    ],
+    "core": "improbable",
+    "forms": [
+     "improbable"
+    ],
+    "syn": [
+     "unlikely"
+    ]
+   },
+   {
+    "id": 5,
+    "expr": "come forward",
+    "zh": "站出来（认领、作证）",
+    "ctx": "if nobody comes forward, to a central lost-property office",
+    "m": [
+     "comes forward"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "Police have asked witnesses to [[come forward]].",
+      "zh": "警方呼吁目击者站出来。"
+     },
+     {
+      "en": "Nobody [[came forward]] to claim the lost bag.",
+      "zh": "没有人出面来认领那个丢失的包。"
+     }
+    ],
+    "core": "come forward",
+    "forms": [
+     "come forward",
+     "comes forward",
+     "came forward",
+     "coming forward"
+    ],
+    "syn": [
+     "step forward",
+     "steps forward",
+     "stepped forward",
+     "stepping forward"
+    ]
+   },
+   {
+    "id": 6,
+    "expr": "staggering",
+    "zh": "惊人的",
+    "ctx": "The scale is staggering.",
+    "m": [
+     "staggering"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "The cost of the project is [[staggering]].",
+      "zh": "这个项目的成本高得惊人。"
+     },
+     {
+      "en": "She won the race by a [[staggering]] margin.",
+      "zh": "她以惊人的优势赢得了比赛。"
+     }
+    ],
+    "core": "staggering",
+    "forms": [
+     "staggering"
+    ],
+    "syn": []
+   },
+   {
+    "id": 7,
+    "expr": "by sheer volume",
+    "zh": "单凭数量",
+    "ctx": "By sheer volume, umbrellas lead the pack",
+    "m": [
+     "by sheer volume"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "The company drowned its rivals [[by sheer volume]], shipping ten times more products.",
+      "zh": "这家公司单凭数量就压倒了对手，出货量是对方的十倍。"
+     },
+     {
+      "en": "[[By sheer volume]], English dominates academic publishing.",
+      "zh": "单从数量上看，英语在学术出版中占据主导。"
+     }
+    ],
+    "core": "by sheer volume",
+    "forms": [
+     "by sheer volume"
+    ],
+    "syn": []
+   },
+   {
+    "id": 8,
+    "expr": "lead the pack",
+    "zh": "遥遥领先",
+    "ctx": "By sheer volume, umbrellas lead the pack",
+    "m": [
+     "lead the pack"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "Japan's bullet trains [[lead the pack]] on punctuality.",
+      "zh": "在准点率方面，日本的新干线遥遥领先。"
+     },
+     {
+      "en": "Her start-up has begun to [[lead the pack]] in clean energy.",
+      "zh": "她的初创公司已经开始在清洁能源领域领跑。"
+     }
+    ],
+    "core": "lead the pack",
+    "forms": [
+     "lead the pack",
+     "leads the pack",
+     "led the pack",
+     "leading the pack"
+    ],
+    "syn": []
+   },
+   {
+    "id": 9,
+    "expr": "X is another story",
+    "zh": "X 则另当别论",
+    "ctx": "Wallets are another story.",
+    "m": [
+     "another story"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "Cooking pasta is easy. Making it from scratch is [[another story]].",
+      "zh": "煮意面很简单，从头自己做就是另一回事了。"
+     },
+     {
+      "en": "He plays the piano well, but singing is [[another story]].",
+      "zh": "他钢琴弹得不错，唱歌就另当别论了。"
+     }
+    ],
+    "core": "another story",
+    "forms": [
+     "another story",
+     "is another story",
+     "x is another story",
+     "be another story",
+     "was another story",
+     "are another story",
+     "were another story"
+    ],
+    "syn": []
+   },
+   {
+    "id": 10,
+    "expr": "entitle sb. to sth.",
+    "zh": "赋予某人……的权利",
+    "ctx": "entitles them to a reward of between 5% and 20% of the item's value",
+    "m": [
+     "entitles"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "A valid ticket [[entitles]] you to a free drink.",
+      "zh": "有效门票可以让你免费领取一杯饮料。"
+     },
+     {
+      "en": "Employees are [[entitled to]] four weeks of paid leave.",
+      "zh": "员工有权享受四周带薪假期。"
+     }
+    ],
+    "core": "entitle",
+    "forms": [
+     "entitle",
+     "entitles",
+     "entitled",
+     "entitling",
+     "entitle sb to sth",
+     "entitle sb to do sth",
+     "entitle sb to",
+     "be entitled to",
+     "entitled to"
+    ],
+    "syn": []
+   },
+   {
+    "id": 11,
+    "expr": "waive",
+    "zh": "放弃（权利、费用）",
+    "ctx": "In practice, many finders reportedly waive it.",
+    "m": [
+     "waive"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "The bank agreed to [[waive]] the late fee.",
+      "zh": "银行同意免除滞纳金。"
+     },
+     {
+      "en": "Students may [[waive]] the fee if they show proof of low income.",
+      "zh": "学生如果能出示低收入证明，可以免交这项费用。"
+     }
+    ],
+    "core": "waive",
+    "forms": [
+     "waive",
+     "waives",
+     "waived",
+     "waiving"
+    ],
+    "syn": []
+   },
+   {
+    "id": 12,
+    "expr": "infrastructure",
+    "zh": "基础设施；这里引申为配套机制",
+    "ctx": "The rest lies in infrastructure and habit.",
+    "m": [
+     "infrastructure"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "The country is investing heavily in transport [[infrastructure]].",
+      "zh": "这个国家正在大力投资交通基础设施。"
+     },
+     {
+      "en": "Good ideas fail without the [[infrastructure]] to support them.",
+      "zh": "没有配套机制的支撑，再好的点子也会落空。"
+     }
+    ],
+    "core": "infrastructure",
+    "forms": [
+     "infrastructure"
+    ],
+    "syn": []
+   },
+   {
+    "id": 13,
+    "expr": "gloriously dull",
+    "zh": "乏味得恰到好处（反语式夸赞）",
+    "ctx": "The process itself is gloriously dull, a form, a receipt, a database entry.",
+    "m": [
+     "gloriously dull"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "The meeting was [[gloriously dull]]: nothing went wrong, and nothing happened.",
+      "zh": "那场会议乏味得恰到好处：没出任何岔子，也什么都没发生。"
+     },
+     {
+      "en": "After a chaotic year, he longed for a [[gloriously dull]] weekend at home.",
+      "zh": "经历了混乱的一年，他渴望在家过一个平平淡淡的周末。"
+     }
+    ],
+    "core": "gloriously dull",
+    "forms": [
+     "gloriously dull"
+    ],
+    "syn": [
+     "gloriously boring"
+    ]
+   },
+   {
+    "id": 14,
+    "expr": "a lesson that travels",
+    "zh": "可以推广到别处的经验",
+    "ctx": "It is a lesson that travels.",
+    "m": [
+     "a lesson that travels"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "Tokyo's lost-property system is [[a lesson that travels]]: any city could copy it.",
+      "zh": "东京的失物招领体系是一个可以推广的经验：任何城市都能照搬。"
+     },
+     {
+      "en": "Her approach to teaching is [[a lesson that travels]] across subjects.",
+      "zh": "她的教学方法是一条可以推广到各个学科的经验。"
+     }
+    ],
+    "core": "a lesson that travels",
+    "forms": [
+     "a lesson that travels",
+     "lesson that travels",
+     "a lesson that travels well",
+     "lessons that travel"
+    ],
+    "syn": []
+   },
+   {
+    "id": 15,
+    "expr": "counterintuitively",
+    "zh": "违反直觉地",
+    "ctx": "Counterintuitively, wallets containing more money were more likely to be returned, not less.",
+    "m": [
+     "counterintuitively"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "[[Counterintuitively]], students who rested more scored higher.",
+      "zh": "违反直觉的是，休息得更多的学生分数反而更高。"
+     },
+     {
+      "en": "[[Counterintuitively]], a smaller team often finishes the project faster.",
+      "zh": "违反直觉的是，人少的团队往往完成项目更快。"
+     }
+    ],
+    "core": "counterintuitively",
+    "forms": [
+     "counterintuitively"
+    ],
+    "syn": []
+   },
+   {
+    "id": 16,
+    "expr": "exhortation",
+    "zh": "劝诫，规劝",
+    "ctx": "no amount of moral exhortation will fill the gap",
+    "m": [
+     "exhortation"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "No [[exhortation]] from the coach could lift the team's spirits.",
+      "zh": "教练再怎么规劝也提振不了队伍的士气。"
+     },
+     {
+      "en": "The speech was a long [[exhortation]] to work harder.",
+      "zh": "这场演讲是一番冗长的规劝，要大家更加努力。"
+     }
+    ],
+    "core": "exhortation",
+    "forms": [
+     "exhortation",
+     "exhortations"
+    ],
+    "syn": []
+   },
+   {
+    "id": 17,
+    "expr": "legislate",
+    "zh": "立法规定；这里指靠法律管控",
+    "ctx": "the one thing Tokyo cannot legislate: the rain",
+    "m": [
+     "legislate"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "You cannot [[legislate]] good manners.",
+      "zh": "礼貌是没法靠立法规定出来的。"
+     },
+     {
+      "en": "Parliament plans to [[legislate]] against fake reviews.",
+      "zh": "议会打算立法禁止虚假评价。"
+     }
+    ],
+    "core": "legislate",
+    "forms": [
+     "legislate",
+     "legislates",
+     "legislated",
+     "legislating"
+    ],
+    "syn": []
+   },
+   {
+    "id": 18,
+    "expr": "curse (cursing)",
+    "zh": "咒骂，骂脏话；懊恼地发泄几句",
+    "ctx": "By the time she has finished cursing, the item has often begun an improbable journey.",
+    "m": [
+     "cursing"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "He stubbed his toe and began [[cursing]] under his breath.",
+      "zh": "他踢到了脚趾，低声咒骂起来。"
+     },
+     {
+      "en": "She [[cursed]] the rain when her umbrella blew inside out.",
+      "zh": "伞被风吹翻的时候，她咒骂起这场雨。"
+     }
+    ],
+    "core": "curse",
+    "forms": [
+     "curse",
+     "curses",
+     "cursed",
+     "cursing"
+    ],
+    "syn": [
+     "swear",
+     "swears",
+     "swore",
+     "swearing"
+    ]
+   },
+   {
+    "id": 19,
+    "expr": "log (logged)",
+    "zh": "登记，记录在案",
+    "ctx": "a central lost-property office, where it is logged, labelled and stored",
+    "m": [
+     "logged"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "Every complaint is [[logged]] in the system.",
+      "zh": "每一条投诉都会登记在系统里。"
+     },
+     {
+      "en": "The nurse [[logged]] the patient's temperature every hour.",
+      "zh": "护士每小时记录一次病人的体温。"
+     }
+    ],
+    "core": "log",
+    "forms": [
+     "log",
+     "logs",
+     "logged",
+     "logging"
+    ],
+    "syn": [
+     "record",
+     "records",
+     "recorded",
+     "recording",
+     "register",
+     "registered"
+    ]
+   },
+   {
+    "id": 20,
+    "expr": "oblige sb. to do sth.",
+    "zh": "责成某人做某事；（法律上）要求某人必须……",
+    "ctx": "Japanese law obliges finders to hand in what they pick up",
+    "m": [
+     "obliges"
+    ],
+    "note": "发音：/əˈblaɪdʒ/",
+    "ex": [
+     {
+      "en": "The law [[obliges]] employers to provide a safe workplace.",
+      "zh": "法律要求雇主提供安全的工作场所。"
+     },
+     {
+      "en": "Drivers are [[obliged]] to stop at a red light.",
+      "zh": "司机必须在红灯前停车。"
+     }
+    ],
+    "core": "oblige",
+    "forms": [
+     "oblige",
+     "obliges",
+     "obliged",
+     "obliging",
+     "oblige sb to do sth",
+     "oblige sb to",
+     "be obliged to"
+    ],
+    "syn": []
+   },
+   {
+    "id": 21,
+    "expr": "attendant",
+    "zh": "服务人员；station attendant 是站务员",
+    "ctx": "It goes from a station attendant's desk to a neighbourhood police box",
+    "m": [
+     "attendant"
+    ],
+    "note": "",
+    "ex": [
+     {
+      "en": "A station [[attendant]] helped her find the right platform.",
+      "zh": "一位站务员帮她找到了正确的站台。"
+     },
+     {
+      "en": "The flight [[attendant]] offered us tea.",
+      "zh": "空乘人员给我们递上了茶。"
+     }
+    ],
+    "core": "attendant",
+    "forms": [
+     "attendant",
+     "attendants",
+     "station attendant"
+    ],
+    "syn": []
+   },
+   {
+    "id": 22,
+    "expr": "payable",
+    "zh": "应付的，须支付的",
+    "ctx": "a reward of between 5% and 20% of the item's value, payable by the owner",
+    "m": [
+     "payable"
+    ],
+    "note": "常见搭配：payable by sb. 由某人支付 / payable to sb. 付给某人 / payable on delivery 货到付款 / payable in installments 分期付款 / payable within 30 days 须在 30 天内支付",
+    "ex": [
+     {
+      "en": "The fee is [[payable]] within 30 days.",
+      "zh": "这笔费用须在 30 天内支付。"
+     },
+     {
+      "en": "Cheques should be made [[payable]] to the university.",
+      "zh": "支票请开成以学校为收款人。"
+     },
+     {
+      "en": "The balance is [[payable]] on delivery.",
+      "zh": "余款货到付款。"
+     }
+    ],
+    "core": "payable",
+    "forms": [
+     "payable"
+    ],
+    "syn": []
+   },
+   {
+    "id": 23,
+    "expr": "spectacular",
+    "zh": "adj. 壮观的；惊人的；（情况）更离谱的",
+    "ctx": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "m": [
+     "spectacular"
+    ],
+    "note": "in the more spectacular cases：在更夸张、更离谱的情况下",
+    "ex": [
+     {
+      "en": "The fireworks over Tokyo Bay were [[spectacular]].",
+      "zh": "东京湾上空的烟花美不胜收。"
+     },
+     {
+      "en": "The start-up's growth was [[spectacular]]; so was its collapse.",
+      "zh": "这家初创公司的增长惊人，垮台也同样惊人。"
+     },
+     {
+      "en": "In the more [[spectacular]] cases, the fraud ran for a decade before anyone noticed.",
+      "zh": "在更离谱的案例中，骗局持续了十年才被人发觉。"
+     }
+    ],
+    "extra": true,
+    "core": "spectacular",
+    "forms": [
+     "spectacular"
+    ],
+    "syn": []
+   },
+   {
+    "id": 24,
+    "expr": "Finders, keepers",
+    "zh": "谁捡到归谁",
+    "ctx": "Finders, keepers? Not in Tokyo",
+    "m": [
+     "Finders, keepers"
+    ],
+    "note": "出自儿童顺口溜 “Finders keepers, losers weepers”（捡到的归自己，丢了的只能哭）。标题是反用：在东京，不是这样。",
+    "ex": [
+     {
+      "en": "I found a ten-pound note on the bus, and my brother grinned: “[[Finders, keepers]]!”",
+      "zh": "我在公交车上捡到一张十英镑的钞票，我弟弟咧嘴一笑：“谁捡到归谁！”"
+     },
+     {
+      "en": "Children chant “[[finders keepers]], losers weepers” in the playground, but the law is less forgiving.",
+      "zh": "孩子们在操场上念着“捡到归己，丢了活该”，但法律就没这么宽容了。"
+     },
+     {
+      "en": "He took a “[[finders, keepers]]” attitude to the abandoned bike until its owner turned up.",
+      "zh": "他对那辆被丢弃的自行车抱着“谁捡到归谁”的态度，直到车主出现。"
+     }
+    ],
+    "extra": true,
+    "core": "finders keepers",
+    "forms": [
+     "finders keepers",
+     "finders, keepers"
+    ],
+    "syn": []
+   },
+   {
+    "id": 25,
+    "expr": "civic",
+    "zh": "adj. 市民的；公民的；城市的",
+    "ctx": "In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama.",
+    "m": [
+     "civic"
+    ],
+    "note": "常见搭配：civic duty 公民义务 / civic pride 城市自豪感 / civic life 公共生活",
+    "ex": [
+     {
+      "en": "Many people see voting as a [[civic]] duty.",
+      "zh": "很多人把投票看作公民的义务。"
+     },
+     {
+      "en": "The town hall is the centre of [[civic]] life.",
+      "zh": "市政厅是这座城市公共生活的中心。"
+     },
+     {
+      "en": "Residents showed real [[civic]] pride after the park was restored.",
+      "zh": "公园修复之后，居民们表现出强烈的城市自豪感。"
+     }
+    ],
+    "extra": true,
+    "core": "civic",
+    "forms": [
+     "civic"
+    ],
+    "syn": []
+   },
+   {
+    "id": 26,
+    "expr": "largely (= mostly)",
+    "zh": "adv. 基本上；主要地；大体上",
+    "ctx": "Every weekday morning, a small miracle goes largely unnoticed in Tokyo.",
+    "m": [
+     "largely"
+    ],
+    "note": "largely unnoticed：基本没人注意到。别和形容词 large 搞混。",
+    "ex": [
+     {
+      "en": "The report was [[largely]] ignored by the press.",
+      "zh": "这份报告基本上被媒体忽视了。"
+     },
+     {
+      "en": "The delay was [[largely]] due to bad weather.",
+      "zh": "这次延误主要是因为天气不好。"
+     },
+     {
+      "en": "The city is [[largely]] safe, though a few areas need caution.",
+      "zh": "这座城市基本上是安全的，不过有几个区域需要小心。"
+     }
+    ],
+    "extra": true,
+    "core": "largely",
+    "forms": [
+     "largely"
+    ],
+    "syn": [
+     "mostly",
+     "mainly"
+    ]
+   },
+   {
+    "id": 27,
+    "expr": "one stop too late",
+    "zh": "晚了一站（睡过站）",
+    "ctx": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "m": [
+     "one stop too late"
+    ],
+    "note": "句型：one + 时间/距离单位 + too late，表示“晚了那么一点”。",
+    "ex": [
+     {
+      "en": "I fell asleep on the Yamanote Line and woke up [[one stop too late]].",
+      "zh": "我在山手线上睡着了，醒来时已经坐过了一站。"
+     },
+     {
+      "en": "She noticed the announcement [[one stop too late]] and had to double back.",
+      "zh": "她听到广播时已经过了一站，只好折返。"
+     },
+     {
+      "en": "We got off [[one stop too late]] and had to take a taxi back.",
+      "zh": "我们下车晚了一站，只好打车回去。"
+     }
+    ],
+    "extra": true,
+    "core": "one stop too late",
+    "forms": [
+     "one stop too late"
+    ],
+    "syn": []
+   },
+   {
+    "id": 28,
+    "expr": "minus",
+    "zh": "prep. 少了……；没有了……（口语化）",
+    "ctx": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "m": [
+     "minus"
+    ],
+    "note": "口语里常带幽默或无奈，暗示“本该有却没了”。数学里的 minus 才是“减”。",
+    "ex": [
+     {
+      "en": "He came back from holiday [[minus]] his luggage.",
+      "zh": "他度假回来了，行李却丢了。"
+     },
+     {
+      "en": "She walked in, [[minus]] her usual smile.",
+      "zh": "她走了进来，脸上少了往常的笑容。"
+     },
+     {
+      "en": "We arrived at the party [[minus]] the cake, which was still in the car.",
+      "zh": "我们到了聚会现场，蛋糕却没带来——它还留在车里。"
+     }
+    ],
+    "extra": true,
+    "core": "minus",
+    "forms": [
+     "minus"
+    ],
+    "syn": []
+   },
+   {
+    "id": 29,
+    "expr": "by the time ...",
+    "zh": "等到……的时候（已经……）",
+    "ctx": "By the time she has finished cursing, the item has often begun an improbable journey.",
+    "m": [
+     "By the time"
+    ],
+    "note": "by the time 后接从句；主句常用完成时，表示“到那时已经……”。",
+    "ex": [
+     {
+      "en": "[[By the time]] I reached the station, the last train had gone.",
+      "zh": "我赶到车站时，末班车已经开走了。"
+     },
+     {
+      "en": "[[By the time]] you read this, I will have landed in Shanghai.",
+      "zh": "等你读到这条消息的时候，我应该已经降落在上海了。"
+     },
+     {
+      "en": "[[By the time]] the police arrived, the thief had disappeared.",
+      "zh": "警察赶到的时候，小偷已经不见了。"
+     }
+    ],
+    "extra": true,
+    "core": "by the time",
+    "forms": [
+     "by the time",
+     "by the time that"
+    ],
+    "syn": []
+   },
+   {
+    "id": 30,
+    "expr": "possession",
+    "zh": "n. 个人财产；所有物",
+    "ctx": "By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.",
+    "m": [
+     "possession"
+    ],
+    "note": "指随身物品时多用复数 possessions；in possession of ……：持有、拥有。",
+    "ex": [
+     {
+      "en": "Her most treasured [[possession]] is an old camera from her grandfather.",
+      "zh": "她最珍视的物品是祖父留下的一台旧相机。"
+     },
+     {
+      "en": "Passengers are asked to keep their [[possessions]] with them at all times.",
+      "zh": "请乘客随时随身携带好个人物品。"
+     },
+     {
+      "en": "The police found him in [[possession]] of a stolen wallet.",
+      "zh": "警方发现他持有一个被盗的钱包。"
+     }
+    ],
+    "extra": true,
+    "core": "possession",
+    "forms": [
+     "possession",
+     "possessions"
+    ],
+    "syn": [
+     "belonging",
+     "belongings"
+    ]
+   },
+   {
+    "id": 31,
+    "expr": "... and all",
+    "zh": "连同……一起；连……也（口语）",
+    "ctx": "A striking share of them find their way back to their owners, cash and all.",
+    "m": [
+     "and all"
+    ],
+    "note": "名词 + and all，放在句末，表示“连带着也一起”。",
+    "ex": [
+     {
+      "en": "She swallowed the sandwich, crust [[and all]].",
+      "zh": "她把三明治整个吞了下去，连面包边也不剩。"
+     },
+     {
+      "en": "He fell into the river, phone [[and all]].",
+      "zh": "他掉进了河里，连手机也一起掉了进去。"
+     },
+     {
+      "en": "They bought the old house, furniture [[and all]].",
+      "zh": "他们买下了那栋老房子，家具也一并带走。"
+     }
+    ],
+    "extra": true,
+    "core": "and all",
+    "forms": [
+     "and all"
+    ],
+    "syn": []
+   },
+   {
+    "id": 32,
+    "expr": "hand in",
+    "zh": "上交；提交（作业、失物、辞呈等）",
+    "ctx": "Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.",
+    "m": [
+     "hand in"
+    ],
+    "note": "可以拆开用：hand it in。hand in 偏“交上去”，hand over 偏“移交”。",
+    "ex": [
+     {
+      "en": "Please [[hand in]] your essays by Friday.",
+      "zh": "请在周五之前交上论文。"
+     },
+     {
+      "en": "She [[handed in]] the lost wallet at the nearest police box.",
+      "zh": "她把捡到的钱包交给了最近的警亭。"
+     },
+     {
+      "en": "He [[handed in]] his notice last week.",
+      "zh": "他上周递交了辞呈。"
+     }
+    ],
+    "extra": true,
+    "core": "hand in",
+    "forms": [
+     "hand in",
+     "hands in",
+     "handed in",
+     "handing in"
+    ],
+    "syn": [
+     "turn in",
+     "turns in",
+     "turned in",
+     "turning in",
+     "submit",
+     "submits",
+     "submitted",
+     "submitting"
+    ]
+   },
+   {
+    "id": 33,
+    "expr": "in practice (↔ in theory)",
+    "zh": "事实上；实际上（对比：in theory 理论上）",
+    "ctx": "In practice, many finders reportedly waive it.",
+    "m": [
+     "In practice"
+    ],
+    "note": "常和 in theory 成对出现：理论上如何，实际上却不一定。",
+    "ex": [
+     {
+      "en": "In theory the system is simple; [[in practice]], it takes hours.",
+      "zh": "理论上这个系统很简单，实际操作起来却要花好几个小时。"
+     },
+     {
+      "en": "The rule applies to everyone, but [[in practice]] it is rarely enforced.",
+      "zh": "这条规定对所有人适用，但实际上很少被执行。"
+     },
+     {
+      "en": "[[In practice]], most people just click “accept” without reading.",
+      "zh": "实际上，大多数人根本不看就点了“同意”。"
+     }
+    ],
+    "extra": true,
+    "core": "in practice",
+    "forms": [
+     "in practice"
+    ],
+    "syn": []
+   },
+   {
+    "id": 34,
+    "expr": "reportedly",
+    "zh": "adv. 据报道；据说",
+    "ctx": "In practice, many finders reportedly waive it.",
+    "m": [
+     "reportedly"
+    ],
+    "note": "消息来自报道或传闻，作者并没有亲自核实，新闻里很常见。",
+    "ex": [
+     {
+      "en": "The singer has [[reportedly]] cancelled her tour.",
+      "zh": "据报道，这位歌手已经取消了巡演。"
+     },
+     {
+      "en": "The company [[reportedly]] lost millions last year.",
+      "zh": "据说这家公司去年亏损了数百万。"
+     },
+     {
+      "en": "He was [[reportedly]] furious when he heard the news.",
+      "zh": "据说他听到消息时非常愤怒。"
+     }
+    ],
+    "extra": true,
+    "core": "reportedly",
+    "forms": [
+     "reportedly"
+    ],
+    "syn": []
+   },
+   {
+    "id": 35,
+    "expr": "lie in ...",
+    "zh": "在于……（原因、关键所在）",
+    "ctx": "The rest lies in infrastructure and habit.",
+    "m": [
+     "lies in"
+    ],
+    "note": "lie（位于；在于）的变形是 lie – lay – lain，三单 lies；撒谎的 lie 过去式才是 lied。",
+    "ex": [
+     {
+      "en": "The secret of her success [[lies in]] hard work, not talent.",
+      "zh": "她成功的秘诀在于努力，而不是天赋。"
+     },
+     {
+      "en": "The problem [[lies in]] how the data is collected.",
+      "zh": "问题出在数据的收集方式上。"
+     },
+     {
+      "en": "The charm of the old town [[lies in]] its narrow streets.",
+      "zh": "这座老城的魅力就在于那些狭窄的街道。"
+     }
+    ],
+    "extra": true,
+    "core": "lie in",
+    "forms": [
+     "lie in",
+     "lies in",
+     "lay in",
+     "lain in",
+     "lying in"
+    ],
+    "syn": []
+   },
+   {
+    "id": 36,
+    "expr": "not merely",
+    "zh": "不仅仅（是）",
+    "ctx": "Honesty, in other words, is not merely a personal virtue.",
+    "m": [
+     "not merely"
+    ],
+    "note": "比 not only 更书面；常见结构 not merely A but (also) B。",
+    "ex": [
+     {
+      "en": "The museum is [[not merely]] a building but a living archive.",
+      "zh": "这座博物馆不仅仅是一栋建筑，更是一座活的档案馆。"
+     },
+     {
+      "en": "It is [[not merely]] a matter of money.",
+      "zh": "这不仅仅是钱的问题。"
+     },
+     {
+      "en": "She is [[not merely]] talented; she is also relentlessly disciplined.",
+      "zh": "她不仅仅有天赋，还自律得近乎苛刻。"
+     }
+    ],
+    "extra": true,
+    "core": "not merely",
+    "forms": [
+     "not merely"
+    ],
+    "syn": [
+     "not just",
+     "not only",
+     "not simply"
+    ]
+   },
+   {
+    "id": 37,
+    "expr": "virtue",
+    "zh": "n. 美德；优点",
+    "ctx": "Honesty, in other words, is not merely a personal virtue.",
+    "m": [
+     "virtue"
+    ],
+    "note": "by virtue of ……：凭借、由于（较正式）。",
+    "ex": [
+     {
+      "en": "Patience is a [[virtue]].",
+      "zh": "耐心是一种美德。"
+     },
+     {
+      "en": "The plan's main [[virtue]] is its simplicity.",
+      "zh": "这个方案最大的优点就是简单。"
+     },
+     {
+      "en": "She got the job [[by virtue of]] her experience, not her connections.",
+      "zh": "她得到这份工作是凭借经验，而不是人脉。"
+     }
+    ],
+    "extra": true,
+    "core": "virtue",
+    "forms": [
+     "virtue",
+     "virtues"
+    ],
+    "syn": []
+   },
+   {
+    "id": 38,
+    "expr": "no amount of ... will ...",
+    "zh": "再多的……也不会……",
+    "ctx": "When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.",
+    "m": [
+     "no amount of"
+    ],
+    "note": "amount 后面接不可数名词；后半句常用 will / can。",
+    "ex": [
+     {
+      "en": "[[No amount of]] apologies will undo the damage.",
+      "zh": "再多的道歉也无法挽回这些损失。"
+     },
+     {
+      "en": "[[No amount of]] coffee will make me enjoy Monday mornings.",
+      "zh": "再多的咖啡也不会让我爱上周一的早晨。"
+     },
+     {
+      "en": "[[No amount of]] training will make up for a lack of curiosity.",
+      "zh": "再多的训练也弥补不了好奇心的缺失。"
+     }
+    ],
+    "extra": true,
+    "core": "no amount of",
+    "forms": [
+     "no amount of",
+     "no amount of will"
+    ],
+    "syn": []
+   }
+  ],
+  "cloze": [
+   {
+    "id": 1,
+    "i": 4,
+    "before": "A commuter ",
+    "ans": "slumps",
+    "after": " onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "hint": "瘫坐在……上（注意动词词形）"
+   },
+   {
+    "id": 2,
+    "i": 4,
+    "before": "A commuter slumps onto a train, ",
+    "ans": "dozes",
+    "after": " off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "hint": "打瞌睡"
+   },
+   {
+    "id": 3,
+    "i": 4,
+    "before": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope ",
+    "ans": "stuffed",
+    "after": " with cash.",
+    "hint": "塞满了……"
+   },
+   {
+    "id": 4,
+    "i": 5,
+    "before": "By the time she has finished cursing, the item has often begun an ",
+    "ans": "improbable",
+    "after": " journey.",
+    "hint": "不太可能的，出人意料的"
+   },
+   {
+    "id": 5,
+    "i": 6,
+    "before": "It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes ",
+    "ans": "forward",
+    "after": ", to a central lost-property office, where it is logged, labelled and stored.",
+    "hint": "站出来（认领、作证）"
+   },
+   {
+    "id": 6,
+    "i": 7,
+    "before": "The scale is ",
+    "ans": "staggering",
+    "after": ".",
+    "hint": "令人震惊的"
+   },
+   {
+    "id": 7,
+    "i": 9,
+    "before": "By sheer ",
+    "ans": "volume",
+    "after": ", umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.",
+    "hint": "数量，规模"
+   },
+   {
+    "id": 8,
+    "i": 9,
+    "before": "By sheer volume, umbrellas lead the ",
+    "ans": "pack",
+    "after": ", yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.",
+    "hint": "一群，赛跑里的大部队"
+   },
+   {
+    "id": 9,
+    "i": 10,
+    "before": "Wallets are another ",
+    "ans": "story",
+    "after": ".",
+    "hint": "X is another ____：X 则另当别论"
+   },
+   {
+    "id": 10,
+    "i": 13,
+    "before": "Japanese law obliges finders to hand in what they pick up, and ",
+    "ans": "entitles",
+    "after": " them to a reward of between 5% and 20% of the item's value, payable by the owner.",
+    "hint": "赋予……的权利"
+   },
+   {
+    "id": 11,
+    "i": 14,
+    "before": "In practice, many finders reportedly ",
+    "ans": "waive",
+    "after": " it.",
+    "hint": "放弃（权利、费用）"
+   },
+   {
+    "id": 12,
+    "i": 16,
+    "before": "The rest lies in ",
+    "ans": "infrastructure",
+    "after": " and habit.",
+    "hint": "基础设施；这里指配套机制"
+   },
+   {
+    "id": 13,
+    "i": 18,
+    "before": "The process itself is gloriously ",
+    "ans": "dull",
+    "after": ", a form, a receipt, a database entry.",
+    "hint": "乏味的（反语式夸赞）"
+   },
+   {
+    "id": 14,
+    "i": 20,
+    "before": "It is a lesson that ",
+    "ans": "travels",
+    "after": ".",
+    "hint": "可以推广到别处"
+   },
+   {
+    "id": 15,
+    "i": 22,
+    "before": "",
+    "ans": "Counterintuitively",
+    "after": ", wallets containing more money were more likely to be returned, not less.",
+    "hint": "违反直觉地"
+   },
+   {
+    "id": 16,
+    "i": 26,
+    "before": "When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral ",
+    "ans": "exhortation",
+    "after": " will fill the gap.",
+    "hint": "劝诫，规劝"
+   },
+   {
+    "id": 17,
+    "i": 27,
+    "before": "Meanwhile, the umbrellas pile up in Iidabashi, a quiet monument to the one thing Tokyo cannot ",
+    "ans": "legislate",
+    "after": ": the rain.",
+    "hint": "立法规定"
+   },
+   {
+    "id": 18,
+    "i": 5,
+    "before": "By the time she has finished ",
+    "ans": "cursing",
+    "after": ", the item has often begun an improbable journey.",
+    "hint": "咒骂，骂脏话"
+   },
+   {
+    "id": 19,
+    "i": 6,
+    "before": "It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is ",
+    "ans": "logged",
+    "after": ", labelled and stored.",
+    "hint": "被登记在案"
+   },
+   {
+    "id": 20,
+    "i": 13,
+    "before": "Japanese law ",
+    "ans": "obliges",
+    "after": " finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.",
+    "hint": "责成、要求（法律上必须）"
+   },
+   {
+    "id": 21,
+    "i": 6,
+    "before": "It goes from a station ",
+    "ans": "attendant",
+    "after": "'s desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is logged, labelled and stored.",
+    "hint": "服务人员，站务员"
+   },
+   {
+    "id": 22,
+    "i": 13,
+    "before": "Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, ",
+    "ans": "payable",
+    "after": " by the owner.",
+    "hint": "应付的，须支付的"
+   },
+   {
+    "id": 23,
+    "i": 4,
+    "before": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more ",
+    "ans": "spectacular",
+    "after": " cases, an envelope stuffed with cash.",
+    "hint": "壮观的，惊人的；这里指“更离谱的”"
+   },
+   {
+    "id": 24,
+    "i": 0,
+    "before": "Finders, ",
+    "ans": "keepers",
+    "after": "? Not in Tokyo",
+    "hint": "Finders, ____：谁捡到归谁"
+   },
+   {
+    "id": 25,
+    "i": 1,
+    "before": "In one of the world's busiest cities, a forgotten umbrella sets off a small ",
+    "ans": "civic",
+    "after": " drama.",
+    "hint": "市民的，公民的（civic drama：一场市民间的小风波）"
+   },
+   {
+    "id": 26,
+    "i": 3,
+    "before": "Every weekday morning, a small miracle goes ",
+    "ans": "largely",
+    "after": " unnoticed in Tokyo.",
+    "hint": "基本上，主要地（= mostly）"
+   },
+   {
+    "id": 27,
+    "i": 4,
+    "before": "A commuter slumps onto a train, dozes off, and wakes up one ",
+    "ans": "stop",
+    "after": " too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "hint": "晚了一站（睡过站）"
+   },
+   {
+    "id": 28,
+    "i": 4,
+    "before": "A commuter slumps onto a train, dozes off, and wakes up one stop too late, ",
+    "ans": "minus",
+    "after": " her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.",
+    "hint": "少了……（口语，介词）"
+   },
+   {
+    "id": 29,
+    "i": 5,
+    "before": "By the ",
+    "ans": "time",
+    "after": " she has finished cursing, the item has often begun an improbable journey.",
+    "hint": "By the ____ ……：等到……的时候（已经）"
+   },
+   {
+    "id": 30,
+    "i": 9,
+    "before": "By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one ",
+    "ans": "possession",
+    "after": " Tokyoites seem happy to lose.",
+    "hint": "个人财产，所有物"
+   },
+   {
+    "id": 31,
+    "i": 11,
+    "before": "A striking share of them find their way back to their owners, cash and ",
+    "ans": "all",
+    "after": ".",
+    "hint": "cash and ____：连同……一起（口语）"
+   },
+   {
+    "id": 32,
+    "i": 13,
+    "before": "Japanese law obliges finders to ",
+    "ans": "hand",
+    "after": " in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.",
+    "hint": "____ in：上交，提交"
+   },
+   {
+    "id": 33,
+    "i": 14,
+    "before": "In ",
+    "ans": "practice",
+    "after": ", many finders reportedly waive it.",
+    "hint": "In ____：事实上，实际上（对比 in theory）"
+   },
+   {
+    "id": 34,
+    "i": 14,
+    "before": "In practice, many finders ",
+    "ans": "reportedly",
+    "after": " waive it.",
+    "hint": "据报道，据说"
+   },
+   {
+    "id": 35,
+    "i": 16,
+    "before": "The rest ",
+    "ans": "lies",
+    "after": " in infrastructure and habit.",
+    "hint": "在于……（原因、关键所在；注意动词形式）"
+   },
+   {
+    "id": 36,
+    "i": 24,
+    "before": "Honesty, in other words, is not ",
+    "ans": "merely",
+    "after": " a personal virtue.",
+    "hint": "not ____：不仅仅"
+   },
+   {
+    "id": 37,
+    "i": 24,
+    "before": "Honesty, in other words, is not merely a personal ",
+    "ans": "virtue",
+    "after": ".",
+    "hint": "美德"
+   },
+   {
+    "id": 38,
+    "i": 26,
+    "before": "When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no ",
+    "ans": "amount",
+    "after": " of moral exhortation will fill the gap.",
+    "hint": "no ____ of ……will……：再多的……也不会……"
+   }
+  ],
+  "breakdown": {
+   "i": 26,
+   "en": "When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.",
+   "points": [
+    "结构是两个并列的 when 从句加主句，前后对比。",
+    "第二个 when 后的 it does not 省略了 fall to nearly zero，避免重复。",
+    "no amount of... will... 是强调否定的固定搭配，意思是“再多的……也无法……”。",
+    "fill the gap 指弥补这个缺口，即成本过高时靠道德说教填不上。"
+   ]
+  },
+  "questions": [
+   "作者认为“诚实”主要是个人品质，还是社会提供的一种服务？哪些句子支持这个判断？",
+   "结尾 “the one thing Tokyo cannot legislate: the rain” 用了什么修辞效果？",
+   "用 by sheer volume、another story、counterintuitively 各造一个关于你自己领域（比如政治经济）的句子。"
+  ]
+ }
+}

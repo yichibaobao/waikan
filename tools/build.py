@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Build the whole site from content/<slug>/article.json.
+
+    python3 tools/build.py            # from the repo root
+
+Writes   a/<slug>/index.html   one study page per article (reader.template.html)
+         index.html            the collection home page (home.template.html)
+
+Everything is deterministic: the generated pages can always be rebuilt from content/ and tools/.
+See README.md for the article.json format.
+"""
+import html as htmllib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TOOLS = os.path.join(ROOT, "tools")
+CONTENT = os.path.join(ROOT, "content")
+SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def die(msg):
+    sys.exit(f"build error: {msg}")
+
+
+def check(cond, msg):
+    if not cond:
+        die(msg)
+
+
+def word_re(term):
+    return re.compile(r"(?<![A-Za-z])" + re.escape(term) + r"(?![A-Za-z])", re.I)
+
+
+def norm_key(s):
+    return re.sub(r"[^a-z]", "", s.lower())
+
+
+def prepare(slug, raw):
+    """Fill in derived fields, validate, and return (meta, data)."""
+    meta, data = raw["meta"], raw["data"]
+    where = f"[{slug}]"
+
+    # ---- meta
+    check(meta.get("slug") == slug, f"{where} meta.slug must equal the folder name")
+    check(SLUG_RE.match(slug), f"{where} slug must be lowercase letters, digits and hyphens")
+    check(DATE_RE.match(meta.get("date", "")), f"{where} meta.date must be YYYY-MM-DD")
+    for k in ("title", "deck", "short"):
+        check(meta.get(k), f"{where} meta.{k} is required")
+    meta.setdefault("tags", [])
+    meta.setdefault("source", {"type": "original"})
+    check(meta["source"].get("type") in ("original", "link"), f"{where} source.type must be original or link")
+    if meta["source"]["type"] == "link":
+        check(meta["source"].get("url", "").startswith("http"), f"{where} source.url must be an http(s) link")
+    meta.setdefault("lsKey", f"wk-{slug}-state")
+
+    # ---- sentences
+    sents = data["sents"]
+    check(sents and sents[0]["kind"] == "title", f"{where} first sentence must be kind 'title'")
+    body_n = 0
+    for i, s in enumerate(sents):
+        check(s["kind"] in ("title", "sub", "body"), f"{where} sentence {i}: bad kind")
+        check(s.get("en") and s.get("zh"), f"{where} sentence {i}: en and zh are required")
+        s["i"] = i
+        s.setdefault("notes", [])
+        if s["kind"] == "body":
+            check(isinstance(s.get("p"), int) and s["p"] >= 1, f"{where} sentence {i}: body needs paragraph number p")
+            body_n += 1
+            s["n"] = body_n
+            s["label"] = f"第 {body_n} 句"
+        else:
+            s["p"], s["n"] = 0, 0
+            s["label"] = "标题" if s["kind"] == "title" else "副标题"
+    data["title"] = sents[0]["en"]
+    check(data["title"] == meta["title"], f"{where} meta.title must equal the title sentence")
+
+    # ---- vocabulary
+    all_en = " ".join(s["en"] for s in sents)
+    ids = set()
+    for v in data["vocab"]:
+        vid = v["id"]
+        check(vid not in ids, f"{where} duplicate vocab id {vid}")
+        ids.add(vid)
+        for k in ("expr", "zh", "m", "core", "forms"):
+            check(v.get(k), f"{where} vocab {vid}: {k} is required")
+        v.setdefault("syn", [])
+        v.setdefault("note", "")
+        check(v["core"] in v["forms"], f"{where} vocab {vid}: core must be one of forms")
+        for t in v["m"]:
+            check(word_re(t).search(all_en), f"{where} vocab {vid}: highlight term {t!r} not found in the article")
+        hit = next((s for s in sents if any(word_re(t).search(s["en"]) for t in v["m"])), None)
+        check(hit, f"{where} vocab {vid}: no sentence contains its terms")
+        v.setdefault("ctx", hit["en"])
+        check(any(word_re(t).search(v["ctx"]) for t in v["m"]), f"{where} vocab {vid}: ctx lacks its own term")
+        check(2 <= len(v.get("ex", [])) <= 3, f"{where} vocab {vid} ({v['expr']}): give 2-3 examples")
+        form_keys = [norm_key(f) for f in v["forms"]]
+        for ex in v["ex"]:
+            check(ex.get("en") and ex.get("zh"), f"{where} vocab {vid}: example needs en and zh")
+            m = re.search(r"\[\[(.+?)\]\]", ex["en"])
+            check(m, f"{where} vocab {vid}: mark the target in each example with [[ ]]")
+            check(any(fk in norm_key(m.group(1)) for fk in form_keys),
+                  f"{where} vocab {vid}: example target {m.group(1)!r} matches none of forms")
+    # terms must not be shared between words (the highlighter maps a term to one word)
+    seen = {}
+    for v in data["vocab"]:
+        for t in v["m"]:
+            check(t.lower() not in seen, f"{where} term {t!r} used by two vocab entries")
+            seen[t.lower()] = v["id"]
+
+    # ---- cloze items: either resolved already, or {id, i, ans, hint}
+    cloze, cids = [], set()
+    for c in data["cloze"]:
+        check(c["id"] in ids and c["id"] not in cids, f"{where} cloze id {c['id']} unknown or repeated")
+        cids.add(c["id"])
+        if "before" not in c:
+            s = sents[c["i"]]
+            ms = list(word_re(c["ans"]).finditer(s["en"]))
+            check(len(ms) == 1, f"{where} cloze {c['id']}: {c['ans']!r} must appear exactly once in sentence {c['i']}")
+            c = dict(id=c["id"], i=c["i"], before=s["en"][: ms[0].start()], ans=ms[0].group(0),
+                     after=s["en"][ms[0].end():], hint=c["hint"])
+        cloze.append(c)
+    check(cids == ids, f"{where} every vocab entry needs exactly one cloze item")
+    data["cloze"] = cloze
+
+    # ---- breakdown and questions
+    bd = data["breakdown"]
+    bd["i"] = next((s["i"] for s in sents if s["en"] == bd["en"]), None)
+    check(bd["i"] is not None, f"{where} breakdown.en must be one of the article sentences")
+    check(len(bd["points"]) >= 1 and len(data["questions"]) >= 1, f"{where} breakdown points / questions missing")
+
+    # ---- derived numbers for the home page
+    meta["words"] = sum(len(s["en"].split()) for s in sents)
+    meta["vocab"] = len(data["vocab"])
+    return meta, data
+
+
+def syntax_check(page, label):
+    """Fail the build if the page's script does not parse (needs node; skipped when node is missing)."""
+    node = shutil.which("node")
+    if not node:
+        return
+    m = re.search(r"<script>(.*)</script>", page, re.S)
+    with tempfile.TemporaryDirectory() as tmp:
+        f = os.path.join(tmp, "page.js")
+        open(f, "w", encoding="utf-8").write(m.group(1))
+        r = subprocess.run([node, "--check", f], capture_output=True, text=True)
+        check(r.returncode == 0, f"[{label}] script does not parse:\n{r.stderr}")
+
+
+def foot_html(meta):
+    parts = []
+    note = meta.get("note")
+    if note:
+        parts.append(htmllib.escape(note))
+    src = meta["source"]
+    if src["type"] == "link":
+        name = htmllib.escape(src.get("name") or src["url"])
+        parts.append(f'原文出处：<a href="{htmllib.escape(src["url"], quote=True)}" rel="noopener noreferrer">{name}</a>。')
+    return " ".join(parts) or "仅供语言学习。"
+
+
+def main():
+    reader_tpl = open(os.path.join(TOOLS, "reader.template.html"), encoding="utf-8").read()
+    home_tpl = open(os.path.join(TOOLS, "home.template.html"), encoding="utf-8").read()
+    for ph in ("__DATA__", "__LS_STATE__", "__TITLE__", "__BRAND__", "__HOME__", "__FOOT__"):
+        check(reader_tpl.count(ph) >= 1, f"reader template lost placeholder {ph}")
+    check(home_tpl.count("__SITE__") == 1, "home template lost placeholder __SITE__")
+
+    metas = []
+    slugs = sorted(d for d in os.listdir(CONTENT) if os.path.isfile(os.path.join(CONTENT, d, "article.json")))
+    check(slugs, "no articles found in content/")
+    for slug in slugs:
+        raw = json.load(open(os.path.join(CONTENT, slug, "article.json"), encoding="utf-8"))
+        meta, data = prepare(slug, raw)
+        payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        page = (reader_tpl
+                .replace("__TITLE__", htmllib.escape(f"{meta['short']} · 外刊精读"))
+                .replace("__BRAND__", htmllib.escape(meta["short"]))
+                .replace("__HOME__", "../../")
+                .replace("__FOOT__", foot_html(meta))
+                .replace("__LS_STATE__", meta["lsKey"])
+                .replace("__DATA__", payload))
+        out = os.path.join(ROOT, "a", slug)
+        os.makedirs(out, exist_ok=True)
+        open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
+        syntax_check(page, slug)
+        metas.append(meta)
+        print(f"  a/{slug}/index.html  {len(page.encode('utf-8')) // 1024} KB  ({meta['vocab']} words, {len(data['sents'])} sentences)")
+
+    metas.sort(key=lambda m: (m["date"], m["slug"]), reverse=True)
+    site = dict(articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
+                               source=m["source"], words=m["words"], vocab=m["vocab"], lsKey=m["lsKey"]) for m in metas])
+    payload = json.dumps(site, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    home = home_tpl.replace("__SITE__", payload)
+    syntax_check(home, "home")
+    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(home)
+    print(f"  index.html  ({len(metas)} article{'s' if len(metas) != 1 else ''})")
+
+
+if __name__ == "__main__":
+    main()
