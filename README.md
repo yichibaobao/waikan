@@ -1,6 +1,6 @@
 # 外刊精读合集 (waikan)
 
-每天一篇外刊：逐句精读、生词表、填空与中译英自测。站点是纯静态页面，部署在 GitHub Pages
+每天一篇外刊：逐句精读、听力、生词表、六种题型的自测，以及按艾宾浩斯遗忘曲线安排的词汇复习和跨文章总考。站点是纯静态页面，部署在 GitHub Pages
 (`https://yichibaobao.github.io/waikan/`)，不依赖任何境外字体或脚本，国内可直接打开。
 
 A static site: a home page listing daily articles, and one self-contained study page per article.
@@ -8,12 +8,18 @@ A static site: a home page listing daily articles, and one self-contained study 
 ```
 index.html                       home page (generated)
 a/<slug>/index.html              one study page per article (generated)
+a/<slug>/words.json              the article's words with everything a quiz needs (generated, read by the review page)
+review/index.html                spaced-repetition review + cross-article exam + vocabulary table (generated)
 content/<slug>/article.json      the source of each article  <-- the only thing you edit
 content/<slug>/audio.json, clips.json   timings of the narration / the word+example clips (made by make_audio.py)
 tools/build.py                   builds everything from content/
 tools/make_audio.py              makes the narration and the clips (needs the TTS toolchain, see Audio)
 tools/reader.template.html       template of a study page
 tools/home.template.html         template of the home page
+tools/review.template.html       template of the review page
+tools/shared/                    code used by several pages, inlined by the build: base.css, common.js, srs.js (the review schedule),
+                                 clips.js (speaker buttons / clip player), quizkit.js (the six question types)
+tools/tests/srs.test.js          unit tests of the review schedule: node tools/tests/srs.test.js
 ```
 
 Never edit `index.html` or `a/**` by hand; they are overwritten by the build.
@@ -27,7 +33,28 @@ Never edit `index.html` or `a/**` by hand; they are overwritten by the build.
 3. Open `a/<slug>/index.html` and `index.html` once (a local `python3 -m http.server` works) and look at the page.
 4. Commit `content/`, `a/`, `index.html` and push to `main`. GitHub Pages redeploys in a minute or two.
 
-Changing a template (`tools/*.template.html`) and re-running the build updates every article at once.
+Changing a template or a file in `tools/shared/` and re-running the build updates every page at once. Nothing else is needed to feed the review page:
+every new article's words join the review plan automatically (the build writes `a/<slug>/words.json` and the word index inside `review/index.html`).
+
+## Quiz types, review and exam
+
+Six question types (`tools/shared/quizkit.js`), used by the 自测 tab of every article and by the review page:
+
+| type | what it asks |
+|---|---|
+| 选择题 `mcq` | four options; either the English expression -> its meaning, or the meaning -> the expression (keys 1-4) |
+| 文章填空 `cloze` | the word blanked out of the article sentence |
+| 例句填空 `exs` | the word blanked out of one of its own example sentences |
+| 中文写英文词 `zh` | type the English expression for a Chinese gloss (forms and listed synonyms are accepted) |
+| 听写 `dict` | listen to the word or an example sentence and type it; the differing words are underlined (needs the article's clips) |
+| 中文写英文句 `sent` | translate an example sentence, graded by the learner |
+
+Review (`/review/`, linked from the home page): every answer anywhere on the site feeds one schedule per word, kept in the browser (`localStorage`, key `wk-srs-v1`).
+The ladder is 5 min, 30 min, 12 h, 1 d, 2 d, 4 d, 7 d, 15 d, 30 d, then every 60 days. Right and due: one step up. Wrong: back to 5 minutes.
+Right but not yet due: nothing changes (so drilling a word again right away does not push it up). In the mixed review mode the question type
+follows the step: recognise (选择题) -> fill in -> spell -> listen -> write a sentence. Words answered wrong are asked once more at the end of the session (not counted).
+The 总考 tab samples words across all articles (or one article) with mixed question types and keeps the last results.
+`tools/tests/srs.test.js` pins the rules; change them there and in `tools/shared/srs.js` together.
 
 ## Audio (listening tab and speaker icons)
 
@@ -117,6 +144,8 @@ a per-sentence translation and 2-4 teaching notes for each sentence; one long se
 ## Notes
 
 - Reading progress (word status, own sentences, quiz score) lives in the reader's own browser (`localStorage`) and is
-  read back by the home page for the per-article progress bars. There is no server.
+  read back by the home page for the per-article progress bars. The review schedule is stored the same way (`wk-srs-v1`). There is no server,
+  so progress does not sync between devices.
+- The review page fetches `a/<slug>/words.json` with `fetch`, so it must be opened through the website (or a local `python3 -m http.server`), not by double-clicking the file.
 - The site is public. Only publish text you have the right to publish. For articles taken from a publisher, prefer
   `"source": {"type": "link", ...}` with your own notes, translations and vocabulary rather than the full original text.

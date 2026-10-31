@@ -4,7 +4,11 @@
     python3 tools/build.py            # from the repo root
 
 Writes   a/<slug>/index.html   one study page per article (reader.template.html)
+         a/<slug>/words.json   the article's words with everything a quiz needs (read by the review page)
+         review/index.html     the spaced-repetition review page (review.template.html)
          index.html            the collection home page (home.template.html)
+
+tools/shared/*.css|js are inlined into the templates (placeholders like /*__COMMON_JS__*/), so every page stays one self-contained file.
 
 Everything is deterministic: the generated pages can always be rebuilt from content/ and tools/.
 See README.md for the article.json format.
@@ -24,6 +28,9 @@ from tts_text import text_hash, clip_items, clips_hash  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOLS = os.path.join(ROOT, "tools")
 CONTENT = os.path.join(ROOT, "content")
+SHARED = os.path.join(TOOLS, "shared")
+SHARED_PARTS = (("/*__BASE_CSS__*/", "base.css"), ("/*__COMMON_JS__*/", "common.js"), ("/*__SRS_JS__*/", "srs.js"),
+                ("/*__CLIPS_JS__*/", "clips.js"), ("/*__KIT_JS__*/", "quizkit.js"))
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
@@ -189,6 +196,29 @@ def attach_clips(slug, data, raw):
     data["clips"] = dict(src="clips.mp3", t=cl["t"])
 
 
+def inline_shared(tpl, label):
+    """Put the shared css/js files into a template; they must be inlined before any article data is."""
+    for ph, name in SHARED_PARTS:
+        if ph in tpl:
+            part = open(os.path.join(SHARED, name), encoding="utf-8").read()
+            check("__" not in part.replace("__proto__", ""), f"tools/shared/{name} must not contain '__' (placeholder clash)")
+            tpl = tpl.replace(ph, part)
+    return tpl
+
+
+def words_json(slug, meta, data):
+    """Everything the review page needs to quiz this article's words, without loading the article page."""
+    cl = {c["id"]: c for c in data["cloze"]}
+    words = []
+    for v in data["vocab"]:
+        c = cl[v["id"]]
+        words.append(dict(
+            id=v["id"], expr=v["expr"], zh=v["zh"], core=v["core"], forms=v["forms"], syn=v["syn"], note=v["note"],
+            m=v["m"], ctx=v["ctx"], ex=v["ex"],
+            cloze=dict(before=c["before"], ans=c["ans"], after=c["after"], hint=c["hint"], szh=data["sents"][c["i"]]["zh"])))
+    return dict(slug=slug, title=meta["title"], clips=data.get("clips"), words=words)
+
+
 def foot_html(meta):
     parts = []
     note = meta.get("note")
@@ -202,13 +232,15 @@ def foot_html(meta):
 
 
 def main():
-    reader_tpl = open(os.path.join(TOOLS, "reader.template.html"), encoding="utf-8").read()
-    home_tpl = open(os.path.join(TOOLS, "home.template.html"), encoding="utf-8").read()
-    for ph in ("__DATA__", "__LS_STATE__", "__TITLE__", "__BRAND__", "__HOME__", "__FOOT__"):
+    reader_tpl = inline_shared(open(os.path.join(TOOLS, "reader.template.html"), encoding="utf-8").read(), "reader")
+    home_tpl = inline_shared(open(os.path.join(TOOLS, "home.template.html"), encoding="utf-8").read(), "home")
+    review_tpl = inline_shared(open(os.path.join(TOOLS, "review.template.html"), encoding="utf-8").read(), "review")
+    for ph in ("__DATA__", "__LS_STATE__", "__TITLE__", "__BRAND__", "__HOME__", "__FOOT__", "__SLUG__", "__REVIEW__"):
         check(reader_tpl.count(ph) >= 1, f"reader template lost placeholder {ph}")
     check(home_tpl.count("__SITE__") == 1, "home template lost placeholder __SITE__")
+    check(review_tpl.count("__INDEX__") == 1, "review template lost placeholder __INDEX__")
 
-    metas = []
+    metas, index = [], []
     slugs = sorted(d for d in os.listdir(CONTENT) if os.path.isfile(os.path.join(CONTENT, d, "article.json")))
     check(slugs, "no articles found in content/")
     for slug in slugs:
@@ -223,15 +255,27 @@ def main():
                 .replace("__HOME__", "../../")
                 .replace("__FOOT__", foot_html(meta))
                 .replace("__LS_STATE__", meta["lsKey"])
+                .replace("__SLUG__", slug)
+                .replace("__REVIEW__", "../../review/")
                 .replace("__DATA__", payload))
         out = os.path.join(ROOT, "a", slug)
         os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
         syntax_check(page, slug)
+        wj = words_json(slug, meta, data)
+        open(os.path.join(out, "words.json"), "w", encoding="utf-8").write(json.dumps(wj, ensure_ascii=False, separators=(",", ":")))
+        index.append(dict(slug=slug, title=meta["title"], short=meta["short"], date=meta["date"], clips=bool(data.get("clips")),
+                          w=[[v["id"], v["expr"], v["zh"]] for v in data["vocab"]]))
         metas.append(meta)
         print(f"  a/{slug}/index.html  {len(page.encode('utf-8')) // 1024} KB  ({meta['vocab']} words, {len(data['sents'])} sentences)")
 
     metas.sort(key=lambda m: (m["date"], m["slug"]), reverse=True)
+    index.sort(key=lambda a: (a["date"], a["slug"]), reverse=True)
+    os.makedirs(os.path.join(ROOT, "review"), exist_ok=True)
+    rv = review_tpl.replace("__INDEX__", json.dumps(dict(articles=index), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
+    syntax_check(rv, "review")
+    open(os.path.join(ROOT, "review", "index.html"), "w", encoding="utf-8").write(rv)
+    print(f"  review/index.html  ({sum(len(a['w']) for a in index)} words)")
     site = dict(articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
                                source=m["source"], words=m["words"], vocab=m["vocab"], lsKey=m["lsKey"], audio=m["audio"]) for m in metas])
     payload = json.dumps(site, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

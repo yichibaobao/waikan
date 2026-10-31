@@ -6,32 +6,10 @@
 <title>__TITLE__</title>
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
-/* Layout: one 720px reading column under a sticky masthead; four tabs (read, words, quiz, think) share it. */
-:root{
-  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#E8EDF3; --fg:#16202B; --muted:#58656F; --line:#D3DBE4;
-  --accent:#2B5C8E; --accent-soft:#DDE9F5; --on-accent:#FFFFFF;
-  --koban:#C0392B; --lamp-halo:rgba(192,57,43,.18); --mark:#FBE8A6;
-  --good:#27693F; --good-soft:#DDF0E3; --warn:#8A5700; --warn-soft:#FBEBC8; --bad:#B3261E; --bad-soft:#FAE0DD;
-  --font-read:'Literata','Iowan Old Style',Georgia,'Songti SC','Noto Serif CJK SC',serif;
-  --font-ui:'IBM Plex Sans',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
-  --radius:10px;
-}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{font:16px/1.6 var(--font-ui);background:var(--bg);color:var(--fg)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
-button,input,textarea{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-
-/* masthead */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 6px}
-.brand{display:flex;align-items:center;gap:10px;min-width:0;font:600 18px/1.2 var(--font-read);letter-spacing:-.01em}
-.b-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.back{flex:none;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 12.5px/1.2 var(--font-ui);color:var(--muted);text-decoration:none;letter-spacing:0}
-.back:hover{color:var(--fg);background:var(--surface-2)}
+/*__BASE_CSS__*/
+</style>
+<style>
+/* reader-specific styles; the shared ones are in tools/shared/base.css */
 .lamp{flex:none;width:10px;height:10px;border-radius:50%;background:var(--koban);box-shadow:0 0 0 4px var(--lamp-halo)}
 .prog{flex:none;text-align:right}
 .prog .t{font-size:12px;line-height:1.3;color:var(--muted)}
@@ -39,10 +17,6 @@ button,input,textarea{font:inherit;color:inherit}
 .meter{width:112px;height:3px;margin:4px 0 3px auto;border-radius:2px;background:var(--surface-2);overflow:hidden}
 .meter i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
 .prog .s{font-size:11px;min-height:14px}
-.tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
-.tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:9px 4px 10px;font:500 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
-.tab:hover{color:var(--fg)}
-.tab.on{color:var(--fg);border-bottom-color:var(--accent)}
 
 /* listen */
 .lp{display:grid;gap:14px}
@@ -58,37 +32,6 @@ button,input,textarea{font:inherit;color:inherit}
 .ls{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:140px;scroll-margin-bottom:90px}
 .ls:hover{background:var(--surface-2)}
 .ls.on{background:var(--accent-soft)}
-
-main{padding-block:22px 56px}
-.view[hidden]{display:none}
-
-/* shared */
-.eyebrow{font:500 12px/1.2 var(--font-ui);letter-spacing:.08em;color:var(--accent)}
-.h2{margin:0 0 6px;font:600 22px/1.3 var(--font-read);text-wrap:balance}
-.h3{margin:20px 0 8px;font:600 16px/1.4 var(--font-ui)}
-.lead{margin:0 0 14px;color:var(--muted);font-size:15px}
-.meta{margin:0;font-size:12.5px;line-height:1.5;color:var(--muted)}
-.mono{font-family:var(--font-mono);font-size:12.5px}
-.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
-.btn{appearance:none;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font:500 14px/1.2 var(--font-ui);cursor:pointer}
-.btn:hover{background:var(--surface-2)}
-.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.btn.pri:hover{filter:brightness(1.06)}
-.btn.sm{padding:6px 10px;font-size:12.5px}
-.btn:disabled{opacity:.45;cursor:default}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{appearance:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
-.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-.chip:disabled{opacity:.45;cursor:default}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
-.seg-b{appearance:none;padding:6px 10px;border:0;border-right:1px solid var(--line);background:none;font:500 12.5px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
-.seg-b:last-child{border-right:0}
-.seg-b.on.s-new{background:var(--surface-2);color:var(--fg)}
-.seg-b.on.s-learning{background:var(--warn-soft);color:var(--warn)}
-.seg-b.on.s-mastered{background:var(--good-soft);color:var(--good)}
-textarea{display:block;width:100%;min-height:58px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:16px;line-height:1.55;resize:vertical}
-mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 
 /* read */
 .opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px;font-size:14px;color:var(--muted)}
@@ -118,11 +61,6 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .word-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
 .w-expr{margin:0;min-width:0;font:600 18px/1.35 var(--font-read);overflow-wrap:anywhere}
 .w-zh{margin:0;font-size:15px}
-.w-ctx{margin:0;font:italic 400 14.5px/1.65 var(--font-read);color:var(--muted)}
-.spk{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--accent);cursor:pointer}
-.spk:hover{background:var(--accent-soft)}
-.spk.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
-.spk svg{display:block}
 .w-head{display:flex;align-items:center;gap:8px;min-width:0}
 .w-ctxrow{display:flex;align-items:flex-start;gap:10px}
 .w-ctxrow .w-ctx{flex:1;min-width:0}
@@ -140,48 +78,10 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .w-meta{margin:0;min-height:16px;font:400 12px/1.4 var(--font-mono);color:var(--muted)}
 .empty{padding:28px 0;text-align:center;color:var(--muted)}
 
-/* quiz */
-.q-head{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.pbar{flex:1;max-width:240px;height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden}
-.pbar i{display:block;height:100%;width:var(--p,0%);background:var(--accent)}
-.q-sent{margin:16px 0 8px;font:400 20px/2.1 var(--font-read);overflow-wrap:anywhere}
-.q-input{display:inline-block;max-width:100%;padding:2px 8px;border:0;border-bottom:2px solid var(--accent);border-radius:4px 4px 0 0;background:var(--accent-soft);font:500 18px/1.4 var(--font-mono);text-align:center}
-.q-input.ok{border-bottom-color:var(--good);background:var(--good-soft)}
-.q-input.bad{border-bottom-color:var(--bad);background:var(--bad-soft)}
-.q-hint{margin:0;font-size:14px;color:var(--muted)}
-.q-zh{margin:18px 0 6px;font:500 21px/1.6 var(--font-ui);overflow-wrap:anywhere}
-.q-line{margin:10px 0 8px}
-.q-input.q-wide{display:block;width:100%;box-sizing:border-box;padding:8px 10px;font-size:18px;text-align:left}
-.q-area{margin:8px 0 4px;font:400 17px/1.6 var(--font-read)}
-.q-tgt{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 6px}
-.q-tgt b{padding:1px 8px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font:600 15px/1.5 var(--font-read)}
-.miss-s b,.fb b.hl{font-weight:600;background:var(--mark);border-radius:2px;padding:0 1px}
-.fb{margin-top:16px;padding:12px 14px;border-radius:8px;background:var(--surface-2)}
-.fb.ok{background:var(--good-soft)}
-.fb.bad{background:var(--bad-soft)}
-.fb p{margin:0 0 6px;font-size:14.5px}
-.fb .fb-t{font-weight:600}
-.fb.ok .fb-t{color:var(--good)}
-.fb.bad .fb-t{color:var(--bad)}
-.fb-s{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
-.score{margin:0 0 12px;font:400 18px/1.2 var(--font-mono);color:var(--muted)}
-.score .big{font-size:44px;color:var(--fg)}
-.miss{padding:10px 0;border-top:1px solid var(--line)}
-.miss-s{margin:0 0 4px;font:400 17px/1.7 var(--font-read)}
-
 /* think */
 .bd{margin:0 0 12px;font:400 19px/1.75 var(--font-read)}
 .qa{margin-bottom:16px}
 .qa-q{margin:0 0 6px;font-size:15.5px}
-
-.mt4{margin-top:4px}
-.mt10{margin-top:10px}
-.mt12{margin-top:12px}
-.mb12{margin-bottom:12px}
-.mb14{margin-bottom:14px}
-.mb16{margin-bottom:16px}
-.foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
-@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -242,51 +142,28 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 <script>
 (function(){
 'use strict';
+/*__COMMON_JS__*/
+/*__SRS_JS__*/
+/*__CLIPS_JS__*/
+/*__KIT_JS__*/
+
 const DATA = __DATA__;
+const SLUG = '__SLUG__';
+const REVIEW_URL = '__REVIEW__';
 const S = DATA.sents;
 const VMAP = {};
 DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
+DATA.cloze.forEach(function(c){ VMAP[c.id].cloze = {before:c.before, ans:c.ans, after:c.after, hint:c.hint, szh:S[c.i].zh}; });
 const TERM_MAP = {};
 const TERMS = [];
 DATA.vocab.forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; TERMS.push(t); }); });
 TERMS.sort(function(a,b){ return b.length - a.length; });
-function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 const TERM_RE = new RegExp('\\b(?:' + TERMS.map(esc).join('|') + ')\\b', 'gi');
 const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
 const TABS = ['read','listen','words','quiz','think'];
 const LS_STATE = '__LS_STATE__';
 const LS_UI = 'fk-ui-v1';
 const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------- small helpers ---------- */
-function $(s, r){ return (r || document).querySelector(s); }
-function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
-function h(tag, attrs){
-  const e = document.createElement(tag);
-  if (attrs) Object.keys(attrs).forEach(function(k){
-    const v = attrs[k];
-    if (v == null || v === false) return;
-    if (k === 'class') e.className = v;
-    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
-    else e.setAttribute(k, v === true ? '' : String(v));
-  });
-  Array.prototype.slice.call(arguments, 2).forEach(function(kid){
-    [].concat(kid).forEach(function(k){
-      if (k == null || k === false) return;
-      e.append(k.nodeType ? k : document.createTextNode(String(k)));
-    });
-  });
-  return e;
-}
-function today(){
-  const d = new Date();
-  const p = function(n){ return String(n).padStart(2,'0'); };
-  return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate());
-}
-function lsGet(k){ try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch(e){ return null; } }
-function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
-function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-function norm(s){ return String(s).toLowerCase().replace(/[^a-z]/g, ''); }
 
 /* ---------- progress state (saved to the viewer's own private store when available) ---------- */
 function normalize(d){
@@ -305,7 +182,7 @@ function normalize(d){
     if (typeof d.ans[k] === 'string' && d.ans[k]) out.ans[k] = d.ans[k].slice(0,2000);
   });
   if (d.quiz && typeof d.quiz === 'object' && typeof d.quiz.score === 'number' && typeof d.quiz.total === 'number')
-    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0,10), k:['cloze','zh','sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
+    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0,10), k:['mcq','cloze','exs','zh','dict','sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
   return out;
 }
 let state = normalize(lsGet(LS_STATE));
@@ -439,6 +316,7 @@ function showTab(t){
     b.setAttribute('aria-selected', String(on));
   });
   if (t === 'quiz' && quiz.phase === 'start') renderQuiz();
+  if (t === 'words' && changed) renderWords();
   if (changed) window.scrollTo(0, 0);
 }
 
@@ -534,7 +412,15 @@ function updateChips(){
     b.setAttribute('aria-pressed', String(vFilter === f));
   });
 }
-function metaText(id){ const e = state.vocab[id]; return e && e.d ? '上次复习 ' + e.d : ''; }
+function metaText(id){
+  const e = state.vocab[id];
+  const bits = [];
+  if (e && e.d) bits.push('上次复习 ' + e.d);
+  const r = srsGet(srsKey(id));
+  if (r) bits.push('复习计划：' + srsStageText(r, Date.now()));
+  return bits.join(' · ');
+}
+function srsKey(id){ return SLUG + ':' + id; }
 function statusSeg(id, after){
   const seg = h('div', {class:'seg', role:'group', 'aria-label':'学习状态'});
   const btns = {};
@@ -552,12 +438,6 @@ function statusSeg(id, after){
   sync();
   return seg;
 }
-function exNodes(s){
-  const out = [];
-  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
-  return out;
-}
-function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
 function wordCard(v){
   const e = state.vocab[v.id] || {};
   const meta = h('p', {class:'w-meta'}, metaText(v.id));
@@ -600,18 +480,27 @@ function renderWords(){
 }
 
 /* ---------- quiz tab ---------- */
-const quiz = {phase:'start', mode:'cloze', scope:'all', items:[], i:0, results:[], checked:false};
-const MODES = [['cloze', '填空'], ['zh', '中文写英文词'], ['sent', '中文写英文句']];
-const MODE_NAME = {cloze:'填空', zh:'中译英词汇', sent:'中译英整句'};
+const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null};
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
+const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
+  mcq:'四选一：看英文选中文意思，或看中文选英文表达，两个方向随机出现。可以按键盘 1–4 作答。',
   cloze:'每题挖掉一个生词。看中文提示和上下文，把它按原句的词形填回去。',
+  exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
   zh:'看中文意思，自己拼写出对应的英文表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
+  dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
   sent:'看一句中文，自己写出整句英文，并用上指定的表达。写完核对参考句，再自己判断对不对。'
 };
+function modeAvailable(m){ return m !== 'dict' || !!DATA.clips; }
 function quizPool(){
-  if (quiz.mode === 'cloze') return DATA.cloze.slice();
-  if (quiz.mode === 'zh') return DATA.vocab.map(function(v){ return {id:v.id}; });
-  return DATA.vocab.filter(function(v){ return v.ex && v.ex.length; }).map(function(v){ return {id:v.id, k:Math.floor(Math.random() * v.ex.length)}; });
+  const m = quiz.mode;
+  return DATA.vocab.filter(function(v){ return (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
+    const c = {id:v.id};
+    if (m === 'sent' || m === 'exs') c.k = Math.floor(Math.random() * v.ex.length);
+    if (m === 'dict') c.k = v.ex && v.ex.length && Math.random() > 0.35 ? Math.floor(Math.random() * v.ex.length) : -1;
+    if (m === 'mcq') c.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
+    return c;
+  });
 }
 function todoCount(){ return quizPool().filter(function(c){ return getS(c.id) !== 'mastered'; }).length; }
 function startQuiz(scope, ids){
@@ -621,22 +510,41 @@ function startQuiz(scope, ids){
   if (!pool.length) return;
   quiz.scope = scope;
   quiz.items = shuffle(pool.slice());
-  quiz.i = 0; quiz.results = []; quiz.checked = false; quiz.phase = 'q';
+  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.phase = 'q';
   renderQuiz();
 }
 function renderQuiz(){
   const box = $('#quizBox');
   box.replaceChildren();
   box.append(quiz.phase === 'start' ? quizStart() : quiz.phase === 'q' ? quizQuestion() : quizResult());
-  if (quiz.phase === 'q'){ const inp = $('#q-input'); if (inp) inp.focus({preventScroll:true}); }
+  if (quiz.phase === 'q') Kit.focus(box);
+}
+/* every answer goes into the spaced-repetition plan (shared with the review page) once the learner moves on */
+function settle(){
+  const r = quiz.pending;
+  if (!r) return;
+  quiz.pending = null;
+  srsRecord(r.key, r.ok);
+}
+function reviewSummary(){
+  const s = srsLoad(), now = Date.now();
+  let due = 0, seen = 0;
+  DATA.vocab.forEach(function(v){
+    const e = s.w[srsKey(v.id)];
+    if (!e) return;
+    seen++;
+    if (e.t <= now) due++;
+  });
+  return {due:due, seen:seen, fresh:DATA.vocab.length - seen};
 }
 function quizStart(){
+  if (!modeAvailable(quiz.mode)) quiz.mode = 'mcq';
   const all = quizPool().length, todo = todoCount();
   if (quiz.scope === 'todo' && !todo) quiz.scope = 'all';
   const modes = h('div', {class:'chips'});
   MODES.forEach(function(o){
     modes.append(h('button', {type:'button', class:'chip' + (quiz.mode === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.mode === o[0]),
-      onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
+      disabled:!modeAvailable(o[0]), onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
   });
   const opts = h('div', {class:'chips mt12'});
   [['all', '全部 ' + all + ' 题'], ['todo', '只考未掌握 ' + todo + ' 题']].forEach(function(o){
@@ -652,163 +560,26 @@ function quizStart(){
   const last = state.quiz;
   if (last && last.total) card.append(h('p', {class:'meta mt12'}, '上次成绩 ' + last.score + ' / ' + last.total + (last.k ? '（' + MODE_NAME[last.k] + '）' : '') + (last.d ? '，' + last.d : '')));
   card.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz(quiz.scope); }}, '开始')));
+  const rs = reviewSummary();
+  card.append(h('p', {class:'meta mt12'}, '答题结果会记进艾宾浩斯复习计划（只存在这台设备上）。这篇文章：' +
+    (rs.due ? rs.due + ' 个词到期该复习' : '暂时没有到期的词') + '，' + rs.fresh + ' 个词还没开始。 ',
+    h('a', {href:REVIEW_URL}, '去复习页 →')));
   return card;
 }
-function quizQuestion(){ return quiz.mode === 'zh' ? zhQuestion() : quiz.mode === 'sent' ? sentQuestion() : clozeQuestion(); }
-function clozeQuestion(){
+function quizQuestion(){
   const c = quiz.items[quiz.i], v = VMAP[c.id], total = quiz.items.length;
-  const bar = h('div', {class:'pbar'}, h('i'));
-  bar.style.setProperty('--p', (quiz.i / total * 100) + '%');
-  const inp = h('input', {type:'text', id:'q-input', class:'q-input', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false', 'aria-label':'填入缺失的单词'});
-  inp.style.width = Math.max(6, c.ans.length + 2) + 'ch';
-  const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-  const main = h('button', {type:'button', class:'btn pri'}, '检查');
-  const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
-  const card = h('div', {class:'card'},
-    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (quiz.i + 1) + ' 题 / ' + total), bar),
-    h('p', {class:'q-sent'}, c.before, inp, c.after),
-    h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + ' 个字母')),
-    fb,
-    h('div', {class:'row'}, main, peek)
-  );
-  peek.addEventListener('click', function(){ inp.placeholder = c.ans.charAt(0); inp.focus(); });
-  function check(){
-    const val = norm(inp.value);
-    if (!val){ inp.focus(); return; }
-    const ok = val === norm(c.ans);
-    quiz.checked = true;
-    quiz.results.push({id:c.id, ok:ok, given:inp.value.trim()});
-    inp.readOnly = true;
-    inp.classList.add(ok ? 'ok' : 'bad');
-    fb.className = 'fb ' + (ok ? 'ok' : 'bad');
-    fb.hidden = false;
-    fb.replaceChildren(
-      h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, c.ans)]),
-      h('p', null, S[c.i].zh),
-      h('p', null, h('b', null, v.expr), '　', v.zh),
-      h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(c.id))
-    );
-    peek.hidden = true;
-    main.textContent = quiz.i + 1 >= total ? '看成绩' : '下一题';
-    main.focus();
-  }
-  main.addEventListener('click', function(){ if (quiz.checked) nextQ(); else check(); });
-  inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
-  return card;
-}
-function zhQuestion(){
-  const c = quiz.items[quiz.i], v = VMAP[c.id], total = quiz.items.length;
-  const words = v.core.split(' ');
-  const bar = h('div', {class:'pbar'}, h('i'));
-  bar.style.setProperty('--p', (quiz.i / total * 100) + '%');
-  const inp = h('input', {type:'text', id:'q-input', class:'q-input q-wide', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false', 'aria-label':'写出对应的英文表达'});
-  const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-  const main = h('button', {type:'button', class:'btn pri'}, '检查');
-  const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
-  const card = h('div', {class:'card'},
-    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (quiz.i + 1) + ' 题 / ' + total + '　中译英'), bar),
-    h('p', {class:'q-zh'}, v.zh),
-    h('p', {class:'q-line'}, inp),
-    h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + ' 个字母')),
-    fb,
-    h('div', {class:'row'}, main, peek)
-  );
-  peek.addEventListener('click', function(){ inp.placeholder = v.core.charAt(0) + '…'; inp.focus(); });
-  function check(){
-    const val = norm(inp.value);
-    if (!val){ inp.focus(); return; }
-    const own = v.forms.map(norm).indexOf(val) >= 0;
-    const ok = own || v.syn.map(norm).indexOf(val) >= 0;
-    const res = {id:c.id, ok:ok, given:inp.value.trim()};
-    quiz.checked = true;
-    quiz.results.push(res);
-    inp.readOnly = true;
-    inp.classList.add(ok ? 'ok' : 'bad');
-    fb.className = 'fb ' + (ok ? 'ok' : 'bad');
-    fb.hidden = false;
-    const head = h('p', {class:'fb-t'}, ok ? '正确' : ['不对，参考答案是 ', h('b', null, v.expr)]);
-    const kids = [head];
-    if (ok && !own) kids.push(h('p', null, '你写的是近义表达，文章里用的是 ', h('b', null, v.core), '。'));
-    if (!ok){
-      const alt = h('button', {type:'button', class:'btn sm'}, '我写的也对（近义词）');
-      alt.addEventListener('click', function(){
-        res.ok = true;
-        fb.className = 'fb ok';
-        inp.classList.remove('bad'); inp.classList.add('ok');
-        head.replaceChildren('已按你的判断算对。参考答案是 ', h('b', null, v.expr));
-        alt.remove();
-        main.focus();
-      });
-      kids.push(h('div', {class:'fb-s'}, alt));
-    }
-    kids.push(h('p', null, speakBtn('w' + v.id, v.core), ' ', h('b', null, v.expr), '　', v.zh));
-    kids.push(h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id})));
-    kids.push(h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(c.id)));
-    fb.replaceChildren.apply(fb, kids);
-    peek.hidden = true;
-    main.textContent = quiz.i + 1 >= total ? '看成绩' : '下一题';
-    main.focus();
-  }
-  main.addEventListener('click', function(){ if (quiz.checked) nextQ(); else check(); });
-  inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
-  return card;
-}
-function sentRe(v){
-  const alts = v.forms.map(function(f){
-    return f.toLowerCase().split(/[^a-z]+/).filter(Boolean).map(esc).join('[^A-Za-z]+');
+  return Kit.make({type:quiz.mode, key:srsKey(v.id), id:v.id, v:v, k:c.k, dir:c.dir, clips:DATA.clips || null}, {
+    index:quiz.i, total:total, last:quiz.i + 1 >= total,
+    pool:function(){ return DATA.vocab; },
+    extra:function(item){ return h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(item.id)); },
+    onAnswer:function(res){ quiz.results.push(res); quiz.pending = res; },
+    onNext:nextQ
   });
-  return new RegExp('(?:^|[^A-Za-z])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
-}
-function sentQuestion(){
-  const c = quiz.items[quiz.i], v = VMAP[c.id], x = v.ex[c.k], total = quiz.items.length;
-  const bar = h('div', {class:'pbar'}, h('i'));
-  bar.style.setProperty('--p', (quiz.i / total * 100) + '%');
-  const ta = h('textarea', {id:'q-input', class:'q-area', rows:3, maxlength:400, autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false', placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'});
-  const hintP = h('p', {class:'q-hint'});
-  const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-  const main = h('button', {type:'button', class:'btn pri'}, '核对');
-  const peek = h('button', {type:'button', class:'btn'}, '提示：这个表达的意思');
-  const card = h('div', {class:'card'},
-    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (quiz.i + 1) + ' 题 / ' + total + '　中译英整句'), bar),
-    h('p', {class:'q-zh'}, x.zh),
-    h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
-    hintP,
-    ta,
-    fb,
-    h('div', {class:'row'}, main, peek)
-  );
-  peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
-  function mark(ok){
-    quiz.results.push({id:c.id, ok:ok, given:ta.value.trim(), k:c.k});
-    nextQ();
-  }
-  function check(){
-    const val = ta.value.trim();
-    if (!val){ ta.focus(); return; }
-    const used = sentRe(v).test(val);
-    quiz.checked = true;
-    ta.readOnly = true;
-    fb.className = 'fb ' + (used ? 'ok' : 'bad');
-    fb.hidden = false;
-    fb.replaceChildren(
-      h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
-      h('p', null, speakBtn('e' + v.id + '_' + c.k, exPlain(x.en)), ' 参考句：', exNodes(x.en)),
-      h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
-      h('div', {class:'row'},
-        h('button', {type:'button', class:'btn pri', onclick:function(){ mark(true); }}, '我写对了'),
-        h('button', {type:'button', class:'btn', onclick:function(){ mark(false); }}, '还要再练'))
-    );
-    main.hidden = true;
-    peek.hidden = true;
-  }
-  main.addEventListener('click', check);
-  ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); check(); } });
-  return card;
 }
 function nextQ(){
+  settle();
   if (quiz.i + 1 >= quiz.items.length){ finishQuiz(); return; }
   quiz.i++;
-  quiz.checked = false;
   renderQuiz();
 }
 function finishQuiz(){
@@ -819,46 +590,44 @@ function finishQuiz(){
   renderQuiz();
   window.scrollTo(0, 0);
 }
+function missRow(m){
+  const v = VMAP[m.id];
+  const given = m.given ? '　你' + (m.type === 'cloze' || m.type === 'exs' ? '填' : m.type === 'mcq' ? '选' : m.type === 'dict' ? '听写' : '写') + '的：' + m.given : '';
+  if (m.type === 'cloze' || m.type === 'exs'){
+    const c = m.type === 'cloze' ? v.cloze : Kit.exCloze(v, m.k);
+    return h('div', {class:'miss'},
+      h('p', {class:'miss-s'}, c.before, h('mark', {class:'vw'}, c.ans), c.after),
+      h('p', {class:'meta'}, v.expr + '　' + v.zh + given)
+    );
+  }
+  if (m.type === 'zh') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.zh), h('p', {class:'meta'}, '参考答案：' + v.expr + given));
+  if (m.type === 'mcq') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.expr, '　', v.zh), h('p', {class:'meta'}, given.replace(/^　/, '') || '没有作答'));
+  if (m.type === 'dict'){
+    const x = m.k >= 0 ? v.ex[m.k] : null;
+    return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x ? exNodes(x.en) : v.expr), h('p', {class:'meta'}, (x ? x.zh + '　' : v.zh + '　') + given.replace(/^　/, '')));
+  }
+  const x = v.ex[m.k];
+  return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x.zh), h('p', {class:'miss-s'}, exNodes(x.en)), h('p', {class:'meta'}, v.expr + given));
+}
 function quizResult(){
   const total = quiz.results.length;
   const misses = quiz.results.filter(function(r){ return !r.ok; });
   const score = total - misses.length;
   const card = h('div', {class:'card'},
-    h('p', {class:'eyebrow'}, '本轮成绩'),
+    h('p', {class:'eyebrow'}, '本轮成绩 · ' + MODE_NAME[quiz.mode]),
     h('p', {class:'score'}, h('span', {class:'big'}, String(score)), ' / ' + total)
   );
   if (misses.length){
-    card.append(h('h3', {class:'h3 mt4'},'答错的 ' + misses.length + ' 题'));
-    misses.forEach(function(m){
-      const v = VMAP[m.id];
-      const given = m.given ? '　你' + (quiz.mode === 'cloze' ? '填' : '写') + '的：' + m.given : '';
-      if (quiz.mode === 'cloze'){
-        const c = DATA.cloze.filter(function(x){ return x.id === m.id; })[0];
-        card.append(h('div', {class:'miss'},
-          h('p', {class:'miss-s'}, c.before, h('mark', {class:'vw'}, c.ans), c.after),
-          h('p', {class:'meta'}, v.expr + '　' + v.zh + given)
-        ));
-      } else if (quiz.mode === 'zh'){
-        card.append(h('div', {class:'miss'},
-          h('p', {class:'miss-s'}, v.zh),
-          h('p', {class:'meta'}, '参考答案：' + v.expr + given)
-        ));
-      } else {
-        const x = v.ex[m.k];
-        card.append(h('div', {class:'miss'},
-          h('p', {class:'miss-s'}, x.zh),
-          h('p', {class:'miss-s'}, exNodes(x.en)),
-          h('p', {class:'meta'}, v.expr + given)
-        ));
-      }
-    });
+    card.append(h('h3', {class:'h3 mt4'}, '答错的 ' + misses.length + ' 题'));
+    misses.forEach(function(m){ card.append(missRow(m)); });
   } else {
     card.append(h('p', {class:'lead'}, '全部答对。'));
   }
   const row = h('div', {class:'row'});
   if (misses.length) row.append(h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz('all', misses.map(function(m){ return m.id; })); }}, '重做错题'));
-  row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '再测一轮'));
+  row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '换个题型再测'));
   row.append(h('button', {type:'button', class:'btn', onclick:function(){ showTab('words'); try { location.hash = 'words'; } catch(e){} }}, '去词汇表'));
+  row.append(h('a', {class:'btn', href:REVIEW_URL}, '去复习页'));
   card.append(row);
   return card;
 }
@@ -887,69 +656,10 @@ function renderThink(){
 
 /* ---------- wiring ---------- */
 /* ---------- speaker icons: words, example sentences, article sentences ---------- */
-const SPK_SVG = '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
-const C = {a:null, end:0, start:0, btn:null, raf:0, text:''};
-function spkEl(label, onclick){
-  const b = h('button', {type:'button', class:'spk', 'aria-label':label, title:label, onclick:onclick});
-  b.innerHTML = SPK_SVG;
-  return b;
-}
-function clipEnded(){
-  cancelAnimationFrame(C.raf);
-  if (C.btn){ C.btn.classList.remove('on'); C.btn = null; }
-}
-function speakFallback(text){
-  try {
-    if (!('speechSynthesis' in window) || !text) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'en-GB'; u.rate = 0.9;
-    speechSynthesis.speak(u);
-  } catch(e){}
-}
-function clipAudio(){
-  if (C.a) return C.a;
-  const a = new Audio();
-  a.preload = 'auto';
-  a.src = DATA.clips.src;
-  a.addEventListener('error', function(){ const t = C.text; clipEnded(); speakFallback(t); });
-  a.addEventListener('ended', clipEnded);
-  a.addEventListener('pause', function(){ if (a.currentTime < C.end) clipEnded(); });
-  C.a = a;
-  return a;
-}
-function clipTick(){
-  const a = C.a;
-  if (!a || a.paused){ return; }
-  if (a.currentTime >= C.end){ a.pause(); clipEnded(); return; }
-  C.raf = requestAnimationFrame(clipTick);
-}
+function speakBtn(key, text){ return clipBtn(DATA.clips, key, text); }
 function stopNarrationForClip(){
   if (L && L.audio && !L.audio.paused) L.audio.pause();
   if (L) L.seg = null;
-}
-function playClip(key, btn, text){
-  const t = DATA.clips && DATA.clips.t[key];
-  if (!t){ speakFallback(text); return; }
-  stopNarrationForClip();
-  const a = clipAudio();
-  const wasOn = C.btn === btn && !a.paused;
-  clipEnded();
-  if (wasOn){ a.pause(); return; }
-  C.btn = btn; C.text = text;
-  C.start = Math.max(0, t[0] - 0.1); C.end = t[1] + 0.15;
-  btn.classList.add('on');
-  const go = function(){ a.currentTime = C.start; };
-  if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
-  const pr = a.play();
-  if (pr && pr.catch) pr.catch(function(){ clipEnded(); });
-  cancelAnimationFrame(C.raf);
-  C.raf = requestAnimationFrame(clipTick);
-}
-function speakBtn(key, text){
-  if (!DATA.clips) return null;
-  const b = spkEl('播放发音', function(){ playClip(key, b, text); });
-  return b;
 }
 function sentBtn(en){
   if (!DATA.audio) return null;
@@ -961,8 +671,7 @@ function sentBtn(en){
 function playArticleSentence(i, btn){
   const a = getAudio();
   const T = DATA.audio.t[i];
-  if (C.a && !C.a.paused) C.a.pause();
-  clipEnded();
+  Clip.stop();
   const wasOn = L.seg && L.seg.btn === btn && !a.paused;
   endSeg();
   if (wasOn){ a.pause(); return; }
@@ -1051,7 +760,7 @@ function markListenSentence(follow){
 }
 function playSentence(i){
   endSeg();
-  if (C.a) C.a.pause();
+  Clip.stop();
   const a = getAudio();
   a.currentTime = DATA.audio.t[i][0];
   if (L.loop) L.loopIdx = i;
@@ -1099,7 +808,7 @@ function renderListen(){
   const A = DATA.audio;
   L.el.play = h('button', {type:'button', class:'btn pri big', 'aria-pressed':'false', onclick:function(){
     endSeg();
-    if (C.a) C.a.pause();
+    Clip.stop();
     const a = getAudio();
     if (a.paused || a.ended){ if (a.ended) a.currentTime = 0; a.play().catch(function(){}); } else a.pause();
   }}, '播放');
@@ -1165,6 +874,9 @@ function renderAll(){
   if (quiz.phase === 'start') renderQuiz();
 }
 function init(){
+  Clip.onBeforePlay(stopNarrationForClip);
+  window.addEventListener('pagehide', settle);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
   $('#optZh').checked = !!ui.zh;
   $('#optHi').checked = !!ui.hi;
   $('#optZh').addEventListener('change', function(){ ui.zh = this.checked; lsSet(LS_UI, ui); $('#article').classList.toggle('show-zh', ui.zh); });

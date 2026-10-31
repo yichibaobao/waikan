@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>词汇复习 · 外刊精读</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/*__BASE_CSS__*/
+</style>
+<style>
+/* review-page styles; the shared ones are in tools/shared/base.css */
+.prog{flex:none;text-align:right}
+.prog .t{font-size:12px;line-height:1.3;color:var(--muted)}
+.prog b{font:400 13px/1.3 var(--font-mono);color:var(--fg)}
+.stats4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 16px}
+.st{padding:10px 4px 9px;background:var(--surface-2);border-radius:9px;text-align:center}
+.st b{display:block;font:600 24px/1.2 var(--font-mono)}
+.st span{font-size:12px;color:var(--muted)}
+.st.hot b{color:var(--accent)}
+.sub{margin:18px 0 6px;font:600 14px/1.4 var(--font-ui)}
+.next{margin:12px 0 0;font-size:14px;color:var(--muted)}
+.lad{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.lad li{display:grid;grid-template-columns:64px 1fr 30px;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+.lad .tr{height:8px;margin:0;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.lad .tr i{display:block;height:100%;width:var(--p,0%);background:var(--accent)}
+.lad .n{font:400 12.5px/1 var(--font-mono);color:var(--fg);text-align:right}
+.lad li.due .tr i{background:var(--warn)}
+.how{margin:0;font-size:14px;line-height:1.75}
+.how li{margin-bottom:4px}
+.sel{display:block;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:16px}
+.fld{margin:14px 0 6px;font:500 13px/1.4 var(--font-ui);color:var(--muted)}
+.hist{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:13.5px}
+.hist li{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;background:var(--surface-2);border-radius:8px}
+.hist b{font:600 13.5px/1.4 var(--font-mono)}
+.grade{margin:0 0 12px;font:500 15px/1.6 var(--font-ui)}
+.per{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:13px}
+.per li{display:grid;grid-template-columns:1fr auto;gap:2px 10px}
+.per .tr{grid-column:1 / -1;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.per .tr i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
+.srs-line{margin:6px 0 0;font-size:13.5px;color:var(--muted)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.search{flex:1 1 200px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:16px}
+.wrow{display:block;margin-bottom:8px;padding:11px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);color:inherit;text-decoration:none}
+.wrow:hover{border-color:var(--accent)}
+.wrow b{font:600 16.5px/1.4 var(--font-read)}
+.wrow .z{font-size:14px}
+.wrow .m{margin-top:3px;font-size:12px;line-height:1.6;color:var(--muted)}
+.wrow .m span{display:block}
+.wrow .m .d.due{color:var(--warn);font-weight:500}
+.empty{padding:26px 0;text-align:center;color:var(--muted)}
+.danger{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.err{color:var(--bad)}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="in">
+    <div class="mast">
+      <div class="brand"><a class="back" href="../">‹ 合集</a><span class="b-title">词汇复习</span></div>
+      <div class="prog"><div class="t">今日已练 <b id="todayN">0</b> 题</div><div class="t" id="todayOk">&nbsp;</div></div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="页面">
+      <button type="button" class="tab" role="tab" data-tab="review">复习</button>
+      <button type="button" class="tab" role="tab" data-tab="exam">总考</button>
+      <button type="button" class="tab" role="tab" data-tab="words">词汇表</button>
+    </nav>
+  </div>
+</div>
+
+<main class="in">
+  <section class="view" id="view-review" role="tabpanel"><div id="rvBox"></div></section>
+  <section class="view" id="view-exam" role="tabpanel" hidden><div id="exBox"></div></section>
+  <section class="view" id="view-words" role="tabpanel" hidden>
+    <div class="tools"><input class="search" id="wSearch" type="search" placeholder="搜索表达或中文" autocomplete="off" aria-label="搜索词汇"></div>
+    <div class="chips mb14" id="wChips"></div>
+    <div id="wList"></div>
+    <div class="danger" id="wDanger"></div>
+  </section>
+  <p class="foot">复习进度（每个词的复习阶段、今日练习数、总考成绩）只保存在你当前设备的浏览器里，换手机或清理浏览器数据后不会同步。</p>
+</main>
+
+<script>
+(function(){
+'use strict';
+/*__COMMON_JS__*/
+/*__SRS_JS__*/
+/*__CLIPS_JS__*/
+/*__KIT_JS__*/
+
+const INDEX = __INDEX__;
+const ARTS = INDEX.articles;                 /* newest first */
+const AMAP = {}, ALL = [], BYKEY = {};
+ARTS.forEach(function(a){
+  AMAP[a.slug] = a;
+  a.w.forEach(function(w){
+    const x = {key:a.slug + ':' + w[0], slug:a.slug, id:w[0], expr:w[1], zh:w[2]};
+    ALL.push(x); BYKEY[x.key] = x;
+  });
+});
+const LS_UI = 'wk-review-ui-v1';
+const TABS = ['review', 'exam', 'words'];
+const MODE_LIST = [['mixed', '混合（按阶段出题）'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
+const EXAM_MODES = [['mix', '综合'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写']];
+const STRONG = 7;                            /* ladder step from which a word counts as 牢固 (review gap 15 days or more) */
+let ui = Object.assign({mode:'mixed', size:10, exMode:'mix', exN:30, exScope:'all'}, lsGet(LS_UI) || {});
+const LOADED = {};                           /* slug -> {words:{id: word}, clips} once words.json is fetched */
+const SESS = {review:null, exam:null};
+let wFilter = 'all', wQuery = '', wLimit = 60, cur = null, resetArmed = false;
+
+function saveUi(){ lsSet(LS_UI, ui); }
+function now(){ return Date.now(); }
+function pct(a, b){ return b ? Math.round(a / b * 100) : 0; }
+function dateLabel(s){ const p = s.split('-'); return Number(p[1]) + ' 月 ' + Number(p[2]) + ' 日'; }
+
+/* ---------- what is due ---------- */
+function snapshot(){
+  const s = srsLoad(), t = now();
+  const o = {s:s, due:[], wait:[], fresh:[], dist:new Array(SRS_TOP + 1).fill(0), strong:0, nextT:0};
+  ALL.forEach(function(w){
+    const e = s.w[w.key];
+    if (!e){ o.fresh.push(w); return; }
+    o.dist[e.b]++;
+    if (e.b >= STRONG) o.strong++;
+    if (e.t <= t) o.due.push({w:w, e:e}); else { o.wait.push({w:w, e:e}); if (!o.nextT || e.t < o.nextT) o.nextT = e.t; }
+  });
+  o.due.sort(function(a, b){ return a.e.t - b.e.t; });
+  o.wait.sort(function(a, b){ return a.e.t - b.e.t; });
+  o.enrolled = o.due.length + o.wait.length;
+  return o;
+}
+function renderToday(){
+  const g = srsLoad().log[today()] || {n:0, ok:0};
+  $('#todayN').textContent = String(g.n);
+  $('#todayOk').innerHTML = g.n ? '答对 ' + pct(g.ok, g.n) + '%' : '&nbsp;';
+}
+
+/* ---------- loading the words of the articles a session needs ---------- */
+async function loadSlugs(slugs){
+  const need = slugs.filter(function(s){ return !LOADED[s]; });
+  await Promise.all(need.map(async function(slug){
+    const r = await fetch('../a/' + slug + '/words.json', {cache:'no-cache'});
+    if (!r.ok) throw new Error(slug + ' → HTTP ' + r.status);
+    const d = await r.json();
+    const words = {};
+    d.words.forEach(function(w){ words[w.id] = w; });
+    LOADED[slug] = {words:words, clips:d.clips ? {src:'../a/' + slug + '/' + d.clips.src, t:d.clips.t} : null};
+  }));
+}
+function loadError(e, again){
+  const local = location.protocol === 'file:';
+  return h('div', {class:'card'},
+    h('p', {class:'fb-t err'}, '没能读取单词数据'),
+    h('p', {class:'lead'}, local ? '这个页面是从本地文件打开的，浏览器不允许它读取其他文章的数据。请从网站地址打开复习页（或在本地用 python3 -m http.server 打开）。' : '请检查网络后再试一次。（' + (e && e.message || e) + '）'),
+    h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:again}, '重试'))
+  );
+}
+
+/* ---------- which question for which word ---------- */
+/* dictation needs the article's audio */
+function usable(key, mode){ return mode !== 'dict' || !!AMAP[BYKEY[key].slug].clips; }
+function randEx(v){ return Math.floor(Math.random() * v.ex.length); }
+function planOne(key, mode, snap){
+  const w = BYKEY[key], L = LOADED[w.slug], v = L && L.words[w.id];
+  if (!v) return null;
+  const hasClips = !!L.clips;
+  let t;
+  if (mode === 'mixed'){
+    const e = snap.s.w[key];
+    t = Kit.typeForStage(e ? e.b : 0, hasClips);
+  } else if (mode === 'mix') {
+    const kinds = hasClips ? ['mcq', 'cloze', 'exs', 'zh', 'dict'] : ['mcq', 'cloze', 'exs', 'zh'];
+    t = {type:kinds[Math.floor(Math.random() * kinds.length)]};
+    if (t.type === 'mcq') t.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
+  } else {
+    if (mode === 'dict' && !hasClips) return null;
+    t = {type:mode};
+    if (mode === 'mcq') t.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
+  }
+  const q = {key:key, type:t.type, dir:t.dir, practice:false};
+  if (q.type === 'exs' || q.type === 'sent') q.k = randEx(v);
+  if (q.type === 'dict') q.k = Math.random() < 0.35 ? -1 : randEx(v);
+  return q;
+}
+
+/* ---------- running a session (review, new words, exam) ---------- */
+async function startSession(kind, keys, o){
+  const box = o.box;
+  box.replaceChildren(h('div', {class:'card'}, h('p', {class:'lead'}, '正在准备题目…')));
+  const slugs = Array.from(new Set(keys.map(function(k){ return BYKEY[k].slug; })));
+  try { await loadSlugs(slugs); }
+  catch(e){ box.replaceChildren(loadError(e, function(){ startSession(kind, keys, o); })); return; }
+  const snap = snapshot();
+  const queue = [];
+  keys.forEach(function(k){ const q = planOne(k, o.mode, snap); if (q) queue.push(q); });
+  if (!queue.length){
+    box.replaceChildren(h('div', {class:'card'}, h('p', {class:'lead'}, '这个题型现在没有可出的题。听写需要文章有音频，换一个题型试试。'),
+      h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:o.home}, '返回'))));
+    return;
+  }
+  const s = {kind:kind, mode:o.mode, box:box, queue:queue, i:0, results:[], pending:null, tag:o.tag || '', home:o.home, again:o.again, scopeLabel:o.scopeLabel || ''};
+  SESS[kind === 'exam' ? 'exam' : 'review'] = s;
+  ask(s);
+  window.scrollTo(0, 0);
+}
+function retryOf(q, v){
+  return {key:q.key, type:q.type === 'mcq' ? 'cloze' : 'mcq', dir:'e2z', practice:true};
+}
+function srsNote(it, res, q){
+  if (q.practice) return h('p', {class:'srs-line'}, '补练题：不计入复习计划。');
+  const t = now(), pv = srsPreview(it.key, res.ok, t);
+  let txt;
+  if (pv.kind === 'reset') txt = '没记牢，回到第一阶：5 分钟后再复习。';
+  else if (pv.kind === 'first') txt = '记入复习计划：' + srsWhen(pv.t, t) + '再复习。';
+  else if (pv.kind === 'up') txt = '到期答对，升一阶：' + srsWhen(pv.t, t) + '再复习（间隔 ' + SRS_LABELS[pv.b] + '）。';
+  else txt = '还没到复习时间，答对也先不升阶。下次复习：' + srsWhen(pv.was.t, t) + '。';
+  return h('p', {class:'srs-line'}, txt);
+}
+function ask(s){
+  const q = s.queue[s.i], w = BYKEY[q.key], L = LOADED[w.slug];
+  const item = {type:q.type, key:q.key, id:w.id, v:L.words[w.id], k:q.k, dir:q.dir, clips:L.clips};
+  const card = Kit.make(item, {
+    index:s.i, total:s.queue.length, tag:q.practice ? '补练' : s.tag,
+    isLast:function(){ return s.i + 1 >= s.queue.length; },
+    pool:function(){ return ALL; },
+    extra:function(it, res){ return srsNote(it, res, q); },
+    onAnswer:function(res){
+      s.pending = {q:q, res:res, retry:null};
+      if (!res.ok && !q.practice && s.kind !== 'exam'){ s.pending.retry = retryOf(q); s.queue.push(s.pending.retry); }
+    },
+    onChange:function(res){
+      const p = s.pending;
+      if (p && p.res === res && res.ok && p.retry){ const j = s.queue.lastIndexOf(p.retry); if (j >= 0) s.queue.splice(j, 1); p.retry = null; }
+    },
+    onNext:function(){ next(s); }
+  });
+  s.box.replaceChildren(card);
+  Kit.focus(card);
+}
+function settle(s){
+  if (!s || !s.pending) return;
+  const p = s.pending;
+  s.pending = null;
+  if (!p.q.practice) srsRecord(p.q.key, p.res.ok);
+  s.results.push({q:p.q, ok:p.res.ok, given:p.res.given, type:p.q.type});
+  renderToday();
+}
+function next(s){
+  settle(s);
+  if (s.i + 1 >= s.queue.length){ finish(s); return; }
+  s.i++;
+  ask(s);
+  window.scrollTo(0, 0);
+}
+function missLine(r){
+  const w = BYKEY[r.q.key];
+  return h('div', {class:'miss'},
+    h('p', {class:'miss-s'}, w.expr),
+    h('p', {class:'meta'}, w.zh + (r.given ? '　你的答案：' + r.given : '') + '　· ' + AMAP[w.slug].short));
+}
+function finish(s){
+  const main = s.results.filter(function(r){ return !r.q.practice; });
+  const okN = main.filter(function(r){ return r.ok; }).length;
+  const miss = main.filter(function(r){ return !r.ok; });
+  const again = s.results.filter(function(r){ return r.q.practice; });
+  const fixed = again.filter(function(r){ return r.ok; }).length;
+  const card = h('div', {class:'card'},
+    h('p', {class:'eyebrow'}, s.kind === 'exam' ? '总考成绩' : s.kind === 'new' ? '新词学习完成' : '本轮复习完成'),
+    h('p', {class:'score'}, h('span', {class:'big'}, String(okN)), ' / ' + main.length + '　' + pct(okN, main.length) + '%')
+  );
+  if (s.kind === 'exam'){
+    const p = pct(okN, main.length);
+    card.append(h('p', {class:'grade'}, p >= 90 ? '非常扎实，这批词基本都记住了。' : p >= 75 ? '不错，错的词再过一遍就稳了。' : p >= 60 ? '过线了，但还有一批词没记牢，建议多做几轮复习。' : '还不太熟，别急：先去“复习”把到期的词清掉，再来考。'));
+    srsAddExam({d:today(), score:okN, total:main.length, scope:s.scopeLabel});
+    const per = {};
+    main.forEach(function(r){ const sl = BYKEY[r.q.key].slug; const e = per[sl] || (per[sl] = {n:0, ok:0}); e.n++; if (r.ok) e.ok++; });
+    const slugs = Object.keys(per);
+    if (slugs.length > 1){
+      const ul = h('ul', {class:'per'});
+      slugs.sort(function(a, b){ return AMAP[b].date.localeCompare(AMAP[a].date); }).forEach(function(sl){
+        const e = per[sl], bar = h('div', {class:'tr'}, h('i'));
+        bar.style.setProperty('--p', pct(e.ok, e.n) + '%');
+        ul.append(h('li', null, h('span', null, dateLabel(AMAP[sl].date) + ' · ' + AMAP[sl].short), h('b', {class:'mono'}, e.ok + ' / ' + e.n), bar));
+      });
+      card.append(h('p', {class:'sub'}, '各篇正确率'), ul);
+    }
+  } else {
+    if (again.length) card.append(h('p', {class:'meta'}, '补练 ' + again.length + ' 题，答对 ' + fixed + ' 题。补练不计入复习计划。'));
+    const sn = snapshot();
+    card.append(h('p', {class:'next'}, sn.due.length ? '现在还有 ' + sn.due.length + ' 个词到期。' : sn.nextT ? '暂时没有到期的词，下一批在 ' + srsWhen(sn.nextT, now()) + '。' : ''));
+  }
+  if (miss.length){
+    card.append(h('h3', {class:'h3 mt4'}, '答错的 ' + miss.length + ' 个词'));
+    miss.forEach(function(r){ card.append(missLine(r)); });
+  } else {
+    card.append(h('p', {class:'lead'}, '全部答对。'));
+  }
+  const row = h('div', {class:'row'});
+  if (s.kind === 'exam'){
+    if (miss.length) row.append(h('button', {type:'button', class:'btn pri', onclick:function(){
+      startSession('exam', miss.map(function(r){ return r.q.key; }), {box:s.box, mode:s.mode, scopeLabel:'错题重考', home:s.home, again:s.again});
+    }}, '重考错题'));
+    row.append(h('button', {type:'button', class:'btn' + (miss.length ? '' : ' pri'), onclick:s.again}, '再考一次'));
+  } else {
+    row.append(h('button', {type:'button', class:'btn pri', onclick:s.home}, '继续'));
+  }
+  row.append(h('button', {type:'button', class:'btn', onclick:function(){ show(s.kind === 'exam' ? 'review' : 'words'); }}, s.kind === 'exam' ? '去复习' : '看词汇表'));
+  card.append(row);
+  s.box.replaceChildren(card);
+  s.done = true;
+  window.scrollTo(0, 0);
+}
+
+/* ---------- review tab ---------- */
+function chipRow(list, value, onpick, disabledFn){
+  const row = h('div', {class:'chips'});
+  list.forEach(function(o){
+    row.append(h('button', {type:'button', class:'chip' + (String(value) === String(o[0]) ? ' on' : ''), 'aria-pressed':String(String(value) === String(o[0])),
+      disabled:disabledFn ? disabledFn(o[0]) : false, onclick:function(){ onpick(o[0]); }}, o[1]));
+  });
+  return row;
+}
+function stat(label, n, hot){ return h('div', {class:'st' + (hot ? ' hot' : '')}, h('b', null, String(n)), h('span', null, label)); }
+function renderReview(){
+  const box = $('#rvBox');
+  const s = SESS.review;
+  if (s && !s.done){ return; }                    /* a session is on screen, leave it alone */
+  box.replaceChildren();
+  const sn = snapshot();
+  const learning = sn.enrolled - sn.strong;
+  const home = function(){ SESS.review = null; renderReview(); };
+  const t = now();
+  const intro = h('div', {class:'card'},
+    h('h2', {class:'h2'}, '今日复习'),
+    h('div', {class:'stats4'}, stat('待复习', sn.due.length, sn.due.length > 0), stat('新词', sn.fresh.length), stat('学习中', learning), stat('已牢固', sn.strong)),
+    h('p', {class:'fld'}, '题型'),
+    chipRow(MODE_LIST, ui.mode, function(m){ ui.mode = m; saveUi(); renderReview(); }),
+    h('p', {class:'lead mt10'}, ui.mode === 'mixed' ? '混合：记得越牢，题越难。从选择题开始，依次是例句填空、文章填空、拼写、听写，最后是整句翻译。' : '只出这一种题型。'),
+    h('p', {class:'fld'}, '每轮题数'),
+    chipRow([[10, '10 题'], [20, '20 题'], [40, '40 题']], ui.size, function(n){ ui.size = n; saveUi(); renderReview(); })
+  );
+  const row = h('div', {class:'row'});
+  const pickDue = (sn.due.length ? sn.due : sn.wait).filter(function(x){ return usable(x.w.key, ui.mode); });
+  const keysDue = pickDue.slice(0, ui.size).map(function(x){ return x.w.key; });
+  const go = function(kind, keys, tag){
+    startSession(kind, shuffle(keys.slice()), {box:box, mode:ui.mode, tag:tag, home:home, again:home});
+  };
+  if (!keysDue.length && (sn.due.length || sn.wait.length)) row.append(h('p', {class:'srs-line'}, '听写需要文章带音频，这些词所在的文章没有音频。换一个题型，或选“混合”。'));
+  else if (sn.due.length) row.append(h('button', {type:'button', class:'btn pri', onclick:function(){ go('review', keysDue, ''); }}, '开始复习（' + keysDue.length + ' 个词）'));
+  else if (sn.wait.length) row.append(h('button', {type:'button', class:'btn', onclick:function(){ go('review', keysDue, '提前练习'); }}, '提前练习最先到期的 ' + keysDue.length + ' 个'));
+  if (sn.fresh.length){
+    const nk = sn.fresh.slice(0, 10).map(function(w){ return w.key; });
+    row.append(h('button', {type:'button', class:'btn' + (sn.due.length ? '' : ' pri'), onclick:function(){ go('new', nk, '新词'); }}, '学新词（' + nk.length + ' 个）'));
+  }
+  intro.append(row);
+  if (!sn.due.length) intro.append(h('p', {class:'next'}, sn.nextT ? '现在没有到期的词，下一批在 ' + srsWhen(sn.nextT, t) + '到期。' : '还没有开始复习的词：点“学新词”，或者先去文章页做自测，答过的词会自动进入复习计划。'));
+  box.append(intro);
+
+  /* the ladder */
+  const lad = h('ul', {class:'lad'});
+  const max = Math.max.apply(null, sn.dist.concat([1]));
+  const dueBy = new Array(SRS_TOP + 1).fill(0);
+  sn.due.forEach(function(x){ dueBy[x.e.b]++; });
+  SRS_LABELS.forEach(function(lb, b){
+    const tr = h('div', {class:'tr'}, h('i'));
+    tr.style.setProperty('--p', (sn.dist[b] / max * 100) + '%');
+    lad.append(h('li', {class:dueBy[b] ? 'due' : ''}, h('span', null, lb), tr, h('span', {class:'n'}, String(sn.dist[b]))));
+  });
+  box.append(h('div', {class:'card mt12'},
+    h('h2', {class:'h2'}, '记忆阶梯'),
+    h('p', {class:'lead'}, '每个词现在排在哪一级（数字是“下次复习的间隔”，橙色表示这一级有词已到期）：'),
+    lad,
+    h('p', {class:'sub'}, '怎么运作'),
+    h('ul', {class:'how'},
+      h('li', null, '艾宾浩斯遗忘曲线：刚记住的东西忘得最快，所以复习要先密后疏：5 分钟、30 分钟、12 小时、1 天、2 天、4 天、7 天、15 天、30 天，之后每 60 天一次。'),
+      h('li', null, '到期时答对，升一级，间隔拉长；答错，回到 5 分钟那一级。'),
+      h('li', null, '没到期时答对不升级（反复刷同一个词不算数），答错则照样掉回第一级。'),
+      h('li', null, '文章页的自测、这里的复习和总考，所有答题都记进同一个计划。'))
+  ));
+  renderToday();
+}
+
+/* ---------- exam tab ---------- */
+function scopeKeys(scope){
+  return ALL.filter(function(w){ return (scope === 'all' || w.slug === scope) && usable(w.key, ui.exMode); }).map(function(w){ return w.key; });
+}
+function renderExam(){
+  const box = $('#exBox');
+  const s = SESS.exam;
+  if (s && !s.done) return;
+  box.replaceChildren();
+  const home = function(){ SESS.exam = null; renderExam(); };
+  if (ui.exScope !== 'all' && !AMAP[ui.exScope]) ui.exScope = 'all';
+  const sel = h('select', {class:'sel', id:'exScope', 'aria-label':'考试范围'});
+  sel.append(h('option', {value:'all'}, '全部文章（' + ALL.length + ' 个词）'));
+  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + a.w.length + ' 个词）')); });
+  sel.value = ui.exScope;
+  sel.addEventListener('change', function(){ ui.exScope = sel.value; saveUi(); renderExam(); });
+  const avail = scopeKeys(ui.exScope).length;
+  const nOpts = [[20, '20 题'], [30, '30 题'], [50, '50 题'], [0, '全部']];
+  const n = ui.exN === 0 ? avail : Math.min(ui.exN, avail);
+  const card = h('div', {class:'card'},
+    h('h2', {class:'h2'}, '词汇总考'),
+    h('p', {class:'lead'}, '把读过的外刊单词一次性考一遍。不分文章，随机抽词，题型混合；答题结果同样会计入复习计划。'),
+    h('p', {class:'fld'}, '范围'), sel,
+    h('p', {class:'fld'}, '题量'),
+    chipRow(nOpts, ui.exN, function(v){ ui.exN = Number(v); saveUi(); renderExam(); }),
+    h('p', {class:'fld'}, '题型'),
+    chipRow(EXAM_MODES, ui.exMode, function(m){ ui.exMode = m; saveUi(); renderExam(); })
+  );
+  const label = ui.exScope === 'all' ? '全部文章' : AMAP[ui.exScope].short;
+  const start = function(){
+    const keys = shuffle(scopeKeys(ui.exScope)).slice(0, n);
+    startSession('exam', keys, {box:box, mode:ui.exMode, scopeLabel:label, home:home, again:start});
+  };
+  card.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', disabled:!avail, onclick:start}, avail ? '开始考试（' + n + ' 题）' : ui.exMode === 'dict' ? '这个范围里没有带音频的文章' : '这个范围里还没有词')));
+  box.append(card);
+  const ex = srsLoad().ex.slice(-5).reverse();
+  if (ex.length){
+    const ul = h('ul', {class:'hist'});
+    ex.forEach(function(e){ ul.append(h('li', null, h('span', null, e.d + ' · ' + (e.scope || '总考')), h('b', null, e.score + ' / ' + e.total + '　' + pct(e.score, e.total) + '%'))); });
+    box.append(h('div', {class:'card mt12'}, h('h2', {class:'h2'}, '最近的总考'), ul));
+  }
+}
+
+/* ---------- vocabulary table ---------- */
+const WF = [['all', '全部'], ['due', '待复习'], ['learning', '学习中'], ['strong', '已牢固'], ['new', '未开始']];
+function wState(e, t){
+  if (!e) return 'new';
+  return e.b >= STRONG ? 'strong' : 'learning';
+}
+function renderWords(){
+  const s = srsLoad(), t = now();
+  const q = wQuery.trim().toLowerCase();
+  const cnt = {all:ALL.length, due:0, learning:0, strong:0, new:0};
+  ALL.forEach(function(w){ const e = s.w[w.key]; cnt[wState(e)]++; if (e && e.t <= t) cnt.due++; });
+  const chips = $('#wChips');
+  chips.replaceChildren();
+  WF.forEach(function(o){
+    chips.append(h('button', {type:'button', class:'chip' + (wFilter === o[0] ? ' on' : ''), 'aria-pressed':String(wFilter === o[0]),
+      onclick:function(){ wFilter = o[0]; wLimit = 60; renderWords(); }}, o[1] + ' ' + cnt[o[0]]));
+  });
+  const rows = ALL.filter(function(w){
+    const e = s.w[w.key];
+    if (wFilter === 'due' && !(e && e.t <= t)) return false;
+    if ((wFilter === 'learning' || wFilter === 'strong' || wFilter === 'new') && wState(e) !== wFilter) return false;
+    if (q && (w.expr + ' ' + w.zh).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  });
+  const list = $('#wList');
+  list.replaceChildren();
+  if (!rows.length) list.append(h('p', {class:'empty'}, '没有符合条件的词。'));
+  rows.slice(0, wLimit).forEach(function(w){
+    const e = s.w[w.key];
+    list.append(h('a', {class:'wrow', href:'../a/' + w.slug + '/#words'},
+      h('b', null, w.expr), ' ', h('span', {class:'z'}, w.zh),
+      h('div', {class:'m'}, h('span', null, dateLabel(AMAP[w.slug].date) + ' · ' + AMAP[w.slug].short),
+        h('span', {class:'d' + (e && e.t <= t ? ' due' : '')}, e ? srsStageText(e, t) : '未开始'))));
+  });
+  if (rows.length > wLimit) list.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn', onclick:function(){ wLimit += 60; renderWords(); }}, '再显示 ' + Math.min(60, rows.length - wLimit) + ' 个')));
+  const dz = $('#wDanger');
+  dz.replaceChildren(
+    h('p', null, '想从头开始？可以清空复习记录。只清复习阶段、今日练习数和总考成绩，不影响文章页里的“已掌握/学习中”标记和造句。'),
+    h('button', {type:'button', class:'btn sm', onclick:function(){
+      if (!resetArmed){ resetArmed = true; renderWords(); return; }
+      srsReset(); resetArmed = false; SESS.review = null; SESS.exam = null; renderAll();
+    }}, resetArmed ? '再点一次确认清空' : '清空复习记录')
+  );
+}
+
+/* ---------- tabs ---------- */
+function show(t){
+  if (TABS.indexOf(t) < 0) t = 'review';
+  const changed = cur !== null && cur !== t;
+  cur = t;
+  $$('.view').forEach(function(v){ v.hidden = v.id !== 'view-' + t; });
+  $$('.tab').forEach(function(b){
+    const on = b.dataset.tab === t;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', String(on));
+  });
+  if (changed){
+    resetArmed = false;
+    if (t === 'review') renderReview();
+    if (t === 'exam') renderExam();
+    if (t === 'words') renderWords();
+    try { location.hash = t; } catch(e){}
+    window.scrollTo(0, 0);
+  }
+}
+function renderAll(){ renderReview(); renderExam(); renderWords(); renderToday(); }
+function init(){
+  $$('.tab').forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.tab); }); });
+  window.addEventListener('hashchange', function(){ const t = location.hash.replace('#', ''); if (t !== cur) show(t); });
+  $('#wSearch').addEventListener('input', function(){ wQuery = this.value; wLimit = 60; renderWords(); });
+  const flush = function(){ settle(SESS.review); settle(SESS.exam); };
+  window.addEventListener('pagehide', flush);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) flush(); });
+  renderAll();
+  show(location.hash.replace('#', '') || 'review');
+}
+init();
+})();
+</script>
+</body>
+</html>

@@ -50,6 +50,15 @@ main{padding-block:20px 56px}
 .pbar{flex:none;width:120px;height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden}
 .pbar i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
 
+/* review banner */
+.rv{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:center;margin:18px 0 14px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--good);border-radius:var(--radius)}
+.rv:hover{border-color:var(--accent)}
+.rv.hot{border-left-color:var(--accent)}
+.rv-t{margin:0;font:600 16px/1.4 var(--font-ui)}
+.rv-d{margin:0;grid-column:1;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.rv .cta{grid-column:2;grid-row:1 / span 2;margin:0;white-space:nowrap}
+@media (max-width:420px){.rv{grid-template-columns:1fr}.rv .cta{grid-column:1;grid-row:auto;justify-self:start;margin-top:6px}}
+
 /* calendar */
 .cal{padding:14px 14px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
@@ -91,6 +100,7 @@ main{padding-block:20px 56px}
 </header>
 
 <main class="in">
+  <div id="rvBox"></div>
   <div id="featBox"></div>
 
   <section id="calBox"></section>
@@ -103,7 +113,7 @@ main{padding-block:20px 56px}
   <div id="list"></div>
 
   <footer class="foot">
-    <p>学习进度（生词状态、造句、自测成绩）只保存在你当前设备的浏览器里，换手机或清理浏览器数据后不会同步。</p>
+    <p>学习进度（生词状态、造句、自测成绩、复习计划）只保存在你当前设备的浏览器里，换手机或清理浏览器数据后不会同步。</p>
     <p>标明“原创练习文章”的文章是为学习而写的仿外刊练习，不是真实外刊的转载。</p>
   </footer>
 </main>
@@ -111,31 +121,13 @@ main{padding-block:20px 56px}
 <script>
 (function(){
 'use strict';
+/*__COMMON_JS__*/
+/*__SRS_JS__*/
+
 const SITE = __SITE__;
 const A = SITE.articles;
 const WD = ['周日','周一','周二','周三','周四','周五','周六'];
 
-function $(s, r){ return (r || document).querySelector(s); }
-function h(tag, attrs){
-  const e = document.createElement(tag);
-  if (attrs) Object.keys(attrs).forEach(function(k){
-    const v = attrs[k];
-    if (v == null || v === false) return;
-    if (k === 'class') e.className = v;
-    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
-    else e.setAttribute(k, v === true ? '' : String(v));
-  });
-  Array.prototype.slice.call(arguments, 2).forEach(function(kid){
-    [].concat(kid).forEach(function(k){
-      if (k == null || k === false) return;
-      e.append(k.nodeType ? k : document.createTextNode(String(k)));
-    });
-  });
-  return e;
-}
-function lsGet(k){ try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch(e){ return null; } }
-function pad(n){ return String(n).padStart(2, '0'); }
-function ymd(d){ return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
 function parse(s){ const p = s.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
 function dateLabel(s){ const d = parse(s); return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + WD[d.getDay()]; }
 
@@ -173,6 +165,33 @@ function renderStats(){
   [['文章', A.length + ' 篇'], ['累计生词', String(vocab)], ['我已掌握', String(mastered)]].forEach(function(p){
     box.append(h('div', {class:'stat'}, h('dt', null, p[0]), h('dd', null, p[1])));
   });
+}
+
+/* spaced-repetition banner: counts come from the review page's own storage */
+function renderReview(){
+  const box = $('#rvBox');
+  box.replaceChildren();
+  const total = A.reduce(function(n, a){ return n + a.vocab; }, 0);
+  if (!total) return;
+  const known = {};
+  A.forEach(function(a){ known[a.slug] = true; });
+  const s = srsLoad(), t = Date.now();
+  let due = 0, seen = 0, next = 0;
+  Object.keys(s.w).forEach(function(k){
+    if (!known[k.split(':')[0]]) return;
+    seen++;
+    const e = s.w[k];
+    if (e.t <= t) due++; else if (!next || e.t < next) next = e.t;
+  });
+  const fresh = Math.max(0, total - seen);
+  const title = due ? '有 ' + due + ' 个词该复习了' : seen ? '今天的词都复习完了' : '艾宾浩斯复习';
+  const desc = due ? '按遗忘曲线安排：到期的词先考你。' + (fresh ? '另有 ' + fresh + ' 个新词还没开始。' : '')
+    : seen ? (next ? '下一批在 ' + srsWhen(next, t) + '到期。' : '') + (fresh ? '还有 ' + fresh + ' 个新词可以学。' : '')
+    : '读完文章后做自测，答过的词会自动进入复习计划；也可以直接去学新词（' + fresh + ' 个）。';
+  box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:'review/'},
+    h('p', {class:'rv-t'}, title),
+    h('p', {class:'rv-d'}, desc),
+    h('span', {class:'cta'}, due ? '去复习 →' : '词汇复习 →')));
 }
 
 /* latest article */
@@ -292,6 +311,7 @@ function render(){
 }
 $('#q').addEventListener('input', function(){ view.q = this.value; render(); });
 renderStats();
+renderReview();
 render();
 })();
 </script>

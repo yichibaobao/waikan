@@ -32,32 +32,10 @@ button,input,textarea{font:inherit;color:inherit}
 .b-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .back{flex:none;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 12.5px/1.2 var(--font-ui);color:var(--muted);text-decoration:none;letter-spacing:0}
 .back:hover{color:var(--fg);background:var(--surface-2)}
-.lamp{flex:none;width:10px;height:10px;border-radius:50%;background:var(--koban);box-shadow:0 0 0 4px var(--lamp-halo)}
-.prog{flex:none;text-align:right}
-.prog .t{font-size:12px;line-height:1.3;color:var(--muted)}
-.prog b{font:400 13px/1.3 var(--font-mono);color:var(--fg)}
-.meter{width:112px;height:3px;margin:4px 0 3px auto;border-radius:2px;background:var(--surface-2);overflow:hidden}
-.meter i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
-.prog .s{font-size:11px;min-height:14px}
 .tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
 .tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:9px 4px 10px;font:500 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
 .tab:hover{color:var(--fg)}
 .tab.on{color:var(--fg);border-bottom-color:var(--accent)}
-
-/* listen */
-.lp{display:grid;gap:14px}
-.lp-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.btn.big{min-width:96px;padding:12px 22px;font-size:16px}
-.lp-range{display:block;width:100%;margin:0;accent-color:var(--accent)}
-.lp-time{display:flex;justify-content:space-between;margin-top:2px;font:400 12.5px/1 var(--font-mono);color:var(--muted)}
-.lp-opt{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
-.lp-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
-.lp-msg{margin:0;font-size:13px;color:var(--bad)}
-.tr{margin-top:22px}
-.tr-off{margin-top:18px;padding:22px 16px;text-align:center;font-size:14.5px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
-.ls{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:140px;scroll-margin-bottom:90px}
-.ls:hover{background:var(--surface-2)}
-.ls.on{background:var(--accent-soft)}
 
 main{padding-block:22px 56px}
 .view[hidden]{display:none}
@@ -90,55 +68,12 @@ main{padding-block:22px 56px}
 textarea{display:block;width:100%;min-height:58px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:16px;line-height:1.55;resize:vertical}
 mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 
-/* read */
-.opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px;font-size:14px;color:var(--muted)}
-.opts label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
-.opts input{accent-color:var(--accent);width:16px;height:16px;margin:0}
-.a-title{margin:0 0 12px;font:600 clamp(26px,6.4vw,34px)/1.15 var(--font-read);letter-spacing:-.015em;text-wrap:balance}
-.a-deck{margin:0;font:italic 400 18px/1.55 var(--font-read);color:var(--muted);text-wrap:pretty}
-.a-para{margin:0;font:400 18px/1.75 var(--font-read)}
-.blk{margin-bottom:24px}
-.blk-sub{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
-.sent{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:120px}
-.sent:hover{background:var(--surface-2)}
-.sent.on{background:var(--accent-soft)}
-.zh{display:none;margin:10px 0 0;font:400 15px/1.75 var(--font-ui);color:var(--muted)}
-.show-zh .zh{display:block}
-.note{margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:120px}
-.note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.note-nav{display:flex;gap:6px}
-.note-zh{margin:0 0 10px;font:500 16px/1.7 var(--font-ui)}
-.note-list{margin:0;padding-left:1.15em;font-size:14.5px;line-height:1.7}
-.note-list li{margin-bottom:5px}
-
-/* words */
-.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.search{flex:1 1 200px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:16px}
-.word{display:grid;gap:9px;margin-bottom:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.word-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
-.w-expr{margin:0;min-width:0;font:600 18px/1.35 var(--font-read);overflow-wrap:anywhere}
-.w-zh{margin:0;font-size:15px}
+/* word context line and speaker button (used by the word cards and by the quiz feedback) */
 .w-ctx{margin:0;font:italic 400 14.5px/1.65 var(--font-read);color:var(--muted)}
 .spk{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--accent);cursor:pointer}
 .spk:hover{background:var(--accent-soft)}
 .spk.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .spk svg{display:block}
-.w-head{display:flex;align-items:center;gap:8px;min-width:0}
-.w-ctxrow{display:flex;align-items:flex-start;gap:10px}
-.w-ctxrow .w-ctx{flex:1;min-width:0}
-.ex-row{display:flex;align-items:flex-start;gap:10px}
-.ex-body{min-width:0}
-.w-tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:500 11px/1.6 var(--font-ui);vertical-align:3px;white-space:nowrap}
-.w-note{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
-.w-exh{margin:2px 0 -3px;font-size:12px;color:var(--muted)}
-.w-ex{margin:0;padding:0;list-style:none;display:grid;gap:9px}
-.w-ex li{padding-left:12px;border-left:2px solid var(--line)}
-.ex-en{display:block;font:400 15px/1.6 var(--font-read)}
-.ex-en b{font-weight:600;background:var(--mark);border-radius:2px;padding:0 1px}
-.ex-zh{display:block;margin-top:1px;font-size:13.5px;line-height:1.55;color:var(--muted)}
-.w-mine>span{display:block;margin-bottom:4px;font-size:12px;color:var(--muted)}
-.w-meta{margin:0;min-height:16px;font:400 12px/1.4 var(--font-mono);color:var(--muted)}
-.empty{padding:28px 0;text-align:center;color:var(--muted)}
 
 /* quiz */
 .q-head{display:flex;align-items:center;justify-content:space-between;gap:14px}
@@ -169,11 +104,6 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .miss{padding:10px 0;border-top:1px solid var(--line)}
 .miss-s{margin:0 0 4px;font:400 17px/1.7 var(--font-read)}
 
-/* think */
-.bd{margin:0 0 12px;font:400 19px/1.75 var(--font-read)}
-.qa{margin-bottom:16px}
-.qa-q{margin:0 0 6px;font-size:15.5px}
-
 .mt4{margin-top:4px}
 .mt10{margin-top:10px}
 .mt12{margin-top:12px}
@@ -182,6 +112,104 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .mb16{margin-bottom:16px}
 .foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* quiz kit: multiple choice, dictation, feedback pieces */
+.q-ask{margin:14px 0 0;font-size:14px;color:var(--muted)}
+.q-big{margin:6px 0 0;font:600 26px/1.35 var(--font-read);overflow-wrap:anywhere}
+.q-big .spk{vertical-align:middle;margin-left:6px}
+.q-ctx{margin:8px 0 0;font:italic 400 15.5px/1.7 var(--font-read);color:var(--muted)}
+.mc{display:grid;gap:8px;margin:16px 0 4px}
+.mc-b{appearance:none;display:flex;align-items:flex-start;gap:10px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface);text-align:left;font:400 16px/1.5 var(--font-ui);color:var(--fg);cursor:pointer}
+.mc-b:hover:not(:disabled){background:var(--surface-2)}
+.mc-b .n{flex:none;width:20px;height:20px;margin-top:1px;border:1px solid var(--line);border-radius:50%;font:500 11.5px/18px var(--font-mono);text-align:center;color:var(--muted)}
+.mc-b.ok{border-color:var(--good);background:var(--good-soft)}
+.mc-b.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mc-b:disabled{cursor:default;opacity:1;color:var(--fg)}
+.dict-btns{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px}
+.btn.play{display:inline-flex;align-items:center;gap:7px}
+.btn.play svg{display:block}
+.btn.play.on{box-shadow:0 0 0 2px var(--accent-soft)}
+.df{margin:0 0 8px;font:400 16.5px/1.7 var(--font-read)}
+.df-l{display:block;font:500 12px/1.5 var(--font-ui);color:var(--muted)}
+.miss-t{color:var(--bad);text-decoration:underline wavy;text-decoration-thickness:1px;text-underline-offset:3px}
+.fb-x:empty{display:none}
+.w-note{margin:0 0 6px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+
+</style>
+<style>
+/* reader-specific styles; the shared ones are in tools/shared/base.css */
+.lamp{flex:none;width:10px;height:10px;border-radius:50%;background:var(--koban);box-shadow:0 0 0 4px var(--lamp-halo)}
+.prog{flex:none;text-align:right}
+.prog .t{font-size:12px;line-height:1.3;color:var(--muted)}
+.prog b{font:400 13px/1.3 var(--font-mono);color:var(--fg)}
+.meter{width:112px;height:3px;margin:4px 0 3px auto;border-radius:2px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
+.prog .s{font-size:11px;min-height:14px}
+
+/* listen */
+.lp{display:grid;gap:14px}
+.lp-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn.big{min-width:96px;padding:12px 22px;font-size:16px}
+.lp-range{display:block;width:100%;margin:0;accent-color:var(--accent)}
+.lp-time{display:flex;justify-content:space-between;margin-top:2px;font:400 12.5px/1 var(--font-mono);color:var(--muted)}
+.lp-opt{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.lp-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.lp-msg{margin:0;font-size:13px;color:var(--bad)}
+.tr{margin-top:22px}
+.tr-off{margin-top:18px;padding:22px 16px;text-align:center;font-size:14.5px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+.ls{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:140px;scroll-margin-bottom:90px}
+.ls:hover{background:var(--surface-2)}
+.ls.on{background:var(--accent-soft)}
+
+/* read */
+.opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.opts label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.opts input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.a-title{margin:0 0 12px;font:600 clamp(26px,6.4vw,34px)/1.15 var(--font-read);letter-spacing:-.015em;text-wrap:balance}
+.a-deck{margin:0;font:italic 400 18px/1.55 var(--font-read);color:var(--muted);text-wrap:pretty}
+.a-para{margin:0;font:400 18px/1.75 var(--font-read)}
+.blk{margin-bottom:24px}
+.blk-sub{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.sent{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:120px}
+.sent:hover{background:var(--surface-2)}
+.sent.on{background:var(--accent-soft)}
+.zh{display:none;margin:10px 0 0;font:400 15px/1.75 var(--font-ui);color:var(--muted)}
+.show-zh .zh{display:block}
+.note{margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:120px}
+.note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.note-nav{display:flex;gap:6px}
+.note-zh{margin:0 0 10px;font:500 16px/1.7 var(--font-ui)}
+.note-list{margin:0;padding-left:1.15em;font-size:14.5px;line-height:1.7}
+.note-list li{margin-bottom:5px}
+
+/* words */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.search{flex:1 1 200px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:16px}
+.word{display:grid;gap:9px;margin-bottom:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.word-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.w-expr{margin:0;min-width:0;font:600 18px/1.35 var(--font-read);overflow-wrap:anywhere}
+.w-zh{margin:0;font-size:15px}
+.w-head{display:flex;align-items:center;gap:8px;min-width:0}
+.w-ctxrow{display:flex;align-items:flex-start;gap:10px}
+.w-ctxrow .w-ctx{flex:1;min-width:0}
+.ex-row{display:flex;align-items:flex-start;gap:10px}
+.ex-body{min-width:0}
+.w-tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:500 11px/1.6 var(--font-ui);vertical-align:3px;white-space:nowrap}
+.w-note{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.w-exh{margin:2px 0 -3px;font-size:12px;color:var(--muted)}
+.w-ex{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.w-ex li{padding-left:12px;border-left:2px solid var(--line)}
+.ex-en{display:block;font:400 15px/1.6 var(--font-read)}
+.ex-en b{font-weight:600;background:var(--mark);border-radius:2px;padding:0 1px}
+.ex-zh{display:block;margin-top:1px;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.w-mine>span{display:block;margin-bottom:4px;font-size:12px;color:var(--muted)}
+.w-meta{margin:0;min-height:16px;font:400 12px/1.4 var(--font-mono);color:var(--muted)}
+.empty{padding:28px 0;text-align:center;color:var(--muted)}
+
+/* think */
+.bd{margin:0 0 12px;font:400 19px/1.75 var(--font-read)}
+.qa{margin-bottom:16px}
+.qa-q{margin:0 0 6px;font-size:15.5px}
 </style>
 </head>
 <body>
@@ -242,23 +270,7 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 <script>
 (function(){
 'use strict';
-const DATA = {"title":"Finders, keepers? Not in Tokyo","sents":[{"i":0,"kind":"title","p":0,"n":0,"label":"标题","en":"Finders, keepers? Not in Tokyo","zh":"捡到就归自己？在东京可不是这样。","notes":["finders keepers 是英语俗语（完整版 finders keepers, losers weepers），意思是“谁捡到就归谁”，小孩争东西时常说。","标题用问句加 Not in Tokyo，直接点出反差：东京不吃这一套。"]},{"i":1,"kind":"sub","p":0,"n":0,"label":"副标题","en":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama.","zh":"在世界上最繁忙的城市之一，一把被遗忘的雨伞引发了一场小小的市民大戏。","notes":["one of the + 最高级 + 复数名词：“最……之一”。","set off：引发、触发。","civic：市民的；a small civic drama 是调侃，把一把雨伞的小事说成“市民大戏”。"]},{"i":2,"kind":"sub","p":0,"n":0,"label":"副标题","en":"The system that handles it says a lot about trust.","zh":"处理这件事的这套体系，很能说明信任是怎么回事。","notes":["that handles it 是定语从句，修饰 system，it 指上一句里被遗忘的雨伞。","say a lot about：说明了很多关于……的事情。","让“体系”来“说话”，是新闻英语里常见的拟人写法。"]},{"i":3,"kind":"body","p":1,"n":1,"label":"第 1 句","en":"Every weekday morning, a small miracle goes largely unnoticed in Tokyo.","zh":"每个工作日的早晨，东京都有一个小小的奇迹发生，却几乎没人留意。","notes":["go unnoticed：没被注意到。go + 形容词表示“处于某种状态”，类似 go missing、go wrong。","largely = mostly，基本上。","a small miracle：把小事说成“奇迹”，制造悬念，下一句才揭晓是什么。"]},{"i":4,"kind":"body","p":1,"n":2,"label":"第 2 句","en":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","zh":"一位通勤者瘫坐在电车上，打起瞌睡，醒来时已经坐过了一站，少了一把伞、一条围巾，更夸张的情况下，还少了一个塞满现金的信封。","notes":["主干是三个并列谓语：slumps onto、dozes off、wakes up。","slump onto：瘫坐在……上；doze off：打瞌睡；stuffed with：塞满。","one stop too late：晚了一站，也就是睡过站。","minus 在这里是介词，“少了……”，口语化的幽默用法，表示醒来时东西没了。","in the more spectacular cases 是插入语；spectacular 本义“壮观的”，这里是反语，指更离谱的情况。"]},{"i":5,"kind":"body","p":1,"n":3,"label":"第 3 句","en":"By the time she has finished cursing, the item has often begun an improbable journey.","zh":"等她骂完的时候，那件东西往往已经踏上了一段出人意料的旅程。","notes":["by the time + 从句：“等到……的时候”。主句用现在完成时 has begun，表示到那时旅程已经开始。","finish doing sth.：finish 后面接动名词，所以是 finished cursing。","cursing：咒骂、骂脏话，这里指懊恼地发泄几句。","improbable：不太可能的，出人意料的。journey 把物品拟人化，引出下一句的流转路线。"]},{"i":6,"kind":"body","p":1,"n":4,"label":"第 4 句","en":"It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is logged, labelled and stored.","zh":"它先从车站工作人员的桌上转到街区的交番，如果没人来认领，再转到中央失物招领处，在那里被登记、贴标签、存放起来。","notes":["goes from A to B and ... to C：一路写出物品的流转路径。","if nobody comes forward：come forward 是“站出来（认领、作证）”。","where it is logged, labelled and stored：where 引导非限制性定语从句，修饰 office；三个被动动词并列，节奏感强。logged 是 log 的过去分词，“登记在案”。","police box 就是日本的交番（koban），后文会再出现。lost-property office 是英式说法，美式常说 lost and found。","neighbourhood、labelled 是英式拼写，美式是 neighborhood、labeled。"]},{"i":7,"kind":"body","p":2,"n":5,"label":"第 5 句","en":"The scale is staggering.","zh":"规模之大，令人吃惊。","notes":["staggering：令人震惊的，常形容数量或规模大。","上一句是长句，这里用一个短句收束，再展开数字，是英文评论文常见的节奏处理。"]},{"i":8,"kind":"body","p":2,"n":6,"label":"第 6 句","en":"Police in the capital handle several million lost items a year.","zh":"首都的警方每年要处理好几百万件遗失物品。","notes":["the capital 指东京，避免重复 Tokyo。","several million：好几百万，million 前面有 several 时不加 s。","a year = per year，这里的 a 表示“每”。"]},{"i":9,"kind":"body","p":2,"n":7,"label":"第 7 句","en":"By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","zh":"单论数量，雨伞遥遥领先，但几乎没人来认领；便宜的雨伞，似乎是东京人唯一乐意丢掉的东西。","notes":["by sheer volume：单凭数量；sheer 表示“纯粹的”，起强调作用。","lead the pack：遥遥领先（pack 指赛跑里的大部队）。","yet 表转折，比 but 更正式；claim 在这里是“认领”。","分号连接两个相关的分句。the one possession (that) Tokyoites seem happy to lose 省略了关系代词 that；Tokyoites 是东京人。"]},{"i":10,"kind":"body","p":2,"n":8,"label":"第 8 句","en":"Wallets are another story.","zh":"钱包就另当别论了。","notes":["X is another story：固定表达，“X 则另当别论”。","同类说法：that's a different story、that's another matter。","短句转折，把话题从雨伞切到钱包。"]},{"i":11,"kind":"body","p":2,"n":9,"label":"第 9 句","en":"A striking share of them find their way back to their owners, cash and all.","zh":"其中相当大一部分都找到了回到失主手里的路，连里面的现金也一分不少。","notes":["a striking share of them：striking 是“显著的”，share 是“份额”；them 指钱包。谓语用复数 find，是按意义一致（them 是复数）。","find their way back to：找到回去的路，拟人手法，呼应前面的 journey。","cash and all：连现金在内也一样，and all 是口语用法，表示“连同……一起”。"]},{"i":12,"kind":"body","p":3,"n":10,"label":"第 10 句","en":"Economists would start with incentives.","zh":"经济学家会先从激励机制说起。","notes":["would + 动词原形：表示“通常会这样做”，描述典型行为。","incentives：激励、诱因，经济学里的基本概念。","作者先借经济学家的视角起头，下一句马上给出具体的激励机制。"]},{"i":13,"kind":"body","p":3,"n":11,"label":"第 11 句","en":"Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","zh":"日本法律要求拾得者上交捡到的东西，同时赋予他们获得物品价值 5% 到 20% 报酬的权利，由失主支付。","notes":["oblige sb. to do sth.：责成某人做某事；entitle sb. to sth.：赋予某人……的权利。前者是义务，后者是权利，两个动词共用主语 law，对比工整。","hand in：上交。what they pick up 是名词性从句，作 hand in 的宾语。","a reward of between 5% and 20% of the item's value：价值为物品价值 5% 到 20% 的报酬。","payable by the owner：形容词短语后置，修饰 reward，“由失主支付”。"]},{"i":14,"kind":"body","p":3,"n":12,"label":"第 12 句","en":"In practice, many finders reportedly waive it.","zh":"实际上，据说许多拾得者放弃了这笔报酬。","notes":["in practice：实际上（对应 in theory，理论上）。","reportedly：据报道、据说，说明信息是转述的，作者不为其担保，新闻文体常用。","waive：放弃（权利、费用）。it 指上一句的 reward。"]},{"i":15,"kind":"body","p":3,"n":13,"label":"第 13 句","en":"Incentives, then, explain only part of the story.","zh":"这么看来，激励只能解释这个故事的一部分。","notes":["then 放在主语后面作插入语，表示“那么，由此看来”，语气比放在句首更含蓄。","only part of the story：只解释了一部分，为下文的 infrastructure and habit 铺垫。"]},{"i":16,"kind":"body","p":4,"n":14,"label":"第 14 句","en":"The rest lies in infrastructure and habit.","zh":"其余的原因在于配套机制和习惯。","notes":["the rest：其余部分。","lie in：在于，表示原因或关键所在。","infrastructure：本义是基础设施，这里引申为配套的设施和制度；habit 是民众的行为习惯。一个偏“硬”，一个偏“软”。"]},{"i":17,"kind":"body","p":4,"n":15,"label":"第 15 句","en":"The koban, the small police boxes found in nearly every neighbourhood, make doing the right thing cheap: there is almost always one within a short walk.","zh":"交番，也就是几乎每个街区都有的小型派出所，让做正确的事变得成本很低：走几步路，几乎总能找到一个。","notes":["The koban, the small police boxes ... 是同位语，解释 koban；found in nearly every neighbourhood 是过去分词作后置定语。koban 单复数同形，所以这里谓语用 make。","make doing the right thing cheap：make + 宾语 + 形容词；宾语是动名词短语，cheap 指成本低，不是价格便宜。","冒号后面补充说明：几乎总有一个在步行很短的距离内（within a short walk）。"]},{"i":18,"kind":"body","p":4,"n":16,"label":"第 16 句","en":"The process itself is gloriously dull, a form, a receipt, a database entry.","zh":"整个流程本身乏味得恰到好处：填一张表，拿一张收据，录入一条数据。","notes":["gloriously dull：反语式夸赞。dull 本是贬义，但这里的“无聊”正是优点：简单、没有麻烦。","逗号后面三个名词并列（a form, a receipt, a database entry），列出流程的具体内容，没有 and，节奏利落。","the process itself：itself 强调“流程本身”。"]},{"i":19,"kind":"body","p":4,"n":17,"label":"第 17 句","en":"Social scientists might call this lowering the cost of honesty.","zh":"社会科学家或许会把这称为降低诚实的成本。","notes":["might call this ...：might 让语气更谦逊，“或许会称之为”。","call A B：把 A 称为 B，这里 B 是动名词短语 lowering the cost of honesty。","the cost of honesty：把诚实看作要付成本的事，是经济学的思路，也是全文的核心比喻。"]},{"i":20,"kind":"body","p":5,"n":18,"label":"第 18 句","en":"It is a lesson that travels.","zh":"这是一条可以推广到别处的经验。","notes":["a lesson that travels：that 引导定语从句；travel 在这里指“可以被带到别处适用”。","短句，承上启下，从东京的个案转向更普遍的结论。","It 指前面说的“降低诚实的成本”这个道理。"]},{"i":21,"kind":"body","p":5,"n":19,"label":"第 19 句","en":"A much-cited experiment published in Science in 2019 left thousands of \"lost\" wallets at hotels, banks and offices in 40 countries.","zh":"2019 年发表在《科学》杂志上的一项被广泛引用的实验，在 40 个国家的酒店、银行和办公室里留下了数千个“遗失”的钱包。","notes":["much-cited：复合形容词（副词 + 过去分词），被大量引用的。","published in Science in 2019：过去分词短语作后置定语，修饰 experiment。Science 是期刊名。","“lost”加了引号，因为钱包是研究者故意留下的，并不是真的丢了。","thousands of：数以千计的。"]},{"i":22,"kind":"body","p":5,"n":20,"label":"第 20 句","en":"Counterintuitively, wallets containing more money were more likely to be returned, not less.","zh":"违反直觉的是，装钱更多的钱包反而更有可能被送还，而不是更不可能。","notes":["counterintuitively：句首副词，修饰整句，“违反直觉的是”。","containing more money：现在分词短语作后置定语，修饰 wallets。","not less：省略了 likely to be returned，完整说法是 not less likely to be returned。"]},{"i":23,"kind":"body","p":5,"n":21,"label":"第 21 句","en":"The researchers' explanation was that people dislike seeing themselves as thieves, and that this feeling grows with the size of the temptation.","zh":"研究者的解释是，人们不喜欢把自己看成小偷，而且这种感觉会随着诱惑的大小而增强。","notes":["The researchers' explanation was that ...：主系表结构，that 引导表语从句；后面 and that this feeling grows ... 是并列的第二个 that 从句。","dislike doing sth.：不喜欢做某事；see oneself as：把自己看作。","grow with the size of the temptation：随诱惑的大小而增强。","researchers' 是复数所有格，撇号在 s 后。"]},{"i":24,"kind":"body","p":6,"n":22,"label":"第 22 句","en":"Honesty, in other words, is not merely a personal virtue.","zh":"换句话说，诚实不只是一种个人美德。","notes":["in other words：换句话说，用来引出总结。","not merely：不仅仅，暗示后面还有一层意思，下一句的 also 就接上了。","virtue：美德。"]},{"i":25,"kind":"body","p":6,"n":23,"label":"第 23 句","en":"It is also a service that a society either provides or fails to provide.","zh":"它也是一种服务，社会要么提供，要么没能提供。","notes":["a service that a society either provides or fails to provide：that 引导定语从句，在从句中作 provides 和 fails to provide 的宾语。","either ... or ...：连接两个并列谓语。","fail to provide 比 not provide 更像“想做却没做到”，略带批评意味。"]},{"i":26,"kind":"body","p":6,"n":24,"label":"第 24 句","en":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.","zh":"当做正确的事的成本降到几乎为零，大多数人都会去做；当成本降不下来，再多的道德劝诫也填补不了这个缺口。","notes":["两个 when 从句对称，用分号隔开：成本降下来，人们就去做；成本降不下来，说教也没用。","when it does not：省略了 fall to nearly zero，避免重复。","no amount of ... will ...：强调否定，“再多的……也不会……”。","exhortation：劝诫、规劝；fill the gap：填补缺口。","the cost of doing the right thing 呼应第 17 句的 cost of honesty。"]},{"i":27,"kind":"body","p":6,"n":25,"label":"第 25 句","en":"Meanwhile, the umbrellas pile up in Iidabashi, a quiet monument to the one thing Tokyo cannot legislate: the rain.","zh":"与此同时，雨伞在饭田桥越堆越多，成了一座安静的纪念碑，纪念东京唯一无法立法规定的东西：雨。","notes":["meanwhile：与此同时，把话题从道理拉回到画面。","pile up：堆积。Iidabashi（饭田桥）是东京的地名，东京警视厅的遗失物中心在那一带。","a quiet monument to ...：同位语，指“雨伞堆积”这件事像一座安静的纪念碑；monument to 是“……的纪念碑”。","the one thing (that) Tokyo cannot legislate：省略了 that；legislate 是立法规定。冒号后点题：the rain。雨是法律管不了的，结尾幽默，也和开头的雨伞首尾呼应。"]}],"vocab":[{"id":1,"expr":"slump onto","zh":"瘫坐在……上","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late","m":["slumps onto"],"note":"","ex":[{"en":"After the night shift, he [[slumped onto]] the sofa and fell asleep at once.","zh":"上完夜班，他一屁股瘫坐在沙发上，立刻睡着了。"},{"en":"The exhausted hikers [[slumped onto]] the grass at the top of the hill.","zh":"筋疲力尽的徒步者们瘫坐在山顶的草地上。"}],"core":"slump onto","forms":["slump onto","slumps onto","slumped onto","slumping onto","slump into","slumps into","slumped into"],"syn":[]},{"id":2,"expr":"doze off","zh":"打起瞌睡","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late","m":["dozes off"],"note":"","ex":[{"en":"I kept [[dozing off]] during the boring lecture.","zh":"那堂课太无聊，我一直在打瞌睡。"},{"en":"Grandpa [[dozed off]] in front of the TV again.","zh":"爷爷又在电视机前打起了瞌睡。"}],"core":"doze off","forms":["doze off","dozes off","dozed off","dozing off"],"syn":[]},{"id":3,"expr":"stuffed with","zh":"塞满了……","ctx":"an envelope stuffed with cash","m":["stuffed with"],"note":"","ex":[{"en":"The suitcase was [[stuffed with]] gifts for her family.","zh":"行李箱里塞满了给家人的礼物。"},{"en":"His inbox is [[stuffed with]] unread emails.","zh":"他的收件箱里塞满了没读的邮件。"}],"core":"stuffed with","forms":["stuffed with","stuff with","stuffs with","stuffing with","be stuffed with"],"syn":[]},{"id":4,"expr":"improbable","zh":"不太可能的，出人意料的","ctx":"the item has often begun an improbable journey","m":["improbable"],"note":"","ex":[{"en":"It seems [[improbable]] that anyone would ignore such an offer.","zh":"有人会无视这样的提议，这似乎不太可能。"},{"en":"The two friends met again in the most [[improbable]] place: a tiny airport in Iceland.","zh":"两个朋友在最出人意料的地方重逢了：冰岛的一个小机场。"}],"core":"improbable","forms":["improbable"],"syn":["unlikely"]},{"id":5,"expr":"come forward","zh":"站出来（认领、作证）","ctx":"if nobody comes forward, to a central lost-property office","m":["comes forward"],"note":"","ex":[{"en":"Police have asked witnesses to [[come forward]].","zh":"警方呼吁目击者站出来。"},{"en":"Nobody [[came forward]] to claim the lost bag.","zh":"没有人出面来认领那个丢失的包。"}],"core":"come forward","forms":["come forward","comes forward","came forward","coming forward"],"syn":["step forward","steps forward","stepped forward","stepping forward"]},{"id":6,"expr":"staggering","zh":"惊人的","ctx":"The scale is staggering.","m":["staggering"],"note":"","ex":[{"en":"The cost of the project is [[staggering]].","zh":"这个项目的成本高得惊人。"},{"en":"She won the race by a [[staggering]] margin.","zh":"她以惊人的优势赢得了比赛。"}],"core":"staggering","forms":["staggering"],"syn":[]},{"id":7,"expr":"by sheer volume","zh":"单凭数量","ctx":"By sheer volume, umbrellas lead the pack","m":["by sheer volume"],"note":"","ex":[{"en":"The company drowned its rivals [[by sheer volume]], shipping ten times more products.","zh":"这家公司单凭数量就压倒了对手，出货量是对方的十倍。"},{"en":"[[By sheer volume]], English dominates academic publishing.","zh":"单从数量上看，英语在学术出版中占据主导。"}],"core":"by sheer volume","forms":["by sheer volume"],"syn":[]},{"id":8,"expr":"lead the pack","zh":"遥遥领先","ctx":"By sheer volume, umbrellas lead the pack","m":["lead the pack"],"note":"","ex":[{"en":"Japan's bullet trains [[lead the pack]] on punctuality.","zh":"在准点率方面，日本的新干线遥遥领先。"},{"en":"Her start-up has begun to [[lead the pack]] in clean energy.","zh":"她的初创公司已经开始在清洁能源领域领跑。"}],"core":"lead the pack","forms":["lead the pack","leads the pack","led the pack","leading the pack"],"syn":[]},{"id":9,"expr":"X is another story","zh":"X 则另当别论","ctx":"Wallets are another story.","m":["another story"],"note":"","ex":[{"en":"Cooking pasta is easy. Making it from scratch is [[another story]].","zh":"煮意面很简单，从头自己做就是另一回事了。"},{"en":"He plays the piano well, but singing is [[another story]].","zh":"他钢琴弹得不错，唱歌就另当别论了。"}],"core":"another story","forms":["another story","is another story","x is another story","be another story","was another story","are another story","were another story"],"syn":[]},{"id":10,"expr":"entitle sb. to sth.","zh":"赋予某人……的权利","ctx":"entitles them to a reward of between 5% and 20% of the item's value","m":["entitles"],"note":"","ex":[{"en":"A valid ticket [[entitles]] you to a free drink.","zh":"有效门票可以让你免费领取一杯饮料。"},{"en":"Employees are [[entitled to]] four weeks of paid leave.","zh":"员工有权享受四周带薪假期。"}],"core":"entitle","forms":["entitle","entitles","entitled","entitling","entitle sb to sth","entitle sb to do sth","entitle sb to","be entitled to","entitled to"],"syn":[]},{"id":11,"expr":"waive","zh":"放弃（权利、费用）","ctx":"In practice, many finders reportedly waive it.","m":["waive"],"note":"","ex":[{"en":"The bank agreed to [[waive]] the late fee.","zh":"银行同意免除滞纳金。"},{"en":"Students may [[waive]] the fee if they show proof of low income.","zh":"学生如果能出示低收入证明，可以免交这项费用。"}],"core":"waive","forms":["waive","waives","waived","waiving"],"syn":[]},{"id":12,"expr":"infrastructure","zh":"基础设施；这里引申为配套机制","ctx":"The rest lies in infrastructure and habit.","m":["infrastructure"],"note":"","ex":[{"en":"The country is investing heavily in transport [[infrastructure]].","zh":"这个国家正在大力投资交通基础设施。"},{"en":"Good ideas fail without the [[infrastructure]] to support them.","zh":"没有配套机制的支撑，再好的点子也会落空。"}],"core":"infrastructure","forms":["infrastructure"],"syn":[]},{"id":13,"expr":"gloriously dull","zh":"乏味得恰到好处（反语式夸赞）","ctx":"The process itself is gloriously dull, a form, a receipt, a database entry.","m":["gloriously dull"],"note":"","ex":[{"en":"The meeting was [[gloriously dull]]: nothing went wrong, and nothing happened.","zh":"那场会议乏味得恰到好处：没出任何岔子，也什么都没发生。"},{"en":"After a chaotic year, he longed for a [[gloriously dull]] weekend at home.","zh":"经历了混乱的一年，他渴望在家过一个平平淡淡的周末。"}],"core":"gloriously dull","forms":["gloriously dull"],"syn":["gloriously boring"]},{"id":14,"expr":"a lesson that travels","zh":"可以推广到别处的经验","ctx":"It is a lesson that travels.","m":["a lesson that travels"],"note":"","ex":[{"en":"Tokyo's lost-property system is [[a lesson that travels]]: any city could copy it.","zh":"东京的失物招领体系是一个可以推广的经验：任何城市都能照搬。"},{"en":"Her approach to teaching is [[a lesson that travels]] across subjects.","zh":"她的教学方法是一条可以推广到各个学科的经验。"}],"core":"a lesson that travels","forms":["a lesson that travels","lesson that travels","a lesson that travels well","lessons that travel"],"syn":[]},{"id":15,"expr":"counterintuitively","zh":"违反直觉地","ctx":"Counterintuitively, wallets containing more money were more likely to be returned, not less.","m":["counterintuitively"],"note":"","ex":[{"en":"[[Counterintuitively]], students who rested more scored higher.","zh":"违反直觉的是，休息得更多的学生分数反而更高。"},{"en":"[[Counterintuitively]], a smaller team often finishes the project faster.","zh":"违反直觉的是，人少的团队往往完成项目更快。"}],"core":"counterintuitively","forms":["counterintuitively"],"syn":[]},{"id":16,"expr":"exhortation","zh":"劝诫，规劝","ctx":"no amount of moral exhortation will fill the gap","m":["exhortation"],"note":"","ex":[{"en":"No [[exhortation]] from the coach could lift the team's spirits.","zh":"教练再怎么规劝也提振不了队伍的士气。"},{"en":"The speech was a long [[exhortation]] to work harder.","zh":"这场演讲是一番冗长的规劝，要大家更加努力。"}],"core":"exhortation","forms":["exhortation","exhortations"],"syn":[]},{"id":17,"expr":"legislate","zh":"立法规定；这里指靠法律管控","ctx":"the one thing Tokyo cannot legislate: the rain","m":["legislate"],"note":"","ex":[{"en":"You cannot [[legislate]] good manners.","zh":"礼貌是没法靠立法规定出来的。"},{"en":"Parliament plans to [[legislate]] against fake reviews.","zh":"议会打算立法禁止虚假评价。"}],"core":"legislate","forms":["legislate","legislates","legislated","legislating"],"syn":[]},{"id":18,"expr":"curse (cursing)","zh":"咒骂，骂脏话；懊恼地发泄几句","ctx":"By the time she has finished cursing, the item has often begun an improbable journey.","m":["cursing"],"note":"","ex":[{"en":"He stubbed his toe and began [[cursing]] under his breath.","zh":"他踢到了脚趾，低声咒骂起来。"},{"en":"She [[cursed]] the rain when her umbrella blew inside out.","zh":"伞被风吹翻的时候，她咒骂起这场雨。"}],"core":"curse","forms":["curse","curses","cursed","cursing"],"syn":["swear","swears","swore","swearing"]},{"id":19,"expr":"log (logged)","zh":"登记，记录在案","ctx":"a central lost-property office, where it is logged, labelled and stored","m":["logged"],"note":"","ex":[{"en":"Every complaint is [[logged]] in the system.","zh":"每一条投诉都会登记在系统里。"},{"en":"The nurse [[logged]] the patient's temperature every hour.","zh":"护士每小时记录一次病人的体温。"}],"core":"log","forms":["log","logs","logged","logging"],"syn":["record","records","recorded","recording","register","registered"]},{"id":20,"expr":"oblige sb. to do sth.","zh":"责成某人做某事；（法律上）要求某人必须……","ctx":"Japanese law obliges finders to hand in what they pick up","m":["obliges"],"note":"发音：/əˈblaɪdʒ/","ex":[{"en":"The law [[obliges]] employers to provide a safe workplace.","zh":"法律要求雇主提供安全的工作场所。"},{"en":"Drivers are [[obliged]] to stop at a red light.","zh":"司机必须在红灯前停车。"}],"core":"oblige","forms":["oblige","obliges","obliged","obliging","oblige sb to do sth","oblige sb to","be obliged to"],"syn":[]},{"id":21,"expr":"attendant","zh":"服务人员；station attendant 是站务员","ctx":"It goes from a station attendant's desk to a neighbourhood police box","m":["attendant"],"note":"","ex":[{"en":"A station [[attendant]] helped her find the right platform.","zh":"一位站务员帮她找到了正确的站台。"},{"en":"The flight [[attendant]] offered us tea.","zh":"空乘人员给我们递上了茶。"}],"core":"attendant","forms":["attendant","attendants","station attendant"],"syn":[]},{"id":22,"expr":"payable","zh":"应付的，须支付的","ctx":"a reward of between 5% and 20% of the item's value, payable by the owner","m":["payable"],"note":"常见搭配：payable by sb. 由某人支付 / payable to sb. 付给某人 / payable on delivery 货到付款 / payable in installments 分期付款 / payable within 30 days 须在 30 天内支付","ex":[{"en":"The fee is [[payable]] within 30 days.","zh":"这笔费用须在 30 天内支付。"},{"en":"Cheques should be made [[payable]] to the university.","zh":"支票请开成以学校为收款人。"},{"en":"The balance is [[payable]] on delivery.","zh":"余款货到付款。"}],"core":"payable","forms":["payable"],"syn":[]},{"id":23,"expr":"spectacular","zh":"adj. 壮观的；惊人的；（情况）更离谱的","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","m":["spectacular"],"note":"in the more spectacular cases：在更夸张、更离谱的情况下","ex":[{"en":"The fireworks over Tokyo Bay were [[spectacular]].","zh":"东京湾上空的烟花美不胜收。"},{"en":"The start-up's growth was [[spectacular]]; so was its collapse.","zh":"这家初创公司的增长惊人，垮台也同样惊人。"},{"en":"In the more [[spectacular]] cases, the fraud ran for a decade before anyone noticed.","zh":"在更离谱的案例中，骗局持续了十年才被人发觉。"}],"extra":true,"core":"spectacular","forms":["spectacular"],"syn":[]},{"id":24,"expr":"Finders, keepers","zh":"谁捡到归谁","ctx":"Finders, keepers? Not in Tokyo","m":["Finders, keepers"],"note":"出自儿童顺口溜 “Finders keepers, losers weepers”（捡到的归自己，丢了的只能哭）。标题是反用：在东京，不是这样。","ex":[{"en":"I found a ten-pound note on the bus, and my brother grinned: “[[Finders, keepers]]!”","zh":"我在公交车上捡到一张十英镑的钞票，我弟弟咧嘴一笑：“谁捡到归谁！”"},{"en":"Children chant “[[finders keepers]], losers weepers” in the playground, but the law is less forgiving.","zh":"孩子们在操场上念着“捡到归己，丢了活该”，但法律就没这么宽容了。"},{"en":"He took a “[[finders, keepers]]” attitude to the abandoned bike until its owner turned up.","zh":"他对那辆被丢弃的自行车抱着“谁捡到归谁”的态度，直到车主出现。"}],"extra":true,"core":"finders keepers","forms":["finders keepers","finders, keepers"],"syn":[]},{"id":25,"expr":"civic","zh":"adj. 市民的；公民的；城市的","ctx":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama.","m":["civic"],"note":"常见搭配：civic duty 公民义务 / civic pride 城市自豪感 / civic life 公共生活","ex":[{"en":"Many people see voting as a [[civic]] duty.","zh":"很多人把投票看作公民的义务。"},{"en":"The town hall is the centre of [[civic]] life.","zh":"市政厅是这座城市公共生活的中心。"},{"en":"Residents showed real [[civic]] pride after the park was restored.","zh":"公园修复之后，居民们表现出强烈的城市自豪感。"}],"extra":true,"core":"civic","forms":["civic"],"syn":[]},{"id":26,"expr":"largely (= mostly)","zh":"adv. 基本上；主要地；大体上","ctx":"Every weekday morning, a small miracle goes largely unnoticed in Tokyo.","m":["largely"],"note":"largely unnoticed：基本没人注意到。别和形容词 large 搞混。","ex":[{"en":"The report was [[largely]] ignored by the press.","zh":"这份报告基本上被媒体忽视了。"},{"en":"The delay was [[largely]] due to bad weather.","zh":"这次延误主要是因为天气不好。"},{"en":"The city is [[largely]] safe, though a few areas need caution.","zh":"这座城市基本上是安全的，不过有几个区域需要小心。"}],"extra":true,"core":"largely","forms":["largely"],"syn":["mostly","mainly"]},{"id":27,"expr":"one stop too late","zh":"晚了一站（睡过站）","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","m":["one stop too late"],"note":"句型：one + 时间/距离单位 + too late，表示“晚了那么一点”。","ex":[{"en":"I fell asleep on the Yamanote Line and woke up [[one stop too late]].","zh":"我在山手线上睡着了，醒来时已经坐过了一站。"},{"en":"She noticed the announcement [[one stop too late]] and had to double back.","zh":"她听到广播时已经过了一站，只好折返。"},{"en":"We got off [[one stop too late]] and had to take a taxi back.","zh":"我们下车晚了一站，只好打车回去。"}],"extra":true,"core":"one stop too late","forms":["one stop too late"],"syn":[]},{"id":28,"expr":"minus","zh":"prep. 少了……；没有了……（口语化）","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","m":["minus"],"note":"口语里常带幽默或无奈，暗示“本该有却没了”。数学里的 minus 才是“减”。","ex":[{"en":"He came back from holiday [[minus]] his luggage.","zh":"他度假回来了，行李却丢了。"},{"en":"She walked in, [[minus]] her usual smile.","zh":"她走了进来，脸上少了往常的笑容。"},{"en":"We arrived at the party [[minus]] the cake, which was still in the car.","zh":"我们到了聚会现场，蛋糕却没带来——它还留在车里。"}],"extra":true,"core":"minus","forms":["minus"],"syn":[]},{"id":29,"expr":"by the time ...","zh":"等到……的时候（已经……）","ctx":"By the time she has finished cursing, the item has often begun an improbable journey.","m":["By the time"],"note":"by the time 后接从句；主句常用完成时，表示“到那时已经……”。","ex":[{"en":"[[By the time]] I reached the station, the last train had gone.","zh":"我赶到车站时，末班车已经开走了。"},{"en":"[[By the time]] you read this, I will have landed in Shanghai.","zh":"等你读到这条消息的时候，我应该已经降落在上海了。"},{"en":"[[By the time]] the police arrived, the thief had disappeared.","zh":"警察赶到的时候，小偷已经不见了。"}],"extra":true,"core":"by the time","forms":["by the time","by the time that"],"syn":[]},{"id":30,"expr":"possession","zh":"n. 个人财产；所有物","ctx":"By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","m":["possession"],"note":"指随身物品时多用复数 possessions；in possession of ……：持有、拥有。","ex":[{"en":"Her most treasured [[possession]] is an old camera from her grandfather.","zh":"她最珍视的物品是祖父留下的一台旧相机。"},{"en":"Passengers are asked to keep their [[possessions]] with them at all times.","zh":"请乘客随时随身携带好个人物品。"},{"en":"The police found him in [[possession]] of a stolen wallet.","zh":"警方发现他持有一个被盗的钱包。"}],"extra":true,"core":"possession","forms":["possession","possessions"],"syn":["belonging","belongings"]},{"id":31,"expr":"... and all","zh":"连同……一起；连……也（口语）","ctx":"A striking share of them find their way back to their owners, cash and all.","m":["and all"],"note":"名词 + and all，放在句末，表示“连带着也一起”。","ex":[{"en":"She swallowed the sandwich, crust [[and all]].","zh":"她把三明治整个吞了下去，连面包边也不剩。"},{"en":"He fell into the river, phone [[and all]].","zh":"他掉进了河里，连手机也一起掉了进去。"},{"en":"They bought the old house, furniture [[and all]].","zh":"他们买下了那栋老房子，家具也一并带走。"}],"extra":true,"core":"and all","forms":["and all"],"syn":[]},{"id":32,"expr":"hand in","zh":"上交；提交（作业、失物、辞呈等）","ctx":"Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","m":["hand in"],"note":"可以拆开用：hand it in。hand in 偏“交上去”，hand over 偏“移交”。","ex":[{"en":"Please [[hand in]] your essays by Friday.","zh":"请在周五之前交上论文。"},{"en":"She [[handed in]] the lost wallet at the nearest police box.","zh":"她把捡到的钱包交给了最近的警亭。"},{"en":"He [[handed in]] his notice last week.","zh":"他上周递交了辞呈。"}],"extra":true,"core":"hand in","forms":["hand in","hands in","handed in","handing in"],"syn":["turn in","turns in","turned in","turning in","submit","submits","submitted","submitting"]},{"id":33,"expr":"in practice (↔ in theory)","zh":"事实上；实际上（对比：in theory 理论上）","ctx":"In practice, many finders reportedly waive it.","m":["In practice"],"note":"常和 in theory 成对出现：理论上如何，实际上却不一定。","ex":[{"en":"In theory the system is simple; [[in practice]], it takes hours.","zh":"理论上这个系统很简单，实际操作起来却要花好几个小时。"},{"en":"The rule applies to everyone, but [[in practice]] it is rarely enforced.","zh":"这条规定对所有人适用，但实际上很少被执行。"},{"en":"[[In practice]], most people just click “accept” without reading.","zh":"实际上，大多数人根本不看就点了“同意”。"}],"extra":true,"core":"in practice","forms":["in practice"],"syn":[]},{"id":34,"expr":"reportedly","zh":"adv. 据报道；据说","ctx":"In practice, many finders reportedly waive it.","m":["reportedly"],"note":"消息来自报道或传闻，作者并没有亲自核实，新闻里很常见。","ex":[{"en":"The singer has [[reportedly]] cancelled her tour.","zh":"据报道，这位歌手已经取消了巡演。"},{"en":"The company [[reportedly]] lost millions last year.","zh":"据说这家公司去年亏损了数百万。"},{"en":"He was [[reportedly]] furious when he heard the news.","zh":"据说他听到消息时非常愤怒。"}],"extra":true,"core":"reportedly","forms":["reportedly"],"syn":[]},{"id":35,"expr":"lie in ...","zh":"在于……（原因、关键所在）","ctx":"The rest lies in infrastructure and habit.","m":["lies in"],"note":"lie（位于；在于）的变形是 lie – lay – lain，三单 lies；撒谎的 lie 过去式才是 lied。","ex":[{"en":"The secret of her success [[lies in]] hard work, not talent.","zh":"她成功的秘诀在于努力，而不是天赋。"},{"en":"The problem [[lies in]] how the data is collected.","zh":"问题出在数据的收集方式上。"},{"en":"The charm of the old town [[lies in]] its narrow streets.","zh":"这座老城的魅力就在于那些狭窄的街道。"}],"extra":true,"core":"lie in","forms":["lie in","lies in","lay in","lain in","lying in"],"syn":[]},{"id":36,"expr":"not merely","zh":"不仅仅（是）","ctx":"Honesty, in other words, is not merely a personal virtue.","m":["not merely"],"note":"比 not only 更书面；常见结构 not merely A but (also) B。","ex":[{"en":"The museum is [[not merely]] a building but a living archive.","zh":"这座博物馆不仅仅是一栋建筑，更是一座活的档案馆。"},{"en":"It is [[not merely]] a matter of money.","zh":"这不仅仅是钱的问题。"},{"en":"She is [[not merely]] talented; she is also relentlessly disciplined.","zh":"她不仅仅有天赋，还自律得近乎苛刻。"}],"extra":true,"core":"not merely","forms":["not merely"],"syn":["not just","not only","not simply"]},{"id":37,"expr":"virtue","zh":"n. 美德；优点","ctx":"Honesty, in other words, is not merely a personal virtue.","m":["virtue"],"note":"by virtue of ……：凭借、由于（较正式）。","ex":[{"en":"Patience is a [[virtue]].","zh":"耐心是一种美德。"},{"en":"The plan's main [[virtue]] is its simplicity.","zh":"这个方案最大的优点就是简单。"},{"en":"She got the job [[by virtue of]] her experience, not her connections.","zh":"她得到这份工作是凭借经验，而不是人脉。"}],"extra":true,"core":"virtue","forms":["virtue","virtues"],"syn":[]},{"id":38,"expr":"no amount of ... will ...","zh":"再多的……也不会……","ctx":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.","m":["no amount of"],"note":"amount 后面接不可数名词；后半句常用 will / can。","ex":[{"en":"[[No amount of]] apologies will undo the damage.","zh":"再多的道歉也无法挽回这些损失。"},{"en":"[[No amount of]] coffee will make me enjoy Monday mornings.","zh":"再多的咖啡也不会让我爱上周一的早晨。"},{"en":"[[No amount of]] training will make up for a lack of curiosity.","zh":"再多的训练也弥补不了好奇心的缺失。"}],"extra":true,"core":"no amount of","forms":["no amount of","no amount of will"],"syn":[]}],"cloze":[{"id":1,"i":4,"before":"A commuter ","ans":"slumps","after":" onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"瘫坐在……上（注意动词词形）"},{"id":2,"i":4,"before":"A commuter slumps onto a train, ","ans":"dozes","after":" off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"打瞌睡"},{"id":3,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope ","ans":"stuffed","after":" with cash.","hint":"塞满了……"},{"id":4,"i":5,"before":"By the time she has finished cursing, the item has often begun an ","ans":"improbable","after":" journey.","hint":"不太可能的，出人意料的"},{"id":5,"i":6,"before":"It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes ","ans":"forward","after":", to a central lost-property office, where it is logged, labelled and stored.","hint":"站出来（认领、作证）"},{"id":6,"i":7,"before":"The scale is ","ans":"staggering","after":".","hint":"令人震惊的"},{"id":7,"i":9,"before":"By sheer ","ans":"volume","after":", umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","hint":"数量，规模"},{"id":8,"i":9,"before":"By sheer volume, umbrellas lead the ","ans":"pack","after":", yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","hint":"一群，赛跑里的大部队"},{"id":9,"i":10,"before":"Wallets are another ","ans":"story","after":".","hint":"X is another ____：X 则另当别论"},{"id":10,"i":13,"before":"Japanese law obliges finders to hand in what they pick up, and ","ans":"entitles","after":" them to a reward of between 5% and 20% of the item's value, payable by the owner.","hint":"赋予……的权利"},{"id":11,"i":14,"before":"In practice, many finders reportedly ","ans":"waive","after":" it.","hint":"放弃（权利、费用）"},{"id":12,"i":16,"before":"The rest lies in ","ans":"infrastructure","after":" and habit.","hint":"基础设施；这里指配套机制"},{"id":13,"i":18,"before":"The process itself is gloriously ","ans":"dull","after":", a form, a receipt, a database entry.","hint":"乏味的（反语式夸赞）"},{"id":14,"i":20,"before":"It is a lesson that ","ans":"travels","after":".","hint":"可以推广到别处"},{"id":15,"i":22,"before":"","ans":"Counterintuitively","after":", wallets containing more money were more likely to be returned, not less.","hint":"违反直觉地"},{"id":16,"i":26,"before":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral ","ans":"exhortation","after":" will fill the gap.","hint":"劝诫，规劝"},{"id":17,"i":27,"before":"Meanwhile, the umbrellas pile up in Iidabashi, a quiet monument to the one thing Tokyo cannot ","ans":"legislate","after":": the rain.","hint":"立法规定"},{"id":18,"i":5,"before":"By the time she has finished ","ans":"cursing","after":", the item has often begun an improbable journey.","hint":"咒骂，骂脏话"},{"id":19,"i":6,"before":"It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is ","ans":"logged","after":", labelled and stored.","hint":"被登记在案"},{"id":20,"i":13,"before":"Japanese law ","ans":"obliges","after":" finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","hint":"责成、要求（法律上必须）"},{"id":21,"i":6,"before":"It goes from a station ","ans":"attendant","after":"'s desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is logged, labelled and stored.","hint":"服务人员，站务员"},{"id":22,"i":13,"before":"Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, ","ans":"payable","after":" by the owner.","hint":"应付的，须支付的"},{"id":23,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more ","ans":"spectacular","after":" cases, an envelope stuffed with cash.","hint":"壮观的，惊人的；这里指“更离谱的”"},{"id":24,"i":0,"before":"Finders, ","ans":"keepers","after":"? Not in Tokyo","hint":"Finders, ____：谁捡到归谁"},{"id":25,"i":1,"before":"In one of the world's busiest cities, a forgotten umbrella sets off a small ","ans":"civic","after":" drama.","hint":"市民的，公民的（civic drama：一场市民间的小风波）"},{"id":26,"i":3,"before":"Every weekday morning, a small miracle goes ","ans":"largely","after":" unnoticed in Tokyo.","hint":"基本上，主要地（= mostly）"},{"id":27,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one ","ans":"stop","after":" too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"晚了一站（睡过站）"},{"id":28,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, ","ans":"minus","after":" her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"少了……（口语，介词）"},{"id":29,"i":5,"before":"By the ","ans":"time","after":" she has finished cursing, the item has often begun an improbable journey.","hint":"By the ____ ……：等到……的时候（已经）"},{"id":30,"i":9,"before":"By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one ","ans":"possession","after":" Tokyoites seem happy to lose.","hint":"个人财产，所有物"},{"id":31,"i":11,"before":"A striking share of them find their way back to their owners, cash and ","ans":"all","after":".","hint":"cash and ____：连同……一起（口语）"},{"id":32,"i":13,"before":"Japanese law obliges finders to ","ans":"hand","after":" in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","hint":"____ in：上交，提交"},{"id":33,"i":14,"before":"In ","ans":"practice","after":", many finders reportedly waive it.","hint":"In ____：事实上，实际上（对比 in theory）"},{"id":34,"i":14,"before":"In practice, many finders ","ans":"reportedly","after":" waive it.","hint":"据报道，据说"},{"id":35,"i":16,"before":"The rest ","ans":"lies","after":" in infrastructure and habit.","hint":"在于……（原因、关键所在；注意动词形式）"},{"id":36,"i":24,"before":"Honesty, in other words, is not ","ans":"merely","after":" a personal virtue.","hint":"not ____：不仅仅"},{"id":37,"i":24,"before":"Honesty, in other words, is not merely a personal ","ans":"virtue","after":".","hint":"美德"},{"id":38,"i":26,"before":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no ","ans":"amount","after":" of moral exhortation will fill the gap.","hint":"no ____ of ……will……：再多的……也不会……"}],"breakdown":{"i":26,"en":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.","points":["结构是两个并列的 when 从句加主句，前后对比。","第二个 when 后的 it does not 省略了 fall to nearly zero，避免重复。","no amount of... will... 是强调否定的固定搭配，意思是“再多的……也无法……”。","fill the gap 指弥补这个缺口，即成本过高时靠道德说教填不上。"]},"questions":["作者认为“诚实”主要是个人品质，还是社会提供的一种服务？哪些句子支持这个判断？","结尾 “the one thing Tokyo cannot legislate: the rain” 用了什么修辞效果？","用 by sheer volume、another story、counterintuitively 各造一个关于你自己领域（比如政治经济）的句子。"],"audio":{"src":"audio.mp3","dur":154.62,"t":[[0.25,2.4],[3.3,8.36],[8.68,11.39],[12.29,16.64],[16.96,27.12],[27.44,32.15],[32.47,42.14],[42.89,44.42],[44.74,48.56],[48.88,57.67],[57.99,59.59],[59.91,63.92],[64.67,66.91],[67.23,77.26],[77.58,80.41],[80.73,83.72],[84.47,86.95],[87.27,95.31],[95.63,100.45],[100.77,104.25],[105.0,106.77],[107.09,115.98],[116.3,121.36],[121.68,129.4],[130.15,133.44],[133.76,138.11],[138.43,146.47],[146.79,154.02]]},"clips":{"src":"clips.mp3","t":{"w1":[1.0,2.05],"e1_0":[2.55,6.3],"e1_1":[6.8,10.23],"w2":[10.73,11.61],"e2_0":[12.11,14.58],"e2_1":[15.08,17.75],"w3":[18.25,19.21],"e3_0":[19.71,22.31],"e3_1":[22.81,25.31],"w4":[25.81,26.73],"e4_0":[27.23,30.41],"e4_1":[30.91,35.85],"w5":[36.35,37.36],"e5_0":[37.86,40.25],"e5_1":[40.75,43.22],"w6":[43.72,44.51],"e6_0":[45.01,47.08],"e6_1":[47.58,49.86],"w7":[50.36,51.62],"e7_0":[52.12,56.73],"e7_1":[57.23,60.51],"w8":[61.01,62.08],"e8_0":[62.58,65.59],"e8_1":[66.09,69.08],"w9":[69.58,70.75],"e9_0":[71.25,75.15],"e9_1":[75.65,78.62],"w10":[79.12,79.97],"e10_0":[80.47,83.25],"e10_1":[83.75,86.63],"w11":[87.13,87.72],"e11_0":[88.22,90.36],"e11_1":[90.86,94.03],"w12":[94.53,95.79],"e12_0":[96.29,99.75],"e12_1":[100.25,103.34],"w13":[103.84,105.17],"e13_0":[105.67,109.55],"e13_1":[110.05,114.12],"w14":[114.62,116.09],"e14_0":[116.59,121.44],"e14_1":[121.94,125.56],"w15":[126.06,127.49],"e15_0":[127.99,131.34],"e15_1":[131.84,135.96],"w16":[136.46,137.65],"e16_0":[138.15,141.35],"e16_1":[141.85,144.65],"w17":[145.15,146.24],"e17_0":[146.74,148.81],"e17_1":[149.31,152.34],"w18":[152.84,153.45],"e18_0":[153.95,156.77],"e18_1":[157.27,160.21],"w19":[160.71,161.35],"e19_0":[161.85,164.24],"e19_1":[164.74,167.52],"w20":[168.02,168.83],"e20_0":[169.33,172.46],"e20_1":[172.96,175.59],"w21":[176.09,176.98],"e21_0":[177.48,180.36],"e21_1":[180.86,182.91],"w22":[183.41,184.09],"e22_0":[184.59,186.88],"e22_1":[187.38,189.85],"e22_2":[190.35,192.42],"w23":[192.92,193.95],"e23_0":[194.45,197.24],"e23_1":[197.74,201.15],"e23_2":[201.65,206.35],"w24":[206.85,208.17],"e24_0":[208.67,213.19],"e24_1":[213.69,219.22],"e24_2":[219.72,224.69],"w25":[225.19,225.75],"e25_0":[226.25,228.76],"e25_1":[229.26,231.7],"e25_2":[232.2,235.74],"w26":[236.24,237.05],"e26_0":[237.55,240.06],"e26_1":[240.56,242.93],"e26_2":[243.43,246.74],"w27":[247.24,248.67],"e27_0":[249.17,252.99],"e27_1":[253.49,257.33],"e27_2":[257.83,261.22],"w28":[261.72,262.44],"e28_0":[262.94,265.42],"e28_1":[265.92,268.24],"e28_2":[268.74,272.18],"w29":[272.68,273.77],"e29_0":[274.27,277.4],"e29_1":[277.9,280.87],"e29_2":[281.37,284.29],"w30":[284.79,285.62],"e30_0":[286.12,289.52],"e30_1":[290.02,293.49],"e30_2":[293.99,296.79],"w31":[297.29,297.97],"e31_0":[298.47,300.69],"e31_1":[301.19,303.3],"e31_2":[303.8,306.06],"w32":[306.56,307.52],"e32_0":[308.02,310.24],"e32_1":[310.74,313.66],"e32_2":[314.16,316.27],"w33":[316.77,317.71],"e33_0":[318.21,321.75],"e33_1":[322.25,326.18],"e33_2":[326.68,330.05],"w34":[330.55,331.57],"e34_0":[332.07,334.5],"e34_1":[335.0,337.63],"e34_2":[338.13,340.75],"w35":[341.25,342.06],"e35_0":[342.56,345.87],"e35_1":[346.37,348.99],"e35_2":[349.49,352.46],"w36":[352.96,354.0],"e36_0":[354.5,357.51],"e36_1":[358.01,359.93],"e36_2":[360.43,364.34],"w37":[364.84,365.6],"e37_0":[366.1,367.68],"e37_1":[368.18,370.64],"e37_2":[371.14,374.63],"w38":[375.13,376.39],"e38_0":[376.89,379.54],"e38_1":[380.04,383.15],"e38_2":[383.65,386.79]}}};
-const S = DATA.sents;
-const VMAP = {};
-DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
-const TERM_MAP = {};
-const TERMS = [];
-DATA.vocab.forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; TERMS.push(t); }); });
-TERMS.sort(function(a,b){ return b.length - a.length; });
-function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-const TERM_RE = new RegExp('\\b(?:' + TERMS.map(esc).join('|') + ')\\b', 'gi');
-const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
-const TABS = ['read','listen','words','quiz','think'];
-const LS_STATE = 'fk-state-v1';
-const LS_UI = 'fk-ui-v1';
-const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------- small helpers ---------- */
+/* ---------- small helpers shared by every page (inlined by tools/build.py) ---------- */
 function $(s, r){ return (r || document).querySelector(s); }
 function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
 function h(tag, attrs){
@@ -278,15 +290,680 @@ function h(tag, attrs){
   });
   return e;
 }
-function today(){
-  const d = new Date();
-  const p = function(n){ return String(n).padStart(2,'0'); };
-  return d.getFullYear() + '-' + p(d.getMonth()+1) + '-' + p(d.getDate());
-}
+function pad2(n){ return String(n).padStart(2, '0'); }
+function ymd(d){ return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+function today(){ return ymd(new Date()); }
 function lsGet(k){ try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch(e){ return null; } }
 function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 function norm(s){ return String(s).toLowerCase().replace(/[^a-z]/g, ''); }
+function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* example sentences mark their target as [[target]] */
+function exNodes(s){
+  const out = [];
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  return out;
+}
+function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
+
+/* ---------- spaced repetition on the Ebbinghaus ladder (inlined by tools/build.py) ----------
+   Everything lives in this browser's localStorage under SRS_KEY, shape
+     {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope}]}
+   b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
+   c / x = how many times answered right / wrong.
+   Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
+           right and due     -> b+1, next review after SRS_STEPS[b] (after the last step: SRS_LONG)
+           right but early   -> the schedule does not move (drilling a word again right away must not push it up the ladder)
+           wrong at any time -> b=0, back to the first step
+   srsStep is pure; it is covered by tools/tests/srs.test.js. */
+const SRS_KEY = 'wk-srs-v1';
+const SRS_MIN = 60000, SRS_HOUR = 3600000, SRS_DAY = 86400000;
+const SRS_STEPS = [5 * SRS_MIN, 30 * SRS_MIN, 12 * SRS_HOUR, SRS_DAY, 2 * SRS_DAY, 4 * SRS_DAY, 7 * SRS_DAY, 15 * SRS_DAY, 30 * SRS_DAY];
+const SRS_LONG = 60 * SRS_DAY;
+const SRS_TOP = SRS_STEPS.length;                 /* b can go from 0 to SRS_TOP */
+const SRS_LABELS = ['5 分钟', '30 分钟', '12 小时', '1 天', '2 天', '4 天', '7 天', '15 天', '30 天', '60 天'];
+
+function srsInterval(b){ return b < SRS_STEPS.length ? SRS_STEPS[b] : SRS_LONG; }
+function srsNum(x){ return typeof x === 'number' && isFinite(x) ? x : 0; }
+function srsLoad(){
+  const d = lsGet(SRS_KEY);
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  if (!d || typeof d !== 'object') return out;
+  if (d.w && typeof d.w === 'object') Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (!e || typeof e !== 'object') return;
+    const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
+    out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
+  });
+  if (d.log && typeof d.log === 'object') Object.keys(d.log).forEach(function(k){
+    const e = d.log[k];
+    if (/^\d{4}-\d{2}-\d{2}$/.test(k) && e && typeof e === 'object') out.log[k] = {n:Math.max(0, Math.floor(srsNum(e.n))), ok:Math.max(0, Math.floor(srsNum(e.ok)))};
+  });
+  if (Array.isArray(d.ex)) d.ex.slice(-20).forEach(function(e){
+    if (e && typeof e === 'object' && typeof e.score === 'number' && typeof e.total === 'number')
+      out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60)});
+  });
+  return out;
+}
+function srsSave(s){ lsSet(SRS_KEY, s); }
+function srsGet(key){ return srsLoad().w[key] || null; }
+
+/* pure: the entry after one answer (e = null when the word has never been answered) */
+function srsStep(e, ok, now){
+  const first = !e;
+  const n = first ? {b:0, t:0, l:0, c:0, x:0} : {b:e.b, t:e.t, l:e.l, c:e.c, x:e.x};
+  if (!ok){
+    n.b = 0; n.t = now + srsInterval(0); n.x++;
+  } else {
+    n.c++;
+    if (first){ n.b = 1; n.t = now + srsInterval(1); }
+    else if (n.t <= now){ n.b = Math.min(n.b + 1, SRS_TOP); n.t = now + srsInterval(n.b); }
+  }
+  n.l = now;
+  return n;
+}
+/* what would happen, without writing anything: {kind:'first'|'up'|'early'|'reset', b, t} */
+function srsPreview(key, ok, now){
+  now = now || Date.now();
+  const e = srsGet(key), n = srsStep(e, ok, now);
+  const kind = !ok ? 'reset' : !e ? 'first' : e.t <= now ? 'up' : 'early';
+  return {kind:kind, b:n.b, t:n.t, was:e};
+}
+function srsRecord(key, ok, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const prev = s.w[key] || null;
+  s.w[key] = srsStep(prev, ok, now);
+  const day = ymd(new Date(now));
+  const g = s.log[day] || (s.log[day] = {n:0, ok:0});
+  g.n++; if (ok) g.ok++;
+  const keep = Object.keys(s.log).sort().slice(-120);
+  Object.keys(s.log).forEach(function(k){ if (keep.indexOf(k) < 0) delete s.log[k]; });
+  srsSave(s);
+  return {prev:prev, next:s.w[key]};
+}
+function srsAddExam(rec){
+  const s = srsLoad();
+  s.ex.push(rec);
+  s.ex = s.ex.slice(-20);
+  srsSave(s);
+}
+function srsReset(){ try { localStorage.removeItem(SRS_KEY); } catch(e){} }
+
+/* {st:'new'|'due'|'wait', b, t} */
+function srsInfo(e, now){
+  if (!e) return {st:'new', b:-1, t:0};
+  return {st:e.t <= now ? 'due' : 'wait', b:e.b, t:e.t};
+}
+/* "5 分钟后", "3 小时后", "明天", "6 天后" */
+function srsWhen(t, now){
+  const d = t - now;
+  if (d <= 0) return '现在';
+  if (d < SRS_HOUR) return Math.max(1, Math.round(d / SRS_MIN)) + ' 分钟后';
+  if (d < SRS_DAY) return Math.round(d / SRS_HOUR) + ' 小时后';
+  const days = Math.round(d / SRS_DAY);
+  if (days === 1) return '明天';
+  if (days < 60) return days + ' 天后';
+  return Math.round(days / 30) + ' 个月后';
+}
+function srsStageText(e, now){
+  if (!e) return '未开始';
+  return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
+}
+
+/* ---------- speaker buttons and the clip player (inlined by tools/build.py) ----------
+   A "clip" is a slice [start, end] of an MP3 sprite (clips.mp3 of one article). One Audio element per sprite file;
+   only one clip plays at a time. If the sprite is missing or fails to load, the browser's own speech synthesis reads the text. */
+const SPK_SVG = '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+function spkEl(label, onclick){
+  const b = h('button', {type:'button', class:'spk', 'aria-label':label, title:label, onclick:onclick});
+  b.innerHTML = SPK_SVG;
+  return b;
+}
+const Clip = (function(){
+  const st = {a:null, end:0, btn:null, raf:0, text:''};
+  const audios = {};
+  let beforePlay = null;
+  function done(){
+    cancelAnimationFrame(st.raf);
+    if (st.btn){ st.btn.classList.remove('on'); st.btn = null; }
+  }
+  function fallback(text){
+    try {
+      if (!('speechSynthesis' in window) || !text) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-GB'; u.rate = 0.9;
+      speechSynthesis.speak(u);
+    } catch(e){}
+  }
+  function audio(src){
+    if (audios[src]) return audios[src];
+    const a = new Audio();
+    a.preload = 'auto';
+    a.src = src;
+    a.addEventListener('error', function(){ if (st.a === a){ const t = st.text; done(); fallback(t); } });
+    a.addEventListener('ended', function(){ if (st.a === a) done(); });
+    a.addEventListener('pause', function(){ if (st.a === a && a.currentTime < st.end) done(); });
+    audios[src] = a;
+    return a;
+  }
+  function tick(){
+    const a = st.a;
+    if (!a || a.paused) return;
+    if (a.currentTime >= st.end){ a.pause(); done(); return; }
+    st.raf = requestAnimationFrame(tick);
+  }
+  /* play one clip; clicking the same button again stops it. rate: 1 (default) or e.g. 0.7 */
+  function play(src, t, btn, text, rate){
+    if (!t || !src){ if (beforePlay) beforePlay(); done(); fallback(text); return; }
+    if (beforePlay) beforePlay();
+    const a = audio(src);
+    const wasOn = !!btn && st.btn === btn && st.a === a && !a.paused;
+    done();
+    if (st.a && st.a !== a && !st.a.paused) st.a.pause();
+    if (wasOn){ a.pause(); return; }
+    st.a = a; st.btn = btn || null; st.text = text;
+    st.end = t[1] + 0.15;
+    if (btn) btn.classList.add('on');
+    a.playbackRate = rate || 1;
+    try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+    const start = Math.max(0, t[0] - 0.1);
+    const go = function(){ a.currentTime = start; };
+    if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+    const pr = a.play();
+    if (pr && pr.catch) pr.catch(function(){ done(); });
+    cancelAnimationFrame(st.raf);
+    st.raf = requestAnimationFrame(tick);
+  }
+  function stop(){
+    if (st.a && !st.a.paused) st.a.pause();
+    done();
+  }
+  return {play:play, stop:stop, onBeforePlay:function(fn){ beforePlay = fn; }};
+})();
+/* speaker button for one word / example of an article: clips = {src, t:{key:[start,end]}} */
+function clipBtn(clips, key, text){
+  if (!clips) return null;
+  const b = spkEl('播放发音', function(){ Clip.play(clips.src, clips.t[key], b, text); });
+  return b;
+}
+
+/* ---------- quiz kit: one renderer per question type, shared by the reader and the review page ----------
+   Kit.make(item, o) returns the question card (a DOM element).
+     item = {type, key, id, v, k, dir, clips}
+        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent'
+        key    "<slug>:<word id>" (the spaced-repetition key)       id  the word id within its article
+        v      the word: {id, expr, zh, core, forms, syn, note, m, ctx, ex:[{en, zh}], cloze:{before, ans, after, hint, szh}}
+        k      which example sentence (exs, sent, dict); dict: -1 = the word itself
+        dir    mcq only: 'e2z' (English expression -> pick the meaning) or 'z2e' (meaning -> pick the expression)
+        clips  {src, t:{key:[start, end]}} or null (no audio for this article)
+     o = {index, total, last, tag,
+          pool()            -> [{expr, zh}] words that may serve as wrong options (mcq)
+          extra(item, res)  -> a node shown at the bottom of the feedback (or null)
+          onAnswer(res)     the answer is in (res.ok may still flip once through the "my answer is fine" button)
+          onChange(res)     optional: res.ok was flipped by that button
+          isLast()          optional: is this the last question? (read when the button label is set; `last` is the static version)
+          onNext()          the learner pressed "next"}
+   res = {id, key, type, ok, given, k}. */
+const Kit = (function(){
+  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译英词汇', dict:'听写', sent:'中译英整句'};
+  const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+
+  function markTerms(text, terms){
+    const ts = (terms || []).slice().sort(function(a, b){ return b.length - a.length; });
+    if (!ts.length) return [document.createTextNode(text)];
+    const re = new RegExp('\\b(?:' + ts.map(esc).join('|') + ')\\b', 'gi');
+    const out = [];
+    let last = 0, m;
+    while ((m = re.exec(text))){
+      if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
+      out.push(h('mark', {class:'vw'}, m[0]));
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) out.push(document.createTextNode(text.slice(last)));
+    return out;
+  }
+  /* an example sentence as a cloze: the [[target]] becomes the blank */
+  function exCloze(v, k){
+    const x = v.ex[k];
+    const m = /^([\s\S]*?)\[\[(.+?)\]\]([\s\S]*)$/.exec(x.en);
+    return {before:m[1], ans:m[2], after:m[3].replace(/\[\[|\]\]/g, ''), hint:v.zh, szh:x.zh};
+  }
+  function numWords(n){
+    if (n < 20) return ONES[n];
+    if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? ' ' + ONES[n % 10] : '');
+    return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + numWords(n % 100) : '');
+  }
+  /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
+  function toks(s){
+    const out = [];
+    String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9]+/).forEach(function(t){
+      if (!t) return;
+      if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
+      else out.push(t);
+    });
+    return out;
+  }
+  function lcsHits(a, b){
+    const n = a.length, m = b.length;
+    const dp = [];
+    for (let i = 0; i <= n; i++) dp.push(new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+      dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    const ha = new Array(n).fill(false), hb = new Array(m).fill(false);
+    let i = 0, j = 0;
+    while (i < n && j < m){
+      if (a[i] === b[j]){ ha[i] = hb[j] = true; i++; j++; }
+      else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else j++;
+    }
+    return {ha:ha, hb:hb};
+  }
+  /* the text with the words that are not in `hits` underlined */
+  function chunkDiff(text, hits){
+    const out = [];
+    let pos = 0;
+    text.split(/\s+/).filter(Boolean).forEach(function(chunk){
+      const n = toks(chunk).length;
+      let miss = false;
+      for (let k = 0; k < n; k++) if (!hits[pos + k]) miss = true;
+      pos += n;
+      if (out.length) out.push(' ');
+      out.push(miss ? h('span', {class:'miss-t'}, chunk) : chunk);
+    });
+    return out;
+  }
+
+  /* ---- pieces every question uses ---- */
+  function head(o, type){
+    const bar = h('div', {class:'pbar'}, h('i'));
+    bar.style.setProperty('--p', (o.index / o.total * 100) + '%');
+    return h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (o.index + 1) + ' 题 / ' + o.total + '　' + TYPE_NAME[type] + (o.tag ? '　' + o.tag : '')), bar);
+  }
+  function inputAttrs(extra){
+    return Object.assign({type:'text', id:'q-input', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false'}, extra);
+  }
+  function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
+  function speakLine(item, v){
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), '　', v.zh);
+  }
+  function extraBox(item, res, o){
+    const box = h('div', {class:'fb-x'});
+    box.refresh = function(){
+      box.replaceChildren();
+      const n = o.extra ? o.extra(item, res) : null;
+      if (n) box.append(n);
+    };
+    return box;
+  }
+  function newRes(item, type){ return {id:item.id, key:item.key, type:type, ok:false, given:'', k:item.k}; }
+
+  /* ---- fill the blank: the sentence is the article's (cloze) or one of the word's examples (exs) ---- */
+  function clozeQ(item, o, c, type){
+    const v = item.v, res = newRes(item, type);
+    const inp = h('input', inputAttrs({class:'q-input', 'aria-label':'填入缺失的单词'}));
+    inp.style.width = Math.max(6, c.ans.length + 2) + 'ch';
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, type),
+      h('p', {class:'q-sent'}, c.before, inp, c.after),
+      h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + ' 个字母')),
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ inp.placeholder = c.ans.charAt(0); inp.focus(); });
+    function check(){
+      const val = norm(inp.value);
+      if (!val){ inp.focus(); return; }
+      const ok = val === norm(c.ans);
+      checked = true;
+      res.ok = ok; res.given = inp.value.trim();
+      o.onAnswer(res);
+      inp.readOnly = true;
+      inp.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(
+        h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, c.ans)]),
+        h('p', null, c.szh),
+        speakLine(item, v),
+        ex
+      );
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- Chinese -> the English expression, typed ---- */
+  function zhQ(item, o){
+    const v = item.v, res = newRes(item, 'zh');
+    const words = v.core.split(' ');
+    const inp = h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出对应的英文表达'}));
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, 'zh'),
+      h('p', {class:'q-zh'}, v.zh),
+      h('p', {class:'q-line'}, inp),
+      h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + ' 个字母')),
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ inp.placeholder = v.core.charAt(0) + '…'; inp.focus(); });
+    function check(){
+      const val = norm(inp.value);
+      if (!val){ inp.focus(); return; }
+      const own = v.forms.map(norm).indexOf(val) >= 0;
+      const ok = own || v.syn.map(norm).indexOf(val) >= 0;
+      checked = true;
+      res.ok = ok; res.given = inp.value.trim();
+      o.onAnswer(res);
+      inp.readOnly = true;
+      inp.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const headP = h('p', {class:'fb-t'}, ok ? '正确' : ['不对，参考答案是 ', h('b', null, v.expr)]);
+      const kids = [headP];
+      if (ok && !own) kids.push(h('p', null, '你写的是近义表达，文章里用的是 ', h('b', null, v.core), '。'));
+      if (!ok){
+        const alt = h('button', {type:'button', class:'btn sm'}, '我写的也对（近义词）');
+        alt.addEventListener('click', function(){
+          res.ok = true;
+          fb.className = 'fb ok';
+          inp.classList.remove('bad'); inp.classList.add('ok');
+          headP.replaceChildren('已按你的判断算对。参考答案是 ', h('b', null, v.expr));
+          alt.remove();
+          ex.refresh();
+          if (o.onChange) o.onChange(res);
+          main.textContent = nextLabel(o);
+          main.focus();
+        });
+        kids.push(h('div', {class:'fb-s'}, alt));
+      }
+      kids.push(speakLine(item, v));
+      kids.push(h('p', {class:'w-ctx'}, markTerms(v.ctx, v.m)));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- Chinese sentence -> the whole English sentence, graded by the learner ---- */
+  function sentRe(v){
+    const alts = v.forms.map(function(f){
+      return f.toLowerCase().split(/[^a-z]+/).filter(Boolean).map(esc).join('[^A-Za-z]+');
+    });
+    return new RegExp('(?:^|[^A-Za-z])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
+  }
+  function sentQ(item, o){
+    const v = item.v, x = v.ex[item.k], res = newRes(item, 'sent');
+    const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'}));
+    const hintP = h('p', {class:'q-hint'});
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '核对');
+    const peek = h('button', {type:'button', class:'btn'}, '提示：这个表达的意思');
+    const card = h('div', {class:'card'},
+      head(o, 'sent'),
+      h('p', {class:'q-zh'}, x.zh),
+      h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
+      hintP,
+      ta,
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
+    function grade(ok){
+      res.ok = ok; res.given = ta.value.trim();
+      o.onAnswer(res);
+      o.onNext();
+    }
+    function check(){
+      const val = ta.value.trim();
+      if (!val){ ta.focus(); return; }
+      const used = sentRe(v).test(val);
+      ta.readOnly = true;
+      fb.className = 'fb ' + (used ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(
+        h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
+        h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
+        h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
+        h('div', {class:'row'},
+          h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
+          h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'))
+      );
+      main.hidden = true;
+      peek.hidden = true;
+    }
+    main.addEventListener('click', check);
+    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); check(); } });
+    return card;
+  }
+
+  /* ---- multiple choice: meaning of an expression (e2z), or the expression for a meaning (z2e) ---- */
+  function mcqQ(item, o){
+    const v = item.v, res = newRes(item, 'mcq');
+    const dir = item.dir === 'z2e' ? 'z2e' : 'e2z';
+    const right = dir === 'e2z' ? v.zh : v.expr;
+    const seen = {};
+    seen[right] = true;
+    const wrong = [];
+    shuffle((o.pool ? o.pool() : []).slice()).forEach(function(p){
+      const t = dir === 'e2z' ? p.zh : p.expr;
+      if (t && !seen[t] && wrong.length < 3){ seen[t] = true; wrong.push(t); }
+    });
+    const texts = shuffle([right].concat(wrong));
+    const ex = extraBox(item, res, o);
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri', hidden:true}, nextLabel(o));
+    let answered = false;
+    const btns = texts.map(function(t, i){
+      return h('button', {type:'button', class:'mc-b', onclick:function(){ pick(i); }}, h('span', {class:'n'}, String(i + 1)), h('span', null, t));
+    });
+    const ask = dir === 'e2z'
+      ? [h('p', {class:'q-ask'}, '这个表达在句子里是什么意思？'),
+         h('p', {class:'q-big'}, v.expr, item.clips ? ' ' : null, clipBtn(item.clips, 'w' + v.id, v.core)),
+         h('p', {class:'q-ctx'}, markTerms(v.ctx, v.m))]
+      : [h('p', {class:'q-ask'}, '选出对应的英文表达'),
+         h('p', {class:'q-zh'}, v.zh)];
+    const card = h('div', {class:'card'},
+      head(o, 'mcq'),
+      ask,
+      h('div', {class:'mc', role:'group', 'aria-label':'选项'}, btns),
+      fb,
+      h('div', {class:'row'}, main)
+    );
+    function pick(i){
+      if (answered) return;
+      answered = true;
+      const ok = texts[i] === right;
+      res.ok = ok; res.given = texts[i];
+      o.onAnswer(res);
+      btns.forEach(function(b, j){
+        b.disabled = true;
+        if (texts[j] === right) b.classList.add('ok');
+        else if (j === i) b.classList.add('bad');
+      });
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const kids = [h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, right)]), speakLine(item, v)];
+      if (v.note) kids.push(h('p', {class:'w-note'}, v.note));
+      kids.push(h('p', {class:'w-ctx'}, markTerms(v.ctx, v.m)));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      main.textContent = nextLabel(o);
+      main.hidden = false;
+      main.focus();
+    }
+    main.addEventListener('click', function(){ o.onNext(); });
+    function onKey(e){
+      if (!card.isConnected){ document.removeEventListener('keydown', onKey); return; }
+      if (card.offsetParent === null) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const n = Number(e.key);
+      if (!answered && n >= 1 && n <= btns.length){ e.preventDefault(); pick(n - 1); }
+    }
+    document.addEventListener('keydown', onKey);
+    return card;
+  }
+
+  /* ---- dictation: listen, then type the word or the whole example sentence ---- */
+  function dictQ(item, o){
+    const v = item.v, res = newRes(item, 'dict');
+    const isWord = item.k == null || item.k < 0;
+    const x = isWord ? null : v.ex[item.k];
+    const ref = isWord ? v.core : exPlain(x.en);
+    const key = isWord ? 'w' + v.id : 'e' + v.id + '_' + item.k;
+    const src = item.clips ? item.clips.src : null;
+    const clipT = item.clips ? item.clips.t[key] : null;
+    const playB = h('button', {type:'button', class:'btn pri play'}, '播放');
+    const slowB = h('button', {type:'button', class:'btn play'}, '慢速播放');
+    playB.insertAdjacentHTML('afterbegin', SPK_SVG);
+    playB.addEventListener('click', function(){ Clip.play(src, clipT, playB, ref, 1); });
+    slowB.addEventListener('click', function(){ Clip.play(src, clipT, slowB, ref, 0.7); });
+    const field = isWord
+      ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
+      : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个英文表达，拼写时词形要和听到的一致。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。');
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示：中文意思');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, 'dict'),
+      h('p', {class:'q-ask'}, isWord ? '听发音，写出这个表达。' : '听一句话，把整句写下来。'),
+      h('div', {class:'dict-btns'}, playB, slowB),
+      isWord ? h('p', {class:'q-line'}, field) : field,
+      hintP,
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ hintP.textContent = '意思：' + (isWord ? v.zh : x.zh); peek.hidden = true; field.focus(); });
+    function check(){
+      const val = field.value.trim();
+      if (!norm(val)){ field.focus(); return; }
+      let ok, diffKids = [];
+      if (isWord){
+        ok = v.forms.map(norm).indexOf(norm(val)) >= 0;
+      } else {
+        const a = toks(ref), b = toks(val), d = lcsHits(a, b);
+        ok = a.length === b.length && d.ha.every(Boolean);
+        if (!ok) diffKids = [
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), chunkDiff(ref, d.ha)),
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), chunkDiff(val, d.hb))
+        ];
+      }
+      checked = true;
+      res.ok = ok; res.given = val;
+      o.onAnswer(res);
+      field.readOnly = true;
+      if (isWord) field.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const headP = h('p', {class:'fb-t'}, ok ? '正确' : (isWord ? ['不对，听到的是 ', h('b', null, v.expr)] : '有出入，对照一下'));
+      const kids = [headP];
+      if (!ok){
+        kids.push.apply(kids, diffKids);
+        const alt = h('button', {type:'button', class:'btn sm'}, '只是小失误，算我对');
+        alt.addEventListener('click', function(){
+          res.ok = true;
+          fb.className = 'fb ok';
+          if (isWord){ field.classList.remove('bad'); field.classList.add('ok'); }
+          headP.replaceChildren('已按你的判断算对。');
+          alt.remove();
+          ex.refresh();
+          if (o.onChange) o.onChange(res);
+          main.textContent = nextLabel(o);
+          main.focus();
+        });
+        kids.push(h('div', {class:'fb-s'}, alt));
+      }
+      if (isWord) kids.push(speakLine(item, v));
+      else kids.push(h('p', null, clipBtn(item.clips, key, ref), item.clips ? ' ' : null, exNodes(x.en)), h('p', {class:'meta'}, x.zh));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    field.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && (isWord || e.ctrlKey || e.metaKey)){ e.preventDefault(); main.click(); }
+    });
+    /* play once as soon as the question appears (this runs inside the click that opened it, so browsers allow it) */
+    if (o.autoplay !== false) Clip.play(src, clipT, playB, ref, 1);
+    return card;
+  }
+
+  function make(item, o){
+    switch (item.type){
+      case 'cloze': return clozeQ(item, o, item.v.cloze, 'cloze');
+      case 'exs': return clozeQ(item, o, exCloze(item.v, item.k), 'exs');
+      case 'zh': return zhQ(item, o);
+      case 'sent': return sentQ(item, o);
+      case 'mcq': return mcqQ(item, o);
+      case 'dict': return dictQ(item, o);
+    }
+    throw new Error('unknown question type ' + item.type);
+  }
+  function focus(card){
+    const f = $('#q-input', card);
+    if (f) f.focus({preventScroll:true});
+  }
+  /* which question to ask a word that is on step b of the ladder: recognise -> fill in -> spell -> hear -> write */
+  function typeForStage(b, hasClips){
+    if (b <= 0) return {type:'mcq', dir:'e2z'};
+    if (b === 1) return {type:'mcq', dir:'z2e'};
+    if (b === 2) return {type:'exs'};
+    if (b === 3) return {type:'cloze'};
+    if (b <= 5) return {type:'zh'};
+    if (b <= 7) return hasClips ? {type:'dict'} : {type:'zh'};
+    return {type:'sent'};
+  }
+  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, typeForStage:typeForStage};
+})();
+
+
+const DATA = {"title":"Finders, keepers? Not in Tokyo","sents":[{"i":0,"kind":"title","p":0,"n":0,"label":"标题","en":"Finders, keepers? Not in Tokyo","zh":"捡到就归自己？在东京可不是这样。","notes":["finders keepers 是英语俗语（完整版 finders keepers, losers weepers），意思是“谁捡到就归谁”，小孩争东西时常说。","标题用问句加 Not in Tokyo，直接点出反差：东京不吃这一套。"]},{"i":1,"kind":"sub","p":0,"n":0,"label":"副标题","en":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama.","zh":"在世界上最繁忙的城市之一，一把被遗忘的雨伞引发了一场小小的市民大戏。","notes":["one of the + 最高级 + 复数名词：“最……之一”。","set off：引发、触发。","civic：市民的；a small civic drama 是调侃，把一把雨伞的小事说成“市民大戏”。"]},{"i":2,"kind":"sub","p":0,"n":0,"label":"副标题","en":"The system that handles it says a lot about trust.","zh":"处理这件事的这套体系，很能说明信任是怎么回事。","notes":["that handles it 是定语从句，修饰 system，it 指上一句里被遗忘的雨伞。","say a lot about：说明了很多关于……的事情。","让“体系”来“说话”，是新闻英语里常见的拟人写法。"]},{"i":3,"kind":"body","p":1,"n":1,"label":"第 1 句","en":"Every weekday morning, a small miracle goes largely unnoticed in Tokyo.","zh":"每个工作日的早晨，东京都有一个小小的奇迹发生，却几乎没人留意。","notes":["go unnoticed：没被注意到。go + 形容词表示“处于某种状态”，类似 go missing、go wrong。","largely = mostly，基本上。","a small miracle：把小事说成“奇迹”，制造悬念，下一句才揭晓是什么。"]},{"i":4,"kind":"body","p":1,"n":2,"label":"第 2 句","en":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","zh":"一位通勤者瘫坐在电车上，打起瞌睡，醒来时已经坐过了一站，少了一把伞、一条围巾，更夸张的情况下，还少了一个塞满现金的信封。","notes":["主干是三个并列谓语：slumps onto、dozes off、wakes up。","slump onto：瘫坐在……上；doze off：打瞌睡；stuffed with：塞满。","one stop too late：晚了一站，也就是睡过站。","minus 在这里是介词，“少了……”，口语化的幽默用法，表示醒来时东西没了。","in the more spectacular cases 是插入语；spectacular 本义“壮观的”，这里是反语，指更离谱的情况。"]},{"i":5,"kind":"body","p":1,"n":3,"label":"第 3 句","en":"By the time she has finished cursing, the item has often begun an improbable journey.","zh":"等她骂完的时候，那件东西往往已经踏上了一段出人意料的旅程。","notes":["by the time + 从句：“等到……的时候”。主句用现在完成时 has begun，表示到那时旅程已经开始。","finish doing sth.：finish 后面接动名词，所以是 finished cursing。","cursing：咒骂、骂脏话，这里指懊恼地发泄几句。","improbable：不太可能的，出人意料的。journey 把物品拟人化，引出下一句的流转路线。"]},{"i":6,"kind":"body","p":1,"n":4,"label":"第 4 句","en":"It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is logged, labelled and stored.","zh":"它先从车站工作人员的桌上转到街区的交番，如果没人来认领，再转到中央失物招领处，在那里被登记、贴标签、存放起来。","notes":["goes from A to B and ... to C：一路写出物品的流转路径。","if nobody comes forward：come forward 是“站出来（认领、作证）”。","where it is logged, labelled and stored：where 引导非限制性定语从句，修饰 office；三个被动动词并列，节奏感强。logged 是 log 的过去分词，“登记在案”。","police box 就是日本的交番（koban），后文会再出现。lost-property office 是英式说法，美式常说 lost and found。","neighbourhood、labelled 是英式拼写，美式是 neighborhood、labeled。"]},{"i":7,"kind":"body","p":2,"n":5,"label":"第 5 句","en":"The scale is staggering.","zh":"规模之大，令人吃惊。","notes":["staggering：令人震惊的，常形容数量或规模大。","上一句是长句，这里用一个短句收束，再展开数字，是英文评论文常见的节奏处理。"]},{"i":8,"kind":"body","p":2,"n":6,"label":"第 6 句","en":"Police in the capital handle several million lost items a year.","zh":"首都的警方每年要处理好几百万件遗失物品。","notes":["the capital 指东京，避免重复 Tokyo。","several million：好几百万，million 前面有 several 时不加 s。","a year = per year，这里的 a 表示“每”。"]},{"i":9,"kind":"body","p":2,"n":7,"label":"第 7 句","en":"By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","zh":"单论数量，雨伞遥遥领先，但几乎没人来认领；便宜的雨伞，似乎是东京人唯一乐意丢掉的东西。","notes":["by sheer volume：单凭数量；sheer 表示“纯粹的”，起强调作用。","lead the pack：遥遥领先（pack 指赛跑里的大部队）。","yet 表转折，比 but 更正式；claim 在这里是“认领”。","分号连接两个相关的分句。the one possession (that) Tokyoites seem happy to lose 省略了关系代词 that；Tokyoites 是东京人。"]},{"i":10,"kind":"body","p":2,"n":8,"label":"第 8 句","en":"Wallets are another story.","zh":"钱包就另当别论了。","notes":["X is another story：固定表达，“X 则另当别论”。","同类说法：that's a different story、that's another matter。","短句转折，把话题从雨伞切到钱包。"]},{"i":11,"kind":"body","p":2,"n":9,"label":"第 9 句","en":"A striking share of them find their way back to their owners, cash and all.","zh":"其中相当大一部分都找到了回到失主手里的路，连里面的现金也一分不少。","notes":["a striking share of them：striking 是“显著的”，share 是“份额”；them 指钱包。谓语用复数 find，是按意义一致（them 是复数）。","find their way back to：找到回去的路，拟人手法，呼应前面的 journey。","cash and all：连现金在内也一样，and all 是口语用法，表示“连同……一起”。"]},{"i":12,"kind":"body","p":3,"n":10,"label":"第 10 句","en":"Economists would start with incentives.","zh":"经济学家会先从激励机制说起。","notes":["would + 动词原形：表示“通常会这样做”，描述典型行为。","incentives：激励、诱因，经济学里的基本概念。","作者先借经济学家的视角起头，下一句马上给出具体的激励机制。"]},{"i":13,"kind":"body","p":3,"n":11,"label":"第 11 句","en":"Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","zh":"日本法律要求拾得者上交捡到的东西，同时赋予他们获得物品价值 5% 到 20% 报酬的权利，由失主支付。","notes":["oblige sb. to do sth.：责成某人做某事；entitle sb. to sth.：赋予某人……的权利。前者是义务，后者是权利，两个动词共用主语 law，对比工整。","hand in：上交。what they pick up 是名词性从句，作 hand in 的宾语。","a reward of between 5% and 20% of the item's value：价值为物品价值 5% 到 20% 的报酬。","payable by the owner：形容词短语后置，修饰 reward，“由失主支付”。"]},{"i":14,"kind":"body","p":3,"n":12,"label":"第 12 句","en":"In practice, many finders reportedly waive it.","zh":"实际上，据说许多拾得者放弃了这笔报酬。","notes":["in practice：实际上（对应 in theory，理论上）。","reportedly：据报道、据说，说明信息是转述的，作者不为其担保，新闻文体常用。","waive：放弃（权利、费用）。it 指上一句的 reward。"]},{"i":15,"kind":"body","p":3,"n":13,"label":"第 13 句","en":"Incentives, then, explain only part of the story.","zh":"这么看来，激励只能解释这个故事的一部分。","notes":["then 放在主语后面作插入语，表示“那么，由此看来”，语气比放在句首更含蓄。","only part of the story：只解释了一部分，为下文的 infrastructure and habit 铺垫。"]},{"i":16,"kind":"body","p":4,"n":14,"label":"第 14 句","en":"The rest lies in infrastructure and habit.","zh":"其余的原因在于配套机制和习惯。","notes":["the rest：其余部分。","lie in：在于，表示原因或关键所在。","infrastructure：本义是基础设施，这里引申为配套的设施和制度；habit 是民众的行为习惯。一个偏“硬”，一个偏“软”。"]},{"i":17,"kind":"body","p":4,"n":15,"label":"第 15 句","en":"The koban, the small police boxes found in nearly every neighbourhood, make doing the right thing cheap: there is almost always one within a short walk.","zh":"交番，也就是几乎每个街区都有的小型派出所，让做正确的事变得成本很低：走几步路，几乎总能找到一个。","notes":["The koban, the small police boxes ... 是同位语，解释 koban；found in nearly every neighbourhood 是过去分词作后置定语。koban 单复数同形，所以这里谓语用 make。","make doing the right thing cheap：make + 宾语 + 形容词；宾语是动名词短语，cheap 指成本低，不是价格便宜。","冒号后面补充说明：几乎总有一个在步行很短的距离内（within a short walk）。"]},{"i":18,"kind":"body","p":4,"n":16,"label":"第 16 句","en":"The process itself is gloriously dull, a form, a receipt, a database entry.","zh":"整个流程本身乏味得恰到好处：填一张表，拿一张收据，录入一条数据。","notes":["gloriously dull：反语式夸赞。dull 本是贬义，但这里的“无聊”正是优点：简单、没有麻烦。","逗号后面三个名词并列（a form, a receipt, a database entry），列出流程的具体内容，没有 and，节奏利落。","the process itself：itself 强调“流程本身”。"]},{"i":19,"kind":"body","p":4,"n":17,"label":"第 17 句","en":"Social scientists might call this lowering the cost of honesty.","zh":"社会科学家或许会把这称为降低诚实的成本。","notes":["might call this ...：might 让语气更谦逊，“或许会称之为”。","call A B：把 A 称为 B，这里 B 是动名词短语 lowering the cost of honesty。","the cost of honesty：把诚实看作要付成本的事，是经济学的思路，也是全文的核心比喻。"]},{"i":20,"kind":"body","p":5,"n":18,"label":"第 18 句","en":"It is a lesson that travels.","zh":"这是一条可以推广到别处的经验。","notes":["a lesson that travels：that 引导定语从句；travel 在这里指“可以被带到别处适用”。","短句，承上启下，从东京的个案转向更普遍的结论。","It 指前面说的“降低诚实的成本”这个道理。"]},{"i":21,"kind":"body","p":5,"n":19,"label":"第 19 句","en":"A much-cited experiment published in Science in 2019 left thousands of \"lost\" wallets at hotels, banks and offices in 40 countries.","zh":"2019 年发表在《科学》杂志上的一项被广泛引用的实验，在 40 个国家的酒店、银行和办公室里留下了数千个“遗失”的钱包。","notes":["much-cited：复合形容词（副词 + 过去分词），被大量引用的。","published in Science in 2019：过去分词短语作后置定语，修饰 experiment。Science 是期刊名。","“lost”加了引号，因为钱包是研究者故意留下的，并不是真的丢了。","thousands of：数以千计的。"]},{"i":22,"kind":"body","p":5,"n":20,"label":"第 20 句","en":"Counterintuitively, wallets containing more money were more likely to be returned, not less.","zh":"违反直觉的是，装钱更多的钱包反而更有可能被送还，而不是更不可能。","notes":["counterintuitively：句首副词，修饰整句，“违反直觉的是”。","containing more money：现在分词短语作后置定语，修饰 wallets。","not less：省略了 likely to be returned，完整说法是 not less likely to be returned。"]},{"i":23,"kind":"body","p":5,"n":21,"label":"第 21 句","en":"The researchers' explanation was that people dislike seeing themselves as thieves, and that this feeling grows with the size of the temptation.","zh":"研究者的解释是，人们不喜欢把自己看成小偷，而且这种感觉会随着诱惑的大小而增强。","notes":["The researchers' explanation was that ...：主系表结构，that 引导表语从句；后面 and that this feeling grows ... 是并列的第二个 that 从句。","dislike doing sth.：不喜欢做某事；see oneself as：把自己看作。","grow with the size of the temptation：随诱惑的大小而增强。","researchers' 是复数所有格，撇号在 s 后。"]},{"i":24,"kind":"body","p":6,"n":22,"label":"第 22 句","en":"Honesty, in other words, is not merely a personal virtue.","zh":"换句话说，诚实不只是一种个人美德。","notes":["in other words：换句话说，用来引出总结。","not merely：不仅仅，暗示后面还有一层意思，下一句的 also 就接上了。","virtue：美德。"]},{"i":25,"kind":"body","p":6,"n":23,"label":"第 23 句","en":"It is also a service that a society either provides or fails to provide.","zh":"它也是一种服务，社会要么提供，要么没能提供。","notes":["a service that a society either provides or fails to provide：that 引导定语从句，在从句中作 provides 和 fails to provide 的宾语。","either ... or ...：连接两个并列谓语。","fail to provide 比 not provide 更像“想做却没做到”，略带批评意味。"]},{"i":26,"kind":"body","p":6,"n":24,"label":"第 24 句","en":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.","zh":"当做正确的事的成本降到几乎为零，大多数人都会去做；当成本降不下来，再多的道德劝诫也填补不了这个缺口。","notes":["两个 when 从句对称，用分号隔开：成本降下来，人们就去做；成本降不下来，说教也没用。","when it does not：省略了 fall to nearly zero，避免重复。","no amount of ... will ...：强调否定，“再多的……也不会……”。","exhortation：劝诫、规劝；fill the gap：填补缺口。","the cost of doing the right thing 呼应第 17 句的 cost of honesty。"]},{"i":27,"kind":"body","p":6,"n":25,"label":"第 25 句","en":"Meanwhile, the umbrellas pile up in Iidabashi, a quiet monument to the one thing Tokyo cannot legislate: the rain.","zh":"与此同时，雨伞在饭田桥越堆越多，成了一座安静的纪念碑，纪念东京唯一无法立法规定的东西：雨。","notes":["meanwhile：与此同时，把话题从道理拉回到画面。","pile up：堆积。Iidabashi（饭田桥）是东京的地名，东京警视厅的遗失物中心在那一带。","a quiet monument to ...：同位语，指“雨伞堆积”这件事像一座安静的纪念碑；monument to 是“……的纪念碑”。","the one thing (that) Tokyo cannot legislate：省略了 that；legislate 是立法规定。冒号后点题：the rain。雨是法律管不了的，结尾幽默，也和开头的雨伞首尾呼应。"]}],"vocab":[{"id":1,"expr":"slump onto","zh":"瘫坐在……上","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late","m":["slumps onto"],"note":"","ex":[{"en":"After the night shift, he [[slumped onto]] the sofa and fell asleep at once.","zh":"上完夜班，他一屁股瘫坐在沙发上，立刻睡着了。"},{"en":"The exhausted hikers [[slumped onto]] the grass at the top of the hill.","zh":"筋疲力尽的徒步者们瘫坐在山顶的草地上。"}],"core":"slump onto","forms":["slump onto","slumps onto","slumped onto","slumping onto","slump into","slumps into","slumped into"],"syn":[]},{"id":2,"expr":"doze off","zh":"打起瞌睡","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late","m":["dozes off"],"note":"","ex":[{"en":"I kept [[dozing off]] during the boring lecture.","zh":"那堂课太无聊，我一直在打瞌睡。"},{"en":"Grandpa [[dozed off]] in front of the TV again.","zh":"爷爷又在电视机前打起了瞌睡。"}],"core":"doze off","forms":["doze off","dozes off","dozed off","dozing off"],"syn":[]},{"id":3,"expr":"stuffed with","zh":"塞满了……","ctx":"an envelope stuffed with cash","m":["stuffed with"],"note":"","ex":[{"en":"The suitcase was [[stuffed with]] gifts for her family.","zh":"行李箱里塞满了给家人的礼物。"},{"en":"His inbox is [[stuffed with]] unread emails.","zh":"他的收件箱里塞满了没读的邮件。"}],"core":"stuffed with","forms":["stuffed with","stuff with","stuffs with","stuffing with","be stuffed with"],"syn":[]},{"id":4,"expr":"improbable","zh":"不太可能的，出人意料的","ctx":"the item has often begun an improbable journey","m":["improbable"],"note":"","ex":[{"en":"It seems [[improbable]] that anyone would ignore such an offer.","zh":"有人会无视这样的提议，这似乎不太可能。"},{"en":"The two friends met again in the most [[improbable]] place: a tiny airport in Iceland.","zh":"两个朋友在最出人意料的地方重逢了：冰岛的一个小机场。"}],"core":"improbable","forms":["improbable"],"syn":["unlikely"]},{"id":5,"expr":"come forward","zh":"站出来（认领、作证）","ctx":"if nobody comes forward, to a central lost-property office","m":["comes forward"],"note":"","ex":[{"en":"Police have asked witnesses to [[come forward]].","zh":"警方呼吁目击者站出来。"},{"en":"Nobody [[came forward]] to claim the lost bag.","zh":"没有人出面来认领那个丢失的包。"}],"core":"come forward","forms":["come forward","comes forward","came forward","coming forward"],"syn":["step forward","steps forward","stepped forward","stepping forward"]},{"id":6,"expr":"staggering","zh":"惊人的","ctx":"The scale is staggering.","m":["staggering"],"note":"","ex":[{"en":"The cost of the project is [[staggering]].","zh":"这个项目的成本高得惊人。"},{"en":"She won the race by a [[staggering]] margin.","zh":"她以惊人的优势赢得了比赛。"}],"core":"staggering","forms":["staggering"],"syn":[]},{"id":7,"expr":"by sheer volume","zh":"单凭数量","ctx":"By sheer volume, umbrellas lead the pack","m":["by sheer volume"],"note":"","ex":[{"en":"The company drowned its rivals [[by sheer volume]], shipping ten times more products.","zh":"这家公司单凭数量就压倒了对手，出货量是对方的十倍。"},{"en":"[[By sheer volume]], English dominates academic publishing.","zh":"单从数量上看，英语在学术出版中占据主导。"}],"core":"by sheer volume","forms":["by sheer volume"],"syn":[]},{"id":8,"expr":"lead the pack","zh":"遥遥领先","ctx":"By sheer volume, umbrellas lead the pack","m":["lead the pack"],"note":"","ex":[{"en":"Japan's bullet trains [[lead the pack]] on punctuality.","zh":"在准点率方面，日本的新干线遥遥领先。"},{"en":"Her start-up has begun to [[lead the pack]] in clean energy.","zh":"她的初创公司已经开始在清洁能源领域领跑。"}],"core":"lead the pack","forms":["lead the pack","leads the pack","led the pack","leading the pack"],"syn":[]},{"id":9,"expr":"X is another story","zh":"X 则另当别论","ctx":"Wallets are another story.","m":["another story"],"note":"","ex":[{"en":"Cooking pasta is easy. Making it from scratch is [[another story]].","zh":"煮意面很简单，从头自己做就是另一回事了。"},{"en":"He plays the piano well, but singing is [[another story]].","zh":"他钢琴弹得不错，唱歌就另当别论了。"}],"core":"another story","forms":["another story","is another story","x is another story","be another story","was another story","are another story","were another story"],"syn":[]},{"id":10,"expr":"entitle sb. to sth.","zh":"赋予某人……的权利","ctx":"entitles them to a reward of between 5% and 20% of the item's value","m":["entitles"],"note":"","ex":[{"en":"A valid ticket [[entitles]] you to a free drink.","zh":"有效门票可以让你免费领取一杯饮料。"},{"en":"Employees are [[entitled to]] four weeks of paid leave.","zh":"员工有权享受四周带薪假期。"}],"core":"entitle","forms":["entitle","entitles","entitled","entitling","entitle sb to sth","entitle sb to do sth","entitle sb to","be entitled to","entitled to"],"syn":[]},{"id":11,"expr":"waive","zh":"放弃（权利、费用）","ctx":"In practice, many finders reportedly waive it.","m":["waive"],"note":"","ex":[{"en":"The bank agreed to [[waive]] the late fee.","zh":"银行同意免除滞纳金。"},{"en":"Students may [[waive]] the fee if they show proof of low income.","zh":"学生如果能出示低收入证明，可以免交这项费用。"}],"core":"waive","forms":["waive","waives","waived","waiving"],"syn":[]},{"id":12,"expr":"infrastructure","zh":"基础设施；这里引申为配套机制","ctx":"The rest lies in infrastructure and habit.","m":["infrastructure"],"note":"","ex":[{"en":"The country is investing heavily in transport [[infrastructure]].","zh":"这个国家正在大力投资交通基础设施。"},{"en":"Good ideas fail without the [[infrastructure]] to support them.","zh":"没有配套机制的支撑，再好的点子也会落空。"}],"core":"infrastructure","forms":["infrastructure"],"syn":[]},{"id":13,"expr":"gloriously dull","zh":"乏味得恰到好处（反语式夸赞）","ctx":"The process itself is gloriously dull, a form, a receipt, a database entry.","m":["gloriously dull"],"note":"","ex":[{"en":"The meeting was [[gloriously dull]]: nothing went wrong, and nothing happened.","zh":"那场会议乏味得恰到好处：没出任何岔子，也什么都没发生。"},{"en":"After a chaotic year, he longed for a [[gloriously dull]] weekend at home.","zh":"经历了混乱的一年，他渴望在家过一个平平淡淡的周末。"}],"core":"gloriously dull","forms":["gloriously dull"],"syn":["gloriously boring"]},{"id":14,"expr":"a lesson that travels","zh":"可以推广到别处的经验","ctx":"It is a lesson that travels.","m":["a lesson that travels"],"note":"","ex":[{"en":"Tokyo's lost-property system is [[a lesson that travels]]: any city could copy it.","zh":"东京的失物招领体系是一个可以推广的经验：任何城市都能照搬。"},{"en":"Her approach to teaching is [[a lesson that travels]] across subjects.","zh":"她的教学方法是一条可以推广到各个学科的经验。"}],"core":"a lesson that travels","forms":["a lesson that travels","lesson that travels","a lesson that travels well","lessons that travel"],"syn":[]},{"id":15,"expr":"counterintuitively","zh":"违反直觉地","ctx":"Counterintuitively, wallets containing more money were more likely to be returned, not less.","m":["counterintuitively"],"note":"","ex":[{"en":"[[Counterintuitively]], students who rested more scored higher.","zh":"违反直觉的是，休息得更多的学生分数反而更高。"},{"en":"[[Counterintuitively]], a smaller team often finishes the project faster.","zh":"违反直觉的是，人少的团队往往完成项目更快。"}],"core":"counterintuitively","forms":["counterintuitively"],"syn":[]},{"id":16,"expr":"exhortation","zh":"劝诫，规劝","ctx":"no amount of moral exhortation will fill the gap","m":["exhortation"],"note":"","ex":[{"en":"No [[exhortation]] from the coach could lift the team's spirits.","zh":"教练再怎么规劝也提振不了队伍的士气。"},{"en":"The speech was a long [[exhortation]] to work harder.","zh":"这场演讲是一番冗长的规劝，要大家更加努力。"}],"core":"exhortation","forms":["exhortation","exhortations"],"syn":[]},{"id":17,"expr":"legislate","zh":"立法规定；这里指靠法律管控","ctx":"the one thing Tokyo cannot legislate: the rain","m":["legislate"],"note":"","ex":[{"en":"You cannot [[legislate]] good manners.","zh":"礼貌是没法靠立法规定出来的。"},{"en":"Parliament plans to [[legislate]] against fake reviews.","zh":"议会打算立法禁止虚假评价。"}],"core":"legislate","forms":["legislate","legislates","legislated","legislating"],"syn":[]},{"id":18,"expr":"curse (cursing)","zh":"咒骂，骂脏话；懊恼地发泄几句","ctx":"By the time she has finished cursing, the item has often begun an improbable journey.","m":["cursing"],"note":"","ex":[{"en":"He stubbed his toe and began [[cursing]] under his breath.","zh":"他踢到了脚趾，低声咒骂起来。"},{"en":"She [[cursed]] the rain when her umbrella blew inside out.","zh":"伞被风吹翻的时候，她咒骂起这场雨。"}],"core":"curse","forms":["curse","curses","cursed","cursing"],"syn":["swear","swears","swore","swearing"]},{"id":19,"expr":"log (logged)","zh":"登记，记录在案","ctx":"a central lost-property office, where it is logged, labelled and stored","m":["logged"],"note":"","ex":[{"en":"Every complaint is [[logged]] in the system.","zh":"每一条投诉都会登记在系统里。"},{"en":"The nurse [[logged]] the patient's temperature every hour.","zh":"护士每小时记录一次病人的体温。"}],"core":"log","forms":["log","logs","logged","logging"],"syn":["record","records","recorded","recording","register","registered"]},{"id":20,"expr":"oblige sb. to do sth.","zh":"责成某人做某事；（法律上）要求某人必须……","ctx":"Japanese law obliges finders to hand in what they pick up","m":["obliges"],"note":"发音：/əˈblaɪdʒ/","ex":[{"en":"The law [[obliges]] employers to provide a safe workplace.","zh":"法律要求雇主提供安全的工作场所。"},{"en":"Drivers are [[obliged]] to stop at a red light.","zh":"司机必须在红灯前停车。"}],"core":"oblige","forms":["oblige","obliges","obliged","obliging","oblige sb to do sth","oblige sb to","be obliged to"],"syn":[]},{"id":21,"expr":"attendant","zh":"服务人员；station attendant 是站务员","ctx":"It goes from a station attendant's desk to a neighbourhood police box","m":["attendant"],"note":"","ex":[{"en":"A station [[attendant]] helped her find the right platform.","zh":"一位站务员帮她找到了正确的站台。"},{"en":"The flight [[attendant]] offered us tea.","zh":"空乘人员给我们递上了茶。"}],"core":"attendant","forms":["attendant","attendants","station attendant"],"syn":[]},{"id":22,"expr":"payable","zh":"应付的，须支付的","ctx":"a reward of between 5% and 20% of the item's value, payable by the owner","m":["payable"],"note":"常见搭配：payable by sb. 由某人支付 / payable to sb. 付给某人 / payable on delivery 货到付款 / payable in installments 分期付款 / payable within 30 days 须在 30 天内支付","ex":[{"en":"The fee is [[payable]] within 30 days.","zh":"这笔费用须在 30 天内支付。"},{"en":"Cheques should be made [[payable]] to the university.","zh":"支票请开成以学校为收款人。"},{"en":"The balance is [[payable]] on delivery.","zh":"余款货到付款。"}],"core":"payable","forms":["payable"],"syn":[]},{"id":23,"expr":"spectacular","zh":"adj. 壮观的；惊人的；（情况）更离谱的","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","m":["spectacular"],"note":"in the more spectacular cases：在更夸张、更离谱的情况下","ex":[{"en":"The fireworks over Tokyo Bay were [[spectacular]].","zh":"东京湾上空的烟花美不胜收。"},{"en":"The start-up's growth was [[spectacular]]; so was its collapse.","zh":"这家初创公司的增长惊人，垮台也同样惊人。"},{"en":"In the more [[spectacular]] cases, the fraud ran for a decade before anyone noticed.","zh":"在更离谱的案例中，骗局持续了十年才被人发觉。"}],"extra":true,"core":"spectacular","forms":["spectacular"],"syn":[]},{"id":24,"expr":"Finders, keepers","zh":"谁捡到归谁","ctx":"Finders, keepers? Not in Tokyo","m":["Finders, keepers"],"note":"出自儿童顺口溜 “Finders keepers, losers weepers”（捡到的归自己，丢了的只能哭）。标题是反用：在东京，不是这样。","ex":[{"en":"I found a ten-pound note on the bus, and my brother grinned: “[[Finders, keepers]]!”","zh":"我在公交车上捡到一张十英镑的钞票，我弟弟咧嘴一笑：“谁捡到归谁！”"},{"en":"Children chant “[[finders keepers]], losers weepers” in the playground, but the law is less forgiving.","zh":"孩子们在操场上念着“捡到归己，丢了活该”，但法律就没这么宽容了。"},{"en":"He took a “[[finders, keepers]]” attitude to the abandoned bike until its owner turned up.","zh":"他对那辆被丢弃的自行车抱着“谁捡到归谁”的态度，直到车主出现。"}],"extra":true,"core":"finders keepers","forms":["finders keepers","finders, keepers"],"syn":[]},{"id":25,"expr":"civic","zh":"adj. 市民的；公民的；城市的","ctx":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama.","m":["civic"],"note":"常见搭配：civic duty 公民义务 / civic pride 城市自豪感 / civic life 公共生活","ex":[{"en":"Many people see voting as a [[civic]] duty.","zh":"很多人把投票看作公民的义务。"},{"en":"The town hall is the centre of [[civic]] life.","zh":"市政厅是这座城市公共生活的中心。"},{"en":"Residents showed real [[civic]] pride after the park was restored.","zh":"公园修复之后，居民们表现出强烈的城市自豪感。"}],"extra":true,"core":"civic","forms":["civic"],"syn":[]},{"id":26,"expr":"largely (= mostly)","zh":"adv. 基本上；主要地；大体上","ctx":"Every weekday morning, a small miracle goes largely unnoticed in Tokyo.","m":["largely"],"note":"largely unnoticed：基本没人注意到。别和形容词 large 搞混。","ex":[{"en":"The report was [[largely]] ignored by the press.","zh":"这份报告基本上被媒体忽视了。"},{"en":"The delay was [[largely]] due to bad weather.","zh":"这次延误主要是因为天气不好。"},{"en":"The city is [[largely]] safe, though a few areas need caution.","zh":"这座城市基本上是安全的，不过有几个区域需要小心。"}],"extra":true,"core":"largely","forms":["largely"],"syn":["mostly","mainly"]},{"id":27,"expr":"one stop too late","zh":"晚了一站（睡过站）","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","m":["one stop too late"],"note":"句型：one + 时间/距离单位 + too late，表示“晚了那么一点”。","ex":[{"en":"I fell asleep on the Yamanote Line and woke up [[one stop too late]].","zh":"我在山手线上睡着了，醒来时已经坐过了一站。"},{"en":"She noticed the announcement [[one stop too late]] and had to double back.","zh":"她听到广播时已经过了一站，只好折返。"},{"en":"We got off [[one stop too late]] and had to take a taxi back.","zh":"我们下车晚了一站，只好打车回去。"}],"extra":true,"core":"one stop too late","forms":["one stop too late"],"syn":[]},{"id":28,"expr":"minus","zh":"prep. 少了……；没有了……（口语化）","ctx":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","m":["minus"],"note":"口语里常带幽默或无奈，暗示“本该有却没了”。数学里的 minus 才是“减”。","ex":[{"en":"He came back from holiday [[minus]] his luggage.","zh":"他度假回来了，行李却丢了。"},{"en":"She walked in, [[minus]] her usual smile.","zh":"她走了进来，脸上少了往常的笑容。"},{"en":"We arrived at the party [[minus]] the cake, which was still in the car.","zh":"我们到了聚会现场，蛋糕却没带来——它还留在车里。"}],"extra":true,"core":"minus","forms":["minus"],"syn":[]},{"id":29,"expr":"by the time ...","zh":"等到……的时候（已经……）","ctx":"By the time she has finished cursing, the item has often begun an improbable journey.","m":["By the time"],"note":"by the time 后接从句；主句常用完成时，表示“到那时已经……”。","ex":[{"en":"[[By the time]] I reached the station, the last train had gone.","zh":"我赶到车站时，末班车已经开走了。"},{"en":"[[By the time]] you read this, I will have landed in Shanghai.","zh":"等你读到这条消息的时候，我应该已经降落在上海了。"},{"en":"[[By the time]] the police arrived, the thief had disappeared.","zh":"警察赶到的时候，小偷已经不见了。"}],"extra":true,"core":"by the time","forms":["by the time","by the time that"],"syn":[]},{"id":30,"expr":"possession","zh":"n. 个人财产；所有物","ctx":"By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","m":["possession"],"note":"指随身物品时多用复数 possessions；in possession of ……：持有、拥有。","ex":[{"en":"Her most treasured [[possession]] is an old camera from her grandfather.","zh":"她最珍视的物品是祖父留下的一台旧相机。"},{"en":"Passengers are asked to keep their [[possessions]] with them at all times.","zh":"请乘客随时随身携带好个人物品。"},{"en":"The police found him in [[possession]] of a stolen wallet.","zh":"警方发现他持有一个被盗的钱包。"}],"extra":true,"core":"possession","forms":["possession","possessions"],"syn":["belonging","belongings"]},{"id":31,"expr":"... and all","zh":"连同……一起；连……也（口语）","ctx":"A striking share of them find their way back to their owners, cash and all.","m":["and all"],"note":"名词 + and all，放在句末，表示“连带着也一起”。","ex":[{"en":"She swallowed the sandwich, crust [[and all]].","zh":"她把三明治整个吞了下去，连面包边也不剩。"},{"en":"He fell into the river, phone [[and all]].","zh":"他掉进了河里，连手机也一起掉了进去。"},{"en":"They bought the old house, furniture [[and all]].","zh":"他们买下了那栋老房子，家具也一并带走。"}],"extra":true,"core":"and all","forms":["and all"],"syn":[]},{"id":32,"expr":"hand in","zh":"上交；提交（作业、失物、辞呈等）","ctx":"Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","m":["hand in"],"note":"可以拆开用：hand it in。hand in 偏“交上去”，hand over 偏“移交”。","ex":[{"en":"Please [[hand in]] your essays by Friday.","zh":"请在周五之前交上论文。"},{"en":"She [[handed in]] the lost wallet at the nearest police box.","zh":"她把捡到的钱包交给了最近的警亭。"},{"en":"He [[handed in]] his notice last week.","zh":"他上周递交了辞呈。"}],"extra":true,"core":"hand in","forms":["hand in","hands in","handed in","handing in"],"syn":["turn in","turns in","turned in","turning in","submit","submits","submitted","submitting"]},{"id":33,"expr":"in practice (↔ in theory)","zh":"事实上；实际上（对比：in theory 理论上）","ctx":"In practice, many finders reportedly waive it.","m":["In practice"],"note":"常和 in theory 成对出现：理论上如何，实际上却不一定。","ex":[{"en":"In theory the system is simple; [[in practice]], it takes hours.","zh":"理论上这个系统很简单，实际操作起来却要花好几个小时。"},{"en":"The rule applies to everyone, but [[in practice]] it is rarely enforced.","zh":"这条规定对所有人适用，但实际上很少被执行。"},{"en":"[[In practice]], most people just click “accept” without reading.","zh":"实际上，大多数人根本不看就点了“同意”。"}],"extra":true,"core":"in practice","forms":["in practice"],"syn":[]},{"id":34,"expr":"reportedly","zh":"adv. 据报道；据说","ctx":"In practice, many finders reportedly waive it.","m":["reportedly"],"note":"消息来自报道或传闻，作者并没有亲自核实，新闻里很常见。","ex":[{"en":"The singer has [[reportedly]] cancelled her tour.","zh":"据报道，这位歌手已经取消了巡演。"},{"en":"The company [[reportedly]] lost millions last year.","zh":"据说这家公司去年亏损了数百万。"},{"en":"He was [[reportedly]] furious when he heard the news.","zh":"据说他听到消息时非常愤怒。"}],"extra":true,"core":"reportedly","forms":["reportedly"],"syn":[]},{"id":35,"expr":"lie in ...","zh":"在于……（原因、关键所在）","ctx":"The rest lies in infrastructure and habit.","m":["lies in"],"note":"lie（位于；在于）的变形是 lie – lay – lain，三单 lies；撒谎的 lie 过去式才是 lied。","ex":[{"en":"The secret of her success [[lies in]] hard work, not talent.","zh":"她成功的秘诀在于努力，而不是天赋。"},{"en":"The problem [[lies in]] how the data is collected.","zh":"问题出在数据的收集方式上。"},{"en":"The charm of the old town [[lies in]] its narrow streets.","zh":"这座老城的魅力就在于那些狭窄的街道。"}],"extra":true,"core":"lie in","forms":["lie in","lies in","lay in","lain in","lying in"],"syn":[]},{"id":36,"expr":"not merely","zh":"不仅仅（是）","ctx":"Honesty, in other words, is not merely a personal virtue.","m":["not merely"],"note":"比 not only 更书面；常见结构 not merely A but (also) B。","ex":[{"en":"The museum is [[not merely]] a building but a living archive.","zh":"这座博物馆不仅仅是一栋建筑，更是一座活的档案馆。"},{"en":"It is [[not merely]] a matter of money.","zh":"这不仅仅是钱的问题。"},{"en":"She is [[not merely]] talented; she is also relentlessly disciplined.","zh":"她不仅仅有天赋，还自律得近乎苛刻。"}],"extra":true,"core":"not merely","forms":["not merely"],"syn":["not just","not only","not simply"]},{"id":37,"expr":"virtue","zh":"n. 美德；优点","ctx":"Honesty, in other words, is not merely a personal virtue.","m":["virtue"],"note":"by virtue of ……：凭借、由于（较正式）。","ex":[{"en":"Patience is a [[virtue]].","zh":"耐心是一种美德。"},{"en":"The plan's main [[virtue]] is its simplicity.","zh":"这个方案最大的优点就是简单。"},{"en":"She got the job [[by virtue of]] her experience, not her connections.","zh":"她得到这份工作是凭借经验，而不是人脉。"}],"extra":true,"core":"virtue","forms":["virtue","virtues"],"syn":[]},{"id":38,"expr":"no amount of ... will ...","zh":"再多的……也不会……","ctx":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.","m":["no amount of"],"note":"amount 后面接不可数名词；后半句常用 will / can。","ex":[{"en":"[[No amount of]] apologies will undo the damage.","zh":"再多的道歉也无法挽回这些损失。"},{"en":"[[No amount of]] coffee will make me enjoy Monday mornings.","zh":"再多的咖啡也不会让我爱上周一的早晨。"},{"en":"[[No amount of]] training will make up for a lack of curiosity.","zh":"再多的训练也弥补不了好奇心的缺失。"}],"extra":true,"core":"no amount of","forms":["no amount of","no amount of will"],"syn":[]}],"cloze":[{"id":1,"i":4,"before":"A commuter ","ans":"slumps","after":" onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"瘫坐在……上（注意动词词形）"},{"id":2,"i":4,"before":"A commuter slumps onto a train, ","ans":"dozes","after":" off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"打瞌睡"},{"id":3,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope ","ans":"stuffed","after":" with cash.","hint":"塞满了……"},{"id":4,"i":5,"before":"By the time she has finished cursing, the item has often begun an ","ans":"improbable","after":" journey.","hint":"不太可能的，出人意料的"},{"id":5,"i":6,"before":"It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes ","ans":"forward","after":", to a central lost-property office, where it is logged, labelled and stored.","hint":"站出来（认领、作证）"},{"id":6,"i":7,"before":"The scale is ","ans":"staggering","after":".","hint":"令人震惊的"},{"id":7,"i":9,"before":"By sheer ","ans":"volume","after":", umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","hint":"数量，规模"},{"id":8,"i":9,"before":"By sheer volume, umbrellas lead the ","ans":"pack","after":", yet almost nobody comes to claim them; a cheap umbrella is the one possession Tokyoites seem happy to lose.","hint":"一群，赛跑里的大部队"},{"id":9,"i":10,"before":"Wallets are another ","ans":"story","after":".","hint":"X is another ____：X 则另当别论"},{"id":10,"i":13,"before":"Japanese law obliges finders to hand in what they pick up, and ","ans":"entitles","after":" them to a reward of between 5% and 20% of the item's value, payable by the owner.","hint":"赋予……的权利"},{"id":11,"i":14,"before":"In practice, many finders reportedly ","ans":"waive","after":" it.","hint":"放弃（权利、费用）"},{"id":12,"i":16,"before":"The rest lies in ","ans":"infrastructure","after":" and habit.","hint":"基础设施；这里指配套机制"},{"id":13,"i":18,"before":"The process itself is gloriously ","ans":"dull","after":", a form, a receipt, a database entry.","hint":"乏味的（反语式夸赞）"},{"id":14,"i":20,"before":"It is a lesson that ","ans":"travels","after":".","hint":"可以推广到别处"},{"id":15,"i":22,"before":"","ans":"Counterintuitively","after":", wallets containing more money were more likely to be returned, not less.","hint":"违反直觉地"},{"id":16,"i":26,"before":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral ","ans":"exhortation","after":" will fill the gap.","hint":"劝诫，规劝"},{"id":17,"i":27,"before":"Meanwhile, the umbrellas pile up in Iidabashi, a quiet monument to the one thing Tokyo cannot ","ans":"legislate","after":": the rain.","hint":"立法规定"},{"id":18,"i":5,"before":"By the time she has finished ","ans":"cursing","after":", the item has often begun an improbable journey.","hint":"咒骂，骂脏话"},{"id":19,"i":6,"before":"It goes from a station attendant's desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is ","ans":"logged","after":", labelled and stored.","hint":"被登记在案"},{"id":20,"i":13,"before":"Japanese law ","ans":"obliges","after":" finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","hint":"责成、要求（法律上必须）"},{"id":21,"i":6,"before":"It goes from a station ","ans":"attendant","after":"'s desk to a neighbourhood police box and, if nobody comes forward, to a central lost-property office, where it is logged, labelled and stored.","hint":"服务人员，站务员"},{"id":22,"i":13,"before":"Japanese law obliges finders to hand in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, ","ans":"payable","after":" by the owner.","hint":"应付的，须支付的"},{"id":23,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, minus her umbrella, her scarf or, in the more ","ans":"spectacular","after":" cases, an envelope stuffed with cash.","hint":"壮观的，惊人的；这里指“更离谱的”"},{"id":24,"i":0,"before":"Finders, ","ans":"keepers","after":"? Not in Tokyo","hint":"Finders, ____：谁捡到归谁"},{"id":25,"i":1,"before":"In one of the world's busiest cities, a forgotten umbrella sets off a small ","ans":"civic","after":" drama.","hint":"市民的，公民的（civic drama：一场市民间的小风波）"},{"id":26,"i":3,"before":"Every weekday morning, a small miracle goes ","ans":"largely","after":" unnoticed in Tokyo.","hint":"基本上，主要地（= mostly）"},{"id":27,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one ","ans":"stop","after":" too late, minus her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"晚了一站（睡过站）"},{"id":28,"i":4,"before":"A commuter slumps onto a train, dozes off, and wakes up one stop too late, ","ans":"minus","after":" her umbrella, her scarf or, in the more spectacular cases, an envelope stuffed with cash.","hint":"少了……（口语，介词）"},{"id":29,"i":5,"before":"By the ","ans":"time","after":" she has finished cursing, the item has often begun an improbable journey.","hint":"By the ____ ……：等到……的时候（已经）"},{"id":30,"i":9,"before":"By sheer volume, umbrellas lead the pack, yet almost nobody comes to claim them; a cheap umbrella is the one ","ans":"possession","after":" Tokyoites seem happy to lose.","hint":"个人财产，所有物"},{"id":31,"i":11,"before":"A striking share of them find their way back to their owners, cash and ","ans":"all","after":".","hint":"cash and ____：连同……一起（口语）"},{"id":32,"i":13,"before":"Japanese law obliges finders to ","ans":"hand","after":" in what they pick up, and entitles them to a reward of between 5% and 20% of the item's value, payable by the owner.","hint":"____ in：上交，提交"},{"id":33,"i":14,"before":"In ","ans":"practice","after":", many finders reportedly waive it.","hint":"In ____：事实上，实际上（对比 in theory）"},{"id":34,"i":14,"before":"In practice, many finders ","ans":"reportedly","after":" waive it.","hint":"据报道，据说"},{"id":35,"i":16,"before":"The rest ","ans":"lies","after":" in infrastructure and habit.","hint":"在于……（原因、关键所在；注意动词形式）"},{"id":36,"i":24,"before":"Honesty, in other words, is not ","ans":"merely","after":" a personal virtue.","hint":"not ____：不仅仅"},{"id":37,"i":24,"before":"Honesty, in other words, is not merely a personal ","ans":"virtue","after":".","hint":"美德"},{"id":38,"i":26,"before":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no ","ans":"amount","after":" of moral exhortation will fill the gap.","hint":"no ____ of ……will……：再多的……也不会……"}],"breakdown":{"i":26,"en":"When the cost of doing the right thing falls to nearly zero, most people do it; when it does not, no amount of moral exhortation will fill the gap.","points":["结构是两个并列的 when 从句加主句，前后对比。","第二个 when 后的 it does not 省略了 fall to nearly zero，避免重复。","no amount of... will... 是强调否定的固定搭配，意思是“再多的……也无法……”。","fill the gap 指弥补这个缺口，即成本过高时靠道德说教填不上。"]},"questions":["作者认为“诚实”主要是个人品质，还是社会提供的一种服务？哪些句子支持这个判断？","结尾 “the one thing Tokyo cannot legislate: the rain” 用了什么修辞效果？","用 by sheer volume、another story、counterintuitively 各造一个关于你自己领域（比如政治经济）的句子。"],"audio":{"src":"audio.mp3","dur":154.62,"t":[[0.25,2.4],[3.3,8.36],[8.68,11.39],[12.29,16.64],[16.96,27.12],[27.44,32.15],[32.47,42.14],[42.89,44.42],[44.74,48.56],[48.88,57.67],[57.99,59.59],[59.91,63.92],[64.67,66.91],[67.23,77.26],[77.58,80.41],[80.73,83.72],[84.47,86.95],[87.27,95.31],[95.63,100.45],[100.77,104.25],[105.0,106.77],[107.09,115.98],[116.3,121.36],[121.68,129.4],[130.15,133.44],[133.76,138.11],[138.43,146.47],[146.79,154.02]]},"clips":{"src":"clips.mp3","t":{"w1":[1.0,2.05],"e1_0":[2.55,6.3],"e1_1":[6.8,10.23],"w2":[10.73,11.61],"e2_0":[12.11,14.58],"e2_1":[15.08,17.75],"w3":[18.25,19.21],"e3_0":[19.71,22.31],"e3_1":[22.81,25.31],"w4":[25.81,26.73],"e4_0":[27.23,30.41],"e4_1":[30.91,35.85],"w5":[36.35,37.36],"e5_0":[37.86,40.25],"e5_1":[40.75,43.22],"w6":[43.72,44.51],"e6_0":[45.01,47.08],"e6_1":[47.58,49.86],"w7":[50.36,51.62],"e7_0":[52.12,56.73],"e7_1":[57.23,60.51],"w8":[61.01,62.08],"e8_0":[62.58,65.59],"e8_1":[66.09,69.08],"w9":[69.58,70.75],"e9_0":[71.25,75.15],"e9_1":[75.65,78.62],"w10":[79.12,79.97],"e10_0":[80.47,83.25],"e10_1":[83.75,86.63],"w11":[87.13,87.72],"e11_0":[88.22,90.36],"e11_1":[90.86,94.03],"w12":[94.53,95.79],"e12_0":[96.29,99.75],"e12_1":[100.25,103.34],"w13":[103.84,105.17],"e13_0":[105.67,109.55],"e13_1":[110.05,114.12],"w14":[114.62,116.09],"e14_0":[116.59,121.44],"e14_1":[121.94,125.56],"w15":[126.06,127.49],"e15_0":[127.99,131.34],"e15_1":[131.84,135.96],"w16":[136.46,137.65],"e16_0":[138.15,141.35],"e16_1":[141.85,144.65],"w17":[145.15,146.24],"e17_0":[146.74,148.81],"e17_1":[149.31,152.34],"w18":[152.84,153.45],"e18_0":[153.95,156.77],"e18_1":[157.27,160.21],"w19":[160.71,161.35],"e19_0":[161.85,164.24],"e19_1":[164.74,167.52],"w20":[168.02,168.83],"e20_0":[169.33,172.46],"e20_1":[172.96,175.59],"w21":[176.09,176.98],"e21_0":[177.48,180.36],"e21_1":[180.86,182.91],"w22":[183.41,184.09],"e22_0":[184.59,186.88],"e22_1":[187.38,189.85],"e22_2":[190.35,192.42],"w23":[192.92,193.95],"e23_0":[194.45,197.24],"e23_1":[197.74,201.15],"e23_2":[201.65,206.35],"w24":[206.85,208.17],"e24_0":[208.67,213.19],"e24_1":[213.69,219.22],"e24_2":[219.72,224.69],"w25":[225.19,225.75],"e25_0":[226.25,228.76],"e25_1":[229.26,231.7],"e25_2":[232.2,235.74],"w26":[236.24,237.05],"e26_0":[237.55,240.06],"e26_1":[240.56,242.93],"e26_2":[243.43,246.74],"w27":[247.24,248.67],"e27_0":[249.17,252.99],"e27_1":[253.49,257.33],"e27_2":[257.83,261.22],"w28":[261.72,262.44],"e28_0":[262.94,265.42],"e28_1":[265.92,268.24],"e28_2":[268.74,272.18],"w29":[272.68,273.77],"e29_0":[274.27,277.4],"e29_1":[277.9,280.87],"e29_2":[281.37,284.29],"w30":[284.79,285.62],"e30_0":[286.12,289.52],"e30_1":[290.02,293.49],"e30_2":[293.99,296.79],"w31":[297.29,297.97],"e31_0":[298.47,300.69],"e31_1":[301.19,303.3],"e31_2":[303.8,306.06],"w32":[306.56,307.52],"e32_0":[308.02,310.24],"e32_1":[310.74,313.66],"e32_2":[314.16,316.27],"w33":[316.77,317.71],"e33_0":[318.21,321.75],"e33_1":[322.25,326.18],"e33_2":[326.68,330.05],"w34":[330.55,331.57],"e34_0":[332.07,334.5],"e34_1":[335.0,337.63],"e34_2":[338.13,340.75],"w35":[341.25,342.06],"e35_0":[342.56,345.87],"e35_1":[346.37,348.99],"e35_2":[349.49,352.46],"w36":[352.96,354.0],"e36_0":[354.5,357.51],"e36_1":[358.01,359.93],"e36_2":[360.43,364.34],"w37":[364.84,365.6],"e37_0":[366.1,367.68],"e37_1":[368.18,370.64],"e37_2":[371.14,374.63],"w38":[375.13,376.39],"e38_0":[376.89,379.54],"e38_1":[380.04,383.15],"e38_2":[383.65,386.79]}}};
+const SLUG = 'finders-keepers';
+const REVIEW_URL = '../../review/';
+const S = DATA.sents;
+const VMAP = {};
+DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
+DATA.cloze.forEach(function(c){ VMAP[c.id].cloze = {before:c.before, ans:c.ans, after:c.after, hint:c.hint, szh:S[c.i].zh}; });
+const TERM_MAP = {};
+const TERMS = [];
+DATA.vocab.forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; TERMS.push(t); }); });
+TERMS.sort(function(a,b){ return b.length - a.length; });
+const TERM_RE = new RegExp('\\b(?:' + TERMS.map(esc).join('|') + ')\\b', 'gi');
+const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
+const TABS = ['read','listen','words','quiz','think'];
+const LS_STATE = 'fk-state-v1';
+const LS_UI = 'fk-ui-v1';
+const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---------- progress state (saved to the viewer's own private store when available) ---------- */
 function normalize(d){
@@ -305,7 +982,7 @@ function normalize(d){
     if (typeof d.ans[k] === 'string' && d.ans[k]) out.ans[k] = d.ans[k].slice(0,2000);
   });
   if (d.quiz && typeof d.quiz === 'object' && typeof d.quiz.score === 'number' && typeof d.quiz.total === 'number')
-    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0,10), k:['cloze','zh','sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
+    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0,10), k:['mcq','cloze','exs','zh','dict','sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
   return out;
 }
 let state = normalize(lsGet(LS_STATE));
@@ -439,6 +1116,7 @@ function showTab(t){
     b.setAttribute('aria-selected', String(on));
   });
   if (t === 'quiz' && quiz.phase === 'start') renderQuiz();
+  if (t === 'words' && changed) renderWords();
   if (changed) window.scrollTo(0, 0);
 }
 
@@ -534,7 +1212,15 @@ function updateChips(){
     b.setAttribute('aria-pressed', String(vFilter === f));
   });
 }
-function metaText(id){ const e = state.vocab[id]; return e && e.d ? '上次复习 ' + e.d : ''; }
+function metaText(id){
+  const e = state.vocab[id];
+  const bits = [];
+  if (e && e.d) bits.push('上次复习 ' + e.d);
+  const r = srsGet(srsKey(id));
+  if (r) bits.push('复习计划：' + srsStageText(r, Date.now()));
+  return bits.join(' · ');
+}
+function srsKey(id){ return SLUG + ':' + id; }
 function statusSeg(id, after){
   const seg = h('div', {class:'seg', role:'group', 'aria-label':'学习状态'});
   const btns = {};
@@ -552,12 +1238,6 @@ function statusSeg(id, after){
   sync();
   return seg;
 }
-function exNodes(s){
-  const out = [];
-  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
-  return out;
-}
-function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
 function wordCard(v){
   const e = state.vocab[v.id] || {};
   const meta = h('p', {class:'w-meta'}, metaText(v.id));
@@ -600,18 +1280,27 @@ function renderWords(){
 }
 
 /* ---------- quiz tab ---------- */
-const quiz = {phase:'start', mode:'cloze', scope:'all', items:[], i:0, results:[], checked:false};
-const MODES = [['cloze', '填空'], ['zh', '中文写英文词'], ['sent', '中文写英文句']];
-const MODE_NAME = {cloze:'填空', zh:'中译英词汇', sent:'中译英整句'};
+const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null};
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
+const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
+  mcq:'四选一：看英文选中文意思，或看中文选英文表达，两个方向随机出现。可以按键盘 1–4 作答。',
   cloze:'每题挖掉一个生词。看中文提示和上下文，把它按原句的词形填回去。',
+  exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
   zh:'看中文意思，自己拼写出对应的英文表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
+  dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
   sent:'看一句中文，自己写出整句英文，并用上指定的表达。写完核对参考句，再自己判断对不对。'
 };
+function modeAvailable(m){ return m !== 'dict' || !!DATA.clips; }
 function quizPool(){
-  if (quiz.mode === 'cloze') return DATA.cloze.slice();
-  if (quiz.mode === 'zh') return DATA.vocab.map(function(v){ return {id:v.id}; });
-  return DATA.vocab.filter(function(v){ return v.ex && v.ex.length; }).map(function(v){ return {id:v.id, k:Math.floor(Math.random() * v.ex.length)}; });
+  const m = quiz.mode;
+  return DATA.vocab.filter(function(v){ return (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
+    const c = {id:v.id};
+    if (m === 'sent' || m === 'exs') c.k = Math.floor(Math.random() * v.ex.length);
+    if (m === 'dict') c.k = v.ex && v.ex.length && Math.random() > 0.35 ? Math.floor(Math.random() * v.ex.length) : -1;
+    if (m === 'mcq') c.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
+    return c;
+  });
 }
 function todoCount(){ return quizPool().filter(function(c){ return getS(c.id) !== 'mastered'; }).length; }
 function startQuiz(scope, ids){
@@ -621,22 +1310,41 @@ function startQuiz(scope, ids){
   if (!pool.length) return;
   quiz.scope = scope;
   quiz.items = shuffle(pool.slice());
-  quiz.i = 0; quiz.results = []; quiz.checked = false; quiz.phase = 'q';
+  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.phase = 'q';
   renderQuiz();
 }
 function renderQuiz(){
   const box = $('#quizBox');
   box.replaceChildren();
   box.append(quiz.phase === 'start' ? quizStart() : quiz.phase === 'q' ? quizQuestion() : quizResult());
-  if (quiz.phase === 'q'){ const inp = $('#q-input'); if (inp) inp.focus({preventScroll:true}); }
+  if (quiz.phase === 'q') Kit.focus(box);
+}
+/* every answer goes into the spaced-repetition plan (shared with the review page) once the learner moves on */
+function settle(){
+  const r = quiz.pending;
+  if (!r) return;
+  quiz.pending = null;
+  srsRecord(r.key, r.ok);
+}
+function reviewSummary(){
+  const s = srsLoad(), now = Date.now();
+  let due = 0, seen = 0;
+  DATA.vocab.forEach(function(v){
+    const e = s.w[srsKey(v.id)];
+    if (!e) return;
+    seen++;
+    if (e.t <= now) due++;
+  });
+  return {due:due, seen:seen, fresh:DATA.vocab.length - seen};
 }
 function quizStart(){
+  if (!modeAvailable(quiz.mode)) quiz.mode = 'mcq';
   const all = quizPool().length, todo = todoCount();
   if (quiz.scope === 'todo' && !todo) quiz.scope = 'all';
   const modes = h('div', {class:'chips'});
   MODES.forEach(function(o){
     modes.append(h('button', {type:'button', class:'chip' + (quiz.mode === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.mode === o[0]),
-      onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
+      disabled:!modeAvailable(o[0]), onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
   });
   const opts = h('div', {class:'chips mt12'});
   [['all', '全部 ' + all + ' 题'], ['todo', '只考未掌握 ' + todo + ' 题']].forEach(function(o){
@@ -652,163 +1360,26 @@ function quizStart(){
   const last = state.quiz;
   if (last && last.total) card.append(h('p', {class:'meta mt12'}, '上次成绩 ' + last.score + ' / ' + last.total + (last.k ? '（' + MODE_NAME[last.k] + '）' : '') + (last.d ? '，' + last.d : '')));
   card.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz(quiz.scope); }}, '开始')));
+  const rs = reviewSummary();
+  card.append(h('p', {class:'meta mt12'}, '答题结果会记进艾宾浩斯复习计划（只存在这台设备上）。这篇文章：' +
+    (rs.due ? rs.due + ' 个词到期该复习' : '暂时没有到期的词') + '，' + rs.fresh + ' 个词还没开始。 ',
+    h('a', {href:REVIEW_URL}, '去复习页 →')));
   return card;
 }
-function quizQuestion(){ return quiz.mode === 'zh' ? zhQuestion() : quiz.mode === 'sent' ? sentQuestion() : clozeQuestion(); }
-function clozeQuestion(){
+function quizQuestion(){
   const c = quiz.items[quiz.i], v = VMAP[c.id], total = quiz.items.length;
-  const bar = h('div', {class:'pbar'}, h('i'));
-  bar.style.setProperty('--p', (quiz.i / total * 100) + '%');
-  const inp = h('input', {type:'text', id:'q-input', class:'q-input', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false', 'aria-label':'填入缺失的单词'});
-  inp.style.width = Math.max(6, c.ans.length + 2) + 'ch';
-  const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-  const main = h('button', {type:'button', class:'btn pri'}, '检查');
-  const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
-  const card = h('div', {class:'card'},
-    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (quiz.i + 1) + ' 题 / ' + total), bar),
-    h('p', {class:'q-sent'}, c.before, inp, c.after),
-    h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + ' 个字母')),
-    fb,
-    h('div', {class:'row'}, main, peek)
-  );
-  peek.addEventListener('click', function(){ inp.placeholder = c.ans.charAt(0); inp.focus(); });
-  function check(){
-    const val = norm(inp.value);
-    if (!val){ inp.focus(); return; }
-    const ok = val === norm(c.ans);
-    quiz.checked = true;
-    quiz.results.push({id:c.id, ok:ok, given:inp.value.trim()});
-    inp.readOnly = true;
-    inp.classList.add(ok ? 'ok' : 'bad');
-    fb.className = 'fb ' + (ok ? 'ok' : 'bad');
-    fb.hidden = false;
-    fb.replaceChildren(
-      h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, c.ans)]),
-      h('p', null, S[c.i].zh),
-      h('p', null, h('b', null, v.expr), '　', v.zh),
-      h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(c.id))
-    );
-    peek.hidden = true;
-    main.textContent = quiz.i + 1 >= total ? '看成绩' : '下一题';
-    main.focus();
-  }
-  main.addEventListener('click', function(){ if (quiz.checked) nextQ(); else check(); });
-  inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
-  return card;
-}
-function zhQuestion(){
-  const c = quiz.items[quiz.i], v = VMAP[c.id], total = quiz.items.length;
-  const words = v.core.split(' ');
-  const bar = h('div', {class:'pbar'}, h('i'));
-  bar.style.setProperty('--p', (quiz.i / total * 100) + '%');
-  const inp = h('input', {type:'text', id:'q-input', class:'q-input q-wide', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false', 'aria-label':'写出对应的英文表达'});
-  const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-  const main = h('button', {type:'button', class:'btn pri'}, '检查');
-  const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
-  const card = h('div', {class:'card'},
-    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (quiz.i + 1) + ' 题 / ' + total + '　中译英'), bar),
-    h('p', {class:'q-zh'}, v.zh),
-    h('p', {class:'q-line'}, inp),
-    h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + ' 个字母')),
-    fb,
-    h('div', {class:'row'}, main, peek)
-  );
-  peek.addEventListener('click', function(){ inp.placeholder = v.core.charAt(0) + '…'; inp.focus(); });
-  function check(){
-    const val = norm(inp.value);
-    if (!val){ inp.focus(); return; }
-    const own = v.forms.map(norm).indexOf(val) >= 0;
-    const ok = own || v.syn.map(norm).indexOf(val) >= 0;
-    const res = {id:c.id, ok:ok, given:inp.value.trim()};
-    quiz.checked = true;
-    quiz.results.push(res);
-    inp.readOnly = true;
-    inp.classList.add(ok ? 'ok' : 'bad');
-    fb.className = 'fb ' + (ok ? 'ok' : 'bad');
-    fb.hidden = false;
-    const head = h('p', {class:'fb-t'}, ok ? '正确' : ['不对，参考答案是 ', h('b', null, v.expr)]);
-    const kids = [head];
-    if (ok && !own) kids.push(h('p', null, '你写的是近义表达，文章里用的是 ', h('b', null, v.core), '。'));
-    if (!ok){
-      const alt = h('button', {type:'button', class:'btn sm'}, '我写的也对（近义词）');
-      alt.addEventListener('click', function(){
-        res.ok = true;
-        fb.className = 'fb ok';
-        inp.classList.remove('bad'); inp.classList.add('ok');
-        head.replaceChildren('已按你的判断算对。参考答案是 ', h('b', null, v.expr));
-        alt.remove();
-        main.focus();
-      });
-      kids.push(h('div', {class:'fb-s'}, alt));
-    }
-    kids.push(h('p', null, speakBtn('w' + v.id, v.core), ' ', h('b', null, v.expr), '　', v.zh));
-    kids.push(h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id})));
-    kids.push(h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(c.id)));
-    fb.replaceChildren.apply(fb, kids);
-    peek.hidden = true;
-    main.textContent = quiz.i + 1 >= total ? '看成绩' : '下一题';
-    main.focus();
-  }
-  main.addEventListener('click', function(){ if (quiz.checked) nextQ(); else check(); });
-  inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
-  return card;
-}
-function sentRe(v){
-  const alts = v.forms.map(function(f){
-    return f.toLowerCase().split(/[^a-z]+/).filter(Boolean).map(esc).join('[^A-Za-z]+');
+  return Kit.make({type:quiz.mode, key:srsKey(v.id), id:v.id, v:v, k:c.k, dir:c.dir, clips:DATA.clips || null}, {
+    index:quiz.i, total:total, last:quiz.i + 1 >= total,
+    pool:function(){ return DATA.vocab; },
+    extra:function(item){ return h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(item.id)); },
+    onAnswer:function(res){ quiz.results.push(res); quiz.pending = res; },
+    onNext:nextQ
   });
-  return new RegExp('(?:^|[^A-Za-z])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
-}
-function sentQuestion(){
-  const c = quiz.items[quiz.i], v = VMAP[c.id], x = v.ex[c.k], total = quiz.items.length;
-  const bar = h('div', {class:'pbar'}, h('i'));
-  bar.style.setProperty('--p', (quiz.i / total * 100) + '%');
-  const ta = h('textarea', {id:'q-input', class:'q-area', rows:3, maxlength:400, autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false', placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'});
-  const hintP = h('p', {class:'q-hint'});
-  const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-  const main = h('button', {type:'button', class:'btn pri'}, '核对');
-  const peek = h('button', {type:'button', class:'btn'}, '提示：这个表达的意思');
-  const card = h('div', {class:'card'},
-    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (quiz.i + 1) + ' 题 / ' + total + '　中译英整句'), bar),
-    h('p', {class:'q-zh'}, x.zh),
-    h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
-    hintP,
-    ta,
-    fb,
-    h('div', {class:'row'}, main, peek)
-  );
-  peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
-  function mark(ok){
-    quiz.results.push({id:c.id, ok:ok, given:ta.value.trim(), k:c.k});
-    nextQ();
-  }
-  function check(){
-    const val = ta.value.trim();
-    if (!val){ ta.focus(); return; }
-    const used = sentRe(v).test(val);
-    quiz.checked = true;
-    ta.readOnly = true;
-    fb.className = 'fb ' + (used ? 'ok' : 'bad');
-    fb.hidden = false;
-    fb.replaceChildren(
-      h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
-      h('p', null, speakBtn('e' + v.id + '_' + c.k, exPlain(x.en)), ' 参考句：', exNodes(x.en)),
-      h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
-      h('div', {class:'row'},
-        h('button', {type:'button', class:'btn pri', onclick:function(){ mark(true); }}, '我写对了'),
-        h('button', {type:'button', class:'btn', onclick:function(){ mark(false); }}, '还要再练'))
-    );
-    main.hidden = true;
-    peek.hidden = true;
-  }
-  main.addEventListener('click', check);
-  ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); check(); } });
-  return card;
 }
 function nextQ(){
+  settle();
   if (quiz.i + 1 >= quiz.items.length){ finishQuiz(); return; }
   quiz.i++;
-  quiz.checked = false;
   renderQuiz();
 }
 function finishQuiz(){
@@ -819,46 +1390,44 @@ function finishQuiz(){
   renderQuiz();
   window.scrollTo(0, 0);
 }
+function missRow(m){
+  const v = VMAP[m.id];
+  const given = m.given ? '　你' + (m.type === 'cloze' || m.type === 'exs' ? '填' : m.type === 'mcq' ? '选' : m.type === 'dict' ? '听写' : '写') + '的：' + m.given : '';
+  if (m.type === 'cloze' || m.type === 'exs'){
+    const c = m.type === 'cloze' ? v.cloze : Kit.exCloze(v, m.k);
+    return h('div', {class:'miss'},
+      h('p', {class:'miss-s'}, c.before, h('mark', {class:'vw'}, c.ans), c.after),
+      h('p', {class:'meta'}, v.expr + '　' + v.zh + given)
+    );
+  }
+  if (m.type === 'zh') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.zh), h('p', {class:'meta'}, '参考答案：' + v.expr + given));
+  if (m.type === 'mcq') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.expr, '　', v.zh), h('p', {class:'meta'}, given.replace(/^　/, '') || '没有作答'));
+  if (m.type === 'dict'){
+    const x = m.k >= 0 ? v.ex[m.k] : null;
+    return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x ? exNodes(x.en) : v.expr), h('p', {class:'meta'}, (x ? x.zh + '　' : v.zh + '　') + given.replace(/^　/, '')));
+  }
+  const x = v.ex[m.k];
+  return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x.zh), h('p', {class:'miss-s'}, exNodes(x.en)), h('p', {class:'meta'}, v.expr + given));
+}
 function quizResult(){
   const total = quiz.results.length;
   const misses = quiz.results.filter(function(r){ return !r.ok; });
   const score = total - misses.length;
   const card = h('div', {class:'card'},
-    h('p', {class:'eyebrow'}, '本轮成绩'),
+    h('p', {class:'eyebrow'}, '本轮成绩 · ' + MODE_NAME[quiz.mode]),
     h('p', {class:'score'}, h('span', {class:'big'}, String(score)), ' / ' + total)
   );
   if (misses.length){
-    card.append(h('h3', {class:'h3 mt4'},'答错的 ' + misses.length + ' 题'));
-    misses.forEach(function(m){
-      const v = VMAP[m.id];
-      const given = m.given ? '　你' + (quiz.mode === 'cloze' ? '填' : '写') + '的：' + m.given : '';
-      if (quiz.mode === 'cloze'){
-        const c = DATA.cloze.filter(function(x){ return x.id === m.id; })[0];
-        card.append(h('div', {class:'miss'},
-          h('p', {class:'miss-s'}, c.before, h('mark', {class:'vw'}, c.ans), c.after),
-          h('p', {class:'meta'}, v.expr + '　' + v.zh + given)
-        ));
-      } else if (quiz.mode === 'zh'){
-        card.append(h('div', {class:'miss'},
-          h('p', {class:'miss-s'}, v.zh),
-          h('p', {class:'meta'}, '参考答案：' + v.expr + given)
-        ));
-      } else {
-        const x = v.ex[m.k];
-        card.append(h('div', {class:'miss'},
-          h('p', {class:'miss-s'}, x.zh),
-          h('p', {class:'miss-s'}, exNodes(x.en)),
-          h('p', {class:'meta'}, v.expr + given)
-        ));
-      }
-    });
+    card.append(h('h3', {class:'h3 mt4'}, '答错的 ' + misses.length + ' 题'));
+    misses.forEach(function(m){ card.append(missRow(m)); });
   } else {
     card.append(h('p', {class:'lead'}, '全部答对。'));
   }
   const row = h('div', {class:'row'});
   if (misses.length) row.append(h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz('all', misses.map(function(m){ return m.id; })); }}, '重做错题'));
-  row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '再测一轮'));
+  row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '换个题型再测'));
   row.append(h('button', {type:'button', class:'btn', onclick:function(){ showTab('words'); try { location.hash = 'words'; } catch(e){} }}, '去词汇表'));
+  row.append(h('a', {class:'btn', href:REVIEW_URL}, '去复习页'));
   card.append(row);
   return card;
 }
@@ -887,69 +1456,10 @@ function renderThink(){
 
 /* ---------- wiring ---------- */
 /* ---------- speaker icons: words, example sentences, article sentences ---------- */
-const SPK_SVG = '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
-const C = {a:null, end:0, start:0, btn:null, raf:0, text:''};
-function spkEl(label, onclick){
-  const b = h('button', {type:'button', class:'spk', 'aria-label':label, title:label, onclick:onclick});
-  b.innerHTML = SPK_SVG;
-  return b;
-}
-function clipEnded(){
-  cancelAnimationFrame(C.raf);
-  if (C.btn){ C.btn.classList.remove('on'); C.btn = null; }
-}
-function speakFallback(text){
-  try {
-    if (!('speechSynthesis' in window) || !text) return;
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'en-GB'; u.rate = 0.9;
-    speechSynthesis.speak(u);
-  } catch(e){}
-}
-function clipAudio(){
-  if (C.a) return C.a;
-  const a = new Audio();
-  a.preload = 'auto';
-  a.src = DATA.clips.src;
-  a.addEventListener('error', function(){ const t = C.text; clipEnded(); speakFallback(t); });
-  a.addEventListener('ended', clipEnded);
-  a.addEventListener('pause', function(){ if (a.currentTime < C.end) clipEnded(); });
-  C.a = a;
-  return a;
-}
-function clipTick(){
-  const a = C.a;
-  if (!a || a.paused){ return; }
-  if (a.currentTime >= C.end){ a.pause(); clipEnded(); return; }
-  C.raf = requestAnimationFrame(clipTick);
-}
+function speakBtn(key, text){ return clipBtn(DATA.clips, key, text); }
 function stopNarrationForClip(){
   if (L && L.audio && !L.audio.paused) L.audio.pause();
   if (L) L.seg = null;
-}
-function playClip(key, btn, text){
-  const t = DATA.clips && DATA.clips.t[key];
-  if (!t){ speakFallback(text); return; }
-  stopNarrationForClip();
-  const a = clipAudio();
-  const wasOn = C.btn === btn && !a.paused;
-  clipEnded();
-  if (wasOn){ a.pause(); return; }
-  C.btn = btn; C.text = text;
-  C.start = Math.max(0, t[0] - 0.1); C.end = t[1] + 0.15;
-  btn.classList.add('on');
-  const go = function(){ a.currentTime = C.start; };
-  if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
-  const pr = a.play();
-  if (pr && pr.catch) pr.catch(function(){ clipEnded(); });
-  cancelAnimationFrame(C.raf);
-  C.raf = requestAnimationFrame(clipTick);
-}
-function speakBtn(key, text){
-  if (!DATA.clips) return null;
-  const b = spkEl('播放发音', function(){ playClip(key, b, text); });
-  return b;
 }
 function sentBtn(en){
   if (!DATA.audio) return null;
@@ -961,8 +1471,7 @@ function sentBtn(en){
 function playArticleSentence(i, btn){
   const a = getAudio();
   const T = DATA.audio.t[i];
-  if (C.a && !C.a.paused) C.a.pause();
-  clipEnded();
+  Clip.stop();
   const wasOn = L.seg && L.seg.btn === btn && !a.paused;
   endSeg();
   if (wasOn){ a.pause(); return; }
@@ -1051,7 +1560,7 @@ function markListenSentence(follow){
 }
 function playSentence(i){
   endSeg();
-  if (C.a) C.a.pause();
+  Clip.stop();
   const a = getAudio();
   a.currentTime = DATA.audio.t[i][0];
   if (L.loop) L.loopIdx = i;
@@ -1099,7 +1608,7 @@ function renderListen(){
   const A = DATA.audio;
   L.el.play = h('button', {type:'button', class:'btn pri big', 'aria-pressed':'false', onclick:function(){
     endSeg();
-    if (C.a) C.a.pause();
+    Clip.stop();
     const a = getAudio();
     if (a.paused || a.ended){ if (a.ended) a.currentTime = 0; a.play().catch(function(){}); } else a.pause();
   }}, '播放');
@@ -1165,6 +1674,9 @@ function renderAll(){
   if (quiz.phase === 'start') renderQuiz();
 }
 function init(){
+  Clip.onBeforePlay(stopNarrationForClip);
+  window.addEventListener('pagehide', settle);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
   $('#optZh').checked = !!ui.zh;
   $('#optHi').checked = !!ui.hi;
   $('#optZh').addEventListener('change', function(){ ui.zh = this.checked; lsSet(LS_UI, ui); $('#article').classList.toggle('show-zh', ui.zh); });
