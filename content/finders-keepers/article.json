@@ -13,7 +13,13 @@
    "type": "original"
   },
   "note": "这是一篇仿《经济学人》风格的原创练习文章，不是真实外刊的转载。文中的事实是概括性描述，仅供语言学习，请不要当作引用来源。",
-  "lsKey": "fk-state-v1"
+  "lsKey": "fk-state-v1",
+  "pronounce": {
+   "Tokyoites": "Tokyo-ites",
+   "koban": "koh-bahn",
+   "2019": "twenty nineteen",
+   "Iidabashi": "ee-dah-bah-shee"
+  }
  },
  "data": {
   "title": "Finders, keepers? Not in Tokyo",

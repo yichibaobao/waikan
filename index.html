@@ -111,7 +111,7 @@ main{padding-block:20px 56px}
 <script>
 (function(){
 'use strict';
-const SITE = {"articles":[{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":38,"lsKey":"fk-state-v1"}]};
+const SITE = {"articles":[{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":38,"lsKey":"fk-state-v1","audio":true}]};
 const A = SITE.articles;
 const WD = ['周日','周一','周二','周三','周四','周五','周六'];
 
@@ -153,6 +153,7 @@ A.forEach(function(a){
 
 function metaBits(a){
   const out = [h('span', null, a.words + ' 词'), h('span', null, a.vocab + ' 个生词表达')];
+  if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));
   return out;

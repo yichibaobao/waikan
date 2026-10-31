@@ -39,10 +39,25 @@ button,input,textarea{font:inherit;color:inherit}
 .meter{width:112px;height:3px;margin:4px 0 3px auto;border-radius:2px;background:var(--surface-2);overflow:hidden}
 .meter i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
 .prog .s{font-size:11px;min-height:14px}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr)}
+.tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
 .tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:9px 4px 10px;font:500 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
 .tab:hover{color:var(--fg)}
 .tab.on{color:var(--fg);border-bottom-color:var(--accent)}
+
+/* listen */
+.lp{display:grid;gap:14px}
+.lp-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn.big{min-width:96px;padding:12px 22px;font-size:16px}
+.lp-range{display:block;width:100%;margin:0;accent-color:var(--accent)}
+.lp-time{display:flex;justify-content:space-between;margin-top:2px;font:400 12.5px/1 var(--font-mono);color:var(--muted)}
+.lp-opt{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.lp-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.lp-msg{margin:0;font-size:13px;color:var(--bad)}
+.tr{margin-top:22px}
+.tr-off{margin-top:18px;padding:22px 16px;text-align:center;font-size:14.5px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+.ls{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:140px;scroll-margin-bottom:90px}
+.ls:hover{background:var(--surface-2)}
+.ls.on{background:var(--accent-soft)}
 
 main{padding-block:22px 56px}
 .view[hidden]{display:none}
@@ -104,6 +119,15 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .w-expr{margin:0;min-width:0;font:600 18px/1.35 var(--font-read);overflow-wrap:anywhere}
 .w-zh{margin:0;font-size:15px}
 .w-ctx{margin:0;font:italic 400 14.5px/1.65 var(--font-read);color:var(--muted)}
+.spk{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--accent);cursor:pointer}
+.spk:hover{background:var(--accent-soft)}
+.spk.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.spk svg{display:block}
+.w-head{display:flex;align-items:center;gap:8px;min-width:0}
+.w-ctxrow{display:flex;align-items:flex-start;gap:10px}
+.w-ctxrow .w-ctx{flex:1;min-width:0}
+.ex-row{display:flex;align-items:flex-start;gap:10px}
+.ex-body{min-width:0}
 .w-tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:500 11px/1.6 var(--font-ui);vertical-align:3px;white-space:nowrap}
 .w-note{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
 .w-exh{margin:2px 0 -3px;font-size:12px;color:var(--muted)}
@@ -174,6 +198,7 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
     </div>
     <nav class="tabs" role="tablist" aria-label="页面">
       <button type="button" class="tab" role="tab" data-tab="read">精读</button>
+      <button type="button" class="tab" role="tab" data-tab="listen" hidden>听力</button>
       <button type="button" class="tab" role="tab" data-tab="words">词汇</button>
       <button type="button" class="tab" role="tab" data-tab="quiz">自测</button>
       <button type="button" class="tab" role="tab" data-tab="think">思考</button>
@@ -189,6 +214,10 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
       <span>点任意一句，看翻译和讲解</span>
     </div>
     <article id="article"></article>
+  </section>
+
+  <section class="view" id="view-listen" role="tabpanel" hidden>
+    <div id="listenBox"></div>
   </section>
 
   <section class="view" id="view-words" role="tabpanel" hidden>
@@ -224,7 +253,7 @@ TERMS.sort(function(a,b){ return b.length - a.length; });
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 const TERM_RE = new RegExp('\\b(?:' + TERMS.map(esc).join('|') + ')\\b', 'gi');
 const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
-const TABS = ['read','words','quiz','think'];
+const TABS = ['read','listen','words','quiz','think'];
 const LS_STATE = '__LS_STATE__';
 const LS_UI = 'fk-ui-v1';
 const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -400,7 +429,7 @@ function renderMast(){
 /* ---------- tabs ---------- */
 let cur = null;
 function showTab(t){
-  if (TABS.indexOf(t) < 0) t = 'read';
+  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio)) t = 'read';
   const changed = cur !== null && cur !== t;
   cur = t;
   $$('.view').forEach(function(v){ v.hidden = v.id !== 'view-' + t; });
@@ -541,13 +570,13 @@ function wordCard(v){
     if (vFilter !== 'all') renderWords();
   });
   return h('article', {class:'word'},
-    h('div', {class:'word-top'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null), seg),
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null), speakBtn('w' + v.id, v.core)), seg),
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
-    h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id})),
+    h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
     v.ex && v.ex.length ? h('p', {class:'w-exh'}, '例句') : null,
-    v.ex && v.ex.length ? h('ul', {class:'w-ex'}, v.ex.map(function(x){
-      return h('li', null, h('span', {class:'ex-en'}, exNodes(x.en)), h('span', {class:'ex-zh'}, x.zh));
+    v.ex && v.ex.length ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+      return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), h('span', {class:'ex-zh'}, x.zh)));
     })) : null,
     h('label', {class:'w-mine'}, h('span', null, '我的造句'), ta),
     meta
@@ -712,7 +741,7 @@ function zhQuestion(){
       });
       kids.push(h('div', {class:'fb-s'}, alt));
     }
-    kids.push(h('p', null, h('b', null, v.expr), '　', v.zh));
+    kids.push(h('p', null, speakBtn('w' + v.id, v.core), ' ', h('b', null, v.expr), '　', v.zh));
     kids.push(h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id})));
     kids.push(h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(c.id)));
     fb.replaceChildren.apply(fb, kids);
@@ -763,7 +792,7 @@ function sentQuestion(){
     fb.hidden = false;
     fb.replaceChildren(
       h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
-      h('p', null, '参考句：', exNodes(x.en)),
+      h('p', null, speakBtn('e' + v.id + '_' + c.k, exPlain(x.en)), ' 参考句：', exNodes(x.en)),
       h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
       h('div', {class:'row'},
         h('button', {type:'button', class:'btn pri', onclick:function(){ mark(true); }}, '我写对了'),
@@ -857,9 +886,280 @@ function renderThink(){
 }
 
 /* ---------- wiring ---------- */
+/* ---------- speaker icons: words, example sentences, article sentences ---------- */
+const SPK_SVG = '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const C = {a:null, end:0, start:0, btn:null, raf:0, text:''};
+function spkEl(label, onclick){
+  const b = h('button', {type:'button', class:'spk', 'aria-label':label, title:label, onclick:onclick});
+  b.innerHTML = SPK_SVG;
+  return b;
+}
+function clipEnded(){
+  cancelAnimationFrame(C.raf);
+  if (C.btn){ C.btn.classList.remove('on'); C.btn = null; }
+}
+function speakFallback(text){
+  try {
+    if (!('speechSynthesis' in window) || !text) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } catch(e){}
+}
+function clipAudio(){
+  if (C.a) return C.a;
+  const a = new Audio();
+  a.preload = 'auto';
+  a.src = DATA.clips.src;
+  a.addEventListener('error', function(){ const t = C.text; clipEnded(); speakFallback(t); });
+  a.addEventListener('ended', clipEnded);
+  a.addEventListener('pause', function(){ if (a.currentTime < C.end) clipEnded(); });
+  C.a = a;
+  return a;
+}
+function clipTick(){
+  const a = C.a;
+  if (!a || a.paused){ return; }
+  if (a.currentTime >= C.end){ a.pause(); clipEnded(); return; }
+  C.raf = requestAnimationFrame(clipTick);
+}
+function stopNarrationForClip(){
+  if (L && L.audio && !L.audio.paused) L.audio.pause();
+  if (L) L.seg = null;
+}
+function playClip(key, btn, text){
+  const t = DATA.clips && DATA.clips.t[key];
+  if (!t){ speakFallback(text); return; }
+  stopNarrationForClip();
+  const a = clipAudio();
+  const wasOn = C.btn === btn && !a.paused;
+  clipEnded();
+  if (wasOn){ a.pause(); return; }
+  C.btn = btn; C.text = text;
+  C.start = Math.max(0, t[0] - 0.1); C.end = t[1] + 0.15;
+  btn.classList.add('on');
+  const go = function(){ a.currentTime = C.start; };
+  if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+  const pr = a.play();
+  if (pr && pr.catch) pr.catch(function(){ clipEnded(); });
+  cancelAnimationFrame(C.raf);
+  C.raf = requestAnimationFrame(clipTick);
+}
+function speakBtn(key, text){
+  if (!DATA.clips) return null;
+  const b = spkEl('播放发音', function(){ playClip(key, b, text); });
+  return b;
+}
+function sentBtn(en){
+  if (!DATA.audio) return null;
+  const i = S.findIndex(function(s){ return s.en === en; }) >= 0 ? S.findIndex(function(s){ return s.en === en; }) : S.findIndex(function(s){ return s.en.indexOf(en) >= 0; });
+  if (i < 0) return null;
+  const b = spkEl('播放这一句', function(){ playArticleSentence(i, b); });
+  return b;
+}
+function playArticleSentence(i, btn){
+  const a = getAudio();
+  const T = DATA.audio.t[i];
+  if (C.a && !C.a.paused) C.a.pause();
+  clipEnded();
+  const wasOn = L.seg && L.seg.btn === btn && !a.paused;
+  endSeg();
+  if (wasOn){ a.pause(); return; }
+  L.seg = {end:T[1] + 0.15, btn:btn};
+  btn.classList.add('on');
+  const go = function(){ a.currentTime = Math.max(0, T[0] - 0.1); };
+  if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+  const pr = a.play();
+  if (pr && pr.catch) pr.catch(function(){ endSeg(); });
+}
+function endSeg(){
+  if (L.seg && L.seg.btn) L.seg.btn.classList.remove('on');
+  L.seg = null;
+}
+
+/* ---------- listen tab ---------- */
+const L = {audio:null, cur:-1, loop:false, loopIdx:-1, drag:false, el:{}, spans:[], raf:0, seg:null};
+const RATES = [0.75, 0.9, 1, 1.15, 1.3];
+function fmtT(t){ t = Math.max(0, Math.floor(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); }
+function sentAt(t){
+  const T = DATA.audio.t;
+  let k = 0;
+  for (let i = 0; i < T.length; i++){ if (T[i][0] <= t + 0.05) k = i; else break; }
+  return k;
+}
+function getAudio(){
+  if (L.audio) return L.audio;
+  const a = new Audio();
+  a.preload = 'auto';
+  a.src = DATA.audio.src;
+  a.playbackRate = ui.rate || 1;
+  try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+  a.addEventListener('timeupdate', listenUpdate);
+  a.addEventListener('play', function(){ listenPlayState(); loopFrames(); });
+  a.addEventListener('pause', function(){ listenPlayState(); if (L.seg && a.currentTime < L.seg.end) endSeg(); });
+  a.addEventListener('ended', function(){ listenPlayState(); listenUpdate(); });
+  a.addEventListener('error', function(){ L.el.msg.textContent = '音频没有加载出来，请检查网络后再点播放。'; L.el.msg.hidden = false; });
+  a.addEventListener('playing', function(){ L.el.msg.hidden = true; });
+  L.audio = a;
+  try {
+    if ('mediaSession' in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:'外刊精读'});
+      navigator.mediaSession.setActionHandler('play', function(){ a.play(); });
+      navigator.mediaSession.setActionHandler('pause', function(){ a.pause(); });
+      navigator.mediaSession.setActionHandler('seekbackward', function(){ a.currentTime = Math.max(0, a.currentTime - 5); });
+      navigator.mediaSession.setActionHandler('seekforward', function(){ a.currentTime = Math.min(DATA.audio.dur, a.currentTime + 5); });
+    }
+  } catch(e){}
+  return a;
+}
+function listenPlayState(){
+  const playing = !!(L.audio && !L.audio.paused && !L.audio.ended);
+  L.el.play.textContent = playing ? '暂停' : '播放';
+  L.el.play.setAttribute('aria-pressed', String(playing));
+}
+function loopFrames(){
+  cancelAnimationFrame(L.raf);
+  const tick = function(){
+    if (!L.audio || L.audio.paused) return;
+    listenUpdate();
+    L.raf = requestAnimationFrame(tick);
+  };
+  L.raf = requestAnimationFrame(tick);
+}
+function listenUpdate(){
+  const a = L.audio;
+  if (!a) return;
+  const T = DATA.audio.t;
+  let t = a.currentTime;
+  if (L.seg && !a.paused && t >= L.seg.end){ a.pause(); endSeg(); }
+  if (L.loop && L.loopIdx >= 0 && !L.seg && !a.paused && t >= T[L.loopIdx][1] + 0.2){ a.currentTime = T[L.loopIdx][0]; t = a.currentTime; }
+  if (!L.drag) L.el.range.value = String(t);
+  L.el.now.textContent = fmtT(t);
+  const k = sentAt(t);
+  if (k !== L.cur){
+    L.cur = k;
+    markListenSentence(!a.paused);
+  }
+}
+function markListenSentence(follow){
+  L.spans.forEach(function(sp){ sp.classList.toggle('on', Number(sp.dataset.i) === L.cur); });
+  if (follow && ui.tx){
+    const sp = L.spans[L.cur];
+    if (sp) sp.scrollIntoView({block:'nearest', behavior:REDUCE ? 'auto' : 'smooth'});
+  }
+}
+function playSentence(i){
+  endSeg();
+  if (C.a) C.a.pause();
+  const a = getAudio();
+  a.currentTime = DATA.audio.t[i][0];
+  if (L.loop) L.loopIdx = i;
+  a.play().catch(function(){});
+  listenUpdate();
+}
+function seekBy(d){
+  endSeg();
+  const a = getAudio();
+  a.currentTime = Math.min(DATA.audio.dur, Math.max(0, a.currentTime + d));
+  listenUpdate();
+}
+function setRate(r){
+  ui.rate = r; lsSet(LS_UI, ui);
+  if (L.audio) L.audio.playbackRate = r;
+  $$('.rate-b', L.el.box).forEach(function(b){ const on = Number(b.dataset.r) === r; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+}
+function applyTextVisibility(){
+  L.el.tr.hidden = !ui.tx;
+  L.el.off.hidden = !!ui.tx;
+}
+function renderListenText(){
+  if (!L.el.tr) return;
+  L.el.tr.replaceChildren();
+  BLOCKS.forEach(function(b){
+    const sec = h('section', {class:'blk blk-' + b.type});
+    const el = h(b.type === 'title' ? 'h2' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
+    b.idx.forEach(function(i, k){
+      if (k > 0) el.append(' ');
+      const sp = h('span', {class:'ls', 'data-i':i, tabindex:0, role:'button', 'aria-label':'从这一句开始播放'}, marked(S[i].en));
+      sp.addEventListener('click', function(){ playSentence(i); });
+      sp.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); playSentence(i); } });
+      el.append(sp);
+    });
+    sec.append(el);
+    L.el.tr.append(sec);
+  });
+  L.spans = $$('.ls', L.el.tr);
+  markListenSentence(false);
+}
+function renderListen(){
+  const box = $('#listenBox');
+  if (!DATA.audio || !box || L.el.box) return;
+  L.el.box = box;
+  const A = DATA.audio;
+  L.el.play = h('button', {type:'button', class:'btn pri big', 'aria-pressed':'false', onclick:function(){
+    endSeg();
+    if (C.a) C.a.pause();
+    const a = getAudio();
+    if (a.paused || a.ended){ if (a.ended) a.currentTime = 0; a.play().catch(function(){}); } else a.pause();
+  }}, '播放');
+  L.el.range = h('input', {type:'range', class:'lp-range', min:0, max:A.dur, step:0.1, value:0, 'aria-label':'播放进度'});
+  L.el.range.addEventListener('pointerdown', function(){ L.drag = true; });
+  L.el.range.addEventListener('input', function(){
+    const a = getAudio();
+    a.currentTime = Number(L.el.range.value);
+    L.el.now.textContent = fmtT(a.currentTime);
+    const k = sentAt(a.currentTime);
+    if (k !== L.cur){ L.cur = k; markListenSentence(false); }
+  });
+  const endDrag = function(){ L.drag = false; };
+  L.el.range.addEventListener('change', endDrag);
+  L.el.range.addEventListener('pointerup', endDrag);
+  L.el.range.addEventListener('pointercancel', endDrag);
+  L.el.now = h('span', null, '0:00');
+  L.el.msg = h('p', {class:'lp-msg', hidden:true, role:'alert'});
+  const rates = h('div', {class:'chips', role:'group', 'aria-label':'播放速度'});
+  RATES.forEach(function(r){
+    rates.append(h('button', {type:'button', class:'chip rate-b', 'data-r':r, 'aria-pressed':'false', onclick:function(){ setRate(r); }}, r + '×'));
+  });
+  const loopCb = h('input', {type:'checkbox'});
+  loopCb.addEventListener('change', function(){
+    L.loop = loopCb.checked;
+    L.loopIdx = L.loop ? (L.cur >= 0 ? L.cur : 0) : -1;
+  });
+  const txCb = h('input', {type:'checkbox'});
+  txCb.checked = !!ui.tx;
+  txCb.addEventListener('change', function(){ ui.tx = txCb.checked; lsSet(LS_UI, ui); applyTextVisibility(); });
+  L.el.tr = h('div', {class:'tr'});
+  L.el.off = h('p', {class:'tr-off'}, '原文已隐藏。先盲听一遍，听完再勾选“显示原文”对照。');
+  box.append(
+    h('div', {class:'card lp'},
+      h('h2', {class:'h2'}, '听力'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的英式发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('div', {class:'lp-row'},
+        h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
+        L.el.play,
+        h('button', {type:'button', class:'btn', onclick:function(){ seekBy(5); }}, '前进 5 秒')
+      ),
+      h('div', null, L.el.range, h('div', {class:'lp-time'}, L.el.now, h('span', null, fmtT(A.dur)))),
+      h('div', null, h('p', {class:'meta'}, '播放速度'), h('div', {class:'row'}, rates)),
+      h('div', {class:'lp-row'},
+        h('label', {class:'lp-opt'}, loopCb, '单句循环（当前这一句反复听）'),
+        h('label', {class:'lp-opt'}, txCb, '显示原文')
+      ),
+      L.el.msg
+    ),
+    L.el.off,
+    L.el.tr
+  );
+  setRate(ui.rate || 1);
+  renderListenText();
+  applyTextVisibility();
+}
 function renderAll(){
   renderMast();
   renderArticle();
+  renderListen();
   renderWords();
   renderThink();
   if (quiz.phase === 'start') renderQuiz();
@@ -868,7 +1168,7 @@ function init(){
   $('#optZh').checked = !!ui.zh;
   $('#optHi').checked = !!ui.hi;
   $('#optZh').addEventListener('change', function(){ ui.zh = this.checked; lsSet(LS_UI, ui); $('#article').classList.toggle('show-zh', ui.zh); });
-  $('#optHi').addEventListener('change', function(){ ui.hi = this.checked; lsSet(LS_UI, ui); renderArticle(); });
+  $('#optHi').addEventListener('change', function(){ ui.hi = this.checked; lsSet(LS_UI, ui); renderArticle(); renderListenText(); });
   const chips = $('#chips');
   ['all','new','learning','mastered'].forEach(function(f){
     chips.append(h('button', {type:'button', class:'chip', 'data-f':f, onclick:function(){ vFilter = f; renderWords(); }}, f));
@@ -878,6 +1178,7 @@ function init(){
     b.addEventListener('click', function(){ try { location.hash = b.dataset.tab; } catch(e){} showTab(b.dataset.tab); });
   });
   window.addEventListener('hashchange', function(){ showTab(location.hash.replace('#','')); });
+  if (DATA.audio) $('.tab[data-tab="listen"]').hidden = false;
   renderAll();
   showTab(location.hash.replace('#','') || 'read');
   initCloud();

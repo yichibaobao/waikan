@@ -18,6 +18,9 @@ import subprocess
 import sys
 import tempfile
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from tts_text import text_hash, clip_items, clips_hash  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOLS = os.path.join(ROOT, "tools")
 CONTENT = os.path.join(ROOT, "content")
@@ -153,6 +156,39 @@ def syntax_check(page, label):
         check(r.returncode == 0, f"[{label}] script does not parse:\n{r.stderr}")
 
 
+def attach_audio(slug, meta, data, raw):
+    """If content/<slug>/audio.json exists (made by make_audio.py), add the narration to the page data."""
+    path = os.path.join(CONTENT, slug, "audio.json")
+    meta["audio"] = False
+    if not os.path.isfile(path):
+        return
+    au = json.load(open(path, encoding="utf-8"))
+    mp3 = os.path.join(ROOT, "a", slug, "audio.mp3")
+    check(os.path.isfile(mp3), f"[{slug}] audio.json exists but a/{slug}/audio.mp3 is missing")
+    check(len(au["t"]) == len(data["sents"]), f"[{slug}] audio has {len(au['t'])} timings for {len(data['sents'])} sentences; rerun make_audio.py")
+    check(au["hash"] == text_hash(data["sents"], raw["meta"].get("pronounce", {})),
+          f"[{slug}] the article text changed after its audio was made; rerun tools/make_audio.py {slug}")
+    for a, b in au["t"]:
+        check(0 <= a < b <= au["dur"] + 0.5, f"[{slug}] bad audio timing {a}-{b}")
+    data["audio"] = dict(src="audio.mp3", dur=au["dur"], t=au["t"])
+    meta["audio"] = True
+
+
+def attach_clips(slug, data, raw):
+    """If content/<slug>/clips.json exists, add the word/example sprite (played by the speaker icons)."""
+    path = os.path.join(CONTENT, slug, "clips.json")
+    if not os.path.isfile(path):
+        return
+    cl = json.load(open(path, encoding="utf-8"))
+    check(os.path.isfile(os.path.join(ROOT, "a", slug, "clips.mp3")), f"[{slug}] clips.json exists but a/{slug}/clips.mp3 is missing")
+    items = clip_items(data["vocab"], raw["meta"].get("pronounce", {}))
+    check(set(cl["t"]) == {k for k, _ in items}, f"[{slug}] words/examples changed after the clips were made; rerun tools/make_audio.py {slug} --only clips")
+    check(cl["hash"] == clips_hash(items), f"[{slug}] clip texts changed after the clips were made; rerun tools/make_audio.py {slug} --only clips")
+    for k, (a, b) in cl["t"].items():
+        check(0 <= a < b <= cl["dur"] + 0.5, f"[{slug}] bad clip timing for {k}")
+    data["clips"] = dict(src="clips.mp3", t=cl["t"])
+
+
 def foot_html(meta):
     parts = []
     note = meta.get("note")
@@ -178,6 +214,8 @@ def main():
     for slug in slugs:
         raw = json.load(open(os.path.join(CONTENT, slug, "article.json"), encoding="utf-8"))
         meta, data = prepare(slug, raw)
+        attach_audio(slug, meta, data, raw)
+        attach_clips(slug, data, raw)
         payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
         page = (reader_tpl
                 .replace("__TITLE__", htmllib.escape(f"{meta['short']} · 外刊精读"))
@@ -195,7 +233,7 @@ def main():
 
     metas.sort(key=lambda m: (m["date"], m["slug"]), reverse=True)
     site = dict(articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
-                               source=m["source"], words=m["words"], vocab=m["vocab"], lsKey=m["lsKey"]) for m in metas])
+                               source=m["source"], words=m["words"], vocab=m["vocab"], lsKey=m["lsKey"], audio=m["audio"]) for m in metas])
     payload = json.dumps(site, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     home = home_tpl.replace("__SITE__", payload)
     syntax_check(home, "home")

@@ -9,7 +9,9 @@ A static site: a home page listing daily articles, and one self-contained study 
 index.html                       home page (generated)
 a/<slug>/index.html              one study page per article (generated)
 content/<slug>/article.json      the source of each article  <-- the only thing you edit
+content/<slug>/audio.json, clips.json   timings of the narration / the word+example clips (made by make_audio.py)
 tools/build.py                   builds everything from content/
+tools/make_audio.py              makes the narration and the clips (needs the TTS toolchain, see Audio)
 tools/reader.template.html       template of a study page
 tools/home.template.html         template of the home page
 ```
@@ -27,6 +29,39 @@ Never edit `index.html` or `a/**` by hand; they are overwritten by the build.
 
 Changing a template (`tools/*.template.html`) and re-running the build updates every article at once.
 
+## Audio (listening tab and speaker icons)
+
+Each article can have two audio files, both made offline with the Kokoro text-to-speech model (British voice `bf_emma`):
+
+- `a/<slug>/audio.mp3` : the whole article read aloud, with the start/end time of every sentence (`content/<slug>/audio.json`).
+  It powers the 听力 tab (play, seek, speed, sentence highlight, loop one sentence, hide/show the text).
+- `a/<slug>/clips.mp3` : one "sprite" with every vocabulary word and every example sentence (`content/<slug>/clips.json`).
+  It powers the speaker icons next to words and examples. The article sentence shown under each word plays from `audio.mp3`.
+
+One-time setup of the toolchain (nothing from this is committed, the model is ~120 MB):
+
+```
+python3 -m venv venv && ./venv/bin/pip install kokoro-onnx soundfile
+curl -L -o kokoro-v1.0.int8.onnx https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.int8.onnx
+curl -L -o voices-v1.0.bin       https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+# ffmpeg with libmp3lame must be on PATH
+```
+
+Per article (about 3 min for the narration and 6-8 min for the clips on 2 CPU cores):
+
+```
+./venv/bin/python tools/make_audio.py <slug> --model kokoro-v1.0.int8.onnx --voices voices-v1.0.bin   # both files
+python3 tools/build.py
+```
+
+- Audio is optional: an article without `audio.json` / `clips.json` simply has no 听力 tab / no icons.
+- `build.py` refuses to build if the text, the words or the examples changed after the audio was made; rerun `make_audio.py` (use `--only clips` or `--only narration` to redo one file).
+- Words the engine mispronounces (Japanese names, years) are respelled per article in `meta.pronounce`, e.g. `{"koban": "koh-bahn", "2019": "twenty nineteen"}`;
+  check with `k.tokenizer.phonemize(text, "en-gb")` in Python. A vocab entry may carry `"say": "..."` to override what is read for the word icon (default: `core`).
+- Size: roughly 3 MB of audio per article, so plan for about 1 GB after a year of daily articles (GitHub Pages sites are limited to 1 GB).
+- `audio.mp3` and `clips.mp3` are seeked inside the browser, which needs HTTP byte-range support. GitHub Pages has it; `python3 -m http.server` does not
+  (use a range-capable server when testing locally).
+
 ## article.json
 
 ```jsonc
@@ -40,6 +75,7 @@ Changing a template (`tools/*.template.html`) and re-running the build updates e
     "tags": ["城市观察", "社会信任"],       // topic chips on the home page
     "source": {"type": "original"},       // or {"type": "link", "name": "...", "url": "https://..."}
     "note": "页脚说明文字",                 // footer note on the study page
+    "pronounce": {"koban": "koh-bahn"},   // OPTIONAL. Respellings for the narration only (see Audio)
     "lsKey": "fk-state-v1"                // OPTIONAL. Browser-storage key for progress. Default: "wk-<slug>-state".
                                           // Never change it for an existing article, it would erase readers' progress.
   },

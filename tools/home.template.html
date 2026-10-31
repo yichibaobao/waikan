@@ -153,6 +153,7 @@ A.forEach(function(a){
 
 function metaBits(a){
   const out = [h('span', null, a.words + ' 词'), h('span', null, a.vocab + ' 个生词表达')];
+  if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));
   return out;
