@@ -5,6 +5,7 @@
 
 Writes   a/<slug>/index.html   one study page per article (reader.template.html)
          a/<slug>/words.json   the article's words with everything a quiz needs (read by the review page)
+         a/<slug>/listen.json  the article's sentences with narration times, for the listening exam (only when audio exists)
          review/index.html     the spaced-repetition review page (review.template.html)
          index.html            the collection home page (home.template.html)
 
@@ -219,6 +220,25 @@ def words_json(slug, meta, data):
     return dict(slug=slug, title=meta["title"], clips=data.get("clips"), words=words)
 
 
+LISTEN_MIN, LISTEN_MAX = 5, 32      # words per article sentence that make a fair dictation
+
+
+def listen_sents(data):
+    """The article sentences the listening exam may use: the deck and the body, not too short and not too long."""
+    out = []
+    for s in data["sents"]:
+        n = len(s["en"].split())
+        if s["kind"] != "title" and LISTEN_MIN <= n <= LISTEN_MAX:
+            out.append(s)
+    return out
+
+
+def listen_json(slug, meta, data):
+    a = data["audio"]
+    return dict(slug=slug, title=meta["title"], audio=dict(src=a["src"]),
+                sents=[dict(i=s["i"], en=s["en"], zh=s["zh"], t=a["t"][s["i"]]) for s in listen_sents(data)])
+
+
 def foot_html(meta):
     parts = []
     note = meta.get("note")
@@ -264,7 +284,13 @@ def main():
         syntax_check(page, slug)
         wj = words_json(slug, meta, data)
         open(os.path.join(out, "words.json"), "w", encoding="utf-8").write(json.dumps(wj, ensure_ascii=False, separators=(",", ":")))
-        index.append(dict(slug=slug, title=meta["title"], short=meta["short"], date=meta["date"], clips=bool(data.get("clips")),
+        ls = [[s["i"], len(s["en"].split())] for s in listen_sents(data)] if data.get("audio") else []   # [sentence index, words]
+        lj = os.path.join(out, "listen.json")
+        if ls:
+            open(lj, "w", encoding="utf-8").write(json.dumps(listen_json(slug, meta, data), ensure_ascii=False, separators=(",", ":")))
+        elif os.path.isfile(lj):
+            os.remove(lj)
+        index.append(dict(slug=slug, title=meta["title"], short=meta["short"], date=meta["date"], clips=bool(data.get("clips")), ls=ls,
                           w=[[v["id"], v["expr"], v["zh"]] for v in data["vocab"]]))
         metas.append(meta)
         print(f"  a/{slug}/index.html  {len(page.encode('utf-8')) // 1024} KB  ({meta['vocab']} words, {len(data['sents'])} sentences)")

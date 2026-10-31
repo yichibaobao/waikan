@@ -1,6 +1,6 @@
 /* ---------- spaced repetition on the Ebbinghaus ladder (inlined by tools/build.py) ----------
    Everything lives in this browser's localStorage under SRS_KEY, shape
-     {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope}]}
+     {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
    b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
    c / x = how many times answered right / wrong.
    Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
@@ -33,7 +33,7 @@ function srsLoad(){
   });
   if (Array.isArray(d.ex)) d.ex.slice(-20).forEach(function(e){
     if (e && typeof e === 'object' && typeof e.score === 'number' && typeof e.total === 'number')
-      out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60)});
+      out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60), k:e.k === 'listen' ? 'listen' : 'exam'});
   });
   return out;
 }
@@ -72,13 +72,26 @@ function srsRecord(key, ok, now){
   const keep = Object.keys(s.log).sort().slice(-120);
   Object.keys(s.log).forEach(function(k){ if (keep.indexOf(k) < 0) delete s.log[k]; });
   srsSave(s);
-  return {prev:prev, next:s.w[key]};
+  return {prev:prev, next:s.w[key], now:now};
+}
+/* take back one srsRecord(key, ok, now) whose result was `rec` (used when the learner overrules a mark afterwards) */
+function srsUndo(key, rec, ok){
+  const s = srsLoad();
+  if (rec.prev) s.w[key] = rec.prev; else delete s.w[key];
+  const g = s.log[ymd(new Date(rec.now))];
+  if (g){ g.n = Math.max(0, g.n - 1); if (ok) g.ok = Math.max(0, g.ok - 1); }
+  srsSave(s);
 }
 function srsAddExam(rec){
   const s = srsLoad();
   s.ex.push(rec);
   s.ex = s.ex.slice(-20);
   srsSave(s);
+}
+/* the learner overruled a mark in the result list: correct the score of the exam just saved */
+function srsSetLastExamScore(score){
+  const s = srsLoad();
+  if (s.ex.length){ s.ex[s.ex.length - 1].score = score; srsSave(s); }
 }
 function srsReset(){ try { localStorage.removeItem(SRS_KEY); } catch(e){} }
 

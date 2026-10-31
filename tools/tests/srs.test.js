@@ -13,7 +13,7 @@ const ctx = {
 vm.createContext(ctx);
 // the shared files declare plain functions / consts; run them as one script and export what the tests need
 const src = ['common.js', 'srs.js'].map(f => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n') +
-  '\nthis.api = {srsStep, srsRecord, srsPreview, srsLoad, srsGet, srsInfo, srsWhen, srsStageText, srsAddExam, srsReset, SRS_STEPS, SRS_LONG, SRS_TOP, SRS_LABELS, SRS_KEY};';
+  '\nthis.api = {srsStep, srsRecord, srsPreview, srsLoad, srsGet, srsInfo, srsWhen, srsStageText, srsAddExam, srsUndo, srsSetLastExamScore, srsReset, SRS_STEPS, SRS_LONG, SRS_TOP, SRS_LABELS, SRS_KEY};';
 vm.runInContext(src, ctx);
 const A = ctx.api;
 const MIN = 60000, HOUR = 3600000, DAY = 86400000;
@@ -154,6 +154,37 @@ t('exam history keeps the last 20', () => {
   const ex = A.srsLoad().ex;
   assert.strictEqual(ex.length, 20);
   assert.strictEqual(ex[19].score, 24);
+});
+
+t('srsUndo takes back a record, entry and day log', () => {
+  A.srsReset();
+  const now = new Date(2026, 9, 31, 12, 0, 0).getTime();
+  A.srsRecord('u:1', true, now);                       // earlier answer: b=1
+  const rec = A.srsRecord('u:1', false, now + 1000);   // a wrong one on top
+  assert.strictEqual(A.srsGet('u:1').b, 0);
+  A.srsUndo('u:1', rec, false);
+  assert.strictEqual(A.srsGet('u:1').b, 1);
+  assert.strictEqual(A.srsGet('u:1').x, 0);
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(A.srsLoad().log['2026-10-31'])), {n: 1, ok: 1});
+  // a word seen for the first time, marked wrong, then overruled as right
+  const r2 = A.srsRecord('u:2', false, now);
+  A.srsUndo('u:2', r2, false);
+  assert.strictEqual(A.srsGet('u:2'), null);
+  A.srsRecord('u:2', true, now);
+  assert.strictEqual(A.srsGet('u:2').b, 1);
+  assert.strictEqual(A.srsGet('u:2').x, 0);
+  assert.deepStrictEqual(JSON.parse(JSON.stringify(A.srsLoad().log['2026-10-31'])), {n: 2, ok: 2});
+});
+
+t('exam records carry a kind and the last score can be corrected', () => {
+  A.srsReset();
+  A.srsAddExam({d: '2026-10-31', score: 5, total: 10, scope: 'x'});
+  A.srsAddExam({d: '2026-10-31', score: 6, total: 10, scope: '听力', k: 'listen'});
+  A.srsSetLastExamScore(8);
+  const ex = A.srsLoad().ex;
+  assert.strictEqual(JSON.stringify(ex.map(e => e.k)), JSON.stringify(['exam', 'listen']));
+  assert.strictEqual(ex[1].score, 8);
+  assert.strictEqual(ex[0].score, 5);
 });
 
 console.log(`\n${n} tests passed`);

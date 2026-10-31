@@ -1,6 +1,6 @@
 # 外刊精读合集 (waikan)
 
-每天一篇外刊：逐句精读、听力、生词表、六种题型的自测，以及按艾宾浩斯遗忘曲线安排的词汇复习和跨文章总考。站点是纯静态页面，部署在 GitHub Pages
+每天一篇外刊：逐句精读、听力、生词表、六种题型的自测，按艾宾浩斯遗忘曲线安排的词汇复习、跨文章总考，以及只听不看的听力默写考试。站点是纯静态页面，部署在 GitHub Pages
 (`https://yichibaobao.github.io/waikan/`)，不依赖任何境外字体或脚本，国内可直接打开。
 
 A static site: a home page listing daily articles, and one self-contained study page per article.
@@ -9,7 +9,8 @@ A static site: a home page listing daily articles, and one self-contained study 
 index.html                       home page (generated)
 a/<slug>/index.html              one study page per article (generated)
 a/<slug>/words.json              the article's words with everything a quiz needs (generated, read by the review page)
-review/index.html                spaced-repetition review + cross-article exam + vocabulary table (generated)
+a/<slug>/listen.json             the article's sentences with their narration timings (generated, only for articles with audio; read by the listening exam)
+review/index.html                spaced-repetition review + cross-article exam + listening exam + vocabulary table (generated)
 content/<slug>/article.json      the source of each article  <-- the only thing you edit
 content/<slug>/audio.json, clips.json   timings of the narration / the word+example clips (made by make_audio.py)
 tools/build.py                   builds everything from content/
@@ -54,6 +55,14 @@ The ladder is 5 min, 30 min, 12 h, 1 d, 2 d, 4 d, 7 d, 15 d, 30 d, then every 60
 Right but not yet due: nothing changes (so drilling a word again right away does not push it up). In the mixed review mode the question type
 follows the step: recognise (选择题) -> fill in -> spell -> listen -> write a sentence. Words answered wrong are asked once more at the end of the session (not counted).
 The 总考 tab samples words across all articles (or one article) with mixed question types and keeps the last results.
+
+The 听力 tab is a dictation exam: pick the scope (all articles with audio, or one), what to hear (words, example sentences, the article's own sentences
+cut out of the narration, or a mix; article sentences can be filtered short / medium / long), 10 / 20 / 30 questions, and when to be told the answer
+(all at the end, the default, or after each question). Each question plays once by itself and can be replayed or slowed down (0.7x). The result screen
+shows the score per source, and every mistake with the replayable audio, the differing words underlined, and a "只是小失误，算我对" button that
+corrects the answer, the schedule and the saved score. Words and example sentences feed the review schedule like any other answer; article sentences
+do not (they are not words). The results are stored in `wk-srs-v1` as `ex[]` records with `k:"listen"` (总考 records have `k:"exam"`), 20 kept.
+`a/<slug>/listen.json` is built from `audio.json` (the sentence timings) and `article.json`; the page loads it lazily, like `words.json`.
 `tools/tests/srs.test.js` pins the rules; change them there and in `tools/shared/srs.js` together.
 
 ## Audio (listening tab and speaker icons)

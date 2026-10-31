@@ -6,8 +6,10 @@
         v      the word: {id, expr, zh, core, forms, syn, note, m, ctx, ex:[{en, zh}], cloze:{before, ans, after, hint, szh}}
         k      which example sentence (exs, sent, dict); dict: -1 = the word itself
         dir    mcq only: 'e2z' (English expression -> pick the meaning) or 'z2e' (meaning -> pick the expression)
+        sent   dict only: {en, zh, src, t} a sentence of the article instead of a word (then v and key may be null)
         clips  {src, t:{key:[start, end]}} or null (no audio for this article)
-     o = {index, total, last, tag,
+     o = {index, total, last, tag, label (replaces the type name in the header),
+          defer (dict only: no feedback, the answer goes straight to onAnswer + onNext),
           pool()            -> [{expr, zh}] words that may serve as wrong options (mcq)
           extra(item, res)  -> a node shown at the bottom of the feedback (or null)
           onAnswer(res)     the answer is in (res.ok may still flip once through the "my answer is fine" button)
@@ -45,12 +47,20 @@ const Kit = (function(){
     if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? ' ' + ONES[n % 10] : '');
     return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + numWords(n % 100) : '');
   }
+  /* 2019 -> twenty nineteen, 1984 -> nineteen eighty four (the way a speaker reads a year) */
+  function yearWords(t){
+    if (!/^\d{4}$/.test(t)) return null;
+    const n = Number(t);
+    if (!((n >= 1100 && n <= 1999) || (n >= 2010 && n <= 2099)) || n % 100 < 10) return null;
+    return numWords(Math.floor(n / 100)).split(' ').concat(numWords(n % 100).split(' '));
+  }
   /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
   function toks(s){
     const out = [];
     String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9]+/).forEach(function(t){
       if (!t) return;
       if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
+      else if (yearWords(t)) yearWords(t).forEach(function(w){ out.push(w); });
       else out.push(t);
     });
     return out;
@@ -89,7 +99,7 @@ const Kit = (function(){
   function head(o, type){
     const bar = h('div', {class:'pbar'}, h('i'));
     bar.style.setProperty('--p', (o.index / o.total * 100) + '%');
-    return h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (o.index + 1) + ' 题 / ' + o.total + '　' + TYPE_NAME[type] + (o.tag ? '　' + o.tag : '')), bar);
+    return h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (o.index + 1) + ' 题 / ' + o.total + '　' + (o.label || TYPE_NAME[type]) + (o.tag ? '　' + o.tag : '')), bar);
   }
   function inputAttrs(extra){
     return Object.assign({type:'text', id:'q-input', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false'}, extra);
@@ -107,7 +117,7 @@ const Kit = (function(){
     };
     return box;
   }
-  function newRes(item, type){ return {id:item.id, key:item.key, type:type, ok:false, given:'', k:item.k}; }
+  function newRes(item, type){ return {id:item.id, key:item.key || null, type:type, ok:false, given:'', k:item.k}; }
 
   /* ---- fill the blank: the sentence is the article's (cloze) or one of the word's examples (exs) ---- */
   function clozeQ(item, o, c, type){
@@ -337,15 +347,20 @@ const Kit = (function(){
     return card;
   }
 
-  /* ---- dictation: listen, then type the word or the whole example sentence ---- */
+  /* ---- dictation: listen, then type a word, an example sentence, or (item.sent) a sentence of the article ----
+     item.sent = {en, zh, src, t}: the sentence and where its audio is.   o.defer: no feedback after the answer, the
+     host shows everything at the end (listening exam); the answer is passed on through onAnswer + onNext. */
   function dictQ(item, o){
-    const v = item.v, res = newRes(item, 'dict');
-    const isWord = item.k == null || item.k < 0;
-    const x = isWord ? null : v.ex[item.k];
-    const ref = isWord ? v.core : exPlain(x.en);
-    const key = isWord ? 'w' + v.id : 'e' + v.id + '_' + item.k;
-    const src = item.clips ? item.clips.src : null;
-    const clipT = item.clips ? item.clips.t[key] : null;
+    const v = item.v, S = item.sent, res = newRes(item, 'dict');
+    const isWord = !S && (item.k == null || item.k < 0);
+    const x = !S && !isWord ? v.ex[item.k] : null;
+    const ref = S ? S.en : isWord ? v.core : exPlain(x.en);
+    const zhText = S ? S.zh : isWord ? v.zh : x.zh;
+    const key = S ? null : isWord ? 'w' + v.id : 'e' + v.id + '_' + item.k;
+    const src = S ? S.src : item.clips ? item.clips.src : null;
+    const clipT = S ? S.t : item.clips && key ? item.clips.t[key] : null;
+    res.ref = ref; res.zh = zhText; res.src = src; res.t = clipT; res.kind = S ? 's' : isWord ? 'w' : 'e';
+    const defer = !!o.defer;
     const playB = h('button', {type:'button', class:'btn pri play'}, '播放');
     const slowB = h('button', {type:'button', class:'btn play'}, '慢速播放');
     playB.insertAdjacentHTML('afterbegin', SPK_SVG);
@@ -353,11 +368,12 @@ const Kit = (function(){
     slowB.addEventListener('click', function(){ Clip.play(src, clipT, slowB, ref, 0.7); });
     const field = isWord
       ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
-      : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
-    const hintP = h('p', {class:'q-hint'}, isWord ? '一个英文表达，拼写时词形要和听到的一致。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。');
+      : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个英文表达，拼写时词形要和听到的一致。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。' + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
-    const main = h('button', {type:'button', class:'btn pri'}, '检查');
-    const peek = h('button', {type:'button', class:'btn'}, '提示：中文意思');
+    const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
+    const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
+    const peek = defer ? null : h('button', {type:'button', class:'btn'}, '提示：中文意思');
     const ex = extraBox(item, res, o);
     let checked = false;
     const card = h('div', {class:'card'},
@@ -369,10 +385,10 @@ const Kit = (function(){
       fb,
       h('div', {class:'row'}, main, peek)
     );
-    peek.addEventListener('click', function(){ hintP.textContent = '意思：' + (isWord ? v.zh : x.zh); peek.hidden = true; field.focus(); });
+    if (peek) peek.addEventListener('click', function(){ hintP.textContent = '意思：' + zhText; peek.hidden = true; field.focus(); });
     function check(){
       const val = field.value.trim();
-      if (!norm(val)){ field.focus(); return; }
+      if (!norm(val) && !/\d/.test(val)){ field.focus(); return; }
       let ok, diffKids = [];
       if (isWord){
         ok = v.forms.map(norm).indexOf(norm(val)) >= 0;
@@ -387,6 +403,7 @@ const Kit = (function(){
       checked = true;
       res.ok = ok; res.given = val;
       o.onAnswer(res);
+      if (defer){ o.onNext(); return; }
       field.readOnly = true;
       if (isWord) field.classList.add(ok ? 'ok' : 'bad');
       fb.className = 'fb ' + (ok ? 'ok' : 'bad');
@@ -410,11 +427,14 @@ const Kit = (function(){
         kids.push(h('div', {class:'fb-s'}, alt));
       }
       if (isWord) kids.push(speakLine(item, v));
-      else kids.push(h('p', null, clipBtn(item.clips, key, ref), item.clips ? ' ' : null, exNodes(x.en)), h('p', {class:'meta'}, x.zh));
+      else if (S){
+        const sb = spkEl('播放这一句', function(){ Clip.play(src, clipT, sb, ref, 1); });
+        kids.push(h('p', null, sb, ' ', ref), h('p', {class:'meta'}, zhText));
+      } else kids.push(h('p', null, clipBtn(item.clips, key, ref), item.clips ? ' ' : null, exNodes(x.en)), h('p', {class:'meta'}, x.zh));
       kids.push(ex);
       fb.replaceChildren.apply(fb, kids);
       ex.refresh();
-      peek.hidden = true;
+      if (peek) peek.hidden = true;
       main.textContent = nextLabel(o);
       main.focus();
     }
@@ -452,5 +472,5 @@ const Kit = (function(){
     if (b <= 7) return hasClips ? {type:'dict'} : {type:'zh'};
     return {type:'sent'};
   }
-  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, typeForStage:typeForStage};
+  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
 })();
