@@ -1,6 +1,6 @@
 # 外刊精读合集 (waikan)
 
-每天一篇外刊：逐句精读、听力、生词表、六种题型的自测，按艾宾浩斯遗忘曲线安排的词汇复习、跨文章总考，以及只听不看的听力默写考试。站点是纯静态页面，部署在 GitHub Pages
+每天一篇外刊：逐句精读、听力、生词表、六种题型的自测，按艾宾浩斯遗忘曲线安排的词汇复习、跨文章总考，只听不看的听力默写考试，以及按名字分开保存、可导出备份的学习进度。站点是纯静态页面，部署在 GitHub Pages
 (`https://yichibaobao.github.io/waikan/`)，不依赖任何境外字体或脚本，国内可直接打开。
 
 A static site: a home page listing daily articles, and one self-contained study page per article.
@@ -19,8 +19,10 @@ tools/reader.template.html       template of a study page
 tools/home.template.html         template of the home page
 tools/review.template.html       template of the review page
 tools/shared/                    code used by several pages, inlined by the build: base.css, common.js, srs.js (the review schedule),
-                                 clips.js (speaker buttons / clip player), quizkit.js (the six question types)
+                                 clips.js (speaker buttons / clip player), quizkit.js (the six question types),
+                                 who.js + who.css (learners, progress backup / restore)
 tools/tests/srs.test.js          unit tests of the review schedule: node tools/tests/srs.test.js
+tools/tests/who.test.js          unit tests of learners, progress codes and merging: node tools/tests/who.test.js
 ```
 
 Never edit `index.html` or `a/**` by hand; they are overwritten by the build.
@@ -50,7 +52,7 @@ Six question types (`tools/shared/quizkit.js`), used by the 自测 tab of every 
 | 听写 `dict` | listen to the word or an example sentence and type it; the differing words are underlined (needs the article's clips) |
 | 中文写英文句 `sent` | translate an example sentence, graded by the learner |
 
-Review (`/review/`, linked from the home page): every answer anywhere on the site feeds one schedule per word, kept in the browser (`localStorage`, key `wk-srs-v1`).
+Review (`/review/`, linked from the home page): every answer anywhere on the site feeds one schedule per word, kept in the browser (`localStorage`, key `wk-srs-v1`, one copy per learner).
 The ladder is 5 min, 30 min, 12 h, 1 d, 2 d, 4 d, 7 d, 15 d, 30 d, then every 60 days. Right and due: one step up. Wrong: back to 5 minutes.
 Right but not yet due: nothing changes (so drilling a word again right away does not push it up). In the mixed review mode the question type
 follows the step: recognise (选择题) -> fill in -> spell -> listen -> write a sentence. Words answered wrong are asked once more at the end of the session (not counted).
@@ -64,6 +66,24 @@ corrects the answer, the schedule and the saved score. Words and example sentenc
 do not (they are not words). The results are stored in `wk-srs-v1` as `ex[]` records with `k:"listen"` (总考 records have `k:"exam"`), 20 kept.
 `a/<slug>/listen.json` is built from `audio.json` (the sentence timings) and `article.json`; the page loads it lazily, like `words.json`.
 `tools/tests/srs.test.js` pins the rules; change them there and in `tools/shared/srs.js` together.
+
+## Learners and progress backup
+
+There is no server, so there are no passwords. Every page starts with `Who.boot()` (`tools/shared/who.js`): if nobody has been chosen on this browser yet,
+a picker covers the page (the home page is the normal entry; a deep link to an article or the review page shows the same picker). A learner is just a name.
+Choosing or creating one makes it current (and remembered); the round avatar at the top right of every page opens the menu: switch learner, export,
+import, delete. The name only keeps progress apart (anyone on the device can switch to any name), it does not protect it.
+
+- Storage: every progress key of a learner is stored as `<key>@<id>` (`pkey()` in `common.js`, so `lsGet / lsSet / lsDel` need no changes). The learner list
+  is `wk-who-v1` = `{v:1, cur, list:[{id,name,c,u}], claimed}`. Progress saved before learners existed (plain `wk-*` / `fk-*` keys) is copied to the first
+  learner created, once (`claimed`); the old keys are left in place as a backup.
+- New progress keys must start with `wk-` or `fk-`: only those are exported, imported and deleted with a learner. Any key that is not `wk-srs-v1` or a
+  UI-preference key (`fk-ui-v1`, `wk-review-ui-v1`, listed in `who.js`) is read as one article's state by `stateClean`.
+- Backup: "导出进度" makes a progress code (`WK1.` + base64 of `{app:"waikan", name, data:{key: value}}`) that can be copied, or the same JSON as a file.
+  "导入进度" merges (never overwrites): per word the answer given last wins, day tallies keep the larger count, exam results are united, notes and sentences
+  are kept. Importing the same code twice changes nothing. On a new device the picker's "已有进度码？导入进度" creates the learner named in the code.
+- A browser that cannot store anything (some private modes) gets no picker and no saved progress.
+- Real cross-device sync would need a server (and one reachable from mainland China); the storage layer is the only place to change for that.
 
 ## Audio (listening tab and speaker icons)
 
@@ -152,9 +172,9 @@ a per-sentence translation and 2-4 teaching notes for each sentence; one long se
 
 ## Notes
 
-- Reading progress (word status, own sentences, quiz score) lives in the reader's own browser (`localStorage`) and is
+- Reading progress (word status, own sentences, quiz score) lives in the reader's own browser (`localStorage`, per learner, see above) and is
   read back by the home page for the per-article progress bars. The review schedule is stored the same way (`wk-srs-v1`). There is no server,
-  so progress does not sync between devices.
+  so progress does not sync between devices; "导出进度" / "导入进度" move it by hand.
 - The review page fetches `a/<slug>/words.json` with `fetch`, so it must be opened through the website (or a local `python3 -m http.server`), not by double-clicking the file.
 - The site is public. Only publish text you have the right to publish. For articles taken from a publisher, prefer
   `"source": {"type": "link", ...}` with your own notes, translations and vocabulary rather than the full original text.

@@ -7,6 +7,7 @@
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
 /*__BASE_CSS__*/
+/*__WHO_CSS__*/
 </style>
 <style>
 /* review-page styles; the shared ones are in tools/shared/base.css */
@@ -60,6 +61,7 @@
     <div class="mast">
       <div class="brand"><a class="back" href="../">‹ 合集</a><span class="b-title">词汇复习</span></div>
       <div class="prog"><div class="t">今日已练 <b id="todayN">0</b> 题</div><div class="t" id="todayOk">&nbsp;</div></div>
+      <span id="whoMount"></span>
     </div>
     <nav class="tabs" role="tablist" aria-label="页面">
       <button type="button" class="tab" role="tab" data-tab="review">复习</button>
@@ -80,7 +82,7 @@
     <div id="wList"></div>
     <div class="danger" id="wDanger"></div>
   </section>
-  <p class="foot">复习进度（每个词的复习阶段、今日练习数、总考和听力考试成绩）只保存在你当前设备的浏览器里，换手机或清理浏览器数据后不会同步。</p>
+  <p class="foot">复习进度（每个词的复习阶段、今日练习数、总考和听力考试成绩）按页头的名字分开保存，只存在你当前设备的浏览器里，不会自动同步。换手机或清理浏览器数据之前，点头像“导出进度”备份。</p>
 </main>
 
 <script>
@@ -88,8 +90,11 @@
 'use strict';
 /*__COMMON_JS__*/
 /*__SRS_JS__*/
+/*__WHO_JS__*/
+if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 /*__CLIPS_JS__*/
 /*__KIT_JS__*/
+Who.chip($('#whoMount'), 'tiny');
 
 const INDEX = __INDEX__;
 const ARTS = INDEX.articles;                 /* newest first */

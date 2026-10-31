@@ -7,6 +7,7 @@
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
 /*__BASE_CSS__*/
+/*__WHO_CSS__*/
 </style>
 <style>
 /* reader-specific styles; the shared ones are in tools/shared/base.css */
@@ -95,6 +96,7 @@
         <div class="meter" id="meter"><i></i></div>
         <div class="t s" id="saveNote" aria-live="polite"></div>
       </div>
+      <span id="whoMount"></span>
     </div>
     <nav class="tabs" role="tablist" aria-label="页面">
       <button type="button" class="tab" role="tab" data-tab="read">精读</button>
@@ -144,8 +146,11 @@
 'use strict';
 /*__COMMON_JS__*/
 /*__SRS_JS__*/
+/*__WHO_JS__*/
+if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 /*__CLIPS_JS__*/
 /*__KIT_JS__*/
+Who.chip($('#whoMount'), 'tiny');
 
 const DATA = __DATA__;
 const SLUG = '__SLUG__';
@@ -167,22 +172,8 @@ const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: 
 
 /* ---------- progress state (saved to the viewer's own private store when available) ---------- */
 function normalize(d){
-  const out = {v:1, vocab:{}, ans:{}, quiz:null};
-  if (!d || typeof d !== 'object') return out;
-  if (d.vocab && typeof d.vocab === 'object') Object.keys(d.vocab).forEach(function(k){
-    const e = d.vocab[k];
-    if (!e || typeof e !== 'object' || !VMAP[k]) return;
-    const o = {};
-    if (e.s === 'learning' || e.s === 'mastered') o.s = e.s;
-    if (typeof e.d === 'string') o.d = e.d.slice(0,10);
-    if (typeof e.m === 'string' && e.m) o.m = e.m.slice(0,400);
-    if (o.s || o.m) out.vocab[k] = o;
-  });
-  if (d.ans && typeof d.ans === 'object') Object.keys(d.ans).forEach(function(k){
-    if (typeof d.ans[k] === 'string' && d.ans[k]) out.ans[k] = d.ans[k].slice(0,2000);
-  });
-  if (d.quiz && typeof d.quiz === 'object' && typeof d.quiz.score === 'number' && typeof d.quiz.total === 'number')
-    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0,10), k:['mcq','cloze','exs','zh','dict','sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
+  const out = stateClean(d);                 /* shared with the progress import (tools/shared/who.js) */
+  Object.keys(out.vocab).forEach(function(k){ if (!VMAP[k]) delete out.vocab[k]; });
   return out;
 }
 let state = normalize(lsGet(LS_STATE));
@@ -216,7 +207,7 @@ function touch(){
   scheduleSave();
 }
 function setSaveNote(mode){
-  const m = {saved:'进度已保存', saving:'正在保存…', local:'进度只存在这台设备上', none:''};
+  const m = {saved:'进度已保存', saving:'正在保存…', local:'进度只存在本机', none:''};
   $('#saveNote').textContent = m[mode] || '';
 }
 function scheduleSave(){

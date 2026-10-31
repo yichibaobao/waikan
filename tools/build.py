@@ -31,7 +31,8 @@ TOOLS = os.path.join(ROOT, "tools")
 CONTENT = os.path.join(ROOT, "content")
 SHARED = os.path.join(TOOLS, "shared")
 SHARED_PARTS = (("/*__BASE_CSS__*/", "base.css"), ("/*__COMMON_JS__*/", "common.js"), ("/*__SRS_JS__*/", "srs.js"),
-                ("/*__CLIPS_JS__*/", "clips.js"), ("/*__KIT_JS__*/", "quizkit.js"))
+                ("/*__CLIPS_JS__*/", "clips.js"), ("/*__KIT_JS__*/", "quizkit.js"),
+                ("/*__WHO_CSS__*/", "who.css"), ("/*__WHO_JS__*/", "who.js"))
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 

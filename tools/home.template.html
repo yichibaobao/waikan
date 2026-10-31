@@ -86,14 +86,19 @@ main{padding-block:20px 56px}
 .r-d{margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .empty{padding:22px 16px;text-align:center;font-size:14px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
 
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 6px}
+.hero-top .eyebrow{margin:0}
 .foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
 .foot p{margin:0 0 6px}
+</style>
+<style>
+/*__WHO_CSS__*/
 </style>
 </head>
 <body>
 
 <header class="hero in">
-  <p class="eyebrow">DAILY CLOSE READING</p>
+  <div class="hero-top"><p class="eyebrow">DAILY CLOSE READING</p><span id="whoMount"></span></div>
   <h1>外刊精读合集</h1>
   <p class="tagline">每天一篇：逐句精读、攒词、自测。</p>
   <dl class="stats" id="stats"></dl>
@@ -113,7 +118,7 @@ main{padding-block:20px 56px}
   <div id="list"></div>
 
   <footer class="foot">
-    <p>学习进度（生词状态、造句、自测成绩、复习计划）只保存在你当前设备的浏览器里，换手机或清理浏览器数据后不会同步。</p>
+    <p>学习进度（生词状态、造句、自测成绩、复习计划）按右上角的名字分开保存，只存在你当前设备的浏览器里，不会自动同步到别的设备。换手机或清理浏览器数据之前，点右上角头像“导出进度”备份一份，之后用进度码导入即可找回。</p>
     <p>标明“原创练习文章”的文章是为学习而写的仿外刊练习，不是真实外刊的转载。</p>
   </footer>
 </main>
@@ -123,6 +128,9 @@ main{padding-block:20px 56px}
 'use strict';
 /*__COMMON_JS__*/
 /*__SRS_JS__*/
+/*__WHO_JS__*/
+if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
+Who.chip($('#whoMount'), 'full');
 
 const SITE = __SITE__;
 const A = SITE.articles;

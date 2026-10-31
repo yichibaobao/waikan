@@ -1,5 +1,5 @@
 /* ---------- spaced repetition on the Ebbinghaus ladder (inlined by tools/build.py) ----------
-   Everything lives in this browser's localStorage under SRS_KEY, shape
+   Everything lives in this browser's localStorage under SRS_KEY (per learner, see common.js), shape
      {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
    b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
    c / x = how many times answered right / wrong.
@@ -17,13 +17,13 @@ const SRS_LABELS = ['5 分钟', '30 分钟', '12 小时', '1 天', '2 天', '4 �
 
 function srsInterval(b){ return b < SRS_STEPS.length ? SRS_STEPS[b] : SRS_LONG; }
 function srsNum(x){ return typeof x === 'number' && isFinite(x) ? x : 0; }
-function srsLoad(){
-  const d = lsGet(SRS_KEY);
+/* sanitize anything that claims to be saved progress (from localStorage or from an imported file) */
+function srsClean(d){
   const out = {v:1, w:{}, log:{}, ex:[]};
   if (!d || typeof d !== 'object') return out;
   if (d.w && typeof d.w === 'object') Object.keys(d.w).forEach(function(k){
     const e = d.w[k];
-    if (!e || typeof e !== 'object') return;
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
     const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
     out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
   });
@@ -35,6 +35,32 @@ function srsLoad(){
     if (e && typeof e === 'object' && typeof e.score === 'number' && typeof e.total === 'number')
       out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60), k:e.k === 'listen' ? 'listen' : 'exam'});
   });
+  return out;
+}
+function srsLoad(){ return srsClean(lsGet(SRS_KEY)); }
+/* two copies of the same learner's progress (this device + an imported one) -> one. A word keeps the copy that was answered last;
+   a day's counts keep the larger tally (the same answers are in both copies, so adding them would count twice); results are united. */
+function srsMerge(a, b){
+  a = srsClean(a); b = srsClean(b);
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){
+    const x = out.w[k], y = b.w[k];
+    if (!x || y.l > x.l || (y.l === x.l && y.c + y.x > x.c + x.x)) out.w[k] = y;
+  });
+  [a.log, b.log].forEach(function(lg){
+    Object.keys(lg).forEach(function(k){
+      const g = out.log[k], e = lg[k];
+      if (!g || e.n > g.n || (e.n === g.n && e.ok > g.ok)) out.log[k] = e;
+    });
+  });
+  const seen = {};
+  a.ex.concat(b.ex).forEach(function(e){
+    const id = [e.d, e.score, e.total, e.scope, e.k].join('|');
+    if (!seen[id]){ seen[id] = 1; out.ex.push(e); }
+  });
+  out.ex.sort(function(x, y){ return x.d < y.d ? -1 : x.d > y.d ? 1 : 0; });
+  out.ex = out.ex.slice(-20);
   return out;
 }
 function srsSave(s){ lsSet(SRS_KEY, s); }
@@ -93,7 +119,7 @@ function srsSetLastExamScore(score){
   const s = srsLoad();
   if (s.ex.length){ s.ex[s.ex.length - 1].score = score; srsSave(s); }
 }
-function srsReset(){ try { localStorage.removeItem(SRS_KEY); } catch(e){} }
+function srsReset(){ lsDel(SRS_KEY); }
 
 /* {st:'new'|'due'|'wait', b, t} */
 function srsInfo(e, now){
