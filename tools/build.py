@@ -15,6 +15,7 @@ Everything is deterministic: the generated pages can always be rebuilt from cont
 See README.md for the article.json format.
 """
 import html as htmllib
+import hashlib
 import json
 import os
 import re
@@ -179,7 +180,7 @@ def attach_audio(slug, meta, data, raw):
           f"[{slug}] the article text changed after its audio was made; rerun tools/make_audio.py {slug}")
     for a, b in au["t"]:
         check(0 <= a < b <= au["dur"] + 0.5, f"[{slug}] bad audio timing {a}-{b}")
-    data["audio"] = dict(src="audio.mp3", dur=au["dur"], t=au["t"])
+    data["audio"] = dict(src="audio.mp3?v=" + file_tag(mp3), dur=au["dur"], t=au["t"], voice=au.get("voice", ""))
     meta["audio"] = True
 
 
@@ -195,7 +196,12 @@ def attach_clips(slug, data, raw):
     check(cl["hash"] == clips_hash(items), f"[{slug}] clip texts changed after the clips were made; rerun tools/make_audio.py {slug} --only clips")
     for k, (a, b) in cl["t"].items():
         check(0 <= a < b <= cl["dur"] + 0.5, f"[{slug}] bad clip timing for {k}")
-    data["clips"] = dict(src="clips.mp3", t=cl["t"])
+    data["clips"] = dict(src="clips.mp3?v=" + file_tag(os.path.join(ROOT, "a", slug, "clips.mp3")), t=cl["t"])
+
+
+def file_tag(path):
+    """Short content hash for a ?v= query on audio URLs: a re-made mp3 must not be served from a browser or CDN cache."""
+    return hashlib.md5(open(path, "rb").read()).hexdigest()[:8]
 
 
 def inline_shared(tpl, label):

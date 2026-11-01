@@ -87,7 +87,7 @@ import, delete. The name only keeps progress apart (anyone on the device can swi
 
 ## Audio (listening tab and speaker icons)
 
-Each article can have two audio files, both made offline with the Kokoro text-to-speech model (British voice `bf_emma`):
+Each article can have two audio files, both made offline with the Kokoro text-to-speech model (American voice `af_heart` by default; `--voice` takes any Kokoro voice, e.g. `bf_emma` for British, and `--lang` follows it):
 
 - `a/<slug>/audio.mp3` : the whole article read aloud, with the start/end time of every sentence (`content/<slug>/audio.json`).
   It powers the 听力 tab (play, seek, speed, sentence highlight, loop one sentence, hide/show the text).
@@ -113,7 +113,8 @@ python3 tools/build.py
 - Audio is optional: an article without `audio.json` / `clips.json` simply has no 听力 tab / no icons.
 - `build.py` refuses to build if the text, the words or the examples changed after the audio was made; rerun `make_audio.py` (use `--only clips` or `--only narration` to redo one file).
 - Words the engine mispronounces (Japanese names, years) are respelled per article in `meta.pronounce`, e.g. `{"koban": "koh-bahn", "2019": "twenty nineteen"}`;
-  check with `k.tokenizer.phonemize(text, "en-gb")` in Python. A vocab entry may carry `"say": "..."` to override what is read for the word icon (default: `core`).
+  check with `k.tokenizer.phonemize(text, "en-us")` in Python (`en-gb` for a British voice). A vocab entry may carry `"say": "..."` to override what is read for the word icon (default: `core`).
+- Changing the voice means re-running `make_audio.py` for every article (about 10 minutes each on 2 cores). The build adds `?v=<hash of the mp3>` to the audio URLs, so a re-made file is never served from a browser or CDN cache.
 - Size: roughly 3 MB of audio per article, so plan for about 1 GB after a year of daily articles (GitHub Pages sites are limited to 1 GB).
 - `audio.mp3` and `clips.mp3` are seeked inside the browser, which needs HTTP byte-range support. GitHub Pages has it; `python3 -m http.server` does not
   (use a range-capable server when testing locally).
@@ -143,7 +144,7 @@ python3 tools/build.py
     ],
     "vocab": [
       {
-        "id": 1,                           // unique within the article
+        "id": 1,                           // unique within the article; learners' progress is keyed by it, so never renumber a published word (new words take the next free number, the list can be in any order)
         "expr": "slump onto",              // headword as displayed
         "zh": "瘫坐在……上",
         "m": ["slumps onto"],              // exact strings to highlight in the text; each term belongs to one word only

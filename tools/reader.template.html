@@ -54,6 +54,19 @@
 .note-zh{margin:0 0 10px;font:500 16px/1.7 var(--font-ui)}
 .note-list{margin:0;padding-left:1.15em;font-size:14.5px;line-height:1.7}
 .note-list li{margin-bottom:5px}
+.note-words{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.note-wh{margin:0 0 8px;font:600 13px/1.3 var(--font-ui);color:var(--muted)}
+.nw{margin:0 0 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.nw summary{cursor:pointer;list-style:none;padding:9px 12px;font:400 14.5px/1.5 var(--font-ui)}
+.nw summary::-webkit-details-marker{display:none}
+.nw summary::after{content:'＋';float:right;margin-left:8px;color:var(--muted)}
+.nw[open] summary::after{content:'－'}
+.nw summary b{font-weight:600}
+.nw-body{padding:0 12px 10px;font-size:14px;line-height:1.7}
+.nw-body p{margin:0 0 6px}
+.nw-ex{color:var(--muted)}
+.word{scroll-margin-top:120px}
+.word.flash{outline:2px solid var(--accent);outline-offset:2px}
 
 /* words */
 .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
@@ -369,8 +382,46 @@ function noteCard(s){
       )
     ),
     h('p', {class:'note-zh'}, s.zh),
-    h('ul', {class:'note-list'}, s.notes.map(function(t){ return h('li', null, t); }))
+    h('ul', {class:'note-list'}, s.notes.map(function(t){ return h('li', null, t); })),
+    sentenceWords(s)
   );
+}
+/* the words highlighted in a sentence, each explained right here (tap to open) with a link to its full card */
+function sentenceWords(s){
+  const ids = [], seen = {};
+  const re = new RegExp(TERM_RE.source, 'gi');
+  let m;
+  while ((m = re.exec(s.en))){
+    const id = TERM_MAP[m[0].toLowerCase()];
+    if (id !== undefined && !seen[id]){ seen[id] = true; ids.push(id); }
+  }
+  if (!ids.length) return null;
+  return h('div', {class:'note-words'},
+    h('p', {class:'note-wh'}, '本句标出的词（点开看讲解）'),
+    ids.map(function(id){
+      const v = VMAP[id], x = v.ex && v.ex[0];
+      return h('details', {class:'nw'},
+        h('summary', null, h('b', null, v.expr), '　', v.zh),
+        h('div', {class:'nw-body'},
+          v.note ? h('p', null, v.note) : null,
+          x ? h('p', {class:'nw-ex'}, exPlain(x.en), '　', x.zh) : null,
+          h('button', {type:'button', class:'btn sm', onclick:function(){ gotoWord(id); }}, '看完整词卡 →')
+        )
+      );
+    })
+  );
+}
+function gotoWord(id){
+  vFilter = 'all'; vQuery = '';
+  const si = $('#wordSearch');
+  if (si) si.value = '';
+  showTab('words');
+  renderWords();
+  const el = $('#wordList [data-id="' + id + '"]');
+  if (!el) return;
+  el.scrollIntoView({block:'start', behavior:REDUCE ? 'auto' : 'smooth'});
+  el.classList.add('flash');
+  setTimeout(function(){ el.classList.remove('flash'); }, 1600);
 }
 function placeNote(){
   $$('.slot').forEach(function(s){ s.replaceChildren(); });
@@ -440,7 +491,7 @@ function wordCard(v){
     updateChips();
     if (vFilter !== 'all') renderWords();
   });
-  return h('article', {class:'word'},
+  return h('article', {class:'word', 'data-id':v.id},
     h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null), speakBtn('w' + v.id, v.core)), seg),
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
@@ -494,13 +545,16 @@ function quizPool(){
   });
 }
 function todoCount(){ return quizPool().filter(function(c){ return getS(c.id) !== 'mastered'; }).length; }
+const QUICK_N = 20;   /* the "random 20" round, offered when an article has many words */
 function startQuiz(scope, ids){
-  const pool = quizPool().filter(function(c){
+  let pool = quizPool().filter(function(c){
     return ids ? ids.indexOf(c.id) >= 0 : (scope === 'all' || getS(c.id) !== 'mastered');
   });
+  if (scope === 'quick' && !ids && !pool.length) pool = quizPool();
   if (!pool.length) return;
   quiz.scope = scope;
   quiz.items = shuffle(pool.slice());
+  if (scope === 'quick' && !ids) quiz.items = quiz.items.slice(0, QUICK_N);
   quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.phase = 'q';
   renderQuiz();
 }
@@ -538,7 +592,9 @@ function quizStart(){
       disabled:!modeAvailable(o[0]), onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
   });
   const opts = h('div', {class:'chips mt12'});
-  [['all', '全部 ' + all + ' 题'], ['todo', '只考未掌握 ' + todo + ' 题']].forEach(function(o){
+  const scopes = [['all', '全部 ' + all + ' 题'], ['todo', '只考未掌握 ' + todo + ' 题']];
+  if (all > QUICK_N + 5) scopes.push(['quick', '随机 ' + QUICK_N + ' 题']);
+  scopes.forEach(function(o){
     opts.append(h('button', {type:'button', class:'chip' + (quiz.scope === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.scope === o[0]), disabled:o[0] === 'todo' && !todo,
       onclick:function(){ quiz.scope = o[0]; renderQuiz(); }}, o[1]));
   });
@@ -835,7 +891,7 @@ function renderListen(){
   box.append(
     h('div', {class:'card lp'},
       h('h2', {class:'h2'}, '听力'),
-      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的英式发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + ((DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
       h('div', {class:'lp-row'},
         h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
         L.el.play,

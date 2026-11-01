@@ -67,6 +67,7 @@
     "zh": "有些顾客拿手机对着读卡器一晃；数量惊人的人仍在一枚一枚数着硬币，神态从容，仿佛无处可去。",
     "notes": [
      "分号连接两个并列分句，some ... ; a surprising number ... 形成对照。",
+     "wave a phone at the reader：这里的 reader 不是“读者”，而是收银台上的读卡器（刷卡、扫码、碰手机的小机器）；拿手机对着它一晃就付完款了。",
      "a surprising number 后面省略了 of customers，所以谓语用复数 count。",
      "count out：把钱一枚一枚数出来。",
      "with the unhurried air of people ...：带着……的神态；air 在这里是“神态、气质”。who have nowhere to be 是定语从句，意思是没有急着要赶去的地方，也就是不赶时间。"
@@ -137,6 +138,7 @@
     "zh": "年长的顾客在人口中占比越来越大，他们往往更信任手里能握住的东西。",
     "notes": [
      "who make up ... 是非限制性定语从句，补充说明 Older customers。",
+     "a growing share of the population：占人口的比例越来越大；share of = ……所占的比例，growing 说明这个比例在变大，整个短语作 make up 的宾语。",
      "make up：构成、占（比例）；make up a share of ... = 占……的一部分。",
      "tend to + 动词原形：往往会、倾向于。",
      "what they can hold in their hands：what 引导名词性从句，作 trust 的宾语；“握在手里的”与无形的数字支付形成对比。"
@@ -160,7 +162,7 @@
     "zh": "第二个原因是，方便的账单落到了别人头上。",
     "notes": [
      "与 The first reason 呼应，开始第二层理由。",
-     "bill for convenience：为方便付出的账单；bill 既是实际的账单，也有“代价”的比喻义。",
+     "bill for convenience：为“方便”付出的账单。bill 本义是账单，这里是比喻义“代价”；the bill for sth = 为某事买单。意思是：享受方便的人不用付这笔钱，付钱的是别人。",
      "land on：（责任、费用）落到……头上。lands on someone else 暗示：谁用得方便，谁就不用买单。"
     ],
     "p": 3
@@ -207,9 +209,10 @@
     "en": "Officials have long tried to nudge people along.",
     "zh": "官员们早就想把人们往前推一推。",
     "notes": [
-     "have long tried：现在完成时加 long，表示一直在做。",
-     "nudge：用肘轻推；比喻不强制、轻轻地引导，行为经济学里的 nudge（助推）就是这个意思。",
-     "nudge ... along：轻推着往前走，口语色彩较重。"
+     "have long tried：long 是副词，意思是“很久地”，放在 have 和过去分词之间；have long tried = 早就一直在尝试。谓语是 have tried to ...，long 只是说明“试了很久”。",
+     "nudge ... along：nudge 是用肘轻轻推；along 表示顺着路往前，所以 nudge people along = 一点一点推着人们往前走，比喻不强迫、轻轻引导。",
+     "nudge 在行为经济学里是“助推”：不强制，只通过改变选项的摆法来影响人的选择。",
+     "Officials 承接上一段第 4 句的 Japan's officials，指日本政府官员。"
     ],
     "p": 4
    },
@@ -256,6 +259,7 @@
     "notes": [
      "shrink：缩小、萎缩；shrinking 是现在进行时，强调正在发生的趋势。",
      "every hour a shopkeeper spends counting the till：every hour 后省略了关系词 that，a shopkeeper spends counting the till 是定语从句。",
+     "workforce：劳动力、全体劳动者的总称（集合名词）；a shrinking workforce 是人口老龄化、少子化带来的结果。",
      "spend + 时间 + doing：花时间做某事。",
      "till：商店的收银抽屉或收银机；counting the till 就是结账时清点现金。",
      "劳动力变少，人工越来越贵，所以同样的一小时一年比一年值钱。"
@@ -269,7 +273,8 @@
     "notes": [
      "冒号后面解释 hidden expense 具体包括什么。",
      "must be counted, banked and ferried about：三个并列的被动语态；banked 在这里是动词“存入银行”。",
-     "ferry：本义是摆渡，这里指用车辆来回运送。armoured vans 是运钞车；armoured 是英式拼写，美式是 armored。",
+     "ferry：本义是摆渡，这里指像渡轮一样用车辆来回运送；ferried about 是“被来回运送”，about 表示到处、来回。",
+     "armoured vans：运钞车，armour 是装甲，armoured 是“有装甲的、防弹的”；armoured 是英式拼写，美式是 armored。",
      "keep ... topped up：保持（取款机）处于被补满的状态；top up = 把……加满，keep + 宾语 + 过去分词表示保持某个状态。"
     ],
     "p": 5
@@ -338,6 +343,140 @@
   ],
   "vocab": [
    {
+    "id": 39,
+    "expr": "Long live …!",
+    "zh": "……万岁（欢呼语）",
+    "m": [
+     "Long live"
+    ],
+    "note": "这是祝愿式的欢呼：Long live the King! = 国王万岁！live 用原形、不加 s（古老的祈愿句式留下的写法）。标题借它来调侃现金，半开玩笑：现金万岁。反过来，要喊“打倒……”可以说 Down with …!",
+    "core": "long live",
+    "forms": [
+     "long live"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Crowds in the square shouted, “[[Long live]] the republic!”",
+      "zh": "广场上的人群高喊：“共和国万岁！”"
+     },
+     {
+      "en": "The banner read “[[Long live]] the underdog!”",
+      "zh": "横幅上写着：“弱者万岁！”"
+     }
+    ]
+   },
+   {
+    "id": 40,
+    "expr": "be in no hurry to do sth",
+    "zh": "一点也不急着做某事",
+    "m": [
+     "in no hurry to"
+    ],
+    "note": "no 加强否定，in no hurry 比 not in a hurry 语气更重。常见搭配：be in no hurry to do sth / be in no hurry for sth。对比 in a hurry（匆忙、着急）。标题说日本“不急着”告别现金，正文里的 unhurried 讲的是同一种从容。",
+    "core": "in no hurry",
+    "forms": [
+     "in no hurry",
+     "in no hurry to"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "I am [[in no hurry to]] leave, so take your time.",
+      "zh": "我不急着走，你慢慢来。"
+     },
+     {
+      "en": "The council is [[in no hurry to]] act on the report.",
+      "zh": "市议会并不急着按这份报告行动。"
+     }
+    ]
+   },
+   {
+    "id": 41,
+    "expr": "go cashless",
+    "zh": "改用无现金支付；变成无现金的",
+    "m": [
+     "go cashless",
+     "going cashless"
+    ],
+    "note": "go + 形容词 = 变成某种状态：go bald（秃了）、go quiet（安静下来）、go viral（走红）。cashless 由 cash + -less（没有……的）构成，和 jobless、homeless 同一个造词法。标题里是 go cashless，第 4 句里变成 going cashless（介词 into 后面接动名词）。",
+    "core": "go cashless",
+    "forms": [
+     "go cashless",
+     "goes cashless",
+     "went cashless",
+     "going cashless",
+     "gone cashless"
+    ],
+    "syn": [
+     "go digital"
+    ],
+    "ex": [
+     {
+      "en": "The festival will [[go cashless]] next year: stalls will take cards only.",
+      "zh": "这个节日明年将改用无现金支付：摊位只收刷卡。"
+     },
+     {
+      "en": "Several cities are [[going cashless]] faster than expected.",
+      "zh": "好几个城市改用无现金支付的速度比预期的快。"
+     }
+    ]
+   },
+   {
+    "id": 42,
+    "expr": "the rich world",
+    "zh": "富裕国家、发达国家",
+    "m": [
+     "the rich world"
+    ],
+    "note": "《经济学人》常用 the rich world 指发达经济体，对应 the poor world / the developing world。much of the rich world = 富裕国家的大部分地区（much of + the + 名词 = ……的大部分）。",
+    "core": "rich world",
+    "forms": [
+     "rich world",
+     "the rich world"
+    ],
+    "syn": [
+     "the developed world"
+    ],
+    "ex": [
+     {
+      "en": "Populations are ageing fast across [[the rich world]].",
+      "zh": "整个富裕国家的人口都在迅速老龄化。"
+     },
+     {
+      "en": "Few jobs in [[the rich world]] are untouched by software.",
+      "zh": "在富裕国家，几乎没有哪种工作不受软件影响。"
+     }
+    ]
+   },
+   {
+    "id": 43,
+    "expr": "tap",
+    "zh": "轻点；（用手机、卡）碰一下支付",
+    "m": [
+     "tapping"
+    ],
+    "note": "tap 本义是轻轻拍、轻轻敲。用手机或银行卡在读卡器上轻轻一碰就付款，英语里就叫 tap（tap to pay）。tapping a phone 是动名词短语，作 has replaced 的主语，对比后面的 fumbling for coins：一边轻巧，一边笨拙。",
+    "core": "tap",
+    "forms": [
+     "tap",
+     "taps",
+     "tapped",
+     "tapping"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Just [[tap]] your card on the reader to pay.",
+      "zh": "把卡在读卡器上轻轻一碰就能付款。"
+     },
+     {
+      "en": "She [[tapped]] the screen twice to zoom in.",
+      "zh": "她轻点了两下屏幕来放大。"
+     }
+    ]
+   },
+   {
     "id": 1,
     "expr": "fumble for",
     "zh": "摸索着找（东西）",
@@ -365,6 +504,33 @@
     ]
    },
    {
+    "id": 44,
+    "expr": "survive",
+    "zh": "留存下来；幸存、挺过",
+    "m": [
+     "survives"
+    ],
+    "note": "survive 最常见的意思是“活下来”，也可以指旧事物、旧习惯留存下来：the old habit survives = 老习惯没有消失。名词 survival，幸存者 survivor。",
+    "core": "survive",
+    "forms": [
+     "survive",
+     "survives",
+     "survived",
+     "surviving"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Few of the old shops [[survived]] the recession.",
+      "zh": "老店铺在经济衰退中没挺过去几家。"
+     },
+     {
+      "en": "Some traditions [[survive]] long after their purpose is forgotten.",
+      "zh": "有些传统在人们忘了它的用途之后很久仍然留存着。"
+     }
+    ]
+   },
+   {
     "id": 2,
     "expr": "rational",
     "zh": "理性的、合乎道理的",
@@ -385,6 +551,116 @@
      {
       "en": "Few people stay fully [[rational]] when they are afraid.",
       "zh": "很少有人在害怕的时候还能完全保持理性。"
+     }
+    ]
+   },
+   {
+    "id": 45,
+    "expr": "queue",
+    "zh": "队伍；排队（英式）",
+    "m": [
+     "queue"
+    ],
+    "note": "queue 是英式英语的“排队、队伍”，美式英语说 line（wait in line）。动词短语 queue up = 排队。第 1 句的 the queue 和最后一句的 the bakery queue 是同一支队伍，首尾呼应。",
+    "core": "queue",
+    "forms": [
+     "queue",
+     "queues",
+     "queued",
+     "queuing",
+     "queueing"
+    ],
+    "syn": [
+     "line (US)"
+    ],
+    "ex": [
+     {
+      "en": "Hundreds of people [[queued]] outside the shop overnight.",
+      "zh": "几百人在店门外排了一夜的队。"
+     },
+     {
+      "en": "Passengers have to [[queue]] in the rain for a taxi.",
+      "zh": "乘客得在雨里排队等出租车。"
+     }
+    ]
+   },
+   {
+    "id": 46,
+    "expr": "wave sth at sb/sth",
+    "zh": "（拿着东西）对着……晃一晃",
+    "m": [
+     "wave a phone at"
+    ],
+    "note": "wave 最常见的意思是“挥手”，但 wave sth at sb/sth 是手里拿着某样东西，朝着某人或某物晃动。这里是拿手机对着读卡器一晃就付款，动作轻松随意。",
+    "core": "wave",
+    "forms": [
+     "wave",
+     "waves",
+     "waved",
+     "waving"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Protesters [[waved]] flags at the passing cars.",
+      "zh": "示威者朝过往的车辆挥舞旗子。"
+     },
+     {
+      "en": "She [[waved]] her ticket at the guard and walked through.",
+      "zh": "她朝检票员晃了晃车票，就走了过去。"
+     }
+    ]
+   },
+   {
+    "id": 47,
+    "expr": "reader (card reader)",
+    "zh": "读卡器；刷卡、扫码、碰手机的设备",
+    "m": [
+     "reader"
+    ],
+    "note": "注意：这里的 reader 不是“读者”，而是收银台上那台能读取银行卡、手机信息的小机器，也叫 card reader。wave a phone at the reader = 拿手机对着那台机器一晃。同一个词，靠上下文区分：能挥手机对着晃的，不可能是“读者”。",
+    "core": "reader",
+    "forms": [
+     "reader",
+     "readers",
+     "card reader"
+    ],
+    "syn": [
+     "card machine"
+    ],
+    "ex": [
+     {
+      "en": "Hold your card against the [[reader]] until it beeps.",
+      "zh": "把卡贴在读卡器上，直到它嘀的一声。"
+     },
+     {
+      "en": "There is a [[reader]] by the bus door for travel cards.",
+      "zh": "公交车门边有一个读卡器，用来刷交通卡。"
+     }
+    ]
+   },
+   {
+    "id": 48,
+    "expr": "a surprising number of",
+    "zh": "数量惊人的（人或物）",
+    "m": [
+     "a surprising number"
+    ],
+    "note": "a number of + 复数名词 = 一些；number 前面加形容词，表示“数量有多大”：a large / growing / surprising number of。原句省略了 of customers，所以谓语 count 用复数。对比：the number of ... is ...（……的数量是……）谓语用单数。",
+    "core": "surprising number",
+    "forms": [
+     "surprising number",
+     "a surprising number"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "[[A surprising number of]] passengers still buy paper tickets.",
+      "zh": "数量出人意料的乘客仍然买纸质车票。"
+     },
+     {
+      "en": "Museums report [[a surprising number of]] visitors from abroad.",
+      "zh": "博物馆称有数量惊人的外国游客。"
      }
     ]
    },
@@ -467,6 +743,30 @@
     ]
    },
    {
+    "id": 49,
+    "expr": "have nowhere to be",
+    "zh": "没有哪儿需要赶去；不赶时间",
+    "m": [
+     "nowhere to be"
+    ],
+    "note": "nowhere to be = 没有任何一个非去不可的地方，常和 have 连用，表示时间充裕、没有约束：I have nowhere to be today. 反过来 have somewhere to be = 得赶去别处了。nowhere 加不定式作后置定语，和 nothing to do、no one to ask 同类。",
+    "core": "nowhere to be",
+    "forms": [
+     "nowhere to be"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Take your time; I have [[nowhere to be]] this afternoon.",
+      "zh": "不用急，我下午哪儿也不用去。"
+     },
+     {
+      "en": "Retired, he had [[nowhere to be]] and read the paper for hours.",
+      "zh": "退休之后他不用赶去哪儿，一份报纸能读上好几个小时。"
+     }
+    ]
+   },
+   {
     "id": 6,
     "expr": "a rarity",
     "zh": "稀罕物、少见的东西",
@@ -514,6 +814,61 @@
      {
       "en": "The pupils buried a [[time capsule]] under the school garden.",
       "zh": "学生们在学校花园下埋了一个时间胶囊。"
+     }
+    ]
+   },
+   {
+    "id": 50,
+    "expr": "see sth differently",
+    "zh": "对……看法不同",
+    "m": [
+     "see it differently"
+    ],
+    "note": "这里的 see 不是“看见”，而是“看待、理解”：see A as B（把 A 看成 B）、see things differently（看法不同）。it 指上一句里“像时间胶囊”的印象：游客觉得这是怀旧，而官员不这么看。",
+    "core": "see it differently",
+    "forms": [
+     "see it differently",
+     "sees it differently",
+     "saw it differently",
+     "seeing it differently"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "My brother and I [[see it differently]], and neither will give way.",
+      "zh": "我哥哥和我看法不同，谁也不肯让步。"
+     },
+     {
+      "en": "Economists [[see it differently]]: for them, the trend is a warning.",
+      "zh": "经济学家的看法不同：在他们眼里，这个趋势是个警告。"
+     }
+    ]
+   },
+   {
+    "id": 51,
+    "expr": "spend time (in) doing sth",
+    "zh": "花时间做某事",
+    "m": [
+     "spent years trying to",
+     "spends counting"
+    ],
+    "note": "spend + 时间或金钱 + (in) doing sth：花……做某事，后面接 -ing，不接 to do。第 4 句 have spent years trying to coax 是花了好几年想要哄着……；第 18 句 every hour a shopkeeper spends counting the till 是定语从句，省略了 that。",
+    "core": "spend",
+    "forms": [
+     "spend",
+     "spends",
+     "spent",
+     "spending"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She [[spends]] an hour a day answering emails.",
+      "zh": "她每天花一个小时回邮件。"
+     },
+     {
+      "en": "He [[spent]] three years learning to paint.",
+      "zh": "他花了三年学画画。"
      }
     ]
    },
@@ -594,6 +949,62 @@
     ]
    },
    {
+    "id": 52,
+    "expr": "cash machine",
+    "zh": "取款机（英式，= ATM）",
+    "m": [
+     "cash machines"
+    ],
+    "note": "cash machine 是英式说法，美式更常说 ATM（automated teller machine）；英国口语里也说 cashpoint。第 19 句的 machines 指的也是它们。",
+    "core": "cash machine",
+    "forms": [
+     "cash machine",
+     "cash machines"
+    ],
+    "syn": [
+     "ATM"
+    ],
+    "ex": [
+     {
+      "en": "The nearest [[cash machine]] is outside the station.",
+      "zh": "最近的取款机在车站外面。"
+     },
+     {
+      "en": "Two [[cash machines]] were out of order.",
+      "zh": "有两台取款机坏了。"
+     }
+    ]
+   },
+   {
+    "id": 53,
+    "expr": "the power fails",
+    "zh": "停电",
+    "m": [
+     "the power fails"
+    ],
+    "note": "这里的 power 是“电力”，不是“权力”。the power fails / goes out / is cut = 停电；名词说法：power cut（英式）、power outage 或 blackout（美式）、power failure。fail 在这里是“失灵、中断”。",
+    "core": "power fails",
+    "forms": [
+     "power fails",
+     "power fail",
+     "power failed",
+     "power failure"
+    ],
+    "syn": [
+     "a power cut"
+    ],
+    "ex": [
+     {
+      "en": "We keep candles in the kitchen in case [[the power fails]].",
+      "zh": "我们在厨房里备着蜡烛，以防停电。"
+     },
+     {
+      "en": "The lights went out when [[the power failed]].",
+      "zh": "停电的时候，灯全灭了。"
+     }
+    ]
+   },
+   {
     "id": 11,
     "expr": "count for something",
     "zh": "有价值、有分量",
@@ -617,6 +1028,33 @@
      {
       "en": "Her opinion [[counts for something]] around here.",
       "zh": "她的意见在这里是说得上话的。"
+     }
+    ]
+   },
+   {
+    "id": 54,
+    "expr": "live with",
+    "zh": "与……共存；忍受并习惯",
+    "m": [
+     "lives with"
+    ],
+    "note": "live with 除了“和……同住”，还常指“接受并习惯某种不好的状况”：learn to live with pain（学会与疼痛共处）。a country that lives with earthquakes = 一个把地震当作日常的国家。",
+    "core": "live with",
+    "forms": [
+     "live with",
+     "lives with",
+     "lived with",
+     "living with"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Many coastal towns [[live with]] the threat of flooding.",
+      "zh": "许多沿海城镇与洪水的威胁共存。"
+     },
+     {
+      "en": "You will just have to [[live with]] the noise.",
+      "zh": "这噪音你只能忍着了。"
      }
     ]
    },
@@ -648,6 +1086,34 @@
     ]
    },
    {
+    "id": 55,
+    "expr": "a growing share of",
+    "zh": "……中越来越大的一部分、占比",
+    "m": [
+     "a growing share of",
+     "the share of"
+    ],
+    "note": "share of = ……所占的比例或份额：a growing / larger / small share of the population。第 8 句 make up a growing share of the population = 占人口的比例越来越大；growing 是现在分词作形容词，说明占比在变大。第 15 句 the share of cashless payments crept upward 里是同一个词：无现金支付的占比。介词用 of，不用 in。",
+    "core": "share of",
+    "forms": [
+     "share of",
+     "a share of",
+     "the share of",
+     "shares of"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Retired people now hold [[a growing share of]] the country's wealth.",
+      "zh": "退休的人现在持有这个国家财富中越来越大的份额。"
+     },
+     {
+      "en": "Online sales have taken [[a growing share of]] the market.",
+      "zh": "网络销售占据了市场中越来越大的份额。"
+     }
+    ]
+   },
+   {
     "id": 13,
     "expr": "tend to",
     "zh": "往往会、倾向于",
@@ -675,6 +1141,115 @@
     ]
    },
    {
+    "id": 56,
+    "expr": "hold sth in one's hands",
+    "zh": "握在手里（指实实在在摸得着的东西）",
+    "m": [
+     "hold in their hands"
+    ],
+    "note": "what they can hold in their hands = 他们能握在手里的东西，what 引导名词性从句，作 trust 的宾语。借“摸得着”来对比看不见的数字支付，近义形容词是 tangible（有形的，可触摸的）。",
+    "core": "hold in their hands",
+    "forms": [
+     "hold in their hands",
+     "hold in your hands",
+     "hold in his hands",
+     "hold in her hands",
+     "hold in my hands",
+     "hold in our hands"
+    ],
+    "syn": [
+     "tangible"
+    ],
+    "ex": [
+     {
+      "en": "A paper map is something you can [[hold in your hands]].",
+      "zh": "纸质地图是你能握在手里的东西。"
+     },
+     {
+      "en": "Some readers want a book they can [[hold in their hands]].",
+      "zh": "有些读者想要一本能捧在手里的书。"
+     }
+    ]
+   },
+   {
+    "id": 57,
+    "expr": "plenty of",
+    "zh": "大量的、许多",
+    "m": [
+     "plenty of"
+    ],
+    "note": "plenty of 后接可数复数或不可数名词，意思是“足够多的、很多”，多用于肯定句；否定句里改用 not enough / not many。plenty of younger people = 不少年轻人。口语例子：There is plenty of time.",
+    "core": "plenty of",
+    "forms": [
+     "plenty of"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "There is [[plenty of]] time before the train leaves.",
+      "zh": "离火车开出还有很多时间。"
+     },
+     {
+      "en": "[[Plenty of]] people queue for hours when a new phone comes out.",
+      "zh": "新手机上市时，不少人要排几个小时的队。"
+     }
+    ]
+   },
+   {
+    "id": 58,
+    "expr": "not broken (If it ain't broke, don't fix it)",
+    "zh": "没坏（没坏就别修）",
+    "m": [
+     "is not broken"
+    ],
+    "note": "这半句化用了俗语 If it ain't broke, don't fix it（没坏就别修）：现有办法还管用，就别折腾着去改。ain't 是美式口语的 isn't；英国也常说 If it isn't broken, don't fix it。后面的 so there is little to fix 呼应：little（不加 a）表示“几乎没有”，a little 才是“一点”。",
+    "core": "not broken",
+    "forms": [
+     "not broken",
+     "isn't broken",
+     "is not broken"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The printer is old but [[not broken]], so we kept it.",
+      "zh": "这台打印机虽旧但没坏，所以我们留着它。"
+     },
+     {
+      "en": "If the system is [[not broken]], don't fix it.",
+      "zh": "系统要是没坏，就别去修它。"
+     }
+    ]
+   },
+   {
+    "id": 59,
+    "expr": "the bill for sth",
+    "zh": "为……买单；……的代价",
+    "m": [
+     "the bill for convenience"
+    ],
+    "note": "bill 本义是账单，这里是比喻：享受某种好处最后要有人付的代价。the bill for convenience = 方便的账单：谁用得方便，谁不用买单，账落到别人头上（land on）。相关说法：foot the bill / pick up the bill = 买单、承担费用。这里的 convenience 是抽象名词“方便”，和 convenience store（便利店）里的是同一个词。",
+    "core": "bill for",
+    "forms": [
+     "bill for",
+     "the bill for",
+     "bills for"
+    ],
+    "syn": [
+     "the price of"
+    ],
+    "ex": [
+     {
+      "en": "Taxpayers will foot [[the bill for]] the new stadium.",
+      "zh": "纳税人将为新体育场买单。"
+     },
+     {
+      "en": "Who pays [[the bill for]] a failed policy?",
+      "zh": "一项失败的政策，账由谁来付？"
+     }
+    ]
+   },
+   {
     "id": 14,
     "expr": "land on",
     "zh": "（责任、费用）落到……头上",
@@ -698,6 +1273,59 @@
      {
       "en": "If the order is wrong, the cost [[lands on]] the supplier.",
       "zh": "订单要是出错，成本就落在供应商头上。"
+     }
+    ]
+   },
+   {
+    "id": 60,
+    "expr": "nothing extra",
+    "zh": "没有额外的（东西）、不用多付",
+    "m": [
+     "nothing extra"
+    ],
+    "note": "something / anything / nothing / someone 这类不定代词，形容词要放在后面：nothing special、something new、nothing extra。pay nothing extra = 不用多付钱；相近的说法 at no extra cost = 不收额外费用。",
+    "core": "nothing extra",
+    "forms": [
+     "nothing extra",
+     "pay nothing extra"
+    ],
+    "syn": [
+     "at no extra cost"
+    ],
+    "ex": [
+     {
+      "en": "Delivery is included, so you pay [[nothing extra]].",
+      "zh": "送货费已经包含在内，所以你不用多付钱。"
+     },
+     {
+      "en": "You can change the date for [[nothing extra]].",
+      "zh": "改日期不另外收费。"
+     }
+    ]
+   },
+   {
+    "id": 61,
+    "expr": "whereas",
+    "zh": "而、然而（对比两件事）",
+    "m": [
+     "whereas"
+    ],
+    "note": "whereas 连接两个形成对比的分句：A is X, whereas B is Y。比 while 更正式，也不会像 while 那样可能被读成“当……的时候”，多用于书面语、论文、合同。这里前半句顾客不用付钱，后半句商家要交抽成，一边无成本，一边有成本。",
+    "core": "whereas",
+    "forms": [
+     "whereas"
+    ],
+    "syn": [
+     "while"
+    ],
+    "ex": [
+     {
+      "en": "Some pupils love maths, [[whereas]] others find it dull.",
+      "zh": "有些学生喜欢数学，而另一些学生觉得它乏味。"
+     },
+     {
+      "en": "The north is wet, [[whereas]] the south is dry.",
+      "zh": "北部多雨，而南部干燥。"
      }
     ]
    },
@@ -755,6 +1383,35 @@
     ]
    },
    {
+    "id": 62,
+    "expr": "run a network / a business",
+    "zh": "经营、运营（网络、公司）",
+    "m": [
+     "run the payment networks"
+    ],
+    "note": "run 作“经营、管理、运营”：run a shop / a company / a network。the firms that run the payment networks = 运营支付网络的公司（发卡组织、清算机构一类）。这是 run 的另一个常用义，不同于“跑”，也不同于 run out（用完）。",
+    "core": "run",
+    "forms": [
+     "run",
+     "runs",
+     "ran",
+     "running"
+    ],
+    "syn": [
+     "operate"
+    ],
+    "ex": [
+     {
+      "en": "She [[runs]] a small bakery near the station.",
+      "zh": "她在车站附近经营着一家小面包店。"
+     },
+     {
+      "en": "The company [[runs]] a network of three hundred shops.",
+      "zh": "这家公司运营着一个有三百家门店的网络。"
+     }
+    ]
+   },
+   {
     "id": 17,
     "expr": "thin margins",
     "zh": "利润微薄",
@@ -776,6 +1433,31 @@
      {
       "en": "Small farms with [[thin margins]] cannot survive a bad harvest.",
       "zh": "利润微薄的小农场扛不住一次歉收。"
+     }
+    ]
+   },
+   {
+    "id": 63,
+    "expr": "the difference between A and B",
+    "zh": "A 与 B 的差别（常指成败之别）",
+    "m": [
+     "the difference between"
+    ],
+    "note": "the difference between a profit and a loss = 盈利与亏损之间的差别。can be the difference between A and B 的意思是“可能就是 A 与 B 的分水岭”，强调一点点差距就足以改变结果，常见于 the difference between life and death（生死之别）这样的搭配。",
+    "core": "difference between",
+    "forms": [
+     "difference between",
+     "the difference between"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "A small delay can be [[the difference between]] success and failure.",
+      "zh": "小小的延误就可能是成功与失败的分界。"
+     },
+     {
+      "en": "[[The difference between]] the two phones is mostly price.",
+      "zh": "这两部手机的差别主要在价格。"
      }
     ]
    },
@@ -835,13 +1517,39 @@
     ]
    },
    {
-    "id": 20,
-    "expr": "nudge",
-    "zh": "（轻轻地）推动、引导",
+    "id": 64,
+    "expr": "have long + past participle",
+    "zh": "早就……、一直……了很久",
     "m": [
-     "nudge"
+     "have long tried"
     ],
-    "note": "行为经济学里的 nudge（助推）指不强制、只改变选择环境的引导方式。",
+    "note": "long 在这里是副词，意思是“很长时间地”，放在助动词 have 和过去分词之间：have long tried = 早就一直在尝试。类似：have long been（早就是）、has long argued（一直主张）、had long known（早就知道）。书面语里很常见，比 for a long time 简洁。注意 long 不是动词，句子的谓语是 have tried to。",
+    "core": "have long",
+    "forms": [
+     "have long",
+     "has long",
+     "had long"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Scientists [[have long]] suspected a link between the two.",
+      "zh": "科学家们早就怀疑两者之间有联系。"
+     },
+     {
+      "en": "The village [[has long]] relied on tourism.",
+      "zh": "这个村子长期以来靠旅游业过活。"
+     }
+    ]
+   },
+   {
+    "id": 20,
+    "expr": "nudge sb along",
+    "zh": "（轻轻地）推着……往前走；一点一点引导、催着慢慢改变",
+    "m": [
+     "nudge people along"
+    ],
+    "note": "nudge 本义是用手肘轻轻碰一下。along 表示“顺着路往前”，所以 nudge sb along = 一点一点推着某人往前走；比喻义是不强迫，只轻轻引导人们慢慢改变做法。想说明往哪儿推，可以接 into / towards：nudge sb into doing sth、nudge drivers towards electric cars。行为经济学里的 nudge（助推）指不强制、只改变选择环境的引导方式。",
     "core": "nudge",
     "forms": [
      "nudge",
@@ -858,6 +1566,10 @@
      {
       "en": "A friendly reminder can [[nudge]] people to pay on time.",
       "zh": "一条友好的提醒就能促使人们按时付款。"
+     },
+     {
+      "en": "The guide kept [[nudging]] the tired hikers along the last mile.",
+      "zh": "向导一路轻声催着疲惫的徒步者走完最后一英里。"
      }
     ]
    },
@@ -943,6 +1655,59 @@
     ]
    },
    {
+    "id": 65,
+    "expr": "incentive",
+    "zh": "激励、刺激（措施）",
+    "m": [
+     "incentives"
+    ],
+    "note": "incentive 指能让人愿意做某事的好处，如奖励、返利、减税：financial incentive（经济激励）。常见结构 an incentive to do sth / for sb to do sth。反义词 disincentive（抑制因素）。重音在第二个音节：in-CEN-tive。",
+    "core": "incentive",
+    "forms": [
+     "incentive",
+     "incentives"
+    ],
+    "syn": [
+     "inducement"
+    ],
+    "ex": [
+     {
+      "en": "Tax breaks give firms an [[incentive]] to hire locally.",
+      "zh": "减税给了企业在本地雇人的动力。"
+     },
+     {
+      "en": "The scheme offers [[incentives]] for people to recycle.",
+      "zh": "这个计划为鼓励回收提供各种激励。"
+     }
+    ]
+   },
+   {
+    "id": 66,
+    "expr": "of that kind",
+    "zh": "那一类的、那种的",
+    "m": [
+     "of that kind"
+    ],
+    "note": "of that kind / of this kind：放在名词后面作后置定语，意思是“那种、这类”。incentives of that kind = 那种激励措施，that 回指上一句的“返利”。意思相当于 that kind of incentive，但 of that kind 放在名词后面更书面。",
+    "core": "of that kind",
+    "forms": [
+     "of that kind",
+     "of this kind",
+     "of the kind"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "I have never seen a mistake [[of that kind]] before.",
+      "zh": "这种错误我以前从没见过。"
+     },
+     {
+      "en": "Problems [[of this kind]] are rarely solved quickly.",
+      "zh": "这类问题很少能很快解决。"
+     }
+    ]
+   },
+   {
     "id": 24,
     "expr": "fade",
     "zh": "逐渐减弱、褪去",
@@ -1024,6 +1789,30 @@
     ]
    },
    {
+    "id": 67,
+    "expr": "persuasion",
+    "zh": "说服、劝说",
+    "m": [
+     "persuasion"
+    ],
+    "note": "persuade（动词）→ persuasion（名词）→ persuasive（形容词，有说服力的，最后一段 a persuasive case 里就是它）。persuade sb to do sth = 说服某人做某事。对比第 4 句的 coax：coax 是连哄带劝，persuasion 是靠讲道理。not persuasion but arithmetic = 不是靠劝说，而是靠算账。",
+    "core": "persuasion",
+    "forms": [
+     "persuasion"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She used gentle [[persuasion]] rather than orders.",
+      "zh": "她用的是温和的劝说，而不是命令。"
+     },
+     {
+      "en": "No amount of [[persuasion]] changed his mind.",
+      "zh": "怎么劝都没能改变他的主意。"
+     }
+    ]
+   },
+   {
     "id": 27,
     "expr": "arithmetic",
     "zh": "算术；（成本收益的）账",
@@ -1044,6 +1833,33 @@
      {
       "en": "Do the [[arithmetic]] before you sign the lease.",
       "zh": "签租约之前先把账算清楚。"
+     }
+    ]
+   },
+   {
+    "id": 68,
+    "expr": "workforce",
+    "zh": "劳动力、全体员工",
+    "m": [
+     "workforce"
+    ],
+    "note": "workforce 是集合名词，指一个国家、一个行业或一家公司的全部劳动者：a skilled workforce（技术熟练的劳动力）、the global workforce。labour force 是偏经济学的近义词（labour 是英式拼写，美式 labor）。它不等于 workers（具体的人）；a shrinking workforce = 劳动力人数在减少，常和人口老龄化、少子化连在一起，日本正是如此。",
+    "core": "workforce",
+    "forms": [
+     "workforce",
+     "workforces"
+    ],
+    "syn": [
+     "labour force"
+    ],
+    "ex": [
+     {
+      "en": "The company has a [[workforce]] of about two thousand.",
+      "zh": "这家公司有大约两千名员工。"
+     },
+     {
+      "en": "An ageing population means a smaller [[workforce]].",
+      "zh": "人口老龄化意味着劳动力变少。"
      }
     ]
    },
@@ -1101,13 +1917,98 @@
     ]
    },
    {
+    "id": 70,
+    "expr": "handle",
+    "zh": "处理、经手、应付",
+    "m": [
+     "handling"
+    ],
+    "note": "handle 本义是用手拿、摆弄，常引申为“处理、应付、经手”：handle complaints / handle money。名词 handle 是把手、柄。Handling cash 是动名词短语作主语，指经手现金的全过程：收、数、存、运。",
+    "core": "handle",
+    "forms": [
+     "handle",
+     "handles",
+     "handled",
+     "handling"
+    ],
+    "syn": [
+     "deal with"
+    ],
+    "ex": [
+     {
+      "en": "Banks must [[handle]] customer data with care.",
+      "zh": "银行必须小心地处理客户数据。"
+     },
+     {
+      "en": "She [[handles]] the accounts for three small firms.",
+      "zh": "她替三家小公司经手账目。"
+     }
+    ]
+   },
+   {
+    "id": 69,
+    "expr": "hidden expense",
+    "zh": "隐形开支、隐性成本",
+    "m": [
+     "hidden expense"
+    ],
+    "note": "hidden 是 hide 的过去分词作形容词：藏起来的、看不见的。hidden cost / hidden expense / hidden fee = 表面上没算进去的成本。冒号后面的内容就是对它的解释：notes must be counted, banked and ferried about ...",
+    "core": "hidden expense",
+    "forms": [
+     "hidden expense",
+     "hidden expenses"
+    ],
+    "syn": [
+     "hidden cost"
+    ],
+    "ex": [
+     {
+      "en": "Parking is often a [[hidden expense]] of owning a car.",
+      "zh": "停车往往是养车时隐形的开支。"
+     },
+     {
+      "en": "Cheap flights can come with [[hidden expenses]], such as baggage fees.",
+      "zh": "廉价机票可能附带隐性开支，比如行李费。"
+     }
+    ]
+   },
+   {
+    "id": 71,
+    "expr": "bank (verb)",
+    "zh": "（把钱）存入银行",
+    "m": [
+     "banked"
+    ],
+    "note": "bank 除了名词“银行”，还有动词义：把钱存进银行，尤其指商家把当天的收入存入账户。notes must be counted, banked and ferried about：三个被动动词并列，依次是清点、存入、运送，写出了现金要经手的流程。",
+    "core": "bank",
+    "forms": [
+     "bank",
+     "banks",
+     "banked",
+     "banking"
+    ],
+    "syn": [
+     "deposit"
+    ],
+    "ex": [
+     {
+      "en": "The shop owner [[banks]] the takings every evening.",
+      "zh": "店主每天晚上把营业收入存进银行。"
+     },
+     {
+      "en": "She [[banked]] the cheque on her way to work.",
+      "zh": "她在上班路上把支票存进了银行。"
+     }
+    ]
+   },
+   {
     "id": 30,
-    "expr": "ferry",
+    "expr": "ferry sth about",
     "zh": "（用车、船）来回运送",
     "m": [
      "ferried about"
     ],
-    "note": "ferry sth about / around：把东西来回运送。",
+    "note": "ferry 的本义是名词“渡轮、摆渡”（take the ferry = 坐渡轮），作动词时指像渡轮一样来回运送人或物。about = 到处、来回（英式，美式多用 around）：ferry sth about / around。ferried 是过去分词，在 must be counted, banked and ferried about 里构成被动语态；这里是说现金要被一趟趟地运来运去。",
     "core": "ferry",
     "forms": [
      "ferry",
@@ -1124,6 +2025,39 @@
      {
       "en": "Volunteers [[ferried]] supplies to the village by boat.",
       "zh": "志愿者们用船把物资运到村子里。"
+     },
+     {
+      "en": "Parents spend their weekends [[ferrying]] children about.",
+      "zh": "父母们把周末都花在开车接送孩子上。"
+     }
+    ]
+   },
+   {
+    "id": 72,
+    "expr": "armoured van",
+    "zh": "运钞车、装甲车",
+    "m": [
+     "armoured vans"
+    ],
+    "note": "armour = 盔甲、装甲，armoured = 披着装甲的、防弹的；an armoured van 就是专门押运现金的防弹车，也叫 security van。armoured 是英式拼写，美式是 armored（同理 colour / color、labour / labor）。van 是厢式货车。要用这样的车来运现金，说明现金的处理链条又长又贵。",
+    "core": "armoured van",
+    "forms": [
+     "armoured van",
+     "armoured vans",
+     "armored van",
+     "armored vans"
+    ],
+    "syn": [
+     "security van"
+    ],
+    "ex": [
+     {
+      "en": "Guards loaded the cash into an [[armoured van]].",
+      "zh": "警卫把现金装进了运钞车。"
+     },
+     {
+      "en": "Two [[armoured vans]] were parked outside the bank.",
+      "zh": "有两辆运钞车停在银行外面。"
      }
     ]
    },
@@ -1155,6 +2089,62 @@
     ]
    },
    {
+    "id": 73,
+    "expr": "take money (from customers)",
+    "zh": "收钱、收款",
+    "m": [
+     "take money"
+    ],
+    "note": "这里的 take money 是“收款”，不是“拿走钱”：商家向顾客 take money = 收到顾客付的钱。the cheapest way to take money = 成本最低的收款方式。同类用法：take payment、take cards（接受刷卡）。对比：take money out = 取钱。",
+    "core": "take money",
+    "forms": [
+     "take money",
+     "takes money",
+     "took money",
+     "taking money"
+    ],
+    "syn": [
+     "accept payment"
+    ],
+    "ex": [
+     {
+      "en": "The stall [[takes money]] only in cash.",
+      "zh": "这个摊位只收现金。"
+     },
+     {
+      "en": "Small shops find it hard to [[take money]] by card.",
+      "zh": "小店觉得刷卡收款很麻烦。"
+     }
+    ]
+   },
+   {
+    "id": 74,
+    "expr": "with … involved",
+    "zh": "有……参与其中、牵涉……",
+    "m": [
+     "with the fewest humans involved"
+    ],
+    "note": "with + 名词 + 过去分词 = 在……被……的情况下，表示伴随的状态：with the fewest humans involved = 在牵涉的人最少的情况下。fewest 是 few 的最高级，修饰可数名词（不可数用 least）。the one 代指前面的 way。作者特意写 humans 而不是 staff 或 people，带点冷幽默：最便宜的办法，就是把人拿掉。",
+    "core": "involved",
+    "forms": [
+     "involved",
+     "involve",
+     "involves",
+     "involving"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Keep the plan simple, with as few people [[involved]] as possible.",
+      "zh": "计划要简单，尽量少牵涉人。"
+     },
+     {
+      "en": "Any job [[involving]] heavy machinery requires training.",
+      "zh": "凡是涉及重型机械的工作都要经过培训。"
+     }
+    ]
+   },
+   {
     "id": 32,
     "expr": "attachment to",
     "zh": "对……的依恋",
@@ -1176,6 +2166,30 @@
      {
       "en": "Voters' [[attachment to]] their local hospital is strong.",
       "zh": "选民们对本地医院的感情很深。"
+     }
+    ]
+   },
+   {
+    "id": 75,
+    "expr": "irrational",
+    "zh": "不理性的、不合理的",
+    "m": [
+     "irrational"
+    ],
+    "note": "ir- 是否定前缀（im- / in- / ir- / il- 同一类），irrational = not rational。它和副标题里的 rational 前后呼应：作者说日本人依恋现金并不是不理性的。同类词：irregular、irrelevant、irresponsible。",
+    "core": "irrational",
+    "forms": [
+     "irrational"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "A fear of flying is [[irrational]], but common.",
+      "zh": "怕坐飞机并不理性，但很常见。"
+     },
+     {
+      "en": "It would be [[irrational]] to ignore the warning signs.",
+      "zh": "无视这些警告信号是不理性的。"
      }
     ]
    },
@@ -1203,6 +2217,33 @@
      {
       "en": "Many fans [[stuck with]] the team through the bad years.",
       "zh": "许多球迷在那些低谷的年头也一直支持这支球队。"
+     }
+    ]
+   },
+   {
+    "id": 76,
+    "expr": "the cost of switching",
+    "zh": "转换成本；改用新办法的代价",
+    "m": [
+     "the cost of switching"
+    ],
+    "note": "switching 是 switch（改用、转换）的 -ing 形式，在介词 of 后作动名词。the cost of switching = 转换成本，经济学里常说 switching costs：从一种产品或习惯换到另一种，所付出的时间、金钱和精力。这正是日本人继续用现金的一个原因，而推动改变的人容易忽略它。",
+    "core": "cost of switching",
+    "forms": [
+     "cost of switching",
+     "costs of switching"
+    ],
+    "syn": [
+     "switching costs"
+    ],
+    "ex": [
+     {
+      "en": "Many people stay with their bank because [[the cost of switching]] seems high.",
+      "zh": "许多人一直用原来的银行，因为换银行的成本看起来很高。"
+     },
+     {
+      "en": "[[The cost of switching]] to a new system is easy to underestimate.",
+      "zh": "换用新系统的成本很容易被低估。"
      }
     ]
    },
@@ -1318,6 +2359,34 @@
     ]
    },
    {
+    "id": 77,
+    "expr": "set the price",
+    "zh": "定价",
+    "m": [
+     "set the price"
+    ],
+    "note": "set 是不规则动词，原形、过去式、过去分词都是 set；这里的 who set the price 是一般现在时。set the price = 定价，掌握定价权。those who set the price 指商家和银行，而不是付钱的顾客：旧办法对定价的人变贵的时候，习惯才会改。",
+    "core": "set the price",
+    "forms": [
+     "set the price",
+     "sets the price",
+     "setting the price"
+    ],
+    "syn": [
+     "fix the price"
+    ],
+    "ex": [
+     {
+      "en": "Sellers, not buyers, usually [[set the price]].",
+      "zh": "通常是卖方而不是买方来定价。"
+     },
+     {
+      "en": "The regulator will [[set the price]] of electricity this winter.",
+      "zh": "监管机构将在今年冬天为电价定价。"
+     }
+    ]
+   },
+   {
     "id": 38,
     "expr": "stand-off",
     "zh": "僵持、对峙",
@@ -1346,16 +2415,76 @@
   ],
   "cloze": [
    {
+    "id": 39,
+    "i": 0,
+    "ans": "live",
+    "hint": "万岁（填动词）"
+   },
+   {
+    "id": 40,
+    "i": 0,
+    "ans": "hurry",
+    "hint": "急（名词）"
+   },
+   {
+    "id": 41,
+    "i": 6,
+    "ans": "cashless",
+    "hint": "无现金的"
+   },
+   {
+    "id": 42,
+    "i": 1,
+    "ans": "rich",
+    "hint": "富裕的"
+   },
+   {
+    "id": 43,
+    "i": 1,
+    "ans": "tapping",
+    "hint": "轻点（-ing 形式）"
+   },
+   {
     "id": 1,
     "i": 1,
     "ans": "fumbling",
     "hint": "摸索着找（-ing 形式）"
    },
    {
+    "id": 44,
+    "i": 2,
+    "ans": "survives",
+    "hint": "留存（第三人称）"
+   },
+   {
     "id": 2,
     "i": 2,
     "ans": "rational",
     "hint": "理性的"
+   },
+   {
+    "id": 45,
+    "i": 3,
+    "ans": "queue",
+    "hint": "队伍（英式）"
+   },
+   {
+    "id": 46,
+    "i": 4,
+    "ans": "wave",
+    "hint": "晃（动词原形）"
+   },
+   {
+    "id": 47,
+    "i": 4,
+    "ans": "reader",
+    "hint": "读卡器（不是“读者”）"
+   },
+   {
+    "id": 48,
+    "i": 4,
+    "ans": "surprising",
+    "hint": "出人意料的"
    },
    {
     "id": 3,
@@ -1376,6 +2505,12 @@
     "hint": "神态（填一个词）"
    },
    {
+    "id": 49,
+    "i": 4,
+    "ans": "nowhere",
+    "hint": "没有哪里"
+   },
+   {
     "id": 6,
     "i": 5,
     "ans": "rarity",
@@ -1386,6 +2521,18 @@
     "i": 5,
     "ans": "capsule",
     "hint": "胶囊"
+   },
+   {
+    "id": 50,
+    "i": 6,
+    "ans": "differently",
+    "hint": "不同地"
+   },
+   {
+    "id": 51,
+    "i": 6,
+    "ans": "spent",
+    "hint": "花（过去分词）"
    },
    {
     "id": 8,
@@ -1406,10 +2553,28 @@
     "hint": "一沓（填 wad）"
    },
    {
+    "id": 52,
+    "i": 8,
+    "ans": "machines",
+    "hint": "机器（复数）"
+   },
+   {
+    "id": 53,
+    "i": 9,
+    "ans": "fails",
+    "hint": "中断（第三人称）"
+   },
+   {
     "id": 11,
     "i": 9,
     "ans": "counts",
     "hint": "有分量（注意第三人称）"
+   },
+   {
+    "id": 54,
+    "i": 9,
+    "ans": "lives",
+    "hint": "共存（第三人称）"
    },
    {
     "id": 12,
@@ -1418,16 +2583,58 @@
     "hint": "占（动词原形）"
    },
    {
+    "id": 55,
+    "i": 10,
+    "ans": "share",
+    "hint": "占比"
+   },
+   {
     "id": 13,
     "i": 10,
     "ans": "tend",
     "hint": "往往（动词原形）"
    },
    {
+    "id": 56,
+    "i": 10,
+    "ans": "hold",
+    "hint": "握（动词原形）"
+   },
+   {
+    "id": 57,
+    "i": 11,
+    "ans": "plenty",
+    "hint": "大量"
+   },
+   {
+    "id": 58,
+    "i": 11,
+    "ans": "broken",
+    "hint": "坏了的"
+   },
+   {
+    "id": 59,
+    "i": 12,
+    "ans": "bill",
+    "hint": "账单"
+   },
+   {
     "id": 14,
     "i": 12,
     "ans": "lands",
     "hint": "落到（注意第三人称）"
+   },
+   {
+    "id": 60,
+    "i": 13,
+    "ans": "extra",
+    "hint": "额外的"
+   },
+   {
+    "id": 61,
+    "i": 13,
+    "ans": "whereas",
+    "hint": "而（对比）"
    },
    {
     "id": 15,
@@ -1442,10 +2649,22 @@
     "hint": "一份（填 slice）"
    },
    {
+    "id": 62,
+    "i": 13,
+    "ans": "run",
+    "hint": "运营（动词原形）"
+   },
+   {
     "id": 17,
     "i": 14,
     "ans": "thin",
     "hint": "微薄的"
+   },
+   {
+    "id": 63,
+    "i": 14,
+    "ans": "difference",
+    "hint": "差别"
    },
    {
     "id": 18,
@@ -1458,6 +2677,12 @@
     "i": 15,
     "ans": "discourage",
     "hint": "劝阻"
+   },
+   {
+    "id": 64,
+    "i": 16,
+    "ans": "long",
+    "hint": "早就（副词）"
    },
    {
     "id": 20,
@@ -1484,6 +2709,18 @@
     "hint": "缓慢上升（过去式）"
    },
    {
+    "id": 65,
+    "i": 18,
+    "ans": "incentives",
+    "hint": "激励措施（复数）"
+   },
+   {
+    "id": 66,
+    "i": 18,
+    "ans": "kind",
+    "hint": "类"
+   },
+   {
     "id": 24,
     "i": 18,
     "ans": "fade",
@@ -1502,10 +2739,22 @@
     "hint": "使倾斜（动词原形）"
    },
    {
+    "id": 67,
+    "i": 19,
+    "ans": "persuasion",
+    "hint": "说服（名词）"
+   },
+   {
     "id": 27,
     "i": 19,
     "ans": "arithmetic",
     "hint": "算术"
+   },
+   {
+    "id": 68,
+    "i": 20,
+    "ans": "workforce",
+    "hint": "劳动力"
    },
    {
     "id": 28,
@@ -1520,10 +2769,34 @@
     "hint": "收银抽屉"
    },
    {
+    "id": 70,
+    "i": 21,
+    "ans": "Handling",
+    "hint": "处理（-ing 形式，句首）"
+   },
+   {
+    "id": 69,
+    "i": 21,
+    "ans": "hidden",
+    "hint": "隐形的"
+   },
+   {
+    "id": 71,
+    "i": 21,
+    "ans": "banked",
+    "hint": "存入银行（过去分词）"
+   },
+   {
     "id": 30,
     "i": 21,
     "ans": "ferried",
     "hint": "运送（过去分词）"
+   },
+   {
+    "id": 72,
+    "i": 21,
+    "ans": "armoured",
+    "hint": "装甲的（英式拼写）"
    },
    {
     "id": 31,
@@ -1532,16 +2805,40 @@
     "hint": "补满（过去分词）"
    },
    {
+    "id": 73,
+    "i": 22,
+    "ans": "take",
+    "hint": "收（款）"
+   },
+   {
+    "id": 74,
+    "i": 22,
+    "ans": "involved",
+    "hint": "牵涉（过去分词）"
+   },
+   {
     "id": 32,
     "i": 23,
     "ans": "attachment",
     "hint": "依恋"
    },
    {
+    "id": 75,
+    "i": 23,
+    "ans": "irrational",
+    "hint": "不理性的"
+   },
+   {
     "id": 33,
     "i": 24,
     "ans": "stick",
     "hint": "坚持（动词原形）"
+   },
+   {
+    "id": 76,
+    "i": 24,
+    "ans": "switching",
+    "hint": "改用（-ing 形式）"
    },
    {
     "id": 34,
@@ -1566,6 +2863,12 @@
     "i": 25,
     "ans": "made",
     "hint": "提出（过去分词）"
+   },
+   {
+    "id": 77,
+    "i": 25,
+    "ans": "set",
+    "hint": "定（原形）"
    },
    {
     "id": 38,

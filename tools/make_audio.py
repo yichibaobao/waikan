@@ -46,13 +46,15 @@ def main():
     ap.add_argument("slug")
     ap.add_argument("--model", required=True)
     ap.add_argument("--voices", required=True)
-    ap.add_argument("--voice", default="bf_emma", help="British voices: bf_emma bf_isabella bf_alice bf_lily bm_george bm_lewis bm_daniel bm_fable; American: af_heart af_bella am_michael ...")
-    ap.add_argument("--lang", default="en-gb")
+    ap.add_argument("--voice", default="af_heart", help="American: af_heart af_bella af_nicole af_sarah am_michael am_adam am_eric ...; British: bf_emma bf_isabella bm_george bm_lewis ...")
+    ap.add_argument("--lang", default=None, help="en-us or en-gb; default: from the voice (a* = American, b* = British)")
     ap.add_argument("--speed", type=float, default=0.95)
     ap.add_argument("--bitrate", default="56k", help="narration bitrate")
     ap.add_argument("--clip-bitrate", default="40k", help="word/example sprite bitrate")
     ap.add_argument("--only", choices=["narration", "clips"], help="make just one of the two files")
     a = ap.parse_args()
+    if not a.lang:
+        a.lang = "en-gb" if a.voice.startswith("b") else "en-us"
 
     from kokoro_onnx import Kokoro
 
