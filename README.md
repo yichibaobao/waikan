@@ -161,15 +161,14 @@ python3 tools/build.py
     "cloze": [                             // exactly one fill-in item per vocab entry
       {"id": 1, "i": 4, "ans": "slumps", "hint": "瘫坐在……上（注意动词词形）"}   // i = sentence index in "sents"
     ],
-    "breakdown": {"en": "<one article sentence>", "points": ["拆解要点 1", "..."]},   // the "思考" tab: a long sentence taken apart
-    "questions": ["讨论题 1", "讨论题 2", "讨论题 3"]
+    "breakdown": {"en": "<one article sentence>", "points": ["拆解要点 1", "..."]}   // the "长句" tab: a long sentence taken apart
   }
 }
 ```
 
 Conventions used for the first article (`content/finders-keepers/article.json` is the reference):
 20-40 expressions per article, each with a Chinese gloss, 2-3 bilingual examples, accepted forms, one cloze item;
-a per-sentence translation and 2-4 teaching notes for each sentence; one long sentence broken down; three discussion questions.
+a per-sentence translation and 2-4 teaching notes for each sentence; one long sentence broken down.
 
 ## Notes
 

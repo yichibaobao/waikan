@@ -116,7 +116,7 @@
       <button type="button" class="tab" role="tab" data-tab="listen" hidden>听力</button>
       <button type="button" class="tab" role="tab" data-tab="words">词汇</button>
       <button type="button" class="tab" role="tab" data-tab="quiz">自测</button>
-      <button type="button" class="tab" role="tab" data-tab="think">思考</button>
+      <button type="button" class="tab" role="tab" data-tab="think">长句</button>
     </nav>
   </div>
 </div>
@@ -207,10 +207,6 @@ function setMine(id, val){
   const t = val.trim();
   if (t){ e.m = t; e.d = today(); } else delete e.m;
   pruneEntry(id);
-  touch();
-}
-function setAns(k, val){
-  if (val.trim()) state.ans[k] = val; else delete state.ans[k];
   touch();
 }
 function touch(){
@@ -679,7 +675,7 @@ function quizResult(){
   return card;
 }
 
-/* ---------- think tab ---------- */
+/* ---------- think tab (the long-sentence breakdown) ---------- */
 function renderThink(){
   const box = $('#thinkBox');
   box.replaceChildren();
@@ -690,15 +686,6 @@ function renderThink(){
     h('ul', {class:'note-list'}, bd.points.map(function(t){ return h('li', null, t); })),
     h('div', {class:'row'}, h('button', {type:'button', class:'btn sm', onclick:function(){ openSentence(bd.i); try { location.hash = 'read'; } catch(e){} }}, '在文中查看这一句'))
   ));
-  const qs = h('div', {class:'card'}, h('p', {class:'eyebrow mb12'}, '读后思考'));
-  DATA.questions.forEach(function(q, k){
-    const key = 'q' + (k + 1);
-    const ta = h('textarea', {id:'ans-' + (k + 1), rows:3, maxlength:2000, placeholder:'写下你的想法'});
-    ta.value = state.ans[key] || '';
-    ta.addEventListener('input', function(){ setAns(key, ta.value); });
-    qs.append(h('div', {class:'qa'}, h('p', {class:'qa-q'}, (k + 1) + '. ' + q), ta));
-  });
-  box.append(qs);
 }
 
 /* ---------- wiring ---------- */

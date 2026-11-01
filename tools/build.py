@@ -141,11 +141,12 @@ def prepare(slug, raw):
     check(cids == ids, f"{where} every vocab entry needs exactly one cloze item")
     data["cloze"] = cloze
 
-    # ---- breakdown and questions
+    # ---- long-sentence breakdown
     bd = data["breakdown"]
     bd["i"] = next((s["i"] for s in sents if s["en"] == bd["en"]), None)
     check(bd["i"] is not None, f"{where} breakdown.en must be one of the article sentences")
-    check(len(bd["points"]) >= 1 and len(data["questions"]) >= 1, f"{where} breakdown points / questions missing")
+    check(len(bd["points"]) >= 1, f"{where} breakdown points missing")
+    data.pop("questions", None)      # the old post-reading questions are no longer shown
 
     # ---- derived numbers for the home page
     meta["words"] = sum(len(s["en"].split()) for s in sents)
