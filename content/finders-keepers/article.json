@@ -1569,6 +1569,39 @@
      "no amount of will"
     ],
     "syn": []
+   },
+   {
+    "id": 39,
+    "expr": "from scratch",
+    "zh": "从零开始；从头做起",
+    "note": "scratch 原指赛跑时在地上划出的起跑线，from scratch 就是“从起跑线出发”，不借助现成的东西。做菜时指不用半成品、用原材料自己做。常和 start / build / make / cook 连用。",
+    "seen": {
+     "en": "Cooking pasta is easy. Making it [[from scratch]] is another story.",
+     "zh": "煮意面很简单，从头自己做就是另一回事了。",
+     "hint": "从零开始；用原材料自己做"
+    },
+    "ex": [
+     {
+      "en": "She lost all her files and had to write the report [[from scratch]].",
+      "zh": "她的文件全丢了，只好从头重写报告。"
+     },
+     {
+      "en": "This cake is made [[from scratch]], not from a box mix.",
+      "zh": "这个蛋糕是用原材料自己做的，不是用预拌粉。"
+     },
+     {
+      "en": "They built the company [[from scratch]] with just two laptops.",
+      "zh": "他们只靠两台笔记本电脑，白手起家建起了这家公司。"
+     }
+    ],
+    "extra": true,
+    "core": "from scratch",
+    "forms": [
+     "from scratch",
+     "start from scratch",
+     "make from scratch"
+    ],
+    "syn": []
    }
   ],
   "cloze": [

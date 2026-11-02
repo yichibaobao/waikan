@@ -100,16 +100,25 @@ def prepare(slug, raw):
         vid = v["id"]
         check(vid not in ids, f"{where} duplicate vocab id {vid}")
         ids.add(vid)
+        seen = v.get("seen")
+        if seen:
+            # a word met outside the article text: its own sentence stands in for the article sentence
+            check(seen.get("en") and seen.get("zh") and seen.get("hint"), f"{where} vocab {vid}: seen needs en, zh and hint")
+            sm = re.search(r"\[\[(.+?)\]\]", seen["en"])
+            check(sm, f"{where} vocab {vid}: mark the word in seen.en with [[ ]]")
+            v["m"] = [sm.group(1)]
+            v["ctx"] = seen["en"].replace("[[", "").replace("]]", "")
         for k in ("expr", "zh", "m", "core", "forms"):
             check(v.get(k), f"{where} vocab {vid}: {k} is required")
         v.setdefault("syn", [])
         v.setdefault("note", "")
         check(v["core"] in v["forms"], f"{where} vocab {vid}: core must be one of forms")
-        for t in v["m"]:
-            check(word_re(t).search(all_en), f"{where} vocab {vid}: highlight term {t!r} not found in the article")
-        hit = next((s for s in sents if any(word_re(t).search(s["en"]) for t in v["m"])), None)
-        check(hit, f"{where} vocab {vid}: no sentence contains its terms")
-        v.setdefault("ctx", hit["en"])
+        if not seen:
+            for t in v["m"]:
+                check(word_re(t).search(all_en), f"{where} vocab {vid}: highlight term {t!r} not found in the article")
+            hit = next((s for s in sents if any(word_re(t).search(s["en"]) for t in v["m"])), None)
+            check(hit, f"{where} vocab {vid}: no sentence contains its terms")
+            v.setdefault("ctx", hit["en"])
         check(any(word_re(t).search(v["ctx"]) for t in v["m"]), f"{where} vocab {vid}: ctx lacks its own term")
         check(2 <= len(v.get("ex", [])) <= 3, f"{where} vocab {vid} ({v['expr']}): give 2-3 examples")
         form_keys = [norm_key(f) for f in v["forms"]]
@@ -126,8 +135,14 @@ def prepare(slug, raw):
             check(t.lower() not in seen, f"{where} term {t!r} used by two vocab entries")
             seen[t.lower()] = v["id"]
 
-    # ---- cloze items: either resolved already, or {id, i, ans, hint}
+    # ---- cloze items: either resolved already, or {id, i, ans, hint}; words with "seen" are blanked out of that sentence
     cloze, cids = [], set()
+    for v in data["vocab"]:
+        if v.get("seen"):
+            sm = re.search(r"\[\[(.+?)\]\]", v["seen"]["en"])
+            cloze.append(dict(id=v["id"], before=v["seen"]["en"][: sm.start()], ans=sm.group(1), after=v["seen"]["en"][sm.end():],
+                              hint=v["seen"]["hint"], szh=v["seen"]["zh"]))
+            cids.add(v["id"])
     for c in data["cloze"]:
         check(c["id"] in ids and c["id"] not in cids, f"{where} cloze id {c['id']} unknown or repeated")
         cids.add(c["id"])
@@ -137,6 +152,7 @@ def prepare(slug, raw):
             check(len(ms) == 1, f"{where} cloze {c['id']}: {c['ans']!r} must appear exactly once in sentence {c['i']}")
             c = dict(id=c["id"], i=c["i"], before=s["en"][: ms[0].start()], ans=ms[0].group(0),
                      after=s["en"][ms[0].end():], hint=c["hint"])
+        c.setdefault("szh", sents[c["i"]]["zh"])
         cloze.append(c)
     check(cids == ids, f"{where} every vocab entry needs exactly one cloze item")
     data["cloze"] = cloze
@@ -224,7 +240,7 @@ def words_json(slug, meta, data):
         words.append(dict(
             id=v["id"], expr=v["expr"], zh=v["zh"], core=v["core"], forms=v["forms"], syn=v["syn"], note=v["note"],
             m=v["m"], ctx=v["ctx"], ex=v["ex"],
-            cloze=dict(before=c["before"], ans=c["ans"], after=c["after"], hint=c["hint"], szh=data["sents"][c["i"]]["zh"])))
+            cloze=dict(before=c["before"], ans=c["ans"], after=c["after"], hint=c["hint"], szh=c["szh"])))
     return dict(slug=slug, title=meta["title"], clips=data.get("clips"), words=words)
 
 

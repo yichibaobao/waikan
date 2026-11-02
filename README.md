@@ -156,9 +156,16 @@ python3 tools/build.py
           {"en": "He [[slumped onto]] the sofa.", "zh": "他瘫坐在沙发上。"}
         ]
         // "ctx" (the article sentence) is filled in automatically
+      },
+      {
+        // a word met outside the article text (e.g. in an example sentence): give "seen" instead of "m" and of a cloze item.
+        // seen.en replaces the article sentence everywhere (word card, 文章填空); the [[ ]] part is the blank.
+        "id": 39, "expr": "from scratch", "zh": "从零开始", "extra": true,   // extra = shown with the 新增 tag
+        "seen": {"en": "Making it [[from scratch]] is another story.", "zh": "从头自己做就是另一回事了。", "hint": "从零开始"},
+        "core": "from scratch", "forms": ["from scratch"], "syn": [], "ex": [ /* 2-3 examples as above */ ]
       }
     ],
-    "cloze": [                             // exactly one fill-in item per vocab entry
+    "cloze": [                             // exactly one fill-in item per vocab entry without "seen"
       {"id": 1, "i": 4, "ans": "slumps", "hint": "瘫坐在……上（注意动词词形）"}   // i = sentence index in "sents"
     ],
     "breakdown": {"en": "<one article sentence>", "points": ["拆解要点 1", "..."]}   // the "长句" tab: a long sentence taken apart
