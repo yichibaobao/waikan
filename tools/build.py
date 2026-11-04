@@ -26,6 +26,7 @@ import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tts_text import text_hash, clip_items, clips_hash  # noqa: E402
+from refs import resolve_refs  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOLS = os.path.join(ROOT, "tools")
@@ -167,6 +168,7 @@ def prepare(slug, raw):
     # ---- derived numbers for the home page
     meta["words"] = sum(len(s["en"].split()) for s in sents)
     meta["vocab"] = len(data["vocab"])
+    meta["fresh"] = sum(1 for v in data["vocab"] if not v.get("ref"))   # words first taught here (refs are reviewed under their own article)
     return meta, data
 
 
@@ -236,6 +238,8 @@ def words_json(slug, meta, data):
     cl = {c["id"]: c for c in data["cloze"]}
     words = []
     for v in data["vocab"]:
+        if v.get("ref"):
+            continue
         c = cl[v["id"]]
         words.append(dict(
             id=v["id"], expr=v["expr"], zh=v["zh"], core=v["core"], forms=v["forms"], syn=v["syn"], note=v["note"],
@@ -289,6 +293,8 @@ def main():
     check(slugs, "no articles found in content/")
     for slug in slugs:
         raw = json.load(open(os.path.join(CONTENT, slug, "article.json"), encoding="utf-8"))
+        err = resolve_refs(slug, raw, CONTENT)
+        check(not err, err)
         meta, data = prepare(slug, raw)
         attach_audio(slug, meta, data, raw)
         attach_clips(slug, data, raw)
@@ -315,7 +321,8 @@ def main():
         elif os.path.isfile(lj):
             os.remove(lj)
         index.append(dict(slug=slug, title=meta["title"], short=meta["short"], date=meta["date"], clips=bool(data.get("clips")), ls=ls,
-                          w=[[v["id"], v["expr"], v["zh"]] for v in data["vocab"]]))
+                          w=[[v["id"], v["expr"], v["zh"]] for v in data["vocab"] if not v.get("ref")],
+                          r=[v["ref"] for v in data["vocab"] if v.get("ref")]))
         metas.append(meta)
         print(f"  a/{slug}/index.html  {len(page.encode('utf-8')) // 1024} KB  ({meta['vocab']} words, {len(data['sents'])} sentences)")
 
@@ -327,7 +334,7 @@ def main():
     open(os.path.join(ROOT, "review", "index.html"), "w", encoding="utf-8").write(rv)
     print(f"  review/index.html  ({sum(len(a['w']) for a in index)} words)")
     site = dict(articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
-                               source=m["source"], words=m["words"], vocab=m["vocab"], lsKey=m["lsKey"], audio=m["audio"]) for m in metas])
+                               source=m["source"], words=m["words"], vocab=m["vocab"], fresh=m["fresh"], lsKey=m["lsKey"], audio=m["audio"]) for m in metas])
     payload = json.dumps(site, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     home = home_tpl.replace("__SITE__", payload)
     syntax_check(home, "home")

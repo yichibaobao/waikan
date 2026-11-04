@@ -39,6 +39,20 @@ Never edit `index.html` or `a/**` by hand; they are overwritten by the build.
 Changing a template or a file in `tools/shared/` and re-running the build updates every page at once. Nothing else is needed to feed the review page:
 every new article's words join the review plan automatically (the build writes `a/<slug>/words.json` and the word index inside `review/index.html`).
 
+## Unit tests (every three articles)
+
+After every three articles comes a unit test: a new article (`content/unit-<n>/`, `meta.short` "第 n 单元测试", tag "单元测试")
+written with about 70 expressions already taught, mostly from the unit's three articles plus a few older ones. It teaches no new words;
+the learner reads it to check what they can understand unaided. Its vocab entries point at the original words:
+
+```jsonc
+{"id": 1, "ref": "konbini:15", "m": ["count on"]}     // the highlight term in the unit text; one cloze item per entry as usual
+```
+
+The build (and `make_audio.py`) copies the gloss, note, forms and examples from the original (`tools/refs.py`). Answers in the unit test feed the
+original word's review schedule (`<slug>:<id>` of the original), so the review page and the home page totals do not count these words twice;
+the review page's 总考 can still pick the unit test as its scope. Unit 1 = articles 1-3 (finders-keepers, long-live-cash, konbini).
+
 ## Quiz types, review and exam
 
 Six question types (`tools/shared/quizkit.js`), used by the 自测 tab of every article and by the review page:

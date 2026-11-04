@@ -29,6 +29,7 @@ import soundfile as sf
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tts_text import spoken_text, text_hash, clip_items, clips_hash  # noqa: E402
+from refs import resolve_refs  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SR = 24000  # Kokoro's native sample rate
@@ -59,6 +60,9 @@ def main():
     from kokoro_onnx import Kokoro
 
     raw = json.load(open(os.path.join(ROOT, "content", a.slug, "article.json"), encoding="utf-8"))
+    err = resolve_refs(a.slug, raw, os.path.join(ROOT, "content"))
+    if err:
+        sys.exit(err)
     pronounce = raw["meta"].get("pronounce", {})
     k = Kokoro(a.model, a.voices)
     if a.only != "clips":

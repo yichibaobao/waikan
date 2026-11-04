@@ -409,8 +409,9 @@ function renderReview(){
 }
 
 /* ---------- exam tab ---------- */
+function inScope(w, scope){ return scope === 'all' || w.slug === scope || AMAP[scope].r.indexOf(w.key) >= 0; }   /* r: the words a unit test points at */
 function scopeKeys(scope){
-  return ALL.filter(function(w){ return (scope === 'all' || w.slug === scope) && usable(w.key, ui.exMode); }).map(function(w){ return w.key; });
+  return ALL.filter(function(w){ return inScope(w, scope) && usable(w.key, ui.exMode); }).map(function(w){ return w.key; });
 }
 function histCard(title, kind){
   const ex = srsLoad().ex.filter(function(e){ return e.k === kind; }).slice(-5).reverse();
@@ -428,7 +429,7 @@ function renderExam(){
   if (ui.exScope !== 'all' && !AMAP[ui.exScope]) ui.exScope = 'all';
   const sel = h('select', {class:'sel', id:'exScope', 'aria-label':'考试范围'});
   sel.append(h('option', {value:'all'}, '全部文章（' + ALL.length + ' 个词）'));
-  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + a.w.length + ' 个词）')); });
+  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + (a.w.length + a.r.length) + ' 个词）')); });
   sel.value = ui.exScope;
   sel.addEventListener('change', function(){ ui.exScope = sel.value; saveUi(); renderExam(); });
   const avail = scopeKeys(ui.exScope).length;

@@ -458,7 +458,7 @@ function metaText(id){
   if (r) bits.push('复习计划：' + srsStageText(r, Date.now()));
   return bits.join(' · ');
 }
-function srsKey(id){ return SLUG + ':' + id; }
+function srsKey(id){ return VMAP[id].ref || SLUG + ':' + id; }   /* a unit-test word reviews as the word it points at */
 function statusSeg(id, after){
   const seg = h('div', {class:'seg', role:'group', 'aria-label':'学习状态'});
   const btns = {};
@@ -488,7 +488,7 @@ function wordCard(v){
     if (vFilter !== 'all') renderWords();
   });
   return h('article', {class:'word', 'data-id':v.id},
-    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null), speakBtn('w' + v.id, v.core)), seg),
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),

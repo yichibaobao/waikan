@@ -1,0 +1,1401 @@
+{
+ "meta": {
+  "slug": "unit-1",
+  "date": "2026-11-05",
+  "title": "From scratch, every morning: the quiet arithmetic of a small-town bakery",
+  "deck": "Unit test 1. A family bakery in an ageing Japanese town, told with 73 expressions from the first three articles.",
+  "short": "第 1 单元测试",
+  "tags": [
+   "单元测试",
+   "第 1–3 篇"
+  ],
+  "source": {
+   "type": "original"
+  },
+  "note": "第 1 单元测试：用前三篇学过的 73 个表达写成的新文章。建议先关掉“标出生词”和“显示译文”，看自己能读懂多少，再对照讲解。这里的生词和原文章共用复习进度。这是一篇原创练习文章，人物和店铺是虚构的。",
+  "pronounce": {
+   "1964": "nineteen sixty-four"
+  }
+ },
+ "data": {
+  "sents": [
+   {
+    "kind": "title",
+    "en": "From scratch, every morning: the quiet arithmetic of a small-town bakery",
+    "zh": "每天清晨从头做起：一家小镇面包店的精打细算",
+    "notes": [
+     "from scratch：从零开始、用原材料自己做。面包店每天从面粉开始做面包，字面意思和引申义都说得通。",
+     "arithmetic：算术，这里指经营上要算的账。the quiet arithmetic = 不声不响的精打细算。"
+    ]
+   },
+   {
+    "kind": "sub",
+    "en": "In an ageing town where shops sit empty, one family bakery has survived for 60 years.",
+    "zh": "在一个老龄化、店铺纷纷空置的小镇上，一家家庭面包店已经撑了六十年。",
+    "notes": [
+     "where 引导定语从句，修饰 town。",
+     "sit empty：空着、闲置。",
+     "has survived for 60 years：现在完成时加 for，表示从过去一直持续到现在。"
+    ]
+   },
+   {
+    "kind": "sub",
+    "en": "How long it can keep going is another story.",
+    "zh": "它还能撑多久，就是另一回事了。",
+    "notes": [
+     "How long it can keep going 是名词性从句作主语，所以用陈述语序 it can，不是 can it。",
+     "X is another story：X 则另当别论、X 是另一回事。"
+    ]
+   },
+   {
+    "kind": "body",
+    "en": "Most mornings, Kenji Sato is at work by four, long before the first commuters slump onto the early train.",
+    "zh": "大多数早上，佐藤健二四点前就开工了，比第一批通勤的人瘫坐上早班车要早得多。",
+    "notes": [
+     "by four：四点之前。by + 时间 = 不晚于某个时间。",
+     "long before：早在……之前很久。",
+     "slump onto：瘫坐到……上，写出通勤者没睡醒的样子。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "He makes everything from flour, butter and patience, and he is in no hurry to change.",
+    "zh": "他用面粉、黄油和耐心做出所有东西，也一点都不急着改变。",
+    "notes": [
+     "flour, butter and patience：前两样是真材料，第三样是比喻，并列在一起有点幽默。",
+     "be in no hurry to do sth：一点也不急着做某事。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "His grandfather opened the shop in 1964, and the oven, the scales and the wooden till have stayed where they were ever since.",
+    "zh": "他祖父 1964 年开了这家店，烤炉、秤和木头收银台从那以后就一直放在原处。",
+    "notes": [
+     "scales：秤，这个意思常用复数。",
+     "till：收银台（英式）。",
+     "have stayed ... ever since：现在完成时配 ever since，“从那以后一直……”。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "Walking in feels like stepping into a time capsule.",
+    "zh": "走进店里，就像走进了一个时间胶囊。",
+    "notes": [
+     "Walking in 是动名词作主语。feel like + 动名词：感觉像在做某事。",
+     "time capsule：时间胶囊，比喻一切都停留在过去的地方。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "On Saturdays customers queue out of the door, and a surprising number of them are young people from the city with nowhere to be.",
+    "zh": "每到周六，顾客一直排到门外，其中年轻人多得让人意外，都是从城里来、没什么急事要赶的人。",
+    "notes": [
+     "queue out of the door：队伍排到门外。queue 作动词是英式用法。",
+     "a surprising number of：数量多得让人意外，后接复数名词。",
+     "with nowhere to be：没有要赶去的地方，也就是不赶时间。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "The bakery is famously cash-only.",
+    "zh": "这家面包店只收现金，这一点出了名。",
+    "notes": [
+     "famously：出了名地。",
+     "cash-only：只收现金，用连字符连成一个形容词。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Its prices are gloriously dull: a loaf has cost the same for a decade.",
+    "zh": "它的价格乏味得可爱：一条面包十年都没涨过价。",
+    "notes": [
+     "gloriously dull：乏味得可爱。用褒义的 gloriously 修饰贬义的 dull，是带着欣赏的反话。",
+     "冒号后面具体解释“乏味”指什么：价格十年不变。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Regulars count out coins at the counter, while visitors fumble for their wallets and look around for a card reader that is not there.",
+    "zh": "老顾客在柜台前一枚一枚数硬币，外地来的人则手忙脚乱地找钱包，还四处找根本没有的刷卡机。",
+    "notes": [
+     "regulars：常客、老顾客。",
+     "count out：一个一个地数出来。",
+     "fumble for：笨手笨脚地摸找。",
+     "while 连接对比的两组人：老顾客从容，外地人慌乱。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Mr Sato sees it differently from his younger customers: card firms take a slice of every sale, and he already lives on thin margins.",
+    "zh": "佐藤先生和年轻顾客看法不同：信用卡公司每笔交易都要抽走一块，而他本来利润就很薄。",
+    "notes": [
+     "see it differently：看法不同。",
+     "a slice of：……的一部分（像切下的一片）。",
+     "thin margins：利润微薄。live on thin margins = 靠很薄的利润过日子。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Cash, he argues, is not broken, so there is no reason to fix it.",
+    "zh": "他说，现金又没坏，没理由去修它。",
+    "notes": [
+     "he argues 是插入语。",
+     "化用了俗语 If it ain't broke, don't fix it（没坏就别修），意思是没有问题就不必改。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Counterintuitively, refusing cards may even save him money.",
+    "zh": "和直觉相反，不收卡反而可能让他省钱。",
+    "notes": [
+     "counterintuitively：与直觉相反地，放在句首修饰整句。",
+     "refusing cards 是动名词作主语。save sb money = 给某人省钱。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Whereas a card payment costs him a fee, a coin dropped into the till costs him nothing extra.",
+    "zh": "刷卡付款要付他一笔手续费，而一枚丢进收银台的硬币不会让他多花一分钱。",
+    "notes": [
+     "whereas：而、然而，用来对比两件事。",
+     "dropped into the till 是过去分词短语，修饰 a coin。",
+     "nothing extra：没有额外的。形容词放在 nothing 后面。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "The real strain on the business is not money but people.",
+    "zh": "这门生意真正的压力不在钱，而在人。",
+    "notes": [
+     "the strain on sth：……承受的压力。",
+     "not A but B：不是 A 而是 B。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Like the rest of Japan, the town's working-age population is shrinking.",
+    "zh": "和日本其他地方一样，镇上的劳动年龄人口在减少。",
+    "notes": [
+     "Like the rest of Japan：和日本其他地方一样。",
+     "working-age population：劳动年龄人口；shrink：缩小、减少。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Bakers willing to start at four in the morning have grown scarce, and the job is among the first to go unfilled.",
+    "zh": "愿意凌晨四点开工的面包师已经越来越少，这份工作是最先招不到人的那一批。",
+    "notes": [
+     "willing to start at four in the morning 是形容词短语后置，修饰 bakers。",
+     "grow scarce：变得稀缺，这里用现在完成时 have grown scarce。",
+     "among the first to do sth：最早……的那一批之一。go unfilled：空着没人填。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "For weeks on end last winter, Mr Sato and his wife covered the gaps themselves, working almost around the clock.",
+    "zh": "去年冬天，佐藤夫妇一连好几周自己顶上空缺，几乎是昼夜不停地干。",
+    "notes": [
+     "for weeks on end：一连好几周。",
+     "cover the gaps：填补空缺。",
+     "working almost around the clock 是伴随状语，说明他们怎么填补空缺。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "His son, who has long lived in Osaka, has grudgingly offered to help at weekends.",
+    "zh": "他儿子早就住在大阪，勉勉强强地答应周末来帮忙。",
+    "notes": [
+     "have long + 过去分词：早就……、很久以来一直……。has long lived in Osaka = 在大阪住了很久。",
+     "grudgingly：不情愿地、勉强地。",
+     "at weekends 是英式说法，美式说 on weekends。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Mr Sato does not take that for granted.",
+    "zh": "佐藤先生并不觉得这是理所当然的。",
+    "notes": [
+     "take sth for granted：把……视为理所当然。that 指儿子来帮忙这件事。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "A consultant from the city once tried to coax him into opening a second shop, with a card reader, self-checkout and a website.",
+    "zh": "城里来的一位顾问曾经想劝他开第二家店，装刷卡机、自助收银，再做个网站。",
+    "notes": [
+     "coax sb into doing sth：好言好语地哄劝某人做某事。",
+     "with a card reader, self-checkout and a website 说明这家新店的样子。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "The incentive was clear: more customers and a hefty share of the tourist trade.",
+    "zh": "好处很明显：更多顾客，还能分到游客生意的一大块。",
+    "notes": [
+     "incentive：激励、诱因，让人愿意去做某事的好处。",
+     "a hefty share of：相当大的一部分。",
+     "冒号后面解释 incentive 具体是什么。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "Mr Sato listened politely, handed over a free loaf, and said no.",
+    "zh": "佐藤先生礼貌地听完，递上一条免费的面包，然后拒绝了。",
+    "notes": [
+     "三个动词并列：listened, handed over, said，节奏很快，写出他拒绝得干脆。",
+     "hand over：交给、递过去。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "His reasoning was more rational than it looked.",
+    "zh": "他的理由比看上去更合理。",
+    "notes": [
+     "rational：理性的、合乎道理的。",
+     "more rational than it looked：it 指 his reasoning，句尾省略了 rational。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "A bigger business would rest on borrowed money and leave little room for error; a small one can live with a bad month.",
+    "zh": "规模大一些的生意要靠借来的钱撑着，几乎容不得出错；小店则扛得住一个不好的月份。",
+    "notes": [
+     "分号连接两个对比的分句：大生意怎样，小生意怎样。",
+     "rest on：建立在……之上。room for error：出错的余地。",
+     "live with：忍受、接受（不好的情况）。a small one 的 one 代替 business。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "Every shortcut, he believes, would chip away at what made the shop indispensable in the first place.",
+    "zh": "他认为，每一种省事的办法，都会一点点削弱这家店当初让人离不开的东西。",
+    "notes": [
+     "he believes 是插入语。",
+     "chip away at：一点点削弱。",
+     "what made the shop indispensable 是名词性从句，作 at 的宾语。in the first place：当初、原本。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "Over the decades, the bakery has grown into something like a public utility.",
+    "zh": "几十年下来，这家面包店已经成了一种近乎公共设施的存在。",
+    "notes": [
+     "over the decades：几十年来。",
+     "grow into：发展成。public utility：公用事业，比喻人人离不开。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "The town has come to count on it, largely because it is always open.",
+    "zh": "镇上的人渐渐依赖上了它，主要是因为它总是开着门。",
+    "notes": [
+     "come to do sth：渐渐变得……。",
+     "count on：依靠、指望。",
+     "largely：主要地、在很大程度上。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Neighbours leave parcels there for each other to collect, and anyone who finds a lost possession hands it in at the counter.",
+    "zh": "邻居们把包裹放在店里，让彼此来取；谁捡到别人丢的东西，也会交到柜台。",
+    "notes": [
+     "for each other to collect：不定式的逻辑主语用 for 引出，意思是“让彼此来取”。",
+     "possession：所有物、个人物品，常用复数 possessions。",
+     "hand sth in：上交。宾语是代词时要放中间：hand it in。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Reportedly, the shop has returned more lost wallets than the local police box.",
+    "zh": "据说，这家店归还的失物钱包比当地的派出所还多。",
+    "notes": [
+     "reportedly：据说、据报道，放在句首表示消息来源不是作者本人。",
+     "police box：日本的派出所（交番），上一单元的第一篇讲过。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "In practice, it works as a small civic centre.",
+    "zh": "实际上，它起着一个小型社区中心的作用。",
+    "notes": [
+     "in practice：实际上（与 in theory 相对）。",
+     "civic：市民的、公共的。civic centre：社区中心、市民活动中心。centre 是英式拼写。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Its virtue lies in the people who stop by, not merely in what they buy.",
+    "zh": "它的好处在于来店里的人，而不仅仅在于他们买了什么。",
+    "notes": [
+     "virtue：优点、长处。",
+     "lie in：在于。两个 in 短语并列：lies in the people ... not merely in what they buy。",
+     "stop by：顺便来一下。not merely：不仅仅。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "No amount of clever marketing will replace that.",
+    "zh": "再高明的营销也代替不了这一点。",
+    "notes": [
+     "no amount of ... will ...：再多的……也不会……。",
+     "that 指上一句说的“来店里的人”。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Still, rising costs may soon tip the balance.",
+    "zh": "不过，不断上涨的成本可能很快就会打破平衡。",
+    "notes": [
+     "still 放句首是“不过、尽管如此”，表示转折。",
+     "tip the balance：打破平衡、起决定作用。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "Flour and electricity prices have crept upward for three years, and the savings that propped up the shop through bad times are running out.",
+    "zh": "面粉和电费三年来一直在慢慢上涨，而在困难时期撑住这家店的积蓄也快用完了。",
+    "notes": [
+     "creep upward：慢慢往上涨，crept 是 creep 的过去分词。",
+     "prop up：撑住。that propped up the shop through bad times 是定语从句，修饰 savings。",
+     "run out：用完、耗尽，进行时表示快用完了。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "Sooner or later, Mr Sato will have to decide whether the bakery stands to gain more from changing than from staying the same.",
+    "zh": "迟早，佐藤先生得想清楚：对面包店来说，改变和不变，哪个更有好处。",
+    "notes": [
+     "sooner or later：迟早。",
+     "stand to gain：有望得到好处。",
+     "more from changing than from staying the same：比较两种做法带来的好处。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "For now, he would rather stick with what he knows than give way.",
+    "zh": "眼下，他宁可守着自己熟悉的那一套，也不愿让步。",
+    "notes": [
+     "would rather A than B：宁愿 A 也不愿 B，A、B 都用动词原形。",
+     "stick with：坚持用、不换掉。give way：让步、屈服。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "By the time the shop closes each afternoon, almost nothing has gone to waste.",
+    "zh": "每天下午关门的时候，几乎没有东西被浪费掉。",
+    "notes": [
+     "by the time ...：到……的时候，主句常用完成时：has gone to waste。",
+     "go to waste：被浪费。gone 是过去分词。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "It is, in its own way, a lesson that travels.",
+    "zh": "从它自己的角度看，这是一个到别处也适用的道理。",
+    "notes": [
+     "in its own way：以它自己的方式。",
+     "a lesson that travels：能“旅行”的道理，也就是放到别的地方也适用的经验。"
+    ],
+    "p": 6
+   }
+  ],
+  "vocab": [
+   {
+    "id": 1,
+    "ref": "finders-keepers:39",
+    "m": [
+     "From scratch"
+    ]
+   },
+   {
+    "id": 2,
+    "ref": "long-live-cash:27",
+    "m": [
+     "arithmetic"
+    ]
+   },
+   {
+    "id": 3,
+    "ref": "konbini:37",
+    "m": [
+     "ageing"
+    ]
+   },
+   {
+    "id": 4,
+    "ref": "konbini:22",
+    "m": [
+     "sit empty"
+    ]
+   },
+   {
+    "id": 5,
+    "ref": "long-live-cash:44",
+    "m": [
+     "survived"
+    ]
+   },
+   {
+    "id": 6,
+    "ref": "finders-keepers:9",
+    "m": [
+     "another story"
+    ]
+   },
+   {
+    "id": 7,
+    "ref": "finders-keepers:1",
+    "m": [
+     "slump onto"
+    ]
+   },
+   {
+    "id": 8,
+    "ref": "long-live-cash:40",
+    "m": [
+     "in no hurry to"
+    ]
+   },
+   {
+    "id": 9,
+    "ref": "konbini:8",
+    "m": [
+     "till"
+    ]
+   },
+   {
+    "id": 10,
+    "ref": "long-live-cash:7",
+    "m": [
+     "time capsule"
+    ]
+   },
+   {
+    "id": 11,
+    "ref": "long-live-cash:45",
+    "m": [
+     "queue"
+    ]
+   },
+   {
+    "id": 12,
+    "ref": "long-live-cash:48",
+    "m": [
+     "a surprising number of"
+    ]
+   },
+   {
+    "id": 13,
+    "ref": "long-live-cash:49",
+    "m": [
+     "nowhere to be"
+    ]
+   },
+   {
+    "id": 14,
+    "ref": "konbini:23",
+    "m": [
+     "famously"
+    ]
+   },
+   {
+    "id": 15,
+    "ref": "finders-keepers:13",
+    "m": [
+     "gloriously dull"
+    ]
+   },
+   {
+    "id": 16,
+    "ref": "long-live-cash:3",
+    "m": [
+     "count out"
+    ]
+   },
+   {
+    "id": 17,
+    "ref": "long-live-cash:1",
+    "m": [
+     "fumble for"
+    ]
+   },
+   {
+    "id": 18,
+    "ref": "long-live-cash:47",
+    "m": [
+     "card reader"
+    ]
+   },
+   {
+    "id": 19,
+    "ref": "long-live-cash:50",
+    "m": [
+     "sees it differently"
+    ]
+   },
+   {
+    "id": 20,
+    "ref": "long-live-cash:16",
+    "m": [
+     "a slice of"
+    ]
+   },
+   {
+    "id": 21,
+    "ref": "long-live-cash:17",
+    "m": [
+     "thin margins"
+    ]
+   },
+   {
+    "id": 22,
+    "ref": "long-live-cash:58",
+    "m": [
+     "not broken"
+    ]
+   },
+   {
+    "id": 23,
+    "ref": "finders-keepers:15",
+    "m": [
+     "Counterintuitively"
+    ]
+   },
+   {
+    "id": 24,
+    "ref": "long-live-cash:61",
+    "m": [
+     "Whereas"
+    ]
+   },
+   {
+    "id": 25,
+    "ref": "long-live-cash:60",
+    "m": [
+     "nothing extra"
+    ]
+   },
+   {
+    "id": 26,
+    "ref": "konbini:2",
+    "m": [
+     "strain on"
+    ]
+   },
+   {
+    "id": 27,
+    "ref": "konbini:26",
+    "m": [
+     "working-age population"
+    ]
+   },
+   {
+    "id": 28,
+    "ref": "long-live-cash:28",
+    "m": [
+     "shrinking"
+    ]
+   },
+   {
+    "id": 29,
+    "ref": "konbini:5",
+    "m": [
+     "grown scarce"
+    ]
+   },
+   {
+    "id": 30,
+    "ref": "konbini:43",
+    "m": [
+     "among the first to"
+    ]
+   },
+   {
+    "id": 31,
+    "ref": "konbini:27",
+    "m": [
+     "go unfilled"
+    ]
+   },
+   {
+    "id": 32,
+    "ref": "konbini:30",
+    "m": [
+     "For weeks on end"
+    ]
+   },
+   {
+    "id": 33,
+    "ref": "konbini:29",
+    "m": [
+     "covered the gaps"
+    ]
+   },
+   {
+    "id": 34,
+    "ref": "konbini:24",
+    "m": [
+     "around the clock"
+    ]
+   },
+   {
+    "id": 35,
+    "ref": "long-live-cash:64",
+    "m": [
+     "has long"
+    ]
+   },
+   {
+    "id": 36,
+    "ref": "long-live-cash:18",
+    "m": [
+     "grudgingly"
+    ]
+   },
+   {
+    "id": 37,
+    "ref": "konbini:38",
+    "m": [
+     "for granted"
+    ]
+   },
+   {
+    "id": 38,
+    "ref": "long-live-cash:8",
+    "m": [
+     "coax"
+    ]
+   },
+   {
+    "id": 39,
+    "ref": "long-live-cash:65",
+    "m": [
+     "incentive"
+    ]
+   },
+   {
+    "id": 40,
+    "ref": "konbini:19",
+    "m": [
+     "hefty share"
+    ]
+   },
+   {
+    "id": 41,
+    "ref": "long-live-cash:15",
+    "m": [
+     "handed over"
+    ]
+   },
+   {
+    "id": 42,
+    "ref": "long-live-cash:2",
+    "m": [
+     "rational"
+    ]
+   },
+   {
+    "id": 43,
+    "ref": "konbini:16",
+    "m": [
+     "rest on"
+    ]
+   },
+   {
+    "id": 44,
+    "ref": "konbini:17",
+    "m": [
+     "room for error"
+    ]
+   },
+   {
+    "id": 45,
+    "ref": "long-live-cash:54",
+    "m": [
+     "live with"
+    ]
+   },
+   {
+    "id": 46,
+    "ref": "konbini:34",
+    "m": [
+     "chip away at"
+    ]
+   },
+   {
+    "id": 47,
+    "ref": "konbini:35",
+    "m": [
+     "indispensable"
+    ]
+   },
+   {
+    "id": 48,
+    "ref": "konbini:36",
+    "m": [
+     "in the first place"
+    ]
+   },
+   {
+    "id": 49,
+    "ref": "konbini:11",
+    "m": [
+     "grown into"
+    ]
+   },
+   {
+    "id": 50,
+    "ref": "konbini:12",
+    "m": [
+     "public utility"
+    ]
+   },
+   {
+    "id": 51,
+    "ref": "konbini:15",
+    "m": [
+     "count on"
+    ]
+   },
+   {
+    "id": 52,
+    "ref": "finders-keepers:26",
+    "m": [
+     "largely"
+    ]
+   },
+   {
+    "id": 53,
+    "ref": "konbini:13",
+    "m": [
+     "collect"
+    ]
+   },
+   {
+    "id": 54,
+    "ref": "finders-keepers:30",
+    "m": [
+     "possession"
+    ]
+   },
+   {
+    "id": 55,
+    "ref": "finders-keepers:32",
+    "m": [
+     "hands it in"
+    ]
+   },
+   {
+    "id": 56,
+    "ref": "finders-keepers:34",
+    "m": [
+     "Reportedly"
+    ]
+   },
+   {
+    "id": 57,
+    "ref": "finders-keepers:33",
+    "m": [
+     "In practice"
+    ]
+   },
+   {
+    "id": 58,
+    "ref": "finders-keepers:25",
+    "m": [
+     "civic"
+    ]
+   },
+   {
+    "id": 59,
+    "ref": "finders-keepers:37",
+    "m": [
+     "virtue"
+    ]
+   },
+   {
+    "id": 60,
+    "ref": "finders-keepers:35",
+    "m": [
+     "lies in"
+    ]
+   },
+   {
+    "id": 61,
+    "ref": "finders-keepers:36",
+    "m": [
+     "not merely"
+    ]
+   },
+   {
+    "id": 62,
+    "ref": "finders-keepers:38",
+    "m": [
+     "No amount of"
+    ]
+   },
+   {
+    "id": 63,
+    "ref": "long-live-cash:26",
+    "m": [
+     "tip the balance"
+    ]
+   },
+   {
+    "id": 64,
+    "ref": "long-live-cash:23",
+    "m": [
+     "crept upward"
+    ]
+   },
+   {
+    "id": 65,
+    "ref": "konbini:39",
+    "m": [
+     "propped up"
+    ]
+   },
+   {
+    "id": 66,
+    "ref": "long-live-cash:25",
+    "m": [
+     "running out"
+    ]
+   },
+   {
+    "id": 67,
+    "ref": "konbini:42",
+    "m": [
+     "Sooner or later"
+    ]
+   },
+   {
+    "id": 68,
+    "ref": "long-live-cash:35",
+    "m": [
+     "stands to gain"
+    ]
+   },
+   {
+    "id": 69,
+    "ref": "long-live-cash:33",
+    "m": [
+     "stick with"
+    ]
+   },
+   {
+    "id": 70,
+    "ref": "long-live-cash:36",
+    "m": [
+     "give way"
+    ]
+   },
+   {
+    "id": 71,
+    "ref": "finders-keepers:29",
+    "m": [
+     "By the time"
+    ]
+   },
+   {
+    "id": 72,
+    "ref": "konbini:21",
+    "m": [
+     "gone to waste"
+    ]
+   },
+   {
+    "id": 73,
+    "ref": "finders-keepers:14",
+    "m": [
+     "a lesson that travels"
+    ]
+   }
+  ],
+  "cloze": [
+   {
+    "id": 1,
+    "i": 0,
+    "ans": "scratch",
+    "hint": "从零开始（from ___）"
+   },
+   {
+    "id": 2,
+    "i": 0,
+    "ans": "arithmetic",
+    "hint": "算账、算术"
+   },
+   {
+    "id": 3,
+    "i": 1,
+    "ans": "ageing",
+    "hint": "老龄化的（英式拼写）"
+   },
+   {
+    "id": 4,
+    "i": 1,
+    "ans": "empty",
+    "hint": "空着（sit ___）"
+   },
+   {
+    "id": 5,
+    "i": 1,
+    "ans": "survived",
+    "hint": "存活、留存（注意词形）"
+   },
+   {
+    "id": 6,
+    "i": 2,
+    "ans": "story",
+    "hint": "另当别论（another ___）"
+   },
+   {
+    "id": 7,
+    "i": 3,
+    "ans": "slump",
+    "hint": "瘫坐（___ onto）"
+   },
+   {
+    "id": 8,
+    "i": 4,
+    "ans": "hurry",
+    "hint": "不急着（in no ___ to）"
+   },
+   {
+    "id": 9,
+    "i": 5,
+    "ans": "till",
+    "hint": "收银台"
+   },
+   {
+    "id": 10,
+    "i": 6,
+    "ans": "capsule",
+    "hint": "时间胶囊（time ___）"
+   },
+   {
+    "id": 11,
+    "i": 7,
+    "ans": "queue",
+    "hint": "排队（英式）"
+   },
+   {
+    "id": 12,
+    "i": 7,
+    "ans": "surprising",
+    "hint": "多得出人意料（a ___ number of）"
+   },
+   {
+    "id": 13,
+    "i": 7,
+    "ans": "nowhere",
+    "hint": "无处要赶（___ to be）"
+   },
+   {
+    "id": 14,
+    "i": 8,
+    "ans": "famously",
+    "hint": "出了名地"
+   },
+   {
+    "id": 15,
+    "i": 9,
+    "ans": "gloriously",
+    "hint": "……得可爱（___ dull）"
+   },
+   {
+    "id": 16,
+    "i": 10,
+    "ans": "count",
+    "hint": "数出（___ out）"
+   },
+   {
+    "id": 17,
+    "i": 10,
+    "ans": "fumble",
+    "hint": "摸索着找（___ for）"
+   },
+   {
+    "id": 18,
+    "i": 10,
+    "ans": "reader",
+    "hint": "读卡器（card ___）"
+   },
+   {
+    "id": 19,
+    "i": 11,
+    "ans": "differently",
+    "hint": "看法不同（see it ___）"
+   },
+   {
+    "id": 20,
+    "i": 11,
+    "ans": "slice",
+    "hint": "一部分（a ___ of）"
+   },
+   {
+    "id": 21,
+    "i": 11,
+    "ans": "thin",
+    "hint": "微薄的（___ margins）"
+   },
+   {
+    "id": 22,
+    "i": 12,
+    "ans": "broken",
+    "hint": "没坏（not ___）"
+   },
+   {
+    "id": 23,
+    "i": 13,
+    "ans": "Counterintuitively",
+    "hint": "与直觉相反地"
+   },
+   {
+    "id": 24,
+    "i": 14,
+    "ans": "Whereas",
+    "hint": "而（表对比的连词）"
+   },
+   {
+    "id": 25,
+    "i": 14,
+    "ans": "extra",
+    "hint": "额外的（nothing ___）"
+   },
+   {
+    "id": 26,
+    "i": 15,
+    "ans": "strain",
+    "hint": "压力"
+   },
+   {
+    "id": 27,
+    "i": 16,
+    "ans": "population",
+    "hint": "人口（working-age ___）"
+   },
+   {
+    "id": 28,
+    "i": 16,
+    "ans": "shrinking",
+    "hint": "减少（注意词形）"
+   },
+   {
+    "id": 29,
+    "i": 17,
+    "ans": "scarce",
+    "hint": "稀缺的"
+   },
+   {
+    "id": 30,
+    "i": 17,
+    "ans": "among",
+    "hint": "……之一（___ the first to）"
+   },
+   {
+    "id": 31,
+    "i": 17,
+    "ans": "unfilled",
+    "hint": "空着没人填（go ___）"
+   },
+   {
+    "id": 32,
+    "i": 18,
+    "ans": "end",
+    "hint": "连续（for weeks on ___）"
+   },
+   {
+    "id": 33,
+    "i": 18,
+    "ans": "gaps",
+    "hint": "空缺"
+   },
+   {
+    "id": 34,
+    "i": 18,
+    "ans": "clock",
+    "hint": "昼夜不停（around the ___）"
+   },
+   {
+    "id": 35,
+    "i": 19,
+    "ans": "long",
+    "hint": "早就（has ___ lived）"
+   },
+   {
+    "id": 36,
+    "i": 19,
+    "ans": "grudgingly",
+    "hint": "不情愿地"
+   },
+   {
+    "id": 37,
+    "i": 20,
+    "ans": "granted",
+    "hint": "理所当然（take sth for ___）"
+   },
+   {
+    "id": 38,
+    "i": 21,
+    "ans": "coax",
+    "hint": "哄劝"
+   },
+   {
+    "id": 39,
+    "i": 22,
+    "ans": "incentive",
+    "hint": "激励、好处"
+   },
+   {
+    "id": 40,
+    "i": 22,
+    "ans": "hefty",
+    "hint": "相当大的（a ___ share）"
+   },
+   {
+    "id": 41,
+    "i": 23,
+    "ans": "handed",
+    "hint": "交给（___ over）"
+   },
+   {
+    "id": 42,
+    "i": 24,
+    "ans": "rational",
+    "hint": "理性的"
+   },
+   {
+    "id": 43,
+    "i": 25,
+    "ans": "rest",
+    "hint": "建立在（___ on）"
+   },
+   {
+    "id": 44,
+    "i": 25,
+    "ans": "room",
+    "hint": "余地（___ for error）"
+   },
+   {
+    "id": 45,
+    "i": 25,
+    "ans": "live",
+    "hint": "忍受、接受（___ with）"
+   },
+   {
+    "id": 46,
+    "i": 26,
+    "ans": "chip",
+    "hint": "削弱（___ away at）"
+   },
+   {
+    "id": 47,
+    "i": 26,
+    "ans": "indispensable",
+    "hint": "不可或缺的"
+   },
+   {
+    "id": 48,
+    "i": 26,
+    "ans": "first",
+    "hint": "当初（in the ___ place）"
+   },
+   {
+    "id": 49,
+    "i": 27,
+    "ans": "grown",
+    "hint": "发展成（过去分词）"
+   },
+   {
+    "id": 50,
+    "i": 27,
+    "ans": "utility",
+    "hint": "公用事业"
+   },
+   {
+    "id": 51,
+    "i": 28,
+    "ans": "count",
+    "hint": "依靠（___ on）"
+   },
+   {
+    "id": 52,
+    "i": 28,
+    "ans": "largely",
+    "hint": "主要地"
+   },
+   {
+    "id": 53,
+    "i": 29,
+    "ans": "collect",
+    "hint": "领取"
+   },
+   {
+    "id": 54,
+    "i": 29,
+    "ans": "possession",
+    "hint": "个人物品"
+   },
+   {
+    "id": 55,
+    "i": 29,
+    "ans": "hands",
+    "hint": "上交（___ it in）"
+   },
+   {
+    "id": 56,
+    "i": 30,
+    "ans": "Reportedly",
+    "hint": "据说"
+   },
+   {
+    "id": 57,
+    "i": 31,
+    "ans": "practice",
+    "hint": "实际上（in ___）"
+   },
+   {
+    "id": 58,
+    "i": 31,
+    "ans": "civic",
+    "hint": "市民的、公共的"
+   },
+   {
+    "id": 59,
+    "i": 32,
+    "ans": "virtue",
+    "hint": "优点、美德"
+   },
+   {
+    "id": 60,
+    "i": 32,
+    "ans": "lies",
+    "hint": "在于（___ in）"
+   },
+   {
+    "id": 61,
+    "i": 32,
+    "ans": "merely",
+    "hint": "不仅仅（not ___）"
+   },
+   {
+    "id": 62,
+    "i": 33,
+    "ans": "amount",
+    "hint": "再多的……也不（no ___ of）"
+   },
+   {
+    "id": 63,
+    "i": 34,
+    "ans": "tip",
+    "hint": "打破（___ the balance）"
+   },
+   {
+    "id": 64,
+    "i": 35,
+    "ans": "crept",
+    "hint": "慢慢爬（过去分词）"
+   },
+   {
+    "id": 65,
+    "i": 35,
+    "ans": "propped",
+    "hint": "撑住（注意词形）"
+   },
+   {
+    "id": 66,
+    "i": 35,
+    "ans": "running",
+    "hint": "耗尽（注意词形）"
+   },
+   {
+    "id": 67,
+    "i": 36,
+    "ans": "Sooner",
+    "hint": "迟早（___ or later）"
+   },
+   {
+    "id": 68,
+    "i": 36,
+    "ans": "gain",
+    "hint": "有望得益（stand to ___）"
+   },
+   {
+    "id": 69,
+    "i": 37,
+    "ans": "stick",
+    "hint": "坚持（___ with）"
+   },
+   {
+    "id": 70,
+    "i": 37,
+    "ans": "way",
+    "hint": "让步（give ___）"
+   },
+   {
+    "id": 71,
+    "i": 38,
+    "ans": "time",
+    "hint": "到……的时候（by the ___）"
+   },
+   {
+    "id": 72,
+    "i": 38,
+    "ans": "waste",
+    "hint": "浪费"
+   },
+   {
+    "id": 73,
+    "i": 39,
+    "ans": "travels",
+    "hint": "能推广的（a lesson that ___）"
+   }
+  ],
+  "breakdown": {
+   "en": "A bigger business would rest on borrowed money and leave little room for error; a small one can live with a bad month.",
+   "points": [
+    "分号把句子分成两半，前后对比：大生意 would ...，小生意 can ...。",
+    "前半句是虚拟语气 would：如果他把店做大，就会怎样。主语 A bigger business 后面有两个并列谓语：would rest on ... and leave ...。",
+    "rest on borrowed money：要靠借来的钱撑着；leave little room for error：几乎不能出错。",
+    "后半句 a small one 的 one 代替 business；live with a bad month = 扛得住一个不好的月份，用的是 can，表示现实中做得到。"
+   ]
+  }
+ }
+}

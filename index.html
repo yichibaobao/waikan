@@ -791,7 +791,7 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"articles":[{"slug":"konbini","date":"2026-11-03","title":"Always open, never enough hands: the strain on Japan's convenience stores","deck":"Japan's corner shops pay bills, post parcels and print documents at three in the morning. Keeping them that way is getting harder.","tags":["城市观察","人口与劳动"],"source":{"type":"original"},"words":485,"vocab":43,"lsKey":"wk-konbini-state","audio":true},{"slug":"long-live-cash","date":"2026-11-01","title":"Long live cash: why Japan is in no hurry to go cashless","deck":"In much of the rich world, tapping a phone has replaced fumbling for coins. In Japan the old habit survives for reasons that are more rational than they look.","tags":["经济观察","社会习惯"],"source":{"type":"original"},"words":479,"vocab":77,"lsKey":"wk-long-live-cash-state","audio":true},{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":39,"lsKey":"fk-state-v1","audio":true}]};
+const SITE = {"articles":[{"slug":"unit-1","date":"2026-11-05","title":"From scratch, every morning: the quiet arithmetic of a small-town bakery","deck":"Unit test 1. A family bakery in an ageing Japanese town, told with 73 expressions from the first three articles.","tags":["单元测试","第 1–3 篇"],"source":{"type":"original"},"words":604,"vocab":73,"fresh":0,"lsKey":"wk-unit-1-state","audio":true},{"slug":"konbini","date":"2026-11-03","title":"Always open, never enough hands: the strain on Japan's convenience stores","deck":"Japan's corner shops pay bills, post parcels and print documents at three in the morning. Keeping them that way is getting harder.","tags":["城市观察","人口与劳动"],"source":{"type":"original"},"words":485,"vocab":43,"fresh":43,"lsKey":"wk-konbini-state","audio":true},{"slug":"long-live-cash","date":"2026-11-01","title":"Long live cash: why Japan is in no hurry to go cashless","deck":"In much of the rich world, tapping a phone has replaced fumbling for coins. In Japan the old habit survives for reasons that are more rational than they look.","tags":["经济观察","社会习惯"],"source":{"type":"original"},"words":479,"vocab":77,"fresh":77,"lsKey":"wk-long-live-cash-state","audio":true},{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":39,"fresh":39,"lsKey":"fk-state-v1","audio":true}]};
 const A = SITE.articles;
 const WD = ['周日','周一','周二','周三','周四','周五','周六'];
 
@@ -811,7 +811,7 @@ A.forEach(function(a){
 });
 
 function metaBits(a){
-  const out = [h('span', null, a.words + ' 词'), h('span', null, a.vocab + ' 个生词表达')];
+  const out = [h('span', null, a.words + ' 词'), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
   if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));
@@ -826,7 +826,7 @@ function progRow(a){
 
 /* header stats */
 function renderStats(){
-  const vocab = A.reduce(function(n, a){ return n + a.vocab; }, 0);
+  const vocab = A.reduce(function(n, a){ return n + a.fresh; }, 0);
   const mastered = A.reduce(function(n, a){ return n + a.m; }, 0);
   const box = $('#stats');
   [['文章', A.length + ' 篇'], ['累计生词', String(vocab)], ['我已掌握', String(mastered)]].forEach(function(p){
@@ -838,7 +838,7 @@ function renderStats(){
 function renderReview(){
   const box = $('#rvBox');
   box.replaceChildren();
-  const total = A.reduce(function(n, a){ return n + a.vocab; }, 0);
+  const total = A.reduce(function(n, a){ return n + a.fresh; }, 0);
   if (!total) return;
   const known = {};
   A.forEach(function(a){ known[a.slug] = true; });

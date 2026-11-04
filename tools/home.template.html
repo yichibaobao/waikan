@@ -152,7 +152,7 @@ A.forEach(function(a){
 });
 
 function metaBits(a){
-  const out = [h('span', null, a.words + ' 词'), h('span', null, a.vocab + ' 个生词表达')];
+  const out = [h('span', null, a.words + ' 词'), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
   if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));
@@ -167,7 +167,7 @@ function progRow(a){
 
 /* header stats */
 function renderStats(){
-  const vocab = A.reduce(function(n, a){ return n + a.vocab; }, 0);
+  const vocab = A.reduce(function(n, a){ return n + a.fresh; }, 0);
   const mastered = A.reduce(function(n, a){ return n + a.m; }, 0);
   const box = $('#stats');
   [['文章', A.length + ' 篇'], ['累计生词', String(vocab)], ['我已掌握', String(mastered)]].forEach(function(p){
@@ -179,7 +179,7 @@ function renderStats(){
 function renderReview(){
   const box = $('#rvBox');
   box.replaceChildren();
-  const total = A.reduce(function(n, a){ return n + a.vocab; }, 0);
+  const total = A.reduce(function(n, a){ return n + a.fresh; }, 0);
   if (!total) return;
   const known = {};
   A.forEach(function(a){ known[a.slug] = true; });
