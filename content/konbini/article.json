@@ -1401,6 +1401,37 @@
       "zh": "每个人迟早都会犯这个错。"
      }
     ]
+   },
+   {
+    "id": 43,
+    "expr": "among the first to do sth",
+    "zh": "最早做某事的那一批之一",
+    "m": [
+     "among the first to"
+    ],
+    "note": "among 表示“在一群之中”，所以说的是“最早的几个之一”，不一定是第一个。反过来可以说 among the last to do sth（最晚的那一批）。也可以不接动词：among the first in line（排在最前面的几个人里）。",
+    "core": "among the first to",
+    "forms": [
+     "among the first to",
+     "among the first",
+     "among the last to"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She was [[among the first to]] arrive at the party.",
+      "zh": "她是最早到聚会的几个人之一。"
+     },
+     {
+      "en": "Our town was [[among the first to]] get fast internet.",
+      "zh": "我们镇是最早通上高速网络的地方之一。"
+     },
+     {
+      "en": "Nurses are often [[among the first to]] notice a problem.",
+      "zh": "护士往往是最早发现问题的人。"
+     }
+    ],
+    "extra": true
    }
   ],
   "cloze": [
@@ -1655,6 +1686,12 @@
     "i": 25,
     "ans": "Sooner",
     "hint": "迟早（___ or later）"
+   },
+   {
+    "id": 43,
+    "i": 9,
+    "ans": "among",
+    "hint": "在……之中（___ the first to）"
    }
   ],
   "breakdown": {
