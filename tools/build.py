@@ -45,7 +45,11 @@ SECTIONS = {
     "ko": dict(home="ko", review="review-ko", label="韩语入门", brand="韩语入门", h1="韩语入门", eyebrow="KOREAN FOR BEGINNERS",
                tagline="每天一小段：读、听、攒词、自测。", rtitle="词汇复习 · 韩语入门",
                foot2="韩语短文是为零基础学习者写的原创练习。"),
+    "ja": dict(home="ja", review="review-ja", label="日语中级", brand="日语中级", h1="日语中级", eyebrow="JAPANESE · INTERMEDIATE",
+               tagline="跟着网课，每课一页：单词、语法、短文、自测。", rtitle="词汇复习 · 日语中级",
+               foot2="单词和语法点按课程整理；讲解、例句和短文为原创练习。"),
 }
+JA_CHARS = "\u3040-\u30ff\u3005\u4e00-\u9fff"
 
 
 def die(msg):
@@ -63,7 +67,12 @@ def word_re(term):
 
 
 def norm_key(s):
-    return re.sub(r"[^a-z\uac00-\ud7a3]", "", s.lower())
+    return re.sub(r"[^a-z\uac00-\ud7a3" + JA_CHARS + "]", "", s.lower())
+
+
+def sent_len(text, lang):
+    """Words of a sentence; characters for Japanese, which has no spaces."""
+    return len(re.sub(r"[^" + JA_CHARS + r"A-Za-z0-9]", "", text)) if lang == "ja" else len(text.split())
 
 
 def prepare(slug, raw):
@@ -86,7 +95,7 @@ def prepare(slug, raw):
     meta.setdefault("lang", "en")
     check(meta["lang"] in SECTIONS, f"{where} meta.lang must be one of {sorted(SECTIONS)}")
     data["lang"] = meta["lang"]
-    ko = meta["lang"] == "ko"
+    ko = meta["lang"] in ("ko", "ja")       # both need a reading line (rom): romanization / kana
 
     # ---- sentences
     sents = data["sents"]
@@ -95,7 +104,7 @@ def prepare(slug, raw):
     for i, s in enumerate(sents):
         check(s["kind"] in ("title", "sub", "body"), f"{where} sentence {i}: bad kind")
         check(s.get("en") and s.get("zh"), f"{where} sentence {i}: en and zh are required")
-        check(not ko or s.get("rom"), f"{where} sentence {i}: Korean sentences need rom (romanization)")
+        check(not ko or s.get("rom"), f"{where} sentence {i}: Korean and Japanese sentences need rom (romanization / kana reading)")
         s["i"] = i
         s.setdefault("notes", [])
         if s["kind"] == "body":
@@ -137,6 +146,9 @@ def prepare(slug, raw):
             v.setdefault("ctx", hit["en"])
         check(any(word_re(t).search(v["ctx"]) for t in v["m"]), f"{where} vocab {vid}: ctx lacks its own term")
         check(2 <= len(v.get("ex", [])) <= 3, f"{where} vocab {vid} ({v['expr']}): give 2-3 examples")
+        for q in v.get("pick", []):
+            check(q.get("q") and len(q.get("opts", [])) >= 2 and 0 <= q.get("a", -1) < len(q["opts"]) and q.get("why"),
+                  f"{where} vocab {vid}: each pick needs q, 2+ opts, a valid answer index a and why")
         form_keys = [norm_key(f) for f in v["forms"]]
         for ex in v["ex"]:
             check(ex.get("en") and ex.get("zh"), f"{where} vocab {vid}: example needs en and zh")
@@ -181,7 +193,7 @@ def prepare(slug, raw):
     data.pop("questions", None)      # the old post-reading questions are no longer shown
 
     # ---- derived numbers for the home page
-    meta["words"] = sum(len(s["en"].split()) for s in sents)
+    meta["words"] = sum(sent_len(s["en"], meta["lang"]) for s in sents)
     meta["vocab"] = len(data["vocab"])
     meta["fresh"] = sum(1 for v in data["vocab"] if not v.get("ref"))   # words first taught here (refs are reviewed under their own article)
     return meta, data
@@ -258,22 +270,24 @@ def words_json(slug, meta, data):
         c = cl[v["id"]]
         words.append(dict(
             id=v["id"], expr=v["expr"], zh=v["zh"], core=v["core"], forms=v["forms"], syn=v["syn"], note=v["note"],
-            m=v["m"], ctx=v["ctx"], ex=v["ex"],
+            m=v["m"], ctx=v["ctx"], ex=v["ex"], **{k: v[k] for k in ("rom", "kind", "conn", "pick") if k in v},
             cloze=dict(before=c["before"], ans=c["ans"], after=c["after"], hint=c["hint"], szh=c["szh"])))
     return dict(slug=slug, title=meta["title"], clips=data.get("clips"), words=words)
 
 
 LISTEN_MIN, LISTEN_MAX = 5, 32      # words per article sentence that make a fair dictation
 LISTEN_MIN_KO = 2                   # Korean lessons are short and a Korean "word" carries its particle
+LISTEN_MIN_JA, LISTEN_MAX_JA = 8, 60   # Japanese: characters
 
 
 def listen_sents(data):
     """The article sentences the listening exam may use: the deck and the body, not too short and not too long."""
     out = []
-    lo = LISTEN_MIN_KO if data.get("lang") == "ko" else LISTEN_MIN
+    lang = data.get("lang")
+    lo, hi = {"ko": (LISTEN_MIN_KO, LISTEN_MAX), "ja": (LISTEN_MIN_JA, LISTEN_MAX_JA)}.get(lang, (LISTEN_MIN, LISTEN_MAX))
     for s in data["sents"]:
-        n = len(s["en"].split())
-        if s["kind"] != "title" and lo <= n <= LISTEN_MAX:
+        n = sent_len(s["en"], lang)
+        if s["kind"] != "title" and lo <= n <= hi:
             out.append(s)
     return out
 

@@ -20,7 +20,7 @@ const Clip = (function(){
       if (!('speechSynthesis' in window) || !text) return;
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = LANG === 'ko' ? 'ko-KR' : 'en-GB'; u.rate = 0.9;
+      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP'}[LANG]; u.rate = 0.9;
       speechSynthesis.speak(u);
     } catch(e){}
   }

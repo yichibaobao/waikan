@@ -60,11 +60,12 @@ def main():
     err = resolve_refs(a.slug, raw, os.path.join(ROOT, "content"))
     if err:
         sys.exit(err)
-    korean = raw["meta"].get("lang") == "ko"
-    a.engine = a.engine or ("edge" if korean else "kokoro")
+    lang = raw["meta"].get("lang", "en")
+    korean = lang == "ko"
+    a.engine = a.engine or ("edge" if lang in ("ko", "ja") else "kokoro")
     if a.engine == "edge":
         if a.voice == "af_heart":
-            a.voice = "ko-KR-SunHiNeural" if korean else "en-US-AriaNeural"
+            a.voice = {"ko": "ko-KR-SunHiNeural", "ja": "ja-JP-NanamiNeural"}.get(lang, "en-US-AriaNeural")
         if korean and a.speed == 0.95:
             a.speed = 0.85          # slower for beginners
         k = EdgeVoice()

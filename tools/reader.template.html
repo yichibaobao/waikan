@@ -50,6 +50,8 @@
 .show-zh .zh{display:block}
 .rom{display:none;margin:6px 0 0;font:400 14px/1.6 var(--font-ui);color:var(--muted);letter-spacing:.01em}
 .show-rom .rom{display:block}
+html[data-lang="ja"] .w-rom{display:block}
+.g-conn{margin:6px 0;font-size:14.5px;line-height:1.6}
 .note{margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:120px}
 .note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .note-nav{display:flex;gap:6px}
@@ -342,7 +344,7 @@ function renderArticle(){
     const el = h(b.type === 'title' ? 'h1' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
     b.idx.forEach(function(i, k){ if (k > 0) el.append(' '); el.append(sentSpan(S[i])); });
     sec.append(el);
-    if (LANG === 'ko') sec.append(h('p', {class:'rom'}, b.idx.map(function(i){ return S[i].rom; }).join(' ')));
+    if (LANG !== 'en') sec.append(h('p', {class:'rom'}, b.idx.map(function(i){ return S[i].rom; }).join(' ')));
     sec.append(h('p', {class:'zh'}, b.idx.map(function(i){ return S[i].zh; }).join('')));
     sec.append(h('div', {class:'slot', 'data-slot':b.idx.join(',')}));
     root.append(sec);
@@ -492,8 +494,8 @@ function wordCard(v){
     if (vFilter !== 'all') renderWords();
   });
   return h('article', {class:'word', 'data-id':v.id},
-    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
-    v.rom ? h('p', {class:'rom'}, v.rom) : null,
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.kind === 'grammar' ? h('span', {class:'w-tag'}, '语法') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
+    v.rom ? h('p', {class:'rom w-rom'}, v.rom) : null,
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
@@ -524,7 +526,8 @@ function renderWords(){
 
 /* ---------- quiz tab ---------- */
 const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null, hist:[], card:null};
-const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']];
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']]
+  .concat(DATA.vocab.some(function(v){ return v.pick; }) ? [['pick', '语法辨析']] : []);
 const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
   mcq:'四选一：看' + XL + '选中文意思，或看中文选' + XL + '表达，两个方向随机出现。可以按键盘 1–4 作答。',
@@ -532,13 +535,15 @@ const MODE_LEAD = {
   exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
   zh:'看中文意思，自己写出对应的' + XL + '表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
   dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
-  sent:'看一句中文，自己写出整句' + XL + '，并用上指定的表达。写完核对参考句，再自己判断对不对。'
+  sent:'看一句中文，自己写出整句' + XL + '，并用上指定的表达。写完核对参考句，再自己判断对不对。',
+  pick:'一句话里空着一处，从几个相近的说法里选出对的，看完解释再记一遍区别。'
 };
-function modeAvailable(m){ return m !== 'dict' || !!DATA.clips; }
+function modeAvailable(m){ return m === 'pick' ? DATA.vocab.some(function(v){ return v.pick; }) : m !== 'dict' || !!DATA.clips; }
 function quizPool(){
   const m = quiz.mode;
-  return DATA.vocab.filter(function(v){ return (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
+  return DATA.vocab.filter(function(v){ return m === 'pick' ? !!v.pick : (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
     const c = {id:v.id};
+    if (m === 'pick') c.k = Math.floor(Math.random() * v.pick.length);
     if (m === 'sent' || m === 'exs') c.k = Math.floor(Math.random() * v.ex.length);
     if (m === 'dict') c.k = v.ex && v.ex.length && Math.random() > 0.35 ? Math.floor(Math.random() * v.ex.length) : -1;
     if (m === 'mcq') c.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
@@ -689,8 +694,18 @@ function renderThink(){
   const box = $('#thinkBox');
   box.replaceChildren();
   const bd = DATA.breakdown;
+  DATA.vocab.filter(function(v){ return v.kind === 'grammar'; }).forEach(function(v){
+    box.append(h('div', {class:'card mb16'},
+      h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr), speakBtn('w' + v.id, v.say || v.core)),
+      h('p', {class:'w-zh'}, v.zh),
+      v.conn ? h('p', {class:'g-conn'}, h('span', {class:'meta'}, '接续　'), v.conn) : null,
+      v.note ? h('p', {class:'w-note'}, v.note) : null,
+      h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+        return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
+      }))));
+  });
   box.append(h('div', {class:'card mb16'},
-    h('p', {class:'eyebrow'}, '长难句拆解'),
+    h('p', {class:'eyebrow'}, LANG === 'en' ? '长难句拆解' : '句子拆解'),
     h('p', {class:'bd mt10'}, bd.en),
     h('ul', {class:'note-list'}, bd.points.map(function(t){ return h('li', null, t); })),
     h('div', {class:'row'}, h('button', {type:'button', class:'btn sm', onclick:function(){ openSentence(bd.i); try { location.hash = 'read'; } catch(e){} }}, '在文中查看这一句'))
@@ -756,7 +771,7 @@ function getAudio(){
   L.audio = a;
   try {
     if ('mediaSession' in navigator){
-      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:LANG === 'ko' ? '韩语入门' : '外刊精读'});
+      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:{en:'外刊精读', ko:'韩语入门', ja:'日语中级'}[LANG]});
       navigator.mediaSession.setActionHandler('play', function(){ a.play(); });
       navigator.mediaSession.setActionHandler('pause', function(){ a.pause(); });
       navigator.mediaSession.setActionHandler('seekbackward', function(){ a.currentTime = Math.max(0, a.currentTime - 5); });
@@ -887,7 +902,7 @@ function renderListen(){
   box.append(
     h('div', {class:'card lp'},
       h('h2', {class:'h2'}, '听力'),
-      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + (LANG === 'ko' ? '韩语' : (DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + (LANG !== 'en' ? XL : (DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
       h('div', {class:'lp-row'},
         h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
         L.el.play,
@@ -920,14 +935,14 @@ function init(){
   Clip.onBeforePlay(stopNarrationForClip);
   window.addEventListener('pagehide', settle);
   document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
-  if (LANG === 'ko'){
-    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), ' 显示罗马音');
+  if (LANG !== 'en'){
+    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), LANG === 'ja' ? ' 显示读音' : ' 显示罗马音');
     $('#optZh').parentNode.after(rl);
     $('#optRom').checked = !!ui.rom;
     document.body.classList.toggle('show-rom', !!ui.rom);
     $('#optRom').addEventListener('change', function(){ ui.rom = this.checked; lsSet(LS_UI, ui); document.body.classList.toggle('show-rom', ui.rom); });
     const tt = $('.tab[data-tab="think"]');
-    if (tt) tt.textContent = '句型';
+    if (tt) tt.textContent = LANG === 'ja' ? '语法' : '句型';
   }
   $('#optZh').checked = !!ui.zh;
   $('#optHi').checked = !!ui.hi;

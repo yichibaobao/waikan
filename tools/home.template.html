@@ -157,7 +157,7 @@ A.forEach(function(a){
 });
 
 function metaBits(a){
-  const out = [h('span', null, a.words + ' 词'), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
+  const out = [h('span', null, a.words + (LANG === 'ja' ? ' 字' : ' 词')), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
   if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));

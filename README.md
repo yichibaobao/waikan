@@ -49,6 +49,16 @@ Pages know their language from `<html data-lang>` (`LANG`, `XL` in `common.js`):
 and Korean particles may follow a highlighted term. Audio: `tools/make_audio.py <slug>` picks Microsoft's online voices for Korean
 (`--engine edge`, voice `ko-KR-SunHiNeural`, speed 0.85; needs `pip install edge-tts` in the TTS venv and internet).
 
+## Japanese section (日语中级)
+
+One page per lesson of the user's online course (`content/ja-<lesson>/`, `meta.lang: "ja"`; home `ja/`, review `review-ja/`).
+The word list and grammar points follow the course; explanations, examples and the reading are written fresh (the site is public:
+never copy the course notes, textbook or recordings). `rom` holds the kana reading (显示读音 switch; always shown on word cards).
+Grammar points are vocab entries with `"kind": "grammar"`, `conn` (接续) and optional `say` (what the speaker icon reads); they show
+on the 语法 tab and are quizzed like words. Any entry may carry `pick`: `[{q, rom?, opts, a, why}]`, a 语法辨析 question
+(choose the right form, e.g. ていく / てくる, ずに / ないずに). Japanese dictation compares by character. Audio: Microsoft voice
+`ja-JP-NanamiNeural` (`make_audio.py` picks it for `lang: "ja"`).
+
 ## Unit tests (every three articles)
 
 After every three articles comes a unit test: a new article (`content/unit-<n>/`, `meta.short` "第 n 单元测试", tag "单元测试")

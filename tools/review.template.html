@@ -108,8 +108,8 @@ ARTS.forEach(function(a){
 });
 const LS_UI = 'wk-review-ui-v1';
 const TABS = ['review', 'exam', 'listen', 'words'];
-const MODE_LIST = [['mixed', '混合（按阶段出题）'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']];
-const EXAM_MODES = [['mix', '综合'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中译' + XS + '整句']];
+const MODE_LIST = [['mixed', '混合（按阶段出题）'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']].concat(LANG === 'ja' ? [['pick', '语法辨析']] : []);
+const EXAM_MODES = [['mix', '综合'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中译' + XS + '整句']].concat(LANG === 'ja' ? [['pick', '语法辨析']] : []);
 const STRONG = 7;                            /* ladder step from which a word counts as 牢固 (review gap 15 days or more) */
 let ui = Object.assign({mode:'mixed', size:10, exMode:'mix', exN:30, exScope:'all', lsScope:'all', lsSrc:'mix', lsN:10, lsLen:'any', lsMode:'exam'}, lsGet(LS_UI) || {});
 const LOADED = {};                           /* slug -> {words:{id: word}, clips} once words.json is fetched */
@@ -191,15 +191,18 @@ function planOne(key, mode, snap){
     t = Kit.typeForStage(e ? e.b : 0, hasClips);
   } else if (mode === 'mix') {
     const kinds = hasClips ? ['mcq', 'cloze', 'exs', 'zh', 'dict', 'sent'] : ['mcq', 'cloze', 'exs', 'zh', 'sent'];
+    if (v.pick) kinds.push('pick');
     t = {type:kinds[Math.floor(Math.random() * kinds.length)]};
     if (t.type === 'mcq') t.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
   } else {
     if (mode === 'dict' && !hasClips) return null;
+    if (mode === 'pick' && !v.pick) return null;
     t = {type:mode};
     if (mode === 'mcq') t.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
   }
   const q = {key:key, type:t.type, dir:t.dir, practice:false};
   if (q.type === 'exs' || q.type === 'sent') q.k = randEx(v);
+  if (q.type === 'pick') q.k = Math.floor(Math.random() * v.pick.length);
   if (q.type === 'dict') q.k = Math.random() < 0.35 ? -1 : randEx(v);
   return q;
 }
@@ -466,7 +469,7 @@ function renderExam(){
   const n = ui.exN === 0 ? avail : Math.min(ui.exN, avail);
   const card = h('div', {class:'card'},
     h('h2', {class:'h2'}, '词汇总考'),
-    h('p', {class:'lead'}, '把' + (LANG === 'ko' ? '学过的韩语单词' : '读过的外刊单词') + '一次性考一遍。不分文章，随机抽词，题型混合；答题结果同样会计入复习计划。'),
+    h('p', {class:'lead'}, '把' + (LANG === 'en' ? '读过的外刊单词' : '学过的' + XL + '单词') + '一次性考一遍。不分文章，随机抽词，题型混合；答题结果同样会计入复习计划。'),
     ui.exMode === 'sent' || ui.exMode === 'mix' ? h('p', {class:'lead'}, '中译' + XS + '整句：给一句生活里的中文，写出' + XL + '，要用上一个学过的表达（不提示是哪个，卡住了可以点提示）。写完对照参考句，自己判断对错。') : null,
     h('p', {class:'fld'}, '范围'), sel,
     h('p', {class:'fld'}, '题量'),

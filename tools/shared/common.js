@@ -45,9 +45,11 @@ function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } 
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 /* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
-const LANG = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang') === 'ko' ? 'ko' : 'en';
-const XL = LANG === 'ko' ? '韩语' : '英文', XS = LANG === 'ko' ? '韩' : '英';
-function norm(s){ return String(s).toLowerCase().replace(/[^a-z\uac00-\ud7a3]/g, ''); }
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语'}[LANG], XS = {en:'英', ko:'韩', ja:'日'}[LANG];
+/* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
+const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
+function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }
 /* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
 function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }

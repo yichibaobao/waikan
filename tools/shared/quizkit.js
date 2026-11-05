@@ -1,7 +1,7 @@
 /* ---------- quiz kit: one renderer per question type, shared by the reader and the review page ----------
    Kit.make(item, o) returns the question card (a DOM element).
      item = {type, key, id, v, k, dir, clips}
-        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent'
+        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent' | 'pick'  (pick: v.pick[k] = {q, opts, a, why}, a grammar choice)
         key    "<slug>:<word id>" (the spaced-repetition key)       id  the word id within its article
         v      the word: {id, expr, zh, core, forms, syn, note, m, ctx, ex:[{en, zh}], cloze:{before, ans, after, hint, szh}}
         k      which example sentence (exs, sent, dict); dict: -1 = the word itself
@@ -22,8 +22,8 @@
    Kit.pager(box, hist, live, o) puts the live card in box with "‹ 上一题" to look back through hist (frozen cards);
    live = null browses hist alone (after the last question), o.close = back to the results. */
 const Kit = (function(){
-  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译' + XS + '词汇', dict:'听写', sent:'中译' + XS + '整句'};
-  const UNIT = LANG === 'ko' ? ' 个字' : ' 个字母';
+  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译' + XS + '词汇', dict:'听写', sent:'中译' + XS + '整句', pick:'语法辨析'};
+  const UNIT = LANG === 'en' ? ' 个字母' : ' 个字';
   const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
   const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
 
@@ -62,6 +62,7 @@ const Kit = (function(){
   /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
   function toks(s){
     const out = [];
+    if (LANG === 'ja') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces in Japanese: compare by character */
     String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9\uac00-\ud7a3]+/).forEach(function(t){
       if (!t) return;
       if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
@@ -235,7 +236,7 @@ const Kit = (function(){
   /* ---- Chinese sentence -> the whole English sentence, graded by the learner ---- */
   function sentRe(v){
     const alts = v.forms.map(function(f){
-      return f.toLowerCase().split(/[^a-z\uac00-\ud7a3]+/).filter(Boolean).map(esc).join('[^A-Za-z\\uac00-\\ud7a3]+');
+      return f.toLowerCase().split(new RegExp('[^' + LETTERS + ']+')).filter(Boolean).map(esc).join('[^A-Za-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff]*');
     });
     return new RegExp('(?:^|[^A-Za-z\\uac00-\\ud7a3])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
   }
@@ -367,6 +368,56 @@ const Kit = (function(){
     return card;
   }
 
+  /* ---- grammar choice: a sentence with a gap and the forms to choose from (v.pick[item.k]) ---- */
+  function pickQ(item, o){
+    const v = item.v, P = v.pick[item.k], res = newRes(item, 'pick');
+    const order = shuffle(P.opts.map(function(t, i){ return i; }));
+    const ex = extraBox(item, res, o);
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri', hidden:true}, nextLabel(o));
+    let answered = false;
+    const btns = order.map(function(j, n){
+      return h('button', {type:'button', class:'mc-b', onclick:function(){ pick(n); }}, h('span', {class:'n'}, String(n + 1)), h('span', null, P.opts[j]));
+    });
+    const card = h('div', {class:'card'},
+      head(o, 'pick'),
+      h('p', {class:'q-ask'}, '选出合适的说法'),
+      h('p', {class:'q-sent'}, P.q),
+      P.rom ? h('p', {class:'rom'}, P.rom) : null,
+      h('div', {class:'mc', role:'group', 'aria-label':'选项'}, btns),
+      fb,
+      h('div', {class:'row'}, main)
+    );
+    function pick(n){
+      if (answered) return;
+      answered = true;
+      const ok = order[n] === P.a;
+      res.ok = ok; res.given = P.opts[order[n]];
+      o.onAnswer(res);
+      btns.forEach(function(b, m){
+        b.disabled = true;
+        if (order[m] === P.a) b.classList.add('ok');
+        else if (m === n) b.classList.add('bad');
+      });
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, P.opts[P.a])]),
+        h('p', null, P.why), h('p', {class:'meta'}, v.expr + '：' + v.zh), ex);
+      ex.refresh();
+      main.hidden = false;
+      main.focus();
+    }
+    main.addEventListener('click', function(){ o.onNext(); });
+    function onKey(e){
+      if (!card.isConnected){ document.removeEventListener('keydown', onKey); return; }
+      if (card.offsetParent === null || e.ctrlKey || e.metaKey || e.altKey) return;
+      const n = Number(e.key);
+      if (!answered && n >= 1 && n <= btns.length){ e.preventDefault(); pick(n - 1); }
+    }
+    document.addEventListener('keydown', onKey);
+    return card;
+  }
+
   /* ---- dictation: listen, then type a word, an example sentence, or (item.sent) a sentence of the article ----
      item.sent = {en, zh, src, t}: the sentence and where its audio is.   o.defer: no feedback after the answer, the
      host shows everything at the end (listening exam); the answer is passed on through onAnswer + onNext. */
@@ -389,7 +440,7 @@ const Kit = (function(){
     const field = isWord
       ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
       : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
-    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG === 'ko' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
     const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
@@ -475,6 +526,7 @@ const Kit = (function(){
       case 'sent': return sentQ(item, o);
       case 'mcq': return mcqQ(item, o);
       case 'dict': return dictQ(item, o);
+      case 'pick': return pickQ(item, o);
     }
     throw new Error('unknown question type ' + item.type);
   }

@@ -143,6 +143,12 @@ html[data-lang="ko"] .w-ctx,html[data-lang="ko"] .q-ctx{font-style:normal}
 html[data-lang="ko"] .ex-en{font-size:17px}
 html[data-lang="ko"] .q-sent{font-size:22px}
 html[data-lang="ko"]{--font-read:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif}
+/* Japanese lessons */
+html[data-lang="ja"]{--font-read:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif}
+html[data-lang="ja"] .a-para{font-size:20px;line-height:1.95}
+html[data-lang="ja"] .a-deck{font-size:18px;font-style:normal}
+html[data-lang="ja"] .w-ctx,html[data-lang="ja"] .q-ctx{font-style:normal}
+html[data-lang="ja"] .ex-en{font-size:16.5px}
 
 /* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
 .who-chip{appearance:none;display:inline-flex;align-items:center;gap:8px;flex:none;max-width:100%;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
@@ -236,6 +242,8 @@ html[data-lang="ko"]{--font-read:"Apple SD Gothic Neo","Noto Sans KR","Malgun Go
 .show-zh .zh{display:block}
 .rom{display:none;margin:6px 0 0;font:400 14px/1.6 var(--font-ui);color:var(--muted);letter-spacing:.01em}
 .show-rom .rom{display:block}
+html[data-lang="ja"] .w-rom{display:block}
+.g-conn{margin:6px 0;font-size:14.5px;line-height:1.6}
 .note{margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:120px}
 .note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .note-nav{display:flex;gap:6px}
@@ -392,9 +400,11 @@ function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } 
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
 /* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
-const LANG = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang') === 'ko' ? 'ko' : 'en';
-const XL = LANG === 'ko' ? '韩语' : '英文', XS = LANG === 'ko' ? '韩' : '英';
-function norm(s){ return String(s).toLowerCase().replace(/[^a-z\uac00-\ud7a3]/g, ''); }
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语'}[LANG], XS = {en:'英', ko:'韩', ja:'日'}[LANG];
+/* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
+const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
+function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }
 /* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
 function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
@@ -1002,7 +1012,7 @@ const Clip = (function(){
       if (!('speechSynthesis' in window) || !text) return;
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = LANG === 'ko' ? 'ko-KR' : 'en-GB'; u.rate = 0.9;
+      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP'}[LANG]; u.rate = 0.9;
       speechSynthesis.speak(u);
     } catch(e){}
   }
@@ -1061,7 +1071,7 @@ function clipBtn(clips, key, text){
 /* ---------- quiz kit: one renderer per question type, shared by the reader and the review page ----------
    Kit.make(item, o) returns the question card (a DOM element).
      item = {type, key, id, v, k, dir, clips}
-        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent'
+        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent' | 'pick'  (pick: v.pick[k] = {q, opts, a, why}, a grammar choice)
         key    "<slug>:<word id>" (the spaced-repetition key)       id  the word id within its article
         v      the word: {id, expr, zh, core, forms, syn, note, m, ctx, ex:[{en, zh}], cloze:{before, ans, after, hint, szh}}
         k      which example sentence (exs, sent, dict); dict: -1 = the word itself
@@ -1082,8 +1092,8 @@ function clipBtn(clips, key, text){
    Kit.pager(box, hist, live, o) puts the live card in box with "‹ 上一题" to look back through hist (frozen cards);
    live = null browses hist alone (after the last question), o.close = back to the results. */
 const Kit = (function(){
-  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译' + XS + '词汇', dict:'听写', sent:'中译' + XS + '整句'};
-  const UNIT = LANG === 'ko' ? ' 个字' : ' 个字母';
+  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译' + XS + '词汇', dict:'听写', sent:'中译' + XS + '整句', pick:'语法辨析'};
+  const UNIT = LANG === 'en' ? ' 个字母' : ' 个字';
   const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
   const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
 
@@ -1122,6 +1132,7 @@ const Kit = (function(){
   /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
   function toks(s){
     const out = [];
+    if (LANG === 'ja') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces in Japanese: compare by character */
     String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9\uac00-\ud7a3]+/).forEach(function(t){
       if (!t) return;
       if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
@@ -1295,7 +1306,7 @@ const Kit = (function(){
   /* ---- Chinese sentence -> the whole English sentence, graded by the learner ---- */
   function sentRe(v){
     const alts = v.forms.map(function(f){
-      return f.toLowerCase().split(/[^a-z\uac00-\ud7a3]+/).filter(Boolean).map(esc).join('[^A-Za-z\\uac00-\\ud7a3]+');
+      return f.toLowerCase().split(new RegExp('[^' + LETTERS + ']+')).filter(Boolean).map(esc).join('[^A-Za-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff]*');
     });
     return new RegExp('(?:^|[^A-Za-z\\uac00-\\ud7a3])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
   }
@@ -1427,6 +1438,56 @@ const Kit = (function(){
     return card;
   }
 
+  /* ---- grammar choice: a sentence with a gap and the forms to choose from (v.pick[item.k]) ---- */
+  function pickQ(item, o){
+    const v = item.v, P = v.pick[item.k], res = newRes(item, 'pick');
+    const order = shuffle(P.opts.map(function(t, i){ return i; }));
+    const ex = extraBox(item, res, o);
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri', hidden:true}, nextLabel(o));
+    let answered = false;
+    const btns = order.map(function(j, n){
+      return h('button', {type:'button', class:'mc-b', onclick:function(){ pick(n); }}, h('span', {class:'n'}, String(n + 1)), h('span', null, P.opts[j]));
+    });
+    const card = h('div', {class:'card'},
+      head(o, 'pick'),
+      h('p', {class:'q-ask'}, '选出合适的说法'),
+      h('p', {class:'q-sent'}, P.q),
+      P.rom ? h('p', {class:'rom'}, P.rom) : null,
+      h('div', {class:'mc', role:'group', 'aria-label':'选项'}, btns),
+      fb,
+      h('div', {class:'row'}, main)
+    );
+    function pick(n){
+      if (answered) return;
+      answered = true;
+      const ok = order[n] === P.a;
+      res.ok = ok; res.given = P.opts[order[n]];
+      o.onAnswer(res);
+      btns.forEach(function(b, m){
+        b.disabled = true;
+        if (order[m] === P.a) b.classList.add('ok');
+        else if (m === n) b.classList.add('bad');
+      });
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, P.opts[P.a])]),
+        h('p', null, P.why), h('p', {class:'meta'}, v.expr + '：' + v.zh), ex);
+      ex.refresh();
+      main.hidden = false;
+      main.focus();
+    }
+    main.addEventListener('click', function(){ o.onNext(); });
+    function onKey(e){
+      if (!card.isConnected){ document.removeEventListener('keydown', onKey); return; }
+      if (card.offsetParent === null || e.ctrlKey || e.metaKey || e.altKey) return;
+      const n = Number(e.key);
+      if (!answered && n >= 1 && n <= btns.length){ e.preventDefault(); pick(n - 1); }
+    }
+    document.addEventListener('keydown', onKey);
+    return card;
+  }
+
   /* ---- dictation: listen, then type a word, an example sentence, or (item.sent) a sentence of the article ----
      item.sent = {en, zh, src, t}: the sentence and where its audio is.   o.defer: no feedback after the answer, the
      host shows everything at the end (listening exam); the answer is passed on through onAnswer + onNext. */
@@ -1449,7 +1510,7 @@ const Kit = (function(){
     const field = isWord
       ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
       : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
-    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG === 'ko' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
     const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
@@ -1535,6 +1596,7 @@ const Kit = (function(){
       case 'sent': return sentQ(item, o);
       case 'mcq': return mcqQ(item, o);
       case 'dict': return dictQ(item, o);
+      case 'pick': return pickQ(item, o);
     }
     throw new Error('unknown question type ' + item.type);
   }
@@ -1771,7 +1833,7 @@ function renderArticle(){
     const el = h(b.type === 'title' ? 'h1' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
     b.idx.forEach(function(i, k){ if (k > 0) el.append(' '); el.append(sentSpan(S[i])); });
     sec.append(el);
-    if (LANG === 'ko') sec.append(h('p', {class:'rom'}, b.idx.map(function(i){ return S[i].rom; }).join(' ')));
+    if (LANG !== 'en') sec.append(h('p', {class:'rom'}, b.idx.map(function(i){ return S[i].rom; }).join(' ')));
     sec.append(h('p', {class:'zh'}, b.idx.map(function(i){ return S[i].zh; }).join('')));
     sec.append(h('div', {class:'slot', 'data-slot':b.idx.join(',')}));
     root.append(sec);
@@ -1921,8 +1983,8 @@ function wordCard(v){
     if (vFilter !== 'all') renderWords();
   });
   return h('article', {class:'word', 'data-id':v.id},
-    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
-    v.rom ? h('p', {class:'rom'}, v.rom) : null,
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.kind === 'grammar' ? h('span', {class:'w-tag'}, '语法') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
+    v.rom ? h('p', {class:'rom w-rom'}, v.rom) : null,
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
@@ -1953,7 +2015,8 @@ function renderWords(){
 
 /* ---------- quiz tab ---------- */
 const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null, hist:[], card:null};
-const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']];
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']]
+  .concat(DATA.vocab.some(function(v){ return v.pick; }) ? [['pick', '语法辨析']] : []);
 const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
   mcq:'四选一：看' + XL + '选中文意思，或看中文选' + XL + '表达，两个方向随机出现。可以按键盘 1–4 作答。',
@@ -1961,13 +2024,15 @@ const MODE_LEAD = {
   exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
   zh:'看中文意思，自己写出对应的' + XL + '表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
   dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
-  sent:'看一句中文，自己写出整句' + XL + '，并用上指定的表达。写完核对参考句，再自己判断对不对。'
+  sent:'看一句中文，自己写出整句' + XL + '，并用上指定的表达。写完核对参考句，再自己判断对不对。',
+  pick:'一句话里空着一处，从几个相近的说法里选出对的，看完解释再记一遍区别。'
 };
-function modeAvailable(m){ return m !== 'dict' || !!DATA.clips; }
+function modeAvailable(m){ return m === 'pick' ? DATA.vocab.some(function(v){ return v.pick; }) : m !== 'dict' || !!DATA.clips; }
 function quizPool(){
   const m = quiz.mode;
-  return DATA.vocab.filter(function(v){ return (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
+  return DATA.vocab.filter(function(v){ return m === 'pick' ? !!v.pick : (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
     const c = {id:v.id};
+    if (m === 'pick') c.k = Math.floor(Math.random() * v.pick.length);
     if (m === 'sent' || m === 'exs') c.k = Math.floor(Math.random() * v.ex.length);
     if (m === 'dict') c.k = v.ex && v.ex.length && Math.random() > 0.35 ? Math.floor(Math.random() * v.ex.length) : -1;
     if (m === 'mcq') c.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
@@ -2118,8 +2183,18 @@ function renderThink(){
   const box = $('#thinkBox');
   box.replaceChildren();
   const bd = DATA.breakdown;
+  DATA.vocab.filter(function(v){ return v.kind === 'grammar'; }).forEach(function(v){
+    box.append(h('div', {class:'card mb16'},
+      h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr), speakBtn('w' + v.id, v.say || v.core)),
+      h('p', {class:'w-zh'}, v.zh),
+      v.conn ? h('p', {class:'g-conn'}, h('span', {class:'meta'}, '接续　'), v.conn) : null,
+      v.note ? h('p', {class:'w-note'}, v.note) : null,
+      h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+        return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
+      }))));
+  });
   box.append(h('div', {class:'card mb16'},
-    h('p', {class:'eyebrow'}, '长难句拆解'),
+    h('p', {class:'eyebrow'}, LANG === 'en' ? '长难句拆解' : '句子拆解'),
     h('p', {class:'bd mt10'}, bd.en),
     h('ul', {class:'note-list'}, bd.points.map(function(t){ return h('li', null, t); })),
     h('div', {class:'row'}, h('button', {type:'button', class:'btn sm', onclick:function(){ openSentence(bd.i); try { location.hash = 'read'; } catch(e){} }}, '在文中查看这一句'))
@@ -2185,7 +2260,7 @@ function getAudio(){
   L.audio = a;
   try {
     if ('mediaSession' in navigator){
-      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:LANG === 'ko' ? '韩语入门' : '外刊精读'});
+      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:{en:'外刊精读', ko:'韩语入门', ja:'日语中级'}[LANG]});
       navigator.mediaSession.setActionHandler('play', function(){ a.play(); });
       navigator.mediaSession.setActionHandler('pause', function(){ a.pause(); });
       navigator.mediaSession.setActionHandler('seekbackward', function(){ a.currentTime = Math.max(0, a.currentTime - 5); });
@@ -2316,7 +2391,7 @@ function renderListen(){
   box.append(
     h('div', {class:'card lp'},
       h('h2', {class:'h2'}, '听力'),
-      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + (LANG === 'ko' ? '韩语' : (DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + (LANG !== 'en' ? XL : (DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
       h('div', {class:'lp-row'},
         h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
         L.el.play,
@@ -2349,14 +2424,14 @@ function init(){
   Clip.onBeforePlay(stopNarrationForClip);
   window.addEventListener('pagehide', settle);
   document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
-  if (LANG === 'ko'){
-    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), ' 显示罗马音');
+  if (LANG !== 'en'){
+    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), LANG === 'ja' ? ' 显示读音' : ' 显示罗马音');
     $('#optZh').parentNode.after(rl);
     $('#optRom').checked = !!ui.rom;
     document.body.classList.toggle('show-rom', !!ui.rom);
     $('#optRom').addEventListener('change', function(){ ui.rom = this.checked; lsSet(LS_UI, ui); document.body.classList.toggle('show-rom', ui.rom); });
     const tt = $('.tab[data-tab="think"]');
-    if (tt) tt.textContent = '句型';
+    if (tt) tt.textContent = LANG === 'ja' ? '语法' : '句型';
   }
   $('#optZh').checked = !!ui.zh;
   $('#optHi').checked = !!ui.hi;
