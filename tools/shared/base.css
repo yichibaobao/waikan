@@ -128,3 +128,10 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .w-note{margin:0 0 6px;font-size:13.5px;line-height:1.6;color:var(--muted)}
 .q-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
 .q-nav[hidden],.q-past > .row{display:none}
+/* Korean lessons: bigger text for a beginner, and no italics (Hangul has none) */
+html[data-lang="ko"] .a-para{font-size:22px;line-height:1.9}
+html[data-lang="ko"] .a-deck{font-size:19px;font-style:normal}
+html[data-lang="ko"] .w-ctx,html[data-lang="ko"] .q-ctx{font-style:normal}
+html[data-lang="ko"] .ex-en{font-size:17px}
+html[data-lang="ko"] .q-sent{font-size:22px}
+html[data-lang="ko"]{--font-read:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif}

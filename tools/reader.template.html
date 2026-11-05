@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="__LANG__">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -48,6 +48,8 @@
 .sent.on{background:var(--accent-soft)}
 .zh{display:none;margin:10px 0 0;font:400 15px/1.75 var(--font-ui);color:var(--muted)}
 .show-zh .zh{display:block}
+.rom{display:none;margin:6px 0 0;font:400 14px/1.6 var(--font-ui);color:var(--muted);letter-spacing:.01em}
+.show-rom .rom{display:block}
 .note{margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:120px}
 .note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .note-nav{display:flex;gap:6px}
@@ -176,7 +178,7 @@ const TERM_MAP = {};
 const TERMS = [];
 DATA.vocab.forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; TERMS.push(t); }); });
 TERMS.sort(function(a,b){ return b.length - a.length; });
-const TERM_RE = new RegExp('\\b(?:' + TERMS.map(esc).join('|') + ')\\b', 'gi');
+const TERM_RE = termRe(TERMS, 'gi');
 const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
 const TABS = ['read','listen','words','quiz','think'];
 const LS_STATE = '__LS_STATE__';
@@ -190,7 +192,7 @@ function normalize(d){
   return out;
 }
 let state = normalize(lsGet(LS_STATE));
-let ui = Object.assign({zh:false, hi:true}, lsGet(LS_UI) || {});
+let ui = Object.assign({zh:false, hi:true, rom:false}, lsGet(LS_UI) || {});
 let ref = null, saveTimer = null, saving = false, again = false, lastJSON = '', touched = false;
 
 function getS(id){ const e = state.vocab[id]; return (e && e.s) || 'new'; }
@@ -322,7 +324,7 @@ function showTab(t){
 
 /* ---------- read tab ---------- */
 let active = -1;
-const BLOCKS = [{type:'title', idx:[0]}, {type:'sub', idx:[1,2]}];
+const BLOCKS = [{type:'title', idx:[0]}, {type:'sub', idx:S.filter(function(s){ return s.kind === 'sub'; }).map(function(s){ return s.i; })}];
 for (let p = 1; p <= 6; p++) BLOCKS.push({type:'p', idx:S.filter(function(s){ return s.p === p; }).map(function(s){ return s.i; })});
 
 function sentSpan(s){
@@ -340,6 +342,7 @@ function renderArticle(){
     const el = h(b.type === 'title' ? 'h1' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
     b.idx.forEach(function(i, k){ if (k > 0) el.append(' '); el.append(sentSpan(S[i])); });
     sec.append(el);
+    if (LANG === 'ko') sec.append(h('p', {class:'rom'}, b.idx.map(function(i){ return S[i].rom; }).join(' ')));
     sec.append(h('p', {class:'zh'}, b.idx.map(function(i){ return S[i].zh; }).join('')));
     sec.append(h('div', {class:'slot', 'data-slot':b.idx.join(',')}));
     root.append(sec);
@@ -377,6 +380,7 @@ function noteCard(s){
         h('button', {type:'button', class:'btn sm', 'aria-label':'收起', onclick:function(){ toggleSentence(active); }}, '收起')
       )
     ),
+    s.rom ? h('p', {class:'rom'}, s.rom) : null,
     h('p', {class:'note-zh'}, s.zh),
     h('ul', {class:'note-list'}, s.notes.map(function(t){ return h('li', null, t); })),
     sentenceWords(s)
@@ -489,12 +493,13 @@ function wordCard(v){
   });
   return h('article', {class:'word', 'data-id':v.id},
     h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
+    v.rom ? h('p', {class:'rom'}, v.rom) : null,
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
     v.ex && v.ex.length ? h('p', {class:'w-exh'}, '例句') : null,
     v.ex && v.ex.length ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
-      return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), h('span', {class:'ex-zh'}, x.zh)));
+      return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
     })) : null,
     h('label', {class:'w-mine'}, h('span', null, '我的造句'), ta),
     meta
@@ -519,15 +524,15 @@ function renderWords(){
 
 /* ---------- quiz tab ---------- */
 const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null, hist:[], card:null};
-const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']];
 const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
-  mcq:'四选一：看英文选中文意思，或看中文选英文表达，两个方向随机出现。可以按键盘 1–4 作答。',
+  mcq:'四选一：看' + XL + '选中文意思，或看中文选' + XL + '表达，两个方向随机出现。可以按键盘 1–4 作答。',
   cloze:'每题挖掉一个生词。看中文提示和上下文，把它按原句的词形填回去。',
   exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
-  zh:'看中文意思，自己拼写出对应的英文表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
+  zh:'看中文意思，自己写出对应的' + XL + '表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
   dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
-  sent:'看一句中文，自己写出整句英文，并用上指定的表达。写完核对参考句，再自己判断对不对。'
+  sent:'看一句中文，自己写出整句' + XL + '，并用上指定的表达。写完核对参考句，再自己判断对不对。'
 };
 function modeAvailable(m){ return m !== 'dict' || !!DATA.clips; }
 function quizPool(){
@@ -751,7 +756,7 @@ function getAudio(){
   L.audio = a;
   try {
     if ('mediaSession' in navigator){
-      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:'外刊精读'});
+      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:LANG === 'ko' ? '韩语入门' : '外刊精读'});
       navigator.mediaSession.setActionHandler('play', function(){ a.play(); });
       navigator.mediaSession.setActionHandler('pause', function(){ a.pause(); });
       navigator.mediaSession.setActionHandler('seekbackward', function(){ a.currentTime = Math.max(0, a.currentTime - 5); });
@@ -882,7 +887,7 @@ function renderListen(){
   box.append(
     h('div', {class:'card lp'},
       h('h2', {class:'h2'}, '听力'),
-      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + ((DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + (LANG === 'ko' ? '韩语' : (DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
       h('div', {class:'lp-row'},
         h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
         L.el.play,
@@ -915,6 +920,15 @@ function init(){
   Clip.onBeforePlay(stopNarrationForClip);
   window.addEventListener('pagehide', settle);
   document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
+  if (LANG === 'ko'){
+    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), ' 显示罗马音');
+    $('#optZh').parentNode.after(rl);
+    $('#optRom').checked = !!ui.rom;
+    document.body.classList.toggle('show-rom', !!ui.rom);
+    $('#optRom').addEventListener('change', function(){ ui.rom = this.checked; lsSet(LS_UI, ui); document.body.classList.toggle('show-rom', ui.rom); });
+    const tt = $('.tab[data-tab="think"]');
+    if (tt) tt.textContent = '句型';
+  }
   $('#optZh').checked = !!ui.zh;
   $('#optHi').checked = !!ui.hi;
   $('#optZh').addEventListener('change', function(){ ui.zh = this.checked; lsSet(LS_UI, ui); $('#article').classList.toggle('show-zh', ui.zh); });
