@@ -109,7 +109,7 @@ ARTS.forEach(function(a){
 const LS_UI = 'wk-review-ui-v1';
 const TABS = ['review', 'exam', 'listen', 'words'];
 const MODE_LIST = [['mixed', '混合（按阶段出题）'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
-const EXAM_MODES = [['mix', '综合'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写']];
+const EXAM_MODES = [['mix', '综合'], ['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中译英整句']];
 const STRONG = 7;                            /* ladder step from which a word counts as 牢固 (review gap 15 days or more) */
 let ui = Object.assign({mode:'mixed', size:10, exMode:'mix', exN:30, exScope:'all', lsScope:'all', lsSrc:'mix', lsN:10, lsLen:'any', lsMode:'exam'}, lsGet(LS_UI) || {});
 const LOADED = {};                           /* slug -> {words:{id: word}, clips} once words.json is fetched */
@@ -125,10 +125,11 @@ function dateLabel(s){ const p = s.split('-'); return Number(p[1]) + ' 月 ' + N
 /* ---------- what is due ---------- */
 function snapshot(){
   const s = srsLoad(), t = now();
-  const o = {s:s, due:[], wait:[], fresh:[], dist:new Array(SRS_TOP + 1).fill(0), strong:0, nextT:0};
+  const o = {s:s, due:[], wait:[], fresh:[], done:[], dist:new Array(SRS_TOP + 1).fill(0), strong:0, nextT:0};
   ALL.forEach(function(w){
     const e = s.w[w.key];
     if (!e){ o.fresh.push(w); return; }
+    if (e.m){ o.done.push(w); return; }
     o.dist[e.b]++;
     if (e.b >= STRONG) o.strong++;
     if (e.t <= t) o.due.push({w:w, e:e}); else { o.wait.push({w:w, e:e}); if (!o.nextT || e.t < o.nextT) o.nextT = e.t; }
@@ -189,7 +190,7 @@ function planOne(key, mode, snap){
     const e = snap.s.w[key];
     t = Kit.typeForStage(e ? e.b : 0, hasClips);
   } else if (mode === 'mix') {
-    const kinds = hasClips ? ['mcq', 'cloze', 'exs', 'zh', 'dict'] : ['mcq', 'cloze', 'exs', 'zh'];
+    const kinds = hasClips ? ['mcq', 'cloze', 'exs', 'zh', 'dict', 'sent'] : ['mcq', 'cloze', 'exs', 'zh', 'sent'];
     t = {type:kinds[Math.floor(Math.random() * kinds.length)]};
     if (t.type === 'mcq') t.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
   } else {
@@ -218,7 +219,7 @@ async function startSession(kind, keys, o){
       h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:o.home}, '返回'))));
     return;
   }
-  const s = {kind:kind, mode:o.mode, box:box, queue:queue, i:0, results:[], pending:null, tag:o.tag || '', home:o.home, again:o.again, scopeLabel:o.scopeLabel || ''};
+  const s = {kind:kind, mode:o.mode, box:box, queue:queue, i:0, results:[], pending:null, hist:[], card:null, tag:o.tag || '', home:o.home, again:o.again, scopeLabel:o.scopeLabel || ''};
   SESS[kind === 'exam' ? 'exam' : 'review'] = s;
   ask(s);
   window.scrollTo(0, 0);
@@ -226,15 +227,34 @@ async function startSession(kind, keys, o){
 function retryOf(q, v){
   return {key:q.key, type:q.type === 'mcq' ? 'cloze' : 'mcq', dir:'e2z', practice:true};
 }
-function srsNote(it, res, q){
+/* "fully mastered": the word leaves the plan for good (the words table can bring it back) */
+function retireBox(key, s){
+  const box = h('div', {class:'fb-s'});
+  function draw(){
+    const e = srsGet(key), on = !!(e && e.m);
+    box.replaceChildren(
+      on ? h('span', {class:'meta'}, '已移出复习，以后不会再考这个词。') : '',
+      h('button', {type:'button', class:'btn sm', onclick:function(){
+        srsRetire(key, !on);
+        const p = s && s.pending;
+        if (!on && p && p.q.key === key && p.retry){ const j = s.queue.lastIndexOf(p.retry); if (j >= 0) s.queue.splice(j, 1); p.retry = null; }
+        draw();
+      }}, on ? '撤销' : '已完全掌握，不再出现'));
+  }
+  draw();
+  return box;
+}
+function srsNote(it, res, q, s){
   if (q.practice) return h('p', {class:'srs-line'}, '补练题：不计入复习计划。');
+  const e0 = srsGet(it.key);
+  if (e0 && e0.m) return retireBox(it.key, s);
   const t = now(), pv = srsPreview(it.key, res.ok, t);
   let txt;
   if (pv.kind === 'reset') txt = '没记牢，回到第一阶：5 分钟后再复习。';
   else if (pv.kind === 'first') txt = '记入复习计划：' + srsWhen(pv.t, t) + '再复习。';
   else if (pv.kind === 'up') txt = '到期答对，升一阶：' + srsWhen(pv.t, t) + '再复习（间隔 ' + SRS_LABELS[pv.b] + '）。';
   else txt = '还没到复习时间，答对也先不升阶。下次复习：' + srsWhen(pv.was.t, t) + '。';
-  return h('p', {class:'srs-line'}, txt);
+  return h('div', null, h('p', {class:'srs-line'}, txt), retireBox(it.key, s));
 }
 function ask(s){
   const q = s.queue[s.i];
@@ -248,9 +268,10 @@ function ask(s){
   }
   const card = Kit.make(item, {
     index:s.i, total:s.queue.length, tag:q.practice ? '补练' : s.tag, label:s.kind === 'listen' ? '听力' : undefined, defer:!!s.defer,
+    hideTarget:s.kind === 'exam',
     isLast:function(){ return s.i + 1 >= s.queue.length; },
     pool:function(){ return ALL; },
-    extra:function(it, res){ return q.key ? srsNote(it, res, q) : null; },
+    extra:function(it, res){ return q.key ? srsNote(it, res, q, s) : null; },
     onAnswer:function(res){
       s.pending = {q:q, res:res, retry:null};
       if (!res.ok && !q.practice && (s.kind === 'review' || s.kind === 'new')){ s.pending.retry = retryOf(q); s.queue.push(s.pending.retry); }
@@ -261,7 +282,8 @@ function ask(s){
     },
     onNext:function(){ next(s); }
   });
-  s.box.replaceChildren(card);
+  s.card = card;
+  if (s.kind === 'listen') s.box.replaceChildren(card); else Kit.pager(s.box, s.hist, card);
   Kit.focus(card);
 }
 function settle(s){
@@ -274,6 +296,7 @@ function settle(s){
 }
 function next(s){
   settle(s);
+  if (s.card) s.hist.push(Kit.freeze(s.card));
   if (s.i + 1 >= s.queue.length){ finish(s); return; }
   s.i++;
   ask(s);
@@ -333,6 +356,10 @@ function finish(s){
     row.append(h('button', {type:'button', class:'btn pri', onclick:s.home}, '继续'));
   }
   row.append(h('button', {type:'button', class:'btn', onclick:function(){ show(s.kind === 'exam' ? 'review' : 'words'); }}, s.kind === 'exam' ? '去复习' : '看词汇表'));
+  if (s.hist.length) row.append(h('button', {type:'button', class:'btn', onclick:function(){
+    Kit.pager(s.box, s.hist, null, {close:function(){ s.box.replaceChildren(card); window.scrollTo(0, 0); }});
+    window.scrollTo(0, 0);
+  }}, '逐题回看'));
   card.append(row);
   s.box.replaceChildren(card);
   s.done = true;
@@ -381,6 +408,7 @@ function renderReview(){
     row.append(h('button', {type:'button', class:'btn' + (sn.due.length ? '' : ' pri'), onclick:function(){ go('new', nk, '新词'); }}, '学新词（' + nk.length + ' 个）'));
   }
   intro.append(row);
+  if (sn.done.length) intro.append(h('p', {class:'meta'}, sn.done.length + ' 个词已标为“完全掌握”，不再出现。要恢复，去“词汇”里找“不再出现”。'));
   if (!sn.due.length) intro.append(h('p', {class:'next'}, sn.nextT ? '现在没有到期的词，下一批在 ' + srsWhen(sn.nextT, t) + '到期。' : '还没有开始复习的词：点“学新词”，或者先去文章页做自测，答过的词会自动进入复习计划。'));
   box.append(intro);
 
@@ -411,7 +439,8 @@ function renderReview(){
 /* ---------- exam tab ---------- */
 function inScope(w, scope){ return scope === 'all' || w.slug === scope || AMAP[scope].r.indexOf(w.key) >= 0; }   /* r: the words a unit test points at */
 function scopeKeys(scope){
-  return ALL.filter(function(w){ return inScope(w, scope) && usable(w.key, ui.exMode); }).map(function(w){ return w.key; });
+  const s = srsLoad();
+  return ALL.filter(function(w){ return inScope(w, scope) && usable(w.key, ui.exMode) && !(s.w[w.key] && s.w[w.key].m); }).map(function(w){ return w.key; });
 }
 function histCard(title, kind){
   const ex = srsLoad().ex.filter(function(e){ return e.k === kind; }).slice(-5).reverse();
@@ -438,6 +467,7 @@ function renderExam(){
   const card = h('div', {class:'card'},
     h('h2', {class:'h2'}, '词汇总考'),
     h('p', {class:'lead'}, '把读过的外刊单词一次性考一遍。不分文章，随机抽词，题型混合；答题结果同样会计入复习计划。'),
+    ui.exMode === 'sent' || ui.exMode === 'mix' ? h('p', {class:'lead'}, '中译英整句：给一句生活里的中文，写出英文，要用上一个学过的表达（不提示是哪个，卡住了可以点提示）。写完对照参考句，自己判断对错。') : null,
     h('p', {class:'fld'}, '范围'), sel,
     h('p', {class:'fld'}, '题量'),
     chipRow(nOpts, ui.exN, function(v){ ui.exN = Number(v); saveUi(); renderExam(); }),
@@ -463,10 +493,10 @@ const LS_MODE = [['exam', '考完统一公布'], ['live', '每题立刻核对']]
 const KIND_NAME = {w:'单词', e:'例句', s:'文章原句'};
 function lenOk(n, key){ return key === 'any' || (key === 'short' ? n <= 12 : key === 'mid' ? n >= 13 && n <= 22 : n >= 23); }
 function lsCand(scope, lenKey){
-  const c = {w:[], e:[], s:[]};
+  const c = {w:[], e:[], s:[]}, done = srsLoad().w;
   ARTS.forEach(function(a){
     if (scope !== 'all' && a.slug !== scope) return;
-    if (a.clips) a.w.forEach(function(x){ const key = a.slug + ':' + x[0]; c.w.push({kind:'w', key:key}); c.e.push({kind:'e', key:key}); });
+    if (a.clips) a.w.forEach(function(x){ const key = a.slug + ':' + x[0]; if (done[key] && done[key].m) return; c.w.push({kind:'w', key:key}); c.e.push({kind:'e', key:key}); });
     a.ls.forEach(function(p){ if (lenOk(p[1], lenKey)) c.s.push({kind:'s', slug:a.slug, si:p[0]}); });
   });
   return c;
@@ -623,16 +653,17 @@ function renderListenTab(){
 }
 
 /* ---------- vocabulary table ---------- */
-const WF = [['all', '全部'], ['due', '待复习'], ['learning', '学习中'], ['strong', '已牢固'], ['new', '未开始']];
+const WF = [['all', '全部'], ['due', '待复习'], ['learning', '学习中'], ['strong', '已牢固'], ['new', '未开始'], ['done', '不再出现']];
 function wState(e, t){
   if (!e) return 'new';
+  if (e.m) return 'done';
   return e.b >= STRONG ? 'strong' : 'learning';
 }
 function renderWords(){
   const s = srsLoad(), t = now();
   const q = wQuery.trim().toLowerCase();
-  const cnt = {all:ALL.length, due:0, learning:0, strong:0, new:0};
-  ALL.forEach(function(w){ const e = s.w[w.key]; cnt[wState(e)]++; if (e && e.t <= t) cnt.due++; });
+  const cnt = {all:ALL.length, due:0, learning:0, strong:0, new:0, done:0};
+  ALL.forEach(function(w){ const e = s.w[w.key]; cnt[wState(e)]++; if (e && !e.m && e.t <= t) cnt.due++; });
   const chips = $('#wChips');
   chips.replaceChildren();
   WF.forEach(function(o){
@@ -641,8 +672,8 @@ function renderWords(){
   });
   const rows = ALL.filter(function(w){
     const e = s.w[w.key];
-    if (wFilter === 'due' && !(e && e.t <= t)) return false;
-    if ((wFilter === 'learning' || wFilter === 'strong' || wFilter === 'new') && wState(e) !== wFilter) return false;
+    if (wFilter === 'due' && !(e && !e.m && e.t <= t)) return false;
+    if ((wFilter === 'learning' || wFilter === 'strong' || wFilter === 'new' || wFilter === 'done') && wState(e) !== wFilter) return false;
     if (q && (w.expr + ' ' + w.zh).toLowerCase().indexOf(q) < 0) return false;
     return true;
   });
@@ -654,7 +685,8 @@ function renderWords(){
     list.append(h('a', {class:'wrow', href:'../a/' + w.slug + '/#words'},
       h('b', null, w.expr), ' ', h('span', {class:'z'}, w.zh),
       h('div', {class:'m'}, h('span', null, dateLabel(AMAP[w.slug].date) + ' · ' + AMAP[w.slug].short),
-        h('span', {class:'d' + (e && e.t <= t ? ' due' : '')}, e ? srsStageText(e, t) : '未开始'))));
+        h('span', {class:'d' + (e && !e.m && e.t <= t ? ' due' : '')}, e ? srsStageText(e, t) : '未开始'),
+        e && e.m ? h('button', {type:'button', class:'btn sm', onclick:function(ev){ ev.preventDefault(); srsRetire(w.key, false); renderWords(); }}, '放回复习') : null)));
   });
   if (rows.length > wLimit) list.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn', onclick:function(){ wLimit += 60; renderWords(); }}, '再显示 ' + Math.min(60, rows.length - wLimit) + ' 个')));
   const dz = $('#wDanger');

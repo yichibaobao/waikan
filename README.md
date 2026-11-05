@@ -70,7 +70,11 @@ Review (`/review/`, linked from the home page): every answer anywhere on the sit
 The ladder is 5 min, 30 min, 12 h, 1 d, 2 d, 4 d, 7 d, 15 d, 30 d, then every 60 days. Right and due: one step up. Wrong: back to 5 minutes.
 Right but not yet due: nothing changes (so drilling a word again right away does not push it up). In the mixed review mode the question type
 follows the step: recognise (选择题) -> fill in -> spell -> listen -> write a sentence. Words answered wrong are asked once more at the end of the session (not counted).
-The 总考 tab samples words across all articles (or one article) with mixed question types and keeps the last results.
+The 总考 tab samples words across all articles (or one article) with mixed question types and keeps the last results; its 中译英整句 part
+gives an example sentence in Chinese without naming the expression to use (a hint button reveals it), and the learner grades the translation.
+"已完全掌握，不再出现" under any review or exam answer sets `m: 1` on the word (`srsRetire`): it is no longer asked in review, exam or
+listening; the 词汇 tab lists these words under 不再出现 with a 放回复习 button. Every quiz (article self-test, review, exam) keeps the answered
+cards (`Kit.freeze`) so "‹ 上一题" and the result page's 逐题回看 can show what was answered and the feedback (`Kit.pager`).
 
 The 听力 tab is a dictation exam: pick the scope (all articles with audio, or one), what to hear (words, example sentences, the article's own sentences
 cut out of the narration, or a mix; article sentences can be filtered short / medium / long), 10 / 20 / 30 questions, and when to be told the answer

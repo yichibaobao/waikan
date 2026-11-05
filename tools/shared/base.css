@@ -126,3 +126,5 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .miss-t{color:var(--bad);text-decoration:underline wavy;text-decoration-thickness:1px;text-underline-offset:3px}
 .fb-x:empty{display:none}
 .w-note{margin:0 0 6px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.q-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+.q-nav[hidden],.q-past > .row{display:none}

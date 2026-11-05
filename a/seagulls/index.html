@@ -134,6 +134,8 @@ mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
 .miss-t{color:var(--bad);text-decoration:underline wavy;text-decoration-thickness:1px;text-underline-offset:3px}
 .fb-x:empty{display:none}
 .w-note{margin:0 0 6px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.q-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+.q-nav[hidden],.q-past > .row{display:none}
 
 /* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
 .who-chip{appearance:none;display:inline-flex;align-items:center;gap:8px;flex:none;max-width:100%;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
@@ -394,7 +396,8 @@ function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
    Everything lives in this browser's localStorage under SRS_KEY (per learner, see common.js), shape
      {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
    b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
-   c / x = how many times answered right / wrong.
+   c / x = how many times answered right / wrong.   m = 1: the learner marked the word as fully mastered; it is never asked again
+   (review, exam, listening) until restored. Answers given elsewhere (an article's self-test) keep the mark.
    Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
            right and due     -> b+1, next review after SRS_STEPS[b] (after the last step: SRS_LONG)
            right but early   -> the schedule does not move (drilling a word again right away must not push it up the ladder)
@@ -418,6 +421,7 @@ function srsClean(d){
     if (k === '__proto__' || !e || typeof e !== 'object') return;
     const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
     out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
+    if (e.m) out.w[k].m = 1;
   });
   if (d.log && typeof d.log === 'object') Object.keys(d.log).forEach(function(k){
     const e = d.log[k];
@@ -462,6 +466,7 @@ function srsGet(key){ return srsLoad().w[key] || null; }
 function srsStep(e, ok, now){
   const first = !e;
   const n = first ? {b:0, t:0, l:0, c:0, x:0} : {b:e.b, t:e.t, l:e.l, c:e.c, x:e.x};
+  if (e && e.m) n.m = 1;
   if (!ok){
     n.b = 0; n.t = now + srsInterval(0); n.x++;
   } else {
@@ -500,6 +505,17 @@ function srsUndo(key, rec, ok){
   if (g){ g.n = Math.max(0, g.n - 1); if (ok) g.ok = Math.max(0, g.ok - 1); }
   srsSave(s);
 }
+/* mark a word as fully mastered (on) or put it back into the review plan; `l` moves so that merging progress keeps this choice */
+function srsRetire(key, on, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const e = s.w[key] || {b:SRS_TOP, t:now + SRS_LONG, l:now, c:0, x:0};
+  if (on) e.m = 1; else delete e.m;
+  e.l = now;
+  s.w[key] = e;
+  srsSave(s);
+  return e;
+}
 function srsAddExam(rec){
   const s = srsLoad();
   s.ex.push(rec);
@@ -516,6 +532,7 @@ function srsReset(){ lsDel(SRS_KEY); }
 /* {st:'new'|'due'|'wait', b, t} */
 function srsInfo(e, now){
   if (!e) return {st:'new', b:-1, t:0};
+  if (e.m) return {st:'done', b:e.b, t:e.t};
   return {st:e.t <= now ? 'due' : 'wait', b:e.b, t:e.t};
 }
 /* "5 分钟后", "3 小时后", "明天", "6 天后" */
@@ -531,6 +548,7 @@ function srsWhen(t, now){
 }
 function srsStageText(e, now){
   if (!e) return '未开始';
+  if (e.m) return '已完全掌握，不再出现';
   return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
 }
 
@@ -1038,13 +1056,17 @@ function clipBtn(clips, key, text){
         clips  {src, t:{key:[start, end]}} or null (no audio for this article)
      o = {index, total, last, tag, label (replaces the type name in the header),
           defer (dict only: no feedback, the answer goes straight to onAnswer + onNext),
+          hideTarget (sent only: do not say which expression to use; a hint button reveals it),
           pool()            -> [{expr, zh}] words that may serve as wrong options (mcq)
           extra(item, res)  -> a node shown at the bottom of the feedback (or null)
           onAnswer(res)     the answer is in (res.ok may still flip once through the "my answer is fine" button)
           onChange(res)     optional: res.ok was flipped by that button
           isLast()          optional: is this the last question? (read when the button label is set; `last` is the static version)
           onNext()          the learner pressed "next"}
-   res = {id, key, type, ok, given, k}. */
+   res = {id, key, type, ok, given, k}.
+   Kit.freeze(card) -> a read-only copy of an answered card (what was typed or picked, and the feedback);
+   Kit.pager(box, hist, live, o) puts the live card in box with "‹ 上一题" to look back through hist (frozen cards);
+   live = null browses hist alone (after the last question), o.close = back to the results. */
 const Kit = (function(){
   const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译英词汇', dict:'听写', sent:'中译英整句'};
   const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
@@ -1264,26 +1286,25 @@ const Kit = (function(){
   }
   function sentQ(item, o){
     const v = item.v, x = v.ex[item.k], res = newRes(item, 'sent');
+    const hide = !!o.hideTarget;
     const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'}));
     const hintP = h('p', {class:'q-hint'});
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const main = h('button', {type:'button', class:'btn pri'}, '核对');
-    const peek = h('button', {type:'button', class:'btn'}, '提示：这个表达的意思');
+    const peek = h('button', {type:'button', class:'btn'}, hide ? '提示：要用的表达' : '提示：这个表达的意思');
+    const ex = extraBox(item, res, o);
+    let stage = 0;      /* 0 writing, 1 compared with the reference, 2 graded */
     const card = h('div', {class:'card'},
       head(o, 'sent'),
       h('p', {class:'q-zh'}, x.zh),
-      h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
+      hide ? h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '翻译成英文，用上一个学过的表达。'))
+           : h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
       hintP,
       ta,
       fb,
       h('div', {class:'row'}, main, peek)
     );
     peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
-    function grade(ok){
-      res.ok = ok; res.given = ta.value.trim();
-      o.onAnswer(res);
-      o.onNext();
-    }
     function check(){
       const val = ta.value.trim();
       if (!val){ ta.focus(); return; }
@@ -1291,19 +1312,35 @@ const Kit = (function(){
       ta.readOnly = true;
       fb.className = 'fb ' + (used ? 'ok' : 'bad');
       fb.hidden = false;
+      const verdict = h('p', {class:'fb-t'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。');
+      const gradeRow = h('div', {class:'row'},
+        h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
+        h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'));
+      function grade(ok){
+        res.ok = ok; res.given = ta.value.trim();
+        o.onAnswer(res);
+        stage = 2;
+        fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+        verdict.textContent = ok ? '你判定：写对了' : '你判定：还要再练';
+        gradeRow.replaceWith(ex);
+        ex.refresh();
+        main.textContent = nextLabel(o);
+        main.hidden = false;
+        main.focus();
+      }
       fb.replaceChildren(
         h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
         h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
-        h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
-        h('div', {class:'row'},
-          h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
-          h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'))
+        hide ? h('p', {class:'meta'}, v.expr + '：' + v.zh) : '',
+        verdict,
+        gradeRow
       );
+      stage = 1;
       main.hidden = true;
       peek.hidden = true;
     }
-    main.addEventListener('click', check);
-    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); check(); } });
+    main.addEventListener('click', function(){ if (stage === 2) o.onNext(); else if (stage === 0) check(); });
+    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); main.click(); } });
     return card;
   }
 
@@ -1486,6 +1523,45 @@ const Kit = (function(){
     }
     throw new Error('unknown question type ' + item.type);
   }
+  /* ---- looking back at answered questions ---- */
+  function freeze(card){
+    const c = card.cloneNode(true);           /* inputs and textareas keep what was typed */
+    c.classList.add('q-past');
+    $$(':scope > .row', c).forEach(function(r){ r.hidden = true; });
+    $$('[id]', c).forEach(function(el){ el.removeAttribute('id'); });
+    $$('button', c).forEach(function(b){ b.disabled = true; });
+    $$('input, textarea', c).forEach(function(f){ f.readOnly = true; });
+    return c;
+  }
+  function pager(box, hist, live, o){
+    let pos = live ? hist.length : 0;
+    const prev = h('button', {type:'button', class:'btn sm'}, '‹ 上一题');
+    const nxt = h('button', {type:'button', class:'btn sm'}, '下一题 ›');
+    const lab = h('span', {class:'meta'});
+    const back = live ? h('button', {type:'button', class:'btn sm pri'}, '回到当前题')
+      : h('button', {type:'button', class:'btn sm pri', onclick:function(){ if (o && o.close) o.close(); }}, '返回成绩');
+    const bar = h('div', {class:'q-nav'}, prev, nxt, lab, back);
+    const liveBox = h('div', null, live);
+    const past = h('div');
+    function show(){
+      const atLive = !!live && pos === hist.length;
+      liveBox.hidden = !atLive;
+      past.replaceChildren();
+      if (!atLive) past.append(hist[pos]);
+      prev.disabled = pos === 0;
+      nxt.hidden = atLive;
+      nxt.disabled = !live && pos >= hist.length - 1;
+      back.hidden = atLive;
+      lab.textContent = atLive ? '' : '第 ' + (pos + 1) + ' 题（已作答，只能查看）';
+      bar.hidden = atLive && !hist.length;
+      if (atLive) focus(live);
+    }
+    prev.addEventListener('click', function(){ if (pos > 0){ pos--; show(); } });
+    nxt.addEventListener('click', function(){ pos++; show(); });
+    if (live) back.addEventListener('click', function(){ pos = hist.length; show(); });
+    box.replaceChildren(bar, liveBox, past);
+    show();
+  }
   function focus(card){
     const f = $('#q-input', card);
     if (f) f.focus({preventScroll:true});
@@ -1500,7 +1576,7 @@ const Kit = (function(){
     if (b <= 7) return hasClips ? {type:'dict'} : {type:'zh'};
     return {type:'sent'};
   }
-  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
+  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, freeze:freeze, pager:pager, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
 })();
 
 Who.chip($('#whoMount'), 'tiny');
@@ -1858,7 +1934,7 @@ function renderWords(){
 }
 
 /* ---------- quiz tab ---------- */
-const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null};
+const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null, hist:[], card:null};
 const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
 const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
@@ -1891,14 +1967,13 @@ function startQuiz(scope, ids){
   quiz.scope = scope;
   quiz.items = shuffle(pool.slice());
   if (scope === 'quick' && !ids) quiz.items = quiz.items.slice(0, QUICK_N);
-  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.phase = 'q';
+  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.hist = []; quiz.card = null; quiz.phase = 'q';
   renderQuiz();
 }
 function renderQuiz(){
   const box = $('#quizBox');
-  box.replaceChildren();
-  box.append(quiz.phase === 'start' ? quizStart() : quiz.phase === 'q' ? quizQuestion() : quizResult());
-  if (quiz.phase === 'q') Kit.focus(box);
+  if (quiz.phase === 'q'){ quiz.card = quizQuestion(); Kit.pager(box, quiz.hist, quiz.card); return; }
+  box.replaceChildren(quiz.phase === 'start' ? quizStart() : quizResult());
 }
 /* every answer goes into the spaced-repetition plan (shared with the review page) once the learner moves on */
 function settle(){
@@ -1914,7 +1989,7 @@ function reviewSummary(){
     const e = s.w[srsKey(v.id)];
     if (!e) return;
     seen++;
-    if (e.t <= now) due++;
+    if (!e.m && e.t <= now) due++;
   });
   return {due:due, seen:seen, fresh:DATA.vocab.length - seen};
 }
@@ -1961,6 +2036,7 @@ function quizQuestion(){
 }
 function nextQ(){
   settle();
+  if (quiz.card) quiz.hist.push(Kit.freeze(quiz.card));
   if (quiz.i + 1 >= quiz.items.length){ finishQuiz(); return; }
   quiz.i++;
   renderQuiz();
@@ -2011,6 +2087,10 @@ function quizResult(){
   row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '换个题型再测'));
   row.append(h('button', {type:'button', class:'btn', onclick:function(){ showTab('words'); try { location.hash = 'words'; } catch(e){} }}, '去词汇表'));
   row.append(h('a', {class:'btn', href:REVIEW_URL}, '去复习页'));
+  if (quiz.hist.length) row.append(h('button', {type:'button', class:'btn', onclick:function(){
+    Kit.pager($('#quizBox'), quiz.hist, null, {close:renderQuiz});
+    window.scrollTo(0, 0);
+  }}, '逐题回看'));
   card.append(row);
   return card;
 }

@@ -518,7 +518,7 @@ function renderWords(){
 }
 
 /* ---------- quiz tab ---------- */
-const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null};
+const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null, hist:[], card:null};
 const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
 const MODE_NAME = Kit.TYPE_NAME;
 const MODE_LEAD = {
@@ -551,14 +551,13 @@ function startQuiz(scope, ids){
   quiz.scope = scope;
   quiz.items = shuffle(pool.slice());
   if (scope === 'quick' && !ids) quiz.items = quiz.items.slice(0, QUICK_N);
-  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.phase = 'q';
+  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.hist = []; quiz.card = null; quiz.phase = 'q';
   renderQuiz();
 }
 function renderQuiz(){
   const box = $('#quizBox');
-  box.replaceChildren();
-  box.append(quiz.phase === 'start' ? quizStart() : quiz.phase === 'q' ? quizQuestion() : quizResult());
-  if (quiz.phase === 'q') Kit.focus(box);
+  if (quiz.phase === 'q'){ quiz.card = quizQuestion(); Kit.pager(box, quiz.hist, quiz.card); return; }
+  box.replaceChildren(quiz.phase === 'start' ? quizStart() : quizResult());
 }
 /* every answer goes into the spaced-repetition plan (shared with the review page) once the learner moves on */
 function settle(){
@@ -574,7 +573,7 @@ function reviewSummary(){
     const e = s.w[srsKey(v.id)];
     if (!e) return;
     seen++;
-    if (e.t <= now) due++;
+    if (!e.m && e.t <= now) due++;
   });
   return {due:due, seen:seen, fresh:DATA.vocab.length - seen};
 }
@@ -621,6 +620,7 @@ function quizQuestion(){
 }
 function nextQ(){
   settle();
+  if (quiz.card) quiz.hist.push(Kit.freeze(quiz.card));
   if (quiz.i + 1 >= quiz.items.length){ finishQuiz(); return; }
   quiz.i++;
   renderQuiz();
@@ -671,6 +671,10 @@ function quizResult(){
   row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '换个题型再测'));
   row.append(h('button', {type:'button', class:'btn', onclick:function(){ showTab('words'); try { location.hash = 'words'; } catch(e){} }}, '去词汇表'));
   row.append(h('a', {class:'btn', href:REVIEW_URL}, '去复习页'));
+  if (quiz.hist.length) row.append(h('button', {type:'button', class:'btn', onclick:function(){
+    Kit.pager($('#quizBox'), quiz.hist, null, {close:renderQuiz});
+    window.scrollTo(0, 0);
+  }}, '逐题回看'));
   card.append(row);
   return card;
 }

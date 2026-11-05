@@ -10,13 +10,17 @@
         clips  {src, t:{key:[start, end]}} or null (no audio for this article)
      o = {index, total, last, tag, label (replaces the type name in the header),
           defer (dict only: no feedback, the answer goes straight to onAnswer + onNext),
+          hideTarget (sent only: do not say which expression to use; a hint button reveals it),
           pool()            -> [{expr, zh}] words that may serve as wrong options (mcq)
           extra(item, res)  -> a node shown at the bottom of the feedback (or null)
           onAnswer(res)     the answer is in (res.ok may still flip once through the "my answer is fine" button)
           onChange(res)     optional: res.ok was flipped by that button
           isLast()          optional: is this the last question? (read when the button label is set; `last` is the static version)
           onNext()          the learner pressed "next"}
-   res = {id, key, type, ok, given, k}. */
+   res = {id, key, type, ok, given, k}.
+   Kit.freeze(card) -> a read-only copy of an answered card (what was typed or picked, and the feedback);
+   Kit.pager(box, hist, live, o) puts the live card in box with "‹ 上一题" to look back through hist (frozen cards);
+   live = null browses hist alone (after the last question), o.close = back to the results. */
 const Kit = (function(){
   const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译英词汇', dict:'听写', sent:'中译英整句'};
   const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
@@ -236,26 +240,25 @@ const Kit = (function(){
   }
   function sentQ(item, o){
     const v = item.v, x = v.ex[item.k], res = newRes(item, 'sent');
+    const hide = !!o.hideTarget;
     const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'}));
     const hintP = h('p', {class:'q-hint'});
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const main = h('button', {type:'button', class:'btn pri'}, '核对');
-    const peek = h('button', {type:'button', class:'btn'}, '提示：这个表达的意思');
+    const peek = h('button', {type:'button', class:'btn'}, hide ? '提示：要用的表达' : '提示：这个表达的意思');
+    const ex = extraBox(item, res, o);
+    let stage = 0;      /* 0 writing, 1 compared with the reference, 2 graded */
     const card = h('div', {class:'card'},
       head(o, 'sent'),
       h('p', {class:'q-zh'}, x.zh),
-      h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
+      hide ? h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '翻译成英文，用上一个学过的表达。'))
+           : h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
       hintP,
       ta,
       fb,
       h('div', {class:'row'}, main, peek)
     );
     peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
-    function grade(ok){
-      res.ok = ok; res.given = ta.value.trim();
-      o.onAnswer(res);
-      o.onNext();
-    }
     function check(){
       const val = ta.value.trim();
       if (!val){ ta.focus(); return; }
@@ -263,19 +266,35 @@ const Kit = (function(){
       ta.readOnly = true;
       fb.className = 'fb ' + (used ? 'ok' : 'bad');
       fb.hidden = false;
+      const verdict = h('p', {class:'fb-t'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。');
+      const gradeRow = h('div', {class:'row'},
+        h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
+        h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'));
+      function grade(ok){
+        res.ok = ok; res.given = ta.value.trim();
+        o.onAnswer(res);
+        stage = 2;
+        fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+        verdict.textContent = ok ? '你判定：写对了' : '你判定：还要再练';
+        gradeRow.replaceWith(ex);
+        ex.refresh();
+        main.textContent = nextLabel(o);
+        main.hidden = false;
+        main.focus();
+      }
       fb.replaceChildren(
         h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
         h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
-        h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
-        h('div', {class:'row'},
-          h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
-          h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'))
+        hide ? h('p', {class:'meta'}, v.expr + '：' + v.zh) : '',
+        verdict,
+        gradeRow
       );
+      stage = 1;
       main.hidden = true;
       peek.hidden = true;
     }
-    main.addEventListener('click', check);
-    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); check(); } });
+    main.addEventListener('click', function(){ if (stage === 2) o.onNext(); else if (stage === 0) check(); });
+    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); main.click(); } });
     return card;
   }
 
@@ -458,6 +477,45 @@ const Kit = (function(){
     }
     throw new Error('unknown question type ' + item.type);
   }
+  /* ---- looking back at answered questions ---- */
+  function freeze(card){
+    const c = card.cloneNode(true);           /* inputs and textareas keep what was typed */
+    c.classList.add('q-past');
+    $$(':scope > .row', c).forEach(function(r){ r.hidden = true; });
+    $$('[id]', c).forEach(function(el){ el.removeAttribute('id'); });
+    $$('button', c).forEach(function(b){ b.disabled = true; });
+    $$('input, textarea', c).forEach(function(f){ f.readOnly = true; });
+    return c;
+  }
+  function pager(box, hist, live, o){
+    let pos = live ? hist.length : 0;
+    const prev = h('button', {type:'button', class:'btn sm'}, '‹ 上一题');
+    const nxt = h('button', {type:'button', class:'btn sm'}, '下一题 ›');
+    const lab = h('span', {class:'meta'});
+    const back = live ? h('button', {type:'button', class:'btn sm pri'}, '回到当前题')
+      : h('button', {type:'button', class:'btn sm pri', onclick:function(){ if (o && o.close) o.close(); }}, '返回成绩');
+    const bar = h('div', {class:'q-nav'}, prev, nxt, lab, back);
+    const liveBox = h('div', null, live);
+    const past = h('div');
+    function show(){
+      const atLive = !!live && pos === hist.length;
+      liveBox.hidden = !atLive;
+      past.replaceChildren();
+      if (!atLive) past.append(hist[pos]);
+      prev.disabled = pos === 0;
+      nxt.hidden = atLive;
+      nxt.disabled = !live && pos >= hist.length - 1;
+      back.hidden = atLive;
+      lab.textContent = atLive ? '' : '第 ' + (pos + 1) + ' 题（已作答，只能查看）';
+      bar.hidden = atLive && !hist.length;
+      if (atLive) focus(live);
+    }
+    prev.addEventListener('click', function(){ if (pos > 0){ pos--; show(); } });
+    nxt.addEventListener('click', function(){ pos++; show(); });
+    if (live) back.addEventListener('click', function(){ pos = hist.length; show(); });
+    box.replaceChildren(bar, liveBox, past);
+    show();
+  }
   function focus(card){
     const f = $('#q-input', card);
     if (f) f.focus({preventScroll:true});
@@ -472,5 +530,5 @@ const Kit = (function(){
     if (b <= 7) return hasClips ? {type:'dict'} : {type:'zh'};
     return {type:'sent'};
   }
-  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
+  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, freeze:freeze, pager:pager, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
 })();

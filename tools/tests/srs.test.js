@@ -13,7 +13,7 @@ const ctx = {
 vm.createContext(ctx);
 // the shared files declare plain functions / consts; run them as one script and export what the tests need
 const src = ['common.js', 'srs.js'].map(f => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n') +
-  '\nthis.api = {srsStep, srsRecord, srsPreview, srsLoad, srsGet, srsInfo, srsWhen, srsStageText, srsAddExam, srsUndo, srsSetLastExamScore, srsReset, SRS_STEPS, SRS_LONG, SRS_TOP, SRS_LABELS, SRS_KEY};';
+  '\nthis.api = {srsStep, srsRecord, srsPreview, srsLoad, srsGet, srsInfo, srsWhen, srsStageText, srsAddExam, srsUndo, srsSetLastExamScore, srsReset, srsRetire, srsMerge, SRS_STEPS, SRS_LONG, SRS_TOP, SRS_LABELS, SRS_KEY};';
 vm.runInContext(src, ctx);
 const A = ctx.api;
 const MIN = 60000, HOUR = 3600000, DAY = 86400000;
@@ -185,6 +185,25 @@ t('exam records carry a kind and the last score can be corrected', () => {
   assert.strictEqual(JSON.stringify(ex.map(e => e.k)), JSON.stringify(['exam', 'listen']));
   assert.strictEqual(ex[1].score, 8);
   assert.strictEqual(ex[0].score, 5);
+});
+
+t('retire: a word marked mastered keeps the mark through later answers and merges', () => {
+  A.srsReset();
+  A.srsRecord('a:1', true, 0);
+  const e = A.srsRetire('a:1', true, 1000);
+  assert.strictEqual(e.m, 1);
+  assert.strictEqual(e.l, 1000);
+  assert.strictEqual(A.srsInfo(A.srsGet('a:1'), 2000).st, 'done');
+  assert.strictEqual(A.srsStageText(A.srsGet('a:1'), 2000), '已完全掌握，不再出现');
+  A.srsRecord('a:1', false, 3000);                       // an answer in an article's self-test
+  assert.strictEqual(A.srsGet('a:1').m, 1);
+  const merged = A.srsMerge({w: {'a:1': {b: 2, t: 0, l: 500, c: 1, x: 0}}}, A.srsLoad());
+  assert.strictEqual(merged.w['a:1'].m, 1);               // the later choice wins
+  A.srsRetire('a:1', false, 4000);
+  assert.strictEqual(A.srsGet('a:1').m, undefined);
+  A.srsRetire('b:2', true, 5000);                         // a word never answered can be retired too
+  assert.strictEqual(A.srsGet('b:2').m, 1);
+  A.srsReset();
 });
 
 console.log(`\n${n} tests passed`);

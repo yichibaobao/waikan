@@ -2,7 +2,8 @@
    Everything lives in this browser's localStorage under SRS_KEY (per learner, see common.js), shape
      {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
    b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
-   c / x = how many times answered right / wrong.
+   c / x = how many times answered right / wrong.   m = 1: the learner marked the word as fully mastered; it is never asked again
+   (review, exam, listening) until restored. Answers given elsewhere (an article's self-test) keep the mark.
    Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
            right and due     -> b+1, next review after SRS_STEPS[b] (after the last step: SRS_LONG)
            right but early   -> the schedule does not move (drilling a word again right away must not push it up the ladder)
@@ -26,6 +27,7 @@ function srsClean(d){
     if (k === '__proto__' || !e || typeof e !== 'object') return;
     const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
     out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
+    if (e.m) out.w[k].m = 1;
   });
   if (d.log && typeof d.log === 'object') Object.keys(d.log).forEach(function(k){
     const e = d.log[k];
@@ -70,6 +72,7 @@ function srsGet(key){ return srsLoad().w[key] || null; }
 function srsStep(e, ok, now){
   const first = !e;
   const n = first ? {b:0, t:0, l:0, c:0, x:0} : {b:e.b, t:e.t, l:e.l, c:e.c, x:e.x};
+  if (e && e.m) n.m = 1;
   if (!ok){
     n.b = 0; n.t = now + srsInterval(0); n.x++;
   } else {
@@ -108,6 +111,17 @@ function srsUndo(key, rec, ok){
   if (g){ g.n = Math.max(0, g.n - 1); if (ok) g.ok = Math.max(0, g.ok - 1); }
   srsSave(s);
 }
+/* mark a word as fully mastered (on) or put it back into the review plan; `l` moves so that merging progress keeps this choice */
+function srsRetire(key, on, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const e = s.w[key] || {b:SRS_TOP, t:now + SRS_LONG, l:now, c:0, x:0};
+  if (on) e.m = 1; else delete e.m;
+  e.l = now;
+  s.w[key] = e;
+  srsSave(s);
+  return e;
+}
 function srsAddExam(rec){
   const s = srsLoad();
   s.ex.push(rec);
@@ -124,6 +138,7 @@ function srsReset(){ lsDel(SRS_KEY); }
 /* {st:'new'|'due'|'wait', b, t} */
 function srsInfo(e, now){
   if (!e) return {st:'new', b:-1, t:0};
+  if (e.m) return {st:'done', b:e.b, t:e.t};
   return {st:e.t <= now ? 'due' : 'wait', b:e.b, t:e.t};
 }
 /* "5 分钟后", "3 小时后", "明天", "6 天后" */
@@ -139,5 +154,6 @@ function srsWhen(t, now){
 }
 function srsStageText(e, now){
   if (!e) return '未开始';
+  if (e.m) return '已完全掌握，不再出现';
   return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
 }

@@ -189,6 +189,7 @@ function renderReview(){
     if (!known[k.split(':')[0]]) return;
     seen++;
     const e = s.w[k];
+    if (e.m) return;
     if (e.t <= t) due++; else if (!next || e.t < next) next = e.t;
   });
   const fresh = Math.max(0, total - seen);
