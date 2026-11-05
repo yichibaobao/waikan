@@ -44,7 +44,12 @@ function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'nul
 function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-function norm(s){ return String(s).toLowerCase().replace(/[^a-z]/g, ''); }
+/* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
+const LANG = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang') === 'ko' ? 'ko' : 'en';
+const XL = LANG === 'ko' ? '韩语' : '英文', XS = LANG === 'ko' ? '韩' : '英';
+function norm(s){ return String(s).toLowerCase().replace(/[^a-z\uac00-\ud7a3]/g, ''); }
+/* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
+function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 /* example sentences mark their target as [[target]] */
 function exNodes(s){

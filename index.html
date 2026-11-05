@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -88,6 +88,9 @@ main{padding-block:20px 56px}
 
 .hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 6px}
 .hero-top .eyebrow{margin:0}
+.langs{display:flex;gap:6px;margin:0 0 10px}
+.lang{padding:5px 12px;border:1px solid var(--line);border-radius:999px;font:500 13px/1.2 var(--font-ui);color:var(--muted);background:var(--surface)}
+.lang.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
 .foot p{margin:0 0 6px}
 </style>
@@ -148,6 +151,7 @@ main{padding-block:20px 56px}
 
 <header class="hero in">
   <div class="hero-top"><p class="eyebrow">DAILY CLOSE READING</p><span id="whoMount"></span></div>
+  <nav class="langs" id="langs" aria-label="板块"></nav>
   <h1>外刊精读合集</h1>
   <p class="tagline">每天一篇：逐句精读、攒词、自测。</p>
   <dl class="stats" id="stats"></dl>
@@ -221,7 +225,12 @@ function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'nul
 function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-function norm(s){ return String(s).toLowerCase().replace(/[^a-z]/g, ''); }
+/* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
+const LANG = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang') === 'ko' ? 'ko' : 'en';
+const XL = LANG === 'ko' ? '韩语' : '英文', XS = LANG === 'ko' ? '韩' : '英';
+function norm(s){ return String(s).toLowerCase().replace(/[^a-z\uac00-\ud7a3]/g, ''); }
+/* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
+function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 /* example sentences mark their target as [[target]] */
 function exNodes(s){
@@ -807,8 +816,9 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"articles":[{"slug":"seagulls","date":"2026-11-06","title":"Eyes on the chips: the seaside war between humans and gulls","deck":"Across the world's beach towns, bold seabirds have learned that tourists are an easy meal. Scientists think they have found a surprisingly simple defence.","tags":["趣闻","动物与城市"],"source":{"type":"original"},"words":449,"vocab":47,"fresh":47,"lsKey":"wk-seagulls-state","audio":true},{"slug":"unit-1","date":"2026-11-05","title":"From scratch, every morning: the quiet arithmetic of a small-town bakery","deck":"Unit test 1. A family bakery in an ageing Japanese town, told with 73 expressions from the first three articles.","tags":["单元测试","第 1–3 篇"],"source":{"type":"original"},"words":604,"vocab":73,"fresh":0,"lsKey":"wk-unit-1-state","audio":true},{"slug":"konbini","date":"2026-11-03","title":"Always open, never enough hands: the strain on Japan's convenience stores","deck":"Japan's corner shops pay bills, post parcels and print documents at three in the morning. Keeping them that way is getting harder.","tags":["城市观察","人口与劳动"],"source":{"type":"original"},"words":485,"vocab":43,"fresh":43,"lsKey":"wk-konbini-state","audio":true},{"slug":"long-live-cash","date":"2026-11-01","title":"Long live cash: why Japan is in no hurry to go cashless","deck":"In much of the rich world, tapping a phone has replaced fumbling for coins. In Japan the old habit survives for reasons that are more rational than they look.","tags":["经济观察","社会习惯"],"source":{"type":"original"},"words":479,"vocab":77,"fresh":77,"lsKey":"wk-long-live-cash-state","audio":true},{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":39,"fresh":39,"lsKey":"fk-state-v1","audio":true}]};
+const SITE = {"root":"","review":"review/","langs":[{"label":"英文外刊","on":true,"href":"./"},{"label":"韩语入门","on":false,"href":"ko/"}],"articles":[{"slug":"seagulls","date":"2026-11-06","title":"Eyes on the chips: the seaside war between humans and gulls","deck":"Across the world's beach towns, bold seabirds have learned that tourists are an easy meal. Scientists think they have found a surprisingly simple defence.","tags":["趣闻","动物与城市"],"source":{"type":"original"},"words":449,"vocab":47,"fresh":47,"lsKey":"wk-seagulls-state","audio":true},{"slug":"unit-1","date":"2026-11-05","title":"From scratch, every morning: the quiet arithmetic of a small-town bakery","deck":"Unit test 1. A family bakery in an ageing Japanese town, told with 73 expressions from the first three articles.","tags":["单元测试","第 1–3 篇"],"source":{"type":"original"},"words":604,"vocab":73,"fresh":0,"lsKey":"wk-unit-1-state","audio":true},{"slug":"konbini","date":"2026-11-03","title":"Always open, never enough hands: the strain on Japan's convenience stores","deck":"Japan's corner shops pay bills, post parcels and print documents at three in the morning. Keeping them that way is getting harder.","tags":["城市观察","人口与劳动"],"source":{"type":"original"},"words":485,"vocab":43,"fresh":43,"lsKey":"wk-konbini-state","audio":true},{"slug":"long-live-cash","date":"2026-11-01","title":"Long live cash: why Japan is in no hurry to go cashless","deck":"In much of the rich world, tapping a phone has replaced fumbling for coins. In Japan the old habit survives for reasons that are more rational than they look.","tags":["经济观察","社会习惯"],"source":{"type":"original"},"words":479,"vocab":77,"fresh":77,"lsKey":"wk-long-live-cash-state","audio":true},{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":39,"fresh":39,"lsKey":"fk-state-v1","audio":true}]};
 const A = SITE.articles;
+SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, l.label)); });
 const WD = ['周日','周一','周二','周三','周四','周五','周六'];
 
 function parse(s){ const p = s.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
@@ -816,7 +826,7 @@ function dateLabel(s){ const d = parse(s); return (d.getMonth() + 1) + ' 月 ' +
 
 /* per-article progress, read from the same browser storage the reader pages write to */
 A.forEach(function(a){
-  a.url = 'a/' + a.slug + '/';
+  a.url = SITE.root + 'a/' + a.slug + '/';
   let m = 0, l = 0;
   const st = lsGet(a.lsKey);
   if (st && st.vocab && typeof st.vocab === 'object') Object.keys(st.vocab).forEach(function(k){
@@ -872,7 +882,7 @@ function renderReview(){
   const desc = due ? '按遗忘曲线安排：到期的词先考你。' + (fresh ? '另有 ' + fresh + ' 个新词还没开始。' : '')
     : seen ? (next ? '下一批在 ' + srsWhen(next, t) + '到期。' : '') + (fresh ? '还有 ' + fresh + ' 个新词可以学。' : '')
     : '读完文章后做自测，答过的词会自动进入复习计划；也可以直接去学新词（' + fresh + ' 个）。';
-  box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:'review/'},
+  box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:SITE.review},
     h('p', {class:'rv-t'}, title),
     h('p', {class:'rv-d'}, desc),
     h('span', {class:'cta'}, due ? '去复习 →' : '词汇复习 →')));

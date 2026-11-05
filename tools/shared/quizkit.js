@@ -22,14 +22,15 @@
    Kit.pager(box, hist, live, o) puts the live card in box with "‹ 上一题" to look back through hist (frozen cards);
    live = null browses hist alone (after the last question), o.close = back to the results. */
 const Kit = (function(){
-  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译英词汇', dict:'听写', sent:'中译英整句'};
+  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译' + XS + '词汇', dict:'听写', sent:'中译' + XS + '整句'};
+  const UNIT = LANG === 'ko' ? ' 个字' : ' 个字母';
   const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
   const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
 
   function markTerms(text, terms){
     const ts = (terms || []).slice().sort(function(a, b){ return b.length - a.length; });
     if (!ts.length) return [document.createTextNode(text)];
-    const re = new RegExp('\\b(?:' + ts.map(esc).join('|') + ')\\b', 'gi');
+    const re = termRe(ts, 'gi');
     const out = [];
     let last = 0, m;
     while ((m = re.exec(text))){
@@ -61,7 +62,7 @@ const Kit = (function(){
   /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
   function toks(s){
     const out = [];
-    String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9]+/).forEach(function(t){
+    String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9\uac00-\ud7a3]+/).forEach(function(t){
       if (!t) return;
       if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
       else if (yearWords(t)) yearWords(t).forEach(function(w){ out.push(w); });
@@ -136,7 +137,7 @@ const Kit = (function(){
     const card = h('div', {class:'card'},
       head(o, type),
       h('p', {class:'q-sent'}, c.before, inp, c.after),
-      h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + ' 个字母')),
+      h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + UNIT)),
       fb,
       h('div', {class:'row'}, main, peek)
     );
@@ -172,7 +173,7 @@ const Kit = (function(){
   function zhQ(item, o){
     const v = item.v, res = newRes(item, 'zh');
     const words = v.core.split(' ');
-    const inp = h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出对应的英文表达'}));
+    const inp = h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出对应的' + XL + '表达'}));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const main = h('button', {type:'button', class:'btn pri'}, '检查');
     const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
@@ -182,7 +183,7 @@ const Kit = (function(){
       head(o, 'zh'),
       h('p', {class:'q-zh'}, v.zh),
       h('p', {class:'q-line'}, inp),
-      h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + ' 个字母')),
+      h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + UNIT)),
       fb,
       h('div', {class:'row'}, main, peek)
     );
@@ -234,14 +235,14 @@ const Kit = (function(){
   /* ---- Chinese sentence -> the whole English sentence, graded by the learner ---- */
   function sentRe(v){
     const alts = v.forms.map(function(f){
-      return f.toLowerCase().split(/[^a-z]+/).filter(Boolean).map(esc).join('[^A-Za-z]+');
+      return f.toLowerCase().split(/[^a-z\uac00-\ud7a3]+/).filter(Boolean).map(esc).join('[^A-Za-z\\uac00-\\ud7a3]+');
     });
-    return new RegExp('(?:^|[^A-Za-z])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
+    return new RegExp('(?:^|[^A-Za-z\\uac00-\\ud7a3])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
   }
   function sentQ(item, o){
     const v = item.v, x = v.ex[item.k], res = newRes(item, 'sent');
     const hide = !!o.hideTarget;
-    const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'}));
+    const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成' + XL, 'aria-label':'写出整句' + XL}));
     const hintP = h('p', {class:'q-hint'});
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const main = h('button', {type:'button', class:'btn pri'}, '核对');
@@ -251,7 +252,7 @@ const Kit = (function(){
     const card = h('div', {class:'card'},
       head(o, 'sent'),
       h('p', {class:'q-zh'}, x.zh),
-      hide ? h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '翻译成英文，用上一个学过的表达。'))
+      hide ? h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '翻译成' + XL + '，用上一个学过的表达。'))
            : h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
       hintP,
       ta,
@@ -322,7 +323,7 @@ const Kit = (function(){
       ? [h('p', {class:'q-ask'}, '这个表达在句子里是什么意思？'),
          h('p', {class:'q-big'}, v.expr, item.clips ? ' ' : null, clipBtn(item.clips, 'w' + v.id, v.core)),
          h('p', {class:'q-ctx'}, markTerms(v.ctx, v.m))]
-      : [h('p', {class:'q-ask'}, '选出对应的英文表达'),
+      : [h('p', {class:'q-ask'}, '选出对应的' + XL + '表达'),
          h('p', {class:'q-zh'}, v.zh)];
     const card = h('div', {class:'card'},
       head(o, 'mcq'),
@@ -388,7 +389,7 @@ const Kit = (function(){
     const field = isWord
       ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
       : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
-    const hintP = h('p', {class:'q-hint'}, isWord ? '一个英文表达，拼写时词形要和听到的一致。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。' + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG === 'ko' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
     const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');

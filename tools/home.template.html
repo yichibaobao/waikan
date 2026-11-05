@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="__LANG__">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>外刊精读合集</title>
+<title>__H1__</title>
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
 /* Home page: one 720px column. Same tokens as the reader pages so the two feel like one site. */
@@ -88,6 +88,9 @@ main{padding-block:20px 56px}
 
 .hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 6px}
 .hero-top .eyebrow{margin:0}
+.langs{display:flex;gap:6px;margin:0 0 10px}
+.lang{padding:5px 12px;border:1px solid var(--line);border-radius:999px;font:500 13px/1.2 var(--font-ui);color:var(--muted);background:var(--surface)}
+.lang.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 .foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
 .foot p{margin:0 0 6px}
 </style>
@@ -98,9 +101,10 @@ main{padding-block:20px 56px}
 <body>
 
 <header class="hero in">
-  <div class="hero-top"><p class="eyebrow">DAILY CLOSE READING</p><span id="whoMount"></span></div>
-  <h1>外刊精读合集</h1>
-  <p class="tagline">每天一篇：逐句精读、攒词、自测。</p>
+  <div class="hero-top"><p class="eyebrow">__EYEBROW__</p><span id="whoMount"></span></div>
+  <nav class="langs" id="langs" aria-label="板块"></nav>
+  <h1>__H1__</h1>
+  <p class="tagline">__TAGLINE__</p>
   <dl class="stats" id="stats"></dl>
 </header>
 
@@ -119,7 +123,7 @@ main{padding-block:20px 56px}
 
   <footer class="foot">
     <p>学习进度（生词状态、造句、自测成绩、复习计划）按右上角的名字分开保存，只存在你当前设备的浏览器里，不会自动同步到别的设备。换手机或清理浏览器数据之前，点右上角头像“导出进度”备份一份，之后用进度码导入即可找回。</p>
-    <p>标明“原创练习文章”的文章是为学习而写的仿外刊练习，不是真实外刊的转载。</p>
+    <p>__FOOT2__</p>
   </footer>
 </main>
 
@@ -134,6 +138,7 @@ Who.chip($('#whoMount'), 'full');
 
 const SITE = __SITE__;
 const A = SITE.articles;
+SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, l.label)); });
 const WD = ['周日','周一','周二','周三','周四','周五','周六'];
 
 function parse(s){ const p = s.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
@@ -141,7 +146,7 @@ function dateLabel(s){ const d = parse(s); return (d.getMonth() + 1) + ' 月 ' +
 
 /* per-article progress, read from the same browser storage the reader pages write to */
 A.forEach(function(a){
-  a.url = 'a/' + a.slug + '/';
+  a.url = SITE.root + 'a/' + a.slug + '/';
   let m = 0, l = 0;
   const st = lsGet(a.lsKey);
   if (st && st.vocab && typeof st.vocab === 'object') Object.keys(st.vocab).forEach(function(k){
@@ -197,7 +202,7 @@ function renderReview(){
   const desc = due ? '按遗忘曲线安排：到期的词先考你。' + (fresh ? '另有 ' + fresh + ' 个新词还没开始。' : '')
     : seen ? (next ? '下一批在 ' + srsWhen(next, t) + '到期。' : '') + (fresh ? '还有 ' + fresh + ' 个新词可以学。' : '')
     : '读完文章后做自测，答过的词会自动进入复习计划；也可以直接去学新词（' + fresh + ' 个）。';
-  box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:'review/'},
+  box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:SITE.review},
     h('p', {class:'rv-t'}, title),
     h('p', {class:'rv-d'}, desc),
     h('span', {class:'cta'}, due ? '去复习 →' : '词汇复习 →')));

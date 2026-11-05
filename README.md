@@ -39,6 +39,16 @@ Never edit `index.html` or `a/**` by hand; they are overwritten by the build.
 Changing a template or a file in `tools/shared/` and re-running the build updates every page at once. Nothing else is needed to feed the review page:
 every new article's words join the review plan automatically (the build writes `a/<slug>/words.json` and the word index inside `review/index.html`).
 
+## Korean section (韩语入门)
+
+Korean lessons for a complete beginner live next to the articles: `content/<slug>/article.json` with `meta.lang: "ko"` (slug `ko-...`).
+The build gives them their own home page (`ko/index.html`) and review page (`review-ko/`); both home pages have a 英文外刊 / 韩语入门 switch.
+A lesson is short: a title, one sub line, about 5 body sentences and 8-10 words. Every sentence, word and example carries `rom`
+(Revised Romanization), shown by the 显示罗马音 switch (off by default). Notes are in Chinese and explain particles and endings.
+Pages know their language from `<html data-lang>` (`LANG`, `XL` in `common.js`): answer checking, highlighting and dictation accept Hangul,
+and Korean particles may follow a highlighted term. Audio: `tools/make_audio.py <slug>` picks Microsoft's online voices for Korean
+(`--engine edge`, voice `ko-KR-SunHiNeural`, speed 0.85; needs `pip install edge-tts` in the TTS venv and internet).
+
 ## Unit tests (every three articles)
 
 After every three articles comes a unit test: a new article (`content/unit-<n>/`, `meta.short` "第 n 单元测试", tag "单元测试")

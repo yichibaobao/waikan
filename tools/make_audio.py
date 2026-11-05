@@ -45,8 +45,10 @@ LEAD = 0.25           # silence before the first word
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
-    ap.add_argument("--model", required=True)
-    ap.add_argument("--voices", required=True)
+    ap.add_argument("--engine", choices=["kokoro", "edge"], default=None,
+                    help="kokoro: offline model (English). edge: Microsoft's online voices (needs pip install edge-tts and internet); default for Korean lessons")
+    ap.add_argument("--model", help="kokoro only")
+    ap.add_argument("--voices", help="kokoro only")
     ap.add_argument("--voice", default="af_heart", help="American: af_heart af_bella af_nicole af_sarah am_michael am_adam am_eric ...; British: bf_emma bf_isabella bm_george bm_lewis ...")
     ap.add_argument("--lang", default=None, help="en-us or en-gb; default: from the voice (a* = American, b* = British)")
     ap.add_argument("--speed", type=float, default=0.95)
@@ -54,21 +56,61 @@ def main():
     ap.add_argument("--clip-bitrate", default="40k", help="word/example sprite bitrate")
     ap.add_argument("--only", choices=["narration", "clips"], help="make just one of the two files")
     a = ap.parse_args()
-    if not a.lang:
-        a.lang = "en-gb" if a.voice.startswith("b") else "en-us"
-
-    from kokoro_onnx import Kokoro
-
     raw = json.load(open(os.path.join(ROOT, "content", a.slug, "article.json"), encoding="utf-8"))
     err = resolve_refs(a.slug, raw, os.path.join(ROOT, "content"))
     if err:
         sys.exit(err)
+    korean = raw["meta"].get("lang") == "ko"
+    a.engine = a.engine or ("edge" if korean else "kokoro")
+    if a.engine == "edge":
+        if a.voice == "af_heart":
+            a.voice = "ko-KR-SunHiNeural" if korean else "en-US-AriaNeural"
+        if korean and a.speed == 0.95:
+            a.speed = 0.85          # slower for beginners
+        k = EdgeVoice()
+    else:
+        if not (a.model and a.voices):
+            sys.exit("kokoro needs --model and --voices")
+        if not a.lang:
+            a.lang = "en-gb" if a.voice.startswith("b") else "en-us"
+        from kokoro_onnx import Kokoro
+        k = Kokoro(a.model, a.voices)
     pronounce = raw["meta"].get("pronounce", {})
-    k = Kokoro(a.model, a.voices)
     if a.only != "clips":
         make_narration(a, raw, pronounce, k)
     if a.only != "narration":
         make_clips(a, raw, pronounce, k)
+
+
+class EdgeVoice:
+    """Microsoft Edge's online neural voices behind the same create() as Kokoro: (float32 samples at SR, SR)."""
+    def create(self, text, voice, speed, lang=None):
+        import asyncio
+        import edge_tts
+        rate = f"{round((speed - 1) * 100):+d}%"
+        with tempfile.TemporaryDirectory() as tmp:
+            mp3 = os.path.join(tmp, "s.mp3")
+            for attempt in range(3):
+                try:
+                    asyncio.run(edge_tts.Communicate(text, voice, rate=rate).save(mp3))
+                    break
+                except Exception:
+                    if attempt == 2:
+                        raise
+            raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", mp3, "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+                                 check=True, capture_output=True).stdout
+        samples = np.frombuffer(raw, dtype=np.float32)
+        return trim(samples), SR
+
+
+def trim(samples, floor=0.01):
+    """Drop the silence the online voice puts around each clip, so the sprite timings stay tight."""
+    loud = np.nonzero(np.abs(samples) > floor)[0]
+    if not len(loud):
+        return samples
+    a = max(0, loud[0] - int(0.03 * SR))
+    b = min(len(samples), loud[-1] + int(0.08 * SR))
+    return samples[a:b]
 
 
 def encode_mp3(audio, mp3, bitrate, title):

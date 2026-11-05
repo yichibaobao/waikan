@@ -6,8 +6,8 @@
 Writes   a/<slug>/index.html   one study page per article (reader.template.html)
          a/<slug>/words.json   the article's words with everything a quiz needs (read by the review page)
          a/<slug>/listen.json  the article's sentences with narration times, for the listening exam (only when audio exists)
-         review/index.html     the spaced-repetition review page (review.template.html)
-         index.html            the collection home page (home.template.html)
+         review/index.html     the spaced-repetition review page (review.template.html); review-ko/ for the Korean section
+         index.html            the collection home page (home.template.html); ko/index.html for the Korean section
 
 tools/shared/*.css|js are inlined into the templates (placeholders like /*__COMMON_JS__*/), so every page stays one self-contained file.
 
@@ -37,6 +37,15 @@ SHARED_PARTS = (("/*__BASE_CSS__*/", "base.css"), ("/*__COMMON_JS__*/", "common.
                 ("/*__WHO_CSS__*/", "who.css"), ("/*__WHO_JS__*/", "who.js"))
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+# the two sections of the site: English articles at the root, Korean lessons under ko/ (meta.lang = "ko")
+SECTIONS = {
+    "en": dict(home="", review="review", label="英文外刊", brand="外刊精读", h1="外刊精读合集", eyebrow="DAILY CLOSE READING",
+               tagline="每天一篇：逐句精读、攒词、自测。", rtitle="词汇复习 · 外刊精读",
+               foot2="标明“原创练习文章”的文章是为学习而写的仿外刊练习，不是真实外刊的转载。"),
+    "ko": dict(home="ko", review="review-ko", label="韩语入门", brand="韩语入门", h1="韩语入门", eyebrow="KOREAN FOR BEGINNERS",
+               tagline="每天一小段：读、听、攒词、自测。", rtitle="词汇复习 · 韩语入门",
+               foot2="韩语短文是为零基础学习者写的原创练习。"),
+}
 
 
 def die(msg):
@@ -49,11 +58,12 @@ def check(cond, msg):
 
 
 def word_re(term):
-    return re.compile(r"(?<![A-Za-z])" + re.escape(term) + r"(?![A-Za-z])", re.I)
+    """A term in a text: no letter just before; no Latin letter after (Korean particles and endings may follow)."""
+    return re.compile(r"(?<![A-Za-z\uac00-\ud7a3])" + re.escape(term) + r"(?![A-Za-z])", re.I)
 
 
 def norm_key(s):
-    return re.sub(r"[^a-z]", "", s.lower())
+    return re.sub(r"[^a-z\uac00-\ud7a3]", "", s.lower())
 
 
 def prepare(slug, raw):
@@ -73,6 +83,10 @@ def prepare(slug, raw):
     if meta["source"]["type"] == "link":
         check(meta["source"].get("url", "").startswith("http"), f"{where} source.url must be an http(s) link")
     meta.setdefault("lsKey", f"wk-{slug}-state")
+    meta.setdefault("lang", "en")
+    check(meta["lang"] in SECTIONS, f"{where} meta.lang must be one of {sorted(SECTIONS)}")
+    data["lang"] = meta["lang"]
+    ko = meta["lang"] == "ko"
 
     # ---- sentences
     sents = data["sents"]
@@ -81,6 +95,7 @@ def prepare(slug, raw):
     for i, s in enumerate(sents):
         check(s["kind"] in ("title", "sub", "body"), f"{where} sentence {i}: bad kind")
         check(s.get("en") and s.get("zh"), f"{where} sentence {i}: en and zh are required")
+        check(not ko or s.get("rom"), f"{where} sentence {i}: Korean sentences need rom (romanization)")
         s["i"] = i
         s.setdefault("notes", [])
         if s["kind"] == "body":
@@ -109,7 +124,7 @@ def prepare(slug, raw):
             check(sm, f"{where} vocab {vid}: mark the word in seen.en with [[ ]]")
             v["m"] = [sm.group(1)]
             v["ctx"] = seen["en"].replace("[[", "").replace("]]", "")
-        for k in ("expr", "zh", "m", "core", "forms"):
+        for k in ("expr", "zh", "m", "core", "forms") + (("rom",) if ko else ()):
             check(v.get(k), f"{where} vocab {vid}: {k} is required")
         v.setdefault("syn", [])
         v.setdefault("note", "")
@@ -249,14 +264,16 @@ def words_json(slug, meta, data):
 
 
 LISTEN_MIN, LISTEN_MAX = 5, 32      # words per article sentence that make a fair dictation
+LISTEN_MIN_KO = 2                   # Korean lessons are short and a Korean "word" carries its particle
 
 
 def listen_sents(data):
     """The article sentences the listening exam may use: the deck and the body, not too short and not too long."""
     out = []
+    lo = LISTEN_MIN_KO if data.get("lang") == "ko" else LISTEN_MIN
     for s in data["sents"]:
         n = len(s["en"].split())
-        if s["kind"] != "title" and LISTEN_MIN <= n <= LISTEN_MAX:
+        if s["kind"] != "title" and lo <= n <= LISTEN_MAX:
             out.append(s)
     return out
 
@@ -283,10 +300,12 @@ def main():
     reader_tpl = inline_shared(open(os.path.join(TOOLS, "reader.template.html"), encoding="utf-8").read(), "reader")
     home_tpl = inline_shared(open(os.path.join(TOOLS, "home.template.html"), encoding="utf-8").read(), "home")
     review_tpl = inline_shared(open(os.path.join(TOOLS, "review.template.html"), encoding="utf-8").read(), "review")
-    for ph in ("__DATA__", "__LS_STATE__", "__TITLE__", "__BRAND__", "__HOME__", "__FOOT__", "__SLUG__", "__REVIEW__"):
+    for ph in ("__DATA__", "__LS_STATE__", "__TITLE__", "__BRAND__", "__HOME__", "__FOOT__", "__SLUG__", "__REVIEW__", "__LANG__"):
         check(reader_tpl.count(ph) >= 1, f"reader template lost placeholder {ph}")
-    check(home_tpl.count("__SITE__") == 1, "home template lost placeholder __SITE__")
-    check(review_tpl.count("__INDEX__") == 1, "review template lost placeholder __INDEX__")
+    for ph in ("__SITE__", "__LANG__", "__H1__", "__EYEBROW__", "__TAGLINE__", "__FOOT2__"):
+        check(home_tpl.count(ph) >= 1, f"home template lost placeholder {ph}")
+    for ph in ("__INDEX__", "__LANG__", "__TITLE__", "__HOME__"):
+        check(review_tpl.count(ph) >= 1, f"review template lost placeholder {ph}")
 
     metas, index = [], []
     slugs = sorted(d for d in os.listdir(CONTENT) if os.path.isfile(os.path.join(CONTENT, d, "article.json")))
@@ -299,14 +318,16 @@ def main():
         attach_audio(slug, meta, data, raw)
         attach_clips(slug, data, raw)
         payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        sec = SECTIONS[meta["lang"]]
         page = (reader_tpl
-                .replace("__TITLE__", htmllib.escape(f"{meta['short']} · 外刊精读"))
+                .replace("__TITLE__", htmllib.escape(f"{meta['short']} · {sec['brand']}"))
                 .replace("__BRAND__", htmllib.escape(meta["short"]))
-                .replace("__HOME__", "../../")
+                .replace("__HOME__", "../../" + (sec["home"] + "/" if sec["home"] else ""))
+                .replace("__LANG__", meta["lang"])
                 .replace("__FOOT__", foot_html(meta))
                 .replace("__LS_STATE__", meta["lsKey"])
                 .replace("__SLUG__", slug)
-                .replace("__REVIEW__", "../../review/")
+                .replace("__REVIEW__", "../../" + sec["review"] + "/")
                 .replace("__DATA__", payload))
         out = os.path.join(ROOT, "a", slug)
         os.makedirs(out, exist_ok=True)
@@ -320,7 +341,7 @@ def main():
             open(lj, "w", encoding="utf-8").write(json.dumps(listen_json(slug, meta, data), ensure_ascii=False, separators=(",", ":")))
         elif os.path.isfile(lj):
             os.remove(lj)
-        index.append(dict(slug=slug, title=meta["title"], short=meta["short"], date=meta["date"], clips=bool(data.get("clips")), ls=ls,
+        index.append(dict(slug=slug, lang=meta["lang"], title=meta["title"], short=meta["short"], date=meta["date"], clips=bool(data.get("clips")), ls=ls,
                           w=[[v["id"], v["expr"], v["zh"]] for v in data["vocab"] if not v.get("ref")],
                           r=[v["ref"] for v in data["vocab"] if v.get("ref")]))
         metas.append(meta)
@@ -328,18 +349,33 @@ def main():
 
     metas.sort(key=lambda m: (m["date"], m["slug"]), reverse=True)
     index.sort(key=lambda a: (a["date"], a["slug"]), reverse=True)
-    os.makedirs(os.path.join(ROOT, "review"), exist_ok=True)
-    rv = review_tpl.replace("__INDEX__", json.dumps(dict(articles=index), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
-    syntax_check(rv, "review")
-    open(os.path.join(ROOT, "review", "index.html"), "w", encoding="utf-8").write(rv)
-    print(f"  review/index.html  ({sum(len(a['w']) for a in index)} words)")
-    site = dict(articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
-                               source=m["source"], words=m["words"], vocab=m["vocab"], fresh=m["fresh"], lsKey=m["lsKey"], audio=m["audio"]) for m in metas])
-    payload = json.dumps(site, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    home = home_tpl.replace("__SITE__", payload)
-    syntax_check(home, "home")
-    open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(home)
-    print(f"  index.html  ({len(metas)} article{'s' if len(metas) != 1 else ''})")
+    langs = [lg for lg in SECTIONS if lg == "en" or any(m["lang"] == lg for m in metas)]
+    for lg in langs:
+        sec = SECTIONS[lg]
+        up = "../" if sec["home"] else ""
+        # review page
+        idx = [a for a in index if a["lang"] == lg]
+        rv = (review_tpl.replace("__LANG__", lg).replace("__TITLE__", htmllib.escape(sec["rtitle"])).replace("__HOME__", "../" + (sec["home"] + "/" if sec["home"] else ""))
+              .replace("__INDEX__", json.dumps(dict(articles=idx), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")))
+        syntax_check(rv, sec["review"])
+        os.makedirs(os.path.join(ROOT, sec["review"]), exist_ok=True)
+        open(os.path.join(ROOT, sec["review"], "index.html"), "w", encoding="utf-8").write(rv)
+        print(f"  {sec['review']}/index.html  ({sum(len(a['w']) for a in idx)} words)")
+        # home page
+        ms = [m for m in metas if m["lang"] == lg]
+        nav = [dict(label=SECTIONS[o]["label"], on=o == lg,
+                    href="./" if o == lg else up + (SECTIONS[o]["home"] + "/" if SECTIONS[o]["home"] else "")) for o in langs]
+        site = dict(root=up, review=up + sec["review"] + "/", langs=nav if len(langs) > 1 else [],
+                    articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
+                                   source=m["source"], words=m["words"], vocab=m["vocab"], fresh=m["fresh"], lsKey=m["lsKey"], audio=m["audio"]) for m in ms])
+        payload = json.dumps(site, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+        home = (home_tpl.replace("__LANG__", lg).replace("__H1__", sec["h1"]).replace("__EYEBROW__", sec["eyebrow"])
+                .replace("__TAGLINE__", sec["tagline"]).replace("__FOOT2__", sec["foot2"]).replace("__SITE__", payload))
+        syntax_check(home, "home " + lg)
+        out = os.path.join(ROOT, sec["home"], "index.html") if sec["home"] else os.path.join(ROOT, "index.html")
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        open(out, "w", encoding="utf-8").write(home)
+        print(f"  {os.path.relpath(out, ROOT)}  ({len(ms)} article{'s' if len(ms) != 1 else ''})")
 
 
 if __name__ == "__main__":
