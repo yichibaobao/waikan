@@ -1,0 +1,2276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Eyes on the Chips · 外刊精读</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: one 720px reading column under a sticky masthead; four tabs (read, words, quiz, think) share it. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#E8EDF3; --fg:#16202B; --muted:#58656F; --line:#D3DBE4;
+  --accent:#2B5C8E; --accent-soft:#DDE9F5; --on-accent:#FFFFFF;
+  --koban:#C0392B; --lamp-halo:rgba(192,57,43,.18); --mark:#FBE8A6;
+  --good:#27693F; --good-soft:#DDF0E3; --warn:#8A5700; --warn-soft:#FBEBC8; --bad:#B3261E; --bad-soft:#FAE0DD;
+  --font-read:'Literata','Iowan Old Style',Georgia,'Songti SC','Noto Serif CJK SC',serif;
+  --font-ui:'IBM Plex Sans',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --radius:10px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font:16px/1.6 var(--font-ui);background:var(--bg);color:var(--fg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* masthead */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 6px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;font:600 18px/1.2 var(--font-read);letter-spacing:-.01em}
+.b-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.back{flex:none;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 12.5px/1.2 var(--font-ui);color:var(--muted);text-decoration:none;letter-spacing:0}
+.back:hover{color:var(--fg);background:var(--surface-2)}
+.tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
+.tab{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:9px 4px 10px;font:500 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
+.tab:hover{color:var(--fg)}
+.tab.on{color:var(--fg);border-bottom-color:var(--accent)}
+
+main{padding-block:22px 56px}
+.view[hidden]{display:none}
+
+/* shared */
+.eyebrow{font:500 12px/1.2 var(--font-ui);letter-spacing:.08em;color:var(--accent)}
+.h2{margin:0 0 6px;font:600 22px/1.3 var(--font-read);text-wrap:balance}
+.h3{margin:20px 0 8px;font:600 16px/1.4 var(--font-ui)}
+.lead{margin:0 0 14px;color:var(--muted);font-size:15px}
+.meta{margin:0;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.mono{font-family:var(--font-mono);font-size:12.5px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.btn{appearance:none;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font:500 14px/1.2 var(--font-ui);cursor:pointer}
+.btn:hover{background:var(--surface-2)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.pri:hover{filter:brightness(1.06)}
+.btn.sm{padding:6px 10px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:default}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{appearance:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.chip:disabled{opacity:.45;cursor:default}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.seg-b{appearance:none;padding:6px 10px;border:0;border-right:1px solid var(--line);background:none;font:500 12.5px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.seg-b:last-child{border-right:0}
+.seg-b.on.s-new{background:var(--surface-2);color:var(--fg)}
+.seg-b.on.s-learning{background:var(--warn-soft);color:var(--warn)}
+.seg-b.on.s-mastered{background:var(--good-soft);color:var(--good)}
+textarea{display:block;width:100%;min-height:58px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-size:16px;line-height:1.55;resize:vertical}
+mark.vw{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+
+/* word context line and speaker button (used by the word cards and by the quiz feedback) */
+.w-ctx{margin:0;font:italic 400 14.5px/1.65 var(--font-read);color:var(--muted)}
+.spk{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--accent);cursor:pointer}
+.spk:hover{background:var(--accent-soft)}
+.spk.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.spk svg{display:block}
+
+/* quiz */
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.pbar{flex:1;max-width:240px;height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden}
+.pbar i{display:block;height:100%;width:var(--p,0%);background:var(--accent)}
+.q-sent{margin:16px 0 8px;font:400 20px/2.1 var(--font-read);overflow-wrap:anywhere}
+.q-input{display:inline-block;max-width:100%;padding:2px 8px;border:0;border-bottom:2px solid var(--accent);border-radius:4px 4px 0 0;background:var(--accent-soft);font:500 18px/1.4 var(--font-mono);text-align:center}
+.q-input.ok{border-bottom-color:var(--good);background:var(--good-soft)}
+.q-input.bad{border-bottom-color:var(--bad);background:var(--bad-soft)}
+.q-hint{margin:0;font-size:14px;color:var(--muted)}
+.q-zh{margin:18px 0 6px;font:500 21px/1.6 var(--font-ui);overflow-wrap:anywhere}
+.q-line{margin:10px 0 8px}
+.q-input.q-wide{display:block;width:100%;box-sizing:border-box;padding:8px 10px;font-size:18px;text-align:left}
+.q-area{margin:8px 0 4px;font:400 17px/1.6 var(--font-read)}
+.q-tgt{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.q-tgt b{padding:1px 8px;border-radius:6px;background:var(--accent-soft);color:var(--accent);font:600 15px/1.5 var(--font-read)}
+.miss-s b,.fb b.hl{font-weight:600;background:var(--mark);border-radius:2px;padding:0 1px}
+.fb{margin-top:16px;padding:12px 14px;border-radius:8px;background:var(--surface-2)}
+.fb.ok{background:var(--good-soft)}
+.fb.bad{background:var(--bad-soft)}
+.fb p{margin:0 0 6px;font-size:14.5px}
+.fb .fb-t{font-weight:600}
+.fb.ok .fb-t{color:var(--good)}
+.fb.bad .fb-t{color:var(--bad)}
+.fb-s{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.score{margin:0 0 12px;font:400 18px/1.2 var(--font-mono);color:var(--muted)}
+.score .big{font-size:44px;color:var(--fg)}
+.miss{padding:10px 0;border-top:1px solid var(--line)}
+.miss-s{margin:0 0 4px;font:400 17px/1.7 var(--font-read)}
+
+.mt4{margin-top:4px}
+.mt10{margin-top:10px}
+.mt12{margin-top:12px}
+.mb12{margin-bottom:12px}
+.mb14{margin-bottom:14px}
+.mb16{margin-bottom:16px}
+.foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* quiz kit: multiple choice, dictation, feedback pieces */
+.q-ask{margin:14px 0 0;font-size:14px;color:var(--muted)}
+.q-big{margin:6px 0 0;font:600 26px/1.35 var(--font-read);overflow-wrap:anywhere}
+.q-big .spk{vertical-align:middle;margin-left:6px}
+.q-ctx{margin:8px 0 0;font:italic 400 15.5px/1.7 var(--font-read);color:var(--muted)}
+.mc{display:grid;gap:8px;margin:16px 0 4px}
+.mc-b{appearance:none;display:flex;align-items:flex-start;gap:10px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:9px;background:var(--surface);text-align:left;font:400 16px/1.5 var(--font-ui);color:var(--fg);cursor:pointer}
+.mc-b:hover:not(:disabled){background:var(--surface-2)}
+.mc-b .n{flex:none;width:20px;height:20px;margin-top:1px;border:1px solid var(--line);border-radius:50%;font:500 11.5px/18px var(--font-mono);text-align:center;color:var(--muted)}
+.mc-b.ok{border-color:var(--good);background:var(--good-soft)}
+.mc-b.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mc-b:disabled{cursor:default;opacity:1;color:var(--fg)}
+.dict-btns{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px}
+.btn.play{display:inline-flex;align-items:center;gap:7px}
+.btn.play svg{display:block}
+.btn.play.on{box-shadow:0 0 0 2px var(--accent-soft)}
+.df{margin:0 0 8px;font:400 16.5px/1.7 var(--font-read)}
+.df-l{display:block;font:500 12px/1.5 var(--font-ui);color:var(--muted)}
+.miss-t{color:var(--bad);text-decoration:underline wavy;text-decoration-thickness:1px;text-underline-offset:3px}
+.fb-x:empty{display:none}
+.w-note{margin:0 0 6px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+
+/* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
+.who-chip{appearance:none;display:inline-flex;align-items:center;gap:8px;flex:none;max-width:100%;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
+.who-chip.full{padding-right:12px}
+.who-chip:hover{background:var(--surface-2)}
+.who-chip.tiny{border-color:transparent;background:none}
+.who-nm{min-width:0;max-width:9em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who-av{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font:600 14px/1 var(--font-ui)}
+.who-av.lg{width:40px;height:40px;font-size:18px}
+
+.who-ov{position:fixed;inset:0;z-index:1000;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--bg);display:flex;justify-content:center;align-items:flex-start;padding:max(28px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(32px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.who-ov.sheet{background:rgba(22,32,43,.45)}
+.who-ov.sheet .who-card{margin:auto}
+.who-card{width:100%;max-width:440px;padding:22px 20px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.who-ov:not(.sheet) .who-card{margin-top:4vh;border:0;background:transparent;padding:8px 4px}
+.who-eb{margin:0 0 6px;font:500 12px/1.2 var(--font-ui);letter-spacing:.1em;color:var(--accent)}
+.who-h{margin:0;font:600 clamp(26px,7vw,34px)/1.2 var(--font-read);letter-spacing:-.01em}
+.who-h.sm{font-size:19px}
+.who-sub{margin:8px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
+.who-sec{margin:20px 0 8px;font:600 13px/1.3 var(--font-ui);color:var(--muted)}
+.who-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.who-p{appearance:none;display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-align:left;cursor:pointer}
+.who-p:hover{background:var(--surface-2)}
+.who-pn{display:block;font:600 16px/1.3 var(--font-ui)}
+.who-pm{display:block;margin-top:2px;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.who-new{display:flex;gap:8px;margin:0}
+.who-in{flex:1;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:400 16px/1.3 var(--font-ui)}
+.who-in:focus{outline:2px solid var(--accent);outline-offset:1px}
+.who-ta{display:block;width:100%;min-height:96px;margin:8px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:400 12.5px/1.5 var(--font-mono);resize:vertical;word-break:break-all}
+.who-btn{appearance:none;padding:10px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:500 14.5px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
+.who-btn:hover{background:var(--surface-2)}
+.who-btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.who-btn.pri:hover{filter:brightness(1.06)}
+.who-btn.dng{background:var(--bad,#B3261E);border-color:var(--bad,#B3261E);color:#fff}
+.who-btn:disabled{opacity:.45;cursor:default}
+.who-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.who-link{appearance:none;display:inline-block;margin:14px 0 0;padding:6px 0;border:0;background:none;font:500 14px/1.3 var(--font-ui);color:var(--accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.who-msg{min-height:1.4em;margin:8px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.who-msg.err{color:var(--bad,#B3261E)}
+.who-msg.ok{color:var(--good,#27693F)}
+.who-note{margin:18px 0 0;font-size:12.5px;line-height:1.7;color:var(--muted)}
+.who-menu{display:grid;gap:8px;margin:16px 0 0}
+.who-mi{appearance:none;display:block;width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-align:left;cursor:pointer}
+.who-mi:hover{background:var(--surface-2)}
+.who-mi b{display:block;font:600 15px/1.3 var(--font-ui)}
+.who-mi span{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.who-mi.dng b{color:var(--bad,#B3261E)}
+.who-x{appearance:none;float:right;margin:-6px -6px 0 8px;width:36px;height:36px;border:0;border-radius:50%;background:none;font-size:24px;line-height:1;color:var(--muted);cursor:pointer}
+.who-x:hover{background:var(--surface-2)}
+.who-top{display:flex;align-items:center;gap:12px}
+
+</style>
+<style>
+/* reader-specific styles; the shared ones are in tools/shared/base.css */
+.lamp{flex:none;width:10px;height:10px;border-radius:50%;background:var(--koban);box-shadow:0 0 0 4px var(--lamp-halo)}
+.prog{flex:none;text-align:right}
+.prog .t{font-size:12px;line-height:1.3;color:var(--muted)}
+.prog b{font:400 13px/1.3 var(--font-mono);color:var(--fg)}
+.meter{width:112px;height:3px;margin:4px 0 3px auto;border-radius:2px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
+.prog .s{font-size:11px;min-height:14px}
+
+/* listen */
+.lp{display:grid;gap:14px}
+.lp-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn.big{min-width:96px;padding:12px 22px;font-size:16px}
+.lp-range{display:block;width:100%;margin:0;accent-color:var(--accent)}
+.lp-time{display:flex;justify-content:space-between;margin-top:2px;font:400 12.5px/1 var(--font-mono);color:var(--muted)}
+.lp-opt{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.lp-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.lp-msg{margin:0;font-size:13px;color:var(--bad)}
+.tr{margin-top:22px}
+.tr-off{margin-top:18px;padding:22px 16px;text-align:center;font-size:14.5px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+.ls{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:140px;scroll-margin-bottom:90px}
+.ls:hover{background:var(--surface-2)}
+.ls.on{background:var(--accent-soft)}
+
+/* read */
+.opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.opts label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.opts input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.a-title{margin:0 0 12px;font:600 clamp(26px,6.4vw,34px)/1.15 var(--font-read);letter-spacing:-.015em;text-wrap:balance}
+.a-deck{margin:0;font:italic 400 18px/1.55 var(--font-read);color:var(--muted);text-wrap:pretty}
+.a-para{margin:0;font:400 18px/1.75 var(--font-read)}
+.blk{margin-bottom:24px}
+.blk-sub{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.sent{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:120px}
+.sent:hover{background:var(--surface-2)}
+.sent.on{background:var(--accent-soft)}
+.zh{display:none;margin:10px 0 0;font:400 15px/1.75 var(--font-ui);color:var(--muted)}
+.show-zh .zh{display:block}
+.note{margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:120px}
+.note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.note-nav{display:flex;gap:6px}
+.note-zh{margin:0 0 10px;font:500 16px/1.7 var(--font-ui)}
+.note-list{margin:0;padding-left:1.15em;font-size:14.5px;line-height:1.7}
+.note-list li{margin-bottom:5px}
+.note-words{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.note-wh{margin:0 0 8px;font:600 13px/1.3 var(--font-ui);color:var(--muted)}
+.nw{margin:0 0 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.nw summary{cursor:pointer;list-style:none;padding:9px 12px;font:400 14.5px/1.5 var(--font-ui)}
+.nw summary::-webkit-details-marker{display:none}
+.nw summary::after{content:'＋';float:right;margin-left:8px;color:var(--muted)}
+.nw[open] summary::after{content:'－'}
+.nw summary b{font-weight:600}
+.nw-body{padding:0 12px 10px;font-size:14px;line-height:1.7}
+.nw-body p{margin:0 0 6px}
+.nw-ex{color:var(--muted)}
+.word{scroll-margin-top:120px}
+.word.flash{outline:2px solid var(--accent);outline-offset:2px}
+
+/* words */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.search{flex:1 1 200px;min-width:0;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:16px}
+.word{display:grid;gap:9px;margin-bottom:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.word-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.w-expr{margin:0;min-width:0;font:600 18px/1.35 var(--font-read);overflow-wrap:anywhere}
+.w-zh{margin:0;font-size:15px}
+.w-head{display:flex;align-items:center;gap:8px;min-width:0}
+.w-ctxrow{display:flex;align-items:flex-start;gap:10px}
+.w-ctxrow .w-ctx{flex:1;min-width:0}
+.ex-row{display:flex;align-items:flex-start;gap:10px}
+.ex-body{min-width:0}
+.w-tag{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:500 11px/1.6 var(--font-ui);vertical-align:3px;white-space:nowrap}
+.w-note{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.w-exh{margin:2px 0 -3px;font-size:12px;color:var(--muted)}
+.w-ex{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.w-ex li{padding-left:12px;border-left:2px solid var(--line)}
+.ex-en{display:block;font:400 15px/1.6 var(--font-read)}
+.ex-en b{font-weight:600;background:var(--mark);border-radius:2px;padding:0 1px}
+.ex-zh{display:block;margin-top:1px;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.w-mine>span{display:block;margin-bottom:4px;font-size:12px;color:var(--muted)}
+.w-meta{margin:0;min-height:16px;font:400 12px/1.4 var(--font-mono);color:var(--muted)}
+.empty{padding:28px 0;text-align:center;color:var(--muted)}
+
+/* think */
+.bd{margin:0 0 12px;font:400 19px/1.75 var(--font-read)}
+.qa{margin-bottom:16px}
+.qa-q{margin:0 0 6px;font-size:15.5px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="in">
+    <div class="mast">
+      <div class="brand"><a class="back" href="../../">‹ 合集</a><span class="b-title">Eyes on the Chips</span></div>
+      <div class="prog">
+        <div class="t">已掌握 <b id="mCount">0 / 0</b></div>
+        <div class="meter" id="meter"><i></i></div>
+        <div class="t s" id="saveNote" aria-live="polite"></div>
+      </div>
+      <span id="whoMount"></span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="页面">
+      <button type="button" class="tab" role="tab" data-tab="read">精读</button>
+      <button type="button" class="tab" role="tab" data-tab="listen" hidden>听力</button>
+      <button type="button" class="tab" role="tab" data-tab="words">词汇</button>
+      <button type="button" class="tab" role="tab" data-tab="quiz">自测</button>
+      <button type="button" class="tab" role="tab" data-tab="think">长句</button>
+    </nav>
+  </div>
+</div>
+
+<main class="in">
+  <section class="view" id="view-read" role="tabpanel">
+    <div class="opts">
+      <label><input type="checkbox" id="optZh"> 显示译文</label>
+      <label><input type="checkbox" id="optHi" checked> 标出生词</label>
+      <span>点任意一句，看翻译和讲解</span>
+    </div>
+    <article id="article"></article>
+  </section>
+
+  <section class="view" id="view-listen" role="tabpanel" hidden>
+    <div id="listenBox"></div>
+  </section>
+
+  <section class="view" id="view-words" role="tabpanel" hidden>
+    <div class="tools">
+      <input class="search" id="wordSearch" type="search" placeholder="搜索表达、中文或例句" autocomplete="off" aria-label="搜索词汇">
+    </div>
+    <div class="chips mb14" id="chips"></div>
+    <div id="wordList"></div>
+  </section>
+
+  <section class="view" id="view-quiz" role="tabpanel" hidden>
+    <div id="quizBox"></div>
+  </section>
+
+  <section class="view" id="view-think" role="tabpanel" hidden>
+    <div id="thinkBox"></div>
+  </section>
+
+  <p class="foot">这是一篇仿《经济学人》风格的原创练习文章，不是真实外刊的转载。文中的事实是概括性描述，仅供语言学习，请不要当作引用来源。</p>
+</main>
+
+<script>
+(function(){
+'use strict';
+/* ---------- small helpers shared by every page (inlined by tools/build.py) ---------- */
+function $(s, r){ return (r || document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+function h(tag, attrs){
+  const e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k){
+    const v = attrs[k];
+    if (v == null || v === false) return;
+    if (k === 'class') e.className = v;
+    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : String(v));
+  });
+  Array.prototype.slice.call(arguments, 2).forEach(function(kid){
+    [].concat(kid).forEach(function(k){
+      if (k == null || k === false) return;
+      e.append(k.nodeType ? k : document.createTextNode(String(k)));
+    });
+  });
+  return e;
+}
+function pad2(n){ return String(n).padStart(2, '0'); }
+function ymd(d){ return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+function today(){ return ymd(new Date()); }
+/* Progress is kept per learner: key "k" of learner "u1" lives in localStorage as "k@u1". who.js manages the learners
+   (the list is in WHO_KEY, which itself is never namespaced). WHO_ID is '' until someone has been chosen. */
+const WHO_KEY = 'wk-who-v1';
+function whoReg(){
+  const out = {v:1, cur:'', list:[], claimed:false};
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(WHO_KEY) || 'null'); } catch(e){}
+  if (!d || typeof d !== 'object') return out;
+  if (Array.isArray(d.list)) d.list.forEach(function(p){
+    if (p && typeof p.id === 'string' && /^[a-z0-9]{3,24}$/.test(p.id) && typeof p.name === 'string' && p.name.trim() &&
+        !out.list.some(function(q){ return q.id === p.id; }))
+      out.list.push({id:p.id, name:p.name.trim().slice(0, 16), c:typeof p.c === 'number' ? p.c : 0, u:typeof p.u === 'number' ? p.u : 0});
+  });
+  if (typeof d.cur === 'string' && out.list.some(function(p){ return p.id === d.cur; })) out.cur = d.cur;
+  out.claimed = !!d.claimed;
+  return out;
+}
+let WHO_ID = whoReg().cur;
+function pkey(k){ return WHO_ID ? k + '@' + WHO_ID : k; }
+function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'null'); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
+function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function norm(s){ return String(s).toLowerCase().replace(/[^a-z]/g, ''); }
+function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* example sentences mark their target as [[target]] */
+function exNodes(s){
+  const out = [];
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  return out;
+}
+function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
+
+/* ---------- spaced repetition on the Ebbinghaus ladder (inlined by tools/build.py) ----------
+   Everything lives in this browser's localStorage under SRS_KEY (per learner, see common.js), shape
+     {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
+   b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
+   c / x = how many times answered right / wrong.
+   Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
+           right and due     -> b+1, next review after SRS_STEPS[b] (after the last step: SRS_LONG)
+           right but early   -> the schedule does not move (drilling a word again right away must not push it up the ladder)
+           wrong at any time -> b=0, back to the first step
+   srsStep is pure; it is covered by tools/tests/srs.test.js. */
+const SRS_KEY = 'wk-srs-v1';
+const SRS_MIN = 60000, SRS_HOUR = 3600000, SRS_DAY = 86400000;
+const SRS_STEPS = [5 * SRS_MIN, 30 * SRS_MIN, 12 * SRS_HOUR, SRS_DAY, 2 * SRS_DAY, 4 * SRS_DAY, 7 * SRS_DAY, 15 * SRS_DAY, 30 * SRS_DAY];
+const SRS_LONG = 60 * SRS_DAY;
+const SRS_TOP = SRS_STEPS.length;                 /* b can go from 0 to SRS_TOP */
+const SRS_LABELS = ['5 分钟', '30 分钟', '12 小时', '1 天', '2 天', '4 天', '7 天', '15 天', '30 天', '60 天'];
+
+function srsInterval(b){ return b < SRS_STEPS.length ? SRS_STEPS[b] : SRS_LONG; }
+function srsNum(x){ return typeof x === 'number' && isFinite(x) ? x : 0; }
+/* sanitize anything that claims to be saved progress (from localStorage or from an imported file) */
+function srsClean(d){
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  if (!d || typeof d !== 'object') return out;
+  if (d.w && typeof d.w === 'object') Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
+    const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
+    out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
+  });
+  if (d.log && typeof d.log === 'object') Object.keys(d.log).forEach(function(k){
+    const e = d.log[k];
+    if (/^\d{4}-\d{2}-\d{2}$/.test(k) && e && typeof e === 'object') out.log[k] = {n:Math.max(0, Math.floor(srsNum(e.n))), ok:Math.max(0, Math.floor(srsNum(e.ok)))};
+  });
+  if (Array.isArray(d.ex)) d.ex.slice(-20).forEach(function(e){
+    if (e && typeof e === 'object' && typeof e.score === 'number' && typeof e.total === 'number')
+      out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60), k:e.k === 'listen' ? 'listen' : 'exam'});
+  });
+  return out;
+}
+function srsLoad(){ return srsClean(lsGet(SRS_KEY)); }
+/* two copies of the same learner's progress (this device + an imported one) -> one. A word keeps the copy that was answered last;
+   a day's counts keep the larger tally (the same answers are in both copies, so adding them would count twice); results are united. */
+function srsMerge(a, b){
+  a = srsClean(a); b = srsClean(b);
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){
+    const x = out.w[k], y = b.w[k];
+    if (!x || y.l > x.l || (y.l === x.l && y.c + y.x > x.c + x.x)) out.w[k] = y;
+  });
+  [a.log, b.log].forEach(function(lg){
+    Object.keys(lg).forEach(function(k){
+      const g = out.log[k], e = lg[k];
+      if (!g || e.n > g.n || (e.n === g.n && e.ok > g.ok)) out.log[k] = e;
+    });
+  });
+  const seen = {};
+  a.ex.concat(b.ex).forEach(function(e){
+    const id = [e.d, e.score, e.total, e.scope, e.k].join('|');
+    if (!seen[id]){ seen[id] = 1; out.ex.push(e); }
+  });
+  out.ex.sort(function(x, y){ return x.d < y.d ? -1 : x.d > y.d ? 1 : 0; });
+  out.ex = out.ex.slice(-20);
+  return out;
+}
+function srsSave(s){ lsSet(SRS_KEY, s); }
+function srsGet(key){ return srsLoad().w[key] || null; }
+
+/* pure: the entry after one answer (e = null when the word has never been answered) */
+function srsStep(e, ok, now){
+  const first = !e;
+  const n = first ? {b:0, t:0, l:0, c:0, x:0} : {b:e.b, t:e.t, l:e.l, c:e.c, x:e.x};
+  if (!ok){
+    n.b = 0; n.t = now + srsInterval(0); n.x++;
+  } else {
+    n.c++;
+    if (first){ n.b = 1; n.t = now + srsInterval(1); }
+    else if (n.t <= now){ n.b = Math.min(n.b + 1, SRS_TOP); n.t = now + srsInterval(n.b); }
+  }
+  n.l = now;
+  return n;
+}
+/* what would happen, without writing anything: {kind:'first'|'up'|'early'|'reset', b, t} */
+function srsPreview(key, ok, now){
+  now = now || Date.now();
+  const e = srsGet(key), n = srsStep(e, ok, now);
+  const kind = !ok ? 'reset' : !e ? 'first' : e.t <= now ? 'up' : 'early';
+  return {kind:kind, b:n.b, t:n.t, was:e};
+}
+function srsRecord(key, ok, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const prev = s.w[key] || null;
+  s.w[key] = srsStep(prev, ok, now);
+  const day = ymd(new Date(now));
+  const g = s.log[day] || (s.log[day] = {n:0, ok:0});
+  g.n++; if (ok) g.ok++;
+  const keep = Object.keys(s.log).sort().slice(-120);
+  Object.keys(s.log).forEach(function(k){ if (keep.indexOf(k) < 0) delete s.log[k]; });
+  srsSave(s);
+  return {prev:prev, next:s.w[key], now:now};
+}
+/* take back one srsRecord(key, ok, now) whose result was `rec` (used when the learner overrules a mark afterwards) */
+function srsUndo(key, rec, ok){
+  const s = srsLoad();
+  if (rec.prev) s.w[key] = rec.prev; else delete s.w[key];
+  const g = s.log[ymd(new Date(rec.now))];
+  if (g){ g.n = Math.max(0, g.n - 1); if (ok) g.ok = Math.max(0, g.ok - 1); }
+  srsSave(s);
+}
+function srsAddExam(rec){
+  const s = srsLoad();
+  s.ex.push(rec);
+  s.ex = s.ex.slice(-20);
+  srsSave(s);
+}
+/* the learner overruled a mark in the result list: correct the score of the exam just saved */
+function srsSetLastExamScore(score){
+  const s = srsLoad();
+  if (s.ex.length){ s.ex[s.ex.length - 1].score = score; srsSave(s); }
+}
+function srsReset(){ lsDel(SRS_KEY); }
+
+/* {st:'new'|'due'|'wait', b, t} */
+function srsInfo(e, now){
+  if (!e) return {st:'new', b:-1, t:0};
+  return {st:e.t <= now ? 'due' : 'wait', b:e.b, t:e.t};
+}
+/* "5 分钟后", "3 小时后", "明天", "6 天后" */
+function srsWhen(t, now){
+  const d = t - now;
+  if (d <= 0) return '现在';
+  if (d < SRS_HOUR) return Math.max(1, Math.round(d / SRS_MIN)) + ' 分钟后';
+  if (d < SRS_DAY) return Math.round(d / SRS_HOUR) + ' 小时后';
+  const days = Math.round(d / SRS_DAY);
+  if (days === 1) return '明天';
+  if (days < 60) return days + ' 天后';
+  return Math.round(days / 30) + ' 个月后';
+}
+function srsStageText(e, now){
+  if (!e) return '未开始';
+  return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
+}
+
+/* ---------- learners: who is studying on this browser (inlined by tools/build.py; needs common.js and srs.js) ----------
+   The site is static and has no server, so there are no passwords: a learner is a name that keeps its progress apart from other learners'
+   (every localStorage key of a learner is "<key>@<id>", see common.js). The list of learners is stored under WHO_KEY:
+     {v:1, cur:"<id>", list:[{id, name, c: created, u: last used}], claimed: bool}
+   claimed: progress saved before learners existed (plain wk-* / fk-* keys) goes to the first learner created, once.
+   Progress moves between devices as a "progress code" ("WK1." + base64 of a JSON bundle) or as the same JSON in a file. Importing MERGES
+   (the newer answer per word wins); it never overwrites. Merge and parse are pure-ish and covered by tools/tests/who.test.js.
+   If a new kind of progress is stored in localStorage, it must be a key starting with wk- or fk-; it is then exported, imported and deleted
+   with the learner. Anything that is not the SRS key or a UI-preference key is treated as one article's state (see stateClean). */
+
+/* one article's progress: {v:1, vocab:{id:{s,d,m}}, ans:{key:text}, quiz:{score,total,d,k}|null} */
+function stateClean(d){
+  const out = {v:1, vocab:{}, ans:{}, quiz:null};
+  if (!d || typeof d !== 'object') return out;
+  if (d.vocab && typeof d.vocab === 'object') Object.keys(d.vocab).forEach(function(k){
+    const e = d.vocab[k];
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
+    const o = {};
+    if (e.s === 'learning' || e.s === 'mastered') o.s = e.s;
+    if (typeof e.d === 'string') o.d = e.d.slice(0, 10);
+    if (typeof e.m === 'string' && e.m) o.m = e.m.slice(0, 400);
+    if (o.s || o.m) out.vocab[k] = o;
+  });
+  if (d.ans && typeof d.ans === 'object') Object.keys(d.ans).forEach(function(k){
+    if (k !== '__proto__' && typeof d.ans[k] === 'string' && d.ans[k]) out.ans[k] = d.ans[k].slice(0, 2000);
+  });
+  if (d.quiz && typeof d.quiz === 'object' && typeof d.quiz.score === 'number' && typeof d.quiz.total === 'number')
+    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0, 10), k:['mcq', 'cloze', 'exs', 'zh', 'dict', 'sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
+  return out;
+}
+/* two copies of one article's progress -> one: per word the copy touched last wins (a status or note only one copy has is kept),
+   answers are united (this device's text wins a clash), the later quiz result is kept */
+function stateMerge(a, b){
+  a = stateClean(a); b = stateClean(b);
+  const out = {v:1, vocab:{}, ans:{}, quiz:null};
+  Object.keys(a.vocab).forEach(function(k){ out.vocab[k] = a.vocab[k]; });
+  Object.keys(b.vocab).forEach(function(k){
+    const x = out.vocab[k], y = b.vocab[k];
+    if (!x){ out.vocab[k] = y; return; }
+    const yNewer = (y.d || '') > (x.d || '');
+    const n = yNewer ? y : x, o = yNewer ? x : y;
+    const m = {};
+    if (n.s || o.s) m.s = n.s || o.s;
+    if (n.m || o.m) m.m = n.m || o.m;
+    if (n.d || o.d) m.d = n.d || o.d;
+    out.vocab[k] = m;
+  });
+  Object.keys(b.ans).forEach(function(k){ out.ans[k] = b.ans[k]; });
+  Object.keys(a.ans).forEach(function(k){ out.ans[k] = a.ans[k]; });
+  out.quiz = !a.quiz ? b.quiz : !b.quiz ? a.quiz : (b.quiz.d > a.quiz.d ? b.quiz : a.quiz);
+  return out;
+}
+
+const Who = (function(){
+  const KEEP = /^(wk|fk)-[A-Za-z0-9._-]{1,80}$/;     /* what a learner's progress keys look like */
+  const UI_KEYS = ['fk-ui-v1', 'wk-review-ui-v1'];
+  const PREFIX = 'WK1.';
+  const MAXLEN = 2000000;
+  const DAY = 86400000;
+
+  function canStore(){
+    try { localStorage.setItem('wk-probe', '1'); localStorage.removeItem('wk-probe'); return true; } catch(e){ return false; }
+  }
+  function saveReg(reg){ try { localStorage.setItem(WHO_KEY, JSON.stringify(reg)); return true; } catch(e){ return false; } }
+  function newId(reg){
+    let id;
+    do { id = 'u' + Date.now().toString(36).slice(-5) + Math.random().toString(36).slice(2, 6); } while (reg.list.some(function(p){ return p.id === id; }));
+    return id;
+  }
+  function cleanName(s){ return String(s == null ? '' : s).replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
+  function byName(reg, name){
+    const n = name.toLowerCase();
+    return reg.list.filter(function(p){ return p.name.toLowerCase() === n; })[0] || null;
+  }
+  function list(){ return whoReg().list; }
+  function current(){ return whoReg().list.filter(function(p){ return p.id === WHO_ID; })[0] || null; }
+  /* a browser that cannot store anything (some private modes) gets no picker: nothing could be saved for anyone anyway */
+  function ready(){ return !!WHO_ID || !canStore(); }
+
+  function allKeys(){
+    const out = [];
+    try { for (let i = 0; i < localStorage.length; i++){ const k = localStorage.key(i); if (k) out.push(k); } } catch(e){}
+    return out;
+  }
+  function keysOf(id){
+    const suf = '@' + id;
+    return allKeys().filter(function(k){ return k.length > suf.length && k.slice(-suf.length) === suf; })
+      .map(function(k){ return k.slice(0, -suf.length); })
+      .filter(function(b){ return KEEP.test(b) && b !== WHO_KEY; });
+  }
+  function legacyKeys(){ return allKeys().filter(function(k){ return KEEP.test(k) && k !== WHO_KEY; }); }
+  function claim(id){
+    legacyKeys().forEach(function(k){
+      try { const v = localStorage.getItem(k); if (v != null && localStorage.getItem(k + '@' + id) == null) localStorage.setItem(k + '@' + id, v); } catch(e){}
+    });
+  }
+  function readKey(k, id){ try { return JSON.parse(localStorage.getItem(k + '@' + id) || 'null'); } catch(e){ return null; } }
+
+  /* ---- learners ---- */
+  function create(name){
+    name = cleanName(name);
+    if (!name) return {ok:false, err:'请先写一个名字。'};
+    const reg = whoReg();
+    let p = byName(reg, name);
+    const existed = !!p;
+    if (!p){
+      p = {id:newId(reg), name:name, c:Date.now(), u:0};
+      reg.list.push(p);
+      if (!reg.claimed){ claim(p.id); reg.claimed = true; }
+    }
+    p.u = Date.now(); reg.cur = p.id;
+    if (!saveReg(reg)) return {ok:false, err:'浏览器不让保存数据（可能开了无痕模式），进度存不下来。'};
+    return {ok:true, id:p.id, name:p.name, existed:existed};
+  }
+  function select(id){
+    const reg = whoReg();
+    const p = reg.list.filter(function(q){ return q.id === id; })[0];
+    if (!p) return false;
+    p.u = Date.now(); reg.cur = id;
+    return saveReg(reg);
+  }
+  function leave(){ const reg = whoReg(); reg.cur = ''; return saveReg(reg); }
+  function remove(id){
+    keysOf(id).forEach(function(k){ try { localStorage.removeItem(k + '@' + id); } catch(e){} });
+    const reg = whoReg();
+    reg.list = reg.list.filter(function(p){ return p.id !== id; });
+    if (reg.cur === id) reg.cur = '';
+    return saveReg(reg);
+  }
+
+  /* ---- backup / restore ---- */
+  function b64e(str){
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(_, x){ return String.fromCharCode(parseInt(x, 16)); }));
+  }
+  function b64d(b){
+    const bin = atob(b);
+    let p = '';
+    for (let i = 0; i < bin.length; i++) p += '%' + ('0' + bin.charCodeAt(i).toString(16)).slice(-2);
+    return decodeURIComponent(p);
+  }
+  function bundle(id){
+    const p = whoReg().list.filter(function(q){ return q.id === id; })[0];
+    const data = {};
+    keysOf(id).forEach(function(k){ const v = readKey(k, id); if (v && typeof v === 'object') data[k] = v; });
+    return {app:'waikan', v:1, name:p ? p.name : '', at:new Date().toISOString(), data:data};
+  }
+  function toCode(b){ return PREFIX + b64e(JSON.stringify(b)); }
+  /* text pasted by the learner (a code, possibly with chat noise around it) or the content of an exported file */
+  function parse(text){
+    text = String(text == null ? '' : text).trim();
+    if (!text) return {ok:false, err:'先把进度码粘贴进来，或选一个导出的文件。'};
+    if (text.length > MAXLEN) return {ok:false, err:'内容太大，不像是进度码。'};
+    let raw = null;
+    if (text.charAt(0) === '{'){
+      try { raw = JSON.parse(text); } catch(e){ return {ok:false, err:'文件读不出来，可能不完整。'}; }
+    } else {
+      const i = text.indexOf(PREFIX);
+      if (i < 0) return {ok:false, err:'没有找到进度码。完整的进度码以 WK1. 开头。'};
+      const rest = text.slice(i + PREFIX.length);
+      const run = rest.match(/^[A-Za-z0-9+\/=_\-\s]*/)[0];
+      const cands = [run.replace(/\s+/g, ''), (run.trim().split(/\s+/)[0] || '')];
+      for (let k = 0; k < cands.length && raw === null; k++){
+        try { raw = JSON.parse(b64d(cands[k].replace(/-/g, '+').replace(/_/g, '/'))); } catch(e){ raw = null; }
+      }
+      if (raw === null) return {ok:false, err:'进度码读不出来，可能复制得不完整，请整串重新复制。'};
+    }
+    if (!raw || typeof raw !== 'object' || raw.app !== 'waikan' || !raw.data || typeof raw.data !== 'object' || Array.isArray(raw.data))
+      return {ok:false, err:'这不是本站导出的进度。'};
+    const data = {};
+    Object.keys(raw.data).forEach(function(k){
+      const v = raw.data[k];
+      if (KEEP.test(k) && k !== WHO_KEY && v && typeof v === 'object' && !Array.isArray(v)) data[k] = v;
+    });
+    if (!Object.keys(data).length) return {ok:false, err:'这份进度里没有可导入的内容。'};
+    return {ok:true, name:cleanName(raw.name), data:data};
+  }
+  function uiClean(d){
+    const o = {};
+    if (d && typeof d === 'object') Object.keys(d).forEach(function(k){
+      const v = d[k];
+      if (k !== '__proto__' && (typeof v === 'boolean' || (typeof v === 'number' && isFinite(v)) || (typeof v === 'string' && v.length <= 40))) o[k] = v;
+    });
+    return o;
+  }
+  /* merge parsed.data into learner id. {words: words in the imported schedule, articles: article states merged} */
+  function mergeData(id, data){
+    const out = {words:0, articles:0};
+    Object.keys(data).forEach(function(k){
+      const cur = readKey(k, id);
+      let next;
+      if (k === SRS_KEY){ next = srsMerge(cur, data[k]); out.words = Object.keys(srsClean(data[k]).w).length; }
+      else if (UI_KEYS.indexOf(k) >= 0) next = Object.assign(uiClean(data[k]), uiClean(cur));
+      else { next = stateMerge(cur, data[k]); out.articles++; }
+      try { localStorage.setItem(k + '@' + id, JSON.stringify(next)); } catch(e){}
+    });
+    return out;
+  }
+
+  /* ---- what a learner has done so far, for the picker ---- */
+  function agoText(t){
+    const a = new Date(t), n = new Date();
+    const d = Math.round((new Date(n.getFullYear(), n.getMonth(), n.getDate()) - new Date(a.getFullYear(), a.getMonth(), a.getDate())) / DAY);
+    return d <= 0 ? '今天' : d === 1 ? '昨天' : d + ' 天前';
+  }
+  function summary(id){
+    const s = srsClean(readKey(SRS_KEY, id));
+    let last = 0, mastered = 0;
+    Object.keys(s.w).forEach(function(k){ if (s.w[k].l > last) last = s.w[k].l; });
+    keysOf(id).forEach(function(k){
+      if (k === SRS_KEY || UI_KEYS.indexOf(k) >= 0) return;
+      const st = stateClean(readKey(k, id));
+      Object.keys(st.vocab).forEach(function(v){ if (st.vocab[v].s === 'mastered') mastered++; });
+    });
+    const bits = [];
+    if (mastered) bits.push('已掌握 ' + mastered + ' 个词');
+    const n = Object.keys(s.w).length;
+    if (n) bits.push('复习计划 ' + n + ' 个词');
+    if (last) bits.push('上次学习：' + agoText(last));
+    /* no-break spaces inside a part: the line may only wrap between the parts */
+    return bits.length ? bits.map(function(b){ return b.replace(/ /g, '\u00a0'); }).join(' · ') : '还没开始学';
+  }
+
+  /* ---------------- interface ---------------- */
+  function initial(name){ const c = Array.from(name || '?')[0] || '?'; return c.toUpperCase(); }
+  function avatar(name, big){ return h('span', {class:'who-av' + (big ? ' lg' : ''), 'aria-hidden':'true'}, initial(name)); }
+  function copyText(ta){
+    function legacy(){ try { return Promise.resolve(!!document.execCommand('copy')); } catch(e){ return Promise.resolve(false); } }
+    ta.focus(); ta.select();
+    try { ta.setSelectionRange(0, ta.value.length); } catch(e){}
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(ta.value).then(function(){ return true; }, legacy);
+    return legacy();
+  }
+  function saveFile(name, text){
+    try {
+      const url = URL.createObjectURL(new Blob([text], {type:'application/json'}));
+      const a = h('a', {href:url, download:name});
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      return true;
+    } catch(e){ return false; }
+  }
+  /* replaceChildren that skips the null / false entries of a conditional list (they would otherwise be written as the text "null") */
+  function put(el, kids){ el.replaceChildren.apply(el, kids.filter(function(k){ return k != null && k !== false; })); }
+  function lock(on){ try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch(e){} }
+  function msgEl(){ return h('p', {class:'who-msg', 'aria-live':'polite'}); }
+  function say(el, text, kind){ el.className = 'who-msg' + (kind ? ' ' + kind : ''); el.textContent = text; }
+
+  /* paste area + file picker + button; apply(parsed) -> {ok, msg, done?} */
+  function importForm(apply){
+    const ta = h('textarea', {class:'who-ta', placeholder:'把进度码粘贴到这里（以 WK1. 开头）', 'aria-label':'进度码', spellcheck:'false', autocomplete:'off', autocapitalize:'off'});
+    const msg = msgEl();
+    const file = h('input', {type:'file', accept:'.json,.txt,text/plain,application/json', hidden:true});
+    file.addEventListener('change', function(){
+      const f = file.files && file.files[0];
+      if (!f) return;
+      if (f.size > MAXLEN){ say(msg, '文件太大，不像是进度文件。', 'err'); return; }
+      const r = new FileReader();
+      r.onload = function(){ ta.value = String(r.result || ''); say(msg, '文件已读入，点“导入”。', ''); };
+      r.onerror = function(){ say(msg, '文件读取失败。', 'err'); };
+      r.readAsText(f);
+      file.value = '';
+    });
+    const go = h('button', {type:'button', class:'who-btn pri'}, '导入');
+    go.addEventListener('click', function(){
+      const p = parse(ta.value);
+      if (!p.ok){ say(msg, p.err, 'err'); return; }
+      const r = apply(p);
+      say(msg, r.msg, r.ok ? 'ok' : 'err');
+      if (r.ok) go.disabled = true;
+    });
+    return {ta:ta, node:h('div', null, ta, h('div', {class:'who-row'}, go, h('button', {type:'button', class:'who-btn', onclick:function(){ file.click(); }}, '选择文件')), msg, file)};
+  }
+  function importMsg(p, r, name){
+    return '已把' + (p.name ? '「' + p.name + '」的' : '') + '进度合并到「' + name + '」：复习计划 ' + r.words + ' 个词，' + r.articles + ' 篇文章。正在刷新……';
+  }
+
+  /* the picker shown instead of the page while nobody has been chosen */
+  function gate(){
+    const reg = whoReg();
+    const err = h('p', {class:'who-msg err', role:'alert'});
+    const input = h('input', {class:'who-in', type:'text', maxlength:16, placeholder:'你的名字或昵称', autocomplete:'off', autocapitalize:'off', 'aria-label':'名字'});
+    const card = h('div', {class:'who-card'});
+    const ov = h('div', {class:'who-ov', role:'dialog', 'aria-modal':'true', 'aria-label':'选择学习者'}, card);
+    function enter(r){ if (!r.ok){ say(err, r.err, 'err'); return; } location.reload(); }
+    function main(){
+      const people = reg.list.slice().sort(function(a, b){ return (b.u || 0) - (a.u || 0); });
+      const form = h('form', {class:'who-new', onsubmit:function(e){ e.preventDefault(); enter(create(input.value)); }}, input, h('button', {type:'submit', class:'who-btn pri'}, '进入'));
+      put(card, [
+        h('p', {class:'who-eb'}, 'DAILY CLOSE READING'),
+        h('h1', {class:'who-h'}, '外刊精读合集'),
+        h('p', {class:'who-sub'}, people.length ? '选你的名字继续学。每个人的进度分开保存。' : '先写一个名字，你的生词、自测和复习进度会存在这个名字下。'),
+        people.length ? h('p', {class:'who-sec'}, '这台设备上的学习者') : null,
+        people.length ? h('ul', {class:'who-list'}, people.map(function(p){
+          return h('li', null, h('button', {type:'button', class:'who-p', onclick:function(){ enter(select(p.id) ? {ok:true} : {ok:false, err:'没能切换，请刷新后重试。'}); }},
+            avatar(p.name, true), h('span', null, h('span', {class:'who-pn'}, p.name), h('span', {class:'who-pm'}, summary(p.id)))));
+        })) : null,
+        h('p', {class:'who-sec'}, people.length ? '换一个人，或新建' : '你的名字'),
+        form, err,
+        !people.length && legacyKeys().length ? h('p', {class:'who-note'}, '这台设备上已经有一份学习进度，建好名字后它会自动归到这个名字下。') : null,
+        h('button', {type:'button', class:'who-link', onclick:importView}, '已有进度码？导入进度'),
+        h('p', {class:'who-note'}, '名字只用来把进度分开，不是密码，这台设备上的人都能切换。进度存在这台设备的浏览器里：换手机或清理浏览器数据前，请在右上角头像里“导出进度”备份。')]);
+      setTimeout(function(){ try { input.focus({preventScroll:true}); } catch(e){} }, 0);
+    }
+    function importView(){
+      const f = importForm(function(p){
+        const r = create(p.name || '我');
+        if (!r.ok) return {ok:false, msg:r.err};
+        const m = mergeData(r.id, p.data);
+        setTimeout(function(){ location.reload(); }, 1300);
+        return {ok:true, msg:importMsg(p, m, r.name)};
+      });
+      put(card, [
+        h('p', {class:'who-eb'}, '导入进度'),
+        h('h1', {class:'who-h sm'}, '用进度码找回你的进度'),
+        h('p', {class:'who-sub'}, '在旧设备上点右上角头像，选“导出进度”，复制进度码（或保存文件），再粘贴到这里。会按进度码里的名字新建账号；这个名字已存在就合并进去。'),
+        f.node,
+        h('button', {type:'button', class:'who-link', onclick:main}, '‹ 返回')]);
+    }
+    main();
+    lock(true);
+    document.body.append(ov);
+  }
+
+  /* the sheet behind the account chip */
+  function menu(){
+    const cur = current();
+    if (!cur) return;
+    const prev = document.activeElement;
+    const card = h('div', {class:'who-card'});
+    const ov = h('div', {class:'who-ov sheet', role:'dialog', 'aria-modal':'true', 'aria-label':'账号和进度'}, card);
+    function close(){ document.removeEventListener('keydown', onKey); ov.remove(); lock(false); if (prev && prev.focus) prev.focus(); }
+    function onKey(e){ if (e.key === 'Escape') close(); }
+    ov.addEventListener('click', function(e){ if (e.target === ov) close(); });
+    document.addEventListener('keydown', onKey);
+    function show(kids){
+      put(card, [h('button', {type:'button', class:'who-x', 'aria-label':'关闭', onclick:close}, '×')].concat(kids));
+    }
+    function mi(t, d, fn, danger){
+      return h('button', {type:'button', class:'who-mi' + (danger ? ' dng' : ''), onclick:fn}, h('b', null, t), h('span', null, d));
+    }
+    function back(){ return h('button', {type:'button', class:'who-link', onclick:home}, '‹ 返回'); }
+    function home(){
+      show([
+        h('div', {class:'who-top'}, avatar(cur.name, true), h('div', null, h('h2', {class:'who-h sm'}, cur.name), h('p', {class:'who-pm'}, summary(cur.id)))),
+        h('div', {class:'who-menu'},
+          mi('切换账号', '换一个名字，或给另一个人新建账号。', function(){ leave(); location.reload(); }),
+          mi('导出进度（备份）', '生成进度码。换手机、清理浏览器数据之前先存一份。', exportView),
+          mi('导入进度', '把另一台设备或备份里的进度合并进来。', importView),
+          mi('删除这个账号', '只删除这台设备上的这份进度，不影响其他设备。', removeView, true)),
+        h('p', {class:'who-note'}, '进度只存在这台设备的浏览器里，不会自动同步到别的设备；要换设备，用“导出进度”和“导入进度”。')]);
+    }
+    function exportView(){
+      const b = bundle(cur.id);
+      const ta = h('textarea', {class:'who-ta', readonly:true, 'aria-label':'进度码', spellcheck:'false'});
+      ta.value = toCode(b);
+      ta.addEventListener('focus', function(){ ta.select(); });
+      const msg = msgEl();
+      const fname = 'waikan-' + cur.name.replace(/[\\\/:*?"<>|\s]+/g, '_') + '-' + today() + '.json';
+      show([
+        h('h2', {class:'who-h sm'}, '导出进度'),
+        h('p', {class:'who-sub'}, '把这串进度码复制下来，发给自己（比如微信文件传输助手）。在新设备上打开本站，选“已有进度码？导入进度”粘贴即可。'),
+        ta,
+        h('div', {class:'who-row'},
+          h('button', {type:'button', class:'who-btn pri', onclick:function(){ copyText(ta).then(function(ok){ say(msg, ok ? '已复制。' : '没能自动复制，请长按进度码全选后手动复制。', ok ? 'ok' : 'err'); }); }}, '复制进度码'),
+          h('button', {type:'button', class:'who-btn', onclick:function(){ say(msg, saveFile(fname, JSON.stringify(b)) ? '已生成文件。' : '这个浏览器不支持保存文件，请用进度码。', ''); }}, '保存为文件')),
+        msg, back()]);
+    }
+    function importView(){
+      const f = importForm(function(p){
+        const m = mergeData(cur.id, p.data);
+        setTimeout(function(){ location.reload(); }, 1300);
+        return {ok:true, msg:importMsg(p, m, cur.name)};
+      });
+      show([
+        h('h2', {class:'who-h sm'}, '导入进度'),
+        h('p', {class:'who-sub'}, '粘贴进度码（或选导出的文件）。会合并到「' + cur.name + '」：同一个词两边都学过，保留更新的那次；不会覆盖你现在的进度。'),
+        f.node, back()]);
+    }
+    function removeView(){
+      show([
+        h('h2', {class:'who-h sm'}, '删除「' + cur.name + '」？'),
+        h('p', {class:'who-sub'}, '这台设备上这个名字的全部进度（生词状态、造句、自测成绩、复习计划）都会删除，无法恢复。建议先导出进度备份。'),
+        h('div', {class:'who-row'},
+          h('button', {type:'button', class:'who-btn', onclick:exportView}, '先导出备份'),
+          h('button', {type:'button', class:'who-btn dng', onclick:function(){ remove(cur.id); location.reload(); }}, '确认删除')),
+        back()]);
+    }
+    lock(true);
+    document.body.append(ov);
+    home();
+  }
+
+  /* put the account chip into mount; mode 'full' shows the name, 'tiny' only the initial */
+  function chip(mount, mode){
+    const cur = current();
+    if (!cur || !mount) return;
+    const b = h('button', {type:'button', class:'who-chip ' + (mode || 'full'), 'aria-label':'当前账号：' + cur.name + '，点击管理账号和进度', title:cur.name},
+      avatar(cur.name), mode === 'tiny' ? null : h('span', {class:'who-nm'}, cur.name));
+    b.addEventListener('click', menu);
+    mount.replaceChildren(b);
+  }
+
+  /* call first thing in a page's script: false = the picker is showing, the page must not start */
+  function boot(){
+    if (!ready()){ gate(); return false; }
+    window.addEventListener('storage', function(e){ if (e.key === WHO_KEY && whoReg().cur !== WHO_ID) location.reload(); });
+    return true;
+  }
+
+  return {boot:boot, ready:ready, canStore:canStore, gate:gate, menu:menu, chip:chip, list:list, current:current, create:create, select:select, leave:leave, remove:remove,
+    keysOf:keysOf, legacyKeys:legacyKeys, bundle:bundle, toCode:toCode, parse:parse, mergeData:mergeData, summary:summary, cleanName:cleanName};
+})();
+
+if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
+/* ---------- speaker buttons and the clip player (inlined by tools/build.py) ----------
+   A "clip" is a slice [start, end] of an MP3 sprite (clips.mp3 of one article). One Audio element per sprite file;
+   only one clip plays at a time. If the sprite is missing or fails to load, the browser's own speech synthesis reads the text. */
+const SPK_SVG = '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+function spkEl(label, onclick){
+  const b = h('button', {type:'button', class:'spk', 'aria-label':label, title:label, onclick:onclick});
+  b.innerHTML = SPK_SVG;
+  return b;
+}
+const Clip = (function(){
+  const st = {a:null, end:0, btn:null, raf:0, text:''};
+  const audios = {};
+  let beforePlay = null;
+  function done(){
+    cancelAnimationFrame(st.raf);
+    if (st.btn){ st.btn.classList.remove('on'); st.btn = null; }
+  }
+  function fallback(text){
+    try {
+      if (!('speechSynthesis' in window) || !text) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-GB'; u.rate = 0.9;
+      speechSynthesis.speak(u);
+    } catch(e){}
+  }
+  function audio(src){
+    if (audios[src]) return audios[src];
+    const a = new Audio();
+    a.preload = 'auto';
+    a.src = src;
+    a.addEventListener('error', function(){ if (st.a === a){ const t = st.text; done(); fallback(t); } });
+    a.addEventListener('ended', function(){ if (st.a === a) done(); });
+    a.addEventListener('pause', function(){ if (st.a === a && a.currentTime < st.end) done(); });
+    audios[src] = a;
+    return a;
+  }
+  function tick(){
+    const a = st.a;
+    if (!a || a.paused) return;
+    if (a.currentTime >= st.end){ a.pause(); done(); return; }
+    st.raf = requestAnimationFrame(tick);
+  }
+  /* play one clip; clicking the same button again stops it. rate: 1 (default) or e.g. 0.7 */
+  function play(src, t, btn, text, rate){
+    if (!t || !src){ if (beforePlay) beforePlay(); done(); fallback(text); return; }
+    if (beforePlay) beforePlay();
+    const a = audio(src);
+    const wasOn = !!btn && st.btn === btn && st.a === a && !a.paused;
+    done();
+    if (st.a && st.a !== a && !st.a.paused) st.a.pause();
+    if (wasOn){ a.pause(); return; }
+    st.a = a; st.btn = btn || null; st.text = text;
+    st.end = t[1] + 0.15;
+    if (btn) btn.classList.add('on');
+    a.playbackRate = rate || 1;
+    try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+    const start = Math.max(0, t[0] - 0.1);
+    const go = function(){ a.currentTime = start; };
+    if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+    const pr = a.play();
+    if (pr && pr.catch) pr.catch(function(){ done(); });
+    cancelAnimationFrame(st.raf);
+    st.raf = requestAnimationFrame(tick);
+  }
+  function stop(){
+    if (st.a && !st.a.paused) st.a.pause();
+    done();
+  }
+  return {play:play, stop:stop, onBeforePlay:function(fn){ beforePlay = fn; }};
+})();
+/* speaker button for one word / example of an article: clips = {src, t:{key:[start,end]}} */
+function clipBtn(clips, key, text){
+  if (!clips) return null;
+  const b = spkEl('播放发音', function(){ Clip.play(clips.src, clips.t[key], b, text); });
+  return b;
+}
+
+/* ---------- quiz kit: one renderer per question type, shared by the reader and the review page ----------
+   Kit.make(item, o) returns the question card (a DOM element).
+     item = {type, key, id, v, k, dir, clips}
+        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent'
+        key    "<slug>:<word id>" (the spaced-repetition key)       id  the word id within its article
+        v      the word: {id, expr, zh, core, forms, syn, note, m, ctx, ex:[{en, zh}], cloze:{before, ans, after, hint, szh}}
+        k      which example sentence (exs, sent, dict); dict: -1 = the word itself
+        dir    mcq only: 'e2z' (English expression -> pick the meaning) or 'z2e' (meaning -> pick the expression)
+        sent   dict only: {en, zh, src, t} a sentence of the article instead of a word (then v and key may be null)
+        clips  {src, t:{key:[start, end]}} or null (no audio for this article)
+     o = {index, total, last, tag, label (replaces the type name in the header),
+          defer (dict only: no feedback, the answer goes straight to onAnswer + onNext),
+          pool()            -> [{expr, zh}] words that may serve as wrong options (mcq)
+          extra(item, res)  -> a node shown at the bottom of the feedback (or null)
+          onAnswer(res)     the answer is in (res.ok may still flip once through the "my answer is fine" button)
+          onChange(res)     optional: res.ok was flipped by that button
+          isLast()          optional: is this the last question? (read when the button label is set; `last` is the static version)
+          onNext()          the learner pressed "next"}
+   res = {id, key, type, ok, given, k}. */
+const Kit = (function(){
+  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译英词汇', dict:'听写', sent:'中译英整句'};
+  const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+
+  function markTerms(text, terms){
+    const ts = (terms || []).slice().sort(function(a, b){ return b.length - a.length; });
+    if (!ts.length) return [document.createTextNode(text)];
+    const re = new RegExp('\\b(?:' + ts.map(esc).join('|') + ')\\b', 'gi');
+    const out = [];
+    let last = 0, m;
+    while ((m = re.exec(text))){
+      if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
+      out.push(h('mark', {class:'vw'}, m[0]));
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) out.push(document.createTextNode(text.slice(last)));
+    return out;
+  }
+  /* an example sentence as a cloze: the [[target]] becomes the blank */
+  function exCloze(v, k){
+    const x = v.ex[k];
+    const m = /^([\s\S]*?)\[\[(.+?)\]\]([\s\S]*)$/.exec(x.en);
+    return {before:m[1], ans:m[2], after:m[3].replace(/\[\[|\]\]/g, ''), hint:v.zh, szh:x.zh};
+  }
+  function numWords(n){
+    if (n < 20) return ONES[n];
+    if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? ' ' + ONES[n % 10] : '');
+    return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + numWords(n % 100) : '');
+  }
+  /* 2019 -> twenty nineteen, 1984 -> nineteen eighty four (the way a speaker reads a year) */
+  function yearWords(t){
+    if (!/^\d{4}$/.test(t)) return null;
+    const n = Number(t);
+    if (!((n >= 1100 && n <= 1999) || (n >= 2010 && n <= 2099)) || n % 100 < 10) return null;
+    return numWords(Math.floor(n / 100)).split(' ').concat(numWords(n % 100).split(' '));
+  }
+  /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
+  function toks(s){
+    const out = [];
+    String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9]+/).forEach(function(t){
+      if (!t) return;
+      if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
+      else if (yearWords(t)) yearWords(t).forEach(function(w){ out.push(w); });
+      else out.push(t);
+    });
+    return out;
+  }
+  function lcsHits(a, b){
+    const n = a.length, m = b.length;
+    const dp = [];
+    for (let i = 0; i <= n; i++) dp.push(new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+      dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    const ha = new Array(n).fill(false), hb = new Array(m).fill(false);
+    let i = 0, j = 0;
+    while (i < n && j < m){
+      if (a[i] === b[j]){ ha[i] = hb[j] = true; i++; j++; }
+      else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else j++;
+    }
+    return {ha:ha, hb:hb};
+  }
+  /* the text with the words that are not in `hits` underlined */
+  function chunkDiff(text, hits){
+    const out = [];
+    let pos = 0;
+    text.split(/\s+/).filter(Boolean).forEach(function(chunk){
+      const n = toks(chunk).length;
+      let miss = false;
+      for (let k = 0; k < n; k++) if (!hits[pos + k]) miss = true;
+      pos += n;
+      if (out.length) out.push(' ');
+      out.push(miss ? h('span', {class:'miss-t'}, chunk) : chunk);
+    });
+    return out;
+  }
+
+  /* ---- pieces every question uses ---- */
+  function head(o, type){
+    const bar = h('div', {class:'pbar'}, h('i'));
+    bar.style.setProperty('--p', (o.index / o.total * 100) + '%');
+    return h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (o.index + 1) + ' 题 / ' + o.total + '　' + (o.label || TYPE_NAME[type]) + (o.tag ? '　' + o.tag : '')), bar);
+  }
+  function inputAttrs(extra){
+    return Object.assign({type:'text', id:'q-input', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false'}, extra);
+  }
+  function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
+  function speakLine(item, v){
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), '　', v.zh);
+  }
+  function extraBox(item, res, o){
+    const box = h('div', {class:'fb-x'});
+    box.refresh = function(){
+      box.replaceChildren();
+      const n = o.extra ? o.extra(item, res) : null;
+      if (n) box.append(n);
+    };
+    return box;
+  }
+  function newRes(item, type){ return {id:item.id, key:item.key || null, type:type, ok:false, given:'', k:item.k}; }
+
+  /* ---- fill the blank: the sentence is the article's (cloze) or one of the word's examples (exs) ---- */
+  function clozeQ(item, o, c, type){
+    const v = item.v, res = newRes(item, type);
+    const inp = h('input', inputAttrs({class:'q-input', 'aria-label':'填入缺失的单词'}));
+    inp.style.width = Math.max(6, c.ans.length + 2) + 'ch';
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, type),
+      h('p', {class:'q-sent'}, c.before, inp, c.after),
+      h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + ' 个字母')),
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ inp.placeholder = c.ans.charAt(0); inp.focus(); });
+    function check(){
+      const val = norm(inp.value);
+      if (!val){ inp.focus(); return; }
+      const ok = val === norm(c.ans);
+      checked = true;
+      res.ok = ok; res.given = inp.value.trim();
+      o.onAnswer(res);
+      inp.readOnly = true;
+      inp.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(
+        h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, c.ans)]),
+        h('p', null, c.szh),
+        speakLine(item, v),
+        ex
+      );
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- Chinese -> the English expression, typed ---- */
+  function zhQ(item, o){
+    const v = item.v, res = newRes(item, 'zh');
+    const words = v.core.split(' ');
+    const inp = h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出对应的英文表达'}));
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, 'zh'),
+      h('p', {class:'q-zh'}, v.zh),
+      h('p', {class:'q-line'}, inp),
+      h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + ' 个字母')),
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ inp.placeholder = v.core.charAt(0) + '…'; inp.focus(); });
+    function check(){
+      const val = norm(inp.value);
+      if (!val){ inp.focus(); return; }
+      const own = v.forms.map(norm).indexOf(val) >= 0;
+      const ok = own || v.syn.map(norm).indexOf(val) >= 0;
+      checked = true;
+      res.ok = ok; res.given = inp.value.trim();
+      o.onAnswer(res);
+      inp.readOnly = true;
+      inp.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const headP = h('p', {class:'fb-t'}, ok ? '正确' : ['不对，参考答案是 ', h('b', null, v.expr)]);
+      const kids = [headP];
+      if (ok && !own) kids.push(h('p', null, '你写的是近义表达，文章里用的是 ', h('b', null, v.core), '。'));
+      if (!ok){
+        const alt = h('button', {type:'button', class:'btn sm'}, '我写的也对（近义词）');
+        alt.addEventListener('click', function(){
+          res.ok = true;
+          fb.className = 'fb ok';
+          inp.classList.remove('bad'); inp.classList.add('ok');
+          headP.replaceChildren('已按你的判断算对。参考答案是 ', h('b', null, v.expr));
+          alt.remove();
+          ex.refresh();
+          if (o.onChange) o.onChange(res);
+          main.textContent = nextLabel(o);
+          main.focus();
+        });
+        kids.push(h('div', {class:'fb-s'}, alt));
+      }
+      kids.push(speakLine(item, v));
+      kids.push(h('p', {class:'w-ctx'}, markTerms(v.ctx, v.m)));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- Chinese sentence -> the whole English sentence, graded by the learner ---- */
+  function sentRe(v){
+    const alts = v.forms.map(function(f){
+      return f.toLowerCase().split(/[^a-z]+/).filter(Boolean).map(esc).join('[^A-Za-z]+');
+    });
+    return new RegExp('(?:^|[^A-Za-z])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
+  }
+  function sentQ(item, o){
+    const v = item.v, x = v.ex[item.k], res = newRes(item, 'sent');
+    const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成英文', 'aria-label':'写出整句英文'}));
+    const hintP = h('p', {class:'q-hint'});
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '核对');
+    const peek = h('button', {type:'button', class:'btn'}, '提示：这个表达的意思');
+    const card = h('div', {class:'card'},
+      head(o, 'sent'),
+      h('p', {class:'q-zh'}, x.zh),
+      h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
+      hintP,
+      ta,
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
+    function grade(ok){
+      res.ok = ok; res.given = ta.value.trim();
+      o.onAnswer(res);
+      o.onNext();
+    }
+    function check(){
+      const val = ta.value.trim();
+      if (!val){ ta.focus(); return; }
+      const used = sentRe(v).test(val);
+      ta.readOnly = true;
+      fb.className = 'fb ' + (used ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(
+        h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
+        h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
+        h('p', {class:'meta'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。'),
+        h('div', {class:'row'},
+          h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
+          h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'))
+      );
+      main.hidden = true;
+      peek.hidden = true;
+    }
+    main.addEventListener('click', check);
+    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); check(); } });
+    return card;
+  }
+
+  /* ---- multiple choice: meaning of an expression (e2z), or the expression for a meaning (z2e) ---- */
+  function mcqQ(item, o){
+    const v = item.v, res = newRes(item, 'mcq');
+    const dir = item.dir === 'z2e' ? 'z2e' : 'e2z';
+    const right = dir === 'e2z' ? v.zh : v.expr;
+    const seen = {};
+    seen[right] = true;
+    const wrong = [];
+    shuffle((o.pool ? o.pool() : []).slice()).forEach(function(p){
+      const t = dir === 'e2z' ? p.zh : p.expr;
+      if (t && !seen[t] && wrong.length < 3){ seen[t] = true; wrong.push(t); }
+    });
+    const texts = shuffle([right].concat(wrong));
+    const ex = extraBox(item, res, o);
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri', hidden:true}, nextLabel(o));
+    let answered = false;
+    const btns = texts.map(function(t, i){
+      return h('button', {type:'button', class:'mc-b', onclick:function(){ pick(i); }}, h('span', {class:'n'}, String(i + 1)), h('span', null, t));
+    });
+    const ask = dir === 'e2z'
+      ? [h('p', {class:'q-ask'}, '这个表达在句子里是什么意思？'),
+         h('p', {class:'q-big'}, v.expr, item.clips ? ' ' : null, clipBtn(item.clips, 'w' + v.id, v.core)),
+         h('p', {class:'q-ctx'}, markTerms(v.ctx, v.m))]
+      : [h('p', {class:'q-ask'}, '选出对应的英文表达'),
+         h('p', {class:'q-zh'}, v.zh)];
+    const card = h('div', {class:'card'},
+      head(o, 'mcq'),
+      ask,
+      h('div', {class:'mc', role:'group', 'aria-label':'选项'}, btns),
+      fb,
+      h('div', {class:'row'}, main)
+    );
+    function pick(i){
+      if (answered) return;
+      answered = true;
+      const ok = texts[i] === right;
+      res.ok = ok; res.given = texts[i];
+      o.onAnswer(res);
+      btns.forEach(function(b, j){
+        b.disabled = true;
+        if (texts[j] === right) b.classList.add('ok');
+        else if (j === i) b.classList.add('bad');
+      });
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const kids = [h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, right)]), speakLine(item, v)];
+      if (v.note) kids.push(h('p', {class:'w-note'}, v.note));
+      kids.push(h('p', {class:'w-ctx'}, markTerms(v.ctx, v.m)));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      main.textContent = nextLabel(o);
+      main.hidden = false;
+      main.focus();
+    }
+    main.addEventListener('click', function(){ o.onNext(); });
+    function onKey(e){
+      if (!card.isConnected){ document.removeEventListener('keydown', onKey); return; }
+      if (card.offsetParent === null) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const n = Number(e.key);
+      if (!answered && n >= 1 && n <= btns.length){ e.preventDefault(); pick(n - 1); }
+    }
+    document.addEventListener('keydown', onKey);
+    return card;
+  }
+
+  /* ---- dictation: listen, then type a word, an example sentence, or (item.sent) a sentence of the article ----
+     item.sent = {en, zh, src, t}: the sentence and where its audio is.   o.defer: no feedback after the answer, the
+     host shows everything at the end (listening exam); the answer is passed on through onAnswer + onNext. */
+  function dictQ(item, o){
+    const v = item.v, S = item.sent, res = newRes(item, 'dict');
+    const isWord = !S && (item.k == null || item.k < 0);
+    const x = !S && !isWord ? v.ex[item.k] : null;
+    const ref = S ? S.en : isWord ? v.core : exPlain(x.en);
+    const zhText = S ? S.zh : isWord ? v.zh : x.zh;
+    const key = S ? null : isWord ? 'w' + v.id : 'e' + v.id + '_' + item.k;
+    const src = S ? S.src : item.clips ? item.clips.src : null;
+    const clipT = S ? S.t : item.clips && key ? item.clips.t[key] : null;
+    res.ref = ref; res.zh = zhText; res.src = src; res.t = clipT; res.kind = S ? 's' : isWord ? 'w' : 'e';
+    const defer = !!o.defer;
+    const playB = h('button', {type:'button', class:'btn pri play'}, '播放');
+    const slowB = h('button', {type:'button', class:'btn play'}, '慢速播放');
+    playB.insertAdjacentHTML('afterbegin', SPK_SVG);
+    playB.addEventListener('click', function(){ Clip.play(src, clipT, playB, ref, 1); });
+    slowB.addEventListener('click', function(){ Clip.play(src, clipT, slowB, ref, 0.7); });
+    const field = isWord
+      ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
+      : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个英文表达，拼写时词形要和听到的一致。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。' + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
+    const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
+    const peek = defer ? null : h('button', {type:'button', class:'btn'}, '提示：中文意思');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, 'dict'),
+      h('p', {class:'q-ask'}, isWord ? '听发音，写出这个表达。' : '听一句话，把整句写下来。'),
+      h('div', {class:'dict-btns'}, playB, slowB),
+      isWord ? h('p', {class:'q-line'}, field) : field,
+      hintP,
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    if (peek) peek.addEventListener('click', function(){ hintP.textContent = '意思：' + zhText; peek.hidden = true; field.focus(); });
+    function check(){
+      const val = field.value.trim();
+      if (!norm(val) && !/\d/.test(val)){ field.focus(); return; }
+      let ok, diffKids = [];
+      if (isWord){
+        ok = v.forms.map(norm).indexOf(norm(val)) >= 0;
+      } else {
+        const a = toks(ref), b = toks(val), d = lcsHits(a, b);
+        ok = a.length === b.length && d.ha.every(Boolean);
+        if (!ok) diffKids = [
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), chunkDiff(ref, d.ha)),
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), chunkDiff(val, d.hb))
+        ];
+      }
+      checked = true;
+      res.ok = ok; res.given = val;
+      o.onAnswer(res);
+      if (defer){ o.onNext(); return; }
+      field.readOnly = true;
+      if (isWord) field.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const headP = h('p', {class:'fb-t'}, ok ? '正确' : (isWord ? ['不对，听到的是 ', h('b', null, v.expr)] : '有出入，对照一下'));
+      const kids = [headP];
+      if (!ok){
+        kids.push.apply(kids, diffKids);
+        const alt = h('button', {type:'button', class:'btn sm'}, '只是小失误，算我对');
+        alt.addEventListener('click', function(){
+          res.ok = true;
+          fb.className = 'fb ok';
+          if (isWord){ field.classList.remove('bad'); field.classList.add('ok'); }
+          headP.replaceChildren('已按你的判断算对。');
+          alt.remove();
+          ex.refresh();
+          if (o.onChange) o.onChange(res);
+          main.textContent = nextLabel(o);
+          main.focus();
+        });
+        kids.push(h('div', {class:'fb-s'}, alt));
+      }
+      if (isWord) kids.push(speakLine(item, v));
+      else if (S){
+        const sb = spkEl('播放这一句', function(){ Clip.play(src, clipT, sb, ref, 1); });
+        kids.push(h('p', null, sb, ' ', ref), h('p', {class:'meta'}, zhText));
+      } else kids.push(h('p', null, clipBtn(item.clips, key, ref), item.clips ? ' ' : null, exNodes(x.en)), h('p', {class:'meta'}, x.zh));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      if (peek) peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    field.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && (isWord || e.ctrlKey || e.metaKey)){ e.preventDefault(); main.click(); }
+    });
+    /* play once as soon as the question appears (this runs inside the click that opened it, so browsers allow it) */
+    if (o.autoplay !== false) Clip.play(src, clipT, playB, ref, 1);
+    return card;
+  }
+
+  function make(item, o){
+    switch (item.type){
+      case 'cloze': return clozeQ(item, o, item.v.cloze, 'cloze');
+      case 'exs': return clozeQ(item, o, exCloze(item.v, item.k), 'exs');
+      case 'zh': return zhQ(item, o);
+      case 'sent': return sentQ(item, o);
+      case 'mcq': return mcqQ(item, o);
+      case 'dict': return dictQ(item, o);
+    }
+    throw new Error('unknown question type ' + item.type);
+  }
+  function focus(card){
+    const f = $('#q-input', card);
+    if (f) f.focus({preventScroll:true});
+  }
+  /* which question to ask a word that is on step b of the ladder: recognise -> fill in -> spell -> hear -> write */
+  function typeForStage(b, hasClips){
+    if (b <= 0) return {type:'mcq', dir:'e2z'};
+    if (b === 1) return {type:'mcq', dir:'z2e'};
+    if (b === 2) return {type:'exs'};
+    if (b === 3) return {type:'cloze'};
+    if (b <= 5) return {type:'zh'};
+    if (b <= 7) return hasClips ? {type:'dict'} : {type:'zh'};
+    return {type:'sent'};
+  }
+  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
+})();
+
+Who.chip($('#whoMount'), 'tiny');
+
+const DATA = {"sents":[{"kind":"title","en":"Eyes on the chips: the seaside war between humans and gulls","zh":"盯紧你的薯条：海边的人鸥大战","notes":["Eyes on the chips：省略了动词的祈使说法，相当于 Keep your eyes on the chips，“盯紧薯条”。","chips 在英式英语里是炸薯条（美式叫 fries），fish and chips 就是炸鱼薯条。","seaside：海边的、海滨的，常指度假的海滨小镇。"],"i":0,"p":0,"n":0,"label":"标题"},{"kind":"sub","en":"Across the world's beach towns, bold seabirds have learned that tourists are an easy meal.","zh":"在世界各地的海滩小镇，胆大的海鸟已经摸清了：游客就是送上门的一顿饭。","notes":["bold：大胆的、放肆的，这里说海鸟一点不怕人。","an easy meal：轻松到手的一顿饭，把游客比作猎物，有点幽默。","have learned 用现在完成时，说明这是它们已经学会的本事。"],"i":1,"p":0,"n":0,"label":"副标题"},{"kind":"sub","en":"Scientists think they have found a surprisingly simple defence.","zh":"科学家认为，他们找到了一个简单得出奇的防御办法。","notes":["surprisingly simple：副词修饰形容词，“简单得出人意料”。","defence：防御、防守，英式拼写；美式拼作 defense。"],"i":2,"p":0,"n":0,"label":"副标题"},{"kind":"body","en":"It happens in a flash.","zh":"事情就发生在一眨眼之间。","notes":["in a flash：一瞬间、转眼之间。flash 是闪光，像闪光一样快。","开头一个短句，先制造悬念。"],"p":1,"i":3,"n":1,"label":"第 1 句"},{"kind":"body","en":"A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and makes off with the biggest piece.","zh":"一家人在康沃尔的海堤上坐下，拆开一包用纸裹着的炸鱼薯条，还没等谁咬上一口，一只银鸥就俯冲下来，叼走了最大的那块。","notes":["句子用一般现在时讲故事，像现场直播，读起来更生动。","unwrap：拆开（包装）。un- 表示相反，wrap 是包。","swoop down：猛地俯冲下来，多用于鸟。","make off with：拿了……就跑、偷走。"],"p":1,"i":4,"n":2,"label":"第 2 句"},{"kind":"body","en":"The children shriek, the parents shout, and the bird retreats to a rooftop to enjoy its prize.","zh":"孩子们尖叫，大人们大喊，那只鸟则退到屋顶上享用它的战利品。","notes":["三个短句并列，节奏很快，像镜头一个接一个切换。","shriek：尖叫，声音又高又刺耳。","retreat：撤退、退回到安全的地方。","prize：奖品，这里幽默地指抢到的薯条。"],"p":1,"i":5,"n":3,"label":"第 3 句"},{"kind":"body","en":"Similar scenes play out every summer from Brighton to Sydney to Cape Town.","zh":"从布莱顿到悉尼再到开普敦，每年夏天都在上演类似的场面。","notes":["play out：（事情）发生、上演，像戏一样演出来。","from A to B to C：列举范围很广的地方，说明到处都这样。"],"p":1,"i":6,"n":4,"label":"第 4 句"},{"kind":"body","en":"Gulls were not always this cheeky.","zh":"海鸥并不是一直都这么厚脸皮。","notes":["this + 形容词：这么……。this cheeky = 这么放肆。","cheeky：厚脸皮的、没大没小的，英式口语，常带一点好笑的意味。"],"p":2,"i":7,"n":5,"label":"第 5 句"},{"kind":"body","en":"For most of their history they fed at sea, scavenging behind fishing boats and picking through the shoreline.","zh":"在漫长的历史中，它们大多在海上觅食，跟在渔船后面捡食，在海岸边翻找吃的。","notes":["fed 是 feed 的过去式，这里是不及物用法“进食、觅食”。","scavenge：（动物）找腐食、捡剩下的吃；（人）在垃圾里翻找东西。","pick through：在一堆东西里仔细翻找。","两个 -ing 短语作伴随状语，说明它们怎么觅食。"],"p":2,"i":8,"n":6,"label":"第 6 句"},{"kind":"body","en":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed.","zh":"可随着鱼类资源越来越少，镇上到处是垃圾、垃圾桶和露天吃饭的人，许多海鸥搬到了内陆，而且适应得快得惊人。","notes":["as 引导时间兼原因状语：随着……。","fish stocks：鱼类资源、鱼群数量。dwindle：逐渐减少。","fill up with：被……填满。","inland：在内陆、往内陆。adapt：适应。"],"p":2,"i":9,"n":7,"label":"第 7 句"},{"kind":"body","en":"A city gull can live for 20 years, remembers where food is easy to come by, and learns by watching other gulls get away with theft.","zh":"一只城市海鸥能活二十年，记得哪里容易找到吃的，还会看着别的海鸥偷了东西没事，跟着学。","notes":["三个谓语并列：can live, remembers, learns。","easy to come by：容易弄到。come by = 得到、弄到。","watch + 宾语 + 动词原形：看着某事发生。get away with sth：做了坏事却没受惩罚。"],"p":2,"i":10,"n":8,"label":"第 8 句"},{"kind":"body","en":"Residents are at their wits' end.","zh":"居民们已经无计可施了。","notes":["at one's wits' end：束手无策、急得不知怎么办才好。wits 指头脑、智力，wits' end 就是“脑子用到头了”。"],"p":3,"i":11,"n":9,"label":"第 9 句"},{"kind":"body","en":"Councils have tried everything from spiked roofs and fake owls to fines for anyone caught feeding the birds.","zh":"地方政府什么办法都试过：从在屋顶装尖刺、摆假猫头鹰，到对被抓到喂鸟的人罚款。","notes":["council：地方议会、地方政府，英式用法。","everything from A to B：从 A 到 B 什么都……，用来说范围广。","fine 作名词：罚款。caught feeding the birds = 被抓到在喂鸟。"],"p":3,"i":12,"n":10,"label":"第 10 句"},{"kind":"body","en":"Some towns have hired falconers, whose hawks patrol the beach to scare gulls off.","zh":"有些镇雇了驯鹰人，让他们的鹰在海滩上巡逻，把海鸥吓跑。","notes":["falconer：驯鹰人。whose 引导定语从句，“驯鹰人的鹰”。","patrol：巡逻。","scare sb off：把……吓跑。宾语可以放中间：scare gulls off。"],"p":3,"i":13,"n":11,"label":"第 11 句"},{"kind":"body","en":"Most of these measures work for a while; then the gulls catch on and come back.","zh":"这些办法大多能管用一阵子，然后海鸥就看穿了，又回来了。","notes":["measures：措施、办法，常用复数。","for a while：一段时间。","catch on：明白过来、领会。另一个意思是“流行起来”：The idea caught on.。"],"p":3,"i":14,"n":12,"label":"第 12 句"},{"kind":"body","en":"Researchers studying gull behaviour have come up with a cheaper idea: stare them down.","zh":"研究海鸥行为的研究人员想出了一个更省钱的办法：瞪着它们，直到它们退缩。","notes":["studying gull behaviour 是现在分词短语，修饰 researchers。behaviour 是英式拼写。","come up with：想出（主意、办法）。","stare sb down：盯着对方直到对方退缩。"],"p":4,"i":15,"n":13,"label":"第 13 句"},{"kind":"body","en":"In one experiment, scientists placed a bag of chips on the ground and watched how long passing gulls took to approach it.","zh":"在一项实验里，科学家把一袋薯条放在地上，观察路过的海鸥要过多久才会靠近。","notes":["how long passing gulls took to approach it 是宾语从句，用陈述语序。","passing：路过的，现在分词作定语。","approach：靠近、接近，及物动词，后面直接跟宾语，不加 to。"],"p":4,"i":16,"n":14,"label":"第 14 句"},{"kind":"body","en":"When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many gave up altogether.","zh":"如果人一直盯着鸟看，它犹豫的时间比人把目光移开时长得多，很多干脆放弃了。","notes":["keep one's eyes fixed on：目光一直盯着。","hesitate：犹豫。far longer：far 加强比较级，“长得多”。","give up：放弃。altogether：完全、彻底。"],"p":4,"i":17,"n":15,"label":"第 15 句"},{"kind":"body","en":"Gulls, it seems, are wary of being watched, perhaps because a staring animal is more likely to fight back.","zh":"看来，海鸥不喜欢被人盯着，也许是因为一个瞪着你的动物更可能会反击。","notes":["it seems 是插入语，“看起来”。","be wary of：对……有戒心、提防。wary of being watched = 提防被人盯着。","fight back：还击、反抗。"],"p":4,"i":18,"n":16,"label":"第 16 句"},{"kind":"body","en":"There is a catch, of course.","zh":"当然，这里面也有个问题。","notes":["There is a catch：有个隐藏的问题、有个“但是”。catch 作名词是“暗藏的问题、圈套”。","这是一个转折句，引出下面的局限。"],"p":5,"i":19,"n":17,"label":"第 17 句"},{"kind":"body","en":"Only a minority of the gulls dared to come near the food, and the boldest barely paused before grabbing it.","zh":"只有少数海鸥敢靠近食物，而胆子最大的那几只几乎不停顿就抢走了。","notes":["a minority of：……中的少数。反义是 the majority of（大多数）。","dare to do sth：敢于做某事。","barely：几乎没有、勉强。barely paused = 几乎没停。"],"p":5,"i":20,"n":18,"label":"第 18 句"},{"kind":"body","en":"And it is hard to keep an eye on a gull while also eating, chatting and keeping track of small children.","zh":"而且一边吃东西、聊天、看着小孩，一边还要盯住一只海鸥，实在不容易。","notes":["it is hard to ... 是形式主语句，真正的主语是不定式。","keep an eye on：看着、留意。","keep track of：随时掌握……的情况、不让……跑丢。"],"p":5,"i":21,"n":19,"label":"第 19 句"},{"kind":"body","en":"Still, the finding hints at something that frustrated towns often miss.","zh":"不过，这个发现指出了一点，焦头烂额的小镇常常忽略。","notes":["the finding：研究发现，可数名词。","hint at：暗示、透露出。","frustrated：恼火的、沮丧的，这里形容那些拿海鸥没办法的小镇。"],"p":5,"i":22,"n":20,"label":"第 20 句"},{"kind":"body","en":"Gulls are not villains; they are opportunists doing what any sensible animal would do when food is left lying around.","zh":"海鸥并不是坏蛋；它们只是投机者，吃的东西随便放着的时候，任何聪明的动物都会这么做。","notes":["villain：（故事里的）坏人、反派。","opportunist：投机者、会抓机会的人（或动物），这里不算贬义。","leave sth lying around：把东西随手乱放。"],"p":6,"i":23,"n":21,"label":"第 21 句"},{"kind":"body","en":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify.","zh":"许多种类的海鸥在海上数量正在减少，而它们城里的“亲戚”却过得很好，所以很难找到理由去捕杀它们。","notes":["in decline：在衰退、数量在减少。","even as：正当……的时候（表示对比）。","thrive：茁壮成长、兴旺。urban cousins：城里的同类，cousins 是比喻。","which 指前面整件事。cull：（为控制数量）捕杀；hard to justify：很难说得过去。"],"p":6,"i":24,"n":22,"label":"第 22 句"},{"kind":"body","en":"The best defence may simply be to eat indoors, keep bins closed and, when all else fails, look the bird in the eye.","zh":"最好的防御办法也许就是：在室内吃饭，盖好垃圾桶，实在不行，就直视那只鸟的眼睛。","notes":["to eat ... keep ... look ... 三个不定式并列作表语。","when all else fails：当其他办法都不管用时。","look sb in the eye：直视某人的眼睛，常表示坦然或对抗。"],"p":6,"i":25,"n":23,"label":"第 23 句"},{"kind":"body","en":"It will not win the war, but it might save your lunch.","zh":"这赢不了整场战争，但也许能保住你的午饭。","notes":["the war 呼应标题里的 war，首尾呼应。","结尾一句举重若轻：大问题解决不了，小事还能顾上，带点幽默。"],"p":6,"i":26,"n":24,"label":"第 24 句"}],"vocab":[{"id":1,"expr":"seaside","zh":"海边、海滨（多指度假地）","m":["seaside"],"note":"seaside 常作定语：a seaside town（海滨小镇）、a seaside holiday（海边度假）。go to the seaside = 去海边玩，英式说法。","core":"seaside","forms":["seaside"],"syn":[],"ex":[{"en":"We spent a week in a small [[seaside]] town.","zh":"我们在一个海边小镇住了一周。"},{"en":"Every August the family goes to the [[seaside]].","zh":"每年八月，一家人都去海边。"}],"ctx":"Eyes on the chips: the seaside war between humans and gulls"},{"id":2,"expr":"bold","zh":"大胆的；放肆的","m":["bold"],"note":"bold 可褒可贬：a bold plan（大胆的计划）；说动物或孩子 bold，常带“胆子大到不客气”的意思。比较级 bolder，最高级 boldest。","core":"bold","forms":["bold","bolder","boldest"],"syn":[],"ex":[{"en":"The [[bold]] squirrel took a nut right out of my hand.","zh":"那只胆大的松鼠直接从我手里拿走了坚果。"},{"en":"It was a [[bold]] decision to quit her job.","zh":"辞掉工作是个大胆的决定。"}],"ctx":"Across the world's beach towns, bold seabirds have learned that tourists are an easy meal."},{"id":3,"expr":"defence","zh":"防御、防护（英式拼写）","m":["defence"],"note":"英式 defence，美式 defense。a defence against sth = 抵御……的办法。动词是 defend。","core":"defence","forms":["defence","defense","defences"],"syn":[],"ex":[{"en":"Sunscreen is your best [[defence]] against sunburn.","zh":"防晒霜是防晒伤最好的办法。"},{"en":"The castle walls were the town's main [[defence]].","zh":"城墙是这座城镇主要的防御。"}],"ctx":"Scientists think they have found a surprisingly simple defence."},{"id":4,"expr":"in a flash","zh":"一瞬间、转眼之间","m":["in a flash"],"note":"同义说法：in an instant、in no time。I'll be back in a flash. = 我马上回来。","core":"in a flash","forms":["in a flash"],"syn":[],"ex":[{"en":"The cake was gone [[in a flash]].","zh":"蛋糕一眨眼就没了。"},{"en":"I'll be back [[in a flash]].","zh":"我马上回来。"}],"ctx":"It happens in a flash."},{"id":5,"expr":"unwrap","zh":"拆开（包装）","m":["unwraps"],"note":"un- 表示相反的动作：wrap（包）→ unwrap（拆开）；lock → unlock；pack → unpack。","core":"unwrap","forms":["unwrap","unwraps","unwrapped","unwrapping"],"syn":[],"ex":[{"en":"The kids [[unwrapped]] their presents in seconds.","zh":"孩子们几秒钟就把礼物拆开了。"},{"en":"She [[unwraps]] a sandwich at her desk every day at noon.","zh":"她每天中午在办公桌前拆开一个三明治。"}],"ctx":"A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and makes off with the biggest piece."},{"id":6,"expr":"swoop down","zh":"（鸟）俯冲下来","m":["swoops down"],"note":"swoop 指鸟从空中猛扑下来，也可以比喻突然行动：Police swooped on the house.（警察突袭了那栋房子。）","core":"swoop down","forms":["swoop down","swoops down","swooped down","swooping down"],"syn":[],"ex":[{"en":"An owl [[swooped down]] and caught a mouse.","zh":"一只猫头鹰俯冲下来抓住了一只老鼠。"},{"en":"Watch the eagle [[swoop down]] towards the river.","zh":"看那只鹰朝河面俯冲下去。"}],"ctx":"A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and makes off with the biggest piece."},{"id":7,"expr":"make off with","zh":"拿了……就跑、偷走","m":["makes off with"],"note":"make off = 匆匆逃走；make off with sth = 带着（偷来的）东西跑掉。比 steal 更口语，更有画面感。","core":"make off with","forms":["make off with","makes off with","made off with","making off with"],"syn":[],"ex":[{"en":"A thief [[made off with]] her handbag.","zh":"一个小偷抢了她的手提包就跑了。"},{"en":"The dog [[made off with]] a sausage from the barbecue.","zh":"狗从烧烤架上叼了一根香肠就跑。"}],"ctx":"A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and makes off with the biggest piece."},{"id":8,"expr":"shriek","zh":"尖叫","m":["shriek"],"note":"shriek 比 scream 更尖、更短。shriek with laughter = 笑得尖叫。也可作名词：a shriek of delight。","core":"shriek","forms":["shriek","shrieks","shrieked","shrieking"],"syn":[],"ex":[{"en":"The kids [[shrieked]] when the cold wave hit them.","zh":"冰冷的浪打过来，孩子们尖叫起来。"},{"en":"She [[shrieked]] with laughter at the joke.","zh":"她听到笑话笑得尖叫。"}],"ctx":"The children shriek, the parents shout, and the bird retreats to a rooftop to enjoy its prize."},{"id":9,"expr":"retreat","zh":"撤退、退到（安全处）","m":["retreats"],"note":"retreat 原是军事用语“撤退”，也常用于日常：retreat to one's room（躲回自己房间）。名词 a retreat 还可以指静修的地方。","core":"retreat","forms":["retreat","retreats","retreated","retreating"],"syn":[],"ex":[{"en":"The cat [[retreated]] under the bed when the guests arrived.","zh":"客人一来，猫就躲到床底下去了。"},{"en":"After lunch he [[retreats]] to his study to read.","zh":"午饭后他总是躲进书房看书。"}],"ctx":"The children shriek, the parents shout, and the bird retreats to a rooftop to enjoy its prize."},{"id":10,"expr":"play out","zh":"（事情）发生、上演","m":["play out"],"note":"play out 指事情一步步展开、发生，常用于场景、局面：We'll see how things play out.（看事情怎么发展吧。）","core":"play out","forms":["play out","plays out","played out","playing out"],"syn":[],"ex":[{"en":"The same argument [[plays out]] in our house every Sunday.","zh":"每个星期天，我们家都会上演同样的争吵。"},{"en":"Let's wait and see how things [[play out]].","zh":"我们等着看事情怎么发展吧。"}],"ctx":"Similar scenes play out every summer from Brighton to Sydney to Cape Town."},{"id":11,"expr":"cheeky","zh":"厚脸皮的、调皮放肆的","m":["cheeky"],"note":"英式口语，常说小孩或宠物，不算很重的批评，带一点好笑：a cheeky grin（调皮的笑）。","core":"cheeky","forms":["cheeky","cheekier","cheekiest"],"syn":[],"ex":[{"en":"Don't be [[cheeky]] to your teacher.","zh":"别对老师没大没小的。"},{"en":"He gave me a [[cheeky]] grin and took the last biscuit.","zh":"他冲我调皮一笑，拿走了最后一块饼干。"}],"ctx":"Gulls were not always this cheeky."},{"id":12,"expr":"scavenge","zh":"捡食、翻找（剩余物）","m":["scavenging"],"note":"scavenger 指食腐动物，比如秃鹫、鬣狗。人也可以 scavenge for sth：在旧物里翻找能用的东西。","core":"scavenge","forms":["scavenge","scavenges","scavenged","scavenging"],"syn":[],"ex":[{"en":"Foxes [[scavenge]] for scraps in the bins at night.","zh":"狐狸夜里在垃圾桶里翻找残羹剩饭。"},{"en":"We [[scavenged]] wood from the beach for the fire.","zh":"我们在海滩上捡木头生火。"}],"ctx":"For most of their history they fed at sea, scavenging behind fishing boats and picking through the shoreline."},{"id":13,"expr":"pick through","zh":"在……里翻找","m":["picking through"],"note":"pick through 强调一件件地挑、翻：pick through the rubbish / the evidence。","core":"pick through","forms":["pick through","picks through","picked through","picking through"],"syn":[],"ex":[{"en":"She [[picked through]] the box of old photos.","zh":"她把那箱旧照片翻了个遍。"},{"en":"Birds were [[picking through]] the rubbish.","zh":"几只鸟在垃圾里翻找。"}],"ctx":"For most of their history they fed at sea, scavenging behind fishing boats and picking through the shoreline."},{"id":14,"expr":"dwindle","zh":"逐渐减少","m":["dwindled"],"note":"dwindle 强调慢慢变少、越来越小：dwindling numbers（越来越少的数量）。近义 shrink，但 dwindle 更强调“所剩无几”。","core":"dwindle","forms":["dwindle","dwindles","dwindled","dwindling"],"syn":[],"ex":[{"en":"Our savings [[dwindled]] during the long holiday.","zh":"长假期间我们的积蓄越来越少。"},{"en":"The crowd [[dwindled]] as the rain got heavier.","zh":"雨越下越大，人群渐渐散去。"}],"ctx":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed."},{"id":15,"expr":"fill up with","zh":"被……填满","m":["filled up with"],"note":"fill up 是装满；fill up with sth 说明用什么装满。也说加满油：fill up the car。","core":"fill up with","forms":["fill up with","fills up with","filled up with","filling up with"],"syn":[],"ex":[{"en":"The room soon [[filled up with]] smoke.","zh":"房间里很快烟雾弥漫。"},{"en":"Her eyes [[filled up with]] tears.","zh":"她的眼里噙满了泪水。"}],"ctx":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed."},{"id":16,"expr":"inland","zh":"在内陆、往内陆","m":["inland"],"note":"inland 可作副词（move inland）也可作形容词（an inland city，内陆城市）。反义是 coastal（沿海的）。","core":"inland","forms":["inland"],"syn":[],"ex":[{"en":"The storm moved [[inland]] overnight.","zh":"风暴一夜之间移到了内陆。"},{"en":"They live in a small [[inland]] village.","zh":"他们住在一个内陆小村子里。"}],"ctx":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed."},{"id":17,"expr":"adapt","zh":"适应","m":["adapted"],"note":"adapt to sth：适应……。adapt 也可以表示“改编”：adapt a novel for the screen。形容词 adaptable = 适应力强的。","core":"adapt","forms":["adapt","adapts","adapted","adapting"],"syn":[],"ex":[{"en":"Children [[adapt]] quickly to a new school.","zh":"孩子们很快就能适应新学校。"},{"en":"The company [[adapted]] to online sales.","zh":"公司转向了网上销售。"}],"ctx":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed."},{"id":18,"expr":"easy to come by","zh":"容易弄到","m":["easy to come by"],"note":"come by sth = 得到、弄到。常用 hard to come by（难得、不好找）：Good jobs are hard to come by.","core":"come by","forms":["easy to come by","hard to come by","come by"],"syn":[],"ex":[{"en":"Cheap flats are hard to [[come by]] in London.","zh":"在伦敦很难找到便宜的公寓。"},{"en":"In summer, fresh fruit is [[easy to come by]].","zh":"夏天新鲜水果很容易买到。"}],"ctx":"A city gull can live for 20 years, remembers where food is easy to come by, and learns by watching other gulls get away with theft."},{"id":19,"expr":"get away with","zh":"做了（坏事）而没受惩罚","m":["get away with"],"note":"get away with sth：做了错事却逃过惩罚。You won't get away with this! = 你逃不掉的！","core":"get away with","forms":["get away with","gets away with","got away with","getting away with"],"syn":[],"ex":[{"en":"He cheated and [[got away with]] it.","zh":"他作弊了，却什么事也没有。"},{"en":"You can't [[get away with]] being late every day.","zh":"你不能天天迟到还不受处罚。"}],"ctx":"A city gull can live for 20 years, remembers where food is easy to come by, and learns by watching other gulls get away with theft."},{"id":20,"expr":"at one's wits' end","zh":"束手无策、急得没办法","m":["at their wits' end"],"note":"注意 wits' 的撇号在 s 后面（复数所有格）。常说 I'm at my wits' end. = 我真是没辙了。","core":"at their wits' end","forms":["at their wits' end","at my wits' end","at his wits' end","at her wits' end","wits' end","wits end"],"syn":[],"ex":[{"en":"The new parents were [[at their wits' end]] after a week without sleep.","zh":"一周没睡好，这对新手父母已经束手无策了。"},{"en":"I'm [[at my wits' end]] with this printer.","zh":"这台打印机真让我没辙了。"}],"ctx":"Residents are at their wits' end."},{"id":21,"expr":"everything from A to B","zh":"从 A 到 B 什么都……","m":["everything from"],"note":"用来表示种类繁多：The shop sells everything from socks to sofas.","core":"everything from","forms":["everything from"],"syn":[],"ex":[{"en":"The market sells [[everything from]] fish to phone cases.","zh":"这个市场什么都卖，从鱼到手机壳。"},{"en":"We talked about [[everything from]] football to philosophy.","zh":"我们什么都聊，从足球到哲学。"}],"ctx":"Councils have tried everything from spiked roofs and fake owls to fines for anyone caught feeding the birds."},{"id":22,"expr":"fine (noun)","zh":"罚款","m":["fines"],"note":"fine 作名词是“罚款”，作动词是“处以罚款”：He was fined £100. 别和形容词 fine（好的）弄混。","core":"fine","forms":["fine","fines","fined"],"syn":[],"ex":[{"en":"She got a parking [[fine]] outside the hospital.","zh":"她在医院外面吃了一张停车罚单。"},{"en":"Drivers are [[fined]] for using their phones.","zh":"司机开车用手机会被罚款。"}],"ctx":"Councils have tried everything from spiked roofs and fake owls to fines for anyone caught feeding the birds."},{"id":23,"expr":"scare off","zh":"把……吓跑","m":["scare gulls off"],"note":"scare sb/sth off 或 scare off sb/sth。也说 scare away。比喻用法：High prices scared buyers off.（高价把买家吓跑了。）","core":"scare off","forms":["scare off","scares off","scared off","scare away","scare"],"syn":[],"ex":[{"en":"The dog barked and [[scared]] the burglars off.","zh":"狗一叫，把小偷吓跑了。"},{"en":"High prices may [[scare off]] tourists.","zh":"高价可能会把游客吓跑。"}],"ctx":"Some towns have hired falconers, whose hawks patrol the beach to scare gulls off."},{"id":24,"expr":"catch on","zh":"明白过来；流行起来","m":["catch on"],"note":"两个常用意思：一是“领会、反应过来”（The kids caught on fast.）；二是“流行起来”（The fashion never caught on.）。","core":"catch on","forms":["catch on","catches on","caught on","catching on"],"syn":[],"ex":[{"en":"It took me a while to [[catch on]] to the joke.","zh":"我过了一会儿才明白这个笑话。"},{"en":"The new app never really [[caught on]].","zh":"这个新应用一直没真正流行起来。"}],"ctx":"Most of these measures work for a while; then the gulls catch on and come back."},{"id":25,"expr":"come up with","zh":"想出（主意、办法）","m":["come up with"],"note":"come up with an idea / a plan / an answer / an excuse。比 think of 更强调“想出来了”。","core":"come up with","forms":["come up with","comes up with","came up with","coming up with"],"syn":[],"ex":[{"en":"She [[came up with]] a clever name for the shop.","zh":"她给店想了个巧妙的名字。"},{"en":"We need to [[come up with]] a plan by Friday.","zh":"我们得在周五前想出个计划。"}],"ctx":"Researchers studying gull behaviour have come up with a cheaper idea: stare them down."},{"id":26,"expr":"stare sb down","zh":"瞪到对方退缩","m":["stare them down"],"note":"stare at sb = 盯着某人看；stare sb down 更进一步，盯到对方先移开目光或退缩。","core":"stare down","forms":["stare down","stare them down","stared down","stare","stared"],"syn":[],"ex":[{"en":"The cat [[stared]] the dog down.","zh":"猫一直瞪着狗，直到狗退缩。"},{"en":"Don't try to [[stare down]] an angry bull.","zh":"别跟一头发怒的公牛对视。"}],"ctx":"Researchers studying gull behaviour have come up with a cheaper idea: stare them down."},{"id":27,"expr":"approach (verb)","zh":"靠近、接近","m":["approach"],"note":"approach 作动词时直接跟宾语：approach the door（不说 approach to）。也可以指“着手处理”：approach a problem。","core":"approach","forms":["approach","approaches","approached","approaching"],"syn":[],"ex":[{"en":"A stranger [[approached]] me in the street.","zh":"街上有个陌生人朝我走过来。"},{"en":"Winter is [[approaching]] fast.","zh":"冬天很快就要到了。"}],"ctx":"In one experiment, scientists placed a bag of chips on the ground and watched how long passing gulls took to approach it."},{"id":28,"expr":"hesitate","zh":"犹豫","m":["hesitated"],"note":"hesitate to do sth：迟疑着不做。礼貌用语 Don't hesitate to ask. = 有问题尽管问。名词 hesitation。","core":"hesitate","forms":["hesitate","hesitates","hesitated","hesitating"],"syn":[],"ex":[{"en":"She [[hesitated]] before opening the letter.","zh":"她犹豫了一下才拆开信。"},{"en":"Don't [[hesitate]] to call me if you need help.","zh":"需要帮忙就尽管给我打电话。"}],"ctx":"When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many gave up altogether."},{"id":29,"expr":"give up","zh":"放弃","m":["gave up"],"note":"give up (doing) sth：放弃、戒掉：give up smoking。give up on sb = 对某人不抱希望。","core":"give up","forms":["give up","gives up","gave up","given up","giving up"],"syn":[],"ex":[{"en":"He [[gave up]] after three tries.","zh":"他试了三次就放弃了。"},{"en":"Never [[give up]] on your dreams.","zh":"永远不要放弃你的梦想。"}],"ctx":"When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many gave up altogether."},{"id":30,"expr":"altogether","zh":"完全、彻底","m":["altogether"],"note":"altogether 有两个意思：一是“完全”（stop altogether），二是“总共”（£50 altogether）。注意和 all together（大家一起）区分。","core":"altogether","forms":["altogether"],"syn":[],"ex":[{"en":"The noise stopped [[altogether]].","zh":"噪音完全停了。"},{"en":"We might cancel the trip [[altogether]].","zh":"我们可能会彻底取消这次旅行。"}],"ctx":"When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many gave up altogether."},{"id":31,"expr":"be wary of","zh":"对……有戒心、提防","m":["wary of"],"note":"wary 指小心提防，比 careful 多一层“不信任”：be wary of strangers。名词形式 wariness。","core":"wary of","forms":["wary of","be wary of","wary"],"syn":[],"ex":[{"en":"Cats are [[wary of]] strangers.","zh":"猫对陌生人有戒心。"},{"en":"Be [[wary of]] offers that sound too good to be true.","zh":"好得不像真的优惠，要多留个心眼。"}],"ctx":"Gulls, it seems, are wary of being watched, perhaps because a staring animal is more likely to fight back."},{"id":32,"expr":"fight back","zh":"还击、反抗","m":["fight back"],"note":"fight back 也可以指“忍住（眼泪等）”：fight back tears。","core":"fight back","forms":["fight back","fights back","fought back","fighting back"],"syn":[],"ex":[{"en":"When the bully pushed him, he [[fought back]].","zh":"那个恶霸推他时，他还手了。"},{"en":"She [[fought back]] tears during the speech.","zh":"她演讲时强忍着眼泪。"}],"ctx":"Gulls, it seems, are wary of being watched, perhaps because a staring animal is more likely to fight back."},{"id":33,"expr":"there is a catch","zh":"有个隐藏的问题、有个“但是”","m":["There is a catch"],"note":"catch 作名词指暗藏的问题或代价。常见问法：What's the catch?（有什么猫腻？）","core":"there is a catch","forms":["there is a catch","there's a catch","what's the catch","catch"],"syn":[],"ex":[{"en":"The flight is very cheap, but [[there is a catch]]: no luggage.","zh":"机票很便宜，但有个问题：不含行李。"},{"en":"Free pizza for a year? [[What's the catch]]?","zh":"一年免费披萨？有什么猫腻？"}],"ctx":"There is a catch, of course."},{"id":34,"expr":"a minority of","zh":"……中的少数","m":["a minority of"],"note":"反义 the majority of（大多数）。in the minority = 属于少数。","core":"a minority of","forms":["a minority of","minority"],"syn":[],"ex":[{"en":"Only [[a minority of]] students walk to school.","zh":"只有少数学生走路上学。"},{"en":"[[A minority of]] drivers cause most accidents.","zh":"大多数事故是少数司机造成的。"}],"ctx":"Only a minority of the gulls dared to come near the food, and the boldest barely paused before grabbing it."},{"id":35,"expr":"dare (to) do sth","zh":"敢于做某事","m":["dared to"],"note":"dare 可以接 to do 或直接接动词原形：He didn't dare (to) look.。I dare you to ... = 我赌你不敢……。","core":"dare to","forms":["dare to","dares to","dared to","dare","dared"],"syn":[],"ex":[{"en":"Nobody [[dared to]] tell the boss.","zh":"没人敢告诉老板。"},{"en":"I didn't [[dare]] look down from the bridge.","zh":"我不敢从桥上往下看。"}],"ctx":"Only a minority of the gulls dared to come near the food, and the boldest barely paused before grabbing it."},{"id":36,"expr":"barely","zh":"几乎没有、勉强","m":["barely"],"note":"barely 带否定意味：I barely slept. = 我几乎没睡。也表示“刚刚够”：She barely caught the train.（她差点没赶上火车。）","core":"barely","forms":["barely"],"syn":[],"ex":[{"en":"I could [[barely]] hear him over the music.","zh":"音乐太吵，我几乎听不见他说话。"},{"en":"We [[barely]] made it to the airport on time.","zh":"我们差一点就没按时赶到机场。"}],"ctx":"Only a minority of the gulls dared to come near the food, and the boldest barely paused before grabbing it."},{"id":37,"expr":"keep an eye on","zh":"看着、留意","m":["keep an eye on"],"note":"keep an eye on sb/sth：照看、留心。Can you keep an eye on my bag? = 能帮我看一下包吗？","core":"keep an eye on","forms":["keep an eye on","keeps an eye on","kept an eye on","keeping an eye on"],"syn":[],"ex":[{"en":"Can you [[keep an eye on]] my bag for a minute?","zh":"能帮我看一下包吗？"},{"en":"The teacher [[kept an eye on]] the quiet boy at the back.","zh":"老师一直留意着后排那个安静的男孩。"}],"ctx":"And it is hard to keep an eye on a gull while also eating, chatting and keeping track of small children."},{"id":38,"expr":"keep track of","zh":"掌握……的情况、记着","m":["keeping track of"],"note":"keep track of sth：随时了解、记录。反义 lose track of：搞不清、忘了。lose track of time = 忘了时间。","core":"keep track of","forms":["keep track of","keeps track of","kept track of","keeping track of","lose track of","lost track of"],"syn":[],"ex":[{"en":"I use an app to [[keep track of]] my spending.","zh":"我用一个应用记录开支。"},{"en":"We [[lost track of]] time and missed the bus.","zh":"我们忘了时间，错过了公交车。"}],"ctx":"And it is hard to keep an eye on a gull while also eating, chatting and keeping track of small children."},{"id":39,"expr":"hint at","zh":"暗示、透露出","m":["hints at"],"note":"hint 作名词是“暗示、提示”：give sb a hint。hint at sth = 间接地提到、暗示。","core":"hint at","forms":["hint at","hints at","hinted at","hinting at"],"syn":[],"ex":[{"en":"He [[hinted at]] a big announcement next week.","zh":"他暗示下周会有重大消息。"},{"en":"The dark clouds [[hint at]] a storm.","zh":"乌云预示着暴风雨。"}],"ctx":"Still, the finding hints at something that frustrated towns often miss."},{"id":40,"expr":"opportunist","zh":"投机者、善于抓机会的人","m":["opportunists"],"note":"opportunist 常带贬义，指只顾自己利益抓机会的人；说动物时就是“见机行事”。形容词 opportunistic。","core":"opportunist","forms":["opportunist","opportunists"],"syn":[],"ex":[{"en":"Foxes are clever [[opportunists]] that eat almost anything.","zh":"狐狸是聪明的机会主义者，几乎什么都吃。"},{"en":"Some politicians are pure [[opportunists]].","zh":"有些政客完全是投机分子。"}],"ctx":"Gulls are not villains; they are opportunists doing what any sensible animal would do when food is left lying around."},{"id":41,"expr":"lie around","zh":"被随手乱放","m":["lying around"],"note":"leave sth lying around = 把东西乱放。也可以说人“闲躺着”：lie around all day。","core":"lying around","forms":["lying around","lie around","lies around","lay around"],"syn":[],"ex":[{"en":"Don't leave your keys [[lying around]].","zh":"别把钥匙到处乱放。"},{"en":"There were toys [[lying around]] everywhere.","zh":"到处都乱扔着玩具。"}],"ctx":"Gulls are not villains; they are opportunists doing what any sensible animal would do when food is left lying around."},{"id":42,"expr":"in decline","zh":"在衰退、在减少","m":["in decline"],"note":"in decline = declining。也说 go into decline（开始衰落）、a decline in sth（……的下降）。","core":"in decline","forms":["in decline","decline","declining"],"syn":[],"ex":[{"en":"The old industry has been [[in decline]] for years.","zh":"那个老行业已经衰落多年了。"},{"en":"Bee numbers are [[in decline]] in many countries.","zh":"许多国家的蜜蜂数量在减少。"}],"ctx":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify."},{"id":43,"expr":"even as","zh":"正当……的时候（表对比）","m":["even as"],"note":"even as 引出同时发生、方向相反的事：Prices rose even as wages fell.（工资下降的同时物价却在上涨。）","core":"even as","forms":["even as"],"syn":[],"ex":[{"en":"The town grew quieter [[even as]] the city boomed.","zh":"城市繁荣起来的同时，小镇却越来越冷清。"},{"en":"He kept smiling [[even as]] he lost the game.","zh":"就在输掉比赛的时候，他还一直在笑。"}],"ctx":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify."},{"id":44,"expr":"thrive","zh":"兴旺、长得好","m":["thrive"],"note":"thrive 指在某种环境下长得好、过得好：Plants thrive in sunlight. thrive on sth = 靠……茁壮成长。形容词 thriving。","core":"thrive","forms":["thrive","thrives","thrived","thriving"],"syn":[],"ex":[{"en":"Tomatoes [[thrive]] in warm weather.","zh":"番茄在暖和的天气里长得好。"},{"en":"Some people [[thrive]] under pressure.","zh":"有些人越有压力越出色。"}],"ctx":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify."},{"id":45,"expr":"hard to justify","zh":"很难说得过去、很难找到理由","m":["hard to justify"],"note":"justify：证明……有道理、为……辩护。名词 justification。The end justifies the means. = 为达目的不择手段。","core":"justify","forms":["hard to justify","justify","justifies","justified"],"syn":[],"ex":[{"en":"Such a high price is [[hard to justify]].","zh":"这么高的价格很难说得过去。"},{"en":"How can you [[justify]] spending so much?","zh":"你怎么解释花这么多钱是合理的？"}],"ctx":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify."},{"id":46,"expr":"when all else fails","zh":"其他办法都不管用时","m":["when all else fails"],"note":"常用来引出最后的办法，带点幽默：When all else fails, read the instructions.（实在不行，就看说明书吧。）","core":"when all else fails","forms":["when all else fails","if all else fails"],"syn":[],"ex":[{"en":"[[When all else fails]], turn it off and on again.","zh":"实在不行，就关了再开一次。"},{"en":"[[If all else fails]], we can take a taxi.","zh":"要是其他办法都不行，我们就打车。"}],"ctx":"The best defence may simply be to eat indoors, keep bins closed and, when all else fails, look the bird in the eye."},{"id":47,"expr":"look sb in the eye","zh":"直视某人的眼睛","m":["look the bird in the eye"],"note":"表示坦然或敢于面对：He couldn't look me in the eye.（他不敢正眼看我，常暗示心虚。）","core":"look in the eye","forms":["look in the eye","look me in the eye","look him in the eye","looked me in the eye","look sb in the eye","in the eye"],"syn":[],"ex":[{"en":"He couldn't [[look me in the eye]].","zh":"他不敢正眼看我。"},{"en":"She [[looked him in the eye]] and said no.","zh":"她直视着他的眼睛说了不。"}],"ctx":"The best defence may simply be to eat indoors, keep bins closed and, when all else fails, look the bird in the eye."}],"cloze":[{"id":1,"i":0,"before":"Eyes on the chips: the ","ans":"seaside","after":" war between humans and gulls","hint":"海边的","szh":"盯紧你的薯条：海边的人鸥大战"},{"id":2,"i":1,"before":"Across the world's beach towns, ","ans":"bold","after":" seabirds have learned that tourists are an easy meal.","hint":"大胆的","szh":"在世界各地的海滩小镇，胆大的海鸟已经摸清了：游客就是送上门的一顿饭。"},{"id":3,"i":2,"before":"Scientists think they have found a surprisingly simple ","ans":"defence","after":".","hint":"防御（英式拼写）","szh":"科学家认为，他们找到了一个简单得出奇的防御办法。"},{"id":4,"i":3,"before":"It happens in a ","ans":"flash","after":".","hint":"一瞬间（in a ___）","szh":"事情就发生在一眨眼之间。"},{"id":5,"i":4,"before":"A family sits down on a sea wall in Cornwall, ","ans":"unwraps","after":" a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and makes off with the biggest piece.","hint":"拆开（注意词形）","szh":"一家人在康沃尔的海堤上坐下，拆开一包用纸裹着的炸鱼薯条，还没等谁咬上一口，一只银鸥就俯冲下来，叼走了最大的那块。"},{"id":6,"i":4,"before":"A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull ","ans":"swoops","after":" down and makes off with the biggest piece.","hint":"俯冲（注意词形）","szh":"一家人在康沃尔的海堤上坐下，拆开一包用纸裹着的炸鱼薯条，还没等谁咬上一口，一只银鸥就俯冲下来，叼走了最大的那块。"},{"id":7,"i":4,"before":"A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and ","ans":"makes","after":" off with the biggest piece.","hint":"（___ off with）","szh":"一家人在康沃尔的海堤上坐下，拆开一包用纸裹着的炸鱼薯条，还没等谁咬上一口，一只银鸥就俯冲下来，叼走了最大的那块。"},{"id":8,"i":5,"before":"The children ","ans":"shriek","after":", the parents shout, and the bird retreats to a rooftop to enjoy its prize.","hint":"尖叫","szh":"孩子们尖叫，大人们大喊，那只鸟则退到屋顶上享用它的战利品。"},{"id":9,"i":5,"before":"The children shriek, the parents shout, and the bird ","ans":"retreats","after":" to a rooftop to enjoy its prize.","hint":"退回（注意词形）","szh":"孩子们尖叫，大人们大喊，那只鸟则退到屋顶上享用它的战利品。"},{"id":10,"i":6,"before":"Similar scenes ","ans":"play","after":" out every summer from Brighton to Sydney to Cape Town.","hint":"上演（___ out）","szh":"从布莱顿到悉尼再到开普敦，每年夏天都在上演类似的场面。"},{"id":11,"i":7,"before":"Gulls were not always this ","ans":"cheeky","after":".","hint":"厚脸皮的","szh":"海鸥并不是一直都这么厚脸皮。"},{"id":12,"i":8,"before":"For most of their history they fed at sea, ","ans":"scavenging","after":" behind fishing boats and picking through the shoreline.","hint":"捡食（注意词形）","szh":"在漫长的历史中，它们大多在海上觅食，跟在渔船后面捡食，在海岸边翻找吃的。"},{"id":13,"i":8,"before":"For most of their history they fed at sea, scavenging behind fishing boats and ","ans":"picking","after":" through the shoreline.","hint":"翻找（___ through，注意词形）","szh":"在漫长的历史中，它们大多在海上觅食，跟在渔船后面捡食，在海岸边翻找吃的。"},{"id":14,"i":9,"before":"But as fish stocks ","ans":"dwindled","after":" and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed.","hint":"逐渐减少（过去式）","szh":"可随着鱼类资源越来越少，镇上到处是垃圾、垃圾桶和露天吃饭的人，许多海鸥搬到了内陆，而且适应得快得惊人。"},{"id":15,"i":9,"before":"But as fish stocks dwindled and towns ","ans":"filled","after":" up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed.","hint":"填满（___ up with）","szh":"可随着鱼类资源越来越少，镇上到处是垃圾、垃圾桶和露天吃饭的人，许多海鸥搬到了内陆，而且适应得快得惊人。"},{"id":16,"i":9,"before":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved ","ans":"inland","after":" and adapted with remarkable speed.","hint":"往内陆","szh":"可随着鱼类资源越来越少，镇上到处是垃圾、垃圾桶和露天吃饭的人，许多海鸥搬到了内陆，而且适应得快得惊人。"},{"id":17,"i":9,"before":"But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and ","ans":"adapted","after":" with remarkable speed.","hint":"适应（过去式）","szh":"可随着鱼类资源越来越少，镇上到处是垃圾、垃圾桶和露天吃饭的人，许多海鸥搬到了内陆，而且适应得快得惊人。"},{"id":18,"i":10,"before":"A city gull can live for 20 years, remembers where food is easy to ","ans":"come","after":" by, and learns by watching other gulls get away with theft.","hint":"弄到（___ by）","szh":"一只城市海鸥能活二十年，记得哪里容易找到吃的，还会看着别的海鸥偷了东西没事，跟着学。"},{"id":19,"i":10,"before":"A city gull can live for 20 years, remembers where food is easy to come by, and learns by watching other gulls get ","ans":"away","after":" with theft.","hint":"逃过惩罚（get ___ with）","szh":"一只城市海鸥能活二十年，记得哪里容易找到吃的，还会看着别的海鸥偷了东西没事，跟着学。"},{"id":20,"i":11,"before":"Residents are at their wits' ","ans":"end","after":".","hint":"（at their wits' ___）","szh":"居民们已经无计可施了。"},{"id":21,"i":12,"before":"Councils have tried ","ans":"everything","after":" from spiked roofs and fake owls to fines for anyone caught feeding the birds.","hint":"什么都（___ from ... to ...）","szh":"地方政府什么办法都试过：从在屋顶装尖刺、摆假猫头鹰，到对被抓到喂鸟的人罚款。"},{"id":22,"i":12,"before":"Councils have tried everything from spiked roofs and fake owls to ","ans":"fines","after":" for anyone caught feeding the birds.","hint":"罚款（复数）","szh":"地方政府什么办法都试过：从在屋顶装尖刺、摆假猫头鹰，到对被抓到喂鸟的人罚款。"},{"id":23,"i":13,"before":"Some towns have hired falconers, whose hawks patrol the beach to ","ans":"scare","after":" gulls off.","hint":"吓（___ sb off）","szh":"有些镇雇了驯鹰人，让他们的鹰在海滩上巡逻，把海鸥吓跑。"},{"id":24,"i":14,"before":"Most of these measures work for a while; then the gulls ","ans":"catch","after":" on and come back.","hint":"明白过来（___ on）","szh":"这些办法大多能管用一阵子，然后海鸥就看穿了，又回来了。"},{"id":25,"i":15,"before":"Researchers studying gull behaviour have ","ans":"come","after":" up with a cheaper idea: stare them down.","hint":"想出（___ up with）","szh":"研究海鸥行为的研究人员想出了一个更省钱的办法：瞪着它们，直到它们退缩。"},{"id":26,"i":15,"before":"Researchers studying gull behaviour have come up with a cheaper idea: ","ans":"stare","after":" them down.","hint":"瞪（___ them down）","szh":"研究海鸥行为的研究人员想出了一个更省钱的办法：瞪着它们，直到它们退缩。"},{"id":27,"i":16,"before":"In one experiment, scientists placed a bag of chips on the ground and watched how long passing gulls took to ","ans":"approach","after":" it.","hint":"靠近","szh":"在一项实验里，科学家把一袋薯条放在地上，观察路过的海鸥要过多久才会靠近。"},{"id":28,"i":17,"before":"When a person kept their eyes fixed on the bird, it ","ans":"hesitated","after":" far longer than when the person looked away, and many gave up altogether.","hint":"犹豫（过去式）","szh":"如果人一直盯着鸟看，它犹豫的时间比人把目光移开时长得多，很多干脆放弃了。"},{"id":29,"i":17,"before":"When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many ","ans":"gave","after":" up altogether.","hint":"放弃（___ up，过去式）","szh":"如果人一直盯着鸟看，它犹豫的时间比人把目光移开时长得多，很多干脆放弃了。"},{"id":30,"i":17,"before":"When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many gave up ","ans":"altogether","after":".","hint":"完全","szh":"如果人一直盯着鸟看，它犹豫的时间比人把目光移开时长得多，很多干脆放弃了。"},{"id":31,"i":18,"before":"Gulls, it seems, are ","ans":"wary","after":" of being watched, perhaps because a staring animal is more likely to fight back.","hint":"提防的（___ of）","szh":"看来，海鸥不喜欢被人盯着，也许是因为一个瞪着你的动物更可能会反击。"},{"id":32,"i":18,"before":"Gulls, it seems, are wary of being watched, perhaps because a staring animal is more likely to ","ans":"fight","after":" back.","hint":"还击（___ back）","szh":"看来，海鸥不喜欢被人盯着，也许是因为一个瞪着你的动物更可能会反击。"},{"id":33,"i":19,"before":"There is a ","ans":"catch","after":", of course.","hint":"隐藏的问题（there is a ___）","szh":"当然，这里面也有个问题。"},{"id":34,"i":20,"before":"Only a ","ans":"minority","after":" of the gulls dared to come near the food, and the boldest barely paused before grabbing it.","hint":"少数（a ___ of）","szh":"只有少数海鸥敢靠近食物，而胆子最大的那几只几乎不停顿就抢走了。"},{"id":35,"i":20,"before":"Only a minority of the gulls ","ans":"dared","after":" to come near the food, and the boldest barely paused before grabbing it.","hint":"敢（___ to，过去式）","szh":"只有少数海鸥敢靠近食物，而胆子最大的那几只几乎不停顿就抢走了。"},{"id":36,"i":20,"before":"Only a minority of the gulls dared to come near the food, and the boldest ","ans":"barely","after":" paused before grabbing it.","hint":"几乎不","szh":"只有少数海鸥敢靠近食物，而胆子最大的那几只几乎不停顿就抢走了。"},{"id":37,"i":21,"before":"And it is hard to keep an ","ans":"eye","after":" on a gull while also eating, chatting and keeping track of small children.","hint":"留意（keep an ___ on）","szh":"而且一边吃东西、聊天、看着小孩，一边还要盯住一只海鸥，实在不容易。"},{"id":38,"i":21,"before":"And it is hard to keep an eye on a gull while also eating, chatting and keeping ","ans":"track","after":" of small children.","hint":"掌握情况（keep ___ of）","szh":"而且一边吃东西、聊天、看着小孩，一边还要盯住一只海鸥，实在不容易。"},{"id":39,"i":22,"before":"Still, the finding ","ans":"hints","after":" at something that frustrated towns often miss.","hint":"暗示（___ at）","szh":"不过，这个发现指出了一点，焦头烂额的小镇常常忽略。"},{"id":40,"i":23,"before":"Gulls are not villains; they are ","ans":"opportunists","after":" doing what any sensible animal would do when food is left lying around.","hint":"投机者（复数）","szh":"海鸥并不是坏蛋；它们只是投机者，吃的东西随便放着的时候，任何聪明的动物都会这么做。"},{"id":41,"i":23,"before":"Gulls are not villains; they are opportunists doing what any sensible animal would do when food is left ","ans":"lying","after":" around.","hint":"乱放着（___ around）","szh":"海鸥并不是坏蛋；它们只是投机者，吃的东西随便放着的时候，任何聪明的动物都会这么做。"},{"id":42,"i":24,"before":"Many species are in ","ans":"decline","after":" at sea even as their urban cousins thrive, which makes culling them hard to justify.","hint":"衰退（in ___）","szh":"许多种类的海鸥在海上数量正在减少，而它们城里的“亲戚”却过得很好，所以很难找到理由去捕杀它们。"},{"id":43,"i":24,"before":"Many species are in decline at sea ","ans":"even","after":" as their urban cousins thrive, which makes culling them hard to justify.","hint":"正当（___ as）","szh":"许多种类的海鸥在海上数量正在减少，而它们城里的“亲戚”却过得很好，所以很难找到理由去捕杀它们。"},{"id":44,"i":24,"before":"Many species are in decline at sea even as their urban cousins ","ans":"thrive","after":", which makes culling them hard to justify.","hint":"兴旺","szh":"许多种类的海鸥在海上数量正在减少，而它们城里的“亲戚”却过得很好，所以很难找到理由去捕杀它们。"},{"id":45,"i":24,"before":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to ","ans":"justify","after":".","hint":"说得过去（hard to ___）","szh":"许多种类的海鸥在海上数量正在减少，而它们城里的“亲戚”却过得很好，所以很难找到理由去捕杀它们。"},{"id":46,"i":25,"before":"The best defence may simply be to eat indoors, keep bins closed and, when all else ","ans":"fails","after":", look the bird in the eye.","hint":"失败（when all else ___）","szh":"最好的防御办法也许就是：在室内吃饭，盖好垃圾桶，实在不行，就直视那只鸟的眼睛。"},{"id":47,"i":25,"before":"The best defence may simply be to eat indoors, keep bins closed and, when all else fails, ","ans":"look","after":" the bird in the eye.","hint":"直视（___ sb in the eye）","szh":"最好的防御办法也许就是：在室内吃饭，盖好垃圾桶，实在不行，就直视那只鸟的眼睛。"}],"breakdown":{"en":"Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify.","points":["主句是 Many species are in decline at sea：许多种类在海上数量在减少。","even as their urban cousins thrive 是状语从句，even as 表示“与此同时却……”，把海上和城里两种情况对比起来。","which 引导非限制性定语从句，指代前面整句话的情况，不是指某个名词。","makes culling them hard to justify：make + 宾语 + 形容词。宾语是动名词短语 culling them，补语是 hard to justify。","整句的逻辑：海鸥在海上本来就在变少，所以就算在城里很烦人，也不好随便捕杀。"],"i":24},"title":"Eyes on the chips: the seaside war between humans and gulls","audio":{"src":"audio.mp3?v=e641c31f","dur":157.7,"t":[[0.25,3.94],[4.84,9.83],[10.15,13.5],[14.4,15.81],[16.13,27.74],[28.06,33.73],[34.05,38.53],[39.28,41.18],[41.5,47.37],[47.69,57.61],[57.93,65.99],[66.74,68.47],[68.79,75.23],[75.55,80.31],[80.63,84.92],[85.67,90.47],[90.79,97.68],[98.0,105.78],[106.1,112.52],[113.27,114.77],[115.09,121.3],[121.62,127.44],[127.76,131.77],[132.52,139.54],[139.86,146.9],[147.22,154.07],[154.39,157.1]],"voice":"af_heart"},"clips":{"src":"clips.mp3?v=5b848690","t":{"w1":[1.0,1.96],"e1_0":[2.46,4.81],"e1_1":[5.31,7.82],"w2":[8.32,9.18],"e2_0":[9.68,12.39],"e2_1":[12.89,15.15],"w3":[15.65,16.57],"e3_0":[17.07,19.67],"e3_1":[20.17,22.81],"w4":[23.31,24.32],"e4_0":[24.82,26.46],"e4_1":[26.96,28.37],"w5":[28.87,29.68],"e5_0":[30.18,32.52],"e5_1":[33.02,35.95],"w6":[36.45,37.45],"e6_0":[37.95,40.02],"e6_1":[40.52,42.95],"w7":[43.45,44.5],"e7_0":[45.0,46.94],"e7_1":[47.44,50.25],"w8":[50.75,51.54],"e8_0":[52.04,54.43],"e8_1":[54.93,56.92],"w9":[57.42,58.4],"e9_0":[58.9,61.78],"e9_1":[62.28,64.92],"w10":[65.42,66.34],"e10_0":[66.84,69.85],"e10_1":[70.35,72.55],"w11":[73.05,73.92],"e11_0":[74.42,76.15],"e11_1":[76.65,79.59],"w12":[80.09,81.05],"e12_0":[81.55,84.18],"e12_1":[84.68,87.0],"w13":[87.5,88.48],"e13_0":[88.98,91.09],"e13_1":[91.59,93.37],"w14":[93.87,94.76],"e14_0":[95.26,97.99],"e14_1":[98.49,101.05],"w15":[101.55,102.58],"e15_0":[103.08,104.91],"e15_1":[105.41,107.16],"w16":[107.66,108.49],"e16_0":[108.99,110.98],"e16_1":[111.48,113.55],"w17":[114.05,114.81],"e17_0":[115.31,117.36],"e17_1":[117.86,119.99],"w18":[120.49,121.45],"e18_0":[121.95,124.45],"e18_1":[124.95,127.47],"w19":[127.97,128.95],"e19_0":[129.45,131.39],"e19_1":[131.89,134.15],"w20":[134.65,136.0],"e20_0":[136.5,139.93],"e20_1":[140.43,142.44],"w21":[142.94,143.98],"e21_0":[144.48,147.53],"e21_1":[148.03,151.15],"w22":[151.65,152.44],"e22_0":[152.94,155.5],"e22_1":[156.0,158.32],"w23":[158.82,159.78],"e23_0":[160.28,162.63],"e23_1":[163.13,165.24],"w24":[165.74,166.7],"e24_0":[167.2,169.53],"e24_1":[170.03,171.82],"w25":[172.32,173.21],"e25_0":[173.71,175.89],"e25_1":[176.39,178.61],"w26":[179.11,180.17],"e26_0":[180.67,182.4],"e26_1":[182.9,184.97],"w27":[185.47,186.43],"e27_0":[186.93,188.94],"e27_1":[189.44,191.1],"w28":[191.6,192.54],"e28_0":[193.04,195.37],"e28_1":[195.87,198.17],"w29":[198.67,199.52],"e29_0":[200.02,201.77],"e29_1":[202.27,203.89],"w30":[204.39,205.4],"e30_0":[205.9,207.45],"e30_1":[207.95,209.96],"w31":[210.46,211.42],"e31_0":[211.92,213.63],"e31_1":[214.13,216.92],"w32":[217.42,218.44],"e32_0":[218.94,221.03],"e32_1":[221.53,223.43],"w33":[223.93,225.02],"e33_0":[225.52,228.83],"e33_1":[229.33,231.61],"w34":[232.11,233.2],"e34_0":[233.7,236.13],"e34_1":[236.63,239.38],"w35":[239.88,240.76],"e35_0":[241.26,243.05],"e35_1":[243.55,245.49],"w36":[245.99,246.84],"e36_0":[247.34,249.37],"e36_1":[249.87,251.96],"w37":[252.46,253.57],"e37_0":[254.07,256.12],"e37_1":[256.62,259.61],"w38":[260.11,261.15],"e38_0":[261.65,263.89],"e38_1":[264.39,266.52],"w39":[267.02,267.86],"e39_0":[268.36,270.68],"e39_1":[271.18,273.06],"w40":[273.56,274.6],"e40_0":[275.1,278.52],"e40_1":[279.02,281.43],"w41":[281.93,283.06],"e41_0":[283.56,285.46],"e41_1":[285.96,288.05],"w42":[288.55,289.55],"e42_0":[290.05,293.06],"e42_1":[293.56,296.27],"w43":[296.77,297.75],"e43_0":[298.25,301.09],"e43_1":[301.59,304.25],"w44":[304.75,305.67],"e44_0":[306.17,308.09],"e44_1":[308.59,310.47],"w45":[310.97,311.99],"e45_0":[312.49,314.99],"e45_1":[315.49,317.64],"w46":[318.14,319.36],"e46_0":[319.86,322.33],"e46_1":[322.83,325.29],"w47":[325.79,326.9],"e47_0":[327.4,328.89],"e47_1":[329.39,331.35]}}};
+const SLUG = 'seagulls';
+const REVIEW_URL = '../../review/';
+const S = DATA.sents;
+const VMAP = {};
+DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
+DATA.cloze.forEach(function(c){ VMAP[c.id].cloze = {before:c.before, ans:c.ans, after:c.after, hint:c.hint, szh:c.szh}; });
+const TERM_MAP = {};
+const TERMS = [];
+DATA.vocab.forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; TERMS.push(t); }); });
+TERMS.sort(function(a,b){ return b.length - a.length; });
+const TERM_RE = new RegExp('\\b(?:' + TERMS.map(esc).join('|') + ')\\b', 'gi');
+const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
+const TABS = ['read','listen','words','quiz','think'];
+const LS_STATE = 'wk-seagulls-state';
+const LS_UI = 'fk-ui-v1';
+const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- progress state (saved to the viewer's own private store when available) ---------- */
+function normalize(d){
+  const out = stateClean(d);                 /* shared with the progress import (tools/shared/who.js) */
+  Object.keys(out.vocab).forEach(function(k){ if (!VMAP[k]) delete out.vocab[k]; });
+  return out;
+}
+let state = normalize(lsGet(LS_STATE));
+let ui = Object.assign({zh:false, hi:true}, lsGet(LS_UI) || {});
+let ref = null, saveTimer = null, saving = false, again = false, lastJSON = '', touched = false;
+
+function getS(id){ const e = state.vocab[id]; return (e && e.s) || 'new'; }
+function pruneEntry(id){ const e = state.vocab[id]; if (e && !e.s && !e.m) delete state.vocab[id]; }
+function setS(id, s){
+  const e = state.vocab[id] || (state.vocab[id] = {});
+  if (s === 'new') delete e.s; else e.s = s;
+  e.d = today();
+  pruneEntry(id);
+  touch();
+}
+function setMine(id, val){
+  const e = state.vocab[id] || (state.vocab[id] = {});
+  const t = val.trim();
+  if (t){ e.m = t; e.d = today(); } else delete e.m;
+  pruneEntry(id);
+  touch();
+}
+function touch(){
+  touched = true;
+  lsSet(LS_STATE, state);
+  renderMast();
+  scheduleSave();
+}
+function setSaveNote(mode){
+  const m = {saved:'进度已保存', saving:'正在保存…', local:'进度只存在本机', none:''};
+  $('#saveNote').textContent = m[mode] || '';
+}
+function scheduleSave(){
+  if (!ref) return;
+  clearTimeout(saveTimer);
+  setSaveNote('saving');
+  saveTimer = setTimeout(flush, 700);
+}
+async function flush(){
+  if (!ref) return;
+  if (saving){ again = true; return; }
+  const json = JSON.stringify(state);
+  if (json === lastJSON){ setSaveNote('saved'); return; }
+  saving = true;
+  try { await ref.set(JSON.parse(json)); lastJSON = json; setSaveNote('saved'); }
+  catch(e){ setSaveNote('local'); }
+  saving = false;
+  if (again){ again = false; scheduleSave(); }
+}
+function withTimeout(p, ms){
+  return Promise.race([p, new Promise(function(_, rej){ setTimeout(function(){ rej(new Error('timeout')); }, ms); })]);
+}
+function hasContent(s){ return Object.keys(s.vocab).length > 0 || Object.keys(s.ans).length > 0 || !!s.quiz; }
+async function initCloud(){
+  let db = null, user = null;
+  try {
+    if (!window.claude || !window.claude.use){ setSaveNote('local'); return; }
+    const r = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    db = r[0]; user = r[1];
+  } catch(e){}
+  if (!db || !user){ setSaveNote('local'); return; }
+  let uid = null;
+  try { uid = await user.id(); } catch(e){}
+  if (!uid){ setSaveNote('local'); return; }
+  let r;
+  try { r = db.doc('data/users/' + uid + '/progress'); } catch(e){ setSaveNote('local'); return; }
+  try {
+    const snap = await withTimeout(r.get(), 10000);
+    if (snap.exists){
+      const remote = normalize(snap.data());
+      if (touched){
+        state = {v:1, vocab:Object.assign({}, remote.vocab, state.vocab), ans:Object.assign({}, remote.ans, state.ans), quiz:state.quiz || remote.quiz};
+        lastJSON = '';
+      } else {
+        state = remote;
+        lastJSON = JSON.stringify(state);
+      }
+      lsSet(LS_STATE, state);
+      ref = r;
+      renderAll();
+      if (lastJSON === '') flush(); else setSaveNote('saved');
+    } else {
+      ref = r;
+      lastJSON = '';
+      if (hasContent(state)){ setSaveNote('saving'); flush(); } else setSaveNote('saved');
+    }
+  } catch(e){ setSaveNote('local'); }
+}
+
+/* ---------- vocabulary highlighting ---------- */
+function marked(text, opt){
+  opt = opt || {};
+  if (!(opt.force || ui.hi)) return [document.createTextNode(text)];
+  const out = [];
+  let last = 0, m;
+  TERM_RE.lastIndex = 0;
+  while ((m = TERM_RE.exec(text))){
+    const id = TERM_MAP[m[0].toLowerCase()];
+    if (opt.only && opt.only !== id) continue;
+    if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
+    out.push(h('mark', {class:'vw', 'data-v':id, title:VMAP[id].zh}, m[0]));
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(document.createTextNode(text.slice(last)));
+  return out;
+}
+
+/* ---------- masthead ---------- */
+function renderMast(){
+  const total = DATA.vocab.length;
+  let n = 0;
+  DATA.vocab.forEach(function(v){ if (getS(v.id) === 'mastered') n++; });
+  $('#mCount').textContent = n + ' / ' + total;
+  $('#meter').style.setProperty('--p', (total ? n / total * 100 : 0) + '%');
+}
+
+/* ---------- tabs ---------- */
+let cur = null;
+function showTab(t){
+  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio)) t = 'read';
+  const changed = cur !== null && cur !== t;
+  cur = t;
+  $$('.view').forEach(function(v){ v.hidden = v.id !== 'view-' + t; });
+  $$('.tab').forEach(function(b){
+    const on = b.dataset.tab === t;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', String(on));
+  });
+  if (t === 'quiz' && quiz.phase === 'start') renderQuiz();
+  if (t === 'words' && changed) renderWords();
+  if (changed) window.scrollTo(0, 0);
+}
+
+/* ---------- read tab ---------- */
+let active = -1;
+const BLOCKS = [{type:'title', idx:[0]}, {type:'sub', idx:[1,2]}];
+for (let p = 1; p <= 6; p++) BLOCKS.push({type:'p', idx:S.filter(function(s){ return s.p === p; }).map(function(s){ return s.i; })});
+
+function sentSpan(s){
+  const sp = h('span', {class:'sent' + (active === s.i ? ' on' : ''), 'data-i':s.i, tabindex:0, role:'button', 'aria-expanded':String(active === s.i)}, marked(s.en));
+  sp.addEventListener('click', function(){ toggleSentence(s.i); });
+  sp.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleSentence(s.i); } });
+  return sp;
+}
+function renderArticle(){
+  const root = $('#article');
+  root.replaceChildren();
+  root.classList.toggle('show-zh', !!ui.zh);
+  BLOCKS.forEach(function(b){
+    const sec = h('section', {class:'blk blk-' + b.type});
+    const el = h(b.type === 'title' ? 'h1' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
+    b.idx.forEach(function(i, k){ if (k > 0) el.append(' '); el.append(sentSpan(S[i])); });
+    sec.append(el);
+    sec.append(h('p', {class:'zh'}, b.idx.map(function(i){ return S[i].zh; }).join('')));
+    sec.append(h('div', {class:'slot', 'data-slot':b.idx.join(',')}));
+    root.append(sec);
+  });
+  placeNote();
+}
+function refreshSentenceStates(){
+  $$('.sent').forEach(function(sp){
+    const on = Number(sp.dataset.i) === active;
+    sp.classList.toggle('on', on);
+    sp.setAttribute('aria-expanded', String(on));
+  });
+}
+function toggleSentence(i){
+  active = active === i ? -1 : i;
+  refreshSentenceStates();
+  placeNote();
+}
+function step(d){
+  const n = active + d;
+  if (n < 0 || n >= S.length) return;
+  active = n;
+  refreshSentenceStates();
+  placeNote();
+  const el = $('.note');
+  if (el) el.scrollIntoView({block:'center', behavior:REDUCE ? 'auto' : 'smooth'});
+}
+function noteCard(s){
+  return h('div', {class:'note', role:'region', 'aria-label':'本句讲解'},
+    h('div', {class:'note-head'},
+      h('span', {class:'eyebrow'}, s.label),
+      h('div', {class:'note-nav'},
+        h('button', {type:'button', class:'btn sm', disabled:active === 0, onclick:function(){ step(-1); }}, '上一句'),
+        h('button', {type:'button', class:'btn sm', disabled:active === S.length - 1, onclick:function(){ step(1); }}, '下一句'),
+        h('button', {type:'button', class:'btn sm', 'aria-label':'收起', onclick:function(){ toggleSentence(active); }}, '收起')
+      )
+    ),
+    h('p', {class:'note-zh'}, s.zh),
+    h('ul', {class:'note-list'}, s.notes.map(function(t){ return h('li', null, t); })),
+    sentenceWords(s)
+  );
+}
+/* the words highlighted in a sentence, each explained right here (tap to open) with a link to its full card */
+function sentenceWords(s){
+  const ids = [], seen = {};
+  const re = new RegExp(TERM_RE.source, 'gi');
+  let m;
+  while ((m = re.exec(s.en))){
+    const id = TERM_MAP[m[0].toLowerCase()];
+    if (id !== undefined && !seen[id]){ seen[id] = true; ids.push(id); }
+  }
+  if (!ids.length) return null;
+  return h('div', {class:'note-words'},
+    h('p', {class:'note-wh'}, '本句标出的词（点开看讲解）'),
+    ids.map(function(id){
+      const v = VMAP[id], x = v.ex && v.ex[0];
+      return h('details', {class:'nw'},
+        h('summary', null, h('b', null, v.expr), '　', v.zh),
+        h('div', {class:'nw-body'},
+          v.note ? h('p', null, v.note) : null,
+          x ? h('p', {class:'nw-ex'}, exPlain(x.en), '　', x.zh) : null,
+          h('button', {type:'button', class:'btn sm', onclick:function(){ gotoWord(id); }}, '看完整词卡 →')
+        )
+      );
+    })
+  );
+}
+function gotoWord(id){
+  vFilter = 'all'; vQuery = '';
+  const si = $('#wordSearch');
+  if (si) si.value = '';
+  showTab('words');
+  renderWords();
+  const el = $('#wordList [data-id="' + id + '"]');
+  if (!el) return;
+  el.scrollIntoView({block:'start', behavior:REDUCE ? 'auto' : 'smooth'});
+  el.classList.add('flash');
+  setTimeout(function(){ el.classList.remove('flash'); }, 1600);
+}
+function placeNote(){
+  $$('.slot').forEach(function(s){ s.replaceChildren(); });
+  if (active < 0) return;
+  const slot = $$('.slot').filter(function(x){ return x.dataset.slot.split(',').indexOf(String(active)) >= 0; })[0];
+  if (slot) slot.append(noteCard(S[active]));
+}
+function openSentence(i){
+  active = i;
+  showTab('read');
+  refreshSentenceStates();
+  placeNote();
+  const el = $('.note');
+  if (el) el.scrollIntoView({block:'center'});
+}
+
+/* ---------- words tab ---------- */
+let vFilter = 'all', vQuery = '';
+function counts(){
+  const c = {all:DATA.vocab.length, new:0, learning:0, mastered:0};
+  DATA.vocab.forEach(function(v){ c[getS(v.id)]++; });
+  return c;
+}
+function updateChips(){
+  const c = counts();
+  $$('#chips .chip').forEach(function(b){
+    const f = b.dataset.f;
+    b.textContent = (f === 'all' ? '全部' : SLABEL[f]) + ' ' + c[f];
+    b.classList.toggle('on', vFilter === f);
+    b.setAttribute('aria-pressed', String(vFilter === f));
+  });
+}
+function metaText(id){
+  const e = state.vocab[id];
+  const bits = [];
+  if (e && e.d) bits.push('上次复习 ' + e.d);
+  const r = srsGet(srsKey(id));
+  if (r) bits.push('复习计划：' + srsStageText(r, Date.now()));
+  return bits.join(' · ');
+}
+function srsKey(id){ return VMAP[id].ref || SLUG + ':' + id; }   /* a unit-test word reviews as the word it points at */
+function statusSeg(id, after){
+  const seg = h('div', {class:'seg', role:'group', 'aria-label':'学习状态'});
+  const btns = {};
+  function sync(){
+    const c = getS(id);
+    Object.keys(btns).forEach(function(s){
+      btns[s].classList.toggle('on', c === s);
+      btns[s].setAttribute('aria-pressed', String(c === s));
+    });
+  }
+  ['new','learning','mastered'].forEach(function(s){
+    btns[s] = h('button', {type:'button', class:'seg-b s-' + s, onclick:function(){ setS(id, s); sync(); if (after) after(s); }}, SLABEL[s]);
+    seg.append(btns[s]);
+  });
+  sync();
+  return seg;
+}
+function wordCard(v){
+  const e = state.vocab[v.id] || {};
+  const meta = h('p', {class:'w-meta'}, metaText(v.id));
+  const ta = h('textarea', {id:'mine-' + v.id, rows:2, maxlength:400, placeholder:'用这个表达写一句自己的话'});
+  ta.value = e.m || '';
+  ta.addEventListener('input', function(){ setMine(v.id, ta.value); meta.textContent = metaText(v.id); });
+  const seg = statusSeg(v.id, function(){
+    meta.textContent = metaText(v.id);
+    updateChips();
+    if (vFilter !== 'all') renderWords();
+  });
+  return h('article', {class:'word', 'data-id':v.id},
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
+    h('p', {class:'w-zh'}, v.zh),
+    v.note ? h('p', {class:'w-note'}, v.note) : null,
+    h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
+    v.ex && v.ex.length ? h('p', {class:'w-exh'}, '例句') : null,
+    v.ex && v.ex.length ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+      return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), h('span', {class:'ex-zh'}, x.zh)));
+    })) : null,
+    h('label', {class:'w-mine'}, h('span', null, '我的造句'), ta),
+    meta
+  );
+}
+function renderWords(){
+  const list = $('#wordList');
+  list.replaceChildren();
+  const q = vQuery.trim().toLowerCase();
+  const items = DATA.vocab.filter(function(v){
+    if (vFilter !== 'all' && getS(v.id) !== vFilter) return false;
+    if (q){
+      const hay = [v.expr, v.zh, v.ctx, v.note || ''].concat((v.ex || []).map(function(x){ return exPlain(x.en) + ' ' + x.zh; })).join(' ').toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  });
+  updateChips();
+  if (!items.length){ list.append(h('p', {class:'empty'}, '没有符合条件的表达。')); return; }
+  items.forEach(function(v){ list.append(wordCard(v)); });
+}
+
+/* ---------- quiz tab ---------- */
+const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null};
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写英文词'], ['dict', '听写'], ['sent', '中文写英文句']];
+const MODE_NAME = Kit.TYPE_NAME;
+const MODE_LEAD = {
+  mcq:'四选一：看英文选中文意思，或看中文选英文表达，两个方向随机出现。可以按键盘 1–4 作答。',
+  cloze:'每题挖掉一个生词。看中文提示和上下文，把它按原句的词形填回去。',
+  exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
+  zh:'看中文意思，自己拼写出对应的英文表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
+  dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
+  sent:'看一句中文，自己写出整句英文，并用上指定的表达。写完核对参考句，再自己判断对不对。'
+};
+function modeAvailable(m){ return m !== 'dict' || !!DATA.clips; }
+function quizPool(){
+  const m = quiz.mode;
+  return DATA.vocab.filter(function(v){ return (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
+    const c = {id:v.id};
+    if (m === 'sent' || m === 'exs') c.k = Math.floor(Math.random() * v.ex.length);
+    if (m === 'dict') c.k = v.ex && v.ex.length && Math.random() > 0.35 ? Math.floor(Math.random() * v.ex.length) : -1;
+    if (m === 'mcq') c.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
+    return c;
+  });
+}
+function todoCount(){ return quizPool().filter(function(c){ return getS(c.id) !== 'mastered'; }).length; }
+const QUICK_N = 20;   /* the "random 20" round, offered when an article has many words */
+function startQuiz(scope, ids){
+  let pool = quizPool().filter(function(c){
+    return ids ? ids.indexOf(c.id) >= 0 : (scope === 'all' || getS(c.id) !== 'mastered');
+  });
+  if (scope === 'quick' && !ids && !pool.length) pool = quizPool();
+  if (!pool.length) return;
+  quiz.scope = scope;
+  quiz.items = shuffle(pool.slice());
+  if (scope === 'quick' && !ids) quiz.items = quiz.items.slice(0, QUICK_N);
+  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.phase = 'q';
+  renderQuiz();
+}
+function renderQuiz(){
+  const box = $('#quizBox');
+  box.replaceChildren();
+  box.append(quiz.phase === 'start' ? quizStart() : quiz.phase === 'q' ? quizQuestion() : quizResult());
+  if (quiz.phase === 'q') Kit.focus(box);
+}
+/* every answer goes into the spaced-repetition plan (shared with the review page) once the learner moves on */
+function settle(){
+  const r = quiz.pending;
+  if (!r) return;
+  quiz.pending = null;
+  srsRecord(r.key, r.ok);
+}
+function reviewSummary(){
+  const s = srsLoad(), now = Date.now();
+  let due = 0, seen = 0;
+  DATA.vocab.forEach(function(v){
+    const e = s.w[srsKey(v.id)];
+    if (!e) return;
+    seen++;
+    if (e.t <= now) due++;
+  });
+  return {due:due, seen:seen, fresh:DATA.vocab.length - seen};
+}
+function quizStart(){
+  if (!modeAvailable(quiz.mode)) quiz.mode = 'mcq';
+  const all = quizPool().length, todo = todoCount();
+  if (quiz.scope === 'todo' && !todo) quiz.scope = 'all';
+  const modes = h('div', {class:'chips'});
+  MODES.forEach(function(o){
+    modes.append(h('button', {type:'button', class:'chip' + (quiz.mode === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.mode === o[0]),
+      disabled:!modeAvailable(o[0]), onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
+  });
+  const opts = h('div', {class:'chips mt12'});
+  const scopes = [['all', '全部 ' + all + ' 题'], ['todo', '只考未掌握 ' + todo + ' 题']];
+  if (all > QUICK_N + 5) scopes.push(['quick', '随机 ' + QUICK_N + ' 题']);
+  scopes.forEach(function(o){
+    opts.append(h('button', {type:'button', class:'chip' + (quiz.scope === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.scope === o[0]), disabled:o[0] === 'todo' && !todo,
+      onclick:function(){ quiz.scope = o[0]; renderQuiz(); }}, o[1]));
+  });
+  const card = h('div', {class:'card'},
+    h('h2', {class:'h2'}, '自测'),
+    modes,
+    h('p', {class:'lead mt12'}, MODE_LEAD[quiz.mode]),
+    opts
+  );
+  const last = state.quiz;
+  if (last && last.total) card.append(h('p', {class:'meta mt12'}, '上次成绩 ' + last.score + ' / ' + last.total + (last.k ? '（' + MODE_NAME[last.k] + '）' : '') + (last.d ? '，' + last.d : '')));
+  card.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz(quiz.scope); }}, '开始')));
+  const rs = reviewSummary();
+  card.append(h('p', {class:'meta mt12'}, '答题结果会记进艾宾浩斯复习计划（只存在这台设备上）。这篇文章：' +
+    (rs.due ? rs.due + ' 个词到期该复习' : '暂时没有到期的词') + '，' + rs.fresh + ' 个词还没开始。 ',
+    h('a', {href:REVIEW_URL}, '去复习页 →')));
+  return card;
+}
+function quizQuestion(){
+  const c = quiz.items[quiz.i], v = VMAP[c.id], total = quiz.items.length;
+  return Kit.make({type:quiz.mode, key:srsKey(v.id), id:v.id, v:v, k:c.k, dir:c.dir, clips:DATA.clips || null}, {
+    index:quiz.i, total:total, last:quiz.i + 1 >= total,
+    pool:function(){ return DATA.vocab; },
+    extra:function(item){ return h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(item.id)); },
+    onAnswer:function(res){ quiz.results.push(res); quiz.pending = res; },
+    onNext:nextQ
+  });
+}
+function nextQ(){
+  settle();
+  if (quiz.i + 1 >= quiz.items.length){ finishQuiz(); return; }
+  quiz.i++;
+  renderQuiz();
+}
+function finishQuiz(){
+  const score = quiz.results.filter(function(r){ return r.ok; }).length;
+  state.quiz = {score:score, total:quiz.results.length, d:today(), k:quiz.mode};
+  touch();
+  quiz.phase = 'r';
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+function missRow(m){
+  const v = VMAP[m.id];
+  const given = m.given ? '　你' + (m.type === 'cloze' || m.type === 'exs' ? '填' : m.type === 'mcq' ? '选' : m.type === 'dict' ? '听写' : '写') + '的：' + m.given : '';
+  if (m.type === 'cloze' || m.type === 'exs'){
+    const c = m.type === 'cloze' ? v.cloze : Kit.exCloze(v, m.k);
+    return h('div', {class:'miss'},
+      h('p', {class:'miss-s'}, c.before, h('mark', {class:'vw'}, c.ans), c.after),
+      h('p', {class:'meta'}, v.expr + '　' + v.zh + given)
+    );
+  }
+  if (m.type === 'zh') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.zh), h('p', {class:'meta'}, '参考答案：' + v.expr + given));
+  if (m.type === 'mcq') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.expr, '　', v.zh), h('p', {class:'meta'}, given.replace(/^　/, '') || '没有作答'));
+  if (m.type === 'dict'){
+    const x = m.k >= 0 ? v.ex[m.k] : null;
+    return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x ? exNodes(x.en) : v.expr), h('p', {class:'meta'}, (x ? x.zh + '　' : v.zh + '　') + given.replace(/^　/, '')));
+  }
+  const x = v.ex[m.k];
+  return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x.zh), h('p', {class:'miss-s'}, exNodes(x.en)), h('p', {class:'meta'}, v.expr + given));
+}
+function quizResult(){
+  const total = quiz.results.length;
+  const misses = quiz.results.filter(function(r){ return !r.ok; });
+  const score = total - misses.length;
+  const card = h('div', {class:'card'},
+    h('p', {class:'eyebrow'}, '本轮成绩 · ' + MODE_NAME[quiz.mode]),
+    h('p', {class:'score'}, h('span', {class:'big'}, String(score)), ' / ' + total)
+  );
+  if (misses.length){
+    card.append(h('h3', {class:'h3 mt4'}, '答错的 ' + misses.length + ' 题'));
+    misses.forEach(function(m){ card.append(missRow(m)); });
+  } else {
+    card.append(h('p', {class:'lead'}, '全部答对。'));
+  }
+  const row = h('div', {class:'row'});
+  if (misses.length) row.append(h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz('all', misses.map(function(m){ return m.id; })); }}, '重做错题'));
+  row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '换个题型再测'));
+  row.append(h('button', {type:'button', class:'btn', onclick:function(){ showTab('words'); try { location.hash = 'words'; } catch(e){} }}, '去词汇表'));
+  row.append(h('a', {class:'btn', href:REVIEW_URL}, '去复习页'));
+  card.append(row);
+  return card;
+}
+
+/* ---------- think tab (the long-sentence breakdown) ---------- */
+function renderThink(){
+  const box = $('#thinkBox');
+  box.replaceChildren();
+  const bd = DATA.breakdown;
+  box.append(h('div', {class:'card mb16'},
+    h('p', {class:'eyebrow'}, '长难句拆解'),
+    h('p', {class:'bd mt10'}, bd.en),
+    h('ul', {class:'note-list'}, bd.points.map(function(t){ return h('li', null, t); })),
+    h('div', {class:'row'}, h('button', {type:'button', class:'btn sm', onclick:function(){ openSentence(bd.i); try { location.hash = 'read'; } catch(e){} }}, '在文中查看这一句'))
+  ));
+}
+
+/* ---------- wiring ---------- */
+/* ---------- speaker icons: words, example sentences, article sentences ---------- */
+function speakBtn(key, text){ return clipBtn(DATA.clips, key, text); }
+function stopNarrationForClip(){
+  if (L && L.audio && !L.audio.paused) L.audio.pause();
+  if (L) L.seg = null;
+}
+function sentBtn(en){
+  if (!DATA.audio) return null;
+  const i = S.findIndex(function(s){ return s.en === en; }) >= 0 ? S.findIndex(function(s){ return s.en === en; }) : S.findIndex(function(s){ return s.en.indexOf(en) >= 0; });
+  if (i < 0) return null;
+  const b = spkEl('播放这一句', function(){ playArticleSentence(i, b); });
+  return b;
+}
+function playArticleSentence(i, btn){
+  const a = getAudio();
+  const T = DATA.audio.t[i];
+  Clip.stop();
+  const wasOn = L.seg && L.seg.btn === btn && !a.paused;
+  endSeg();
+  if (wasOn){ a.pause(); return; }
+  L.seg = {end:T[1] + 0.15, btn:btn};
+  btn.classList.add('on');
+  const go = function(){ a.currentTime = Math.max(0, T[0] - 0.1); };
+  if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+  const pr = a.play();
+  if (pr && pr.catch) pr.catch(function(){ endSeg(); });
+}
+function endSeg(){
+  if (L.seg && L.seg.btn) L.seg.btn.classList.remove('on');
+  L.seg = null;
+}
+
+/* ---------- listen tab ---------- */
+const L = {audio:null, cur:-1, loop:false, loopIdx:-1, drag:false, el:{}, spans:[], raf:0, seg:null};
+const RATES = [0.75, 0.9, 1, 1.15, 1.3];
+function fmtT(t){ t = Math.max(0, Math.floor(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); }
+function sentAt(t){
+  const T = DATA.audio.t;
+  let k = 0;
+  for (let i = 0; i < T.length; i++){ if (T[i][0] <= t + 0.05) k = i; else break; }
+  return k;
+}
+function getAudio(){
+  if (L.audio) return L.audio;
+  const a = new Audio();
+  a.preload = 'auto';
+  a.src = DATA.audio.src;
+  a.playbackRate = ui.rate || 1;
+  try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+  a.addEventListener('timeupdate', listenUpdate);
+  a.addEventListener('play', function(){ listenPlayState(); loopFrames(); });
+  a.addEventListener('pause', function(){ listenPlayState(); if (L.seg && a.currentTime < L.seg.end) endSeg(); });
+  a.addEventListener('ended', function(){ listenPlayState(); listenUpdate(); });
+  a.addEventListener('error', function(){ L.el.msg.textContent = '音频没有加载出来，请检查网络后再点播放。'; L.el.msg.hidden = false; });
+  a.addEventListener('playing', function(){ L.el.msg.hidden = true; });
+  L.audio = a;
+  try {
+    if ('mediaSession' in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:'外刊精读'});
+      navigator.mediaSession.setActionHandler('play', function(){ a.play(); });
+      navigator.mediaSession.setActionHandler('pause', function(){ a.pause(); });
+      navigator.mediaSession.setActionHandler('seekbackward', function(){ a.currentTime = Math.max(0, a.currentTime - 5); });
+      navigator.mediaSession.setActionHandler('seekforward', function(){ a.currentTime = Math.min(DATA.audio.dur, a.currentTime + 5); });
+    }
+  } catch(e){}
+  return a;
+}
+function listenPlayState(){
+  const playing = !!(L.audio && !L.audio.paused && !L.audio.ended);
+  L.el.play.textContent = playing ? '暂停' : '播放';
+  L.el.play.setAttribute('aria-pressed', String(playing));
+}
+function loopFrames(){
+  cancelAnimationFrame(L.raf);
+  const tick = function(){
+    if (!L.audio || L.audio.paused) return;
+    listenUpdate();
+    L.raf = requestAnimationFrame(tick);
+  };
+  L.raf = requestAnimationFrame(tick);
+}
+function listenUpdate(){
+  const a = L.audio;
+  if (!a) return;
+  const T = DATA.audio.t;
+  let t = a.currentTime;
+  if (L.seg && !a.paused && t >= L.seg.end){ a.pause(); endSeg(); }
+  if (L.loop && L.loopIdx >= 0 && !L.seg && !a.paused && t >= T[L.loopIdx][1] + 0.2){ a.currentTime = T[L.loopIdx][0]; t = a.currentTime; }
+  if (!L.drag) L.el.range.value = String(t);
+  L.el.now.textContent = fmtT(t);
+  const k = sentAt(t);
+  if (k !== L.cur){
+    L.cur = k;
+    markListenSentence(!a.paused);
+  }
+}
+function markListenSentence(follow){
+  L.spans.forEach(function(sp){ sp.classList.toggle('on', Number(sp.dataset.i) === L.cur); });
+  if (follow && ui.tx){
+    const sp = L.spans[L.cur];
+    if (sp) sp.scrollIntoView({block:'nearest', behavior:REDUCE ? 'auto' : 'smooth'});
+  }
+}
+function playSentence(i){
+  endSeg();
+  Clip.stop();
+  const a = getAudio();
+  a.currentTime = DATA.audio.t[i][0];
+  if (L.loop) L.loopIdx = i;
+  a.play().catch(function(){});
+  listenUpdate();
+}
+function seekBy(d){
+  endSeg();
+  const a = getAudio();
+  a.currentTime = Math.min(DATA.audio.dur, Math.max(0, a.currentTime + d));
+  listenUpdate();
+}
+function setRate(r){
+  ui.rate = r; lsSet(LS_UI, ui);
+  if (L.audio) L.audio.playbackRate = r;
+  $$('.rate-b', L.el.box).forEach(function(b){ const on = Number(b.dataset.r) === r; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+}
+function applyTextVisibility(){
+  L.el.tr.hidden = !ui.tx;
+  L.el.off.hidden = !!ui.tx;
+}
+function renderListenText(){
+  if (!L.el.tr) return;
+  L.el.tr.replaceChildren();
+  BLOCKS.forEach(function(b){
+    const sec = h('section', {class:'blk blk-' + b.type});
+    const el = h(b.type === 'title' ? 'h2' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
+    b.idx.forEach(function(i, k){
+      if (k > 0) el.append(' ');
+      const sp = h('span', {class:'ls', 'data-i':i, tabindex:0, role:'button', 'aria-label':'从这一句开始播放'}, marked(S[i].en));
+      sp.addEventListener('click', function(){ playSentence(i); });
+      sp.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); playSentence(i); } });
+      el.append(sp);
+    });
+    sec.append(el);
+    L.el.tr.append(sec);
+  });
+  L.spans = $$('.ls', L.el.tr);
+  markListenSentence(false);
+}
+function renderListen(){
+  const box = $('#listenBox');
+  if (!DATA.audio || !box || L.el.box) return;
+  L.el.box = box;
+  const A = DATA.audio;
+  L.el.play = h('button', {type:'button', class:'btn pri big', 'aria-pressed':'false', onclick:function(){
+    endSeg();
+    Clip.stop();
+    const a = getAudio();
+    if (a.paused || a.ended){ if (a.ended) a.currentTime = 0; a.play().catch(function(){}); } else a.pause();
+  }}, '播放');
+  L.el.range = h('input', {type:'range', class:'lp-range', min:0, max:A.dur, step:0.1, value:0, 'aria-label':'播放进度'});
+  L.el.range.addEventListener('pointerdown', function(){ L.drag = true; });
+  L.el.range.addEventListener('input', function(){
+    const a = getAudio();
+    a.currentTime = Number(L.el.range.value);
+    L.el.now.textContent = fmtT(a.currentTime);
+    const k = sentAt(a.currentTime);
+    if (k !== L.cur){ L.cur = k; markListenSentence(false); }
+  });
+  const endDrag = function(){ L.drag = false; };
+  L.el.range.addEventListener('change', endDrag);
+  L.el.range.addEventListener('pointerup', endDrag);
+  L.el.range.addEventListener('pointercancel', endDrag);
+  L.el.now = h('span', null, '0:00');
+  L.el.msg = h('p', {class:'lp-msg', hidden:true, role:'alert'});
+  const rates = h('div', {class:'chips', role:'group', 'aria-label':'播放速度'});
+  RATES.forEach(function(r){
+    rates.append(h('button', {type:'button', class:'chip rate-b', 'data-r':r, 'aria-pressed':'false', onclick:function(){ setRate(r); }}, r + '×'));
+  });
+  const loopCb = h('input', {type:'checkbox'});
+  loopCb.addEventListener('change', function(){
+    L.loop = loopCb.checked;
+    L.loopIdx = L.loop ? (L.cur >= 0 ? L.cur : 0) : -1;
+  });
+  const txCb = h('input', {type:'checkbox'});
+  txCb.checked = !!ui.tx;
+  txCb.addEventListener('change', function(){ ui.tx = txCb.checked; lsSet(LS_UI, ui); applyTextVisibility(); });
+  L.el.tr = h('div', {class:'tr'});
+  L.el.off = h('p', {class:'tr-off'}, '原文已隐藏。先盲听一遍，听完再勾选“显示原文”对照。');
+  box.append(
+    h('div', {class:'card lp'},
+      h('h2', {class:'h2'}, '听力'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + ((DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('div', {class:'lp-row'},
+        h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
+        L.el.play,
+        h('button', {type:'button', class:'btn', onclick:function(){ seekBy(5); }}, '前进 5 秒')
+      ),
+      h('div', null, L.el.range, h('div', {class:'lp-time'}, L.el.now, h('span', null, fmtT(A.dur)))),
+      h('div', null, h('p', {class:'meta'}, '播放速度'), h('div', {class:'row'}, rates)),
+      h('div', {class:'lp-row'},
+        h('label', {class:'lp-opt'}, loopCb, '单句循环（当前这一句反复听）'),
+        h('label', {class:'lp-opt'}, txCb, '显示原文')
+      ),
+      L.el.msg
+    ),
+    L.el.off,
+    L.el.tr
+  );
+  setRate(ui.rate || 1);
+  renderListenText();
+  applyTextVisibility();
+}
+function renderAll(){
+  renderMast();
+  renderArticle();
+  renderListen();
+  renderWords();
+  renderThink();
+  if (quiz.phase === 'start') renderQuiz();
+}
+function init(){
+  Clip.onBeforePlay(stopNarrationForClip);
+  window.addEventListener('pagehide', settle);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
+  $('#optZh').checked = !!ui.zh;
+  $('#optHi').checked = !!ui.hi;
+  $('#optZh').addEventListener('change', function(){ ui.zh = this.checked; lsSet(LS_UI, ui); $('#article').classList.toggle('show-zh', ui.zh); });
+  $('#optHi').addEventListener('change', function(){ ui.hi = this.checked; lsSet(LS_UI, ui); renderArticle(); renderListenText(); });
+  const chips = $('#chips');
+  ['all','new','learning','mastered'].forEach(function(f){
+    chips.append(h('button', {type:'button', class:'chip', 'data-f':f, onclick:function(){ vFilter = f; renderWords(); }}, f));
+  });
+  $('#wordSearch').addEventListener('input', function(){ vQuery = this.value; renderWords(); });
+  $$('.tab').forEach(function(b){
+    b.addEventListener('click', function(){ try { location.hash = b.dataset.tab; } catch(e){} showTab(b.dataset.tab); });
+  });
+  window.addEventListener('hashchange', function(){ showTab(location.hash.replace('#','')); });
+  if (DATA.audio) $('.tab[data-tab="listen"]').hidden = false;
+  renderAll();
+  showTab(location.hash.replace('#','') || 'read');
+  initCloud();
+}
+init();
+})();
+</script>
+</body>
+</html>

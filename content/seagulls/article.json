@@ -1,0 +1,1854 @@
+{
+ "meta": {
+  "slug": "seagulls",
+  "date": "2026-11-06",
+  "title": "Eyes on the chips: the seaside war between humans and gulls",
+  "deck": "Across the world's beach towns, bold seabirds have learned that tourists are an easy meal. Scientists think they have found a surprisingly simple defence.",
+  "short": "Eyes on the Chips",
+  "tags": [
+   "趣闻",
+   "动物与城市"
+  ],
+  "source": {
+   "type": "original"
+  },
+  "note": "这是一篇仿《经济学人》风格的原创练习文章，不是真实外刊的转载。文中的事实是概括性描述，仅供语言学习，请不要当作引用来源。",
+  "pronounce": {}
+ },
+ "data": {
+  "sents": [
+   {
+    "kind": "title",
+    "en": "Eyes on the chips: the seaside war between humans and gulls",
+    "zh": "盯紧你的薯条：海边的人鸥大战",
+    "notes": [
+     "Eyes on the chips：省略了动词的祈使说法，相当于 Keep your eyes on the chips，“盯紧薯条”。",
+     "chips 在英式英语里是炸薯条（美式叫 fries），fish and chips 就是炸鱼薯条。",
+     "seaside：海边的、海滨的，常指度假的海滨小镇。"
+    ]
+   },
+   {
+    "kind": "sub",
+    "en": "Across the world's beach towns, bold seabirds have learned that tourists are an easy meal.",
+    "zh": "在世界各地的海滩小镇，胆大的海鸟已经摸清了：游客就是送上门的一顿饭。",
+    "notes": [
+     "bold：大胆的、放肆的，这里说海鸟一点不怕人。",
+     "an easy meal：轻松到手的一顿饭，把游客比作猎物，有点幽默。",
+     "have learned 用现在完成时，说明这是它们已经学会的本事。"
+    ]
+   },
+   {
+    "kind": "sub",
+    "en": "Scientists think they have found a surprisingly simple defence.",
+    "zh": "科学家认为，他们找到了一个简单得出奇的防御办法。",
+    "notes": [
+     "surprisingly simple：副词修饰形容词，“简单得出人意料”。",
+     "defence：防御、防守，英式拼写；美式拼作 defense。"
+    ]
+   },
+   {
+    "kind": "body",
+    "en": "It happens in a flash.",
+    "zh": "事情就发生在一眨眼之间。",
+    "notes": [
+     "in a flash：一瞬间、转眼之间。flash 是闪光，像闪光一样快。",
+     "开头一个短句，先制造悬念。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "A family sits down on a sea wall in Cornwall, unwraps a paper parcel of fish and chips, and before anyone has taken a bite, a herring gull swoops down and makes off with the biggest piece.",
+    "zh": "一家人在康沃尔的海堤上坐下，拆开一包用纸裹着的炸鱼薯条，还没等谁咬上一口，一只银鸥就俯冲下来，叼走了最大的那块。",
+    "notes": [
+     "句子用一般现在时讲故事，像现场直播，读起来更生动。",
+     "unwrap：拆开（包装）。un- 表示相反，wrap 是包。",
+     "swoop down：猛地俯冲下来，多用于鸟。",
+     "make off with：拿了……就跑、偷走。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "The children shriek, the parents shout, and the bird retreats to a rooftop to enjoy its prize.",
+    "zh": "孩子们尖叫，大人们大喊，那只鸟则退到屋顶上享用它的战利品。",
+    "notes": [
+     "三个短句并列，节奏很快，像镜头一个接一个切换。",
+     "shriek：尖叫，声音又高又刺耳。",
+     "retreat：撤退、退回到安全的地方。",
+     "prize：奖品，这里幽默地指抢到的薯条。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "Similar scenes play out every summer from Brighton to Sydney to Cape Town.",
+    "zh": "从布莱顿到悉尼再到开普敦，每年夏天都在上演类似的场面。",
+    "notes": [
+     "play out：（事情）发生、上演，像戏一样演出来。",
+     "from A to B to C：列举范围很广的地方，说明到处都这样。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "Gulls were not always this cheeky.",
+    "zh": "海鸥并不是一直都这么厚脸皮。",
+    "notes": [
+     "this + 形容词：这么……。this cheeky = 这么放肆。",
+     "cheeky：厚脸皮的、没大没小的，英式口语，常带一点好笑的意味。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "For most of their history they fed at sea, scavenging behind fishing boats and picking through the shoreline.",
+    "zh": "在漫长的历史中，它们大多在海上觅食，跟在渔船后面捡食，在海岸边翻找吃的。",
+    "notes": [
+     "fed 是 feed 的过去式，这里是不及物用法“进食、觅食”。",
+     "scavenge：（动物）找腐食、捡剩下的吃；（人）在垃圾里翻找东西。",
+     "pick through：在一堆东西里仔细翻找。",
+     "两个 -ing 短语作伴随状语，说明它们怎么觅食。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "But as fish stocks dwindled and towns filled up with litter, rubbish bins and outdoor diners, many birds moved inland and adapted with remarkable speed.",
+    "zh": "可随着鱼类资源越来越少，镇上到处是垃圾、垃圾桶和露天吃饭的人，许多海鸥搬到了内陆，而且适应得快得惊人。",
+    "notes": [
+     "as 引导时间兼原因状语：随着……。",
+     "fish stocks：鱼类资源、鱼群数量。dwindle：逐渐减少。",
+     "fill up with：被……填满。",
+     "inland：在内陆、往内陆。adapt：适应。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "A city gull can live for 20 years, remembers where food is easy to come by, and learns by watching other gulls get away with theft.",
+    "zh": "一只城市海鸥能活二十年，记得哪里容易找到吃的，还会看着别的海鸥偷了东西没事，跟着学。",
+    "notes": [
+     "三个谓语并列：can live, remembers, learns。",
+     "easy to come by：容易弄到。come by = 得到、弄到。",
+     "watch + 宾语 + 动词原形：看着某事发生。get away with sth：做了坏事却没受惩罚。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Residents are at their wits' end.",
+    "zh": "居民们已经无计可施了。",
+    "notes": [
+     "at one's wits' end：束手无策、急得不知怎么办才好。wits 指头脑、智力，wits' end 就是“脑子用到头了”。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Councils have tried everything from spiked roofs and fake owls to fines for anyone caught feeding the birds.",
+    "zh": "地方政府什么办法都试过：从在屋顶装尖刺、摆假猫头鹰，到对被抓到喂鸟的人罚款。",
+    "notes": [
+     "council：地方议会、地方政府，英式用法。",
+     "everything from A to B：从 A 到 B 什么都……，用来说范围广。",
+     "fine 作名词：罚款。caught feeding the birds = 被抓到在喂鸟。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Some towns have hired falconers, whose hawks patrol the beach to scare gulls off.",
+    "zh": "有些镇雇了驯鹰人，让他们的鹰在海滩上巡逻，把海鸥吓跑。",
+    "notes": [
+     "falconer：驯鹰人。whose 引导定语从句，“驯鹰人的鹰”。",
+     "patrol：巡逻。",
+     "scare sb off：把……吓跑。宾语可以放中间：scare gulls off。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Most of these measures work for a while; then the gulls catch on and come back.",
+    "zh": "这些办法大多能管用一阵子，然后海鸥就看穿了，又回来了。",
+    "notes": [
+     "measures：措施、办法，常用复数。",
+     "for a while：一段时间。",
+     "catch on：明白过来、领会。另一个意思是“流行起来”：The idea caught on.。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "Researchers studying gull behaviour have come up with a cheaper idea: stare them down.",
+    "zh": "研究海鸥行为的研究人员想出了一个更省钱的办法：瞪着它们，直到它们退缩。",
+    "notes": [
+     "studying gull behaviour 是现在分词短语，修饰 researchers。behaviour 是英式拼写。",
+     "come up with：想出（主意、办法）。",
+     "stare sb down：盯着对方直到对方退缩。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "In one experiment, scientists placed a bag of chips on the ground and watched how long passing gulls took to approach it.",
+    "zh": "在一项实验里，科学家把一袋薯条放在地上，观察路过的海鸥要过多久才会靠近。",
+    "notes": [
+     "how long passing gulls took to approach it 是宾语从句，用陈述语序。",
+     "passing：路过的，现在分词作定语。",
+     "approach：靠近、接近，及物动词，后面直接跟宾语，不加 to。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "When a person kept their eyes fixed on the bird, it hesitated far longer than when the person looked away, and many gave up altogether.",
+    "zh": "如果人一直盯着鸟看，它犹豫的时间比人把目光移开时长得多，很多干脆放弃了。",
+    "notes": [
+     "keep one's eyes fixed on：目光一直盯着。",
+     "hesitate：犹豫。far longer：far 加强比较级，“长得多”。",
+     "give up：放弃。altogether：完全、彻底。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "Gulls, it seems, are wary of being watched, perhaps because a staring animal is more likely to fight back.",
+    "zh": "看来，海鸥不喜欢被人盯着，也许是因为一个瞪着你的动物更可能会反击。",
+    "notes": [
+     "it seems 是插入语，“看起来”。",
+     "be wary of：对……有戒心、提防。wary of being watched = 提防被人盯着。",
+     "fight back：还击、反抗。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "There is a catch, of course.",
+    "zh": "当然，这里面也有个问题。",
+    "notes": [
+     "There is a catch：有个隐藏的问题、有个“但是”。catch 作名词是“暗藏的问题、圈套”。",
+     "这是一个转折句，引出下面的局限。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Only a minority of the gulls dared to come near the food, and the boldest barely paused before grabbing it.",
+    "zh": "只有少数海鸥敢靠近食物，而胆子最大的那几只几乎不停顿就抢走了。",
+    "notes": [
+     "a minority of：……中的少数。反义是 the majority of（大多数）。",
+     "dare to do sth：敢于做某事。",
+     "barely：几乎没有、勉强。barely paused = 几乎没停。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "And it is hard to keep an eye on a gull while also eating, chatting and keeping track of small children.",
+    "zh": "而且一边吃东西、聊天、看着小孩，一边还要盯住一只海鸥，实在不容易。",
+    "notes": [
+     "it is hard to ... 是形式主语句，真正的主语是不定式。",
+     "keep an eye on：看着、留意。",
+     "keep track of：随时掌握……的情况、不让……跑丢。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Still, the finding hints at something that frustrated towns often miss.",
+    "zh": "不过，这个发现指出了一点，焦头烂额的小镇常常忽略。",
+    "notes": [
+     "the finding：研究发现，可数名词。",
+     "hint at：暗示、透露出。",
+     "frustrated：恼火的、沮丧的，这里形容那些拿海鸥没办法的小镇。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Gulls are not villains; they are opportunists doing what any sensible animal would do when food is left lying around.",
+    "zh": "海鸥并不是坏蛋；它们只是投机者，吃的东西随便放着的时候，任何聪明的动物都会这么做。",
+    "notes": [
+     "villain：（故事里的）坏人、反派。",
+     "opportunist：投机者、会抓机会的人（或动物），这里不算贬义。",
+     "leave sth lying around：把东西随手乱放。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify.",
+    "zh": "许多种类的海鸥在海上数量正在减少，而它们城里的“亲戚”却过得很好，所以很难找到理由去捕杀它们。",
+    "notes": [
+     "in decline：在衰退、数量在减少。",
+     "even as：正当……的时候（表示对比）。",
+     "thrive：茁壮成长、兴旺。urban cousins：城里的同类，cousins 是比喻。",
+     "which 指前面整件事。cull：（为控制数量）捕杀；hard to justify：很难说得过去。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "The best defence may simply be to eat indoors, keep bins closed and, when all else fails, look the bird in the eye.",
+    "zh": "最好的防御办法也许就是：在室内吃饭，盖好垃圾桶，实在不行，就直视那只鸟的眼睛。",
+    "notes": [
+     "to eat ... keep ... look ... 三个不定式并列作表语。",
+     "when all else fails：当其他办法都不管用时。",
+     "look sb in the eye：直视某人的眼睛，常表示坦然或对抗。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "It will not win the war, but it might save your lunch.",
+    "zh": "这赢不了整场战争，但也许能保住你的午饭。",
+    "notes": [
+     "the war 呼应标题里的 war，首尾呼应。",
+     "结尾一句举重若轻：大问题解决不了，小事还能顾上，带点幽默。"
+    ],
+    "p": 6
+   }
+  ],
+  "vocab": [
+   {
+    "id": 1,
+    "expr": "seaside",
+    "zh": "海边、海滨（多指度假地）",
+    "m": [
+     "seaside"
+    ],
+    "note": "seaside 常作定语：a seaside town（海滨小镇）、a seaside holiday（海边度假）。go to the seaside = 去海边玩，英式说法。",
+    "core": "seaside",
+    "forms": [
+     "seaside"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "We spent a week in a small [[seaside]] town.",
+      "zh": "我们在一个海边小镇住了一周。"
+     },
+     {
+      "en": "Every August the family goes to the [[seaside]].",
+      "zh": "每年八月，一家人都去海边。"
+     }
+    ]
+   },
+   {
+    "id": 2,
+    "expr": "bold",
+    "zh": "大胆的；放肆的",
+    "m": [
+     "bold"
+    ],
+    "note": "bold 可褒可贬：a bold plan（大胆的计划）；说动物或孩子 bold，常带“胆子大到不客气”的意思。比较级 bolder，最高级 boldest。",
+    "core": "bold",
+    "forms": [
+     "bold",
+     "bolder",
+     "boldest"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The [[bold]] squirrel took a nut right out of my hand.",
+      "zh": "那只胆大的松鼠直接从我手里拿走了坚果。"
+     },
+     {
+      "en": "It was a [[bold]] decision to quit her job.",
+      "zh": "辞掉工作是个大胆的决定。"
+     }
+    ]
+   },
+   {
+    "id": 3,
+    "expr": "defence",
+    "zh": "防御、防护（英式拼写）",
+    "m": [
+     "defence"
+    ],
+    "note": "英式 defence，美式 defense。a defence against sth = 抵御……的办法。动词是 defend。",
+    "core": "defence",
+    "forms": [
+     "defence",
+     "defense",
+     "defences"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Sunscreen is your best [[defence]] against sunburn.",
+      "zh": "防晒霜是防晒伤最好的办法。"
+     },
+     {
+      "en": "The castle walls were the town's main [[defence]].",
+      "zh": "城墙是这座城镇主要的防御。"
+     }
+    ]
+   },
+   {
+    "id": 4,
+    "expr": "in a flash",
+    "zh": "一瞬间、转眼之间",
+    "m": [
+     "in a flash"
+    ],
+    "note": "同义说法：in an instant、in no time。I'll be back in a flash. = 我马上回来。",
+    "core": "in a flash",
+    "forms": [
+     "in a flash"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The cake was gone [[in a flash]].",
+      "zh": "蛋糕一眨眼就没了。"
+     },
+     {
+      "en": "I'll be back [[in a flash]].",
+      "zh": "我马上回来。"
+     }
+    ]
+   },
+   {
+    "id": 5,
+    "expr": "unwrap",
+    "zh": "拆开（包装）",
+    "m": [
+     "unwraps"
+    ],
+    "note": "un- 表示相反的动作：wrap（包）→ unwrap（拆开）；lock → unlock；pack → unpack。",
+    "core": "unwrap",
+    "forms": [
+     "unwrap",
+     "unwraps",
+     "unwrapped",
+     "unwrapping"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The kids [[unwrapped]] their presents in seconds.",
+      "zh": "孩子们几秒钟就把礼物拆开了。"
+     },
+     {
+      "en": "She [[unwraps]] a sandwich at her desk every day at noon.",
+      "zh": "她每天中午在办公桌前拆开一个三明治。"
+     }
+    ]
+   },
+   {
+    "id": 6,
+    "expr": "swoop down",
+    "zh": "（鸟）俯冲下来",
+    "m": [
+     "swoops down"
+    ],
+    "note": "swoop 指鸟从空中猛扑下来，也可以比喻突然行动：Police swooped on the house.（警察突袭了那栋房子。）",
+    "core": "swoop down",
+    "forms": [
+     "swoop down",
+     "swoops down",
+     "swooped down",
+     "swooping down"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "An owl [[swooped down]] and caught a mouse.",
+      "zh": "一只猫头鹰俯冲下来抓住了一只老鼠。"
+     },
+     {
+      "en": "Watch the eagle [[swoop down]] towards the river.",
+      "zh": "看那只鹰朝河面俯冲下去。"
+     }
+    ]
+   },
+   {
+    "id": 7,
+    "expr": "make off with",
+    "zh": "拿了……就跑、偷走",
+    "m": [
+     "makes off with"
+    ],
+    "note": "make off = 匆匆逃走；make off with sth = 带着（偷来的）东西跑掉。比 steal 更口语，更有画面感。",
+    "core": "make off with",
+    "forms": [
+     "make off with",
+     "makes off with",
+     "made off with",
+     "making off with"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "A thief [[made off with]] her handbag.",
+      "zh": "一个小偷抢了她的手提包就跑了。"
+     },
+     {
+      "en": "The dog [[made off with]] a sausage from the barbecue.",
+      "zh": "狗从烧烤架上叼了一根香肠就跑。"
+     }
+    ]
+   },
+   {
+    "id": 8,
+    "expr": "shriek",
+    "zh": "尖叫",
+    "m": [
+     "shriek"
+    ],
+    "note": "shriek 比 scream 更尖、更短。shriek with laughter = 笑得尖叫。也可作名词：a shriek of delight。",
+    "core": "shriek",
+    "forms": [
+     "shriek",
+     "shrieks",
+     "shrieked",
+     "shrieking"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The kids [[shrieked]] when the cold wave hit them.",
+      "zh": "冰冷的浪打过来，孩子们尖叫起来。"
+     },
+     {
+      "en": "She [[shrieked]] with laughter at the joke.",
+      "zh": "她听到笑话笑得尖叫。"
+     }
+    ]
+   },
+   {
+    "id": 9,
+    "expr": "retreat",
+    "zh": "撤退、退到（安全处）",
+    "m": [
+     "retreats"
+    ],
+    "note": "retreat 原是军事用语“撤退”，也常用于日常：retreat to one's room（躲回自己房间）。名词 a retreat 还可以指静修的地方。",
+    "core": "retreat",
+    "forms": [
+     "retreat",
+     "retreats",
+     "retreated",
+     "retreating"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The cat [[retreated]] under the bed when the guests arrived.",
+      "zh": "客人一来，猫就躲到床底下去了。"
+     },
+     {
+      "en": "After lunch he [[retreats]] to his study to read.",
+      "zh": "午饭后他总是躲进书房看书。"
+     }
+    ]
+   },
+   {
+    "id": 10,
+    "expr": "play out",
+    "zh": "（事情）发生、上演",
+    "m": [
+     "play out"
+    ],
+    "note": "play out 指事情一步步展开、发生，常用于场景、局面：We'll see how things play out.（看事情怎么发展吧。）",
+    "core": "play out",
+    "forms": [
+     "play out",
+     "plays out",
+     "played out",
+     "playing out"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The same argument [[plays out]] in our house every Sunday.",
+      "zh": "每个星期天，我们家都会上演同样的争吵。"
+     },
+     {
+      "en": "Let's wait and see how things [[play out]].",
+      "zh": "我们等着看事情怎么发展吧。"
+     }
+    ]
+   },
+   {
+    "id": 11,
+    "expr": "cheeky",
+    "zh": "厚脸皮的、调皮放肆的",
+    "m": [
+     "cheeky"
+    ],
+    "note": "英式口语，常说小孩或宠物，不算很重的批评，带一点好笑：a cheeky grin（调皮的笑）。",
+    "core": "cheeky",
+    "forms": [
+     "cheeky",
+     "cheekier",
+     "cheekiest"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Don't be [[cheeky]] to your teacher.",
+      "zh": "别对老师没大没小的。"
+     },
+     {
+      "en": "He gave me a [[cheeky]] grin and took the last biscuit.",
+      "zh": "他冲我调皮一笑，拿走了最后一块饼干。"
+     }
+    ]
+   },
+   {
+    "id": 12,
+    "expr": "scavenge",
+    "zh": "捡食、翻找（剩余物）",
+    "m": [
+     "scavenging"
+    ],
+    "note": "scavenger 指食腐动物，比如秃鹫、鬣狗。人也可以 scavenge for sth：在旧物里翻找能用的东西。",
+    "core": "scavenge",
+    "forms": [
+     "scavenge",
+     "scavenges",
+     "scavenged",
+     "scavenging"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Foxes [[scavenge]] for scraps in the bins at night.",
+      "zh": "狐狸夜里在垃圾桶里翻找残羹剩饭。"
+     },
+     {
+      "en": "We [[scavenged]] wood from the beach for the fire.",
+      "zh": "我们在海滩上捡木头生火。"
+     }
+    ]
+   },
+   {
+    "id": 13,
+    "expr": "pick through",
+    "zh": "在……里翻找",
+    "m": [
+     "picking through"
+    ],
+    "note": "pick through 强调一件件地挑、翻：pick through the rubbish / the evidence。",
+    "core": "pick through",
+    "forms": [
+     "pick through",
+     "picks through",
+     "picked through",
+     "picking through"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She [[picked through]] the box of old photos.",
+      "zh": "她把那箱旧照片翻了个遍。"
+     },
+     {
+      "en": "Birds were [[picking through]] the rubbish.",
+      "zh": "几只鸟在垃圾里翻找。"
+     }
+    ]
+   },
+   {
+    "id": 14,
+    "expr": "dwindle",
+    "zh": "逐渐减少",
+    "m": [
+     "dwindled"
+    ],
+    "note": "dwindle 强调慢慢变少、越来越小：dwindling numbers（越来越少的数量）。近义 shrink，但 dwindle 更强调“所剩无几”。",
+    "core": "dwindle",
+    "forms": [
+     "dwindle",
+     "dwindles",
+     "dwindled",
+     "dwindling"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Our savings [[dwindled]] during the long holiday.",
+      "zh": "长假期间我们的积蓄越来越少。"
+     },
+     {
+      "en": "The crowd [[dwindled]] as the rain got heavier.",
+      "zh": "雨越下越大，人群渐渐散去。"
+     }
+    ]
+   },
+   {
+    "id": 15,
+    "expr": "fill up with",
+    "zh": "被……填满",
+    "m": [
+     "filled up with"
+    ],
+    "note": "fill up 是装满；fill up with sth 说明用什么装满。也说加满油：fill up the car。",
+    "core": "fill up with",
+    "forms": [
+     "fill up with",
+     "fills up with",
+     "filled up with",
+     "filling up with"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The room soon [[filled up with]] smoke.",
+      "zh": "房间里很快烟雾弥漫。"
+     },
+     {
+      "en": "Her eyes [[filled up with]] tears.",
+      "zh": "她的眼里噙满了泪水。"
+     }
+    ]
+   },
+   {
+    "id": 16,
+    "expr": "inland",
+    "zh": "在内陆、往内陆",
+    "m": [
+     "inland"
+    ],
+    "note": "inland 可作副词（move inland）也可作形容词（an inland city，内陆城市）。反义是 coastal（沿海的）。",
+    "core": "inland",
+    "forms": [
+     "inland"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The storm moved [[inland]] overnight.",
+      "zh": "风暴一夜之间移到了内陆。"
+     },
+     {
+      "en": "They live in a small [[inland]] village.",
+      "zh": "他们住在一个内陆小村子里。"
+     }
+    ]
+   },
+   {
+    "id": 17,
+    "expr": "adapt",
+    "zh": "适应",
+    "m": [
+     "adapted"
+    ],
+    "note": "adapt to sth：适应……。adapt 也可以表示“改编”：adapt a novel for the screen。形容词 adaptable = 适应力强的。",
+    "core": "adapt",
+    "forms": [
+     "adapt",
+     "adapts",
+     "adapted",
+     "adapting"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Children [[adapt]] quickly to a new school.",
+      "zh": "孩子们很快就能适应新学校。"
+     },
+     {
+      "en": "The company [[adapted]] to online sales.",
+      "zh": "公司转向了网上销售。"
+     }
+    ]
+   },
+   {
+    "id": 18,
+    "expr": "easy to come by",
+    "zh": "容易弄到",
+    "m": [
+     "easy to come by"
+    ],
+    "note": "come by sth = 得到、弄到。常用 hard to come by（难得、不好找）：Good jobs are hard to come by.",
+    "core": "come by",
+    "forms": [
+     "easy to come by",
+     "hard to come by",
+     "come by"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Cheap flats are hard to [[come by]] in London.",
+      "zh": "在伦敦很难找到便宜的公寓。"
+     },
+     {
+      "en": "In summer, fresh fruit is [[easy to come by]].",
+      "zh": "夏天新鲜水果很容易买到。"
+     }
+    ]
+   },
+   {
+    "id": 19,
+    "expr": "get away with",
+    "zh": "做了（坏事）而没受惩罚",
+    "m": [
+     "get away with"
+    ],
+    "note": "get away with sth：做了错事却逃过惩罚。You won't get away with this! = 你逃不掉的！",
+    "core": "get away with",
+    "forms": [
+     "get away with",
+     "gets away with",
+     "got away with",
+     "getting away with"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He cheated and [[got away with]] it.",
+      "zh": "他作弊了，却什么事也没有。"
+     },
+     {
+      "en": "You can't [[get away with]] being late every day.",
+      "zh": "你不能天天迟到还不受处罚。"
+     }
+    ]
+   },
+   {
+    "id": 20,
+    "expr": "at one's wits' end",
+    "zh": "束手无策、急得没办法",
+    "m": [
+     "at their wits' end"
+    ],
+    "note": "注意 wits' 的撇号在 s 后面（复数所有格）。常说 I'm at my wits' end. = 我真是没辙了。",
+    "core": "at their wits' end",
+    "forms": [
+     "at their wits' end",
+     "at my wits' end",
+     "at his wits' end",
+     "at her wits' end",
+     "wits' end",
+     "wits end"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The new parents were [[at their wits' end]] after a week without sleep.",
+      "zh": "一周没睡好，这对新手父母已经束手无策了。"
+     },
+     {
+      "en": "I'm [[at my wits' end]] with this printer.",
+      "zh": "这台打印机真让我没辙了。"
+     }
+    ]
+   },
+   {
+    "id": 21,
+    "expr": "everything from A to B",
+    "zh": "从 A 到 B 什么都……",
+    "m": [
+     "everything from"
+    ],
+    "note": "用来表示种类繁多：The shop sells everything from socks to sofas.",
+    "core": "everything from",
+    "forms": [
+     "everything from"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The market sells [[everything from]] fish to phone cases.",
+      "zh": "这个市场什么都卖，从鱼到手机壳。"
+     },
+     {
+      "en": "We talked about [[everything from]] football to philosophy.",
+      "zh": "我们什么都聊，从足球到哲学。"
+     }
+    ]
+   },
+   {
+    "id": 22,
+    "expr": "fine (noun)",
+    "zh": "罚款",
+    "m": [
+     "fines"
+    ],
+    "note": "fine 作名词是“罚款”，作动词是“处以罚款”：He was fined £100. 别和形容词 fine（好的）弄混。",
+    "core": "fine",
+    "forms": [
+     "fine",
+     "fines",
+     "fined"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She got a parking [[fine]] outside the hospital.",
+      "zh": "她在医院外面吃了一张停车罚单。"
+     },
+     {
+      "en": "Drivers are [[fined]] for using their phones.",
+      "zh": "司机开车用手机会被罚款。"
+     }
+    ]
+   },
+   {
+    "id": 23,
+    "expr": "scare off",
+    "zh": "把……吓跑",
+    "m": [
+     "scare gulls off"
+    ],
+    "note": "scare sb/sth off 或 scare off sb/sth。也说 scare away。比喻用法：High prices scared buyers off.（高价把买家吓跑了。）",
+    "core": "scare off",
+    "forms": [
+     "scare off",
+     "scares off",
+     "scared off",
+     "scare away",
+     "scare"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The dog barked and [[scared]] the burglars off.",
+      "zh": "狗一叫，把小偷吓跑了。"
+     },
+     {
+      "en": "High prices may [[scare off]] tourists.",
+      "zh": "高价可能会把游客吓跑。"
+     }
+    ]
+   },
+   {
+    "id": 24,
+    "expr": "catch on",
+    "zh": "明白过来；流行起来",
+    "m": [
+     "catch on"
+    ],
+    "note": "两个常用意思：一是“领会、反应过来”（The kids caught on fast.）；二是“流行起来”（The fashion never caught on.）。",
+    "core": "catch on",
+    "forms": [
+     "catch on",
+     "catches on",
+     "caught on",
+     "catching on"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "It took me a while to [[catch on]] to the joke.",
+      "zh": "我过了一会儿才明白这个笑话。"
+     },
+     {
+      "en": "The new app never really [[caught on]].",
+      "zh": "这个新应用一直没真正流行起来。"
+     }
+    ]
+   },
+   {
+    "id": 25,
+    "expr": "come up with",
+    "zh": "想出（主意、办法）",
+    "m": [
+     "come up with"
+    ],
+    "note": "come up with an idea / a plan / an answer / an excuse。比 think of 更强调“想出来了”。",
+    "core": "come up with",
+    "forms": [
+     "come up with",
+     "comes up with",
+     "came up with",
+     "coming up with"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She [[came up with]] a clever name for the shop.",
+      "zh": "她给店想了个巧妙的名字。"
+     },
+     {
+      "en": "We need to [[come up with]] a plan by Friday.",
+      "zh": "我们得在周五前想出个计划。"
+     }
+    ]
+   },
+   {
+    "id": 26,
+    "expr": "stare sb down",
+    "zh": "瞪到对方退缩",
+    "m": [
+     "stare them down"
+    ],
+    "note": "stare at sb = 盯着某人看；stare sb down 更进一步，盯到对方先移开目光或退缩。",
+    "core": "stare down",
+    "forms": [
+     "stare down",
+     "stare them down",
+     "stared down",
+     "stare",
+     "stared"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The cat [[stared]] the dog down.",
+      "zh": "猫一直瞪着狗，直到狗退缩。"
+     },
+     {
+      "en": "Don't try to [[stare down]] an angry bull.",
+      "zh": "别跟一头发怒的公牛对视。"
+     }
+    ]
+   },
+   {
+    "id": 27,
+    "expr": "approach (verb)",
+    "zh": "靠近、接近",
+    "m": [
+     "approach"
+    ],
+    "note": "approach 作动词时直接跟宾语：approach the door（不说 approach to）。也可以指“着手处理”：approach a problem。",
+    "core": "approach",
+    "forms": [
+     "approach",
+     "approaches",
+     "approached",
+     "approaching"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "A stranger [[approached]] me in the street.",
+      "zh": "街上有个陌生人朝我走过来。"
+     },
+     {
+      "en": "Winter is [[approaching]] fast.",
+      "zh": "冬天很快就要到了。"
+     }
+    ]
+   },
+   {
+    "id": 28,
+    "expr": "hesitate",
+    "zh": "犹豫",
+    "m": [
+     "hesitated"
+    ],
+    "note": "hesitate to do sth：迟疑着不做。礼貌用语 Don't hesitate to ask. = 有问题尽管问。名词 hesitation。",
+    "core": "hesitate",
+    "forms": [
+     "hesitate",
+     "hesitates",
+     "hesitated",
+     "hesitating"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She [[hesitated]] before opening the letter.",
+      "zh": "她犹豫了一下才拆开信。"
+     },
+     {
+      "en": "Don't [[hesitate]] to call me if you need help.",
+      "zh": "需要帮忙就尽管给我打电话。"
+     }
+    ]
+   },
+   {
+    "id": 29,
+    "expr": "give up",
+    "zh": "放弃",
+    "m": [
+     "gave up"
+    ],
+    "note": "give up (doing) sth：放弃、戒掉：give up smoking。give up on sb = 对某人不抱希望。",
+    "core": "give up",
+    "forms": [
+     "give up",
+     "gives up",
+     "gave up",
+     "given up",
+     "giving up"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He [[gave up]] after three tries.",
+      "zh": "他试了三次就放弃了。"
+     },
+     {
+      "en": "Never [[give up]] on your dreams.",
+      "zh": "永远不要放弃你的梦想。"
+     }
+    ]
+   },
+   {
+    "id": 30,
+    "expr": "altogether",
+    "zh": "完全、彻底",
+    "m": [
+     "altogether"
+    ],
+    "note": "altogether 有两个意思：一是“完全”（stop altogether），二是“总共”（£50 altogether）。注意和 all together（大家一起）区分。",
+    "core": "altogether",
+    "forms": [
+     "altogether"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The noise stopped [[altogether]].",
+      "zh": "噪音完全停了。"
+     },
+     {
+      "en": "We might cancel the trip [[altogether]].",
+      "zh": "我们可能会彻底取消这次旅行。"
+     }
+    ]
+   },
+   {
+    "id": 31,
+    "expr": "be wary of",
+    "zh": "对……有戒心、提防",
+    "m": [
+     "wary of"
+    ],
+    "note": "wary 指小心提防，比 careful 多一层“不信任”：be wary of strangers。名词形式 wariness。",
+    "core": "wary of",
+    "forms": [
+     "wary of",
+     "be wary of",
+     "wary"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Cats are [[wary of]] strangers.",
+      "zh": "猫对陌生人有戒心。"
+     },
+     {
+      "en": "Be [[wary of]] offers that sound too good to be true.",
+      "zh": "好得不像真的优惠，要多留个心眼。"
+     }
+    ]
+   },
+   {
+    "id": 32,
+    "expr": "fight back",
+    "zh": "还击、反抗",
+    "m": [
+     "fight back"
+    ],
+    "note": "fight back 也可以指“忍住（眼泪等）”：fight back tears。",
+    "core": "fight back",
+    "forms": [
+     "fight back",
+     "fights back",
+     "fought back",
+     "fighting back"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "When the bully pushed him, he [[fought back]].",
+      "zh": "那个恶霸推他时，他还手了。"
+     },
+     {
+      "en": "She [[fought back]] tears during the speech.",
+      "zh": "她演讲时强忍着眼泪。"
+     }
+    ]
+   },
+   {
+    "id": 33,
+    "expr": "there is a catch",
+    "zh": "有个隐藏的问题、有个“但是”",
+    "m": [
+     "There is a catch"
+    ],
+    "note": "catch 作名词指暗藏的问题或代价。常见问法：What's the catch?（有什么猫腻？）",
+    "core": "there is a catch",
+    "forms": [
+     "there is a catch",
+     "there's a catch",
+     "what's the catch",
+     "catch"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The flight is very cheap, but [[there is a catch]]: no luggage.",
+      "zh": "机票很便宜，但有个问题：不含行李。"
+     },
+     {
+      "en": "Free pizza for a year? [[What's the catch]]?",
+      "zh": "一年免费披萨？有什么猫腻？"
+     }
+    ]
+   },
+   {
+    "id": 34,
+    "expr": "a minority of",
+    "zh": "……中的少数",
+    "m": [
+     "a minority of"
+    ],
+    "note": "反义 the majority of（大多数）。in the minority = 属于少数。",
+    "core": "a minority of",
+    "forms": [
+     "a minority of",
+     "minority"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Only [[a minority of]] students walk to school.",
+      "zh": "只有少数学生走路上学。"
+     },
+     {
+      "en": "[[A minority of]] drivers cause most accidents.",
+      "zh": "大多数事故是少数司机造成的。"
+     }
+    ]
+   },
+   {
+    "id": 35,
+    "expr": "dare (to) do sth",
+    "zh": "敢于做某事",
+    "m": [
+     "dared to"
+    ],
+    "note": "dare 可以接 to do 或直接接动词原形：He didn't dare (to) look.。I dare you to ... = 我赌你不敢……。",
+    "core": "dare to",
+    "forms": [
+     "dare to",
+     "dares to",
+     "dared to",
+     "dare",
+     "dared"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Nobody [[dared to]] tell the boss.",
+      "zh": "没人敢告诉老板。"
+     },
+     {
+      "en": "I didn't [[dare]] look down from the bridge.",
+      "zh": "我不敢从桥上往下看。"
+     }
+    ]
+   },
+   {
+    "id": 36,
+    "expr": "barely",
+    "zh": "几乎没有、勉强",
+    "m": [
+     "barely"
+    ],
+    "note": "barely 带否定意味：I barely slept. = 我几乎没睡。也表示“刚刚够”：She barely caught the train.（她差点没赶上火车。）",
+    "core": "barely",
+    "forms": [
+     "barely"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "I could [[barely]] hear him over the music.",
+      "zh": "音乐太吵，我几乎听不见他说话。"
+     },
+     {
+      "en": "We [[barely]] made it to the airport on time.",
+      "zh": "我们差一点就没按时赶到机场。"
+     }
+    ]
+   },
+   {
+    "id": 37,
+    "expr": "keep an eye on",
+    "zh": "看着、留意",
+    "m": [
+     "keep an eye on"
+    ],
+    "note": "keep an eye on sb/sth：照看、留心。Can you keep an eye on my bag? = 能帮我看一下包吗？",
+    "core": "keep an eye on",
+    "forms": [
+     "keep an eye on",
+     "keeps an eye on",
+     "kept an eye on",
+     "keeping an eye on"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Can you [[keep an eye on]] my bag for a minute?",
+      "zh": "能帮我看一下包吗？"
+     },
+     {
+      "en": "The teacher [[kept an eye on]] the quiet boy at the back.",
+      "zh": "老师一直留意着后排那个安静的男孩。"
+     }
+    ]
+   },
+   {
+    "id": 38,
+    "expr": "keep track of",
+    "zh": "掌握……的情况、记着",
+    "m": [
+     "keeping track of"
+    ],
+    "note": "keep track of sth：随时了解、记录。反义 lose track of：搞不清、忘了。lose track of time = 忘了时间。",
+    "core": "keep track of",
+    "forms": [
+     "keep track of",
+     "keeps track of",
+     "kept track of",
+     "keeping track of",
+     "lose track of",
+     "lost track of"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "I use an app to [[keep track of]] my spending.",
+      "zh": "我用一个应用记录开支。"
+     },
+     {
+      "en": "We [[lost track of]] time and missed the bus.",
+      "zh": "我们忘了时间，错过了公交车。"
+     }
+    ]
+   },
+   {
+    "id": 39,
+    "expr": "hint at",
+    "zh": "暗示、透露出",
+    "m": [
+     "hints at"
+    ],
+    "note": "hint 作名词是“暗示、提示”：give sb a hint。hint at sth = 间接地提到、暗示。",
+    "core": "hint at",
+    "forms": [
+     "hint at",
+     "hints at",
+     "hinted at",
+     "hinting at"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He [[hinted at]] a big announcement next week.",
+      "zh": "他暗示下周会有重大消息。"
+     },
+     {
+      "en": "The dark clouds [[hint at]] a storm.",
+      "zh": "乌云预示着暴风雨。"
+     }
+    ]
+   },
+   {
+    "id": 40,
+    "expr": "opportunist",
+    "zh": "投机者、善于抓机会的人",
+    "m": [
+     "opportunists"
+    ],
+    "note": "opportunist 常带贬义，指只顾自己利益抓机会的人；说动物时就是“见机行事”。形容词 opportunistic。",
+    "core": "opportunist",
+    "forms": [
+     "opportunist",
+     "opportunists"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Foxes are clever [[opportunists]] that eat almost anything.",
+      "zh": "狐狸是聪明的机会主义者，几乎什么都吃。"
+     },
+     {
+      "en": "Some politicians are pure [[opportunists]].",
+      "zh": "有些政客完全是投机分子。"
+     }
+    ]
+   },
+   {
+    "id": 41,
+    "expr": "lie around",
+    "zh": "被随手乱放",
+    "m": [
+     "lying around"
+    ],
+    "note": "leave sth lying around = 把东西乱放。也可以说人“闲躺着”：lie around all day。",
+    "core": "lying around",
+    "forms": [
+     "lying around",
+     "lie around",
+     "lies around",
+     "lay around"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Don't leave your keys [[lying around]].",
+      "zh": "别把钥匙到处乱放。"
+     },
+     {
+      "en": "There were toys [[lying around]] everywhere.",
+      "zh": "到处都乱扔着玩具。"
+     }
+    ]
+   },
+   {
+    "id": 42,
+    "expr": "in decline",
+    "zh": "在衰退、在减少",
+    "m": [
+     "in decline"
+    ],
+    "note": "in decline = declining。也说 go into decline（开始衰落）、a decline in sth（……的下降）。",
+    "core": "in decline",
+    "forms": [
+     "in decline",
+     "decline",
+     "declining"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The old industry has been [[in decline]] for years.",
+      "zh": "那个老行业已经衰落多年了。"
+     },
+     {
+      "en": "Bee numbers are [[in decline]] in many countries.",
+      "zh": "许多国家的蜜蜂数量在减少。"
+     }
+    ]
+   },
+   {
+    "id": 43,
+    "expr": "even as",
+    "zh": "正当……的时候（表对比）",
+    "m": [
+     "even as"
+    ],
+    "note": "even as 引出同时发生、方向相反的事：Prices rose even as wages fell.（工资下降的同时物价却在上涨。）",
+    "core": "even as",
+    "forms": [
+     "even as"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The town grew quieter [[even as]] the city boomed.",
+      "zh": "城市繁荣起来的同时，小镇却越来越冷清。"
+     },
+     {
+      "en": "He kept smiling [[even as]] he lost the game.",
+      "zh": "就在输掉比赛的时候，他还一直在笑。"
+     }
+    ]
+   },
+   {
+    "id": 44,
+    "expr": "thrive",
+    "zh": "兴旺、长得好",
+    "m": [
+     "thrive"
+    ],
+    "note": "thrive 指在某种环境下长得好、过得好：Plants thrive in sunlight. thrive on sth = 靠……茁壮成长。形容词 thriving。",
+    "core": "thrive",
+    "forms": [
+     "thrive",
+     "thrives",
+     "thrived",
+     "thriving"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Tomatoes [[thrive]] in warm weather.",
+      "zh": "番茄在暖和的天气里长得好。"
+     },
+     {
+      "en": "Some people [[thrive]] under pressure.",
+      "zh": "有些人越有压力越出色。"
+     }
+    ]
+   },
+   {
+    "id": 45,
+    "expr": "hard to justify",
+    "zh": "很难说得过去、很难找到理由",
+    "m": [
+     "hard to justify"
+    ],
+    "note": "justify：证明……有道理、为……辩护。名词 justification。The end justifies the means. = 为达目的不择手段。",
+    "core": "justify",
+    "forms": [
+     "hard to justify",
+     "justify",
+     "justifies",
+     "justified"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Such a high price is [[hard to justify]].",
+      "zh": "这么高的价格很难说得过去。"
+     },
+     {
+      "en": "How can you [[justify]] spending so much?",
+      "zh": "你怎么解释花这么多钱是合理的？"
+     }
+    ]
+   },
+   {
+    "id": 46,
+    "expr": "when all else fails",
+    "zh": "其他办法都不管用时",
+    "m": [
+     "when all else fails"
+    ],
+    "note": "常用来引出最后的办法，带点幽默：When all else fails, read the instructions.（实在不行，就看说明书吧。）",
+    "core": "when all else fails",
+    "forms": [
+     "when all else fails",
+     "if all else fails"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "[[When all else fails]], turn it off and on again.",
+      "zh": "实在不行，就关了再开一次。"
+     },
+     {
+      "en": "[[If all else fails]], we can take a taxi.",
+      "zh": "要是其他办法都不行，我们就打车。"
+     }
+    ]
+   },
+   {
+    "id": 47,
+    "expr": "look sb in the eye",
+    "zh": "直视某人的眼睛",
+    "m": [
+     "look the bird in the eye"
+    ],
+    "note": "表示坦然或敢于面对：He couldn't look me in the eye.（他不敢正眼看我，常暗示心虚。）",
+    "core": "look in the eye",
+    "forms": [
+     "look in the eye",
+     "look me in the eye",
+     "look him in the eye",
+     "looked me in the eye",
+     "look sb in the eye",
+     "in the eye"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He couldn't [[look me in the eye]].",
+      "zh": "他不敢正眼看我。"
+     },
+     {
+      "en": "She [[looked him in the eye]] and said no.",
+      "zh": "她直视着他的眼睛说了不。"
+     }
+    ]
+   }
+  ],
+  "cloze": [
+   {
+    "id": 1,
+    "i": 0,
+    "ans": "seaside",
+    "hint": "海边的"
+   },
+   {
+    "id": 2,
+    "i": 1,
+    "ans": "bold",
+    "hint": "大胆的"
+   },
+   {
+    "id": 3,
+    "i": 2,
+    "ans": "defence",
+    "hint": "防御（英式拼写）"
+   },
+   {
+    "id": 4,
+    "i": 3,
+    "ans": "flash",
+    "hint": "一瞬间（in a ___）"
+   },
+   {
+    "id": 5,
+    "i": 4,
+    "ans": "unwraps",
+    "hint": "拆开（注意词形）"
+   },
+   {
+    "id": 6,
+    "i": 4,
+    "ans": "swoops",
+    "hint": "俯冲（注意词形）"
+   },
+   {
+    "id": 7,
+    "i": 4,
+    "ans": "makes",
+    "hint": "（___ off with）"
+   },
+   {
+    "id": 8,
+    "i": 5,
+    "ans": "shriek",
+    "hint": "尖叫"
+   },
+   {
+    "id": 9,
+    "i": 5,
+    "ans": "retreats",
+    "hint": "退回（注意词形）"
+   },
+   {
+    "id": 10,
+    "i": 6,
+    "ans": "play",
+    "hint": "上演（___ out）"
+   },
+   {
+    "id": 11,
+    "i": 7,
+    "ans": "cheeky",
+    "hint": "厚脸皮的"
+   },
+   {
+    "id": 12,
+    "i": 8,
+    "ans": "scavenging",
+    "hint": "捡食（注意词形）"
+   },
+   {
+    "id": 13,
+    "i": 8,
+    "ans": "picking",
+    "hint": "翻找（___ through，注意词形）"
+   },
+   {
+    "id": 14,
+    "i": 9,
+    "ans": "dwindled",
+    "hint": "逐渐减少（过去式）"
+   },
+   {
+    "id": 15,
+    "i": 9,
+    "ans": "filled",
+    "hint": "填满（___ up with）"
+   },
+   {
+    "id": 16,
+    "i": 9,
+    "ans": "inland",
+    "hint": "往内陆"
+   },
+   {
+    "id": 17,
+    "i": 9,
+    "ans": "adapted",
+    "hint": "适应（过去式）"
+   },
+   {
+    "id": 18,
+    "i": 10,
+    "ans": "come",
+    "hint": "弄到（___ by）"
+   },
+   {
+    "id": 19,
+    "i": 10,
+    "ans": "away",
+    "hint": "逃过惩罚（get ___ with）"
+   },
+   {
+    "id": 20,
+    "i": 11,
+    "ans": "end",
+    "hint": "（at their wits' ___）"
+   },
+   {
+    "id": 21,
+    "i": 12,
+    "ans": "everything",
+    "hint": "什么都（___ from ... to ...）"
+   },
+   {
+    "id": 22,
+    "i": 12,
+    "ans": "fines",
+    "hint": "罚款（复数）"
+   },
+   {
+    "id": 23,
+    "i": 13,
+    "ans": "scare",
+    "hint": "吓（___ sb off）"
+   },
+   {
+    "id": 24,
+    "i": 14,
+    "ans": "catch",
+    "hint": "明白过来（___ on）"
+   },
+   {
+    "id": 25,
+    "i": 15,
+    "ans": "come",
+    "hint": "想出（___ up with）"
+   },
+   {
+    "id": 26,
+    "i": 15,
+    "ans": "stare",
+    "hint": "瞪（___ them down）"
+   },
+   {
+    "id": 27,
+    "i": 16,
+    "ans": "approach",
+    "hint": "靠近"
+   },
+   {
+    "id": 28,
+    "i": 17,
+    "ans": "hesitated",
+    "hint": "犹豫（过去式）"
+   },
+   {
+    "id": 29,
+    "i": 17,
+    "ans": "gave",
+    "hint": "放弃（___ up，过去式）"
+   },
+   {
+    "id": 30,
+    "i": 17,
+    "ans": "altogether",
+    "hint": "完全"
+   },
+   {
+    "id": 31,
+    "i": 18,
+    "ans": "wary",
+    "hint": "提防的（___ of）"
+   },
+   {
+    "id": 32,
+    "i": 18,
+    "ans": "fight",
+    "hint": "还击（___ back）"
+   },
+   {
+    "id": 33,
+    "i": 19,
+    "ans": "catch",
+    "hint": "隐藏的问题（there is a ___）"
+   },
+   {
+    "id": 34,
+    "i": 20,
+    "ans": "minority",
+    "hint": "少数（a ___ of）"
+   },
+   {
+    "id": 35,
+    "i": 20,
+    "ans": "dared",
+    "hint": "敢（___ to，过去式）"
+   },
+   {
+    "id": 36,
+    "i": 20,
+    "ans": "barely",
+    "hint": "几乎不"
+   },
+   {
+    "id": 37,
+    "i": 21,
+    "ans": "eye",
+    "hint": "留意（keep an ___ on）"
+   },
+   {
+    "id": 38,
+    "i": 21,
+    "ans": "track",
+    "hint": "掌握情况（keep ___ of）"
+   },
+   {
+    "id": 39,
+    "i": 22,
+    "ans": "hints",
+    "hint": "暗示（___ at）"
+   },
+   {
+    "id": 40,
+    "i": 23,
+    "ans": "opportunists",
+    "hint": "投机者（复数）"
+   },
+   {
+    "id": 41,
+    "i": 23,
+    "ans": "lying",
+    "hint": "乱放着（___ around）"
+   },
+   {
+    "id": 42,
+    "i": 24,
+    "ans": "decline",
+    "hint": "衰退（in ___）"
+   },
+   {
+    "id": 43,
+    "i": 24,
+    "ans": "even",
+    "hint": "正当（___ as）"
+   },
+   {
+    "id": 44,
+    "i": 24,
+    "ans": "thrive",
+    "hint": "兴旺"
+   },
+   {
+    "id": 45,
+    "i": 24,
+    "ans": "justify",
+    "hint": "说得过去（hard to ___）"
+   },
+   {
+    "id": 46,
+    "i": 25,
+    "ans": "fails",
+    "hint": "失败（when all else ___）"
+   },
+   {
+    "id": 47,
+    "i": 25,
+    "ans": "look",
+    "hint": "直视（___ sb in the eye）"
+   }
+  ],
+  "breakdown": {
+   "en": "Many species are in decline at sea even as their urban cousins thrive, which makes culling them hard to justify.",
+   "points": [
+    "主句是 Many species are in decline at sea：许多种类在海上数量在减少。",
+    "even as their urban cousins thrive 是状语从句，even as 表示“与此同时却……”，把海上和城里两种情况对比起来。",
+    "which 引导非限制性定语从句，指代前面整句话的情况，不是指某个名词。",
+    "makes culling them hard to justify：make + 宾语 + 形容词。宾语是动名词短语 culling them，补语是 hard to justify。",
+    "整句的逻辑：海鸥在海上本来就在变少，所以就算在城里很烦人，也不好随便捕杀。"
+   ]
+  }
+ }
+}
