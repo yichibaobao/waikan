@@ -6,93 +6,116 @@
 <title>外刊精读合集</title>
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
-/* Home page: one 720px column. Same tokens as the reader pages so the two feel like one site. */
+/* Home page: one 720px column in a soft, friendly style. Each section has its own candy colour (html[data-lang]). */
 :root{
-  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#E8EDF3; --fg:#16202B; --muted:#58656F; --line:#D3DBE4;
-  --accent:#2B5C8E; --accent-soft:#DDE9F5; --on-accent:#FFFFFF; --good:#27693F; --good-soft:#DDF0E3;
-  --font-read:'Literata','Iowan Old Style',Georgia,'Songti SC','Noto Serif CJK SC',serif;
-  --font-ui:'IBM Plex Sans',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
-  --radius:12px;
+  --bg:#FFF8F1; --surface:#FFFFFF; --surface-2:#FBEFE4; --fg:#3B2F2A; --muted:#8C7B71; --line:#F2E3D6;
+  --accent:#3F86D6; --accent-soft:#E4F0FC; --accent-2:#FFD27A; --on-accent:#FFFFFF; --good:#4DAE7A; --good-soft:#E1F5EA;
+  --tint-1:#E4F0FC; --tint-2:#FFF0D6; --tint-3:#FDE6EF;
+  --shadow:0 8px 24px -12px rgba(122,84,58,.28);
+  --font-read:ui-rounded,'SF Pro Rounded','PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
+  --font-ui:ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-mono:ui-rounded,'SF Pro Rounded',ui-monospace,Menlo,Consolas,monospace;
+  --radius:20px;
 }
+html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF; --tint-1:#FDE6EF; --tint-3:#E9E4FB}
+html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7; --tint-1:#DFF3E7; --tint-3:#FDE6EF}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--font-ui);-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--font-ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit;color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-/* hero */
-.hero{padding-block:max(36px,env(safe-area-inset-top,0px)) 8px}
-.eyebrow{margin:0 0 6px;font:500 12px/1.2 var(--font-ui);letter-spacing:.1em;color:var(--accent)}
-h1{margin:0;font:600 clamp(30px,8vw,40px)/1.15 var(--font-read);letter-spacing:-.015em}
-.tagline{margin:8px 0 0;font-size:15.5px;color:var(--muted)}
+/* hero: soft colour blobs behind the title */
+.hero{position:relative;padding-block:max(30px,env(safe-area-inset-top,0px)) 8px}
+.hero::before,.hero::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(2px);pointer-events:none}
+.hero::before{width:220px;height:220px;right:-60px;top:-40px;background:radial-gradient(circle at 40% 40%,var(--accent-soft),transparent 70%)}
+.hero::after{width:180px;height:180px;left:-70px;top:90px;background:radial-gradient(circle at 50% 50%,var(--tint-2),transparent 70%)}
+.eyebrow{margin:0 0 6px;font:700 11.5px/1.2 var(--font-ui);letter-spacing:.12em;color:var(--accent)}
+.hello{margin:4px 0 2px;font:600 15px/1.4 var(--font-ui);color:var(--muted)}
+h1{margin:0;font:800 clamp(32px,9vw,42px)/1.15 var(--font-read);letter-spacing:-.01em}
+h1 .dot{color:var(--accent)}
+.tagline{margin:8px 0 0;font-size:15px;color:var(--muted)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 0}
-.stat{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.stat dt{margin:0;font-size:12px;color:var(--muted)}
-.stat dd{margin:2px 0 0;font:600 24px/1.2 var(--font-mono)}
+.stat{position:relative;margin:0;padding:12px 14px 12px;border-radius:18px;background:var(--tint-1)}
+.stat:nth-child(2){background:var(--tint-2)}
+.stat:nth-child(3){background:var(--tint-3)}
+.stat .ic{position:absolute;right:10px;top:8px;font-size:20px;line-height:1}
+.stat dt{margin:0;font-size:12.5px;font-weight:600;color:var(--muted)}
+.stat dd{margin:2px 0 0;font:800 26px/1.2 var(--font-mono)}
 
-main{padding-block:20px 56px}
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:30px 0 10px}
-.sec-h h2{margin:0;font:600 17px/1.3 var(--font-ui)}
+/* section switch */
+.langs{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+.lang{display:inline-flex;align-items:center;gap:6px;padding:7px 14px 7px 10px;border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font:700 14px/1.2 var(--font-ui);color:var(--muted);transition:transform .15s}
+.lang:hover{transform:translateY(-1px);color:var(--fg)}
+.lang .em{font-size:17px;line-height:1}
+.lang.on{background:var(--accent);color:var(--on-accent)}
+
+main{padding-block:18px 56px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:32px 0 12px}
+.sec-h h2{margin:0;font:800 18px/1.3 var(--font-ui)}
+.sec-h h2::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;border-radius:50%;background:var(--accent);vertical-align:1px}
 .sec-h span{font-size:13px;color:var(--muted)}
 
 /* latest */
-.feat{display:block;padding:20px 20px 18px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:var(--radius)}
-.feat:hover{border-color:var(--accent)}
-.feat-t{margin:0 0 8px;font:600 clamp(23px,6vw,28px)/1.2 var(--font-read);letter-spacing:-.01em;text-wrap:balance}
-.feat-d{margin:0 0 12px;font:italic 400 16.5px/1.6 var(--font-read);color:var(--muted);text-wrap:pretty}
-.cta{display:inline-block;margin-top:14px;padding:8px 16px;border-radius:8px;background:var(--accent);color:var(--on-accent);font:500 14px/1.2 var(--font-ui)}
-.meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:12.5px;color:var(--muted)}
-.pill{padding:1px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.feat{position:relative;display:block;overflow:hidden;padding:22px 22px 20px;background:var(--surface);border-radius:24px;box-shadow:var(--shadow);transition:transform .15s}
+.feat::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:repeating-linear-gradient(90deg,var(--accent) 0 18px,var(--accent-2) 18px 36px,var(--accent-soft) 36px 54px)}
+.feat:hover{transform:translateY(-2px)}
+.feat .eyebrow{display:inline-block;margin:4px 0 10px;padding:3px 10px;border-radius:999px;background:var(--accent-soft)}
+.feat-t{margin:0 0 8px;font:800 clamp(23px,6vw,28px)/1.25 var(--font-read);text-wrap:balance}
+.feat-d{margin:0 0 12px;font:400 15.5px/1.6 var(--font-ui);color:var(--muted);text-wrap:pretty}
+.cta{display:inline-block;margin-top:14px;padding:10px 18px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 14px/1.2 var(--font-ui);box-shadow:0 6px 14px -8px var(--accent)}
+.meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;color:var(--muted)}
+.pill{padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
 .pr{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12.5px;color:var(--muted)}
-.pbar{flex:none;width:120px;height:4px;border-radius:2px;background:var(--surface-2);overflow:hidden}
-.pbar i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
+.pbar{flex:none;width:130px;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.pbar i{display:block;height:100%;width:var(--p,0%);border-radius:999px;background:var(--good)}
 
 /* review banner */
-.rv{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:center;margin:18px 0 14px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--good);border-radius:var(--radius)}
-.rv:hover{border-color:var(--accent)}
-.rv.hot{border-left-color:var(--accent)}
-.rv-t{margin:0;font:600 16px/1.4 var(--font-ui)}
-.rv-d{margin:0;grid-column:1;font-size:13.5px;line-height:1.55;color:var(--muted)}
-.rv .cta{grid-column:2;grid-row:1 / span 2;margin:0;white-space:nowrap}
-@media (max-width:420px){.rv{grid-template-columns:1fr}.rv .cta{grid-column:1;grid-row:auto;justify-self:start;margin-top:6px}}
+.rv{display:grid;grid-template-columns:auto 1fr auto;gap:2px 14px;align-items:center;margin:4px 0 16px;padding:14px 16px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .15s}
+.rv:hover{transform:translateY(-1px)}
+.rv .rv-ic{grid-row:1 / span 2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--good-soft);font-size:22px}
+.rv.hot .rv-ic{background:var(--tint-2)}
+.rv-t{margin:0;grid-column:2;font:800 16px/1.4 var(--font-ui)}
+.rv-d{margin:0;grid-column:2;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.rv .cta{grid-column:3;grid-row:1 / span 2;margin:0;white-space:nowrap}
+@media (max-width:440px){.rv{grid-template-columns:auto 1fr}.rv .cta{grid-column:1 / span 2;grid-row:auto;justify-self:start;margin-top:8px}}
 
 /* calendar */
-.cal{padding:14px 14px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.cal-wd{text-align:center;font-size:11px;color:var(--muted)}
-.cell{display:flex;align-items:center;justify-content:center;aspect-ratio:1.5;border-radius:7px;background:var(--surface-2);font:400 12px/1 var(--font-mono);color:var(--muted)}
-.cell.has{background:var(--accent);color:var(--on-accent);font-weight:600}
-.cell.has:hover{filter:brightness(1.1)}
-.cell.today{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+.cal{padding:14px 14px 12px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-wd{text-align:center;font-size:11.5px;font-weight:600;color:var(--muted)}
+.cell{display:flex;align-items:center;justify-content:center;justify-self:center;width:100%;max-width:40px;aspect-ratio:1;border-radius:50%;background:var(--surface-2);font:600 12.5px/1 var(--font-mono);color:var(--muted)}
+.cell.has{background:var(--accent);color:var(--on-accent);font-weight:800}
+.cell.has:hover{transform:scale(1.08)}
+.cell.today{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent-2)}
 .cell.fut{opacity:.35}
 
 /* list */
 .tools{display:grid;gap:10px;margin-bottom:6px}
-.search{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);font-size:16px}
+.search{width:100%;padding:11px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font-size:16px}
+.search:focus{border-color:var(--accent);outline:0}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{appearance:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font:500 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.chip{appearance:none;padding:6px 13px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font:600 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
 .chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-.month{margin:22px 0 8px;font:600 13px/1.3 var(--font-ui);letter-spacing:.04em;color:var(--muted)}
-.art{display:grid;grid-template-columns:52px 1fr;gap:14px;margin-bottom:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
-.art:hover{border-color:var(--accent)}
-.r-date{text-align:center;padding-top:2px}
-.r-date b{display:block;font:600 26px/1.1 var(--font-read)}
-.r-date span{font-size:12px;color:var(--muted)}
+.month{margin:22px 0 10px;font:700 13px/1.3 var(--font-ui);letter-spacing:.04em;color:var(--muted)}
+.art{display:grid;grid-template-columns:56px 1fr;gap:14px;margin-bottom:12px;padding:14px 16px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .15s}
+.art:hover{transform:translateY(-2px)}
+.r-date{display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:start;height:56px;border-radius:16px;background:var(--accent-soft);color:var(--accent)}
+.r-date b{display:block;font:800 22px/1.05 var(--font-mono)}
+.r-date span{font-size:11.5px;font-weight:600}
 .r-main{min-width:0}
-.r-t{margin:0 0 4px;font:600 18px/1.35 var(--font-read);text-wrap:balance}
+.r-t{margin:0 0 4px;font:800 17.5px/1.35 var(--font-read);text-wrap:balance}
 .r-d{margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.empty{padding:22px 16px;text-align:center;font-size:14px;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+.empty{padding:22px 16px;text-align:center;font-size:14px;color:var(--muted);border:2px dashed var(--line);border-radius:var(--radius)}
 
-.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 6px}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px}
 .hero-top .eyebrow{margin:0}
-.langs{display:flex;gap:6px;margin:0 0 10px}
-.lang{padding:5px 12px;border:1px solid var(--line);border-radius:999px;font:500 13px/1.2 var(--font-ui);color:var(--muted);background:var(--surface)}
-.lang.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-.foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.7;color:var(--muted)}
+.foot{margin-top:40px;padding:16px 18px;border-radius:var(--radius);background:var(--surface-2);font-size:12.5px;line-height:1.7;color:var(--muted)}
 .foot p{margin:0 0 6px}
+.foot p:last-child{margin:0}
+@media (prefers-reduced-motion:reduce){.feat,.art,.rv,.lang,.cell{transition:none}.feat:hover,.art:hover,.rv:hover,.lang:hover,.cell.has:hover{transform:none}}
 </style>
 <style>
 /* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
@@ -152,7 +175,8 @@ main{padding-block:20px 56px}
 <header class="hero in">
   <div class="hero-top"><p class="eyebrow">DAILY CLOSE READING</p><span id="whoMount"></span></div>
   <nav class="langs" id="langs" aria-label="板块"></nav>
-  <h1>外刊精读合集</h1>
+  <p class="hello" id="hello"></p>
+  <h1>外刊精读合集<span class="dot">.</span></h1>
   <p class="tagline">每天一篇：逐句精读、攒词、自测。</p>
   <dl class="stats" id="stats"></dl>
 </header>
@@ -818,9 +842,14 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"root":"","review":"review/","langs":[{"label":"英文外刊","on":true,"href":"./"},{"label":"韩语入门","on":false,"href":"ko/"},{"label":"日语中级","on":false,"href":"ja/"}],"articles":[{"slug":"seagulls","date":"2026-11-06","title":"Eyes on the chips: the seaside war between humans and gulls","deck":"Across the world's beach towns, bold seabirds have learned that tourists are an easy meal. Scientists think they have found a surprisingly simple defence.","tags":["趣闻","动物与城市"],"source":{"type":"original"},"words":449,"vocab":47,"fresh":47,"lsKey":"wk-seagulls-state","audio":true},{"slug":"unit-1","date":"2026-11-05","title":"From scratch, every morning: the quiet arithmetic of a small-town bakery","deck":"Unit test 1. A family bakery in an ageing Japanese town, told with 73 expressions from the first three articles.","tags":["单元测试","第 1–3 篇"],"source":{"type":"original"},"words":604,"vocab":73,"fresh":0,"lsKey":"wk-unit-1-state","audio":true},{"slug":"konbini","date":"2026-11-03","title":"Always open, never enough hands: the strain on Japan's convenience stores","deck":"Japan's corner shops pay bills, post parcels and print documents at three in the morning. Keeping them that way is getting harder.","tags":["城市观察","人口与劳动"],"source":{"type":"original"},"words":485,"vocab":43,"fresh":43,"lsKey":"wk-konbini-state","audio":true},{"slug":"long-live-cash","date":"2026-11-01","title":"Long live cash: why Japan is in no hurry to go cashless","deck":"In much of the rich world, tapping a phone has replaced fumbling for coins. In Japan the old habit survives for reasons that are more rational than they look.","tags":["经济观察","社会习惯"],"source":{"type":"original"},"words":479,"vocab":77,"fresh":77,"lsKey":"wk-long-live-cash-state","audio":true},{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":39,"fresh":39,"lsKey":"fk-state-v1","audio":true}]};
+const SITE = {"root":"","review":"review/","langs":[{"label":"英文外刊","icon":"📰","on":true,"href":"./"},{"label":"韩语入门","icon":"🌷","on":false,"href":"ko/"},{"label":"日语中级","icon":"🌸","on":false,"href":"ja/"}],"articles":[{"slug":"seagulls","date":"2026-11-06","title":"Eyes on the chips: the seaside war between humans and gulls","deck":"Across the world's beach towns, bold seabirds have learned that tourists are an easy meal. Scientists think they have found a surprisingly simple defence.","tags":["趣闻","动物与城市"],"source":{"type":"original"},"words":449,"vocab":47,"fresh":47,"lsKey":"wk-seagulls-state","audio":true},{"slug":"unit-1","date":"2026-11-05","title":"From scratch, every morning: the quiet arithmetic of a small-town bakery","deck":"Unit test 1. A family bakery in an ageing Japanese town, told with 73 expressions from the first three articles.","tags":["单元测试","第 1–3 篇"],"source":{"type":"original"},"words":604,"vocab":73,"fresh":0,"lsKey":"wk-unit-1-state","audio":true},{"slug":"konbini","date":"2026-11-03","title":"Always open, never enough hands: the strain on Japan's convenience stores","deck":"Japan's corner shops pay bills, post parcels and print documents at three in the morning. Keeping them that way is getting harder.","tags":["城市观察","人口与劳动"],"source":{"type":"original"},"words":485,"vocab":43,"fresh":43,"lsKey":"wk-konbini-state","audio":true},{"slug":"long-live-cash","date":"2026-11-01","title":"Long live cash: why Japan is in no hurry to go cashless","deck":"In much of the rich world, tapping a phone has replaced fumbling for coins. In Japan the old habit survives for reasons that are more rational than they look.","tags":["经济观察","社会习惯"],"source":{"type":"original"},"words":479,"vocab":77,"fresh":77,"lsKey":"wk-long-live-cash-state","audio":true},{"slug":"finders-keepers","date":"2026-10-31","title":"Finders, keepers? Not in Tokyo","deck":"In one of the world's busiest cities, a forgotten umbrella sets off a small civic drama. The system that handles it says a lot about trust.","tags":["城市观察","社会信任"],"source":{"type":"original"},"words":417,"vocab":39,"fresh":39,"lsKey":"fk-state-v1","audio":true}]};
 const A = SITE.articles;
-SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, l.label)); });
+SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, h('span', {class:'em', 'aria-hidden':'true'}, l.icon), l.label)); });
+(function(){
+  const hr = new Date().getHours(), me = Who.current();
+  const g = hr < 5 ? ['夜深了', '🌙'] : hr < 11 ? ['早上好', '☀️'] : hr < 14 ? ['中午好', '🍱'] : hr < 18 ? ['下午好', '🍵'] : ['晚上好', '🌙'];
+  $('#hello').textContent = g[0] + (me ? '，' + me.name : '') + ' ' + g[1];
+})();
 const WD = ['周日','周一','周二','周三','周四','周五','周六'];
 
 function parse(s){ const p = s.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
@@ -857,8 +886,8 @@ function renderStats(){
   const vocab = A.reduce(function(n, a){ return n + a.fresh; }, 0);
   const mastered = A.reduce(function(n, a){ return n + a.m; }, 0);
   const box = $('#stats');
-  [['文章', A.length + ' 篇'], ['累计生词', String(vocab)], ['我已掌握', String(mastered)]].forEach(function(p){
-    box.append(h('div', {class:'stat'}, h('dt', null, p[0]), h('dd', null, p[1])));
+  [['文章', A.length + ' 篇', '📚'], ['累计生词', String(vocab), '✏️'], ['我已掌握', String(mastered), '⭐']].forEach(function(p){
+    box.append(h('div', {class:'stat'}, h('span', {class:'ic', 'aria-hidden':'true'}, p[2]), h('dt', null, p[0]), h('dd', null, p[1])));
   });
 }
 
@@ -885,6 +914,7 @@ function renderReview(){
     : seen ? (next ? '下一批在 ' + srsWhen(next, t) + '到期。' : '') + (fresh ? '还有 ' + fresh + ' 个新词可以学。' : '')
     : '读完文章后做自测，答过的词会自动进入复习计划；也可以直接去学新词（' + fresh + ' 个）。';
   box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:SITE.review},
+    h('span', {class:'rv-ic', 'aria-hidden':'true'}, due ? '🔔' : seen ? '🌱' : '📖'),
     h('p', {class:'rv-t'}, title),
     h('p', {class:'rv-d'}, desc),
     h('span', {class:'cta'}, due ? '去复习 →' : '词汇复习 →')));

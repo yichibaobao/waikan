@@ -39,13 +39,13 @@ SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # the two sections of the site: English articles at the root, Korean lessons under ko/ (meta.lang = "ko")
 SECTIONS = {
-    "en": dict(home="", review="review", label="英文外刊", brand="外刊精读", h1="外刊精读合集", eyebrow="DAILY CLOSE READING",
+    "en": dict(home="", icon="📰", review="review", label="英文外刊", brand="外刊精读", h1="外刊精读合集", eyebrow="DAILY CLOSE READING",
                tagline="每天一篇：逐句精读、攒词、自测。", rtitle="词汇复习 · 外刊精读",
                foot2="标明“原创练习文章”的文章是为学习而写的仿外刊练习，不是真实外刊的转载。"),
-    "ko": dict(home="ko", review="review-ko", label="韩语入门", brand="韩语入门", h1="韩语入门", eyebrow="KOREAN FOR BEGINNERS",
+    "ko": dict(home="ko", icon="🌷", review="review-ko", label="韩语入门", brand="韩语入门", h1="韩语入门", eyebrow="KOREAN FOR BEGINNERS",
                tagline="每天一小段：读、听、攒词、自测。", rtitle="词汇复习 · 韩语入门",
                foot2="韩语短文是为零基础学习者写的原创练习。"),
-    "ja": dict(home="ja", review="review-ja", label="日语中级", brand="日语中级", h1="日语中级", eyebrow="JAPANESE · INTERMEDIATE",
+    "ja": dict(home="ja", icon="🌸", review="review-ja", label="日语中级", brand="日语中级", h1="日语中级", eyebrow="JAPANESE · INTERMEDIATE",
                tagline="跟着网课，每课一页：单词、语法、短文、自测。", rtitle="词汇复习 · 日语中级",
                foot2="单词和语法点按课程整理；讲解、例句和短文为原创练习。"),
 }
@@ -377,7 +377,7 @@ def main():
         print(f"  {sec['review']}/index.html  ({sum(len(a['w']) for a in idx)} words)")
         # home page
         ms = [m for m in metas if m["lang"] == lg]
-        nav = [dict(label=SECTIONS[o]["label"], on=o == lg,
+        nav = [dict(label=SECTIONS[o]["label"], icon=SECTIONS[o]["icon"], on=o == lg,
                     href="./" if o == lg else up + (SECTIONS[o]["home"] + "/" if SECTIONS[o]["home"] else "")) for o in langs]
         site = dict(root=up, review=up + sec["review"] + "/", langs=nav if len(langs) > 1 else [],
                     articles=[dict(slug=m["slug"], date=m["date"], title=m["title"], deck=m["deck"], tags=m["tags"],
