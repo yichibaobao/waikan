@@ -1470,6 +1470,58 @@
       "why": "less ... than 是比较结构，前面用了 less，后面就接 than about B。"
      }
     ]
+   },
+   {
+    "id": 45,
+    "expr": "Few A ..., yet surprisingly few B ...",
+    "kind": "grammar",
+    "conn": "Few + 名词 + 动词 ..., yet surprisingly few + (will / do ...) + 相反的动作",
+    "zh": "很少有人……，可出人意料的是，也很少有人……（两头都不愿表态）",
+    "m": [
+     "surprisingly few"
+    ],
+    "note": "few 不带 a，意思是“很少、几乎没有”，语气偏否定（a few 才是“有几个”）。前半句说“很少人肯定 A”，按常理你会以为大多数人否定 A；yet surprisingly few 立刻反转：“出人意料的是，否定 A 的人也很少”。结论就是：大多数人站在中间，不肯定也不否定。yet = but，比 but 更书面、更有转折感。surprisingly 修饰 few，表示“少得出人意料”。",
+    "core": "surprisingly few",
+    "forms": [
+     "surprisingly few",
+     "yet surprisingly few"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Few people enjoy exams, yet [[surprisingly few]] want to get rid of them.",
+      "zh": "很少有人喜欢考试，可出人意料的是，想取消考试的人也很少。"
+     },
+     {
+      "en": "Few of my friends say they love their jobs, yet [[surprisingly few]] are looking for new ones.",
+      "zh": "我的朋友里很少有人说自己热爱工作，可出人意料的是，在找新工作的人也很少。"
+     },
+     {
+      "en": "Few tourists can name a single Icelandic writer, yet [[surprisingly few]] leave without buying a book.",
+      "zh": "很少有游客能说出哪怕一位冰岛作家的名字，可出人意料的是，空手不买书就离开的人也很少。"
+     }
+    ],
+    "say": "Few Icelanders will swear that elves exist, yet surprisingly few will rule it out.",
+    "pick": [
+     {
+      "q": "___ students like homework, yet surprisingly few want to stop doing it.",
+      "opts": [
+       "Few",
+       "A few"
+      ],
+      "a": 0,
+      "why": "这里要的是“很少有学生喜欢作业”这个否定意思，用 Few；A few 是“有几个”，偏肯定，前后就不成对比了。"
+     },
+     {
+      "q": "Few people believe the story, ___ surprisingly few say it is false.",
+      "opts": [
+       "yet",
+       "so"
+      ],
+      "a": 0,
+      "why": "后半句和常理相反（你以为会有很多人说它是假的），是转折，用 yet；so 表示结果，意思不通。"
+     }
+    ]
    }
   ],
   "cloze": [
@@ -1736,6 +1788,12 @@
     "i": 2,
     "ans": "less",
     "hint": "（say ___ about A than about B）"
+   },
+   {
+    "id": 45,
+    "i": 8,
+    "ans": "surprisingly",
+    "hint": "出人意料地（yet ___ few）"
    }
   ],
   "breakdown": {
