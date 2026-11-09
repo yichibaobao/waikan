@@ -543,7 +543,7 @@ async function startListen(plan, o){
     else q.si = p.si;
     return q;
   });
-  const s = {kind:'listen', mode:'dict', box:box, queue:queue, i:0, results:[], pending:null, tag:'', defer:o.mode === 'exam',
+  const s = {kind:'listen', mode:'dict', box:box, queue:queue, i:0, results:[], pending:null, hist:[], card:null, tag:'', defer:o.mode === 'exam',
              scopeLabel:o.scopeLabel, home:o.home, again:o.again, listenMode:o.mode, saved:false};
   SESS.listen = s;
   const n = {w:0, e:0, s:0};
