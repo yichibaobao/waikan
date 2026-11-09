@@ -276,7 +276,7 @@ function ask(s){
   let item;
   if (q.kind === 's'){
     const Ls = LISTEN[q.slug], sd = Ls.sents[q.si];
-    item = {type:'dict', key:null, id:null, v:null, k:null, sent:{en:sd.en, zh:sd.zh, src:Ls.src, t:sd.t}, clips:null};
+    item = {type:'dict', key:null, id:null, v:null, k:null, sent:{en:sd.en, zh:sd.zh, rom:sd.rom, src:Ls.src, t:sd.t}, clips:null};
   } else {
     const w = BYKEY[q.key], L = LOADED[w.slug];
     item = {type:q.type, key:q.key, id:w.id, v:L.words[w.id], k:q.k, dir:q.dir, clips:L.clips};

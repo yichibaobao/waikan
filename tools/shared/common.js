@@ -44,9 +44,11 @@ function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'nul
 function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-/* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
-const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' ? l : 'en'; })();
-const XL = {en:'英文', ko:'韩语', ja:'日语'}[LANG], XS = {en:'英', ko:'韩', ja:'日'}[LANG];
+/* the language a page teaches: <html data-lang="ko|ja|yue"> for those sections, English otherwise */
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' || l === 'yue' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语', yue:'粤语'}[LANG], XS = {en:'英', ko:'韩', ja:'日', yue:'粤'}[LANG];
+/* Cantonese answers may be written in Jyutping instead of characters; tone numbers are optional (norm drops digits) */
+function romOk(given, rom){ return LANG === 'yue' && !!rom && !!norm(given) && norm(given) === norm(rom); }
 /* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
 const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
 function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }

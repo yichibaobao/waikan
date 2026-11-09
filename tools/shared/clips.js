@@ -20,7 +20,7 @@ const Clip = (function(){
       if (!('speechSynthesis' in window) || !text) return;
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP'}[LANG]; u.rate = 0.9;
+      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP', yue:'zh-HK'}[LANG]; u.rate = 0.9;
       speechSynthesis.speak(u);
     } catch(e){}
   }

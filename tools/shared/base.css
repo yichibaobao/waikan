@@ -12,6 +12,7 @@
 /* each section has its own candy colour, as on the home pages */
 html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF}
 html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7}
+html[data-lang="yue"]{--accent:#D9693A; --accent-soft:#FCE9DE}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{font:16px/1.6 var(--font-ui);background:var(--bg);color:var(--fg)}
@@ -146,3 +147,9 @@ html[data-lang="ja"] .a-para{font-size:20px;line-height:1.95}
 html[data-lang="ja"] .a-deck{font-size:18px;font-style:normal}
 html[data-lang="ja"] .w-ctx,html[data-lang="ja"] .q-ctx{font-style:normal}
 html[data-lang="ja"] .ex-en{font-size:16.5px}
+html[data-lang="yue"]{--font-read:"PingFang HK","PingFang TC","Noto Sans HK","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
+html[data-lang="yue"] .a-para{font-size:21px;line-height:1.95}
+html[data-lang="yue"] .a-deck{font-size:18px;font-style:normal}
+html[data-lang="yue"] .w-ctx,html[data-lang="yue"] .q-ctx{font-style:normal}
+html[data-lang="yue"] .ex-en{font-size:17px}
+html[data-lang="yue"] .rom{letter-spacing:.02em}

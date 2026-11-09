@@ -1,0 +1,1132 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="yue">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>粤语入门</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Home page: one 720px column in a soft, friendly style. Each section has its own candy colour (html[data-lang]). */
+:root{
+  --bg:#FFF8F1; --surface:#FFFFFF; --surface-2:#FBEFE4; --fg:#3B2F2A; --muted:#8C7B71; --line:#F2E3D6;
+  --accent:#3F86D6; --accent-soft:#E4F0FC; --accent-2:#FFD27A; --on-accent:#FFFFFF; --good:#4DAE7A; --good-soft:#E1F5EA;
+  --tint-1:#E4F0FC; --tint-2:#FFF0D6; --tint-3:#FDE6EF;
+  --shadow:0 8px 24px -12px rgba(122,84,58,.28);
+  --font-read:ui-rounded,'SF Pro Rounded','PingFang SC','Hiragino Sans GB','Microsoft YaHei',system-ui,sans-serif;
+  --font-ui:ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-mono:ui-rounded,'SF Pro Rounded',ui-monospace,Menlo,Consolas,monospace;
+  --radius:20px;
+}
+html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF; --tint-1:#FDE6EF; --tint-3:#E9E4FB}
+html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7; --tint-1:#DFF3E7; --tint-3:#FDE6EF}
+html[data-lang="yue"]{--accent:#D9693A; --accent-soft:#FCE9DE; --tint-1:#FCE9DE; --tint-3:#FFF0D6}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--font-ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* hero: soft colour blobs behind the title */
+.hero{position:relative;padding-block:max(30px,env(safe-area-inset-top,0px)) 8px}
+.hero::before,.hero::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(2px);pointer-events:none}
+.hero::before{width:220px;height:220px;right:-60px;top:-40px;background:radial-gradient(circle at 40% 40%,var(--accent-soft),transparent 70%)}
+.hero::after{width:180px;height:180px;left:-70px;top:90px;background:radial-gradient(circle at 50% 50%,var(--tint-2),transparent 70%)}
+.eyebrow{margin:0 0 6px;font:700 11.5px/1.2 var(--font-ui);letter-spacing:.12em;color:var(--accent)}
+.hello{margin:4px 0 2px;font:600 15px/1.4 var(--font-ui);color:var(--muted)}
+h1{margin:0;font:800 clamp(32px,9vw,42px)/1.15 var(--font-read);letter-spacing:-.01em}
+h1 .dot{color:var(--accent)}
+.tagline{margin:8px 0 0;font-size:15px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 0}
+.stat{position:relative;margin:0;padding:12px 14px 12px;border-radius:18px;background:var(--tint-1)}
+.stat:nth-child(2){background:var(--tint-2)}
+.stat:nth-child(3){background:var(--tint-3)}
+.stat .ic{position:absolute;right:10px;top:8px;font-size:20px;line-height:1}
+.stat dt{margin:0;font-size:12.5px;font-weight:600;color:var(--muted)}
+.stat dd{margin:2px 0 0;font:800 26px/1.2 var(--font-mono)}
+
+/* section switch */
+.langs{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 16px}
+.lang{display:inline-flex;align-items:center;gap:6px;padding:7px 14px 7px 10px;border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font:700 14px/1.2 var(--font-ui);color:var(--muted);transition:transform .15s}
+.lang:hover{transform:translateY(-1px);color:var(--fg)}
+.lang .em{font-size:17px;line-height:1}
+.lang.on{background:var(--accent);color:var(--on-accent)}
+
+main{padding-block:18px 56px}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:32px 0 12px}
+.sec-h h2{margin:0;font:800 18px/1.3 var(--font-ui)}
+.sec-h h2::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;border-radius:50%;background:var(--accent);vertical-align:1px}
+.sec-h span{font-size:13px;color:var(--muted)}
+
+/* latest */
+.feat{position:relative;display:block;overflow:hidden;padding:22px 22px 20px;background:var(--surface);border-radius:24px;box-shadow:var(--shadow);transition:transform .15s}
+.feat::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:repeating-linear-gradient(90deg,var(--accent) 0 18px,var(--accent-2) 18px 36px,var(--accent-soft) 36px 54px)}
+.feat:hover{transform:translateY(-2px)}
+.feat .eyebrow{display:inline-block;margin:4px 0 10px;padding:3px 10px;border-radius:999px;background:var(--accent-soft)}
+.feat-t{margin:0 0 8px;font:800 clamp(23px,6vw,28px)/1.25 var(--font-read);text-wrap:balance}
+.feat-d{margin:0 0 12px;font:400 15.5px/1.6 var(--font-ui);color:var(--muted);text-wrap:pretty}
+.cta{display:inline-block;margin-top:14px;padding:10px 18px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 14px/1.2 var(--font-ui);box-shadow:0 6px 14px -8px var(--accent)}
+.meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;color:var(--muted)}
+.pill{padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700}
+.pr{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12.5px;color:var(--muted)}
+.pbar{flex:none;width:130px;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.pbar i{display:block;height:100%;width:var(--p,0%);border-radius:999px;background:var(--good)}
+
+/* review banner */
+.rv{display:grid;grid-template-columns:auto 1fr auto;gap:2px 14px;align-items:center;margin:4px 0 16px;padding:14px 16px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .15s}
+.rv:hover{transform:translateY(-1px)}
+.rv .rv-ic{grid-row:1 / span 2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--good-soft);font-size:22px}
+.rv.hot .rv-ic{background:var(--tint-2)}
+.rv-t{margin:0;grid-column:2;font:800 16px/1.4 var(--font-ui)}
+.rv-d{margin:0;grid-column:2;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.rv .cta{grid-column:3;grid-row:1 / span 2;margin:0;white-space:nowrap}
+@media (max-width:440px){.rv{grid-template-columns:auto 1fr}.rv .cta{grid-column:1 / span 2;grid-row:auto;justify-self:start;margin-top:8px}}
+
+/* calendar */
+.cal{padding:14px 14px 12px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-wd{text-align:center;font-size:11.5px;font-weight:600;color:var(--muted)}
+.cell{display:flex;align-items:center;justify-content:center;justify-self:center;width:100%;max-width:40px;aspect-ratio:1;border-radius:50%;background:var(--surface-2);font:600 12.5px/1 var(--font-mono);color:var(--muted)}
+.cell.has{background:var(--accent);color:var(--on-accent);font-weight:800}
+.cell.has:hover{transform:scale(1.08)}
+.cell.today{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--accent-2)}
+.cell.fut{opacity:.35}
+
+/* list */
+.tools{display:grid;gap:10px;margin-bottom:6px}
+.search{width:100%;padding:11px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font-size:16px}
+.search:focus{border-color:var(--accent);outline:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{appearance:none;padding:6px 13px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font:600 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.month{margin:22px 0 10px;font:700 13px/1.3 var(--font-ui);letter-spacing:.04em;color:var(--muted)}
+.art{display:grid;grid-template-columns:56px 1fr;gap:14px;margin-bottom:12px;padding:14px 16px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .15s}
+.art:hover{transform:translateY(-2px)}
+.r-date{display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:start;height:56px;border-radius:16px;background:var(--accent-soft);color:var(--accent)}
+.r-date b{display:block;font:800 22px/1.05 var(--font-mono)}
+.r-date span{font-size:11.5px;font-weight:600}
+.r-main{min-width:0}
+.r-t{margin:0 0 4px;font:800 17.5px/1.35 var(--font-read);text-wrap:balance}
+.r-d{margin:0 0 8px;font-size:14px;line-height:1.55;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:22px 16px;text-align:center;font-size:14px;color:var(--muted);border:2px dashed var(--line);border-radius:var(--radius)}
+
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px}
+.hero-top .eyebrow{margin:0}
+.foot{margin-top:40px;padding:16px 18px;border-radius:var(--radius);background:var(--surface-2);font-size:12.5px;line-height:1.7;color:var(--muted)}
+.foot p{margin:0 0 6px}
+.foot p:last-child{margin:0}
+@media (prefers-reduced-motion:reduce){.feat,.art,.rv,.lang,.cell{transition:none}.feat:hover,.art:hover,.rv:hover,.lang:hover,.cell.has:hover{transform:none}}
+</style>
+<style>
+/* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
+.who-chip{appearance:none;display:inline-flex;align-items:center;gap:8px;flex:none;max-width:100%;padding:3px;border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow,none);font:600 13px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
+.who-chip.full{padding-right:12px}
+.who-chip:hover{background:var(--surface-2)}
+.who-chip.tiny{border-color:transparent;background:none}
+.who-nm{min-width:0;max-width:9em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who-av{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font:600 14px/1 var(--font-ui)}
+.who-av.lg{width:40px;height:40px;font-size:18px}
+
+.who-ov{position:fixed;inset:0;z-index:1000;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--bg);display:flex;justify-content:center;align-items:flex-start;padding:max(28px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(32px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.who-ov.sheet{background:rgba(22,32,43,.45)}
+.who-ov.sheet .who-card{margin:auto}
+.who-card{width:100%;max-width:440px;padding:22px 20px;background:var(--surface);border:0;border-radius:22px;box-shadow:var(--shadow,none)}
+.who-ov:not(.sheet) .who-card{margin-top:4vh;border:0;background:transparent;padding:8px 4px}
+.who-eb{margin:0 0 6px;font:500 12px/1.2 var(--font-ui);letter-spacing:.1em;color:var(--accent)}
+.who-h{margin:0;font:600 clamp(26px,7vw,34px)/1.2 var(--font-read);letter-spacing:-.01em}
+.who-h.sm{font-size:19px}
+.who-sub{margin:8px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
+.who-sec{margin:20px 0 8px;font:600 13px/1.3 var(--font-ui);color:var(--muted)}
+.who-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.who-p{appearance:none;display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:2px solid var(--line);border-radius:16px;background:var(--surface);text-align:left;cursor:pointer}
+.who-p:hover{background:var(--surface-2)}
+.who-pn{display:block;font:600 16px/1.3 var(--font-ui)}
+.who-pm{display:block;margin-top:2px;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.who-new{display:flex;gap:8px;margin:0}
+.who-in{flex:1;min-width:0;padding:10px 14px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font:400 16px/1.3 var(--font-ui)}
+.who-in:focus{outline:2px solid var(--accent);outline-offset:1px}
+.who-ta{display:block;width:100%;min-height:96px;margin:8px 0;padding:10px 12px;border:2px solid var(--line);border-radius:16px;background:var(--surface);font:400 12.5px/1.5 var(--font-mono);resize:vertical;word-break:break-all}
+.who-btn{appearance:none;padding:10px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:500 14.5px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
+.who-btn:hover{background:var(--surface-2)}
+.who-btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.who-btn.pri:hover{filter:brightness(1.06)}
+.who-btn.dng{background:var(--bad,#B3261E);border-color:var(--bad,#B3261E);color:#fff}
+.who-btn:disabled{opacity:.45;cursor:default}
+.who-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.who-link{appearance:none;display:inline-block;margin:14px 0 0;padding:6px 0;border:0;background:none;font:500 14px/1.3 var(--font-ui);color:var(--accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.who-msg{min-height:1.4em;margin:8px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.who-msg.err{color:var(--bad,#B3261E)}
+.who-msg.ok{color:var(--good,#27693F)}
+.who-note{margin:18px 0 0;font-size:12.5px;line-height:1.7;color:var(--muted)}
+.who-menu{display:grid;gap:8px;margin:16px 0 0}
+.who-mi{appearance:none;display:block;width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:var(--surface);text-align:left;cursor:pointer}
+.who-mi:hover{background:var(--surface-2)}
+.who-mi b{display:block;font:600 15px/1.3 var(--font-ui)}
+.who-mi span{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.who-mi.dng b{color:var(--bad,#B3261E)}
+.who-x{appearance:none;float:right;margin:-6px -6px 0 8px;width:36px;height:36px;border:0;border-radius:50%;background:none;font-size:24px;line-height:1;color:var(--muted);cursor:pointer}
+.who-x:hover{background:var(--surface-2)}
+.who-top{display:flex;align-items:center;gap:12px}
+
+</style>
+</head>
+<body>
+
+<header class="hero in">
+  <div class="hero-top"><p class="eyebrow">CANTONESE FOR BEGINNERS</p><span id="whoMount"></span></div>
+  <nav class="langs" id="langs" aria-label="板块"></nav>
+  <p class="hello" id="hello"></p>
+  <h1>粤语入门<span class="dot">.</span></h1>
+  <p class="tagline">每天一小段：读、听、攒词、自测。</p>
+  <dl class="stats" id="stats"></dl>
+</header>
+
+<main class="in">
+  <div id="rvBox"></div>
+  <div id="featBox"></div>
+
+  <section id="calBox"></section>
+
+  <div class="sec-h"><h2 id="listH">往期文章</h2><span id="listN"></span></div>
+  <div class="tools" id="tools" hidden>
+    <input class="search" id="q" type="search" placeholder="搜索标题、主题或日期" autocomplete="off" aria-label="搜索文章">
+    <div class="chips" id="tags"></div>
+  </div>
+  <div id="list"></div>
+
+  <footer class="foot">
+    <p>学习进度（生词状态、造句、自测成绩、复习计划）按右上角的名字分开保存，只存在你当前设备的浏览器里，不会自动同步到别的设备。换手机或清理浏览器数据之前，点右上角头像“导出进度”备份一份，之后用进度码导入即可找回。</p>
+    <p>粤语短文是为零基础学习者写的原创练习；读音用粤拼（香港语言学学会粤语拼音方案）标注。</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+/* ---------- small helpers shared by every page (inlined by tools/build.py) ---------- */
+function $(s, r){ return (r || document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+function h(tag, attrs){
+  const e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k){
+    const v = attrs[k];
+    if (v == null || v === false) return;
+    if (k === 'class') e.className = v;
+    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : String(v));
+  });
+  Array.prototype.slice.call(arguments, 2).forEach(function(kid){
+    [].concat(kid).forEach(function(k){
+      if (k == null || k === false) return;
+      e.append(k.nodeType ? k : document.createTextNode(String(k)));
+    });
+  });
+  return e;
+}
+function pad2(n){ return String(n).padStart(2, '0'); }
+function ymd(d){ return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+function today(){ return ymd(new Date()); }
+/* Progress is kept per learner: key "k" of learner "u1" lives in localStorage as "k@u1". who.js manages the learners
+   (the list is in WHO_KEY, which itself is never namespaced). WHO_ID is '' until someone has been chosen. */
+const WHO_KEY = 'wk-who-v1';
+function whoReg(){
+  const out = {v:1, cur:'', list:[], claimed:false};
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(WHO_KEY) || 'null'); } catch(e){}
+  if (!d || typeof d !== 'object') return out;
+  if (Array.isArray(d.list)) d.list.forEach(function(p){
+    if (p && typeof p.id === 'string' && /^[a-z0-9]{3,24}$/.test(p.id) && typeof p.name === 'string' && p.name.trim() &&
+        !out.list.some(function(q){ return q.id === p.id; }))
+      out.list.push({id:p.id, name:p.name.trim().slice(0, 16), c:typeof p.c === 'number' ? p.c : 0, u:typeof p.u === 'number' ? p.u : 0});
+  });
+  if (typeof d.cur === 'string' && out.list.some(function(p){ return p.id === d.cur; })) out.cur = d.cur;
+  out.claimed = !!d.claimed;
+  return out;
+}
+let WHO_ID = whoReg().cur;
+function pkey(k){ return WHO_ID ? k + '@' + WHO_ID : k; }
+function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'null'); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
+function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+/* the language a page teaches: <html data-lang="ko|ja|yue"> for those sections, English otherwise */
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' || l === 'yue' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语', yue:'粤语'}[LANG], XS = {en:'英', ko:'韩', ja:'日', yue:'粤'}[LANG];
+/* Cantonese answers may be written in Jyutping instead of characters; tone numbers are optional (norm drops digits) */
+function romOk(given, rom){ return LANG === 'yue' && !!rom && !!norm(given) && norm(given) === norm(rom); }
+/* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
+const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
+function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }
+/* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
+function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
+function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* example sentences mark their target as [[target]] */
+function exNodes(s){
+  const out = [];
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  return out;
+}
+function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
+
+/* ---------- spaced repetition on the Ebbinghaus ladder (inlined by tools/build.py) ----------
+   Everything lives in this browser's localStorage under SRS_KEY (per learner, see common.js), shape
+     {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
+   b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
+   c / x = how many times answered right / wrong.   m = 1: the learner marked the word as fully mastered; it is never asked again
+   (review, exam, listening) until restored. Answers given elsewhere (an article's self-test) keep the mark.
+   Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
+           right and due     -> b+1, next review after SRS_STEPS[b] (after the last step: SRS_LONG)
+           right but early   -> the schedule does not move (drilling a word again right away must not push it up the ladder)
+           wrong at any time -> b=0, back to the first step
+   srsStep is pure; it is covered by tools/tests/srs.test.js. */
+const SRS_KEY = 'wk-srs-v1';
+const SRS_MIN = 60000, SRS_HOUR = 3600000, SRS_DAY = 86400000;
+const SRS_STEPS = [5 * SRS_MIN, 30 * SRS_MIN, 12 * SRS_HOUR, SRS_DAY, 2 * SRS_DAY, 4 * SRS_DAY, 7 * SRS_DAY, 15 * SRS_DAY, 30 * SRS_DAY];
+const SRS_LONG = 60 * SRS_DAY;
+const SRS_TOP = SRS_STEPS.length;                 /* b can go from 0 to SRS_TOP */
+const SRS_LABELS = ['5 分钟', '30 分钟', '12 小时', '1 天', '2 天', '4 天', '7 天', '15 天', '30 天', '60 天'];
+
+function srsInterval(b){ return b < SRS_STEPS.length ? SRS_STEPS[b] : SRS_LONG; }
+function srsNum(x){ return typeof x === 'number' && isFinite(x) ? x : 0; }
+/* sanitize anything that claims to be saved progress (from localStorage or from an imported file) */
+function srsClean(d){
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  if (!d || typeof d !== 'object') return out;
+  if (d.w && typeof d.w === 'object') Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
+    const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
+    out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
+    if (e.m) out.w[k].m = 1;
+  });
+  if (d.log && typeof d.log === 'object') Object.keys(d.log).forEach(function(k){
+    const e = d.log[k];
+    if (/^\d{4}-\d{2}-\d{2}$/.test(k) && e && typeof e === 'object') out.log[k] = {n:Math.max(0, Math.floor(srsNum(e.n))), ok:Math.max(0, Math.floor(srsNum(e.ok)))};
+  });
+  if (Array.isArray(d.ex)) d.ex.slice(-20).forEach(function(e){
+    if (e && typeof e === 'object' && typeof e.score === 'number' && typeof e.total === 'number')
+      out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60), k:e.k === 'listen' ? 'listen' : 'exam'});
+  });
+  return out;
+}
+function srsLoad(){ return srsClean(lsGet(SRS_KEY)); }
+/* two copies of the same learner's progress (this device + an imported one) -> one. A word keeps the copy that was answered last;
+   a day's counts keep the larger tally (the same answers are in both copies, so adding them would count twice); results are united. */
+function srsMerge(a, b){
+  a = srsClean(a); b = srsClean(b);
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){
+    const x = out.w[k], y = b.w[k];
+    if (!x || y.l > x.l || (y.l === x.l && y.c + y.x > x.c + x.x)) out.w[k] = y;
+  });
+  [a.log, b.log].forEach(function(lg){
+    Object.keys(lg).forEach(function(k){
+      const g = out.log[k], e = lg[k];
+      if (!g || e.n > g.n || (e.n === g.n && e.ok > g.ok)) out.log[k] = e;
+    });
+  });
+  const seen = {};
+  a.ex.concat(b.ex).forEach(function(e){
+    const id = [e.d, e.score, e.total, e.scope, e.k].join('|');
+    if (!seen[id]){ seen[id] = 1; out.ex.push(e); }
+  });
+  out.ex.sort(function(x, y){ return x.d < y.d ? -1 : x.d > y.d ? 1 : 0; });
+  out.ex = out.ex.slice(-20);
+  return out;
+}
+function srsSave(s){ lsSet(SRS_KEY, s); }
+function srsGet(key){ return srsLoad().w[key] || null; }
+
+/* pure: the entry after one answer (e = null when the word has never been answered) */
+function srsStep(e, ok, now){
+  const first = !e;
+  const n = first ? {b:0, t:0, l:0, c:0, x:0} : {b:e.b, t:e.t, l:e.l, c:e.c, x:e.x};
+  if (e && e.m) n.m = 1;
+  if (!ok){
+    n.b = 0; n.t = now + srsInterval(0); n.x++;
+  } else {
+    n.c++;
+    if (first){ n.b = 1; n.t = now + srsInterval(1); }
+    else if (n.t <= now){ n.b = Math.min(n.b + 1, SRS_TOP); n.t = now + srsInterval(n.b); }
+  }
+  n.l = now;
+  return n;
+}
+/* what would happen, without writing anything: {kind:'first'|'up'|'early'|'reset', b, t} */
+function srsPreview(key, ok, now){
+  now = now || Date.now();
+  const e = srsGet(key), n = srsStep(e, ok, now);
+  const kind = !ok ? 'reset' : !e ? 'first' : e.t <= now ? 'up' : 'early';
+  return {kind:kind, b:n.b, t:n.t, was:e};
+}
+function srsRecord(key, ok, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const prev = s.w[key] || null;
+  s.w[key] = srsStep(prev, ok, now);
+  const day = ymd(new Date(now));
+  const g = s.log[day] || (s.log[day] = {n:0, ok:0});
+  g.n++; if (ok) g.ok++;
+  const keep = Object.keys(s.log).sort().slice(-120);
+  Object.keys(s.log).forEach(function(k){ if (keep.indexOf(k) < 0) delete s.log[k]; });
+  srsSave(s);
+  return {prev:prev, next:s.w[key], now:now};
+}
+/* take back one srsRecord(key, ok, now) whose result was `rec` (used when the learner overrules a mark afterwards) */
+function srsUndo(key, rec, ok){
+  const s = srsLoad();
+  if (rec.prev) s.w[key] = rec.prev; else delete s.w[key];
+  const g = s.log[ymd(new Date(rec.now))];
+  if (g){ g.n = Math.max(0, g.n - 1); if (ok) g.ok = Math.max(0, g.ok - 1); }
+  srsSave(s);
+}
+/* mark a word as fully mastered (on) or put it back into the review plan; `l` moves so that merging progress keeps this choice */
+function srsRetire(key, on, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const e = s.w[key] || {b:SRS_TOP, t:now + SRS_LONG, l:now, c:0, x:0};
+  if (on) e.m = 1; else delete e.m;
+  e.l = now;
+  s.w[key] = e;
+  srsSave(s);
+  return e;
+}
+/* drop a word from the plan altogether (a word the learner added and then deleted) */
+function srsForget(key){
+  const s = srsLoad();
+  if (!s.w[key]) return;
+  delete s.w[key];
+  srsSave(s);
+}
+function srsAddExam(rec){
+  const s = srsLoad();
+  s.ex.push(rec);
+  s.ex = s.ex.slice(-20);
+  srsSave(s);
+}
+/* the learner overruled a mark in the result list: correct the score of the exam just saved */
+function srsSetLastExamScore(score){
+  const s = srsLoad();
+  if (s.ex.length){ s.ex[s.ex.length - 1].score = score; srsSave(s); }
+}
+function srsReset(){ lsDel(SRS_KEY); }
+
+/* {st:'new'|'due'|'wait', b, t} */
+function srsInfo(e, now){
+  if (!e) return {st:'new', b:-1, t:0};
+  if (e.m) return {st:'done', b:e.b, t:e.t};
+  return {st:e.t <= now ? 'due' : 'wait', b:e.b, t:e.t};
+}
+/* "5 分钟后", "3 小时后", "明天", "6 天后" */
+function srsWhen(t, now){
+  const d = t - now;
+  if (d <= 0) return '现在';
+  if (d < SRS_HOUR) return Math.max(1, Math.round(d / SRS_MIN)) + ' 分钟后';
+  if (d < SRS_DAY) return Math.round(d / SRS_HOUR) + ' 小时后';
+  const days = Math.round(d / SRS_DAY);
+  if (days === 1) return '明天';
+  if (days < 60) return days + ' 天后';
+  return Math.round(days / 30) + ' 个月后';
+}
+function srsStageText(e, now){
+  if (!e) return '未开始';
+  if (e.m) return '已完全掌握，不再出现';
+  return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
+}
+
+/* ---------- my words: expressions the learner marked in an article themself (select text → 加入生词) ----------
+   MINE_KEY (per learner): {v:1, w:{"<slug>:<id>": {t, o, ctx, czh, zh, n, a, u, d}}}
+   id = "u" + a few base-36 characters; t = the text as selected; ctx = the article sentence it came from, o = where t starts in ctx;
+   czh = the sentence's Chinese; zh = the meaning the learner wrote; n = an optional note; a = added, u = last edited (ms);
+   d = deleted (ms): kept as a tombstone so that a delete survives merging with an older copy from another device.
+   A word becomes an ordinary vocabulary entry (mineWord) and reviews under the SRS key "<slug>:<id>" like any other. */
+const MINE_KEY = 'wk-mine-v1';
+const MINE_RE = /^[a-z0-9][a-z0-9-]{0,79}:u[a-z0-9]{2,16}$/;
+function mineStr(x, n){ return typeof x === 'string' ? x.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, n) : ''; }
+function mineClean(d){
+  const out = {v:1, w:{}};
+  if (!d || typeof d !== 'object' || !d.w || typeof d.w !== 'object') return out;
+  Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (!MINE_RE.test(k) || !e || typeof e !== 'object') return;
+    const t = mineStr(e.t, 80).trim(), ctx = mineStr(e.ctx, 600);
+    if (!t || !ctx) return;
+    let o = Math.floor(srsNum(e.o));
+    if (ctx.substr(o, t.length) !== t) o = ctx.indexOf(t);
+    if (o < 0) return;
+    const x = {t:t, o:o, ctx:ctx, czh:mineStr(e.czh, 600), zh:mineStr(e.zh, 200).trim(), n:mineStr(e.n, 400).trim(), a:srsNum(e.a)};
+    if (srsNum(e.u)) x.u = srsNum(e.u);
+    if (srsNum(e.d)) x.d = srsNum(e.d);
+    out.w[k] = x;
+  });
+  return out;
+}
+/* per word the copy changed last wins (added, edited or deleted) */
+function mineMerge(a, b){
+  a = mineClean(a); b = mineClean(b);
+  const out = {v:1, w:{}};
+  function stamp(e){ return Math.max(e.a, e.u || 0, e.d || 0); }
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){ if (!out.w[k] || stamp(b.w[k]) > stamp(out.w[k])) out.w[k] = b.w[k]; });
+  return out;
+}
+function mineLoad(){ return mineClean(lsGet(MINE_KEY)); }
+function mineSave(m){ lsSet(MINE_KEY, m); }
+/* the live (not deleted) words of one article, oldest first: [[key, entry]] */
+function mineOf(slug){
+  const w = mineLoad().w;
+  return Object.keys(w).filter(function(k){ return k.split(':')[0] === slug && !w[k].d; })
+    .map(function(k){ return [k, w[k]]; }).sort(function(x, y){ return x[1].a - y[1].a; });
+}
+/* an entry -> a vocabulary word in the shape the reader, the quiz kit and the review page use */
+function mineWord(key, e){
+  const id = key.split(':')[1];
+  const before = e.ctx.slice(0, e.o), after = e.ctx.slice(e.o + e.t.length);
+  const lower = e.t.toLowerCase();
+  return {id:id, mine:true, expr:e.t, zh:e.zh || '（还没写中文意思）', core:e.t, forms:lower === e.t ? [e.t] : [e.t, lower], syn:[], m:[e.t],
+    note:e.n, ctx:e.ctx, ex:[{en:before + '[[' + e.t + ']]' + after, zh:e.czh || ''}],
+    cloze:{before:before, ans:e.t, after:after, hint:e.zh || '', szh:e.czh || ''}};
+}
+function mineAdd(slug, x){
+  const m = mineLoad();
+  let key;
+  do { key = slug + ':u' + Date.now().toString(36).slice(-6) + Math.random().toString(36).slice(2, 4); } while (m.w[key]);
+  m.w[key] = {t:x.t, o:x.o, ctx:x.ctx, czh:x.czh || '', zh:x.zh || '', n:x.n || '', a:Date.now()};
+  mineSave(m);
+  return key;
+}
+function mineEdit(key, patch){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  if (typeof patch.zh === 'string') e.zh = patch.zh.trim().slice(0, 200);
+  if (typeof patch.n === 'string') e.n = patch.n.trim().slice(0, 400);
+  e.u = Date.now();
+  mineSave(m);
+}
+function mineDel(key){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  e.d = Date.now();
+  mineSave(m);
+}
+
+/* ---------- learners: who is studying on this browser (inlined by tools/build.py; needs common.js and srs.js) ----------
+   The site is static and has no server, so there are no passwords: a learner is a name that keeps its progress apart from other learners'
+   (every localStorage key of a learner is "<key>@<id>", see common.js). The list of learners is stored under WHO_KEY:
+     {v:1, cur:"<id>", list:[{id, name, c: created, u: last used}], claimed: bool}
+   claimed: progress saved before learners existed (plain wk-* / fk-* keys) goes to the first learner created, once.
+   Progress moves between devices as a "progress code" ("WK1." + base64 of a JSON bundle) or as the same JSON in a file. Importing MERGES
+   (the newer answer per word wins); it never overwrites. Merge and parse are pure-ish and covered by tools/tests/who.test.js.
+   If a new kind of progress is stored in localStorage, it must be a key starting with wk- or fk-; it is then exported, imported and deleted
+   with the learner. Anything that is not the SRS key, MINE_KEY (words the learner added) or a UI-preference key is treated as one article's state (see stateClean). */
+
+/* one article's progress: {v:1, vocab:{id:{s,d,m}}, ans:{key:text}, quiz:{score,total,d,k}|null} */
+function stateClean(d){
+  const out = {v:1, vocab:{}, ans:{}, quiz:null};
+  if (!d || typeof d !== 'object') return out;
+  if (d.vocab && typeof d.vocab === 'object') Object.keys(d.vocab).forEach(function(k){
+    const e = d.vocab[k];
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
+    const o = {};
+    if (e.s === 'learning' || e.s === 'mastered') o.s = e.s;
+    if (typeof e.d === 'string') o.d = e.d.slice(0, 10);
+    if (typeof e.m === 'string' && e.m) o.m = e.m.slice(0, 400);
+    if (o.s || o.m) out.vocab[k] = o;
+  });
+  if (d.ans && typeof d.ans === 'object') Object.keys(d.ans).forEach(function(k){
+    if (k !== '__proto__' && typeof d.ans[k] === 'string' && d.ans[k]) out.ans[k] = d.ans[k].slice(0, 2000);
+  });
+  if (d.quiz && typeof d.quiz === 'object' && typeof d.quiz.score === 'number' && typeof d.quiz.total === 'number')
+    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0, 10), k:['mcq', 'cloze', 'exs', 'zh', 'dict', 'sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
+  return out;
+}
+/* two copies of one article's progress -> one: per word the copy touched last wins (a status or note only one copy has is kept),
+   answers are united (this device's text wins a clash), the later quiz result is kept */
+function stateMerge(a, b){
+  a = stateClean(a); b = stateClean(b);
+  const out = {v:1, vocab:{}, ans:{}, quiz:null};
+  Object.keys(a.vocab).forEach(function(k){ out.vocab[k] = a.vocab[k]; });
+  Object.keys(b.vocab).forEach(function(k){
+    const x = out.vocab[k], y = b.vocab[k];
+    if (!x){ out.vocab[k] = y; return; }
+    const yNewer = (y.d || '') > (x.d || '');
+    const n = yNewer ? y : x, o = yNewer ? x : y;
+    const m = {};
+    if (n.s || o.s) m.s = n.s || o.s;
+    if (n.m || o.m) m.m = n.m || o.m;
+    if (n.d || o.d) m.d = n.d || o.d;
+    out.vocab[k] = m;
+  });
+  Object.keys(b.ans).forEach(function(k){ out.ans[k] = b.ans[k]; });
+  Object.keys(a.ans).forEach(function(k){ out.ans[k] = a.ans[k]; });
+  out.quiz = !a.quiz ? b.quiz : !b.quiz ? a.quiz : (b.quiz.d > a.quiz.d ? b.quiz : a.quiz);
+  return out;
+}
+
+const Who = (function(){
+  const KEEP = /^(wk|fk)-[A-Za-z0-9._-]{1,80}$/;     /* what a learner's progress keys look like */
+  const UI_KEYS = ['fk-ui-v1', 'wk-review-ui-v1'];
+  const PREFIX = 'WK1.';
+  const MAXLEN = 2000000;
+  const DAY = 86400000;
+
+  function canStore(){
+    try { localStorage.setItem('wk-probe', '1'); localStorage.removeItem('wk-probe'); return true; } catch(e){ return false; }
+  }
+  function saveReg(reg){ try { localStorage.setItem(WHO_KEY, JSON.stringify(reg)); return true; } catch(e){ return false; } }
+  function newId(reg){
+    let id;
+    do { id = 'u' + Date.now().toString(36).slice(-5) + Math.random().toString(36).slice(2, 6); } while (reg.list.some(function(p){ return p.id === id; }));
+    return id;
+  }
+  function cleanName(s){ return String(s == null ? '' : s).replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
+  function byName(reg, name){
+    const n = name.toLowerCase();
+    return reg.list.filter(function(p){ return p.name.toLowerCase() === n; })[0] || null;
+  }
+  function list(){ return whoReg().list; }
+  function current(){ return whoReg().list.filter(function(p){ return p.id === WHO_ID; })[0] || null; }
+  /* a browser that cannot store anything (some private modes) gets no picker: nothing could be saved for anyone anyway */
+  function ready(){ return !!WHO_ID || !canStore(); }
+
+  function allKeys(){
+    const out = [];
+    try { for (let i = 0; i < localStorage.length; i++){ const k = localStorage.key(i); if (k) out.push(k); } } catch(e){}
+    return out;
+  }
+  function keysOf(id){
+    const suf = '@' + id;
+    return allKeys().filter(function(k){ return k.length > suf.length && k.slice(-suf.length) === suf; })
+      .map(function(k){ return k.slice(0, -suf.length); })
+      .filter(function(b){ return KEEP.test(b) && b !== WHO_KEY; });
+  }
+  function legacyKeys(){ return allKeys().filter(function(k){ return KEEP.test(k) && k !== WHO_KEY; }); }
+  function claim(id){
+    legacyKeys().forEach(function(k){
+      try { const v = localStorage.getItem(k); if (v != null && localStorage.getItem(k + '@' + id) == null) localStorage.setItem(k + '@' + id, v); } catch(e){}
+    });
+  }
+  function readKey(k, id){ try { return JSON.parse(localStorage.getItem(k + '@' + id) || 'null'); } catch(e){ return null; } }
+
+  /* ---- learners ---- */
+  function create(name){
+    name = cleanName(name);
+    if (!name) return {ok:false, err:'请先写一个名字。'};
+    const reg = whoReg();
+    let p = byName(reg, name);
+    const existed = !!p;
+    if (!p){
+      p = {id:newId(reg), name:name, c:Date.now(), u:0};
+      reg.list.push(p);
+      if (!reg.claimed){ claim(p.id); reg.claimed = true; }
+    }
+    p.u = Date.now(); reg.cur = p.id;
+    if (!saveReg(reg)) return {ok:false, err:'浏览器不让保存数据（可能开了无痕模式），进度存不下来。'};
+    return {ok:true, id:p.id, name:p.name, existed:existed};
+  }
+  function select(id){
+    const reg = whoReg();
+    const p = reg.list.filter(function(q){ return q.id === id; })[0];
+    if (!p) return false;
+    p.u = Date.now(); reg.cur = id;
+    return saveReg(reg);
+  }
+  function leave(){ const reg = whoReg(); reg.cur = ''; return saveReg(reg); }
+  function remove(id){
+    keysOf(id).forEach(function(k){ try { localStorage.removeItem(k + '@' + id); } catch(e){} });
+    const reg = whoReg();
+    reg.list = reg.list.filter(function(p){ return p.id !== id; });
+    if (reg.cur === id) reg.cur = '';
+    return saveReg(reg);
+  }
+
+  /* ---- backup / restore ---- */
+  function b64e(str){
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(_, x){ return String.fromCharCode(parseInt(x, 16)); }));
+  }
+  function b64d(b){
+    const bin = atob(b);
+    let p = '';
+    for (let i = 0; i < bin.length; i++) p += '%' + ('0' + bin.charCodeAt(i).toString(16)).slice(-2);
+    return decodeURIComponent(p);
+  }
+  function bundle(id){
+    const p = whoReg().list.filter(function(q){ return q.id === id; })[0];
+    const data = {};
+    keysOf(id).forEach(function(k){ const v = readKey(k, id); if (v && typeof v === 'object') data[k] = v; });
+    return {app:'waikan', v:1, name:p ? p.name : '', at:new Date().toISOString(), data:data};
+  }
+  function toCode(b){ return PREFIX + b64e(JSON.stringify(b)); }
+  /* text pasted by the learner (a code, possibly with chat noise around it) or the content of an exported file */
+  function parse(text){
+    text = String(text == null ? '' : text).trim();
+    if (!text) return {ok:false, err:'先把进度码粘贴进来，或选一个导出的文件。'};
+    if (text.length > MAXLEN) return {ok:false, err:'内容太大，不像是进度码。'};
+    let raw = null;
+    if (text.charAt(0) === '{'){
+      try { raw = JSON.parse(text); } catch(e){ return {ok:false, err:'文件读不出来，可能不完整。'}; }
+    } else {
+      const i = text.indexOf(PREFIX);
+      if (i < 0) return {ok:false, err:'没有找到进度码。完整的进度码以 WK1. 开头。'};
+      const rest = text.slice(i + PREFIX.length);
+      const run = rest.match(/^[A-Za-z0-9+\/=_\-\s]*/)[0];
+      const cands = [run.replace(/\s+/g, ''), (run.trim().split(/\s+/)[0] || '')];
+      for (let k = 0; k < cands.length && raw === null; k++){
+        try { raw = JSON.parse(b64d(cands[k].replace(/-/g, '+').replace(/_/g, '/'))); } catch(e){ raw = null; }
+      }
+      if (raw === null) return {ok:false, err:'进度码读不出来，可能复制得不完整，请整串重新复制。'};
+    }
+    if (!raw || typeof raw !== 'object' || raw.app !== 'waikan' || !raw.data || typeof raw.data !== 'object' || Array.isArray(raw.data))
+      return {ok:false, err:'这不是本站导出的进度。'};
+    const data = {};
+    Object.keys(raw.data).forEach(function(k){
+      const v = raw.data[k];
+      if (KEEP.test(k) && k !== WHO_KEY && v && typeof v === 'object' && !Array.isArray(v)) data[k] = v;
+    });
+    if (!Object.keys(data).length) return {ok:false, err:'这份进度里没有可导入的内容。'};
+    return {ok:true, name:cleanName(raw.name), data:data};
+  }
+  function uiClean(d){
+    const o = {};
+    if (d && typeof d === 'object') Object.keys(d).forEach(function(k){
+      const v = d[k];
+      if (k !== '__proto__' && (typeof v === 'boolean' || (typeof v === 'number' && isFinite(v)) || (typeof v === 'string' && v.length <= 40))) o[k] = v;
+    });
+    return o;
+  }
+  /* merge parsed.data into learner id. {words: words in the imported schedule, articles: article states merged} */
+  function mergeData(id, data){
+    const out = {words:0, articles:0};
+    Object.keys(data).forEach(function(k){
+      const cur = readKey(k, id);
+      let next;
+      if (k === SRS_KEY){ next = srsMerge(cur, data[k]); out.words = Object.keys(srsClean(data[k]).w).length; }
+      else if (k === MINE_KEY) next = mineMerge(cur, data[k]);
+      else if (UI_KEYS.indexOf(k) >= 0) next = Object.assign(uiClean(data[k]), uiClean(cur));
+      else { next = stateMerge(cur, data[k]); out.articles++; }
+      try { localStorage.setItem(k + '@' + id, JSON.stringify(next)); } catch(e){}
+    });
+    return out;
+  }
+
+  /* ---- what a learner has done so far, for the picker ---- */
+  function agoText(t){
+    const a = new Date(t), n = new Date();
+    const d = Math.round((new Date(n.getFullYear(), n.getMonth(), n.getDate()) - new Date(a.getFullYear(), a.getMonth(), a.getDate())) / DAY);
+    return d <= 0 ? '今天' : d === 1 ? '昨天' : d + ' 天前';
+  }
+  function summary(id){
+    const s = srsClean(readKey(SRS_KEY, id));
+    let last = 0, mastered = 0;
+    Object.keys(s.w).forEach(function(k){ if (s.w[k].l > last) last = s.w[k].l; });
+    keysOf(id).forEach(function(k){
+      if (k === SRS_KEY || k === MINE_KEY || UI_KEYS.indexOf(k) >= 0) return;
+      const st = stateClean(readKey(k, id));
+      Object.keys(st.vocab).forEach(function(v){ if (st.vocab[v].s === 'mastered') mastered++; });
+    });
+    const bits = [];
+    if (mastered) bits.push('已掌握 ' + mastered + ' 个词');
+    const n = Object.keys(s.w).length;
+    if (n) bits.push('复习计划 ' + n + ' 个词');
+    if (last) bits.push('上次学习：' + agoText(last));
+    /* no-break spaces inside a part: the line may only wrap between the parts */
+    return bits.length ? bits.map(function(b){ return b.replace(/ /g, '\u00a0'); }).join(' · ') : '还没开始学';
+  }
+
+  /* ---------------- interface ---------------- */
+  function initial(name){ const c = Array.from(name || '?')[0] || '?'; return c.toUpperCase(); }
+  function avatar(name, big){ return h('span', {class:'who-av' + (big ? ' lg' : ''), 'aria-hidden':'true'}, initial(name)); }
+  function copyText(ta){
+    function legacy(){ try { return Promise.resolve(!!document.execCommand('copy')); } catch(e){ return Promise.resolve(false); } }
+    ta.focus(); ta.select();
+    try { ta.setSelectionRange(0, ta.value.length); } catch(e){}
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(ta.value).then(function(){ return true; }, legacy);
+    return legacy();
+  }
+  function saveFile(name, text){
+    try {
+      const url = URL.createObjectURL(new Blob([text], {type:'application/json'}));
+      const a = h('a', {href:url, download:name});
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      return true;
+    } catch(e){ return false; }
+  }
+  /* replaceChildren that skips the null / false entries of a conditional list (they would otherwise be written as the text "null") */
+  function put(el, kids){ el.replaceChildren.apply(el, kids.filter(function(k){ return k != null && k !== false; })); }
+  function lock(on){ try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch(e){} }
+  function msgEl(){ return h('p', {class:'who-msg', 'aria-live':'polite'}); }
+  function say(el, text, kind){ el.className = 'who-msg' + (kind ? ' ' + kind : ''); el.textContent = text; }
+
+  /* paste area + file picker + button; apply(parsed) -> {ok, msg, done?} */
+  function importForm(apply){
+    const ta = h('textarea', {class:'who-ta', placeholder:'把进度码粘贴到这里（以 WK1. 开头）', 'aria-label':'进度码', spellcheck:'false', autocomplete:'off', autocapitalize:'off'});
+    const msg = msgEl();
+    const file = h('input', {type:'file', accept:'.json,.txt,text/plain,application/json', hidden:true});
+    file.addEventListener('change', function(){
+      const f = file.files && file.files[0];
+      if (!f) return;
+      if (f.size > MAXLEN){ say(msg, '文件太大，不像是进度文件。', 'err'); return; }
+      const r = new FileReader();
+      r.onload = function(){ ta.value = String(r.result || ''); say(msg, '文件已读入，点“导入”。', ''); };
+      r.onerror = function(){ say(msg, '文件读取失败。', 'err'); };
+      r.readAsText(f);
+      file.value = '';
+    });
+    const go = h('button', {type:'button', class:'who-btn pri'}, '导入');
+    go.addEventListener('click', function(){
+      const p = parse(ta.value);
+      if (!p.ok){ say(msg, p.err, 'err'); return; }
+      const r = apply(p);
+      say(msg, r.msg, r.ok ? 'ok' : 'err');
+      if (r.ok) go.disabled = true;
+    });
+    return {ta:ta, node:h('div', null, ta, h('div', {class:'who-row'}, go, h('button', {type:'button', class:'who-btn', onclick:function(){ file.click(); }}, '选择文件')), msg, file)};
+  }
+  function importMsg(p, r, name){
+    return '已把' + (p.name ? '「' + p.name + '」的' : '') + '进度合并到「' + name + '」：复习计划 ' + r.words + ' 个词，' + r.articles + ' 篇文章。正在刷新……';
+  }
+
+  /* the picker shown instead of the page while nobody has been chosen */
+  function gate(){
+    const reg = whoReg();
+    const err = h('p', {class:'who-msg err', role:'alert'});
+    const input = h('input', {class:'who-in', type:'text', maxlength:16, placeholder:'你的名字或昵称', autocomplete:'off', autocapitalize:'off', 'aria-label':'名字'});
+    const card = h('div', {class:'who-card'});
+    const ov = h('div', {class:'who-ov', role:'dialog', 'aria-modal':'true', 'aria-label':'选择学习者'}, card);
+    function enter(r){ if (!r.ok){ say(err, r.err, 'err'); return; } location.reload(); }
+    function main(){
+      const people = reg.list.slice().sort(function(a, b){ return (b.u || 0) - (a.u || 0); });
+      const form = h('form', {class:'who-new', onsubmit:function(e){ e.preventDefault(); enter(create(input.value)); }}, input, h('button', {type:'submit', class:'who-btn pri'}, '进入'));
+      put(card, [
+        h('p', {class:'who-eb'}, 'DAILY CLOSE READING'),
+        h('h1', {class:'who-h'}, '外刊精读合集'),
+        h('p', {class:'who-sub'}, people.length ? '选你的名字继续学。每个人的进度分开保存。' : '先写一个名字，你的生词、自测和复习进度会存在这个名字下。'),
+        people.length ? h('p', {class:'who-sec'}, '这台设备上的学习者') : null,
+        people.length ? h('ul', {class:'who-list'}, people.map(function(p){
+          return h('li', null, h('button', {type:'button', class:'who-p', onclick:function(){ enter(select(p.id) ? {ok:true} : {ok:false, err:'没能切换，请刷新后重试。'}); }},
+            avatar(p.name, true), h('span', null, h('span', {class:'who-pn'}, p.name), h('span', {class:'who-pm'}, summary(p.id)))));
+        })) : null,
+        h('p', {class:'who-sec'}, people.length ? '换一个人，或新建' : '你的名字'),
+        form, err,
+        !people.length && legacyKeys().length ? h('p', {class:'who-note'}, '这台设备上已经有一份学习进度，建好名字后它会自动归到这个名字下。') : null,
+        h('button', {type:'button', class:'who-link', onclick:importView}, '已有进度码？导入进度'),
+        h('p', {class:'who-note'}, '名字只用来把进度分开，不是密码，这台设备上的人都能切换。进度存在这台设备的浏览器里：换手机或清理浏览器数据前，请在右上角头像里“导出进度”备份。')]);
+      setTimeout(function(){ try { input.focus({preventScroll:true}); } catch(e){} }, 0);
+    }
+    function importView(){
+      const f = importForm(function(p){
+        const r = create(p.name || '我');
+        if (!r.ok) return {ok:false, msg:r.err};
+        const m = mergeData(r.id, p.data);
+        setTimeout(function(){ location.reload(); }, 1300);
+        return {ok:true, msg:importMsg(p, m, r.name)};
+      });
+      put(card, [
+        h('p', {class:'who-eb'}, '导入进度'),
+        h('h1', {class:'who-h sm'}, '用进度码找回你的进度'),
+        h('p', {class:'who-sub'}, '在旧设备上点右上角头像，选“导出进度”，复制进度码（或保存文件），再粘贴到这里。会按进度码里的名字新建账号；这个名字已存在就合并进去。'),
+        f.node,
+        h('button', {type:'button', class:'who-link', onclick:main}, '‹ 返回')]);
+    }
+    main();
+    lock(true);
+    document.body.append(ov);
+  }
+
+  /* the sheet behind the account chip */
+  function menu(){
+    const cur = current();
+    if (!cur) return;
+    const prev = document.activeElement;
+    const card = h('div', {class:'who-card'});
+    const ov = h('div', {class:'who-ov sheet', role:'dialog', 'aria-modal':'true', 'aria-label':'账号和进度'}, card);
+    function close(){ document.removeEventListener('keydown', onKey); ov.remove(); lock(false); if (prev && prev.focus) prev.focus(); }
+    function onKey(e){ if (e.key === 'Escape') close(); }
+    ov.addEventListener('click', function(e){ if (e.target === ov) close(); });
+    document.addEventListener('keydown', onKey);
+    function show(kids){
+      put(card, [h('button', {type:'button', class:'who-x', 'aria-label':'关闭', onclick:close}, '×')].concat(kids));
+    }
+    function mi(t, d, fn, danger){
+      return h('button', {type:'button', class:'who-mi' + (danger ? ' dng' : ''), onclick:fn}, h('b', null, t), h('span', null, d));
+    }
+    function back(){ return h('button', {type:'button', class:'who-link', onclick:home}, '‹ 返回'); }
+    function home(){
+      show([
+        h('div', {class:'who-top'}, avatar(cur.name, true), h('div', null, h('h2', {class:'who-h sm'}, cur.name), h('p', {class:'who-pm'}, summary(cur.id)))),
+        h('div', {class:'who-menu'},
+          mi('切换账号', '换一个名字，或给另一个人新建账号。', function(){ leave(); location.reload(); }),
+          mi('导出进度（备份）', '生成进度码。换手机、清理浏览器数据之前先存一份。', exportView),
+          mi('导入进度', '把另一台设备或备份里的进度合并进来。', importView),
+          mi('删除这个账号', '只删除这台设备上的这份进度，不影响其他设备。', removeView, true)),
+        h('p', {class:'who-note'}, '进度只存在这台设备的浏览器里，不会自动同步到别的设备；要换设备，用“导出进度”和“导入进度”。')]);
+    }
+    function exportView(){
+      const b = bundle(cur.id);
+      const ta = h('textarea', {class:'who-ta', readonly:true, 'aria-label':'进度码', spellcheck:'false'});
+      ta.value = toCode(b);
+      ta.addEventListener('focus', function(){ ta.select(); });
+      const msg = msgEl();
+      const fname = 'waikan-' + cur.name.replace(/[\\\/:*?"<>|\s]+/g, '_') + '-' + today() + '.json';
+      show([
+        h('h2', {class:'who-h sm'}, '导出进度'),
+        h('p', {class:'who-sub'}, '把这串进度码复制下来，发给自己（比如微信文件传输助手）。在新设备上打开本站，选“已有进度码？导入进度”粘贴即可。'),
+        ta,
+        h('div', {class:'who-row'},
+          h('button', {type:'button', class:'who-btn pri', onclick:function(){ copyText(ta).then(function(ok){ say(msg, ok ? '已复制。' : '没能自动复制，请长按进度码全选后手动复制。', ok ? 'ok' : 'err'); }); }}, '复制进度码'),
+          h('button', {type:'button', class:'who-btn', onclick:function(){ say(msg, saveFile(fname, JSON.stringify(b)) ? '已生成文件。' : '这个浏览器不支持保存文件，请用进度码。', ''); }}, '保存为文件')),
+        msg, back()]);
+    }
+    function importView(){
+      const f = importForm(function(p){
+        const m = mergeData(cur.id, p.data);
+        setTimeout(function(){ location.reload(); }, 1300);
+        return {ok:true, msg:importMsg(p, m, cur.name)};
+      });
+      show([
+        h('h2', {class:'who-h sm'}, '导入进度'),
+        h('p', {class:'who-sub'}, '粘贴进度码（或选导出的文件）。会合并到「' + cur.name + '」：同一个词两边都学过，保留更新的那次；不会覆盖你现在的进度。'),
+        f.node, back()]);
+    }
+    function removeView(){
+      show([
+        h('h2', {class:'who-h sm'}, '删除「' + cur.name + '」？'),
+        h('p', {class:'who-sub'}, '这台设备上这个名字的全部进度（生词状态、造句、自测成绩、复习计划）都会删除，无法恢复。建议先导出进度备份。'),
+        h('div', {class:'who-row'},
+          h('button', {type:'button', class:'who-btn', onclick:exportView}, '先导出备份'),
+          h('button', {type:'button', class:'who-btn dng', onclick:function(){ remove(cur.id); location.reload(); }}, '确认删除')),
+        back()]);
+    }
+    lock(true);
+    document.body.append(ov);
+    home();
+  }
+
+  /* put the account chip into mount; mode 'full' shows the name, 'tiny' only the initial */
+  function chip(mount, mode){
+    const cur = current();
+    if (!cur || !mount) return;
+    const b = h('button', {type:'button', class:'who-chip ' + (mode || 'full'), 'aria-label':'当前账号：' + cur.name + '，点击管理账号和进度', title:cur.name},
+      avatar(cur.name), mode === 'tiny' ? null : h('span', {class:'who-nm'}, cur.name));
+    b.addEventListener('click', menu);
+    mount.replaceChildren(b);
+  }
+
+  /* call first thing in a page's script: false = the picker is showing, the page must not start */
+  function boot(){
+    if (!ready()){ gate(); return false; }
+    window.addEventListener('storage', function(e){ if (e.key === WHO_KEY && whoReg().cur !== WHO_ID) location.reload(); });
+    return true;
+  }
+
+  return {boot:boot, ready:ready, canStore:canStore, gate:gate, menu:menu, chip:chip, list:list, current:current, create:create, select:select, leave:leave, remove:remove,
+    keysOf:keysOf, legacyKeys:legacyKeys, bundle:bundle, toCode:toCode, parse:parse, mergeData:mergeData, summary:summary, cleanName:cleanName};
+})();
+
+if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
+Who.chip($('#whoMount'), 'full');
+
+const SITE = {"root":"../","review":"../review-yue/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":false,"href":"../ja/"},{"label":"粤语入门","icon":"🥟","on":true,"href":"./"}],"articles":[{"slug":"yue-hello","date":"2026-11-09","title":"你好，我係阿詩","deck":"第 1 课：打招呼、说自己的名字、说自己是哪里人。","tags":["第 1 课","打招呼"],"source":{"type":"original"},"words":73,"vocab":10,"fresh":10,"lsKey":"wk-yue-hello-state","audio":true}]};
+const A = SITE.articles;
+SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, h('span', {class:'em', 'aria-hidden':'true'}, l.icon), l.label)); });
+(function(){
+  const hr = new Date().getHours(), me = Who.current();
+  const g = hr < 5 ? ['夜深了', '🌙'] : hr < 11 ? ['早上好', '☀️'] : hr < 14 ? ['中午好', '🍱'] : hr < 18 ? ['下午好', '🍵'] : ['晚上好', '🌙'];
+  $('#hello').textContent = g[0] + (me ? '，' + me.name : '') + ' ' + g[1];
+})();
+const WD = ['周日','周一','周二','周三','周四','周五','周六'];
+
+function parse(s){ const p = s.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
+function dateLabel(s){ const d = parse(s); return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日 ' + WD[d.getDay()]; }
+
+/* per-article progress, read from the same browser storage the reader pages write to */
+A.forEach(function(a){
+  a.url = SITE.root + 'a/' + a.slug + '/';
+  let m = 0, l = 0;
+  const st = lsGet(a.lsKey);
+  if (st && st.vocab && typeof st.vocab === 'object') Object.keys(st.vocab).forEach(function(k){
+    const e = st.vocab[k];
+    if (e && e.s === 'mastered') m++; else if (e && e.s === 'learning') l++;
+  });
+  a.m = m; a.l = l;
+});
+
+function metaBits(a){
+  const out = [h('span', null, a.words + (LANG === 'ja' || LANG === 'yue' ? ' 字' : ' 词')), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
+  if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
+  a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
+  if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));
+  return out;
+}
+function progRow(a){
+  const bar = h('div', {class:'pbar'}, h('i'));
+  bar.style.setProperty('--p', (a.vocab ? a.m / a.vocab * 100 : 0) + '%');
+  const txt = a.m ? '已掌握 ' + a.m + ' / ' + a.vocab : a.l ? '学习中 ' + a.l + ' 个词' : '还没开始';
+  return h('div', {class:'pr'}, bar, h('span', null, txt));
+}
+
+/* header stats */
+function renderStats(){
+  const vocab = A.reduce(function(n, a){ return n + a.fresh + mineOf(a.slug).length; }, 0);
+  const mastered = A.reduce(function(n, a){ return n + a.m; }, 0);
+  const box = $('#stats');
+  [['文章', A.length + ' 篇', '📚'], ['累计生词', String(vocab), '✏️'], ['我已掌握', String(mastered), '⭐']].forEach(function(p){
+    box.append(h('div', {class:'stat'}, h('span', {class:'ic', 'aria-hidden':'true'}, p[2]), h('dt', null, p[0]), h('dd', null, p[1])));
+  });
+}
+
+/* spaced-repetition banner: counts come from the review page's own storage */
+function renderReview(){
+  const box = $('#rvBox');
+  box.replaceChildren();
+  const total = A.reduce(function(n, a){ return n + a.fresh + mineOf(a.slug).length; }, 0);   /* + words the learner added */
+  if (!total) return;
+  const known = {};
+  A.forEach(function(a){ known[a.slug] = true; });
+  const s = srsLoad(), t = Date.now();
+  let due = 0, seen = 0, next = 0;
+  Object.keys(s.w).forEach(function(k){
+    if (!known[k.split(':')[0]]) return;
+    seen++;
+    const e = s.w[k];
+    if (e.m) return;
+    if (e.t <= t) due++; else if (!next || e.t < next) next = e.t;
+  });
+  const fresh = Math.max(0, total - seen);
+  const title = due ? '有 ' + due + ' 个词该复习了' : seen ? '今天的词都复习完了' : '艾宾浩斯复习';
+  const desc = due ? '按遗忘曲线安排：到期的词先考你。' + (fresh ? '另有 ' + fresh + ' 个新词还没开始。' : '')
+    : seen ? (next ? '下一批在 ' + srsWhen(next, t) + '到期。' : '') + (fresh ? '还有 ' + fresh + ' 个新词可以学。' : '')
+    : '读完文章后做自测，答过的词会自动进入复习计划；也可以直接去学新词（' + fresh + ' 个）。';
+  box.append(h('a', {class:'rv' + (due ? ' hot' : ''), href:SITE.review},
+    h('span', {class:'rv-ic', 'aria-hidden':'true'}, due ? '🔔' : seen ? '🌱' : '📖'),
+    h('p', {class:'rv-t'}, title),
+    h('p', {class:'rv-d'}, desc),
+    h('span', {class:'cta'}, due ? '去复习 →' : '词汇复习 →')));
+}
+
+/* latest article */
+function renderFeat(show){
+  const box = $('#featBox');
+  box.replaceChildren();
+  if (!show) return;
+  if (!A.length){ box.append(h('p', {class:'empty'}, '还没有文章，敬请期待。')); return; }
+  const a = A[0];
+  box.append(h('a', {class:'feat', href:a.url},
+    h('p', {class:'eyebrow'}, '最新 · ' + dateLabel(a.date)),
+    h('h2', {class:'feat-t'}, a.title),
+    h('p', {class:'feat-d'}, a.deck),
+    h('div', {class:'meta-row'}, metaBits(a)),
+    progRow(a),
+    h('span', {class:'cta'}, '开始精读 →')
+  ));
+}
+
+/* calendar of the last five weeks */
+function streak(){
+  const days = {};
+  A.forEach(function(a){ days[a.date] = true; });
+  const uniq = Object.keys(days).sort().reverse();
+  if (!uniq.length) return 0;
+  let n = 1, d = parse(uniq[0]);
+  for (;;){
+    d.setDate(d.getDate() - 1);
+    if (days[ymd(d)]) n++; else break;
+  }
+  return n;
+}
+function renderCal(show){
+  const box = $('#calBox');
+  box.replaceChildren();
+  if (!show || !A.length) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const start = new Date(today); start.setDate(today.getDate() - ((today.getDay() + 6) % 7) - 28);
+  const byDate = {};
+  A.forEach(function(a){ if (!byDate[a.date]) byDate[a.date] = a; });
+  const grid = h('div', {class:'cal-grid', role:'list', 'aria-label':'最近五周的更新日历'});
+  ['一','二','三','四','五','六','日'].forEach(function(w){ grid.append(h('div', {class:'cal-wd', 'aria-hidden':'true'}, w)); });
+  const todayKey = ymd(today);
+  for (let i = 0; i < 35; i++){
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    const key = ymd(d), a = byDate[key];
+    const cls = 'cell' + (a ? ' has' : '') + (key === todayKey ? ' today' : '') + (d > today ? ' fut' : '');
+    grid.append(a
+      ? h('a', {class:cls, role:'listitem', href:a.url, 'aria-label':(d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日：' + a.title, title:a.title}, String(d.getDate()))
+      : h('div', {class:cls, role:'listitem', 'aria-label':(d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日'}, String(d.getDate())));
+  }
+  const monthKey = todayKey.slice(0, 7);
+  const inMonth = A.filter(function(a){ return a.date.slice(0, 7) === monthKey; }).length;
+  const s = streak();
+  box.append(
+    h('div', {class:'sec-h'}, h('h2', null, '更新日历'), h('span', null, '本月 ' + inMonth + ' 篇' + (s >= 2 ? ' · 连续更新 ' + s + ' 天' : ''))),
+    h('div', {class:'cal'}, grid)
+  );
+}
+
+/* list with search and topic filter */
+const view = {q:'', tag:'all'};
+function row(a){
+  const d = parse(a.date);
+  return h('a', {class:'art', href:a.url},
+    h('div', {class:'r-date'}, h('b', null, String(d.getDate())), h('span', null, WD[d.getDay()])),
+    h('div', {class:'r-main'},
+      h('h3', {class:'r-t'}, a.title),
+      h('p', {class:'r-d'}, a.deck),
+      h('div', {class:'meta-row'}, metaBits(a)),
+      progRow(a)
+    )
+  );
+}
+function renderTags(){
+  const box = $('#tags');
+  box.replaceChildren();
+  const count = {};
+  A.forEach(function(a){ a.tags.forEach(function(t){ count[t] = (count[t] || 0) + 1; }); });
+  const tags = Object.keys(count).sort(function(x, y){ return count[y] - count[x] || x.localeCompare(y, 'zh'); });
+  [['all', '全部 ' + A.length]].concat(tags.map(function(t){ return [t, t + ' ' + count[t]]; })).forEach(function(o){
+    box.append(h('button', {type:'button', class:'chip' + (view.tag === o[0] ? ' on' : ''), 'aria-pressed':String(view.tag === o[0]),
+      onclick:function(){ view.tag = o[0]; render(); }}, o[1]));
+  });
+}
+function match(a){
+  if (view.tag !== 'all' && a.tags.indexOf(view.tag) < 0) return false;
+  const q = view.q.trim().toLowerCase();
+  if (!q) return true;
+  return (a.title + ' ' + a.deck + ' ' + a.tags.join(' ') + ' ' + a.date + ' ' + dateLabel(a.date)).toLowerCase().indexOf(q) >= 0;
+}
+function render(){
+  const filtering = !!view.q.trim() || view.tag !== 'all';
+  renderFeat(!filtering);
+  renderCal(!filtering);
+  $('#tools').hidden = A.length < 6;
+  if (!$('#tools').hidden) renderTags();
+  $('#listH').textContent = filtering ? '搜索结果' : '往期文章';
+  const items = (filtering ? A : A.slice(1)).filter(match);
+  $('#listN').textContent = items.length ? items.length + ' 篇' : '';
+  const list = $('#list');
+  list.replaceChildren();
+  if (!items.length){
+    list.append(h('p', {class:'empty'}, filtering ? '没有符合条件的文章。' : '这里还没有往期文章。每天更新一篇，之后会按月份排在这里。'));
+    return;
+  }
+  let month = '';
+  items.forEach(function(a){
+    const m = a.date.slice(0, 7);
+    if (m !== month){
+      month = m;
+      const n = items.filter(function(x){ return x.date.slice(0, 7) === m; }).length;
+      list.append(h('p', {class:'month'}, m.slice(0, 4) + ' 年 ' + Number(m.slice(5)) + ' 月 · ' + n + ' 篇'));
+    }
+    list.append(row(a));
+  });
+}
+$('#q').addEventListener('input', function(){ view.q = this.value; render(); });
+renderStats();
+renderReview();
+render();
+})();
+</script>
+</body>
+</html>

@@ -19,6 +19,7 @@
 }
 html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF; --tint-1:#FDE6EF; --tint-3:#E9E4FB}
 html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7; --tint-1:#DFF3E7; --tint-3:#FDE6EF}
+html[data-lang="yue"]{--accent:#D9693A; --accent-soft:#FCE9DE; --tint-1:#FCE9DE; --tint-3:#FFF0D6}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--font-ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -249,9 +250,11 @@ function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'nul
 function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-/* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
-const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' ? l : 'en'; })();
-const XL = {en:'英文', ko:'韩语', ja:'日语'}[LANG], XS = {en:'英', ko:'韩', ja:'日'}[LANG];
+/* the language a page teaches: <html data-lang="ko|ja|yue"> for those sections, English otherwise */
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' || l === 'yue' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语', yue:'粤语'}[LANG], XS = {en:'英', ko:'韩', ja:'日', yue:'粤'}[LANG];
+/* Cantonese answers may be written in Jyutping instead of characters; tone numbers are optional (norm drops digits) */
+function romOk(given, rom){ return LANG === 'yue' && !!rom && !!norm(given) && norm(given) === norm(rom); }
 /* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
 const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
 function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }
@@ -926,7 +929,7 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"root":"../","review":"../review-ja/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":true,"href":"./"}],"articles":[{"slug":"ja-11","date":"2026-11-06","title":"雪の町で、のんびり暮らす","deck":"第 11 课：17 个单词、7 个语法点，配一篇只用本课内容写的短文。","tags":["第 11 课","ていく／てくる","らしい","ずに"],"source":{"type":"original"},"words":467,"vocab":24,"fresh":24,"lsKey":"wk-ja-11-state","audio":true}]};
+const SITE = {"root":"../","review":"../review-ja/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":true,"href":"./"},{"label":"粤语入门","icon":"🥟","on":false,"href":"../yue/"}],"articles":[{"slug":"ja-11","date":"2026-11-06","title":"雪の町で、のんびり暮らす","deck":"第 11 课：17 个单词、7 个语法点，配一篇只用本课内容写的短文。","tags":["第 11 课","ていく／てくる","らしい","ずに"],"source":{"type":"original"},"words":467,"vocab":24,"fresh":24,"lsKey":"wk-ja-11-state","audio":true}]};
 const A = SITE.articles;
 SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, h('span', {class:'em', 'aria-hidden':'true'}, l.icon), l.label)); });
 (function(){
@@ -952,7 +955,7 @@ A.forEach(function(a){
 });
 
 function metaBits(a){
-  const out = [h('span', null, a.words + (LANG === 'ja' ? ' 字' : ' 词')), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
+  const out = [h('span', null, a.words + (LANG === 'ja' || LANG === 'yue' ? ' 字' : ' 词')), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
   if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));

@@ -50,7 +50,7 @@
 .show-zh .zh{display:block}
 .rom{display:none;margin:6px 0 0;font:400 14px/1.6 var(--font-ui);color:var(--muted);letter-spacing:.01em}
 .show-rom .rom{display:block}
-html[data-lang="ja"] .w-rom{display:block}
+html[data-lang="ja"] .w-rom,html[data-lang="yue"] .w-rom{display:block}
 .g-conn{margin:6px 0;font-size:14.5px;line-height:1.6}
 .note{margin-top:12px;padding:16px 18px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);scroll-margin-top:120px}
 .note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
@@ -225,7 +225,7 @@ function normalize(d){
   return out;
 }
 let state = normalize(lsGet(LS_STATE));
-let ui = Object.assign({zh:false, hi:true, rom:false}, lsGet(LS_UI) || {});
+let ui = Object.assign({zh:false, hi:true, rom:LANG === 'yue'}, lsGet(LS_UI) || {});   /* Cantonese shows its Jyutping by default */
 let ref = null, saveTimer = null, saving = false, again = false, lastJSON = '', touched = false;
 
 function getS(id){ const e = state.vocab[id]; return (e && e.s) || 'new'; }
@@ -1069,7 +1069,7 @@ function init(){
   window.addEventListener('pagehide', settle);
   document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
   if (LANG !== 'en'){
-    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), LANG === 'ja' ? ' 显示读音' : ' 显示罗马音');
+    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), LANG === 'ja' ? ' 显示读音' : LANG === 'yue' ? ' 显示粤拼' : ' 显示罗马音');
     $('#optZh').parentNode.after(rl);
     $('#optRom').checked = !!ui.rom;
     document.body.classList.toggle('show-rom', !!ui.rom);

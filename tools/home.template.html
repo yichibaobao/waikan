@@ -19,6 +19,7 @@
 }
 html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF; --tint-1:#FDE6EF; --tint-3:#E9E4FB}
 html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7; --tint-1:#DFF3E7; --tint-3:#FDE6EF}
+html[data-lang="yue"]{--accent:#D9693A; --accent-soft:#FCE9DE; --tint-1:#FCE9DE; --tint-3:#FFF0D6}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--font-ui);-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -186,7 +187,7 @@ A.forEach(function(a){
 });
 
 function metaBits(a){
-  const out = [h('span', null, a.words + (LANG === 'ja' ? ' 字' : ' 词')), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
+  const out = [h('span', null, a.words + (LANG === 'ja' || LANG === 'yue' ? ' 字' : ' 词')), h('span', null, a.fresh ? a.vocab + ' 个生词表达' : '复习 ' + a.vocab + ' 个学过的表达')];
   if (a.audio) out.push(h('span', {class:'pill'}, '含听力'));
   a.tags.forEach(function(t){ out.push(h('span', {class:'pill'}, t)); });
   if (a.source && a.source.type === 'original') out.push(h('span', null, '原创练习文章'));

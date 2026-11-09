@@ -20,6 +20,7 @@
 /* each section has its own candy colour, as on the home pages */
 html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF}
 html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7}
+html[data-lang="yue"]{--accent:#D9693A; --accent-soft:#FCE9DE}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{font:16px/1.6 var(--font-ui);background:var(--bg);color:var(--fg)}
@@ -154,6 +155,12 @@ html[data-lang="ja"] .a-para{font-size:20px;line-height:1.95}
 html[data-lang="ja"] .a-deck{font-size:18px;font-style:normal}
 html[data-lang="ja"] .w-ctx,html[data-lang="ja"] .q-ctx{font-style:normal}
 html[data-lang="ja"] .ex-en{font-size:16.5px}
+html[data-lang="yue"]{--font-read:"PingFang HK","PingFang TC","Noto Sans HK","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
+html[data-lang="yue"] .a-para{font-size:21px;line-height:1.95}
+html[data-lang="yue"] .a-deck{font-size:18px;font-style:normal}
+html[data-lang="yue"] .w-ctx,html[data-lang="yue"] .q-ctx{font-style:normal}
+html[data-lang="yue"] .ex-en{font-size:17px}
+html[data-lang="yue"] .rom{letter-spacing:.02em}
 
 /* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
 .who-chip{appearance:none;display:inline-flex;align-items:center;gap:8px;flex:none;max-width:100%;padding:3px;border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow,none);font:600 13px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
@@ -336,9 +343,11 @@ function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'nul
 function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
 function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
 function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-/* the language a page teaches: <html data-lang="ko"> for the Korean section, English otherwise */
-const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' ? l : 'en'; })();
-const XL = {en:'英文', ko:'韩语', ja:'日语'}[LANG], XS = {en:'英', ko:'韩', ja:'日'}[LANG];
+/* the language a page teaches: <html data-lang="ko|ja|yue"> for those sections, English otherwise */
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' || l === 'yue' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语', yue:'粤语'}[LANG], XS = {en:'英', ko:'韩', ja:'日', yue:'粤'}[LANG];
+/* Cantonese answers may be written in Jyutping instead of characters; tone numbers are optional (norm drops digits) */
+function romOk(given, rom){ return LANG === 'yue' && !!rom && !!norm(given) && norm(given) === norm(rom); }
 /* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
 const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
 function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }
@@ -1033,7 +1042,7 @@ const Clip = (function(){
       if (!('speechSynthesis' in window) || !text) return;
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
-      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP'}[LANG]; u.rate = 0.9;
+      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP', yue:'zh-HK'}[LANG]; u.rate = 0.9;
       speechSynthesis.speak(u);
     } catch(e){}
   }
@@ -1153,7 +1162,9 @@ const Kit = (function(){
   /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
   function toks(s){
     const out = [];
-    if (LANG === 'ja') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces in Japanese: compare by character */
+    /* Cantonese written in Jyutping: compare syllable by syllable, tone numbers optional */
+    if (LANG === 'yue' && /[a-z]/i.test(s)) return String(s).toLowerCase().split(/[^a-z]+/).filter(Boolean);
+    if (LANG === 'ja' || LANG === 'yue') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces: compare by character */
     String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9\uac00-\ud7a3]+/).forEach(function(t){
       if (!t) return;
       if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
@@ -1203,7 +1214,7 @@ const Kit = (function(){
   }
   function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
   function speakLine(item, v){
-    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), '　', v.zh);
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), LANG === 'yue' && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
   }
   function extraBox(item, res, o){
     const box = h('div', {class:'fb-x'});
@@ -1237,7 +1248,7 @@ const Kit = (function(){
     function check(){
       const val = norm(inp.value);
       if (!val){ inp.focus(); return; }
-      const ok = val === norm(c.ans);
+      const ok = val === norm(c.ans) || (c.ans === v.core && romOk(inp.value, v.rom));
       checked = true;
       res.ok = ok; res.given = inp.value.trim();
       o.onAnswer(res);
@@ -1283,7 +1294,7 @@ const Kit = (function(){
     function check(){
       const val = norm(inp.value);
       if (!val){ inp.focus(); return; }
-      const own = v.forms.map(norm).indexOf(val) >= 0;
+      const own = v.forms.map(norm).indexOf(val) >= 0 || romOk(inp.value, v.rom);
       const ok = own || v.syn.map(norm).indexOf(val) >= 0;
       checked = true;
       res.ok = ok; res.given = inp.value.trim();
@@ -1355,7 +1366,7 @@ const Kit = (function(){
     function check(){
       const val = ta.value.trim();
       if (!val){ ta.focus(); return; }
-      const used = sentRe(v).test(val);
+      const used = sentRe(v).test(val) || (LANG === 'yue' && !!v.rom && norm(val).indexOf(norm(v.rom)) >= 0);
       ta.readOnly = true;
       fb.className = 'fb ' + (used ? 'ok' : 'bad');
       fb.hidden = false;
@@ -1378,6 +1389,7 @@ const Kit = (function(){
       fb.replaceChildren(
         h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
         h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
+        LANG === 'yue' && x.rom ? h('p', {class:'meta'}, x.rom) : '',
         hide ? h('p', {class:'meta'}, v.expr + '：' + v.zh) : '',
         verdict,
         gradeRow
@@ -1531,7 +1543,7 @@ const Kit = (function(){
     const field = isWord
       ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
       : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
-    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' + (LANG === 'yue' ? '写汉字或粤拼都行。' : '') : (LANG === 'yue' ? '写汉字或粤拼都行（粤拼音节之间空一格，声调数字可省）。标点不影响判分。' : LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
     const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
@@ -1553,12 +1565,14 @@ const Kit = (function(){
       if (!norm(val) && !/\d/.test(val)){ field.focus(); return; }
       let ok, diffKids = [];
       if (isWord){
-        ok = v.forms.map(norm).indexOf(norm(val)) >= 0;
+        ok = v.forms.map(norm).indexOf(norm(val)) >= 0 || romOk(val, v.rom);
       } else {
-        const a = toks(ref), b = toks(val), d = lcsHits(a, b);
+        const refRom = S ? S.rom : x && x.rom;
+        const useRom = LANG === 'yue' && /[a-z]/i.test(val) && !!refRom;   /* answered in Jyutping: compare with the reading */
+        const a = toks(useRom ? refRom : ref), b = toks(val), d = lcsHits(a, b);
         ok = a.length === b.length && d.ha.every(Boolean);
         if (!ok) diffKids = [
-          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), chunkDiff(ref, d.ha)),
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), useRom ? chunkDiff(refRom, d.ha) : LANG === 'yue' ? ref : chunkDiff(ref, d.ha)),
           h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), chunkDiff(val, d.hb))
         ];
       }
@@ -1854,7 +1868,7 @@ function ask(s){
   let item;
   if (q.kind === 's'){
     const Ls = LISTEN[q.slug], sd = Ls.sents[q.si];
-    item = {type:'dict', key:null, id:null, v:null, k:null, sent:{en:sd.en, zh:sd.zh, src:Ls.src, t:sd.t}, clips:null};
+    item = {type:'dict', key:null, id:null, v:null, k:null, sent:{en:sd.en, zh:sd.zh, rom:sd.rom, src:Ls.src, t:sd.t}, clips:null};
   } else {
     const w = BYKEY[q.key], L = LOADED[w.slug];
     item = {type:q.type, key:q.key, id:w.id, v:L.words[w.id], k:q.k, dir:q.dir, clips:L.clips};

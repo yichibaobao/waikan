@@ -37,7 +37,7 @@ SHARED_PARTS = (("/*__BASE_CSS__*/", "base.css"), ("/*__COMMON_JS__*/", "common.
                 ("/*__WHO_CSS__*/", "who.css"), ("/*__WHO_JS__*/", "who.js"))
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
-# the two sections of the site: English articles at the root, Korean lessons under ko/ (meta.lang = "ko")
+# the sections of the site: English articles at the root, the others under their own folder (meta.lang = "ko" / "ja" / "yue")
 SECTIONS = {
     "en": dict(home="", icon="📰", review="review", label="英文外刊", brand="外刊精读", h1="外刊精读合集", eyebrow="DAILY CLOSE READING",
                tagline="每天一篇：逐句精读、攒词、自测。", rtitle="词汇复习 · 外刊精读",
@@ -48,6 +48,9 @@ SECTIONS = {
     "ja": dict(home="ja", icon="🌸", review="review-ja", label="日语中级", brand="日语中级", h1="日语中级", eyebrow="JAPANESE · INTERMEDIATE",
                tagline="跟着网课，每课一页：单词、语法、短文、自测。", rtitle="词汇复习 · 日语中级",
                foot2="单词和语法点按课程整理；讲解、例句和短文为原创练习。"),
+    "yue": dict(home="yue", icon="🥟", review="review-yue", label="粤语入门", brand="粤语入门", h1="粤语入门", eyebrow="CANTONESE FOR BEGINNERS",
+                tagline="每天一小段：读、听、攒词、自测。", rtitle="词汇复习 · 粤语入门",
+                foot2="粤语短文是为零基础学习者写的原创练习；读音用粤拼（香港语言学学会粤语拼音方案）标注。"),
 }
 JA_CHARS = "\u3040-\u30ff\u3005\u4e00-\u9fff"
 
@@ -71,8 +74,8 @@ def norm_key(s):
 
 
 def sent_len(text, lang):
-    """Words of a sentence; characters for Japanese, which has no spaces."""
-    return len(re.sub(r"[^" + JA_CHARS + r"A-Za-z0-9]", "", text)) if lang == "ja" else len(text.split())
+    """Words of a sentence; characters for Japanese and Cantonese, which have no spaces."""
+    return len(re.sub(r"[^" + JA_CHARS + r"A-Za-z0-9]", "", text)) if lang in ("ja", "yue") else len(text.split())
 
 
 def prepare(slug, raw):
@@ -95,7 +98,7 @@ def prepare(slug, raw):
     meta.setdefault("lang", "en")
     check(meta["lang"] in SECTIONS, f"{where} meta.lang must be one of {sorted(SECTIONS)}")
     data["lang"] = meta["lang"]
-    ko = meta["lang"] in ("ko", "ja")       # both need a reading line (rom): romanization / kana
+    ko = meta["lang"] in ("ko", "ja", "yue")   # these need a reading line (rom): romanization / kana / Jyutping
 
     # ---- sentences
     sents = data["sents"]
@@ -104,7 +107,7 @@ def prepare(slug, raw):
     for i, s in enumerate(sents):
         check(s["kind"] in ("title", "sub", "body"), f"{where} sentence {i}: bad kind")
         check(s.get("en") and s.get("zh"), f"{where} sentence {i}: en and zh are required")
-        check(not ko or s.get("rom"), f"{where} sentence {i}: Korean and Japanese sentences need rom (romanization / kana reading)")
+        check(not ko or s.get("rom"), f"{where} sentence {i}: Korean, Japanese and Cantonese sentences need rom (romanization / kana / Jyutping)")
         s["i"] = i
         s.setdefault("notes", [])
         if s["kind"] == "body":
@@ -138,6 +141,8 @@ def prepare(slug, raw):
         v.setdefault("syn", [])
         v.setdefault("note", "")
         check(v["core"] in v["forms"], f"{where} vocab {vid}: core must be one of forms")
+        if meta["lang"] == "yue":
+            check(re.fullmatch(r"[a-z]+[1-6]( [a-z]+[1-6])*", v["rom"]), f"{where} vocab {vid}: rom must be Jyutping with tone numbers, e.g. 'nei5 hou2'")
         if not seen:
             for t in v["m"]:
                 check(word_re(t).search(all_en), f"{where} vocab {vid}: highlight term {t!r} not found in the article")
@@ -278,13 +283,14 @@ def words_json(slug, meta, data):
 LISTEN_MIN, LISTEN_MAX = 5, 32      # words per article sentence that make a fair dictation
 LISTEN_MIN_KO = 2                   # Korean lessons are short and a Korean "word" carries its particle
 LISTEN_MIN_JA, LISTEN_MAX_JA = 8, 60   # Japanese: characters
+LISTEN_MIN_YUE, LISTEN_MAX_YUE = 4, 40   # Cantonese: characters
 
 
 def listen_sents(data):
     """The article sentences the listening exam may use: the deck and the body, not too short and not too long."""
     out = []
     lang = data.get("lang")
-    lo, hi = {"ko": (LISTEN_MIN_KO, LISTEN_MAX), "ja": (LISTEN_MIN_JA, LISTEN_MAX_JA)}.get(lang, (LISTEN_MIN, LISTEN_MAX))
+    lo, hi = {"ko": (LISTEN_MIN_KO, LISTEN_MAX), "ja": (LISTEN_MIN_JA, LISTEN_MAX_JA), "yue": (LISTEN_MIN_YUE, LISTEN_MAX_YUE)}.get(lang, (LISTEN_MIN, LISTEN_MAX))
     for s in data["sents"]:
         n = sent_len(s["en"], lang)
         if s["kind"] != "title" and lo <= n <= hi:
@@ -295,7 +301,8 @@ def listen_sents(data):
 def listen_json(slug, meta, data):
     a = data["audio"]
     return dict(slug=slug, title=meta["title"], audio=dict(src=a["src"]),
-                sents=[dict(i=s["i"], en=s["en"], zh=s["zh"], t=a["t"][s["i"]]) for s in listen_sents(data)])
+                sents=[dict(i=s["i"], en=s["en"], zh=s["zh"], t=a["t"][s["i"]], **({"rom": s["rom"]} if data.get("lang") == "yue" else {}))
+                       for s in listen_sents(data)])
 
 
 def foot_html(meta):

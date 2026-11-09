@@ -62,7 +62,9 @@ const Kit = (function(){
   /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
   function toks(s){
     const out = [];
-    if (LANG === 'ja') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces in Japanese: compare by character */
+    /* Cantonese written in Jyutping: compare syllable by syllable, tone numbers optional */
+    if (LANG === 'yue' && /[a-z]/i.test(s)) return String(s).toLowerCase().split(/[^a-z]+/).filter(Boolean);
+    if (LANG === 'ja' || LANG === 'yue') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces: compare by character */
     String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9\uac00-\ud7a3]+/).forEach(function(t){
       if (!t) return;
       if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
@@ -112,7 +114,7 @@ const Kit = (function(){
   }
   function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
   function speakLine(item, v){
-    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), '　', v.zh);
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), LANG === 'yue' && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
   }
   function extraBox(item, res, o){
     const box = h('div', {class:'fb-x'});
@@ -146,7 +148,7 @@ const Kit = (function(){
     function check(){
       const val = norm(inp.value);
       if (!val){ inp.focus(); return; }
-      const ok = val === norm(c.ans);
+      const ok = val === norm(c.ans) || (c.ans === v.core && romOk(inp.value, v.rom));
       checked = true;
       res.ok = ok; res.given = inp.value.trim();
       o.onAnswer(res);
@@ -192,7 +194,7 @@ const Kit = (function(){
     function check(){
       const val = norm(inp.value);
       if (!val){ inp.focus(); return; }
-      const own = v.forms.map(norm).indexOf(val) >= 0;
+      const own = v.forms.map(norm).indexOf(val) >= 0 || romOk(inp.value, v.rom);
       const ok = own || v.syn.map(norm).indexOf(val) >= 0;
       checked = true;
       res.ok = ok; res.given = inp.value.trim();
@@ -264,7 +266,7 @@ const Kit = (function(){
     function check(){
       const val = ta.value.trim();
       if (!val){ ta.focus(); return; }
-      const used = sentRe(v).test(val);
+      const used = sentRe(v).test(val) || (LANG === 'yue' && !!v.rom && norm(val).indexOf(norm(v.rom)) >= 0);
       ta.readOnly = true;
       fb.className = 'fb ' + (used ? 'ok' : 'bad');
       fb.hidden = false;
@@ -287,6 +289,7 @@ const Kit = (function(){
       fb.replaceChildren(
         h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
         h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
+        LANG === 'yue' && x.rom ? h('p', {class:'meta'}, x.rom) : '',
         hide ? h('p', {class:'meta'}, v.expr + '：' + v.zh) : '',
         verdict,
         gradeRow
@@ -440,7 +443,7 @@ const Kit = (function(){
     const field = isWord
       ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
       : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
-    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' : (LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' + (LANG === 'yue' ? '写汉字或粤拼都行。' : '') : (LANG === 'yue' ? '写汉字或粤拼都行（粤拼音节之间空一格，声调数字可省）。标点不影响判分。' : LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
     const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
     const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
     const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
@@ -462,12 +465,14 @@ const Kit = (function(){
       if (!norm(val) && !/\d/.test(val)){ field.focus(); return; }
       let ok, diffKids = [];
       if (isWord){
-        ok = v.forms.map(norm).indexOf(norm(val)) >= 0;
+        ok = v.forms.map(norm).indexOf(norm(val)) >= 0 || romOk(val, v.rom);
       } else {
-        const a = toks(ref), b = toks(val), d = lcsHits(a, b);
+        const refRom = S ? S.rom : x && x.rom;
+        const useRom = LANG === 'yue' && /[a-z]/i.test(val) && !!refRom;   /* answered in Jyutping: compare with the reading */
+        const a = toks(useRom ? refRom : ref), b = toks(val), d = lcsHits(a, b);
         ok = a.length === b.length && d.ha.every(Boolean);
         if (!ok) diffKids = [
-          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), chunkDiff(ref, d.ha)),
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), useRom ? chunkDiff(refRom, d.ha) : LANG === 'yue' ? ref : chunkDiff(ref, d.ha)),
           h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), chunkDiff(val, d.hb))
         ];
       }

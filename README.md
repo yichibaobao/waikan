@@ -49,6 +49,15 @@ Pages know their language from `<html data-lang>` (`LANG`, `XL` in `common.js`):
 and Korean particles may follow a highlighted term. Audio: `tools/make_audio.py <slug>` picks Microsoft's online voices for Korean
 (`--engine edge`, voice `ko-KR-SunHiNeural`, speed 0.85; needs `pip install edge-tts` in the TTS venv and internet).
 
+## Cantonese section (粤语入门)
+
+Lessons with `meta.lang = "yue"` go to `yue/` (home) and `review-yue/` (review), for a complete beginner who reads Chinese:
+5–6 short sentences (a little dialogue, one line per paragraph via `p`) and 8–10 words. Text is in traditional characters as
+written in Hong Kong; every sentence, word and example carries `rom` in Jyutping with tone numbers (the build checks the word
+`rom` format, e.g. `nei5 hou2`). The 显示粤拼 switch is on by default. Answers may be typed in characters or in Jyutping
+(tone numbers optional; in sentences, a space between syllables): `romOk` in common.js and `toks` in quizkit.js. For that, a
+Cantonese word's cloze answer is its `core`. Audio: `tools/make_audio.py <slug>` picks Microsoft's zh-HK-HiuGaaiNeural at speed 0.85.
+
 ## Japanese section (日语中级)
 
 One page per lesson of the user's online course (`content/ja-<lesson>/`, `meta.lang: "ja"`; home `ja/`, review `review-ja/`).
