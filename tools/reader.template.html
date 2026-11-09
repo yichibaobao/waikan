@@ -699,7 +699,7 @@ function renderThink(){
     box.append(h('div', {class:'card mb16'},
       h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr), speakBtn('w' + v.id, v.say || v.core)),
       h('p', {class:'w-zh'}, v.zh),
-      v.conn ? h('p', {class:'g-conn'}, h('span', {class:'meta'}, '接续　'), v.conn) : null,
+      v.conn ? h('p', {class:'g-conn'}, h('span', {class:'meta'}, LANG === 'ja' ? '接续　' : '结构　'), v.conn) : null,
       v.note ? h('p', {class:'w-note'}, v.note) : null,
       h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
         return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));

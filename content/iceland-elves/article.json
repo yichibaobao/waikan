@@ -1390,6 +1390,86 @@
       "zh": "这房间该好好打扫一下了。"
      }
     ]
+   },
+   {
+    "id": 43,
+    "expr": "elf (复数 elves)",
+    "zh": "精灵（民间传说里的小精怪）",
+    "m": [
+     "elves"
+    ],
+    "note": "北欧民间传说里住在石头、山丘里的小精灵。注意复数不规则：elf → elves（像 shelf → shelves、wolf → wolves）。冰岛人也叫它们 huldufólk（隐身人）。形容词 elfin（小巧可爱的）。",
+    "core": "elf",
+    "forms": [
+     "elf",
+     "elves",
+     "elf's"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "In the story, three [[elves]] help a poor shoemaker at night.",
+      "zh": "故事里，三个小精灵晚上帮一个穷鞋匠干活。"
+     },
+     {
+      "en": "Some Icelanders believe an [[elf]] lives in the big rock behind the school.",
+      "zh": "有些冰岛人相信学校后面那块大石头里住着一个精灵。"
+     }
+    ]
+   },
+   {
+    "id": 44,
+    "expr": "say less about A than about B",
+    "kind": "grammar",
+    "conn": "主语（事物）+ say(s) less about A + than about B",
+    "zh": "与其说反映了A，不如说反映了B",
+    "m": [
+     "say less about"
+    ],
+    "note": "say 在这里不是“说话”，而是“说明、反映”：这件事 says a lot about 你（很能说明你的为人）。say less about A than about B = 它反映 A 的少，反映 B 的多 → 重点其实在 B。反过来 say more about A than about B 就是重点在 A。主语常是事物：the reasons / the choice / the result。",
+    "core": "say less about",
+    "forms": [
+     "say less about",
+     "says less about",
+     "said less about",
+     "saying less about"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "His messy desk [[says less about]] laziness than about how busy he is.",
+      "zh": "他桌子乱，与其说是因为懒，不如说是因为太忙。"
+     },
+     {
+      "en": "The film's success [[says less about]] the story than about its famous cast.",
+      "zh": "这部电影的成功，与其说是因为故事，不如说是因为卡司有名。"
+     },
+     {
+      "en": "Where people live often [[says less about]] their taste than about house prices.",
+      "zh": "人们住在哪里，与其说取决于品味，不如说取决于房价。"
+     }
+    ],
+    "say": "say less about magic than about how Icelanders treat their land",
+    "pick": [
+     {
+      "q": "The way people spend their weekends says ___ about their jobs than about their personality.",
+      "opts": [
+       "less",
+       "fewer"
+      ],
+      "a": 0,
+      "why": "固定搭配 say less about A than about B；less 修饰的是“说明的程度”，不是可数名词，所以不用 fewer。"
+     },
+     {
+      "q": "Her choice of school says less about money ___ about what she wants to study.",
+      "opts": [
+       "than",
+       "as"
+      ],
+      "a": 0,
+      "why": "less ... than 是比较结构，前面用了 less，后面就接 than about B。"
+     }
+    ]
    }
   ],
   "cloze": [
@@ -1644,6 +1724,18 @@
     "i": 23,
     "ans": "do",
     "hint": "很需要（could ___ with）"
+   },
+   {
+    "id": 43,
+    "i": 8,
+    "ans": "elves",
+    "hint": "精灵（复数）"
+   },
+   {
+    "id": 44,
+    "i": 2,
+    "ans": "less",
+    "hint": "（say ___ about A than about B）"
    }
   ],
   "breakdown": {
