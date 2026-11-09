@@ -6,7 +6,7 @@
    Progress moves between devices as a "progress code" ("WK1." + base64 of a JSON bundle) or as the same JSON in a file. Importing MERGES
    (the newer answer per word wins); it never overwrites. Merge and parse are pure-ish and covered by tools/tests/who.test.js.
    If a new kind of progress is stored in localStorage, it must be a key starting with wk- or fk-; it is then exported, imported and deleted
-   with the learner. Anything that is not the SRS key or a UI-preference key is treated as one article's state (see stateClean). */
+   with the learner. Anything that is not the SRS key, MINE_KEY (words the learner added) or a UI-preference key is treated as one article's state (see stateClean). */
 
 /* one article's progress: {v:1, vocab:{id:{s,d,m}}, ans:{key:text}, quiz:{score,total,d,k}|null} */
 function stateClean(d){
@@ -189,6 +189,7 @@ const Who = (function(){
       const cur = readKey(k, id);
       let next;
       if (k === SRS_KEY){ next = srsMerge(cur, data[k]); out.words = Object.keys(srsClean(data[k]).w).length; }
+      else if (k === MINE_KEY) next = mineMerge(cur, data[k]);
       else if (UI_KEYS.indexOf(k) >= 0) next = Object.assign(uiClean(data[k]), uiClean(cur));
       else { next = stateMerge(cur, data[k]); out.articles++; }
       try { localStorage.setItem(k + '@' + id, JSON.stringify(next)); } catch(e){}
@@ -207,7 +208,7 @@ const Who = (function(){
     let last = 0, mastered = 0;
     Object.keys(s.w).forEach(function(k){ if (s.w[k].l > last) last = s.w[k].l; });
     keysOf(id).forEach(function(k){
-      if (k === SRS_KEY || UI_KEYS.indexOf(k) >= 0) return;
+      if (k === SRS_KEY || k === MINE_KEY || UI_KEYS.indexOf(k) >= 0) return;
       const st = stateClean(readKey(k, id));
       Object.keys(st.vocab).forEach(function(v){ if (st.vocab[v].s === 'mastered') mastered++; });
     });

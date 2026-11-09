@@ -294,6 +294,25 @@ html[data-lang="ja"] .w-rom{display:block}
 .w-meta{margin:0;min-height:16px;font:400 12px/1.4 var(--font-mono);color:var(--muted)}
 .empty{padding:28px 0;text-align:center;color:var(--muted)}
 
+/* my words (added by the learner) */
+mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
+.uw-tag{background:#FDE6EF;color:#C2416F}
+.uw-add{position:absolute;z-index:60;padding:9px 16px;border:0;border-radius:999px;background:var(--accent);color:#fff;font:700 14px/1.2 var(--font-ui);box-shadow:0 8px 20px -8px rgba(0,0,0,.45);cursor:pointer}
+.uw-add[hidden],.uw-toast[hidden]{display:none}
+.uw-bg{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:rgba(59,47,42,.35)}
+@media (min-width:600px){.uw-bg{align-items:center}}
+.uw-sheet{width:100%;max-width:480px;max-height:90vh;overflow:auto;padding:20px 20px 18px;background:var(--surface);border-radius:24px;box-shadow:var(--shadow)}
+.uw-term{margin:4px 0 8px;font:800 24px/1.3 var(--font-read)}
+.uw-ctx{margin:0 0 12px;padding:10px 12px;border-radius:14px;background:var(--surface-2);font:400 15px/1.6 var(--font-read);color:var(--muted)}
+.uw-ctx b{color:var(--fg);background:#FDE6EF;border-radius:4px;padding:0 2px}
+.uw-old{margin:0 0 10px;font-size:13.5px;color:#B5562F}
+.uw-f{display:block;margin-bottom:10px}
+.uw-f>span{display:block;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.uw-f textarea{width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:16px;background:var(--surface);font:inherit;font-size:16px;resize:vertical}
+.uw-f input{width:100%;box-sizing:border-box;font-size:16px}
+.uw-err{margin:0 0 8px;min-height:1px;font-size:13.5px;color:#C2416F}
+.uw-toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:80;transform:translateX(-50%);max-width:calc(100vw - 32px);padding:11px 18px;border-radius:999px;background:#3B2F2A;color:#fff;font-size:14px;box-shadow:var(--shadow)}
+
 /* think */
 .bd{margin:0 0 12px;font:400 19px/1.75 var(--font-read)}
 .qa{margin-bottom:16px}
@@ -328,7 +347,7 @@ html[data-lang="ja"] .w-rom{display:block}
     <div class="opts">
       <label><input type="checkbox" id="optZh"> 显示译文</label>
       <label><input type="checkbox" id="optHi" checked> 标出生词</label>
-      <span>点任意一句，看翻译和讲解</span>
+      <span>点任意一句，看翻译和讲解；用鼠标或手指选中一个词，可以把它加入生词</span>
     </div>
     <article id="article"></article>
   </section>
@@ -546,6 +565,13 @@ function srsRetire(key, on, now){
   srsSave(s);
   return e;
 }
+/* drop a word from the plan altogether (a word the learner added and then deleted) */
+function srsForget(key){
+  const s = srsLoad();
+  if (!s.w[key]) return;
+  delete s.w[key];
+  srsSave(s);
+}
 function srsAddExam(rec){
   const s = srsLoad();
   s.ex.push(rec);
@@ -582,6 +608,82 @@ function srsStageText(e, now){
   return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
 }
 
+/* ---------- my words: expressions the learner marked in an article themself (select text → 加入生词) ----------
+   MINE_KEY (per learner): {v:1, w:{"<slug>:<id>": {t, o, ctx, czh, zh, n, a, u, d}}}
+   id = "u" + a few base-36 characters; t = the text as selected; ctx = the article sentence it came from, o = where t starts in ctx;
+   czh = the sentence's Chinese; zh = the meaning the learner wrote; n = an optional note; a = added, u = last edited (ms);
+   d = deleted (ms): kept as a tombstone so that a delete survives merging with an older copy from another device.
+   A word becomes an ordinary vocabulary entry (mineWord) and reviews under the SRS key "<slug>:<id>" like any other. */
+const MINE_KEY = 'wk-mine-v1';
+const MINE_RE = /^[a-z0-9][a-z0-9-]{0,79}:u[a-z0-9]{2,16}$/;
+function mineStr(x, n){ return typeof x === 'string' ? x.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, n) : ''; }
+function mineClean(d){
+  const out = {v:1, w:{}};
+  if (!d || typeof d !== 'object' || !d.w || typeof d.w !== 'object') return out;
+  Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (!MINE_RE.test(k) || !e || typeof e !== 'object') return;
+    const t = mineStr(e.t, 80).trim(), ctx = mineStr(e.ctx, 600);
+    if (!t || !ctx) return;
+    let o = Math.floor(srsNum(e.o));
+    if (ctx.substr(o, t.length) !== t) o = ctx.indexOf(t);
+    if (o < 0) return;
+    const x = {t:t, o:o, ctx:ctx, czh:mineStr(e.czh, 600), zh:mineStr(e.zh, 200).trim(), n:mineStr(e.n, 400).trim(), a:srsNum(e.a)};
+    if (srsNum(e.u)) x.u = srsNum(e.u);
+    if (srsNum(e.d)) x.d = srsNum(e.d);
+    out.w[k] = x;
+  });
+  return out;
+}
+/* per word the copy changed last wins (added, edited or deleted) */
+function mineMerge(a, b){
+  a = mineClean(a); b = mineClean(b);
+  const out = {v:1, w:{}};
+  function stamp(e){ return Math.max(e.a, e.u || 0, e.d || 0); }
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){ if (!out.w[k] || stamp(b.w[k]) > stamp(out.w[k])) out.w[k] = b.w[k]; });
+  return out;
+}
+function mineLoad(){ return mineClean(lsGet(MINE_KEY)); }
+function mineSave(m){ lsSet(MINE_KEY, m); }
+/* the live (not deleted) words of one article, oldest first: [[key, entry]] */
+function mineOf(slug){
+  const w = mineLoad().w;
+  return Object.keys(w).filter(function(k){ return k.split(':')[0] === slug && !w[k].d; })
+    .map(function(k){ return [k, w[k]]; }).sort(function(x, y){ return x[1].a - y[1].a; });
+}
+/* an entry -> a vocabulary word in the shape the reader, the quiz kit and the review page use */
+function mineWord(key, e){
+  const id = key.split(':')[1];
+  const before = e.ctx.slice(0, e.o), after = e.ctx.slice(e.o + e.t.length);
+  const lower = e.t.toLowerCase();
+  return {id:id, mine:true, expr:e.t, zh:e.zh || '（还没写中文意思）', core:e.t, forms:lower === e.t ? [e.t] : [e.t, lower], syn:[], m:[e.t],
+    note:e.n, ctx:e.ctx, ex:[{en:before + '[[' + e.t + ']]' + after, zh:e.czh || ''}],
+    cloze:{before:before, ans:e.t, after:after, hint:e.zh || '', szh:e.czh || ''}};
+}
+function mineAdd(slug, x){
+  const m = mineLoad();
+  let key;
+  do { key = slug + ':u' + Date.now().toString(36).slice(-6) + Math.random().toString(36).slice(2, 4); } while (m.w[key]);
+  m.w[key] = {t:x.t, o:x.o, ctx:x.ctx, czh:x.czh || '', zh:x.zh || '', n:x.n || '', a:Date.now()};
+  mineSave(m);
+  return key;
+}
+function mineEdit(key, patch){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  if (typeof patch.zh === 'string') e.zh = patch.zh.trim().slice(0, 200);
+  if (typeof patch.n === 'string') e.n = patch.n.trim().slice(0, 400);
+  e.u = Date.now();
+  mineSave(m);
+}
+function mineDel(key){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  e.d = Date.now();
+  mineSave(m);
+}
+
 /* ---------- learners: who is studying on this browser (inlined by tools/build.py; needs common.js and srs.js) ----------
    The site is static and has no server, so there are no passwords: a learner is a name that keeps its progress apart from other learners'
    (every localStorage key of a learner is "<key>@<id>", see common.js). The list of learners is stored under WHO_KEY:
@@ -590,7 +692,7 @@ function srsStageText(e, now){
    Progress moves between devices as a "progress code" ("WK1." + base64 of a JSON bundle) or as the same JSON in a file. Importing MERGES
    (the newer answer per word wins); it never overwrites. Merge and parse are pure-ish and covered by tools/tests/who.test.js.
    If a new kind of progress is stored in localStorage, it must be a key starting with wk- or fk-; it is then exported, imported and deleted
-   with the learner. Anything that is not the SRS key or a UI-preference key is treated as one article's state (see stateClean). */
+   with the learner. Anything that is not the SRS key, MINE_KEY (words the learner added) or a UI-preference key is treated as one article's state (see stateClean). */
 
 /* one article's progress: {v:1, vocab:{id:{s,d,m}}, ans:{key:text}, quiz:{score,total,d,k}|null} */
 function stateClean(d){
@@ -773,6 +875,7 @@ const Who = (function(){
       const cur = readKey(k, id);
       let next;
       if (k === SRS_KEY){ next = srsMerge(cur, data[k]); out.words = Object.keys(srsClean(data[k]).w).length; }
+      else if (k === MINE_KEY) next = mineMerge(cur, data[k]);
       else if (UI_KEYS.indexOf(k) >= 0) next = Object.assign(uiClean(data[k]), uiClean(cur));
       else { next = stateMerge(cur, data[k]); out.articles++; }
       try { localStorage.setItem(k + '@' + id, JSON.stringify(next)); } catch(e){}
@@ -791,7 +894,7 @@ const Who = (function(){
     let last = 0, mastered = 0;
     Object.keys(s.w).forEach(function(k){ if (s.w[k].l > last) last = s.w[k].l; });
     keysOf(id).forEach(function(k){
-      if (k === SRS_KEY || UI_KEYS.indexOf(k) >= 0) return;
+      if (k === SRS_KEY || k === MINE_KEY || UI_KEYS.indexOf(k) >= 0) return;
       const st = stateClean(readKey(k, id));
       Object.keys(st.vocab).forEach(function(v){ if (st.vocab[v].s === 'mastered') mastered++; });
     });
@@ -1671,11 +1774,22 @@ const S = DATA.sents;
 const VMAP = {};
 DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
 DATA.cloze.forEach(function(c){ VMAP[c.id].cloze = {before:c.before, ans:c.ans, after:c.after, hint:c.hint, szh:c.szh}; });
-const TERM_MAP = {};
-const TERMS = [];
-DATA.vocab.forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; TERMS.push(t); }); });
-TERMS.sort(function(a,b){ return b.length - a.length; });
-const TERM_RE = termRe(TERMS, 'gi');
+const OWN_N = DATA.vocab.length;            /* the article's own words; the learner's words (mine) come after them */
+/* words the learner marked in this article themself (select text -> 加入生词); see "my words" in srs.js */
+function loadMine(){
+  DATA.vocab.splice(OWN_N).forEach(function(v){ delete VMAP[v.id]; });
+  mineOf(SLUG).forEach(function(p){ const v = mineWord(p[0], p[1]); v.key = p[0]; DATA.vocab.push(v); VMAP[v.id] = v; });
+}
+loadMine();
+let TERM_MAP = {}, TERMS = [], TERM_RE = null;
+function buildTerms(){
+  TERM_MAP = {}; TERMS = [];
+  /* the article's own words win a clash (a learner's word that is the same text as one of them adds nothing to highlight) */
+  DATA.vocab.slice().reverse().forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; if (TERMS.indexOf(t) < 0) TERMS.push(t); }); });
+  TERMS.sort(function(a,b){ return b.length - a.length; });
+  TERM_RE = termRe(TERMS, 'gi');
+}
+buildTerms();
 const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
 const TABS = ['read','listen','words','quiz','think'];
 const LS_STATE = 'fk-state-v1';
@@ -1786,7 +1900,7 @@ function marked(text, opt){
     const id = TERM_MAP[m[0].toLowerCase()];
     if (opt.only && opt.only !== id) continue;
     if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
-    out.push(h('mark', {class:'vw', 'data-v':id, title:VMAP[id].zh}, m[0]));
+    out.push(h('mark', {class:'vw' + (VMAP[id].mine ? ' uw' : ''), 'data-v':id, title:VMAP[id].zh}, m[0]));
     last = m.index + m[0].length;
   }
   if (last < text.length) out.push(document.createTextNode(text.slice(last)));
@@ -1826,7 +1940,7 @@ for (let p = 1; p <= 6; p++) BLOCKS.push({type:'p', idx:S.filter(function(s){ re
 
 function sentSpan(s){
   const sp = h('span', {class:'sent' + (active === s.i ? ' on' : ''), 'data-i':s.i, tabindex:0, role:'button', 'aria-expanded':String(active === s.i)}, marked(s.en));
-  sp.addEventListener('click', function(){ toggleSentence(s.i); });
+  sp.addEventListener('click', function(){ if (selText()) return; toggleSentence(s.i); });
   sp.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleSentence(s.i); } });
   return sp;
 }
@@ -1989,17 +2103,23 @@ function wordCard(v){
     if (vFilter !== 'all') renderWords();
   });
   return h('article', {class:'word', 'data-id':v.id},
-    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.kind === 'grammar' ? h('span', {class:'w-tag'}, '语法') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null), speakBtn('w' + v.id, v.core)), seg),
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.kind === 'grammar' ? h('span', {class:'w-tag'}, '语法') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null, v.mine ? h('span', {class:'w-tag uw-tag'}, '我加的') : null), speakBtn('w' + v.id, v.core)), seg),
     v.rom ? h('p', {class:'rom w-rom'}, v.rom) : null,
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
-    v.ex && v.ex.length ? h('p', {class:'w-exh'}, '例句') : null,
-    v.ex && v.ex.length ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+    v.ex && v.ex.length && !v.mine ? h('p', {class:'w-exh'}, '例句') : null,
+    v.ex && v.ex.length && !v.mine ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
       return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
     })) : null,
     h('label', {class:'w-mine'}, h('span', null, '我的造句'), ta),
-    meta
+    meta,
+    v.mine ? h('div', {class:'row'},
+      h('button', {type:'button', class:'btn sm', onclick:function(){ openAddSheet({edit:v}); }}, '修改意思'),
+      h('button', {type:'button', class:'btn sm', onclick:function(){
+        if (!confirm('把“' + v.expr + '”从生词里删掉？它的复习记录也会一起移出。')) return;
+        mineDel(v.key); srsForget(v.key); refreshMine(); toast('已删除“' + v.expr + '”');
+      }}, '删除这个生词')) : null
   );
 }
 function renderWords(){
@@ -2205,6 +2325,102 @@ function renderThink(){
     h('ul', {class:'note-list'}, bd.points.map(function(t){ return h('li', null, t); })),
     h('div', {class:'row'}, h('button', {type:'button', class:'btn sm', onclick:function(){ openSentence(bd.i); try { location.hash = 'read'; } catch(e){} }}, '在文中查看这一句'))
   ));
+}
+
+/* ---------- add a word yourself: select text in the article -> 加入生词 ---------- */
+function selText(){ try { const s = window.getSelection(); return s && !s.isCollapsed ? s.toString().trim() : ''; } catch(e){ return ''; } }
+/* the current selection as {i: sentence index, t: text, o: offset in the sentence} or null (it must lie inside one sentence) */
+function selInfo(){
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) return null;
+  const r = sel.getRangeAt(0);
+  function sentOf(n){ const el = n && (n.nodeType === 1 ? n : n.parentNode); return el && el.closest ? el.closest('#article .sent') : null; }
+  const a = sentOf(r.startContainer), b = sentOf(r.endContainer);
+  if (!a || a !== b) return null;
+  const pre = document.createRange();
+  pre.selectNodeContents(a); pre.setEnd(r.startContainer, r.startOffset);
+  const i = Number(a.dataset.i), en = S[i].en;
+  let o = pre.toString().length, t = r.toString();
+  /* drop spaces and punctuation at both ends: "elves," -> "elves" */
+  const lead = t.match(new RegExp('^[^' + LETTERS + '0-9]*', 'i'))[0].length;
+  o += lead; t = t.slice(lead);
+  t = t.replace(new RegExp('[^' + LETTERS + '0-9]+$', 'i'), '');
+  if (!t || t.length > 80 || en.substr(o, t.length) !== t) return null;
+  return {i:i, t:t, o:o};
+}
+let addBtn = null, selTimer = 0;
+function hideAddBtn(){ if (addBtn) addBtn.hidden = true; }
+function placeAddBtn(){
+  const info = cur === 'read' ? selInfo() : null;
+  if (!info){ hideAddBtn(); return; }
+  if (!addBtn){
+    addBtn = h('button', {type:'button', class:'uw-add', onmousedown:function(e){ e.preventDefault(); }, onclick:function(){
+      const x = selInfo() || addBtn._info;
+      hideAddBtn();
+      if (x) openAddSheet({add:x});
+    }}, '＋ 加入生词');
+    document.body.append(addBtn);
+  }
+  addBtn._info = info;
+  const rc = window.getSelection().getRangeAt(0).getBoundingClientRect();
+  addBtn.hidden = false;
+  const w = addBtn.offsetWidth, vw = document.documentElement.clientWidth;
+  addBtn.style.left = Math.max(8, Math.min(vw - w - 8, rc.left + rc.width / 2 - w / 2)) + 'px';
+  /* below the selection: phones show their own copy menu above it */
+  addBtn.style.top = (window.scrollY + rc.bottom + 10) + 'px';
+}
+function openAddSheet(o){
+  const edit = o.edit, x = o.add;
+  const s = edit ? null : S[x.i];
+  const term = edit ? edit.expr : x.t;
+  const old = !edit && DATA.vocab.filter(function(v){ return v.expr.toLowerCase() === term.toLowerCase() || v.m.some(function(t){ return t.toLowerCase() === term.toLowerCase(); }); })[0];
+  const zh = h('input', {type:'text', class:'search', maxlength:200, placeholder:'中文意思，比如：精灵', 'aria-label':'中文意思'});
+  const note = h('textarea', {rows:2, maxlength:400, placeholder:'笔记（可不写）：搭配、用法、想提醒自己的话', 'aria-label':'笔记'});
+  if (edit){ zh.value = edit.zh === '（还没写中文意思）' ? '' : edit.zh; note.value = edit.note || ''; }
+  const err = h('p', {class:'uw-err', 'aria-live':'polite'});
+  const ctx = edit ? edit.ctx : s.en;
+  const bg = h('div', {class:'uw-bg', onclick:function(e){ if (e.target === bg) close(); }});
+  function close(){ bg.remove(); document.removeEventListener('keydown', onKey); }
+  function onKey(e){ if (e.key === 'Escape') close(); }
+  function save(){
+    const z = zh.value.trim();
+    if (!z){ err.textContent = '写一下中文意思吧，考试时要靠它出题。'; zh.focus(); return; }
+    if (edit){ mineEdit(edit.key, {zh:z, n:note.value}); close(); refreshMine(); toast('已更新“' + term + '”'); return; }
+    mineAdd(SLUG, {t:x.t, o:x.o, ctx:s.en, czh:s.zh, zh:z, n:note.value});
+    try { window.getSelection().removeAllRanges(); } catch(e){}
+    close(); refreshMine();
+    toast('已加入生词：' + term + '。词汇表、自测和复习页都能看到它。');
+  }
+  const card = h('div', {class:'uw-sheet', role:'dialog', 'aria-modal':'true', 'aria-label':edit ? '修改生词' : '加入生词'},
+    h('p', {class:'eyebrow'}, edit ? '修改生词' : '加入生词'),
+    h('h3', {class:'uw-term'}, term),
+    h('p', {class:'uw-ctx'}, ctx.slice(0, edit ? 0 : x.o), h('b', null, edit ? '' : term), edit ? ctx : ctx.slice(x.o + term.length)),
+    old ? h('p', {class:'uw-old'}, '词汇表里已经有“' + old.expr + '”（' + old.zh + '）。还要再加一个吗？') : null,
+    h('label', {class:'uw-f'}, h('span', null, '中文意思'), zh),
+    h('label', {class:'uw-f'}, h('span', null, '笔记'), note),
+    err,
+    h('div', {class:'row'},
+      h('button', {type:'button', class:'btn pri', onclick:save}, edit ? '保存' : '加入生词'),
+      h('button', {type:'button', class:'btn', onclick:close}, '取消')));
+  zh.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); save(); } });
+  bg.append(card);
+  document.body.append(bg);
+  document.addEventListener('keydown', onKey);
+  setTimeout(function(){ zh.focus(); }, 30);
+}
+function refreshMine(){
+  loadMine();
+  buildTerms();
+  renderAll();
+  if (L.el.box) renderListenText();
+}
+let toastTimer = 0;
+function toast(msg){
+  let t = $('.uw-toast');
+  if (!t){ t = h('div', {class:'uw-toast', role:'status'}); document.body.append(t); }
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.hidden = true; }, 3200);
 }
 
 /* ---------- wiring ---------- */
@@ -2447,6 +2663,8 @@ function init(){
   ['all','new','learning','mastered'].forEach(function(f){
     chips.append(h('button', {type:'button', class:'chip', 'data-f':f, onclick:function(){ vFilter = f; renderWords(); }}, f));
   });
+  document.addEventListener('selectionchange', function(){ clearTimeout(selTimer); selTimer = setTimeout(placeAddBtn, 180); });
+  window.addEventListener('resize', hideAddBtn);
   $('#wordSearch').addEventListener('input', function(){ vQuery = this.value; renderWords(); });
   $$('.tab').forEach(function(b){
     b.addEventListener('click', function(){ try { location.hash = b.dataset.tab; } catch(e){} showTab(b.dataset.tab); });

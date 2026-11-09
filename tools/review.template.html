@@ -56,6 +56,7 @@
 .empty{padding:26px 0;text-align:center;color:var(--muted)}
 .danger{margin-top:28px;padding-top:14px;border-top:2px dashed var(--line);font-size:13px;color:var(--muted)}
 .err{color:var(--bad)}
+.uw-tag{display:inline-block;margin-left:6px;padding:0 8px;border-radius:999px;background:#FDE6EF;color:#C2416F;font:700 11px/1.7 var(--font-ui);vertical-align:2px}
 </style>
 </head>
 <body>
@@ -109,6 +110,12 @@ ARTS.forEach(function(a){
     const x = {key:a.slug + ':' + w[0], slug:a.slug, id:w[0], expr:w[1], zh:w[2]};
     ALL.push(x); BYKEY[x.key] = x;
   });
+  /* words the learner added in that article (see "my words" in srs.js) */
+  a.mine = mineOf(a.slug);
+  a.mine.forEach(function(p){
+    const x = {key:p[0], slug:a.slug, id:p[0].split(':')[1], expr:p[1].t, zh:p[1].zh || '（还没写中文意思）', mine:true};
+    ALL.push(x); BYKEY[x.key] = x;
+  });
 });
 const LS_UI = 'wk-review-ui-v1';
 const TABS = ['review', 'exam', 'listen', 'words'];
@@ -158,6 +165,7 @@ async function loadSlugs(slugs){
     const d = await r.json();
     const words = {};
     d.words.forEach(function(w){ words[w.id] = w; });
+    AMAP[slug].mine.forEach(function(p){ const v = mineWord(p[0], p[1]); words[v.id] = v; });
     LOADED[slug] = {words:words, clips:d.clips ? {src:'../a/' + slug + '/' + d.clips.src, t:d.clips.t} : null};
   }));
 }
@@ -465,7 +473,7 @@ function renderExam(){
   if (ui.exScope !== 'all' && !AMAP[ui.exScope]) ui.exScope = 'all';
   const sel = h('select', {class:'sel', id:'exScope', 'aria-label':'考试范围'});
   sel.append(h('option', {value:'all'}, '全部文章（' + ALL.length + ' 个词）'));
-  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + (a.w.length + a.r.length) + ' 个词）')); });
+  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + (a.w.length + a.r.length + a.mine.length) + ' 个词）')); });
   sel.value = ui.exScope;
   sel.addEventListener('change', function(){ ui.exScope = sel.value; saveUi(); renderExam(); });
   const avail = scopeKeys(ui.exScope).length;
@@ -690,7 +698,7 @@ function renderWords(){
   rows.slice(0, wLimit).forEach(function(w){
     const e = s.w[w.key];
     list.append(h('a', {class:'wrow', href:'../a/' + w.slug + '/#words'},
-      h('b', null, w.expr), ' ', h('span', {class:'z'}, w.zh),
+      h('b', null, w.expr), ' ', h('span', {class:'z'}, w.zh), w.mine ? h('span', {class:'uw-tag'}, '我加的') : null,
       h('div', {class:'m'}, h('span', null, dateLabel(AMAP[w.slug].date) + ' · ' + AMAP[w.slug].short),
         h('span', {class:'d' + (e && !e.m && e.t <= t ? ' due' : '')}, e ? srsStageText(e, t) : '未开始'),
         e && e.m ? h('button', {type:'button', class:'btn sm', onclick:function(ev){ ev.preventDefault(); srsRetire(w.key, false); renderWords(); }}, '放回复习') : null)));

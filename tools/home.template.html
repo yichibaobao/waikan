@@ -201,7 +201,7 @@ function progRow(a){
 
 /* header stats */
 function renderStats(){
-  const vocab = A.reduce(function(n, a){ return n + a.fresh; }, 0);
+  const vocab = A.reduce(function(n, a){ return n + a.fresh + mineOf(a.slug).length; }, 0);
   const mastered = A.reduce(function(n, a){ return n + a.m; }, 0);
   const box = $('#stats');
   [['文章', A.length + ' 篇', '📚'], ['累计生词', String(vocab), '✏️'], ['我已掌握', String(mastered), '⭐']].forEach(function(p){
@@ -213,7 +213,7 @@ function renderStats(){
 function renderReview(){
   const box = $('#rvBox');
   box.replaceChildren();
-  const total = A.reduce(function(n, a){ return n + a.fresh; }, 0);
+  const total = A.reduce(function(n, a){ return n + a.fresh + mineOf(a.slug).length; }, 0);   /* + words the learner added */
   if (!total) return;
   const known = {};
   A.forEach(function(a){ known[a.slug] = true; });

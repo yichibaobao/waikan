@@ -122,6 +122,13 @@ function srsRetire(key, on, now){
   srsSave(s);
   return e;
 }
+/* drop a word from the plan altogether (a word the learner added and then deleted) */
+function srsForget(key){
+  const s = srsLoad();
+  if (!s.w[key]) return;
+  delete s.w[key];
+  srsSave(s);
+}
 function srsAddExam(rec){
   const s = srsLoad();
   s.ex.push(rec);
@@ -156,4 +163,80 @@ function srsStageText(e, now){
   if (!e) return '未开始';
   if (e.m) return '已完全掌握，不再出现';
   return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
+}
+
+/* ---------- my words: expressions the learner marked in an article themself (select text → 加入生词) ----------
+   MINE_KEY (per learner): {v:1, w:{"<slug>:<id>": {t, o, ctx, czh, zh, n, a, u, d}}}
+   id = "u" + a few base-36 characters; t = the text as selected; ctx = the article sentence it came from, o = where t starts in ctx;
+   czh = the sentence's Chinese; zh = the meaning the learner wrote; n = an optional note; a = added, u = last edited (ms);
+   d = deleted (ms): kept as a tombstone so that a delete survives merging with an older copy from another device.
+   A word becomes an ordinary vocabulary entry (mineWord) and reviews under the SRS key "<slug>:<id>" like any other. */
+const MINE_KEY = 'wk-mine-v1';
+const MINE_RE = /^[a-z0-9][a-z0-9-]{0,79}:u[a-z0-9]{2,16}$/;
+function mineStr(x, n){ return typeof x === 'string' ? x.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, n) : ''; }
+function mineClean(d){
+  const out = {v:1, w:{}};
+  if (!d || typeof d !== 'object' || !d.w || typeof d.w !== 'object') return out;
+  Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (!MINE_RE.test(k) || !e || typeof e !== 'object') return;
+    const t = mineStr(e.t, 80).trim(), ctx = mineStr(e.ctx, 600);
+    if (!t || !ctx) return;
+    let o = Math.floor(srsNum(e.o));
+    if (ctx.substr(o, t.length) !== t) o = ctx.indexOf(t);
+    if (o < 0) return;
+    const x = {t:t, o:o, ctx:ctx, czh:mineStr(e.czh, 600), zh:mineStr(e.zh, 200).trim(), n:mineStr(e.n, 400).trim(), a:srsNum(e.a)};
+    if (srsNum(e.u)) x.u = srsNum(e.u);
+    if (srsNum(e.d)) x.d = srsNum(e.d);
+    out.w[k] = x;
+  });
+  return out;
+}
+/* per word the copy changed last wins (added, edited or deleted) */
+function mineMerge(a, b){
+  a = mineClean(a); b = mineClean(b);
+  const out = {v:1, w:{}};
+  function stamp(e){ return Math.max(e.a, e.u || 0, e.d || 0); }
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){ if (!out.w[k] || stamp(b.w[k]) > stamp(out.w[k])) out.w[k] = b.w[k]; });
+  return out;
+}
+function mineLoad(){ return mineClean(lsGet(MINE_KEY)); }
+function mineSave(m){ lsSet(MINE_KEY, m); }
+/* the live (not deleted) words of one article, oldest first: [[key, entry]] */
+function mineOf(slug){
+  const w = mineLoad().w;
+  return Object.keys(w).filter(function(k){ return k.split(':')[0] === slug && !w[k].d; })
+    .map(function(k){ return [k, w[k]]; }).sort(function(x, y){ return x[1].a - y[1].a; });
+}
+/* an entry -> a vocabulary word in the shape the reader, the quiz kit and the review page use */
+function mineWord(key, e){
+  const id = key.split(':')[1];
+  const before = e.ctx.slice(0, e.o), after = e.ctx.slice(e.o + e.t.length);
+  const lower = e.t.toLowerCase();
+  return {id:id, mine:true, expr:e.t, zh:e.zh || '（还没写中文意思）', core:e.t, forms:lower === e.t ? [e.t] : [e.t, lower], syn:[], m:[e.t],
+    note:e.n, ctx:e.ctx, ex:[{en:before + '[[' + e.t + ']]' + after, zh:e.czh || ''}],
+    cloze:{before:before, ans:e.t, after:after, hint:e.zh || '', szh:e.czh || ''}};
+}
+function mineAdd(slug, x){
+  const m = mineLoad();
+  let key;
+  do { key = slug + ':u' + Date.now().toString(36).slice(-6) + Math.random().toString(36).slice(2, 4); } while (m.w[key]);
+  m.w[key] = {t:x.t, o:x.o, ctx:x.ctx, czh:x.czh || '', zh:x.zh || '', n:x.n || '', a:Date.now()};
+  mineSave(m);
+  return key;
+}
+function mineEdit(key, patch){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  if (typeof patch.zh === 'string') e.zh = patch.zh.trim().slice(0, 200);
+  if (typeof patch.n === 'string') e.n = patch.n.trim().slice(0, 400);
+  e.u = Date.now();
+  mineSave(m);
+}
+function mineDel(key){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  e.d = Date.now();
+  mineSave(m);
 }

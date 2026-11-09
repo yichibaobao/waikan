@@ -253,6 +253,7 @@ html[data-lang="ja"] .ex-en{font-size:16.5px}
 .empty{padding:26px 0;text-align:center;color:var(--muted)}
 .danger{margin-top:28px;padding-top:14px;border-top:2px dashed var(--line);font-size:13px;color:var(--muted)}
 .err{color:var(--bad)}
+.uw-tag{display:inline-block;margin-left:6px;padding:0 8px;border-radius:999px;background:#FDE6EF;color:#C2416F;font:700 11px/1.7 var(--font-ui);vertical-align:2px}
 </style>
 </head>
 <body>
@@ -476,6 +477,13 @@ function srsRetire(key, on, now){
   srsSave(s);
   return e;
 }
+/* drop a word from the plan altogether (a word the learner added and then deleted) */
+function srsForget(key){
+  const s = srsLoad();
+  if (!s.w[key]) return;
+  delete s.w[key];
+  srsSave(s);
+}
 function srsAddExam(rec){
   const s = srsLoad();
   s.ex.push(rec);
@@ -512,6 +520,82 @@ function srsStageText(e, now){
   return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
 }
 
+/* ---------- my words: expressions the learner marked in an article themself (select text → 加入生词) ----------
+   MINE_KEY (per learner): {v:1, w:{"<slug>:<id>": {t, o, ctx, czh, zh, n, a, u, d}}}
+   id = "u" + a few base-36 characters; t = the text as selected; ctx = the article sentence it came from, o = where t starts in ctx;
+   czh = the sentence's Chinese; zh = the meaning the learner wrote; n = an optional note; a = added, u = last edited (ms);
+   d = deleted (ms): kept as a tombstone so that a delete survives merging with an older copy from another device.
+   A word becomes an ordinary vocabulary entry (mineWord) and reviews under the SRS key "<slug>:<id>" like any other. */
+const MINE_KEY = 'wk-mine-v1';
+const MINE_RE = /^[a-z0-9][a-z0-9-]{0,79}:u[a-z0-9]{2,16}$/;
+function mineStr(x, n){ return typeof x === 'string' ? x.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, n) : ''; }
+function mineClean(d){
+  const out = {v:1, w:{}};
+  if (!d || typeof d !== 'object' || !d.w || typeof d.w !== 'object') return out;
+  Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (!MINE_RE.test(k) || !e || typeof e !== 'object') return;
+    const t = mineStr(e.t, 80).trim(), ctx = mineStr(e.ctx, 600);
+    if (!t || !ctx) return;
+    let o = Math.floor(srsNum(e.o));
+    if (ctx.substr(o, t.length) !== t) o = ctx.indexOf(t);
+    if (o < 0) return;
+    const x = {t:t, o:o, ctx:ctx, czh:mineStr(e.czh, 600), zh:mineStr(e.zh, 200).trim(), n:mineStr(e.n, 400).trim(), a:srsNum(e.a)};
+    if (srsNum(e.u)) x.u = srsNum(e.u);
+    if (srsNum(e.d)) x.d = srsNum(e.d);
+    out.w[k] = x;
+  });
+  return out;
+}
+/* per word the copy changed last wins (added, edited or deleted) */
+function mineMerge(a, b){
+  a = mineClean(a); b = mineClean(b);
+  const out = {v:1, w:{}};
+  function stamp(e){ return Math.max(e.a, e.u || 0, e.d || 0); }
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){ if (!out.w[k] || stamp(b.w[k]) > stamp(out.w[k])) out.w[k] = b.w[k]; });
+  return out;
+}
+function mineLoad(){ return mineClean(lsGet(MINE_KEY)); }
+function mineSave(m){ lsSet(MINE_KEY, m); }
+/* the live (not deleted) words of one article, oldest first: [[key, entry]] */
+function mineOf(slug){
+  const w = mineLoad().w;
+  return Object.keys(w).filter(function(k){ return k.split(':')[0] === slug && !w[k].d; })
+    .map(function(k){ return [k, w[k]]; }).sort(function(x, y){ return x[1].a - y[1].a; });
+}
+/* an entry -> a vocabulary word in the shape the reader, the quiz kit and the review page use */
+function mineWord(key, e){
+  const id = key.split(':')[1];
+  const before = e.ctx.slice(0, e.o), after = e.ctx.slice(e.o + e.t.length);
+  const lower = e.t.toLowerCase();
+  return {id:id, mine:true, expr:e.t, zh:e.zh || '（还没写中文意思）', core:e.t, forms:lower === e.t ? [e.t] : [e.t, lower], syn:[], m:[e.t],
+    note:e.n, ctx:e.ctx, ex:[{en:before + '[[' + e.t + ']]' + after, zh:e.czh || ''}],
+    cloze:{before:before, ans:e.t, after:after, hint:e.zh || '', szh:e.czh || ''}};
+}
+function mineAdd(slug, x){
+  const m = mineLoad();
+  let key;
+  do { key = slug + ':u' + Date.now().toString(36).slice(-6) + Math.random().toString(36).slice(2, 4); } while (m.w[key]);
+  m.w[key] = {t:x.t, o:x.o, ctx:x.ctx, czh:x.czh || '', zh:x.zh || '', n:x.n || '', a:Date.now()};
+  mineSave(m);
+  return key;
+}
+function mineEdit(key, patch){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  if (typeof patch.zh === 'string') e.zh = patch.zh.trim().slice(0, 200);
+  if (typeof patch.n === 'string') e.n = patch.n.trim().slice(0, 400);
+  e.u = Date.now();
+  mineSave(m);
+}
+function mineDel(key){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  e.d = Date.now();
+  mineSave(m);
+}
+
 /* ---------- learners: who is studying on this browser (inlined by tools/build.py; needs common.js and srs.js) ----------
    The site is static and has no server, so there are no passwords: a learner is a name that keeps its progress apart from other learners'
    (every localStorage key of a learner is "<key>@<id>", see common.js). The list of learners is stored under WHO_KEY:
@@ -520,7 +604,7 @@ function srsStageText(e, now){
    Progress moves between devices as a "progress code" ("WK1." + base64 of a JSON bundle) or as the same JSON in a file. Importing MERGES
    (the newer answer per word wins); it never overwrites. Merge and parse are pure-ish and covered by tools/tests/who.test.js.
    If a new kind of progress is stored in localStorage, it must be a key starting with wk- or fk-; it is then exported, imported and deleted
-   with the learner. Anything that is not the SRS key or a UI-preference key is treated as one article's state (see stateClean). */
+   with the learner. Anything that is not the SRS key, MINE_KEY (words the learner added) or a UI-preference key is treated as one article's state (see stateClean). */
 
 /* one article's progress: {v:1, vocab:{id:{s,d,m}}, ans:{key:text}, quiz:{score,total,d,k}|null} */
 function stateClean(d){
@@ -703,6 +787,7 @@ const Who = (function(){
       const cur = readKey(k, id);
       let next;
       if (k === SRS_KEY){ next = srsMerge(cur, data[k]); out.words = Object.keys(srsClean(data[k]).w).length; }
+      else if (k === MINE_KEY) next = mineMerge(cur, data[k]);
       else if (UI_KEYS.indexOf(k) >= 0) next = Object.assign(uiClean(data[k]), uiClean(cur));
       else { next = stateMerge(cur, data[k]); out.articles++; }
       try { localStorage.setItem(k + '@' + id, JSON.stringify(next)); } catch(e){}
@@ -721,7 +806,7 @@ const Who = (function(){
     let last = 0, mastered = 0;
     Object.keys(s.w).forEach(function(k){ if (s.w[k].l > last) last = s.w[k].l; });
     keysOf(id).forEach(function(k){
-      if (k === SRS_KEY || UI_KEYS.indexOf(k) >= 0) return;
+      if (k === SRS_KEY || k === MINE_KEY || UI_KEYS.indexOf(k) >= 0) return;
       const st = stateClean(readKey(k, id));
       Object.keys(st.vocab).forEach(function(v){ if (st.vocab[v].s === 'mastered') mastered++; });
     });
@@ -1603,6 +1688,12 @@ ARTS.forEach(function(a){
     const x = {key:a.slug + ':' + w[0], slug:a.slug, id:w[0], expr:w[1], zh:w[2]};
     ALL.push(x); BYKEY[x.key] = x;
   });
+  /* words the learner added in that article (see "my words" in srs.js) */
+  a.mine = mineOf(a.slug);
+  a.mine.forEach(function(p){
+    const x = {key:p[0], slug:a.slug, id:p[0].split(':')[1], expr:p[1].t, zh:p[1].zh || '（还没写中文意思）', mine:true};
+    ALL.push(x); BYKEY[x.key] = x;
+  });
 });
 const LS_UI = 'wk-review-ui-v1';
 const TABS = ['review', 'exam', 'listen', 'words'];
@@ -1652,6 +1743,7 @@ async function loadSlugs(slugs){
     const d = await r.json();
     const words = {};
     d.words.forEach(function(w){ words[w.id] = w; });
+    AMAP[slug].mine.forEach(function(p){ const v = mineWord(p[0], p[1]); words[v.id] = v; });
     LOADED[slug] = {words:words, clips:d.clips ? {src:'../a/' + slug + '/' + d.clips.src, t:d.clips.t} : null};
   }));
 }
@@ -1959,7 +2051,7 @@ function renderExam(){
   if (ui.exScope !== 'all' && !AMAP[ui.exScope]) ui.exScope = 'all';
   const sel = h('select', {class:'sel', id:'exScope', 'aria-label':'考试范围'});
   sel.append(h('option', {value:'all'}, '全部文章（' + ALL.length + ' 个词）'));
-  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + (a.w.length + a.r.length) + ' 个词）')); });
+  ARTS.forEach(function(a){ sel.append(h('option', {value:a.slug}, dateLabel(a.date) + ' · ' + a.short + '（' + (a.w.length + a.r.length + a.mine.length) + ' 个词）')); });
   sel.value = ui.exScope;
   sel.addEventListener('change', function(){ ui.exScope = sel.value; saveUi(); renderExam(); });
   const avail = scopeKeys(ui.exScope).length;
@@ -2184,7 +2276,7 @@ function renderWords(){
   rows.slice(0, wLimit).forEach(function(w){
     const e = s.w[w.key];
     list.append(h('a', {class:'wrow', href:'../a/' + w.slug + '/#words'},
-      h('b', null, w.expr), ' ', h('span', {class:'z'}, w.zh),
+      h('b', null, w.expr), ' ', h('span', {class:'z'}, w.zh), w.mine ? h('span', {class:'uw-tag'}, '我加的') : null,
       h('div', {class:'m'}, h('span', null, dateLabel(AMAP[w.slug].date) + ' · ' + AMAP[w.slug].short),
         h('span', {class:'d' + (e && !e.m && e.t <= t ? ' due' : '')}, e ? srsStageText(e, t) : '未开始'),
         e && e.m ? h('button', {type:'button', class:'btn sm', onclick:function(ev){ ev.preventDefault(); srsRetire(w.key, false); renderWords(); }}, '放回复习') : null)));

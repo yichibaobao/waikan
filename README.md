@@ -105,6 +105,16 @@ do not (they are not words). The results are stored in `wk-srs-v1` as `ex[]` rec
 `a/<slug>/listen.json` is built from `audio.json` (the sentence timings) and `article.json`; the page loads it lazily, like `words.json`.
 `tools/tests/srs.test.js` pins the rules; change them there and in `tools/shared/srs.js` together.
 
+## Words the learner adds (选中 → 加入生词)
+
+On an article's 精读 tab, selecting a word or phrase inside one sentence shows a "＋ 加入生词" button. The learner writes the Chinese
+meaning (and an optional note); the word is then highlighted in pink, listed in 词汇 with a 我加的 tag (修改意思 / 删除这个生词),
+and asked in the self-test, the review plan and the exam like any other word (the article sentence serves as its cloze and example;
+dictation uses the browser's own voice). Nothing goes to the repository: the words live in the learner's localStorage under
+`wk-mine-v1` (see "my words" in `tools/shared/srs.js`) and travel with the progress code; importing merges them, and a delete
+is kept as a tombstone so it survives the merge. To turn such a word into a proper entry with examples and audio, add it to the
+article's `article.json` as usual.
+
 ## Learners and progress backup
 
 There is no server, so there are no passwords. Every page starts with `Who.boot()` (`tools/shared/who.js`): if nobody has been chosen on this browser yet,
