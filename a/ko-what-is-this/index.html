@@ -1,0 +1,2698 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>第 3 课 · 이거 뭐예요? · 韩语入门</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: one 720px reading column under a sticky masthead; four tabs (read, words, quiz, think) share it. */
+:root{
+  --bg:#FFF8F1; --surface:#FFFFFF; --surface-2:#FBEFE4; --fg:#3B2F2A; --muted:#8C7B71; --line:#F2E3D6;
+  --accent:#3F86D6; --accent-soft:#E4F0FC; --accent-2:#FFD27A; --on-accent:#FFFFFF;
+  --koban:var(--accent); --lamp-halo:var(--accent-soft); --mark:#FFE6A6;
+  --good:#3E9E6B; --good-soft:#E1F5EA; --warn:#B7791F; --warn-soft:#FFF0D6; --bad:#D14B4B; --bad-soft:#FDE4E1;
+  --font-read:'Literata','Iowan Old Style',Georgia,'Songti SC','Noto Serif CJK SC',serif;
+  --font-ui:ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  --font-mono:ui-rounded,'SF Pro Rounded',ui-monospace,Menlo,Consolas,monospace;
+  --radius:20px; --shadow:0 8px 24px -12px rgba(122,84,58,.28);
+}
+/* each section has its own candy colour, as on the home pages */
+html[data-lang="ko"]{--accent:#E8618F; --accent-soft:#FDE6EF}
+html[data-lang="ja"]{--accent:#3F9E6C; --accent-soft:#DFF3E7}
+html[data-lang="yue"]{--accent:#D9693A; --accent-soft:#FCE9DE}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font:16px/1.6 var(--font-ui);background:var(--bg);color:var(--fg)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.in{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* masthead */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 6px 18px -14px rgba(122,84,58,.5)}
+.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 6px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;font:800 18px/1.2 var(--font-ui)}
+.b-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.back{flex:none;padding:5px 12px;border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow);font:700 12.5px/1.2 var(--font-ui);color:var(--muted);text-decoration:none;letter-spacing:0}
+.back:hover{color:var(--fg);background:var(--surface-2)}
+.tabs{display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
+.tab{appearance:none;position:relative;background:none;border:0;padding:9px 4px 12px;font:700 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
+.tab:hover{color:var(--fg)}
+.tab.on{color:var(--accent)}
+.tab.on::after{content:"";position:absolute;left:50%;bottom:4px;width:22px;height:4px;margin-left:-11px;border-radius:999px;background:var(--accent)}
+
+main{padding-block:22px 56px}
+.view[hidden]{display:none}
+
+/* shared */
+.eyebrow{font:700 12px/1.2 var(--font-ui);letter-spacing:.08em;color:var(--accent)}
+.h2{margin:0 0 6px;font:800 22px/1.3 var(--font-ui);text-wrap:balance}
+.h3{margin:20px 0 8px;font:800 16px/1.4 var(--font-ui)}
+.lead{margin:0 0 14px;color:var(--muted);font-size:15px}
+.meta{margin:0;font-size:12.5px;line-height:1.5;color:var(--muted)}
+.mono{font-family:var(--font-mono);font-size:12.5px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.card{background:var(--surface);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.btn{appearance:none;padding:9px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font:700 14px/1.2 var(--font-ui);cursor:pointer}
+.btn:hover{background:var(--surface-2)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent);box-shadow:0 6px 14px -8px var(--accent)}
+.btn.pri:hover{filter:brightness(1.06)}
+.btn.sm{padding:6px 12px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:default}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{appearance:none;padding:6px 13px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font:600 13px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.chip:disabled{opacity:.45;cursor:default}
+.seg{display:inline-flex;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.seg-b{appearance:none;padding:6px 11px;border:0;border-right:2px solid var(--line);background:none;font:600 12.5px/1.2 var(--font-ui);color:var(--muted);cursor:pointer}
+.seg-b:last-child{border-right:0}
+.seg-b.on.s-new{background:var(--surface-2);color:var(--fg)}
+.seg-b.on.s-learning{background:var(--warn-soft);color:var(--warn)}
+.seg-b.on.s-mastered{background:var(--good-soft);color:var(--good)}
+textarea{display:block;width:100%;min-height:58px;padding:10px 13px;border:2px solid var(--line);border-radius:16px;background:var(--bg);font-size:16px;line-height:1.55;resize:vertical}
+textarea:focus{border-color:var(--accent);outline:0}
+mark.vw{background:var(--mark);color:inherit;border-radius:5px;padding:0 2px}
+
+/* word context line and speaker button (used by the word cards and by the quiz feedback) */
+.w-ctx{margin:0;font:italic 400 14.5px/1.65 var(--font-read);color:var(--muted)}
+.spk{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:var(--accent-soft);color:var(--accent);cursor:pointer}
+.spk:hover{filter:brightness(.96)}
+.spk.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.spk svg{display:block}
+
+/* quiz */
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.pbar{flex:1;max-width:240px;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.pbar i{display:block;height:100%;width:var(--p,0%);border-radius:999px;background:var(--accent)}
+.q-sent{margin:16px 0 8px;font:400 20px/2.1 var(--font-read);overflow-wrap:anywhere}
+.q-input{display:inline-block;max-width:100%;padding:3px 10px;border:0;border-bottom:3px solid var(--accent);border-radius:10px 10px 4px 4px;background:var(--accent-soft);font:600 18px/1.4 var(--font-mono);text-align:center}
+.q-input.ok{border-bottom-color:var(--good);background:var(--good-soft)}
+.q-input.bad{border-bottom-color:var(--bad);background:var(--bad-soft)}
+.q-hint{margin:0;font-size:14px;color:var(--muted)}
+.q-zh{margin:18px 0 6px;font:500 21px/1.6 var(--font-ui);overflow-wrap:anywhere}
+.q-line{margin:10px 0 8px}
+.q-input.q-wide{display:block;width:100%;box-sizing:border-box;padding:8px 10px;font-size:18px;text-align:left}
+.q-area{margin:8px 0 4px;font:400 17px/1.6 var(--font-read)}
+.q-tgt{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.q-tgt b{padding:1px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:600 15px/1.5 var(--font-read)}
+.miss-s b,.fb b.hl{font-weight:600;background:var(--mark);border-radius:2px;padding:0 1px}
+.fb{margin-top:16px;padding:14px 16px;border-radius:16px;background:var(--surface-2)}
+.fb.ok{background:var(--good-soft)}
+.fb.bad{background:var(--bad-soft)}
+.fb p{margin:0 0 6px;font-size:14.5px}
+.fb .fb-t{font-weight:600}
+.fb.ok .fb-t{color:var(--good)}
+.fb.bad .fb-t{color:var(--bad)}
+.fb-s{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.score{margin:0 0 12px;font:400 18px/1.2 var(--font-mono);color:var(--muted)}
+.score .big{font-size:48px;font-weight:800;color:var(--accent)}
+.miss{padding:10px 0;border-top:2px dashed var(--line)}
+.miss-s{margin:0 0 4px;font:400 17px/1.7 var(--font-read)}
+
+.mt4{margin-top:4px}
+.mt10{margin-top:10px}
+.mt12{margin-top:12px}
+.mb12{margin-bottom:12px}
+.mb14{margin-bottom:14px}
+.mb16{margin-bottom:16px}
+.foot{margin-top:40px;padding:14px 18px;border-radius:var(--radius);background:var(--surface-2);font-size:12.5px;line-height:1.7;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* quiz kit: multiple choice, dictation, feedback pieces */
+.q-ask{margin:14px 0 0;font-size:14px;color:var(--muted)}
+.q-big{margin:6px 0 0;font:600 26px/1.35 var(--font-read);overflow-wrap:anywhere}
+.q-big .spk{vertical-align:middle;margin-left:6px}
+.q-ctx{margin:8px 0 0;font:italic 400 15.5px/1.7 var(--font-read);color:var(--muted)}
+.mc{display:grid;gap:8px;margin:16px 0 4px}
+.mc-b{appearance:none;display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:var(--surface);text-align:left;font:400 16px/1.5 var(--font-ui);color:var(--fg);cursor:pointer}
+.mc-b:hover:not(:disabled){background:var(--surface-2)}
+.mc-b .n{flex:none;width:22px;height:22px;margin-top:1px;border:0;border-radius:50%;background:var(--surface-2);font:700 12px/22px var(--font-mono);text-align:center;color:var(--muted)}
+.mc-b.ok{border-color:var(--good);background:var(--good-soft)}
+.mc-b.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mc-b:disabled{cursor:default;opacity:1;color:var(--fg)}
+.dict-btns{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px}
+.btn.play{display:inline-flex;align-items:center;gap:7px}
+.btn.play svg{display:block}
+.btn.play.on{box-shadow:0 0 0 2px var(--accent-soft)}
+.df{margin:0 0 8px;font:400 16.5px/1.7 var(--font-read)}
+.df-l{display:block;font:500 12px/1.5 var(--font-ui);color:var(--muted)}
+.miss-t{color:var(--bad);text-decoration:underline wavy;text-decoration-thickness:1px;text-underline-offset:3px}
+.fb-x:empty{display:none}
+.w-note{margin:0 0 6px;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.q-nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px}
+.q-nav[hidden],.q-past > .row{display:none}
+/* Korean lessons: bigger text for a beginner, and no italics (Hangul has none) */
+html[data-lang="ko"] .a-para{font-size:22px;line-height:1.9}
+html[data-lang="ko"] .a-deck{font-size:19px;font-style:normal}
+html[data-lang="ko"] .w-ctx,html[data-lang="ko"] .q-ctx{font-style:normal}
+html[data-lang="ko"] .ex-en{font-size:17px}
+html[data-lang="ko"] .q-sent{font-size:22px}
+html[data-lang="ko"]{--font-read:"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif}
+/* Japanese lessons */
+html[data-lang="ja"]{--font-read:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif}
+html[data-lang="ja"] .a-para{font-size:20px;line-height:1.95}
+html[data-lang="ja"] .a-deck{font-size:18px;font-style:normal}
+html[data-lang="ja"] .w-ctx,html[data-lang="ja"] .q-ctx{font-style:normal}
+html[data-lang="ja"] .ex-en{font-size:16.5px}
+html[data-lang="yue"]{--font-read:"PingFang HK","PingFang TC","Noto Sans HK","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif}
+html[data-lang="yue"] .a-para{font-size:21px;line-height:1.95}
+html[data-lang="yue"] .a-deck{font-size:18px;font-style:normal}
+html[data-lang="yue"] .w-ctx,html[data-lang="yue"] .q-ctx{font-style:normal}
+html[data-lang="yue"] .ex-en{font-size:17px}
+html[data-lang="yue"] .rom{letter-spacing:.02em}
+
+/* learner picker, account chip and the backup / restore sheet (inlined by tools/build.py; self-contained, every class starts with who-) */
+.who-chip{appearance:none;display:inline-flex;align-items:center;gap:8px;flex:none;max-width:100%;padding:3px;border:0;border-radius:999px;background:var(--surface);box-shadow:var(--shadow,none);font:600 13px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
+.who-chip.full{padding-right:12px}
+.who-chip:hover{background:var(--surface-2)}
+.who-chip.tiny{border-color:transparent;background:none}
+.who-nm{min-width:0;max-width:9em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.who-av{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font:600 14px/1 var(--font-ui)}
+.who-av.lg{width:40px;height:40px;font-size:18px}
+
+.who-ov{position:fixed;inset:0;z-index:1000;overflow:auto;-webkit-overflow-scrolling:touch;background:var(--bg);display:flex;justify-content:center;align-items:flex-start;padding:max(28px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(32px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.who-ov.sheet{background:rgba(22,32,43,.45)}
+.who-ov.sheet .who-card{margin:auto}
+.who-card{width:100%;max-width:440px;padding:22px 20px;background:var(--surface);border:0;border-radius:22px;box-shadow:var(--shadow,none)}
+.who-ov:not(.sheet) .who-card{margin-top:4vh;border:0;background:transparent;padding:8px 4px}
+.who-eb{margin:0 0 6px;font:500 12px/1.2 var(--font-ui);letter-spacing:.1em;color:var(--accent)}
+.who-h{margin:0;font:600 clamp(26px,7vw,34px)/1.2 var(--font-read);letter-spacing:-.01em}
+.who-h.sm{font-size:19px}
+.who-sub{margin:8px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
+.who-sec{margin:20px 0 8px;font:600 13px/1.3 var(--font-ui);color:var(--muted)}
+.who-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.who-p{appearance:none;display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:2px solid var(--line);border-radius:16px;background:var(--surface);text-align:left;cursor:pointer}
+.who-p:hover{background:var(--surface-2)}
+.who-pn{display:block;font:600 16px/1.3 var(--font-ui)}
+.who-pm{display:block;margin-top:2px;font-size:12.5px;line-height:1.4;color:var(--muted)}
+.who-new{display:flex;gap:8px;margin:0}
+.who-in{flex:1;min-width:0;padding:10px 14px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font:400 16px/1.3 var(--font-ui)}
+.who-in:focus{outline:2px solid var(--accent);outline-offset:1px}
+.who-ta{display:block;width:100%;min-height:96px;margin:8px 0;padding:10px 12px;border:2px solid var(--line);border-radius:16px;background:var(--surface);font:400 12.5px/1.5 var(--font-mono);resize:vertical;word-break:break-all}
+.who-btn{appearance:none;padding:10px 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font:500 14.5px/1.2 var(--font-ui);color:var(--fg);cursor:pointer}
+.who-btn:hover{background:var(--surface-2)}
+.who-btn.pri{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.who-btn.pri:hover{filter:brightness(1.06)}
+.who-btn.dng{background:var(--bad,#B3261E);border-color:var(--bad,#B3261E);color:#fff}
+.who-btn:disabled{opacity:.45;cursor:default}
+.who-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.who-link{appearance:none;display:inline-block;margin:14px 0 0;padding:6px 0;border:0;background:none;font:500 14px/1.3 var(--font-ui);color:var(--accent);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.who-msg{min-height:1.4em;margin:8px 0 0;font-size:13.5px;line-height:1.5;color:var(--muted)}
+.who-msg.err{color:var(--bad,#B3261E)}
+.who-msg.ok{color:var(--good,#27693F)}
+.who-note{margin:18px 0 0;font-size:12.5px;line-height:1.7;color:var(--muted)}
+.who-menu{display:grid;gap:8px;margin:16px 0 0}
+.who-mi{appearance:none;display:block;width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:16px;background:var(--surface);text-align:left;cursor:pointer}
+.who-mi:hover{background:var(--surface-2)}
+.who-mi b{display:block;font:600 15px/1.3 var(--font-ui)}
+.who-mi span{display:block;margin-top:2px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.who-mi.dng b{color:var(--bad,#B3261E)}
+.who-x{appearance:none;float:right;margin:-6px -6px 0 8px;width:36px;height:36px;border:0;border-radius:50%;background:none;font-size:24px;line-height:1;color:var(--muted);cursor:pointer}
+.who-x:hover{background:var(--surface-2)}
+.who-top{display:flex;align-items:center;gap:12px}
+
+</style>
+<style>
+/* reader-specific styles; the shared ones are in tools/shared/base.css */
+.lamp{flex:none;width:10px;height:10px;border-radius:50%;background:var(--koban);box-shadow:0 0 0 4px var(--lamp-halo)}
+.prog{flex:none;text-align:right}
+.prog .t{font-size:12px;line-height:1.3;color:var(--muted)}
+.prog b{font:400 13px/1.3 var(--font-mono);color:var(--fg)}
+.meter{width:112px;height:6px;margin:4px 0 3px auto;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;width:var(--p,0%);background:var(--good)}
+.prog .s{font-size:11px;min-height:14px}
+
+/* listen */
+.lp{display:grid;gap:14px}
+.lp-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn.big{min-width:96px;padding:12px 22px;font-size:16px}
+.lp-range{display:block;width:100%;margin:0;accent-color:var(--accent)}
+.lp-time{display:flex;justify-content:space-between;margin-top:2px;font:400 12.5px/1 var(--font-mono);color:var(--muted)}
+.lp-opt{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--muted);cursor:pointer}
+.lp-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.lp-msg{margin:0;font-size:13px;color:var(--bad)}
+.tr{margin-top:22px}
+.tr-off{margin-top:18px;padding:22px 16px;text-align:center;font-size:14.5px;color:var(--muted);border:2px dashed var(--line);border-radius:var(--radius)}
+.ls{cursor:pointer;border-radius:3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:140px;scroll-margin-bottom:90px}
+.ls:hover{background:var(--surface-2)}
+.ls.on{background:var(--accent-soft)}
+
+/* read */
+.opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px;font-size:14px;color:var(--muted)}
+.opts label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.opts input{accent-color:var(--accent);width:16px;height:16px;margin:0}
+.a-title{margin:0 0 12px;font:800 clamp(26px,6.4vw,34px)/1.2 var(--font-ui);text-wrap:balance}
+.a-deck{margin:0;font:italic 400 18px/1.55 var(--font-read);color:var(--muted);text-wrap:pretty}
+.a-para{margin:0;font:400 18px/1.75 var(--font-read)}
+.blk{margin-bottom:24px}
+.blk-sub{margin-bottom:32px;padding-bottom:24px;border-bottom:2px dashed var(--line)}
+.sent{cursor:pointer;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;scroll-margin-top:120px}
+.sent:hover{background:var(--surface-2)}
+.sent.on{background:var(--accent-soft)}
+.zh{display:none;margin:10px 0 0;font:400 15px/1.75 var(--font-ui);color:var(--muted)}
+.show-zh .zh{display:block}
+.rom{display:none;margin:6px 0 0;font:400 14px/1.6 var(--font-ui);color:var(--muted);letter-spacing:.01em}
+.show-rom .rom{display:block}
+html[data-lang="ja"] .w-rom,html[data-lang="yue"] .w-rom{display:block}
+.g-conn{margin:6px 0;font-size:14.5px;line-height:1.6}
+.note{margin-top:12px;padding:16px 18px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);scroll-margin-top:120px}
+.note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.note-nav{display:flex;gap:6px}
+.note-zh{margin:0 0 10px;font:500 16px/1.7 var(--font-ui)}
+.note-list{margin:0;padding-left:1.15em;font-size:14.5px;line-height:1.7}
+.note-list li{margin-bottom:5px}
+.note-words{margin-top:14px;padding-top:12px;border-top:2px dashed var(--line)}
+.note-wh{margin:0 0 8px;font:600 13px/1.3 var(--font-ui);color:var(--muted)}
+.nw{margin:0 0 6px;border:0;border-radius:14px;background:var(--surface-2)}
+.nw summary{cursor:pointer;list-style:none;padding:9px 12px;font:400 14.5px/1.5 var(--font-ui)}
+.nw summary::-webkit-details-marker{display:none}
+.nw summary::after{content:'＋';float:right;margin-left:8px;color:var(--muted)}
+.nw[open] summary::after{content:'－'}
+.nw summary b{font-weight:600}
+.nw-body{padding:0 12px 10px;font-size:14px;line-height:1.7}
+.nw-body p{margin:0 0 6px}
+.nw-ex{color:var(--muted)}
+.word{scroll-margin-top:120px}
+.word.flash{outline:2px solid var(--accent);outline-offset:2px}
+
+/* words */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.search{flex:1 1 200px;min-width:0;padding:10px 16px;border:2px solid var(--line);border-radius:999px;background:var(--surface);font-size:16px}
+.search:focus{border-color:var(--accent);outline:0}
+.word{display:grid;gap:9px;margin-bottom:12px;padding:16px 18px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow)}
+.word-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.w-expr{margin:0;min-width:0;font:800 18px/1.35 var(--font-ui);overflow-wrap:anywhere}
+.w-zh{margin:0;font-size:15px}
+.w-head{display:flex;align-items:center;gap:8px;min-width:0}
+.w-ctxrow{display:flex;align-items:flex-start;gap:10px}
+.w-ctxrow .w-ctx{flex:1;min-width:0}
+.ex-row{display:flex;align-items:flex-start;gap:10px}
+.ex-body{min-width:0}
+.w-tag{display:inline-block;margin-left:8px;padding:1px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:700 11px/1.6 var(--font-ui);vertical-align:3px;white-space:nowrap}
+.w-note{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.w-exh{margin:2px 0 -3px;font-size:12px;color:var(--muted)}
+.w-ex{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.w-ex li{padding-left:12px;border-left:3px solid var(--accent-soft);border-radius:2px}
+.ex-en{display:block;font:400 15px/1.6 var(--font-read)}
+.ex-en b{font-weight:600;background:var(--mark);border-radius:5px;padding:0 2px}
+.ex-zh{display:block;margin-top:1px;font-size:13.5px;line-height:1.55;color:var(--muted)}
+.w-mine>span{display:block;margin-bottom:4px;font-size:12px;color:var(--muted)}
+.w-meta{margin:0;min-height:16px;font:400 12px/1.4 var(--font-mono);color:var(--muted)}
+.empty{padding:28px 0;text-align:center;color:var(--muted)}
+
+/* my words (added by the learner) */
+mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
+.uw-tag{background:#FDE6EF;color:#C2416F}
+.uw-add{position:absolute;z-index:60;padding:9px 16px;border:0;border-radius:999px;background:var(--accent);color:#fff;font:700 14px/1.2 var(--font-ui);box-shadow:0 8px 20px -8px rgba(0,0,0,.45);cursor:pointer}
+.uw-add[hidden],.uw-toast[hidden]{display:none}
+.uw-bg{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:rgba(59,47,42,.35)}
+@media (min-width:600px){.uw-bg{align-items:center}}
+.uw-sheet{width:100%;max-width:480px;max-height:90vh;overflow:auto;padding:20px 20px 18px;background:var(--surface);border-radius:24px;box-shadow:var(--shadow)}
+.uw-term{margin:4px 0 8px;font:800 24px/1.3 var(--font-read)}
+.uw-ctx{margin:0 0 12px;padding:10px 12px;border-radius:14px;background:var(--surface-2);font:400 15px/1.6 var(--font-read);color:var(--muted)}
+.uw-ctx b{color:var(--fg);background:#FDE6EF;border-radius:4px;padding:0 2px}
+.uw-old{margin:0 0 10px;font-size:13.5px;color:#B5562F}
+.uw-f{display:block;margin-bottom:10px}
+.uw-f>span{display:block;margin-bottom:4px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.uw-f textarea{width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:16px;background:var(--surface);font:inherit;font-size:16px;resize:vertical}
+.uw-f input{width:100%;box-sizing:border-box;font-size:16px}
+.uw-err{margin:0 0 8px;min-height:1px;font-size:13.5px;color:#C2416F}
+.uw-toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:80;transform:translateX(-50%);max-width:calc(100vw - 32px);padding:11px 18px;border-radius:999px;background:#3B2F2A;color:#fff;font-size:14px;box-shadow:var(--shadow)}
+
+/* think */
+.bd{margin:0 0 12px;font:400 19px/1.75 var(--font-read)}
+.qa{margin-bottom:16px}
+.qa-q{margin:0 0 6px;font-size:15.5px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="in">
+    <div class="mast">
+      <div class="brand"><a class="back" href="../../ko/">‹ 合集</a><span class="b-title">第 3 课 · 이거 뭐예요?</span></div>
+      <div class="prog">
+        <div class="t">已掌握 <b id="mCount">0 / 0</b></div>
+        <div class="meter" id="meter"><i></i></div>
+        <div class="t s" id="saveNote" aria-live="polite"></div>
+      </div>
+      <span id="whoMount"></span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="页面">
+      <button type="button" class="tab" role="tab" data-tab="read">精读</button>
+      <button type="button" class="tab" role="tab" data-tab="listen" hidden>听力</button>
+      <button type="button" class="tab" role="tab" data-tab="words">词汇</button>
+      <button type="button" class="tab" role="tab" data-tab="quiz">自测</button>
+      <button type="button" class="tab" role="tab" data-tab="think">长句</button>
+    </nav>
+  </div>
+</div>
+
+<main class="in">
+  <section class="view" id="view-read" role="tabpanel">
+    <div class="opts">
+      <label><input type="checkbox" id="optZh"> 显示译文</label>
+      <label><input type="checkbox" id="optHi" checked> 标出生词</label>
+      <span>点任意一句，看翻译和讲解；用鼠标或手指选中一个词，可以把它加入生词</span>
+    </div>
+    <article id="article"></article>
+  </section>
+
+  <section class="view" id="view-listen" role="tabpanel" hidden>
+    <div id="listenBox"></div>
+  </section>
+
+  <section class="view" id="view-words" role="tabpanel" hidden>
+    <div class="tools">
+      <input class="search" id="wordSearch" type="search" placeholder="搜索表达、中文或例句" autocomplete="off" aria-label="搜索词汇">
+    </div>
+    <div class="chips mb14" id="chips"></div>
+    <div id="wordList"></div>
+  </section>
+
+  <section class="view" id="view-quiz" role="tabpanel" hidden>
+    <div id="quizBox"></div>
+  </section>
+
+  <section class="view" id="view-think" role="tabpanel" hidden>
+    <div id="thinkBox"></div>
+  </section>
+
+  <p class="foot">这是为韩语零基础写的原创短文，仅供学习。罗马音按韩国官方的罗马字标记法，只帮你对照读音，以录音为准。</p>
+</main>
+
+<script>
+(function(){
+'use strict';
+/* ---------- small helpers shared by every page (inlined by tools/build.py) ---------- */
+function $(s, r){ return (r || document).querySelector(s); }
+function $$(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+function h(tag, attrs){
+  const e = document.createElement(tag);
+  if (attrs) Object.keys(attrs).forEach(function(k){
+    const v = attrs[k];
+    if (v == null || v === false) return;
+    if (k === 'class') e.className = v;
+    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : String(v));
+  });
+  Array.prototype.slice.call(arguments, 2).forEach(function(kid){
+    [].concat(kid).forEach(function(k){
+      if (k == null || k === false) return;
+      e.append(k.nodeType ? k : document.createTextNode(String(k)));
+    });
+  });
+  return e;
+}
+function pad2(n){ return String(n).padStart(2, '0'); }
+function ymd(d){ return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+function today(){ return ymd(new Date()); }
+/* Progress is kept per learner: key "k" of learner "u1" lives in localStorage as "k@u1". who.js manages the learners
+   (the list is in WHO_KEY, which itself is never namespaced). WHO_ID is '' until someone has been chosen. */
+const WHO_KEY = 'wk-who-v1';
+function whoReg(){
+  const out = {v:1, cur:'', list:[], claimed:false};
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(WHO_KEY) || 'null'); } catch(e){}
+  if (!d || typeof d !== 'object') return out;
+  if (Array.isArray(d.list)) d.list.forEach(function(p){
+    if (p && typeof p.id === 'string' && /^[a-z0-9]{3,24}$/.test(p.id) && typeof p.name === 'string' && p.name.trim() &&
+        !out.list.some(function(q){ return q.id === p.id; }))
+      out.list.push({id:p.id, name:p.name.trim().slice(0, 16), c:typeof p.c === 'number' ? p.c : 0, u:typeof p.u === 'number' ? p.u : 0});
+  });
+  if (typeof d.cur === 'string' && out.list.some(function(p){ return p.id === d.cur; })) out.cur = d.cur;
+  out.claimed = !!d.claimed;
+  return out;
+}
+let WHO_ID = whoReg().cur;
+function pkey(k){ return WHO_ID ? k + '@' + WHO_ID : k; }
+function lsGet(k){ try { return JSON.parse(localStorage.getItem(pkey(k)) || 'null'); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(pkey(k), JSON.stringify(v)); } catch(e){} }
+function lsDel(k){ try { localStorage.removeItem(pkey(k)); } catch(e){} }
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+/* the language a page teaches: <html data-lang="ko|ja|yue"> for those sections, English otherwise */
+const LANG = (function(){ const l = typeof document !== 'undefined' && document.documentElement.getAttribute('data-lang'); return l === 'ko' || l === 'ja' || l === 'yue' ? l : 'en'; })();
+const XL = {en:'英文', ko:'韩语', ja:'日语', yue:'粤语'}[LANG], XS = {en:'英', ko:'韩', ja:'日', yue:'粤'}[LANG];
+/* Cantonese answers may be written in Jyutping instead of characters; tone numbers are optional (norm drops digits) */
+function romOk(given, rom){ return LANG === 'yue' && !!rom && !!norm(given) && norm(given) === norm(rom); }
+/* letters of the languages taught (Latin, Hangul, kana and kanji): what answer checking compares */
+const LETTERS = 'a-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff';
+function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), ''); }
+/* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
+function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
+function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* example sentences mark their target as [[target]] */
+function exNodes(s){
+  const out = [];
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  return out;
+}
+function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
+
+/* ---------- spaced repetition on the Ebbinghaus ladder (inlined by tools/build.py) ----------
+   Everything lives in this browser's localStorage under SRS_KEY (per learner, see common.js), shape
+     {v:1, w:{"<slug>:<word id>": {b, t, l, c, x}}, log:{"YYYY-MM-DD": {n, ok}}, ex:[{d, score, total, scope, k}]}   (k: "exam" = 总考, "listen" = 听力考试)
+   b = steps of the ladder passed (0..9)   t = when it is due next (ms)   l = last answered (ms)
+   c / x = how many times answered right / wrong.   m = 1: the learner marked the word as fully mastered; it is never asked again
+   (review, exam, listening) until restored. Answers given elsewhere (an article's self-test) keep the mark.
+   Rules:  first answer right -> b=1 (next review after the 2nd step), first answer wrong -> b=0 (5 minutes)
+           right and due     -> b+1, next review after SRS_STEPS[b] (after the last step: SRS_LONG)
+           right but early   -> the schedule does not move (drilling a word again right away must not push it up the ladder)
+           wrong at any time -> b=0, back to the first step
+   srsStep is pure; it is covered by tools/tests/srs.test.js. */
+const SRS_KEY = 'wk-srs-v1';
+const SRS_MIN = 60000, SRS_HOUR = 3600000, SRS_DAY = 86400000;
+const SRS_STEPS = [5 * SRS_MIN, 30 * SRS_MIN, 12 * SRS_HOUR, SRS_DAY, 2 * SRS_DAY, 4 * SRS_DAY, 7 * SRS_DAY, 15 * SRS_DAY, 30 * SRS_DAY];
+const SRS_LONG = 60 * SRS_DAY;
+const SRS_TOP = SRS_STEPS.length;                 /* b can go from 0 to SRS_TOP */
+const SRS_LABELS = ['5 分钟', '30 分钟', '12 小时', '1 天', '2 天', '4 天', '7 天', '15 天', '30 天', '60 天'];
+
+function srsInterval(b){ return b < SRS_STEPS.length ? SRS_STEPS[b] : SRS_LONG; }
+function srsNum(x){ return typeof x === 'number' && isFinite(x) ? x : 0; }
+/* sanitize anything that claims to be saved progress (from localStorage or from an imported file) */
+function srsClean(d){
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  if (!d || typeof d !== 'object') return out;
+  if (d.w && typeof d.w === 'object') Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
+    const b = Math.max(0, Math.min(SRS_TOP, Math.floor(srsNum(e.b))));
+    out.w[k] = {b:b, t:srsNum(e.t), l:srsNum(e.l), c:Math.max(0, Math.floor(srsNum(e.c))), x:Math.max(0, Math.floor(srsNum(e.x)))};
+    if (e.m) out.w[k].m = 1;
+  });
+  if (d.log && typeof d.log === 'object') Object.keys(d.log).forEach(function(k){
+    const e = d.log[k];
+    if (/^\d{4}-\d{2}-\d{2}$/.test(k) && e && typeof e === 'object') out.log[k] = {n:Math.max(0, Math.floor(srsNum(e.n))), ok:Math.max(0, Math.floor(srsNum(e.ok)))};
+  });
+  if (Array.isArray(d.ex)) d.ex.slice(-20).forEach(function(e){
+    if (e && typeof e === 'object' && typeof e.score === 'number' && typeof e.total === 'number')
+      out.ex.push({d:String(e.d || '').slice(0, 10), score:e.score, total:e.total, scope:String(e.scope || '').slice(0, 60), k:e.k === 'listen' ? 'listen' : 'exam'});
+  });
+  return out;
+}
+function srsLoad(){ return srsClean(lsGet(SRS_KEY)); }
+/* two copies of the same learner's progress (this device + an imported one) -> one. A word keeps the copy that was answered last;
+   a day's counts keep the larger tally (the same answers are in both copies, so adding them would count twice); results are united. */
+function srsMerge(a, b){
+  a = srsClean(a); b = srsClean(b);
+  const out = {v:1, w:{}, log:{}, ex:[]};
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){
+    const x = out.w[k], y = b.w[k];
+    if (!x || y.l > x.l || (y.l === x.l && y.c + y.x > x.c + x.x)) out.w[k] = y;
+  });
+  [a.log, b.log].forEach(function(lg){
+    Object.keys(lg).forEach(function(k){
+      const g = out.log[k], e = lg[k];
+      if (!g || e.n > g.n || (e.n === g.n && e.ok > g.ok)) out.log[k] = e;
+    });
+  });
+  const seen = {};
+  a.ex.concat(b.ex).forEach(function(e){
+    const id = [e.d, e.score, e.total, e.scope, e.k].join('|');
+    if (!seen[id]){ seen[id] = 1; out.ex.push(e); }
+  });
+  out.ex.sort(function(x, y){ return x.d < y.d ? -1 : x.d > y.d ? 1 : 0; });
+  out.ex = out.ex.slice(-20);
+  return out;
+}
+function srsSave(s){ lsSet(SRS_KEY, s); }
+function srsGet(key){ return srsLoad().w[key] || null; }
+
+/* pure: the entry after one answer (e = null when the word has never been answered) */
+function srsStep(e, ok, now){
+  const first = !e;
+  const n = first ? {b:0, t:0, l:0, c:0, x:0} : {b:e.b, t:e.t, l:e.l, c:e.c, x:e.x};
+  if (e && e.m) n.m = 1;
+  if (!ok){
+    n.b = 0; n.t = now + srsInterval(0); n.x++;
+  } else {
+    n.c++;
+    if (first){ n.b = 1; n.t = now + srsInterval(1); }
+    else if (n.t <= now){ n.b = Math.min(n.b + 1, SRS_TOP); n.t = now + srsInterval(n.b); }
+  }
+  n.l = now;
+  return n;
+}
+/* what would happen, without writing anything: {kind:'first'|'up'|'early'|'reset', b, t} */
+function srsPreview(key, ok, now){
+  now = now || Date.now();
+  const e = srsGet(key), n = srsStep(e, ok, now);
+  const kind = !ok ? 'reset' : !e ? 'first' : e.t <= now ? 'up' : 'early';
+  return {kind:kind, b:n.b, t:n.t, was:e};
+}
+function srsRecord(key, ok, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const prev = s.w[key] || null;
+  s.w[key] = srsStep(prev, ok, now);
+  const day = ymd(new Date(now));
+  const g = s.log[day] || (s.log[day] = {n:0, ok:0});
+  g.n++; if (ok) g.ok++;
+  const keep = Object.keys(s.log).sort().slice(-120);
+  Object.keys(s.log).forEach(function(k){ if (keep.indexOf(k) < 0) delete s.log[k]; });
+  srsSave(s);
+  return {prev:prev, next:s.w[key], now:now};
+}
+/* take back one srsRecord(key, ok, now) whose result was `rec` (used when the learner overrules a mark afterwards) */
+function srsUndo(key, rec, ok){
+  const s = srsLoad();
+  if (rec.prev) s.w[key] = rec.prev; else delete s.w[key];
+  const g = s.log[ymd(new Date(rec.now))];
+  if (g){ g.n = Math.max(0, g.n - 1); if (ok) g.ok = Math.max(0, g.ok - 1); }
+  srsSave(s);
+}
+/* mark a word as fully mastered (on) or put it back into the review plan; `l` moves so that merging progress keeps this choice */
+function srsRetire(key, on, now){
+  now = now || Date.now();
+  const s = srsLoad();
+  const e = s.w[key] || {b:SRS_TOP, t:now + SRS_LONG, l:now, c:0, x:0};
+  if (on) e.m = 1; else delete e.m;
+  e.l = now;
+  s.w[key] = e;
+  srsSave(s);
+  return e;
+}
+/* drop a word from the plan altogether (a word the learner added and then deleted) */
+function srsForget(key){
+  const s = srsLoad();
+  if (!s.w[key]) return;
+  delete s.w[key];
+  srsSave(s);
+}
+function srsAddExam(rec){
+  const s = srsLoad();
+  s.ex.push(rec);
+  s.ex = s.ex.slice(-20);
+  srsSave(s);
+}
+/* the learner overruled a mark in the result list: correct the score of the exam just saved */
+function srsSetLastExamScore(score){
+  const s = srsLoad();
+  if (s.ex.length){ s.ex[s.ex.length - 1].score = score; srsSave(s); }
+}
+function srsReset(){ lsDel(SRS_KEY); }
+
+/* {st:'new'|'due'|'wait', b, t} */
+function srsInfo(e, now){
+  if (!e) return {st:'new', b:-1, t:0};
+  if (e.m) return {st:'done', b:e.b, t:e.t};
+  return {st:e.t <= now ? 'due' : 'wait', b:e.b, t:e.t};
+}
+/* "5 分钟后", "3 小时后", "明天", "6 天后" */
+function srsWhen(t, now){
+  const d = t - now;
+  if (d <= 0) return '现在';
+  if (d < SRS_HOUR) return Math.max(1, Math.round(d / SRS_MIN)) + ' 分钟后';
+  if (d < SRS_DAY) return Math.round(d / SRS_HOUR) + ' 小时后';
+  const days = Math.round(d / SRS_DAY);
+  if (days === 1) return '明天';
+  if (days < 60) return days + ' 天后';
+  return Math.round(days / 30) + ' 个月后';
+}
+function srsStageText(e, now){
+  if (!e) return '未开始';
+  if (e.m) return '已完全掌握，不再出现';
+  return '间隔 ' + SRS_LABELS[e.b] + ' · ' + (e.t <= now ? '该复习了' : '下次 ' + srsWhen(e.t, now));
+}
+
+/* ---------- my words: expressions the learner marked in an article themself (select text → 加入生词) ----------
+   MINE_KEY (per learner): {v:1, w:{"<slug>:<id>": {t, o, ctx, czh, zh, n, a, u, d}}}
+   id = "u" + a few base-36 characters; t = the text as selected; ctx = the article sentence it came from, o = where t starts in ctx;
+   czh = the sentence's Chinese; zh = the meaning the learner wrote; n = an optional note; a = added, u = last edited (ms);
+   d = deleted (ms): kept as a tombstone so that a delete survives merging with an older copy from another device.
+   A word becomes an ordinary vocabulary entry (mineWord) and reviews under the SRS key "<slug>:<id>" like any other. */
+const MINE_KEY = 'wk-mine-v1';
+const MINE_RE = /^[a-z0-9][a-z0-9-]{0,79}:u[a-z0-9]{2,16}$/;
+function mineStr(x, n){ return typeof x === 'string' ? x.replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, n) : ''; }
+function mineClean(d){
+  const out = {v:1, w:{}};
+  if (!d || typeof d !== 'object' || !d.w || typeof d.w !== 'object') return out;
+  Object.keys(d.w).forEach(function(k){
+    const e = d.w[k];
+    if (!MINE_RE.test(k) || !e || typeof e !== 'object') return;
+    const t = mineStr(e.t, 80).trim(), ctx = mineStr(e.ctx, 600);
+    if (!t || !ctx) return;
+    let o = Math.floor(srsNum(e.o));
+    if (ctx.substr(o, t.length) !== t) o = ctx.indexOf(t);
+    if (o < 0) return;
+    const x = {t:t, o:o, ctx:ctx, czh:mineStr(e.czh, 600), zh:mineStr(e.zh, 200).trim(), n:mineStr(e.n, 400).trim(), a:srsNum(e.a)};
+    if (srsNum(e.u)) x.u = srsNum(e.u);
+    if (srsNum(e.d)) x.d = srsNum(e.d);
+    out.w[k] = x;
+  });
+  return out;
+}
+/* per word the copy changed last wins (added, edited or deleted) */
+function mineMerge(a, b){
+  a = mineClean(a); b = mineClean(b);
+  const out = {v:1, w:{}};
+  function stamp(e){ return Math.max(e.a, e.u || 0, e.d || 0); }
+  Object.keys(a.w).forEach(function(k){ out.w[k] = a.w[k]; });
+  Object.keys(b.w).forEach(function(k){ if (!out.w[k] || stamp(b.w[k]) > stamp(out.w[k])) out.w[k] = b.w[k]; });
+  return out;
+}
+function mineLoad(){ return mineClean(lsGet(MINE_KEY)); }
+function mineSave(m){ lsSet(MINE_KEY, m); }
+/* the live (not deleted) words of one article, oldest first: [[key, entry]] */
+function mineOf(slug){
+  const w = mineLoad().w;
+  return Object.keys(w).filter(function(k){ return k.split(':')[0] === slug && !w[k].d; })
+    .map(function(k){ return [k, w[k]]; }).sort(function(x, y){ return x[1].a - y[1].a; });
+}
+/* an entry -> a vocabulary word in the shape the reader, the quiz kit and the review page use */
+function mineWord(key, e){
+  const id = key.split(':')[1];
+  const before = e.ctx.slice(0, e.o), after = e.ctx.slice(e.o + e.t.length);
+  const lower = e.t.toLowerCase();
+  return {id:id, mine:true, expr:e.t, zh:e.zh || '（还没写中文意思）', core:e.t, forms:lower === e.t ? [e.t] : [e.t, lower], syn:[], m:[e.t],
+    note:e.n, ctx:e.ctx, ex:[{en:before + '[[' + e.t + ']]' + after, zh:e.czh || ''}],
+    cloze:{before:before, ans:e.t, after:after, hint:e.zh || '', szh:e.czh || ''}};
+}
+function mineAdd(slug, x){
+  const m = mineLoad();
+  let key;
+  do { key = slug + ':u' + Date.now().toString(36).slice(-6) + Math.random().toString(36).slice(2, 4); } while (m.w[key]);
+  m.w[key] = {t:x.t, o:x.o, ctx:x.ctx, czh:x.czh || '', zh:x.zh || '', n:x.n || '', a:Date.now()};
+  mineSave(m);
+  return key;
+}
+function mineEdit(key, patch){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  if (typeof patch.zh === 'string') e.zh = patch.zh.trim().slice(0, 200);
+  if (typeof patch.n === 'string') e.n = patch.n.trim().slice(0, 400);
+  e.u = Date.now();
+  mineSave(m);
+}
+function mineDel(key){
+  const m = mineLoad(), e = m.w[key];
+  if (!e) return;
+  e.d = Date.now();
+  mineSave(m);
+}
+
+/* ---------- learners: who is studying on this browser (inlined by tools/build.py; needs common.js and srs.js) ----------
+   The site is static and has no server, so there are no passwords: a learner is a name that keeps its progress apart from other learners'
+   (every localStorage key of a learner is "<key>@<id>", see common.js). The list of learners is stored under WHO_KEY:
+     {v:1, cur:"<id>", list:[{id, name, c: created, u: last used}], claimed: bool}
+   claimed: progress saved before learners existed (plain wk-* / fk-* keys) goes to the first learner created, once.
+   Progress moves between devices as a "progress code" ("WK1." + base64 of a JSON bundle) or as the same JSON in a file. Importing MERGES
+   (the newer answer per word wins); it never overwrites. Merge and parse are pure-ish and covered by tools/tests/who.test.js.
+   If a new kind of progress is stored in localStorage, it must be a key starting with wk- or fk-; it is then exported, imported and deleted
+   with the learner. Anything that is not the SRS key, MINE_KEY (words the learner added) or a UI-preference key is treated as one article's state (see stateClean). */
+
+/* one article's progress: {v:1, vocab:{id:{s,d,m}}, ans:{key:text}, quiz:{score,total,d,k}|null} */
+function stateClean(d){
+  const out = {v:1, vocab:{}, ans:{}, quiz:null};
+  if (!d || typeof d !== 'object') return out;
+  if (d.vocab && typeof d.vocab === 'object') Object.keys(d.vocab).forEach(function(k){
+    const e = d.vocab[k];
+    if (k === '__proto__' || !e || typeof e !== 'object') return;
+    const o = {};
+    if (e.s === 'learning' || e.s === 'mastered') o.s = e.s;
+    if (typeof e.d === 'string') o.d = e.d.slice(0, 10);
+    if (typeof e.m === 'string' && e.m) o.m = e.m.slice(0, 400);
+    if (o.s || o.m) out.vocab[k] = o;
+  });
+  if (d.ans && typeof d.ans === 'object') Object.keys(d.ans).forEach(function(k){
+    if (k !== '__proto__' && typeof d.ans[k] === 'string' && d.ans[k]) out.ans[k] = d.ans[k].slice(0, 2000);
+  });
+  if (d.quiz && typeof d.quiz === 'object' && typeof d.quiz.score === 'number' && typeof d.quiz.total === 'number')
+    out.quiz = {score:d.quiz.score, total:d.quiz.total, d:String(d.quiz.d || '').slice(0, 10), k:['mcq', 'cloze', 'exs', 'zh', 'dict', 'sent'].indexOf(d.quiz.k) >= 0 ? d.quiz.k : ''};
+  return out;
+}
+/* two copies of one article's progress -> one: per word the copy touched last wins (a status or note only one copy has is kept),
+   answers are united (this device's text wins a clash), the later quiz result is kept */
+function stateMerge(a, b){
+  a = stateClean(a); b = stateClean(b);
+  const out = {v:1, vocab:{}, ans:{}, quiz:null};
+  Object.keys(a.vocab).forEach(function(k){ out.vocab[k] = a.vocab[k]; });
+  Object.keys(b.vocab).forEach(function(k){
+    const x = out.vocab[k], y = b.vocab[k];
+    if (!x){ out.vocab[k] = y; return; }
+    const yNewer = (y.d || '') > (x.d || '');
+    const n = yNewer ? y : x, o = yNewer ? x : y;
+    const m = {};
+    if (n.s || o.s) m.s = n.s || o.s;
+    if (n.m || o.m) m.m = n.m || o.m;
+    if (n.d || o.d) m.d = n.d || o.d;
+    out.vocab[k] = m;
+  });
+  Object.keys(b.ans).forEach(function(k){ out.ans[k] = b.ans[k]; });
+  Object.keys(a.ans).forEach(function(k){ out.ans[k] = a.ans[k]; });
+  out.quiz = !a.quiz ? b.quiz : !b.quiz ? a.quiz : (b.quiz.d > a.quiz.d ? b.quiz : a.quiz);
+  return out;
+}
+
+const Who = (function(){
+  const KEEP = /^(wk|fk)-[A-Za-z0-9._-]{1,80}$/;     /* what a learner's progress keys look like */
+  const UI_KEYS = ['fk-ui-v1', 'wk-review-ui-v1'];
+  const PREFIX = 'WK1.';
+  const MAXLEN = 2000000;
+  const DAY = 86400000;
+
+  function canStore(){
+    try { localStorage.setItem('wk-probe', '1'); localStorage.removeItem('wk-probe'); return true; } catch(e){ return false; }
+  }
+  function saveReg(reg){ try { localStorage.setItem(WHO_KEY, JSON.stringify(reg)); return true; } catch(e){ return false; } }
+  function newId(reg){
+    let id;
+    do { id = 'u' + Date.now().toString(36).slice(-5) + Math.random().toString(36).slice(2, 6); } while (reg.list.some(function(p){ return p.id === id; }));
+    return id;
+  }
+  function cleanName(s){ return String(s == null ? '' : s).replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, 16); }
+  function byName(reg, name){
+    const n = name.toLowerCase();
+    return reg.list.filter(function(p){ return p.name.toLowerCase() === n; })[0] || null;
+  }
+  function list(){ return whoReg().list; }
+  function current(){ return whoReg().list.filter(function(p){ return p.id === WHO_ID; })[0] || null; }
+  /* a browser that cannot store anything (some private modes) gets no picker: nothing could be saved for anyone anyway */
+  function ready(){ return !!WHO_ID || !canStore(); }
+
+  function allKeys(){
+    const out = [];
+    try { for (let i = 0; i < localStorage.length; i++){ const k = localStorage.key(i); if (k) out.push(k); } } catch(e){}
+    return out;
+  }
+  function keysOf(id){
+    const suf = '@' + id;
+    return allKeys().filter(function(k){ return k.length > suf.length && k.slice(-suf.length) === suf; })
+      .map(function(k){ return k.slice(0, -suf.length); })
+      .filter(function(b){ return KEEP.test(b) && b !== WHO_KEY; });
+  }
+  function legacyKeys(){ return allKeys().filter(function(k){ return KEEP.test(k) && k !== WHO_KEY; }); }
+  function claim(id){
+    legacyKeys().forEach(function(k){
+      try { const v = localStorage.getItem(k); if (v != null && localStorage.getItem(k + '@' + id) == null) localStorage.setItem(k + '@' + id, v); } catch(e){}
+    });
+  }
+  function readKey(k, id){ try { return JSON.parse(localStorage.getItem(k + '@' + id) || 'null'); } catch(e){ return null; } }
+
+  /* ---- learners ---- */
+  function create(name){
+    name = cleanName(name);
+    if (!name) return {ok:false, err:'请先写一个名字。'};
+    const reg = whoReg();
+    let p = byName(reg, name);
+    const existed = !!p;
+    if (!p){
+      p = {id:newId(reg), name:name, c:Date.now(), u:0};
+      reg.list.push(p);
+      if (!reg.claimed){ claim(p.id); reg.claimed = true; }
+    }
+    p.u = Date.now(); reg.cur = p.id;
+    if (!saveReg(reg)) return {ok:false, err:'浏览器不让保存数据（可能开了无痕模式），进度存不下来。'};
+    return {ok:true, id:p.id, name:p.name, existed:existed};
+  }
+  function select(id){
+    const reg = whoReg();
+    const p = reg.list.filter(function(q){ return q.id === id; })[0];
+    if (!p) return false;
+    p.u = Date.now(); reg.cur = id;
+    return saveReg(reg);
+  }
+  function leave(){ const reg = whoReg(); reg.cur = ''; return saveReg(reg); }
+  function remove(id){
+    keysOf(id).forEach(function(k){ try { localStorage.removeItem(k + '@' + id); } catch(e){} });
+    const reg = whoReg();
+    reg.list = reg.list.filter(function(p){ return p.id !== id; });
+    if (reg.cur === id) reg.cur = '';
+    return saveReg(reg);
+  }
+
+  /* ---- backup / restore ---- */
+  function b64e(str){
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(_, x){ return String.fromCharCode(parseInt(x, 16)); }));
+  }
+  function b64d(b){
+    const bin = atob(b);
+    let p = '';
+    for (let i = 0; i < bin.length; i++) p += '%' + ('0' + bin.charCodeAt(i).toString(16)).slice(-2);
+    return decodeURIComponent(p);
+  }
+  function bundle(id){
+    const p = whoReg().list.filter(function(q){ return q.id === id; })[0];
+    const data = {};
+    keysOf(id).forEach(function(k){ const v = readKey(k, id); if (v && typeof v === 'object') data[k] = v; });
+    return {app:'waikan', v:1, name:p ? p.name : '', at:new Date().toISOString(), data:data};
+  }
+  function toCode(b){ return PREFIX + b64e(JSON.stringify(b)); }
+  /* text pasted by the learner (a code, possibly with chat noise around it) or the content of an exported file */
+  function parse(text){
+    text = String(text == null ? '' : text).trim();
+    if (!text) return {ok:false, err:'先把进度码粘贴进来，或选一个导出的文件。'};
+    if (text.length > MAXLEN) return {ok:false, err:'内容太大，不像是进度码。'};
+    let raw = null;
+    if (text.charAt(0) === '{'){
+      try { raw = JSON.parse(text); } catch(e){ return {ok:false, err:'文件读不出来，可能不完整。'}; }
+    } else {
+      const i = text.indexOf(PREFIX);
+      if (i < 0) return {ok:false, err:'没有找到进度码。完整的进度码以 WK1. 开头。'};
+      const rest = text.slice(i + PREFIX.length);
+      const run = rest.match(/^[A-Za-z0-9+\/=_\-\s]*/)[0];
+      const cands = [run.replace(/\s+/g, ''), (run.trim().split(/\s+/)[0] || '')];
+      for (let k = 0; k < cands.length && raw === null; k++){
+        try { raw = JSON.parse(b64d(cands[k].replace(/-/g, '+').replace(/_/g, '/'))); } catch(e){ raw = null; }
+      }
+      if (raw === null) return {ok:false, err:'进度码读不出来，可能复制得不完整，请整串重新复制。'};
+    }
+    if (!raw || typeof raw !== 'object' || raw.app !== 'waikan' || !raw.data || typeof raw.data !== 'object' || Array.isArray(raw.data))
+      return {ok:false, err:'这不是本站导出的进度。'};
+    const data = {};
+    Object.keys(raw.data).forEach(function(k){
+      const v = raw.data[k];
+      if (KEEP.test(k) && k !== WHO_KEY && v && typeof v === 'object' && !Array.isArray(v)) data[k] = v;
+    });
+    if (!Object.keys(data).length) return {ok:false, err:'这份进度里没有可导入的内容。'};
+    return {ok:true, name:cleanName(raw.name), data:data};
+  }
+  function uiClean(d){
+    const o = {};
+    if (d && typeof d === 'object') Object.keys(d).forEach(function(k){
+      const v = d[k];
+      if (k !== '__proto__' && (typeof v === 'boolean' || (typeof v === 'number' && isFinite(v)) || (typeof v === 'string' && v.length <= 40))) o[k] = v;
+    });
+    return o;
+  }
+  /* merge parsed.data into learner id. {words: words in the imported schedule, articles: article states merged} */
+  function mergeData(id, data){
+    const out = {words:0, articles:0};
+    Object.keys(data).forEach(function(k){
+      const cur = readKey(k, id);
+      let next;
+      if (k === SRS_KEY){ next = srsMerge(cur, data[k]); out.words = Object.keys(srsClean(data[k]).w).length; }
+      else if (k === MINE_KEY) next = mineMerge(cur, data[k]);
+      else if (UI_KEYS.indexOf(k) >= 0) next = Object.assign(uiClean(data[k]), uiClean(cur));
+      else { next = stateMerge(cur, data[k]); out.articles++; }
+      try { localStorage.setItem(k + '@' + id, JSON.stringify(next)); } catch(e){}
+    });
+    return out;
+  }
+
+  /* ---- what a learner has done so far, for the picker ---- */
+  function agoText(t){
+    const a = new Date(t), n = new Date();
+    const d = Math.round((new Date(n.getFullYear(), n.getMonth(), n.getDate()) - new Date(a.getFullYear(), a.getMonth(), a.getDate())) / DAY);
+    return d <= 0 ? '今天' : d === 1 ? '昨天' : d + ' 天前';
+  }
+  function summary(id){
+    const s = srsClean(readKey(SRS_KEY, id));
+    let last = 0, mastered = 0;
+    Object.keys(s.w).forEach(function(k){ if (s.w[k].l > last) last = s.w[k].l; });
+    keysOf(id).forEach(function(k){
+      if (k === SRS_KEY || k === MINE_KEY || UI_KEYS.indexOf(k) >= 0) return;
+      const st = stateClean(readKey(k, id));
+      Object.keys(st.vocab).forEach(function(v){ if (st.vocab[v].s === 'mastered') mastered++; });
+    });
+    const bits = [];
+    if (mastered) bits.push('已掌握 ' + mastered + ' 个词');
+    const n = Object.keys(s.w).length;
+    if (n) bits.push('复习计划 ' + n + ' 个词');
+    if (last) bits.push('上次学习：' + agoText(last));
+    /* no-break spaces inside a part: the line may only wrap between the parts */
+    return bits.length ? bits.map(function(b){ return b.replace(/ /g, '\u00a0'); }).join(' · ') : '还没开始学';
+  }
+
+  /* ---------------- interface ---------------- */
+  function initial(name){ const c = Array.from(name || '?')[0] || '?'; return c.toUpperCase(); }
+  function avatar(name, big){ return h('span', {class:'who-av' + (big ? ' lg' : ''), 'aria-hidden':'true'}, initial(name)); }
+  function copyText(ta){
+    function legacy(){ try { return Promise.resolve(!!document.execCommand('copy')); } catch(e){ return Promise.resolve(false); } }
+    ta.focus(); ta.select();
+    try { ta.setSelectionRange(0, ta.value.length); } catch(e){}
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(ta.value).then(function(){ return true; }, legacy);
+    return legacy();
+  }
+  function saveFile(name, text){
+    try {
+      const url = URL.createObjectURL(new Blob([text], {type:'application/json'}));
+      const a = h('a', {href:url, download:name});
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      return true;
+    } catch(e){ return false; }
+  }
+  /* replaceChildren that skips the null / false entries of a conditional list (they would otherwise be written as the text "null") */
+  function put(el, kids){ el.replaceChildren.apply(el, kids.filter(function(k){ return k != null && k !== false; })); }
+  function lock(on){ try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch(e){} }
+  function msgEl(){ return h('p', {class:'who-msg', 'aria-live':'polite'}); }
+  function say(el, text, kind){ el.className = 'who-msg' + (kind ? ' ' + kind : ''); el.textContent = text; }
+
+  /* paste area + file picker + button; apply(parsed) -> {ok, msg, done?} */
+  function importForm(apply){
+    const ta = h('textarea', {class:'who-ta', placeholder:'把进度码粘贴到这里（以 WK1. 开头）', 'aria-label':'进度码', spellcheck:'false', autocomplete:'off', autocapitalize:'off'});
+    const msg = msgEl();
+    const file = h('input', {type:'file', accept:'.json,.txt,text/plain,application/json', hidden:true});
+    file.addEventListener('change', function(){
+      const f = file.files && file.files[0];
+      if (!f) return;
+      if (f.size > MAXLEN){ say(msg, '文件太大，不像是进度文件。', 'err'); return; }
+      const r = new FileReader();
+      r.onload = function(){ ta.value = String(r.result || ''); say(msg, '文件已读入，点“导入”。', ''); };
+      r.onerror = function(){ say(msg, '文件读取失败。', 'err'); };
+      r.readAsText(f);
+      file.value = '';
+    });
+    const go = h('button', {type:'button', class:'who-btn pri'}, '导入');
+    go.addEventListener('click', function(){
+      const p = parse(ta.value);
+      if (!p.ok){ say(msg, p.err, 'err'); return; }
+      const r = apply(p);
+      say(msg, r.msg, r.ok ? 'ok' : 'err');
+      if (r.ok) go.disabled = true;
+    });
+    return {ta:ta, node:h('div', null, ta, h('div', {class:'who-row'}, go, h('button', {type:'button', class:'who-btn', onclick:function(){ file.click(); }}, '选择文件')), msg, file)};
+  }
+  function importMsg(p, r, name){
+    return '已把' + (p.name ? '「' + p.name + '」的' : '') + '进度合并到「' + name + '」：复习计划 ' + r.words + ' 个词，' + r.articles + ' 篇文章。正在刷新……';
+  }
+
+  /* the picker shown instead of the page while nobody has been chosen */
+  function gate(){
+    const reg = whoReg();
+    const err = h('p', {class:'who-msg err', role:'alert'});
+    const input = h('input', {class:'who-in', type:'text', maxlength:16, placeholder:'你的名字或昵称', autocomplete:'off', autocapitalize:'off', 'aria-label':'名字'});
+    const card = h('div', {class:'who-card'});
+    const ov = h('div', {class:'who-ov', role:'dialog', 'aria-modal':'true', 'aria-label':'选择学习者'}, card);
+    function enter(r){ if (!r.ok){ say(err, r.err, 'err'); return; } location.reload(); }
+    function main(){
+      const people = reg.list.slice().sort(function(a, b){ return (b.u || 0) - (a.u || 0); });
+      const form = h('form', {class:'who-new', onsubmit:function(e){ e.preventDefault(); enter(create(input.value)); }}, input, h('button', {type:'submit', class:'who-btn pri'}, '进入'));
+      put(card, [
+        h('p', {class:'who-eb'}, 'DAILY CLOSE READING'),
+        h('h1', {class:'who-h'}, '外刊精读合集'),
+        h('p', {class:'who-sub'}, people.length ? '选你的名字继续学。每个人的进度分开保存。' : '先写一个名字，你的生词、自测和复习进度会存在这个名字下。'),
+        people.length ? h('p', {class:'who-sec'}, '这台设备上的学习者') : null,
+        people.length ? h('ul', {class:'who-list'}, people.map(function(p){
+          return h('li', null, h('button', {type:'button', class:'who-p', onclick:function(){ enter(select(p.id) ? {ok:true} : {ok:false, err:'没能切换，请刷新后重试。'}); }},
+            avatar(p.name, true), h('span', null, h('span', {class:'who-pn'}, p.name), h('span', {class:'who-pm'}, summary(p.id)))));
+        })) : null,
+        h('p', {class:'who-sec'}, people.length ? '换一个人，或新建' : '你的名字'),
+        form, err,
+        !people.length && legacyKeys().length ? h('p', {class:'who-note'}, '这台设备上已经有一份学习进度，建好名字后它会自动归到这个名字下。') : null,
+        h('button', {type:'button', class:'who-link', onclick:importView}, '已有进度码？导入进度'),
+        h('p', {class:'who-note'}, '名字只用来把进度分开，不是密码，这台设备上的人都能切换。进度存在这台设备的浏览器里：换手机或清理浏览器数据前，请在右上角头像里“导出进度”备份。')]);
+      setTimeout(function(){ try { input.focus({preventScroll:true}); } catch(e){} }, 0);
+    }
+    function importView(){
+      const f = importForm(function(p){
+        const r = create(p.name || '我');
+        if (!r.ok) return {ok:false, msg:r.err};
+        const m = mergeData(r.id, p.data);
+        setTimeout(function(){ location.reload(); }, 1300);
+        return {ok:true, msg:importMsg(p, m, r.name)};
+      });
+      put(card, [
+        h('p', {class:'who-eb'}, '导入进度'),
+        h('h1', {class:'who-h sm'}, '用进度码找回你的进度'),
+        h('p', {class:'who-sub'}, '在旧设备上点右上角头像，选“导出进度”，复制进度码（或保存文件），再粘贴到这里。会按进度码里的名字新建账号；这个名字已存在就合并进去。'),
+        f.node,
+        h('button', {type:'button', class:'who-link', onclick:main}, '‹ 返回')]);
+    }
+    main();
+    lock(true);
+    document.body.append(ov);
+  }
+
+  /* the sheet behind the account chip */
+  function menu(){
+    const cur = current();
+    if (!cur) return;
+    const prev = document.activeElement;
+    const card = h('div', {class:'who-card'});
+    const ov = h('div', {class:'who-ov sheet', role:'dialog', 'aria-modal':'true', 'aria-label':'账号和进度'}, card);
+    function close(){ document.removeEventListener('keydown', onKey); ov.remove(); lock(false); if (prev && prev.focus) prev.focus(); }
+    function onKey(e){ if (e.key === 'Escape') close(); }
+    ov.addEventListener('click', function(e){ if (e.target === ov) close(); });
+    document.addEventListener('keydown', onKey);
+    function show(kids){
+      put(card, [h('button', {type:'button', class:'who-x', 'aria-label':'关闭', onclick:close}, '×')].concat(kids));
+    }
+    function mi(t, d, fn, danger){
+      return h('button', {type:'button', class:'who-mi' + (danger ? ' dng' : ''), onclick:fn}, h('b', null, t), h('span', null, d));
+    }
+    function back(){ return h('button', {type:'button', class:'who-link', onclick:home}, '‹ 返回'); }
+    function home(){
+      show([
+        h('div', {class:'who-top'}, avatar(cur.name, true), h('div', null, h('h2', {class:'who-h sm'}, cur.name), h('p', {class:'who-pm'}, summary(cur.id)))),
+        h('div', {class:'who-menu'},
+          mi('切换账号', '换一个名字，或给另一个人新建账号。', function(){ leave(); location.reload(); }),
+          mi('导出进度（备份）', '生成进度码。换手机、清理浏览器数据之前先存一份。', exportView),
+          mi('导入进度', '把另一台设备或备份里的进度合并进来。', importView),
+          mi('删除这个账号', '只删除这台设备上的这份进度，不影响其他设备。', removeView, true)),
+        h('p', {class:'who-note'}, '进度只存在这台设备的浏览器里，不会自动同步到别的设备；要换设备，用“导出进度”和“导入进度”。')]);
+    }
+    function exportView(){
+      const b = bundle(cur.id);
+      const ta = h('textarea', {class:'who-ta', readonly:true, 'aria-label':'进度码', spellcheck:'false'});
+      ta.value = toCode(b);
+      ta.addEventListener('focus', function(){ ta.select(); });
+      const msg = msgEl();
+      const fname = 'waikan-' + cur.name.replace(/[\\\/:*?"<>|\s]+/g, '_') + '-' + today() + '.json';
+      show([
+        h('h2', {class:'who-h sm'}, '导出进度'),
+        h('p', {class:'who-sub'}, '把这串进度码复制下来，发给自己（比如微信文件传输助手）。在新设备上打开本站，选“已有进度码？导入进度”粘贴即可。'),
+        ta,
+        h('div', {class:'who-row'},
+          h('button', {type:'button', class:'who-btn pri', onclick:function(){ copyText(ta).then(function(ok){ say(msg, ok ? '已复制。' : '没能自动复制，请长按进度码全选后手动复制。', ok ? 'ok' : 'err'); }); }}, '复制进度码'),
+          h('button', {type:'button', class:'who-btn', onclick:function(){ say(msg, saveFile(fname, JSON.stringify(b)) ? '已生成文件。' : '这个浏览器不支持保存文件，请用进度码。', ''); }}, '保存为文件')),
+        msg, back()]);
+    }
+    function importView(){
+      const f = importForm(function(p){
+        const m = mergeData(cur.id, p.data);
+        setTimeout(function(){ location.reload(); }, 1300);
+        return {ok:true, msg:importMsg(p, m, cur.name)};
+      });
+      show([
+        h('h2', {class:'who-h sm'}, '导入进度'),
+        h('p', {class:'who-sub'}, '粘贴进度码（或选导出的文件）。会合并到「' + cur.name + '」：同一个词两边都学过，保留更新的那次；不会覆盖你现在的进度。'),
+        f.node, back()]);
+    }
+    function removeView(){
+      show([
+        h('h2', {class:'who-h sm'}, '删除「' + cur.name + '」？'),
+        h('p', {class:'who-sub'}, '这台设备上这个名字的全部进度（生词状态、造句、自测成绩、复习计划）都会删除，无法恢复。建议先导出进度备份。'),
+        h('div', {class:'who-row'},
+          h('button', {type:'button', class:'who-btn', onclick:exportView}, '先导出备份'),
+          h('button', {type:'button', class:'who-btn dng', onclick:function(){ remove(cur.id); location.reload(); }}, '确认删除')),
+        back()]);
+    }
+    lock(true);
+    document.body.append(ov);
+    home();
+  }
+
+  /* put the account chip into mount; mode 'full' shows the name, 'tiny' only the initial */
+  function chip(mount, mode){
+    const cur = current();
+    if (!cur || !mount) return;
+    const b = h('button', {type:'button', class:'who-chip ' + (mode || 'full'), 'aria-label':'当前账号：' + cur.name + '，点击管理账号和进度', title:cur.name},
+      avatar(cur.name), mode === 'tiny' ? null : h('span', {class:'who-nm'}, cur.name));
+    b.addEventListener('click', menu);
+    mount.replaceChildren(b);
+  }
+
+  /* call first thing in a page's script: false = the picker is showing, the page must not start */
+  function boot(){
+    if (!ready()){ gate(); return false; }
+    window.addEventListener('storage', function(e){ if (e.key === WHO_KEY && whoReg().cur !== WHO_ID) location.reload(); });
+    return true;
+  }
+
+  return {boot:boot, ready:ready, canStore:canStore, gate:gate, menu:menu, chip:chip, list:list, current:current, create:create, select:select, leave:leave, remove:remove,
+    keysOf:keysOf, legacyKeys:legacyKeys, bundle:bundle, toCode:toCode, parse:parse, mergeData:mergeData, summary:summary, cleanName:cleanName};
+})();
+
+if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
+/* ---------- speaker buttons and the clip player (inlined by tools/build.py) ----------
+   A "clip" is a slice [start, end] of an MP3 sprite (clips.mp3 of one article). One Audio element per sprite file;
+   only one clip plays at a time. If the sprite is missing or fails to load, the browser's own speech synthesis reads the text. */
+const SPK_SVG = '<svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+function spkEl(label, onclick){
+  const b = h('button', {type:'button', class:'spk', 'aria-label':label, title:label, onclick:onclick});
+  b.innerHTML = SPK_SVG;
+  return b;
+}
+const Clip = (function(){
+  const st = {a:null, end:0, btn:null, raf:0, text:''};
+  const audios = {};
+  let beforePlay = null;
+  function done(){
+    cancelAnimationFrame(st.raf);
+    if (st.btn){ st.btn.classList.remove('on'); st.btn = null; }
+  }
+  function fallback(text){
+    try {
+      if (!('speechSynthesis' in window) || !text) return;
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = {en:'en-GB', ko:'ko-KR', ja:'ja-JP', yue:'zh-HK'}[LANG]; u.rate = 0.9;
+      speechSynthesis.speak(u);
+    } catch(e){}
+  }
+  function audio(src){
+    if (audios[src]) return audios[src];
+    const a = new Audio();
+    a.preload = 'auto';
+    a.src = src;
+    a.addEventListener('error', function(){ if (st.a === a){ const t = st.text; done(); fallback(t); } });
+    a.addEventListener('ended', function(){ if (st.a === a) done(); });
+    a.addEventListener('pause', function(){ if (st.a === a && a.currentTime < st.end) done(); });
+    audios[src] = a;
+    return a;
+  }
+  function tick(){
+    const a = st.a;
+    if (!a || a.paused) return;
+    if (a.currentTime >= st.end){ a.pause(); done(); return; }
+    st.raf = requestAnimationFrame(tick);
+  }
+  /* play one clip; clicking the same button again stops it. rate: 1 (default) or e.g. 0.7 */
+  function play(src, t, btn, text, rate){
+    if (!t || !src){ if (beforePlay) beforePlay(); done(); fallback(text); return; }
+    if (beforePlay) beforePlay();
+    const a = audio(src);
+    const wasOn = !!btn && st.btn === btn && st.a === a && !a.paused;
+    done();
+    if (st.a && st.a !== a && !st.a.paused) st.a.pause();
+    if (wasOn){ a.pause(); return; }
+    st.a = a; st.btn = btn || null; st.text = text;
+    st.end = t[1] + 0.15;
+    if (btn) btn.classList.add('on');
+    a.playbackRate = rate || 1;
+    try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+    const start = Math.max(0, t[0] - 0.1);
+    const go = function(){ a.currentTime = start; };
+    if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+    const pr = a.play();
+    if (pr && pr.catch) pr.catch(function(){ done(); });
+    cancelAnimationFrame(st.raf);
+    st.raf = requestAnimationFrame(tick);
+  }
+  function stop(){
+    if (st.a && !st.a.paused) st.a.pause();
+    done();
+  }
+  return {play:play, stop:stop, onBeforePlay:function(fn){ beforePlay = fn; }};
+})();
+/* speaker button for one word / example of an article: clips = {src, t:{key:[start,end]}} */
+function clipBtn(clips, key, text){
+  if (!clips) return null;
+  const b = spkEl('播放发音', function(){ Clip.play(clips.src, clips.t[key], b, text); });
+  return b;
+}
+
+/* ---------- quiz kit: one renderer per question type, shared by the reader and the review page ----------
+   Kit.make(item, o) returns the question card (a DOM element).
+     item = {type, key, id, v, k, dir, clips}
+        type   'mcq' | 'cloze' | 'exs' | 'zh' | 'dict' | 'sent' | 'pick'  (pick: v.pick[k] = {q, opts, a, why}, a grammar choice)
+        key    "<slug>:<word id>" (the spaced-repetition key)       id  the word id within its article
+        v      the word: {id, expr, zh, core, forms, syn, note, m, ctx, ex:[{en, zh}], cloze:{before, ans, after, hint, szh}}
+        k      which example sentence (exs, sent, dict); dict: -1 = the word itself
+        dir    mcq only: 'e2z' (English expression -> pick the meaning) or 'z2e' (meaning -> pick the expression)
+        sent   dict only: {en, zh, src, t} a sentence of the article instead of a word (then v and key may be null)
+        clips  {src, t:{key:[start, end]}} or null (no audio for this article)
+     o = {index, total, last, tag, label (replaces the type name in the header),
+          defer (dict only: no feedback, the answer goes straight to onAnswer + onNext),
+          hideTarget (sent only: do not say which expression to use; a hint button reveals it),
+          pool()            -> [{expr, zh}] words that may serve as wrong options (mcq)
+          extra(item, res)  -> a node shown at the bottom of the feedback (or null)
+          onAnswer(res)     the answer is in (res.ok may still flip once through the "my answer is fine" button)
+          onChange(res)     optional: res.ok was flipped by that button
+          isLast()          optional: is this the last question? (read when the button label is set; `last` is the static version)
+          onNext()          the learner pressed "next"}
+   res = {id, key, type, ok, given, k}.
+   Kit.freeze(card) -> a read-only copy of an answered card (what was typed or picked, and the feedback);
+   Kit.pager(box, hist, live, o) puts the live card in box with "‹ 上一题" to look back through hist (frozen cards);
+   live = null browses hist alone (after the last question), o.close = back to the results. */
+const Kit = (function(){
+  const TYPE_NAME = {mcq:'选择题', cloze:'文章填空', exs:'例句填空', zh:'中译' + XS + '词汇', dict:'听写', sent:'中译' + XS + '整句', pick:'语法辨析'};
+  const UNIT = LANG === 'en' ? ' 个字母' : ' 个字';
+  const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  const TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+
+  function markTerms(text, terms){
+    const ts = (terms || []).slice().sort(function(a, b){ return b.length - a.length; });
+    if (!ts.length) return [document.createTextNode(text)];
+    const re = termRe(ts, 'gi');
+    const out = [];
+    let last = 0, m;
+    while ((m = re.exec(text))){
+      if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
+      out.push(h('mark', {class:'vw'}, m[0]));
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) out.push(document.createTextNode(text.slice(last)));
+    return out;
+  }
+  /* an example sentence as a cloze: the [[target]] becomes the blank */
+  function exCloze(v, k){
+    const x = v.ex[k];
+    const m = /^([\s\S]*?)\[\[(.+?)\]\]([\s\S]*)$/.exec(x.en);
+    return {before:m[1], ans:m[2], after:m[3].replace(/\[\[|\]\]/g, ''), hint:v.zh, szh:x.zh};
+  }
+  function numWords(n){
+    if (n < 20) return ONES[n];
+    if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? ' ' + ONES[n % 10] : '');
+    return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + numWords(n % 100) : '');
+  }
+  /* 2019 -> twenty nineteen, 1984 -> nineteen eighty four (the way a speaker reads a year) */
+  function yearWords(t){
+    if (!/^\d{4}$/.test(t)) return null;
+    const n = Number(t);
+    if (!((n >= 1100 && n <= 1999) || (n >= 2010 && n <= 2099)) || n % 100 < 10) return null;
+    return numWords(Math.floor(n / 100)).split(' ').concat(numWords(n % 100).split(' '));
+  }
+  /* words of a sentence for comparing dictation: no case, no punctuation, no apostrophes, small numbers spelled out */
+  function toks(s){
+    const out = [];
+    /* Cantonese written in Jyutping: compare syllable by syllable, tone numbers optional */
+    if (LANG === 'yue' && /[a-z]/i.test(s)) return String(s).toLowerCase().split(/[^a-z]+/).filter(Boolean);
+    if (LANG === 'ja' || LANG === 'yue') return String(s).replace(new RegExp('[^' + LETTERS + '0-9]', 'g'), '').split('');   /* no spaces: compare by character */
+    String(s).toLowerCase().replace(/[’‘']/g, '').split(/[^a-z0-9\uac00-\ud7a3]+/).forEach(function(t){
+      if (!t) return;
+      if (/^\d{1,3}$/.test(t)) numWords(Number(t)).split(' ').forEach(function(w){ out.push(w); });
+      else if (yearWords(t)) yearWords(t).forEach(function(w){ out.push(w); });
+      else out.push(t);
+    });
+    return out;
+  }
+  function lcsHits(a, b){
+    const n = a.length, m = b.length;
+    const dp = [];
+    for (let i = 0; i <= n; i++) dp.push(new Array(m + 1).fill(0));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+      dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    const ha = new Array(n).fill(false), hb = new Array(m).fill(false);
+    let i = 0, j = 0;
+    while (i < n && j < m){
+      if (a[i] === b[j]){ ha[i] = hb[j] = true; i++; j++; }
+      else if (dp[i + 1][j] >= dp[i][j + 1]) i++;
+      else j++;
+    }
+    return {ha:ha, hb:hb};
+  }
+  /* the text with the words that are not in `hits` underlined */
+  function chunkDiff(text, hits){
+    const out = [];
+    let pos = 0;
+    text.split(/\s+/).filter(Boolean).forEach(function(chunk){
+      const n = toks(chunk).length;
+      let miss = false;
+      for (let k = 0; k < n; k++) if (!hits[pos + k]) miss = true;
+      pos += n;
+      if (out.length) out.push(' ');
+      out.push(miss ? h('span', {class:'miss-t'}, chunk) : chunk);
+    });
+    return out;
+  }
+
+  /* ---- pieces every question uses ---- */
+  function head(o, type){
+    const bar = h('div', {class:'pbar'}, h('i'));
+    bar.style.setProperty('--p', (o.index / o.total * 100) + '%');
+    return h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (o.index + 1) + ' 题 / ' + o.total + '　' + (o.label || TYPE_NAME[type]) + (o.tag ? '　' + o.tag : '')), bar);
+  }
+  function inputAttrs(extra){
+    return Object.assign({type:'text', id:'q-input', autocomplete:'off', autocapitalize:'off', autocorrect:'off', spellcheck:'false'}, extra);
+  }
+  function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
+  function speakLine(item, v){
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), LANG === 'yue' && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
+  }
+  function extraBox(item, res, o){
+    const box = h('div', {class:'fb-x'});
+    box.refresh = function(){
+      box.replaceChildren();
+      const n = o.extra ? o.extra(item, res) : null;
+      if (n) box.append(n);
+    };
+    return box;
+  }
+  function newRes(item, type){ return {id:item.id, key:item.key || null, type:type, ok:false, given:'', k:item.k}; }
+
+  /* ---- fill the blank: the sentence is the article's (cloze) or one of the word's examples (exs) ---- */
+  function clozeQ(item, o, c, type){
+    const v = item.v, res = newRes(item, type);
+    const inp = h('input', inputAttrs({class:'q-input', 'aria-label':'填入缺失的单词'}));
+    inp.style.width = Math.max(6, c.ans.length + 2) + 'ch';
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, type),
+      h('p', {class:'q-sent'}, c.before, inp, c.after),
+      h('p', {class:'q-hint'}, c.hint + '　', h('span', {class:'mono'}, c.ans.length + UNIT)),
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ inp.placeholder = c.ans.charAt(0); inp.focus(); });
+    function check(){
+      const val = norm(inp.value);
+      if (!val){ inp.focus(); return; }
+      const ok = val === norm(c.ans) || (c.ans === v.core && romOk(inp.value, v.rom));
+      checked = true;
+      res.ok = ok; res.given = inp.value.trim();
+      o.onAnswer(res);
+      inp.readOnly = true;
+      inp.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(
+        h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, c.ans)]),
+        h('p', null, c.szh),
+        speakLine(item, v),
+        ex
+      );
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- Chinese -> the English expression, typed ---- */
+  function zhQ(item, o){
+    const v = item.v, res = newRes(item, 'zh');
+    const words = v.core.split(' ');
+    const inp = h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出对应的' + XL + '表达'}));
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '检查');
+    const peek = h('button', {type:'button', class:'btn'}, '提示首字母');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, 'zh'),
+      h('p', {class:'q-zh'}, v.zh),
+      h('p', {class:'q-line'}, inp),
+      h('p', {class:'q-hint'}, words.length + ' 个词：', h('span', {class:'mono'}, words.map(function(w){ return w.length; }).join(' + ') + UNIT)),
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ inp.placeholder = v.core.charAt(0) + '…'; inp.focus(); });
+    function check(){
+      const val = norm(inp.value);
+      if (!val){ inp.focus(); return; }
+      const own = v.forms.map(norm).indexOf(val) >= 0 || romOk(inp.value, v.rom);
+      const ok = own || v.syn.map(norm).indexOf(val) >= 0;
+      checked = true;
+      res.ok = ok; res.given = inp.value.trim();
+      o.onAnswer(res);
+      inp.readOnly = true;
+      inp.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const headP = h('p', {class:'fb-t'}, ok ? '正确' : ['不对，参考答案是 ', h('b', null, v.expr)]);
+      const kids = [headP];
+      if (ok && !own) kids.push(h('p', null, '你写的是近义表达，文章里用的是 ', h('b', null, v.core), '。'));
+      if (!ok){
+        const alt = h('button', {type:'button', class:'btn sm'}, '我写的也对（近义词）');
+        alt.addEventListener('click', function(){
+          res.ok = true;
+          fb.className = 'fb ok';
+          inp.classList.remove('bad'); inp.classList.add('ok');
+          headP.replaceChildren('已按你的判断算对。参考答案是 ', h('b', null, v.expr));
+          alt.remove();
+          ex.refresh();
+          if (o.onChange) o.onChange(res);
+          main.textContent = nextLabel(o);
+          main.focus();
+        });
+        kids.push(h('div', {class:'fb-s'}, alt));
+      }
+      kids.push(speakLine(item, v));
+      kids.push(h('p', {class:'w-ctx'}, markTerms(v.ctx, v.m)));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    inp.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- Chinese sentence -> the whole English sentence, graded by the learner ---- */
+  function sentRe(v){
+    const alts = v.forms.map(function(f){
+      return f.toLowerCase().split(new RegExp('[^' + LETTERS + ']+')).filter(Boolean).map(esc).join('[^A-Za-z\\uac00-\\ud7a3\\u3040-\\u30ff\\u3005\\u4e00-\\u9fff]*');
+    });
+    return new RegExp('(?:^|[^A-Za-z\\uac00-\\ud7a3])(?:' + alts.join('|') + ')(?![A-Za-z])', 'i');
+  }
+  function sentQ(item, o){
+    const v = item.v, x = v.ex[item.k], res = newRes(item, 'sent');
+    const hide = !!o.hideTarget;
+    const ta = h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:400, placeholder:'把这句话写成' + XL, 'aria-label':'写出整句' + XL}));
+    const hintP = h('p', {class:'q-hint'});
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri'}, '核对');
+    const peek = h('button', {type:'button', class:'btn'}, hide ? '提示：要用的表达' : '提示：这个表达的意思');
+    const ex = extraBox(item, res, o);
+    let stage = 0;      /* 0 writing, 1 compared with the reference, 2 graded */
+    const card = h('div', {class:'card'},
+      head(o, 'sent'),
+      h('p', {class:'q-zh'}, x.zh),
+      hide ? h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '翻译成' + XL + '，用上一个学过的表达。'))
+           : h('p', {class:'q-tgt'}, h('span', {class:'meta'}, '请用上'), h('b', null, v.expr)),
+      hintP,
+      ta,
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    peek.addEventListener('click', function(){ hintP.textContent = v.expr + '：' + v.zh; peek.hidden = true; ta.focus(); });
+    function check(){
+      const val = ta.value.trim();
+      if (!val){ ta.focus(); return; }
+      const used = sentRe(v).test(val) || (LANG === 'yue' && !!v.rom && norm(val).indexOf(norm(v.rom)) >= 0);
+      ta.readOnly = true;
+      fb.className = 'fb ' + (used ? 'ok' : 'bad');
+      fb.hidden = false;
+      const verdict = h('p', {class:'fb-t'}, '对照参考句，自己判断：时态、搭配、拼写有没有问题。意思对、表达自然就算写对。');
+      const gradeRow = h('div', {class:'row'},
+        h('button', {type:'button', class:'btn pri', onclick:function(){ grade(true); }}, '我写对了'),
+        h('button', {type:'button', class:'btn', onclick:function(){ grade(false); }}, '还要再练'));
+      function grade(ok){
+        res.ok = ok; res.given = ta.value.trim();
+        o.onAnswer(res);
+        stage = 2;
+        fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+        verdict.textContent = ok ? '你判定：写对了' : '你判定：还要再练';
+        gradeRow.replaceWith(ex);
+        ex.refresh();
+        main.textContent = nextLabel(o);
+        main.hidden = false;
+        main.focus();
+      }
+      fb.replaceChildren(
+        h('p', {class:'fb-t'}, used ? '用到了 ' + v.expr : '没看到 ' + v.expr + '（词形变化也算）'),
+        h('p', null, clipBtn(item.clips, 'e' + v.id + '_' + item.k, exPlain(x.en)), item.clips ? ' ' : null, '参考句：', exNodes(x.en)),
+        LANG === 'yue' && x.rom ? h('p', {class:'meta'}, x.rom) : '',
+        hide ? h('p', {class:'meta'}, v.expr + '：' + v.zh) : '',
+        verdict,
+        gradeRow
+      );
+      stage = 1;
+      main.hidden = true;
+      peek.hidden = true;
+    }
+    main.addEventListener('click', function(){ if (stage === 2) o.onNext(); else if (stage === 0) check(); });
+    ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); main.click(); } });
+    return card;
+  }
+
+  /* ---- multiple choice: meaning of an expression (e2z), or the expression for a meaning (z2e) ---- */
+  function mcqQ(item, o){
+    const v = item.v, res = newRes(item, 'mcq');
+    const dir = item.dir === 'z2e' ? 'z2e' : 'e2z';
+    const right = dir === 'e2z' ? v.zh : v.expr;
+    const seen = {};
+    seen[right] = true;
+    const wrong = [];
+    shuffle((o.pool ? o.pool() : []).slice()).forEach(function(p){
+      const t = dir === 'e2z' ? p.zh : p.expr;
+      if (t && !seen[t] && wrong.length < 3){ seen[t] = true; wrong.push(t); }
+    });
+    const texts = shuffle([right].concat(wrong));
+    const ex = extraBox(item, res, o);
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri', hidden:true}, nextLabel(o));
+    let answered = false;
+    const btns = texts.map(function(t, i){
+      return h('button', {type:'button', class:'mc-b', onclick:function(){ pick(i); }}, h('span', {class:'n'}, String(i + 1)), h('span', null, t));
+    });
+    const ask = dir === 'e2z'
+      ? [h('p', {class:'q-ask'}, '这个表达在句子里是什么意思？'),
+         h('p', {class:'q-big'}, v.expr, item.clips ? ' ' : null, clipBtn(item.clips, 'w' + v.id, v.core)),
+         h('p', {class:'q-ctx'}, markTerms(v.ctx, v.m))]
+      : [h('p', {class:'q-ask'}, '选出对应的' + XL + '表达'),
+         h('p', {class:'q-zh'}, v.zh)];
+    const card = h('div', {class:'card'},
+      head(o, 'mcq'),
+      ask,
+      h('div', {class:'mc', role:'group', 'aria-label':'选项'}, btns),
+      fb,
+      h('div', {class:'row'}, main)
+    );
+    function pick(i){
+      if (answered) return;
+      answered = true;
+      const ok = texts[i] === right;
+      res.ok = ok; res.given = texts[i];
+      o.onAnswer(res);
+      btns.forEach(function(b, j){
+        b.disabled = true;
+        if (texts[j] === right) b.classList.add('ok');
+        else if (j === i) b.classList.add('bad');
+      });
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const kids = [h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, right)]), speakLine(item, v)];
+      if (v.note) kids.push(h('p', {class:'w-note'}, v.note));
+      kids.push(h('p', {class:'w-ctx'}, markTerms(v.ctx, v.m)));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      main.textContent = nextLabel(o);
+      main.hidden = false;
+      main.focus();
+    }
+    main.addEventListener('click', function(){ o.onNext(); });
+    function onKey(e){
+      if (!card.isConnected){ document.removeEventListener('keydown', onKey); return; }
+      if (card.offsetParent === null) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const n = Number(e.key);
+      if (!answered && n >= 1 && n <= btns.length){ e.preventDefault(); pick(n - 1); }
+    }
+    document.addEventListener('keydown', onKey);
+    return card;
+  }
+
+  /* ---- grammar choice: a sentence with a gap and the forms to choose from (v.pick[item.k]) ---- */
+  function pickQ(item, o){
+    const v = item.v, P = v.pick[item.k], res = newRes(item, 'pick');
+    const order = shuffle(P.opts.map(function(t, i){ return i; }));
+    const ex = extraBox(item, res, o);
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const main = h('button', {type:'button', class:'btn pri', hidden:true}, nextLabel(o));
+    let answered = false;
+    const btns = order.map(function(j, n){
+      return h('button', {type:'button', class:'mc-b', onclick:function(){ pick(n); }}, h('span', {class:'n'}, String(n + 1)), h('span', null, P.opts[j]));
+    });
+    const card = h('div', {class:'card'},
+      head(o, 'pick'),
+      h('p', {class:'q-ask'}, '选出合适的说法'),
+      h('p', {class:'q-sent'}, P.q),
+      P.rom ? h('p', {class:'rom'}, P.rom) : null,
+      h('div', {class:'mc', role:'group', 'aria-label':'选项'}, btns),
+      fb,
+      h('div', {class:'row'}, main)
+    );
+    function pick(n){
+      if (answered) return;
+      answered = true;
+      const ok = order[n] === P.a;
+      res.ok = ok; res.given = P.opts[order[n]];
+      o.onAnswer(res);
+      btns.forEach(function(b, m){
+        b.disabled = true;
+        if (order[m] === P.a) b.classList.add('ok');
+        else if (m === n) b.classList.add('bad');
+      });
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      fb.replaceChildren(h('p', {class:'fb-t'}, ok ? '正确' : ['不对，答案是 ', h('b', null, P.opts[P.a])]),
+        h('p', null, P.why), h('p', {class:'meta'}, v.expr + '：' + v.zh), ex);
+      ex.refresh();
+      main.hidden = false;
+      main.focus();
+    }
+    main.addEventListener('click', function(){ o.onNext(); });
+    function onKey(e){
+      if (!card.isConnected){ document.removeEventListener('keydown', onKey); return; }
+      if (card.offsetParent === null || e.ctrlKey || e.metaKey || e.altKey) return;
+      const n = Number(e.key);
+      if (!answered && n >= 1 && n <= btns.length){ e.preventDefault(); pick(n - 1); }
+    }
+    document.addEventListener('keydown', onKey);
+    return card;
+  }
+
+  /* ---- dictation: listen, then type a word, an example sentence, or (item.sent) a sentence of the article ----
+     item.sent = {en, zh, src, t}: the sentence and where its audio is.   o.defer: no feedback after the answer, the
+     host shows everything at the end (listening exam); the answer is passed on through onAnswer + onNext. */
+  function dictQ(item, o){
+    const v = item.v, S = item.sent, res = newRes(item, 'dict');
+    const isWord = !S && (item.k == null || item.k < 0);
+    const x = !S && !isWord ? v.ex[item.k] : null;
+    const ref = S ? S.en : isWord ? v.core : exPlain(x.en);
+    const zhText = S ? S.zh : isWord ? v.zh : x.zh;
+    const key = S ? null : isWord ? 'w' + v.id : 'e' + v.id + '_' + item.k;
+    const src = S ? S.src : item.clips ? item.clips.src : null;
+    const clipT = S ? S.t : item.clips && key ? item.clips.t[key] : null;
+    res.ref = ref; res.zh = zhText; res.src = src; res.t = clipT; res.kind = S ? 's' : isWord ? 'w' : 'e';
+    const defer = !!o.defer;
+    const playB = h('button', {type:'button', class:'btn pri play'}, '播放');
+    const slowB = h('button', {type:'button', class:'btn play'}, '慢速播放');
+    playB.insertAdjacentHTML('afterbegin', SPK_SVG);
+    playB.addEventListener('click', function(){ Clip.play(src, clipT, playB, ref, 1); });
+    slowB.addEventListener('click', function(){ Clip.play(src, clipT, slowB, ref, 0.7); });
+    const field = isWord
+      ? h('input', inputAttrs({class:'q-input q-wide', 'aria-label':'写出听到的表达'}))
+      : h('textarea', inputAttrs({class:'q-area', rows:3, maxlength:500, placeholder:'把听到的整句写下来', 'aria-label':'写出听到的整句'}));
+    const hintP = h('p', {class:'q-hint'}, isWord ? '一个' + XL + '表达，写法要和听到的一致。' + (LANG === 'yue' ? '写汉字或粤拼都行。' : '') : (LANG === 'yue' ? '写汉字或粤拼都行（粤拼音节之间空一格，声调数字可省）。标点不影响判分。' : LANG !== 'en' ? '标点和空格不影响判分。' : '大小写和标点不影响判分，数字写 30 或 thirty 都行。') + (defer ? '' : '电脑上按 Ctrl+Enter 提交。'));
+    const fb = h('div', {class:'fb', hidden:true, 'aria-live':'polite'});
+    const lastQ = function(){ return o.isLast ? o.isLast() : !!o.last; };
+    const main = h('button', {type:'button', class:'btn pri'}, defer ? (lastQ() ? '交卷' : '提交，下一题') : '检查');
+    const peek = defer ? null : h('button', {type:'button', class:'btn'}, '提示：中文意思');
+    const ex = extraBox(item, res, o);
+    let checked = false;
+    const card = h('div', {class:'card'},
+      head(o, 'dict'),
+      h('p', {class:'q-ask'}, isWord ? '听发音，写出这个表达。' : '听一句话，把整句写下来。'),
+      h('div', {class:'dict-btns'}, playB, slowB),
+      isWord ? h('p', {class:'q-line'}, field) : field,
+      hintP,
+      fb,
+      h('div', {class:'row'}, main, peek)
+    );
+    if (peek) peek.addEventListener('click', function(){ hintP.textContent = '意思：' + zhText; peek.hidden = true; field.focus(); });
+    function check(){
+      const val = field.value.trim();
+      if (!norm(val) && !/\d/.test(val)){ field.focus(); return; }
+      let ok, diffKids = [];
+      if (isWord){
+        ok = v.forms.map(norm).indexOf(norm(val)) >= 0 || romOk(val, v.rom);
+      } else {
+        const refRom = S ? S.rom : x && x.rom;
+        const useRom = LANG === 'yue' && /[a-z]/i.test(val) && !!refRom;   /* answered in Jyutping: compare with the reading */
+        const a = toks(useRom ? refRom : ref), b = toks(val), d = lcsHits(a, b);
+        ok = a.length === b.length && d.ha.every(Boolean);
+        if (!ok) diffKids = [
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '标准答案（有出入的词划了线）'), useRom ? chunkDiff(refRom, d.ha) : LANG === 'yue' ? ref : chunkDiff(ref, d.ha)),
+          h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), chunkDiff(val, d.hb))
+        ];
+      }
+      checked = true;
+      res.ok = ok; res.given = val;
+      o.onAnswer(res);
+      if (defer){ o.onNext(); return; }
+      field.readOnly = true;
+      if (isWord) field.classList.add(ok ? 'ok' : 'bad');
+      fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+      fb.hidden = false;
+      const headP = h('p', {class:'fb-t'}, ok ? '正确' : (isWord ? ['不对，听到的是 ', h('b', null, v.expr)] : '有出入，对照一下'));
+      const kids = [headP];
+      if (!ok){
+        kids.push.apply(kids, diffKids);
+        const alt = h('button', {type:'button', class:'btn sm'}, '只是小失误，算我对');
+        alt.addEventListener('click', function(){
+          res.ok = true;
+          fb.className = 'fb ok';
+          if (isWord){ field.classList.remove('bad'); field.classList.add('ok'); }
+          headP.replaceChildren('已按你的判断算对。');
+          alt.remove();
+          ex.refresh();
+          if (o.onChange) o.onChange(res);
+          main.textContent = nextLabel(o);
+          main.focus();
+        });
+        kids.push(h('div', {class:'fb-s'}, alt));
+      }
+      if (isWord) kids.push(speakLine(item, v));
+      else if (S){
+        const sb = spkEl('播放这一句', function(){ Clip.play(src, clipT, sb, ref, 1); });
+        kids.push(h('p', null, sb, ' ', ref), h('p', {class:'meta'}, zhText));
+      } else kids.push(h('p', null, clipBtn(item.clips, key, ref), item.clips ? ' ' : null, exNodes(x.en)), h('p', {class:'meta'}, x.zh));
+      kids.push(ex);
+      fb.replaceChildren.apply(fb, kids);
+      ex.refresh();
+      if (peek) peek.hidden = true;
+      main.textContent = nextLabel(o);
+      main.focus();
+    }
+    main.addEventListener('click', function(){ if (checked) o.onNext(); else check(); });
+    field.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && (isWord || e.ctrlKey || e.metaKey)){ e.preventDefault(); main.click(); }
+    });
+    /* play once as soon as the question appears (this runs inside the click that opened it, so browsers allow it) */
+    if (o.autoplay !== false) Clip.play(src, clipT, playB, ref, 1);
+    return card;
+  }
+
+  function make(item, o){
+    switch (item.type){
+      case 'cloze': return clozeQ(item, o, item.v.cloze, 'cloze');
+      case 'exs': return clozeQ(item, o, exCloze(item.v, item.k), 'exs');
+      case 'zh': return zhQ(item, o);
+      case 'sent': return sentQ(item, o);
+      case 'mcq': return mcqQ(item, o);
+      case 'dict': return dictQ(item, o);
+      case 'pick': return pickQ(item, o);
+    }
+    throw new Error('unknown question type ' + item.type);
+  }
+  /* ---- looking back at answered questions ---- */
+  function freeze(card){
+    const c = card.cloneNode(true);           /* inputs and textareas keep what was typed */
+    c.classList.add('q-past');
+    $$(':scope > .row', c).forEach(function(r){ r.hidden = true; });
+    $$('[id]', c).forEach(function(el){ el.removeAttribute('id'); });
+    $$('button', c).forEach(function(b){ b.disabled = true; });
+    $$('input, textarea', c).forEach(function(f){ f.readOnly = true; });
+    return c;
+  }
+  function pager(box, hist, live, o){
+    let pos = live ? hist.length : 0;
+    const prev = h('button', {type:'button', class:'btn sm'}, '‹ 上一题');
+    const nxt = h('button', {type:'button', class:'btn sm'}, '下一题 ›');
+    const lab = h('span', {class:'meta'});
+    const back = live ? h('button', {type:'button', class:'btn sm pri'}, '回到当前题')
+      : h('button', {type:'button', class:'btn sm pri', onclick:function(){ if (o && o.close) o.close(); }}, '返回成绩');
+    const bar = h('div', {class:'q-nav'}, prev, nxt, lab, back);
+    const liveBox = h('div', null, live);
+    const past = h('div');
+    function show(){
+      const atLive = !!live && pos === hist.length;
+      liveBox.hidden = !atLive;
+      past.replaceChildren();
+      if (!atLive) past.append(hist[pos]);
+      prev.disabled = pos === 0;
+      nxt.hidden = atLive;
+      nxt.disabled = !live && pos >= hist.length - 1;
+      back.hidden = atLive;
+      lab.textContent = atLive ? '' : '第 ' + (pos + 1) + ' 题（已作答，只能查看）';
+      bar.hidden = atLive && !hist.length;
+      if (atLive) focus(live);
+    }
+    prev.addEventListener('click', function(){ if (pos > 0){ pos--; show(); } });
+    nxt.addEventListener('click', function(){ pos++; show(); });
+    if (live) back.addEventListener('click', function(){ pos = hist.length; show(); });
+    box.replaceChildren(bar, liveBox, past);
+    show();
+  }
+  function focus(card){
+    const f = $('#q-input', card);
+    if (f) f.focus({preventScroll:true});
+  }
+  /* which question to ask a word that is on step b of the ladder: recognise -> fill in -> spell -> hear -> write */
+  function typeForStage(b, hasClips){
+    if (b <= 0) return {type:'mcq', dir:'e2z'};
+    if (b === 1) return {type:'mcq', dir:'z2e'};
+    if (b === 2) return {type:'exs'};
+    if (b === 3) return {type:'cloze'};
+    if (b <= 5) return {type:'zh'};
+    if (b <= 7) return hasClips ? {type:'dict'} : {type:'zh'};
+    return {type:'sent'};
+  }
+  return {TYPE_NAME:TYPE_NAME, make:make, focus:focus, freeze:freeze, pager:pager, markTerms:markTerms, exCloze:exCloze, toks:toks, lcsHits:lcsHits, chunkDiff:chunkDiff, typeForStage:typeForStage};
+})();
+
+Who.chip($('#whoMount'), 'tiny');
+
+const DATA = {"sents":[{"kind":"title","en":"이거 뭐예요?","rom":"igeo mwoyeyo?","zh":"这是什么？","notes":["이거：这个。뭐예요：是什么？","指着东西问名字，最简单的一句。"],"i":0,"p":0,"n":0,"label":"标题"},{"kind":"sub","en":"민지가 시장에서 처음 보는 음식을 찾았어요.","rom":"minjiga sijangeseo cheoeum boneun eumsigeul chajasseoyo.","zh":"敏智在市场里发现了一种第一次见的食物。","notes":["시장：市场。처음 보는 음식：第一次见到的食物。","찾았어요：找到了（过去式），先认识一下，以后再学过去式。"],"i":1,"p":0,"n":0,"label":"副标题"},{"kind":"body","en":"민지: 저거 뭐예요?","rom":"minji: jeogeo mwoyeyo?","zh":"敏智：那个是什么？","notes":["저거：那个，东西离两个人都远时用。","뭐예요：是什么？뭐（什么）+ 예요（是）。"],"p":1,"i":2,"n":1,"label":"第 1 句"},{"kind":"body","en":"아주머니: 떡볶이예요. 정말 맛있어요.","rom":"ajumeoni: tteokbokkiyeyo. jeongmal masisseoyo.","zh":"阿姨：是炒年糕。真的很好吃。","notes":["아주머니：阿姨，对中年女性的称呼，市场里很常听到。","떡볶이예요：떡볶이 以元音结尾，所以用 예요。","정말：真的。맛있어요：好吃。"],"p":2,"i":3,"n":2,"label":"第 2 句"},{"kind":"body","en":"민지: 매워요?","rom":"minji: maewoyo?","zh":"敏智：辣吗？","notes":["매워요：辣，原形 맵다。句尾语调上扬就变成问句。"],"p":3,"i":4,"n":3,"label":"第 3 句"},{"kind":"body","en":"아주머니: 아니요, 안 매워요.","rom":"ajumeoni: aniyo, an maewoyo.","zh":"阿姨：不，不辣。","notes":["아니요：不、不是，回答问题时用。","안 + 动词/形容词：否定，안 매워요 = 不辣。"],"p":4,"i":5,"n":4,"label":"第 4 句"},{"kind":"body","en":"민지: 그럼 이거 하나 주세요!","rom":"minji: geureom igeo hana juseyo!","zh":"敏智：那请给我一份这个！","notes":["그럼：那么、那样的话。","하나：一个。数东西时单独说“一个”用 하나，放在量词前才变成 한。","주세요 是第 2 课学过的“请给我”。"],"p":5,"i":6,"n":5,"label":"第 5 句"}],"vocab":[{"id":1,"expr":"이거","rom":"igeo","zh":"这个（离我近的东西）","m":["이거"],"note":"이것 的口语说法。韩语分三种距离：이거（这个，离我近）、그거（那个，离你近）、저거（那个，离我们都远）。","core":"이거","forms":["이거","이것"],"syn":[],"ex":[{"en":"[[이거]] 얼마예요?","rom":"igeo eolmayeyo?","zh":"这个多少钱？"},{"en":"[[이거]] 주세요.","rom":"igeo juseyo.","zh":"请给我这个。"}],"ctx":"이거 뭐예요?"},{"id":2,"expr":"저거","rom":"jeogeo","zh":"那个（离我们都远的东西）","m":["저거"],"note":"저것 的口语。指着远处的东西用 저거；对方手边的东西用 그거。","core":"저거","forms":["저거","저것"],"syn":[],"ex":[{"en":"[[저거]] 맛있어요?","rom":"jeogeo masisseoyo?","zh":"那个好吃吗？"},{"en":"[[저거]] 하나 주세요.","rom":"jeogeo hana juseyo.","zh":"请给我一个那个。"}],"ctx":"민지: 저거 뭐예요?"},{"id":3,"expr":"뭐예요","rom":"mwoyeyo","zh":"是什么？","m":["뭐예요"],"note":"뭐（什么）+ 예요（是）。前面放名词就能问：이름이 뭐예요?（名字是什么？）","core":"뭐예요","forms":["뭐예요","뭐"],"syn":[],"ex":[{"en":"이름이 [[뭐예요]]?","rom":"ireumi mwoyeyo?","zh":"你叫什么名字？"},{"en":"이건 [[뭐예요]]?","rom":"igeon mwoyeyo?","zh":"这个是什么？"}],"ctx":"이거 뭐예요?"},{"id":4,"expr":"떡볶이","rom":"tteokbokki","zh":"辣炒年糕","m":["떡볶이"],"note":"韩国最有名的街头小吃：年糕条加辣椒酱煮。떡 是年糕，볶이 来自 볶다（炒）。","core":"떡볶이","forms":["떡볶이"],"syn":[],"ex":[{"en":"[[떡볶이]] 좋아해요?","rom":"tteokbokki joahaeyo?","zh":"你喜欢炒年糕吗？"},{"en":"[[떡볶이]] 일 인분 주세요.","rom":"tteokbokki il inbun juseyo.","zh":"请给我一人份炒年糕。"}],"ctx":"아주머니: 떡볶이예요. 정말 맛있어요."},{"id":5,"expr":"맛있다","rom":"masitda","zh":"好吃","m":["맛있어요"],"note":"原形 맛있다，礼貌说法 맛있어요。맛（味道）+ 있다（有）=“有味道”=好吃。反义 맛없다（不好吃）。","core":"맛있다","forms":["맛있다","맛있어요","맛있어"],"syn":[],"ex":[{"en":"김치가 [[맛있어요]].","rom":"gimchiga masisseoyo.","zh":"泡菜很好吃。"},{"en":"이 빵 정말 [[맛있어요]]!","rom":"i ppang jeongmal masisseoyo!","zh":"这个面包真好吃！"}],"ctx":"아주머니: 떡볶이예요. 정말 맛있어요."},{"id":6,"expr":"맵다","rom":"maepda","zh":"辣","m":["매워요"],"note":"原形 맵다，礼貌说法 매워요（ㅂ 变成 우）。韩国菜很多都辣，这句很实用。","core":"맵다","forms":["맵다","매워요","매워"],"syn":[],"ex":[{"en":"이 라면 너무 [[매워요]].","rom":"i ramyeon neomu maewoyo.","zh":"这个拉面太辣了。"},{"en":"김치는 좀 [[매워요]].","rom":"gimchineun jom maewoyo.","zh":"泡菜有点辣。"}],"ctx":"민지: 매워요?"},{"id":7,"expr":"아니요","rom":"aniyo","zh":"不、不是（回答）","m":["아니요"],"note":"回答“是不是”时说 네（是）或 아니요（不是）。口语也说 아뇨。","core":"아니요","forms":["아니요","아뇨"],"syn":[],"ex":[{"en":"[[아니요]], 괜찮아요.","rom":"aniyo, gwaenchanayo.","zh":"不用了，没关系。"},{"en":"[[아니요]], 저는 학생이 아니에요.","rom":"aniyo, jeoneun haksaengi anieyo.","zh":"不，我不是学生。"}],"ctx":"아주머니: 아니요, 안 매워요."},{"id":8,"expr":"안","rom":"an","zh":"不（放在动词、形容词前）","m":["안"],"note":"最简单的否定：안 + 动词 / 形容词。안 매워요（不辣）、안 먹어요（不吃）、안 좋아해요（不喜欢）。","core":"안","forms":["안"],"syn":[],"ex":[{"en":"저는 커피를 [[안]] 마셔요.","rom":"jeoneun keopireul an masyeoyo.","zh":"我不喝咖啡。"},{"en":"오늘은 [[안]] 추워요.","rom":"oneureun an chuwoyo.","zh":"今天不冷。"}],"ctx":"아주머니: 아니요, 안 매워요."},{"id":9,"expr":"그럼","rom":"geureom","zh":"那么、那样的话","m":["그럼"],"note":"그러면 的口语。接着对方的话做决定：그럼 내일 만나요.（那明天见。）","core":"그럼","forms":["그럼","그러면"],"syn":[],"ex":[{"en":"[[그럼]] 내일 만나요.","rom":"geureom naeil mannayo.","zh":"那明天见吧。"},{"en":"[[그럼]] 이거 주세요.","rom":"geureom igeo juseyo.","zh":"那请给我这个。"}],"ctx":"민지: 그럼 이거 하나 주세요!"},{"id":10,"expr":"하나","rom":"hana","zh":"一（个）","m":["하나"],"note":"固有数词：하나、둘、셋、넷、다섯。单独说“一个”用 하나；放在量词前变成 한：한 잔、한 개（第 2 课）。","core":"하나","forms":["하나"],"syn":[],"ex":[{"en":"사과 [[하나]] 주세요.","rom":"sagwa hana juseyo.","zh":"请给我一个苹果。"},{"en":"[[하나]], 둘, 셋!","rom":"hana, dul, set!","zh":"一、二、三！"}],"ctx":"민지: 그럼 이거 하나 주세요!"}],"cloze":[{"id":1,"i":0,"before":"","ans":"이거","after":" 뭐예요?","hint":"这个","szh":"这是什么？"},{"id":2,"i":2,"before":"민지: ","ans":"저거","after":" 뭐예요?","hint":"那个（远处）","szh":"敏智：那个是什么？"},{"id":3,"i":2,"before":"민지: 저거 ","ans":"뭐예요","after":"?","hint":"是什么","szh":"敏智：那个是什么？"},{"id":4,"i":3,"before":"아주머니: ","ans":"떡볶이","after":"예요. 정말 맛있어요.","hint":"辣炒年糕","szh":"阿姨：是炒年糕。真的很好吃。"},{"id":5,"i":3,"before":"아주머니: 떡볶이예요. 정말 ","ans":"맛있어요","after":".","hint":"好吃（礼貌说法）","szh":"阿姨：是炒年糕。真的很好吃。"},{"id":6,"i":4,"before":"민지: ","ans":"매워요","after":"?","hint":"辣（礼貌说法）","szh":"敏智：辣吗？"},{"id":7,"i":5,"before":"아주머니: ","ans":"아니요","after":", 안 매워요.","hint":"不（回答）","szh":"阿姨：不，不辣。"},{"id":8,"i":5,"before":"아주머니: 아니요, ","ans":"안","after":" 매워요.","hint":"不（否定）","szh":"阿姨：不，不辣。"},{"id":9,"i":6,"before":"민지: ","ans":"그럼","after":" 이거 하나 주세요!","hint":"那么","szh":"敏智：那请给我一份这个！"},{"id":10,"i":6,"before":"민지: 그럼 이거 ","ans":"하나","after":" 주세요!","hint":"一（个）","szh":"敏智：那请给我一份这个！"}],"breakdown":{"en":"아주머니: 아니요, 안 매워요.","points":["否定最简单的办法：在动词或形容词前加 안。매워요（辣）→ 안 매워요（不辣）。","回答“是不是”先说 네（是）或 아니요（不是），再说完整的话。","试试换词：안 비싸요（不贵）、안 좋아해요（不喜欢）、안 먹어요（不吃）。"],"i":5},"lang":"ko","title":"이거 뭐예요?","audio":{"src":"audio.mp3?v=c3d9defc","dur":22.72,"t":[[0.25,1.33],[2.23,5.63],[6.53,8.59],[8.91,13.5],[13.82,15.49],[16.24,19.23],[19.55,22.12]],"voice":"ko-KR-SunHiNeural"},"clips":{"src":"clips.mp3?v=e811aebb","t":{"w1":[1.0,1.64],"e1_0":[2.14,3.39],"e1_1":[3.89,4.88],"w2":[5.38,6.11],"e2_0":[6.61,7.96],"e2_1":[8.46,9.82],"w3":[10.32,11.05],"e3_0":[11.55,12.65],"e3_1":[13.15,14.27],"w4":[14.77,15.64],"e4_0":[16.14,17.51],"e4_1":[18.01,19.93],"w5":[20.43,21.27],"e5_0":[21.77,23.22],"e5_1":[23.72,25.41],"w6":[25.91,26.71],"e6_0":[27.21,28.84],"e6_1":[29.34,30.88],"w7":[31.38,32.06],"e7_0":[32.56,34.56],"e7_1":[35.06,37.76],"w8":[38.26,38.91],"e8_0":[39.41,41.36],"e8_1":[41.86,43.33],"w9":[43.83,44.51],"e9_0":[45.01,46.57],"e9_1":[47.07,48.43],"w10":[48.93,49.6],"e10_0":[50.1,51.48],"e10_1":[51.98,54.04]}}};
+const SLUG = 'ko-what-is-this';
+const REVIEW_URL = '../../review-ko/';
+const S = DATA.sents;
+const VMAP = {};
+DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
+DATA.cloze.forEach(function(c){ VMAP[c.id].cloze = {before:c.before, ans:c.ans, after:c.after, hint:c.hint, szh:c.szh}; });
+const OWN_N = DATA.vocab.length;            /* the article's own words; the learner's words (mine) come after them */
+/* words the learner marked in this article themself (select text -> 加入生词); see "my words" in srs.js */
+function loadMine(){
+  DATA.vocab.splice(OWN_N).forEach(function(v){ delete VMAP[v.id]; });
+  mineOf(SLUG).forEach(function(p){ const v = mineWord(p[0], p[1]); v.key = p[0]; DATA.vocab.push(v); VMAP[v.id] = v; });
+}
+loadMine();
+let TERM_MAP = {}, TERMS = [], TERM_RE = null;
+function buildTerms(){
+  TERM_MAP = {}; TERMS = [];
+  /* the article's own words win a clash (a learner's word that is the same text as one of them adds nothing to highlight) */
+  DATA.vocab.slice().reverse().forEach(function(v){ v.m.forEach(function(t){ TERM_MAP[t.toLowerCase()] = v.id; if (TERMS.indexOf(t) < 0) TERMS.push(t); }); });
+  TERMS.sort(function(a,b){ return b.length - a.length; });
+  TERM_RE = termRe(TERMS, 'gi');
+}
+buildTerms();
+const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
+const TABS = ['read','listen','words','quiz','think'];
+const LS_STATE = 'wk-ko-what-is-this-state';
+const LS_UI = 'fk-ui-v1';
+const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- progress state (saved to the viewer's own private store when available) ---------- */
+function normalize(d){
+  const out = stateClean(d);                 /* shared with the progress import (tools/shared/who.js) */
+  Object.keys(out.vocab).forEach(function(k){ if (!VMAP[k]) delete out.vocab[k]; });
+  return out;
+}
+let state = normalize(lsGet(LS_STATE));
+let ui = Object.assign({zh:false, hi:true, rom:false, romYue:true}, lsGet(LS_UI) || {});
+/* the reading switch is kept per section: Cantonese shows its Jyutping by default (romYue), Korean and Japanese hide theirs (rom) */
+const ROMK = LANG === 'yue' ? 'romYue' : 'rom';
+let ref = null, saveTimer = null, saving = false, again = false, lastJSON = '', touched = false;
+
+function getS(id){ const e = state.vocab[id]; return (e && e.s) || 'new'; }
+function pruneEntry(id){ const e = state.vocab[id]; if (e && !e.s && !e.m) delete state.vocab[id]; }
+function setS(id, s){
+  const e = state.vocab[id] || (state.vocab[id] = {});
+  if (s === 'new') delete e.s; else e.s = s;
+  e.d = today();
+  pruneEntry(id);
+  touch();
+}
+function setMine(id, val){
+  const e = state.vocab[id] || (state.vocab[id] = {});
+  const t = val.trim();
+  if (t){ e.m = t; e.d = today(); } else delete e.m;
+  pruneEntry(id);
+  touch();
+}
+function touch(){
+  touched = true;
+  lsSet(LS_STATE, state);
+  renderMast();
+  scheduleSave();
+}
+function setSaveNote(mode){
+  const m = {saved:'进度已保存', saving:'正在保存…', local:'进度只存在本机', none:''};
+  $('#saveNote').textContent = m[mode] || '';
+}
+function scheduleSave(){
+  if (!ref) return;
+  clearTimeout(saveTimer);
+  setSaveNote('saving');
+  saveTimer = setTimeout(flush, 700);
+}
+async function flush(){
+  if (!ref) return;
+  if (saving){ again = true; return; }
+  const json = JSON.stringify(state);
+  if (json === lastJSON){ setSaveNote('saved'); return; }
+  saving = true;
+  try { await ref.set(JSON.parse(json)); lastJSON = json; setSaveNote('saved'); }
+  catch(e){ setSaveNote('local'); }
+  saving = false;
+  if (again){ again = false; scheduleSave(); }
+}
+function withTimeout(p, ms){
+  return Promise.race([p, new Promise(function(_, rej){ setTimeout(function(){ rej(new Error('timeout')); }, ms); })]);
+}
+function hasContent(s){ return Object.keys(s.vocab).length > 0 || Object.keys(s.ans).length > 0 || !!s.quiz; }
+async function initCloud(){
+  let db = null, user = null;
+  try {
+    if (!window.claude || !window.claude.use){ setSaveNote('local'); return; }
+    const r = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    db = r[0]; user = r[1];
+  } catch(e){}
+  if (!db || !user){ setSaveNote('local'); return; }
+  let uid = null;
+  try { uid = await user.id(); } catch(e){}
+  if (!uid){ setSaveNote('local'); return; }
+  let r;
+  try { r = db.doc('data/users/' + uid + '/progress'); } catch(e){ setSaveNote('local'); return; }
+  try {
+    const snap = await withTimeout(r.get(), 10000);
+    if (snap.exists){
+      const remote = normalize(snap.data());
+      if (touched){
+        state = {v:1, vocab:Object.assign({}, remote.vocab, state.vocab), ans:Object.assign({}, remote.ans, state.ans), quiz:state.quiz || remote.quiz};
+        lastJSON = '';
+      } else {
+        state = remote;
+        lastJSON = JSON.stringify(state);
+      }
+      lsSet(LS_STATE, state);
+      ref = r;
+      renderAll();
+      if (lastJSON === '') flush(); else setSaveNote('saved');
+    } else {
+      ref = r;
+      lastJSON = '';
+      if (hasContent(state)){ setSaveNote('saving'); flush(); } else setSaveNote('saved');
+    }
+  } catch(e){ setSaveNote('local'); }
+}
+
+/* ---------- vocabulary highlighting ---------- */
+function marked(text, opt){
+  opt = opt || {};
+  if (!(opt.force || ui.hi)) return [document.createTextNode(text)];
+  const out = [];
+  let last = 0, m;
+  TERM_RE.lastIndex = 0;
+  while ((m = TERM_RE.exec(text))){
+    const id = TERM_MAP[m[0].toLowerCase()];
+    if (opt.only && opt.only !== id) continue;
+    if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
+    out.push(h('mark', {class:'vw' + (VMAP[id].mine ? ' uw' : ''), 'data-v':id, title:VMAP[id].zh}, m[0]));
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(document.createTextNode(text.slice(last)));
+  return out;
+}
+
+/* ---------- masthead ---------- */
+function renderMast(){
+  const total = DATA.vocab.length;
+  let n = 0;
+  DATA.vocab.forEach(function(v){ if (getS(v.id) === 'mastered') n++; });
+  $('#mCount').textContent = n + ' / ' + total;
+  $('#meter').style.setProperty('--p', (total ? n / total * 100 : 0) + '%');
+}
+
+/* ---------- tabs ---------- */
+let cur = null;
+function showTab(t){
+  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio)) t = 'read';
+  const changed = cur !== null && cur !== t;
+  cur = t;
+  $$('.view').forEach(function(v){ v.hidden = v.id !== 'view-' + t; });
+  $$('.tab').forEach(function(b){
+    const on = b.dataset.tab === t;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-selected', String(on));
+  });
+  if (t === 'quiz' && quiz.phase === 'start') renderQuiz();
+  if (t === 'words' && changed) renderWords();
+  if (changed) window.scrollTo(0, 0);
+}
+
+/* ---------- read tab ---------- */
+let active = -1;
+const BLOCKS = [{type:'title', idx:[0]}, {type:'sub', idx:S.filter(function(s){ return s.kind === 'sub'; }).map(function(s){ return s.i; })}];
+for (let p = 1; p <= 6; p++) BLOCKS.push({type:'p', idx:S.filter(function(s){ return s.p === p; }).map(function(s){ return s.i; })});
+
+function sentSpan(s){
+  const sp = h('span', {class:'sent' + (active === s.i ? ' on' : ''), 'data-i':s.i, tabindex:0, role:'button', 'aria-expanded':String(active === s.i)}, marked(s.en));
+  sp.addEventListener('click', function(){ if (selText()) return; toggleSentence(s.i); });
+  sp.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleSentence(s.i); } });
+  return sp;
+}
+function renderArticle(){
+  const root = $('#article');
+  root.replaceChildren();
+  root.classList.toggle('show-zh', !!ui.zh);
+  BLOCKS.forEach(function(b){
+    const sec = h('section', {class:'blk blk-' + b.type});
+    const el = h(b.type === 'title' ? 'h1' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
+    b.idx.forEach(function(i, k){ if (k > 0) el.append(' '); el.append(sentSpan(S[i])); });
+    sec.append(el);
+    if (LANG !== 'en') sec.append(h('p', {class:'rom'}, b.idx.map(function(i){ return S[i].rom; }).join(' ')));
+    sec.append(h('p', {class:'zh'}, b.idx.map(function(i){ return S[i].zh; }).join('')));
+    sec.append(h('div', {class:'slot', 'data-slot':b.idx.join(',')}));
+    root.append(sec);
+  });
+  placeNote();
+}
+function refreshSentenceStates(){
+  $$('.sent').forEach(function(sp){
+    const on = Number(sp.dataset.i) === active;
+    sp.classList.toggle('on', on);
+    sp.setAttribute('aria-expanded', String(on));
+  });
+}
+function toggleSentence(i){
+  active = active === i ? -1 : i;
+  refreshSentenceStates();
+  placeNote();
+}
+function step(d){
+  const n = active + d;
+  if (n < 0 || n >= S.length) return;
+  active = n;
+  refreshSentenceStates();
+  placeNote();
+  const el = $('.note');
+  if (el) el.scrollIntoView({block:'center', behavior:REDUCE ? 'auto' : 'smooth'});
+}
+function noteCard(s){
+  return h('div', {class:'note', role:'region', 'aria-label':'本句讲解'},
+    h('div', {class:'note-head'},
+      h('span', {class:'eyebrow'}, s.label),
+      h('div', {class:'note-nav'},
+        h('button', {type:'button', class:'btn sm', disabled:active === 0, onclick:function(){ step(-1); }}, '上一句'),
+        h('button', {type:'button', class:'btn sm', disabled:active === S.length - 1, onclick:function(){ step(1); }}, '下一句'),
+        h('button', {type:'button', class:'btn sm', 'aria-label':'收起', onclick:function(){ toggleSentence(active); }}, '收起')
+      )
+    ),
+    s.rom ? h('p', {class:'rom'}, s.rom) : null,
+    h('p', {class:'note-zh'}, s.zh),
+    h('ul', {class:'note-list'}, s.notes.map(function(t){ return h('li', null, t); })),
+    sentenceWords(s)
+  );
+}
+/* the words highlighted in a sentence, each explained right here (tap to open) with a link to its full card */
+function sentenceWords(s){
+  const ids = [], seen = {};
+  const re = new RegExp(TERM_RE.source, 'gi');
+  let m;
+  while ((m = re.exec(s.en))){
+    const id = TERM_MAP[m[0].toLowerCase()];
+    if (id !== undefined && !seen[id]){ seen[id] = true; ids.push(id); }
+  }
+  if (!ids.length) return null;
+  return h('div', {class:'note-words'},
+    h('p', {class:'note-wh'}, '本句标出的词（点开看讲解）'),
+    ids.map(function(id){
+      const v = VMAP[id], x = v.ex && v.ex[0];
+      return h('details', {class:'nw'},
+        h('summary', null, h('b', null, v.expr), '　', v.zh),
+        h('div', {class:'nw-body'},
+          v.note ? h('p', null, v.note) : null,
+          x ? h('p', {class:'nw-ex'}, exPlain(x.en), '　', x.zh) : null,
+          h('button', {type:'button', class:'btn sm', onclick:function(){ gotoWord(id); }}, '看完整词卡 →')
+        )
+      );
+    })
+  );
+}
+function gotoWord(id){
+  vFilter = 'all'; vQuery = '';
+  const si = $('#wordSearch');
+  if (si) si.value = '';
+  showTab('words');
+  renderWords();
+  const el = $('#wordList [data-id="' + id + '"]');
+  if (!el) return;
+  el.scrollIntoView({block:'start', behavior:REDUCE ? 'auto' : 'smooth'});
+  el.classList.add('flash');
+  setTimeout(function(){ el.classList.remove('flash'); }, 1600);
+}
+function placeNote(){
+  $$('.slot').forEach(function(s){ s.replaceChildren(); });
+  if (active < 0) return;
+  const slot = $$('.slot').filter(function(x){ return x.dataset.slot.split(',').indexOf(String(active)) >= 0; })[0];
+  if (slot) slot.append(noteCard(S[active]));
+}
+function openSentence(i){
+  active = i;
+  showTab('read');
+  refreshSentenceStates();
+  placeNote();
+  const el = $('.note');
+  if (el) el.scrollIntoView({block:'center'});
+}
+
+/* ---------- words tab ---------- */
+let vFilter = 'all', vQuery = '';
+function counts(){
+  const c = {all:DATA.vocab.length, new:0, learning:0, mastered:0};
+  DATA.vocab.forEach(function(v){ c[getS(v.id)]++; });
+  return c;
+}
+function updateChips(){
+  const c = counts();
+  $$('#chips .chip').forEach(function(b){
+    const f = b.dataset.f;
+    b.textContent = (f === 'all' ? '全部' : SLABEL[f]) + ' ' + c[f];
+    b.classList.toggle('on', vFilter === f);
+    b.setAttribute('aria-pressed', String(vFilter === f));
+  });
+}
+function metaText(id){
+  const e = state.vocab[id];
+  const bits = [];
+  if (e && e.d) bits.push('上次复习 ' + e.d);
+  const r = srsGet(srsKey(id));
+  if (r) bits.push('复习计划：' + srsStageText(r, Date.now()));
+  return bits.join(' · ');
+}
+function srsKey(id){ return VMAP[id].ref || SLUG + ':' + id; }   /* a unit-test word reviews as the word it points at */
+function statusSeg(id, after){
+  const seg = h('div', {class:'seg', role:'group', 'aria-label':'学习状态'});
+  const btns = {};
+  function sync(){
+    const c = getS(id);
+    Object.keys(btns).forEach(function(s){
+      btns[s].classList.toggle('on', c === s);
+      btns[s].setAttribute('aria-pressed', String(c === s));
+    });
+  }
+  ['new','learning','mastered'].forEach(function(s){
+    btns[s] = h('button', {type:'button', class:'seg-b s-' + s, onclick:function(){ setS(id, s); sync(); if (after) after(s); }}, SLABEL[s]);
+    seg.append(btns[s]);
+  });
+  sync();
+  return seg;
+}
+function wordCard(v){
+  const e = state.vocab[v.id] || {};
+  const meta = h('p', {class:'w-meta'}, metaText(v.id));
+  const ta = h('textarea', {id:'mine-' + v.id, rows:2, maxlength:400, placeholder:'用这个表达写一句自己的话'});
+  ta.value = e.m || '';
+  ta.addEventListener('input', function(){ setMine(v.id, ta.value); meta.textContent = metaText(v.id); });
+  const seg = statusSeg(v.id, function(){
+    meta.textContent = metaText(v.id);
+    updateChips();
+    if (vFilter !== 'all') renderWords();
+  });
+  return h('article', {class:'word', 'data-id':v.id},
+    h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.kind === 'grammar' ? h('span', {class:'w-tag'}, '语法') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null, v.mine ? h('span', {class:'w-tag uw-tag'}, '我加的') : null), speakBtn('w' + v.id, v.core)), seg),
+    v.rom ? h('p', {class:'rom w-rom'}, v.rom) : null,
+    h('p', {class:'w-zh'}, v.zh),
+    v.note ? h('p', {class:'w-note'}, v.note) : null,
+    h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
+    v.ex && v.ex.length && !v.mine ? h('p', {class:'w-exh'}, '例句') : null,
+    v.ex && v.ex.length && !v.mine ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+      return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
+    })) : null,
+    h('label', {class:'w-mine'}, h('span', null, '我的造句'), ta),
+    meta,
+    v.mine ? h('div', {class:'row'},
+      h('button', {type:'button', class:'btn sm', onclick:function(){ openAddSheet({edit:v}); }}, '修改意思'),
+      h('button', {type:'button', class:'btn sm', onclick:function(){
+        if (!confirm('把“' + v.expr + '”从生词里删掉？它的复习记录也会一起移出。')) return;
+        mineDel(v.key); srsForget(v.key); refreshMine(); toast('已删除“' + v.expr + '”');
+      }}, '删除这个生词')) : null
+  );
+}
+function renderWords(){
+  const list = $('#wordList');
+  list.replaceChildren();
+  const q = vQuery.trim().toLowerCase();
+  const items = DATA.vocab.filter(function(v){
+    if (vFilter !== 'all' && getS(v.id) !== vFilter) return false;
+    if (q){
+      const hay = [v.expr, v.zh, v.ctx, v.note || ''].concat((v.ex || []).map(function(x){ return exPlain(x.en) + ' ' + x.zh; })).join(' ').toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  });
+  updateChips();
+  if (!items.length){ list.append(h('p', {class:'empty'}, '没有符合条件的表达。')); return; }
+  items.forEach(function(v){ list.append(wordCard(v)); });
+}
+
+/* ---------- quiz tab ---------- */
+const quiz = {phase:'start', mode:'mcq', scope:'all', items:[], i:0, results:[], pending:null, hist:[], card:null};
+const MODES = [['mcq', '选择题'], ['cloze', '文章填空'], ['exs', '例句填空'], ['zh', '中文写' + XL + '词'], ['dict', '听写'], ['sent', '中文写' + XL + '句']]
+  .concat(DATA.vocab.some(function(v){ return v.pick; }) ? [['pick', '语法辨析']] : []);
+const MODE_NAME = Kit.TYPE_NAME;
+const MODE_LEAD = {
+  mcq:'四选一：看' + XL + '选中文意思，或看中文选' + XL + '表达，两个方向随机出现。可以按键盘 1–4 作答。',
+  cloze:'每题挖掉一个生词。看中文提示和上下文，把它按原句的词形填回去。',
+  exs:'换个场景：把生词放回它自己的例句里再填一次，不再靠文章原句的位置，更接近真正会用。',
+  zh:'看中文意思，自己写出对应的' + XL + '表达，词形变化不限。如果你写的是近义词，批改时可以自己判定算对。',
+  dict:'听发音，把听到的写下来：有时是单个表达，有时是一整句例句。可以慢速重听。',
+  sent:'看一句中文，自己写出整句' + XL + '，并用上指定的表达。写完核对参考句，再自己判断对不对。',
+  pick:'一句话里空着一处，从几个相近的说法里选出对的，看完解释再记一遍区别。'
+};
+function modeAvailable(m){ return m === 'pick' ? DATA.vocab.some(function(v){ return v.pick; }) : m !== 'dict' || !!DATA.clips; }
+function quizPool(){
+  const m = quiz.mode;
+  return DATA.vocab.filter(function(v){ return m === 'pick' ? !!v.pick : (m !== 'sent' && m !== 'exs') || (v.ex && v.ex.length); }).map(function(v){
+    const c = {id:v.id};
+    if (m === 'pick') c.k = Math.floor(Math.random() * v.pick.length);
+    if (m === 'sent' || m === 'exs') c.k = Math.floor(Math.random() * v.ex.length);
+    if (m === 'dict') c.k = v.ex && v.ex.length && Math.random() > 0.35 ? Math.floor(Math.random() * v.ex.length) : -1;
+    if (m === 'mcq') c.dir = Math.random() < 0.5 ? 'e2z' : 'z2e';
+    return c;
+  });
+}
+function todoCount(){ return quizPool().filter(function(c){ return getS(c.id) !== 'mastered'; }).length; }
+const QUICK_N = 20;   /* the "random 20" round, offered when an article has many words */
+function startQuiz(scope, ids){
+  let pool = quizPool().filter(function(c){
+    return ids ? ids.indexOf(c.id) >= 0 : (scope === 'all' || getS(c.id) !== 'mastered');
+  });
+  if (scope === 'quick' && !ids && !pool.length) pool = quizPool();
+  if (!pool.length) return;
+  quiz.scope = scope;
+  quiz.items = shuffle(pool.slice());
+  if (scope === 'quick' && !ids) quiz.items = quiz.items.slice(0, QUICK_N);
+  quiz.i = 0; quiz.results = []; quiz.pending = null; quiz.hist = []; quiz.card = null; quiz.phase = 'q';
+  renderQuiz();
+}
+function renderQuiz(){
+  const box = $('#quizBox');
+  if (quiz.phase === 'q'){ quiz.card = quizQuestion(); Kit.pager(box, quiz.hist, quiz.card); return; }
+  box.replaceChildren(quiz.phase === 'start' ? quizStart() : quizResult());
+}
+/* every answer goes into the spaced-repetition plan (shared with the review page) once the learner moves on */
+function settle(){
+  const r = quiz.pending;
+  if (!r) return;
+  quiz.pending = null;
+  srsRecord(r.key, r.ok);
+}
+function reviewSummary(){
+  const s = srsLoad(), now = Date.now();
+  let due = 0, seen = 0;
+  DATA.vocab.forEach(function(v){
+    const e = s.w[srsKey(v.id)];
+    if (!e) return;
+    seen++;
+    if (!e.m && e.t <= now) due++;
+  });
+  return {due:due, seen:seen, fresh:DATA.vocab.length - seen};
+}
+function quizStart(){
+  if (!modeAvailable(quiz.mode)) quiz.mode = 'mcq';
+  const all = quizPool().length, todo = todoCount();
+  if (quiz.scope === 'todo' && !todo) quiz.scope = 'all';
+  const modes = h('div', {class:'chips'});
+  MODES.forEach(function(o){
+    modes.append(h('button', {type:'button', class:'chip' + (quiz.mode === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.mode === o[0]),
+      disabled:!modeAvailable(o[0]), onclick:function(){ quiz.mode = o[0]; renderQuiz(); }}, o[1]));
+  });
+  const opts = h('div', {class:'chips mt12'});
+  const scopes = [['all', '全部 ' + all + ' 题'], ['todo', '只考未掌握 ' + todo + ' 题']];
+  if (all > QUICK_N + 5) scopes.push(['quick', '随机 ' + QUICK_N + ' 题']);
+  scopes.forEach(function(o){
+    opts.append(h('button', {type:'button', class:'chip' + (quiz.scope === o[0] ? ' on' : ''), 'aria-pressed':String(quiz.scope === o[0]), disabled:o[0] === 'todo' && !todo,
+      onclick:function(){ quiz.scope = o[0]; renderQuiz(); }}, o[1]));
+  });
+  const card = h('div', {class:'card'},
+    h('h2', {class:'h2'}, '自测'),
+    modes,
+    h('p', {class:'lead mt12'}, MODE_LEAD[quiz.mode]),
+    opts
+  );
+  const last = state.quiz;
+  if (last && last.total) card.append(h('p', {class:'meta mt12'}, '上次成绩 ' + last.score + ' / ' + last.total + (last.k ? '（' + MODE_NAME[last.k] + '）' : '') + (last.d ? '，' + last.d : '')));
+  card.append(h('div', {class:'row'}, h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz(quiz.scope); }}, '开始')));
+  const rs = reviewSummary();
+  card.append(h('p', {class:'meta mt12'}, '答题结果会记进艾宾浩斯复习计划（只存在这台设备上）。这篇文章：' +
+    (rs.due ? rs.due + ' 个词到期该复习' : '暂时没有到期的词') + '，' + rs.fresh + ' 个词还没开始。 ',
+    h('a', {href:REVIEW_URL}, '去复习页 →')));
+  return card;
+}
+function quizQuestion(){
+  const c = quiz.items[quiz.i], v = VMAP[c.id], total = quiz.items.length;
+  return Kit.make({type:quiz.mode, key:srsKey(v.id), id:v.id, v:v, k:c.k, dir:c.dir, clips:DATA.clips || null}, {
+    index:quiz.i, total:total, last:quiz.i + 1 >= total,
+    pool:function(){ return DATA.vocab; },
+    extra:function(item){ return h('div', {class:'fb-s'}, h('span', {class:'meta'}, '标记这个词：'), statusSeg(item.id)); },
+    onAnswer:function(res){ quiz.results.push(res); quiz.pending = res; },
+    onNext:nextQ
+  });
+}
+function nextQ(){
+  settle();
+  if (quiz.card) quiz.hist.push(Kit.freeze(quiz.card));
+  if (quiz.i + 1 >= quiz.items.length){ finishQuiz(); return; }
+  quiz.i++;
+  renderQuiz();
+}
+function finishQuiz(){
+  const score = quiz.results.filter(function(r){ return r.ok; }).length;
+  state.quiz = {score:score, total:quiz.results.length, d:today(), k:quiz.mode};
+  touch();
+  quiz.phase = 'r';
+  renderQuiz();
+  window.scrollTo(0, 0);
+}
+function missRow(m){
+  const v = VMAP[m.id];
+  const given = m.given ? '　你' + (m.type === 'cloze' || m.type === 'exs' ? '填' : m.type === 'mcq' ? '选' : m.type === 'dict' ? '听写' : '写') + '的：' + m.given : '';
+  if (m.type === 'cloze' || m.type === 'exs'){
+    const c = m.type === 'cloze' ? v.cloze : Kit.exCloze(v, m.k);
+    return h('div', {class:'miss'},
+      h('p', {class:'miss-s'}, c.before, h('mark', {class:'vw'}, c.ans), c.after),
+      h('p', {class:'meta'}, v.expr + '　' + v.zh + given)
+    );
+  }
+  if (m.type === 'zh') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.zh), h('p', {class:'meta'}, '参考答案：' + v.expr + given));
+  if (m.type === 'mcq') return h('div', {class:'miss'}, h('p', {class:'miss-s'}, v.expr, '　', v.zh), h('p', {class:'meta'}, given.replace(/^　/, '') || '没有作答'));
+  if (m.type === 'dict'){
+    const x = m.k >= 0 ? v.ex[m.k] : null;
+    return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x ? exNodes(x.en) : v.expr), h('p', {class:'meta'}, (x ? x.zh + '　' : v.zh + '　') + given.replace(/^　/, '')));
+  }
+  const x = v.ex[m.k];
+  return h('div', {class:'miss'}, h('p', {class:'miss-s'}, x.zh), h('p', {class:'miss-s'}, exNodes(x.en)), h('p', {class:'meta'}, v.expr + given));
+}
+function quizResult(){
+  const total = quiz.results.length;
+  const misses = quiz.results.filter(function(r){ return !r.ok; });
+  const score = total - misses.length;
+  const card = h('div', {class:'card'},
+    h('p', {class:'eyebrow'}, '本轮成绩 · ' + MODE_NAME[quiz.mode]),
+    h('p', {class:'score'}, h('span', {class:'big'}, String(score)), ' / ' + total)
+  );
+  if (misses.length){
+    card.append(h('h3', {class:'h3 mt4'}, '答错的 ' + misses.length + ' 题'));
+    misses.forEach(function(m){ card.append(missRow(m)); });
+  } else {
+    card.append(h('p', {class:'lead'}, '全部答对。'));
+  }
+  const row = h('div', {class:'row'});
+  if (misses.length) row.append(h('button', {type:'button', class:'btn pri', onclick:function(){ startQuiz('all', misses.map(function(m){ return m.id; })); }}, '重做错题'));
+  row.append(h('button', {type:'button', class:'btn' + (misses.length ? '' : ' pri'), onclick:function(){ quiz.phase = 'start'; renderQuiz(); }}, '换个题型再测'));
+  row.append(h('button', {type:'button', class:'btn', onclick:function(){ showTab('words'); try { location.hash = 'words'; } catch(e){} }}, '去词汇表'));
+  row.append(h('a', {class:'btn', href:REVIEW_URL}, '去复习页'));
+  if (quiz.hist.length) row.append(h('button', {type:'button', class:'btn', onclick:function(){
+    Kit.pager($('#quizBox'), quiz.hist, null, {close:renderQuiz});
+    window.scrollTo(0, 0);
+  }}, '逐题回看'));
+  card.append(row);
+  return card;
+}
+
+/* ---------- think tab (the long-sentence breakdown) ---------- */
+function renderThink(){
+  const box = $('#thinkBox');
+  box.replaceChildren();
+  const bd = DATA.breakdown;
+  DATA.vocab.filter(function(v){ return v.kind === 'grammar'; }).forEach(function(v){
+    box.append(h('div', {class:'card mb16'},
+      h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr), speakBtn('w' + v.id, v.say || v.core)),
+      h('p', {class:'w-zh'}, v.zh),
+      v.conn ? h('p', {class:'g-conn'}, h('span', {class:'meta'}, LANG === 'ja' ? '接续　' : '结构　'), v.conn) : null,
+      v.note ? h('p', {class:'w-note'}, v.note) : null,
+      h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
+        return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
+      }))));
+  });
+  box.append(h('div', {class:'card mb16'},
+    h('p', {class:'eyebrow'}, LANG === 'en' ? '长难句拆解' : '句子拆解'),
+    h('p', {class:'bd mt10'}, bd.en),
+    h('ul', {class:'note-list'}, bd.points.map(function(t){ return h('li', null, t); })),
+    h('div', {class:'row'}, h('button', {type:'button', class:'btn sm', onclick:function(){ openSentence(bd.i); try { location.hash = 'read'; } catch(e){} }}, '在文中查看这一句'))
+  ));
+}
+
+/* ---------- add a word yourself: select text in the article -> 加入生词 ---------- */
+function selText(){ try { const s = window.getSelection(); return s && !s.isCollapsed ? s.toString().trim() : ''; } catch(e){ return ''; } }
+/* the current selection as {i: sentence index, t: text, o: offset in the sentence} or null (it must lie inside one sentence) */
+function selInfo(){
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) return null;
+  const r = sel.getRangeAt(0);
+  function sentOf(n){ const el = n && (n.nodeType === 1 ? n : n.parentNode); return el && el.closest ? el.closest('#article .sent') : null; }
+  const a = sentOf(r.startContainer), b = sentOf(r.endContainer);
+  if (!a || a !== b) return null;
+  const pre = document.createRange();
+  pre.selectNodeContents(a); pre.setEnd(r.startContainer, r.startOffset);
+  const i = Number(a.dataset.i), en = S[i].en;
+  let o = pre.toString().length, t = r.toString();
+  /* drop spaces and punctuation at both ends: "elves," -> "elves" */
+  const lead = t.match(new RegExp('^[^' + LETTERS + '0-9]*', 'i'))[0].length;
+  o += lead; t = t.slice(lead);
+  t = t.replace(new RegExp('[^' + LETTERS + '0-9]+$', 'i'), '');
+  if (!t || t.length > 80 || en.substr(o, t.length) !== t) return null;
+  return {i:i, t:t, o:o};
+}
+let addBtn = null, selTimer = 0;
+function hideAddBtn(){ if (addBtn) addBtn.hidden = true; }
+function placeAddBtn(){
+  const info = cur === 'read' ? selInfo() : null;
+  if (!info){ hideAddBtn(); return; }
+  if (!addBtn){
+    addBtn = h('button', {type:'button', class:'uw-add', onmousedown:function(e){ e.preventDefault(); }, onclick:function(){
+      const x = selInfo() || addBtn._info;
+      hideAddBtn();
+      if (x) openAddSheet({add:x});
+    }}, '＋ 加入生词');
+    document.body.append(addBtn);
+  }
+  addBtn._info = info;
+  const rc = window.getSelection().getRangeAt(0).getBoundingClientRect();
+  addBtn.hidden = false;
+  const w = addBtn.offsetWidth, vw = document.documentElement.clientWidth;
+  addBtn.style.left = Math.max(8, Math.min(vw - w - 8, rc.left + rc.width / 2 - w / 2)) + 'px';
+  /* below the selection: phones show their own copy menu above it */
+  addBtn.style.top = (window.scrollY + rc.bottom + 10) + 'px';
+}
+function openAddSheet(o){
+  const edit = o.edit, x = o.add;
+  const s = edit ? null : S[x.i];
+  const term = edit ? edit.expr : x.t;
+  const old = !edit && DATA.vocab.filter(function(v){ return v.expr.toLowerCase() === term.toLowerCase() || v.m.some(function(t){ return t.toLowerCase() === term.toLowerCase(); }); })[0];
+  const zh = h('input', {type:'text', class:'search', maxlength:200, placeholder:'中文意思，比如：精灵', 'aria-label':'中文意思'});
+  const note = h('textarea', {rows:2, maxlength:400, placeholder:'笔记（可不写）：搭配、用法、想提醒自己的话', 'aria-label':'笔记'});
+  if (edit){ zh.value = edit.zh === '（还没写中文意思）' ? '' : edit.zh; note.value = edit.note || ''; }
+  const err = h('p', {class:'uw-err', 'aria-live':'polite'});
+  const ctx = edit ? edit.ctx : s.en;
+  const bg = h('div', {class:'uw-bg', onclick:function(e){ if (e.target === bg) close(); }});
+  function close(){ bg.remove(); document.removeEventListener('keydown', onKey); }
+  function onKey(e){ if (e.key === 'Escape') close(); }
+  function save(){
+    const z = zh.value.trim();
+    if (!z){ err.textContent = '写一下中文意思吧，考试时要靠它出题。'; zh.focus(); return; }
+    if (edit){ mineEdit(edit.key, {zh:z, n:note.value}); close(); refreshMine(); toast('已更新“' + term + '”'); return; }
+    mineAdd(SLUG, {t:x.t, o:x.o, ctx:s.en, czh:s.zh, zh:z, n:note.value});
+    try { window.getSelection().removeAllRanges(); } catch(e){}
+    close(); refreshMine();
+    toast('已加入生词：' + term + '。词汇表、自测和复习页都能看到它。');
+  }
+  const card = h('div', {class:'uw-sheet', role:'dialog', 'aria-modal':'true', 'aria-label':edit ? '修改生词' : '加入生词'},
+    h('p', {class:'eyebrow'}, edit ? '修改生词' : '加入生词'),
+    h('h3', {class:'uw-term'}, term),
+    h('p', {class:'uw-ctx'}, ctx.slice(0, edit ? 0 : x.o), h('b', null, edit ? '' : term), edit ? ctx : ctx.slice(x.o + term.length)),
+    old ? h('p', {class:'uw-old'}, '词汇表里已经有“' + old.expr + '”（' + old.zh + '）。还要再加一个吗？') : null,
+    h('label', {class:'uw-f'}, h('span', null, '中文意思'), zh),
+    h('label', {class:'uw-f'}, h('span', null, '笔记'), note),
+    err,
+    h('div', {class:'row'},
+      h('button', {type:'button', class:'btn pri', onclick:save}, edit ? '保存' : '加入生词'),
+      h('button', {type:'button', class:'btn', onclick:close}, '取消')));
+  zh.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); save(); } });
+  bg.append(card);
+  document.body.append(bg);
+  document.addEventListener('keydown', onKey);
+  setTimeout(function(){ zh.focus(); }, 30);
+}
+function refreshMine(){
+  loadMine();
+  buildTerms();
+  renderAll();
+  if (L.el.box) renderListenText();
+}
+let toastTimer = 0;
+function toast(msg){
+  let t = $('.uw-toast');
+  if (!t){ t = h('div', {class:'uw-toast', role:'status'}); document.body.append(t); }
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.hidden = true; }, 3200);
+}
+
+/* ---------- wiring ---------- */
+/* ---------- speaker icons: words, example sentences, article sentences ---------- */
+function speakBtn(key, text){ return clipBtn(DATA.clips, key, text); }
+function stopNarrationForClip(){
+  if (L && L.audio && !L.audio.paused) L.audio.pause();
+  if (L) L.seg = null;
+}
+function sentBtn(en){
+  if (!DATA.audio) return null;
+  const i = S.findIndex(function(s){ return s.en === en; }) >= 0 ? S.findIndex(function(s){ return s.en === en; }) : S.findIndex(function(s){ return s.en.indexOf(en) >= 0; });
+  if (i < 0) return null;
+  const b = spkEl('播放这一句', function(){ playArticleSentence(i, b); });
+  return b;
+}
+function playArticleSentence(i, btn){
+  const a = getAudio();
+  const T = DATA.audio.t[i];
+  Clip.stop();
+  const wasOn = L.seg && L.seg.btn === btn && !a.paused;
+  endSeg();
+  if (wasOn){ a.pause(); return; }
+  L.seg = {end:T[1] + 0.15, btn:btn};
+  btn.classList.add('on');
+  const go = function(){ a.currentTime = Math.max(0, T[0] - 0.1); };
+  if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, {once:true});
+  const pr = a.play();
+  if (pr && pr.catch) pr.catch(function(){ endSeg(); });
+}
+function endSeg(){
+  if (L.seg && L.seg.btn) L.seg.btn.classList.remove('on');
+  L.seg = null;
+}
+
+/* ---------- listen tab ---------- */
+const L = {audio:null, cur:-1, loop:false, loopIdx:-1, drag:false, el:{}, spans:[], raf:0, seg:null};
+const RATES = [0.75, 0.9, 1, 1.15, 1.3];
+function fmtT(t){ t = Math.max(0, Math.floor(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); }
+function sentAt(t){
+  const T = DATA.audio.t;
+  let k = 0;
+  for (let i = 0; i < T.length; i++){ if (T[i][0] <= t + 0.05) k = i; else break; }
+  return k;
+}
+function getAudio(){
+  if (L.audio) return L.audio;
+  const a = new Audio();
+  a.preload = 'auto';
+  a.src = DATA.audio.src;
+  a.playbackRate = ui.rate || 1;
+  try { a.preservesPitch = true; a.webkitPreservesPitch = true; } catch(e){}
+  a.addEventListener('timeupdate', listenUpdate);
+  a.addEventListener('play', function(){ listenPlayState(); loopFrames(); });
+  a.addEventListener('pause', function(){ listenPlayState(); if (L.seg && a.currentTime < L.seg.end) endSeg(); });
+  a.addEventListener('ended', function(){ listenPlayState(); listenUpdate(); });
+  a.addEventListener('error', function(){ L.el.msg.textContent = '音频没有加载出来，请检查网络后再点播放。'; L.el.msg.hidden = false; });
+  a.addEventListener('playing', function(){ L.el.msg.hidden = true; });
+  L.audio = a;
+  try {
+    if ('mediaSession' in navigator){
+      navigator.mediaSession.metadata = new MediaMetadata({title:DATA.title, artist:{en:'外刊精读', ko:'韩语入门', ja:'日语中级'}[LANG]});
+      navigator.mediaSession.setActionHandler('play', function(){ a.play(); });
+      navigator.mediaSession.setActionHandler('pause', function(){ a.pause(); });
+      navigator.mediaSession.setActionHandler('seekbackward', function(){ a.currentTime = Math.max(0, a.currentTime - 5); });
+      navigator.mediaSession.setActionHandler('seekforward', function(){ a.currentTime = Math.min(DATA.audio.dur, a.currentTime + 5); });
+    }
+  } catch(e){}
+  return a;
+}
+function listenPlayState(){
+  const playing = !!(L.audio && !L.audio.paused && !L.audio.ended);
+  L.el.play.textContent = playing ? '暂停' : '播放';
+  L.el.play.setAttribute('aria-pressed', String(playing));
+}
+function loopFrames(){
+  cancelAnimationFrame(L.raf);
+  const tick = function(){
+    if (!L.audio || L.audio.paused) return;
+    listenUpdate();
+    L.raf = requestAnimationFrame(tick);
+  };
+  L.raf = requestAnimationFrame(tick);
+}
+function listenUpdate(){
+  const a = L.audio;
+  if (!a) return;
+  const T = DATA.audio.t;
+  let t = a.currentTime;
+  if (L.seg && !a.paused && t >= L.seg.end){ a.pause(); endSeg(); }
+  if (L.loop && L.loopIdx >= 0 && !L.seg && !a.paused && t >= T[L.loopIdx][1] + 0.2){ a.currentTime = T[L.loopIdx][0]; t = a.currentTime; }
+  if (!L.drag) L.el.range.value = String(t);
+  L.el.now.textContent = fmtT(t);
+  const k = sentAt(t);
+  if (k !== L.cur){
+    L.cur = k;
+    markListenSentence(!a.paused);
+  }
+}
+function markListenSentence(follow){
+  L.spans.forEach(function(sp){ sp.classList.toggle('on', Number(sp.dataset.i) === L.cur); });
+  if (follow && ui.tx){
+    const sp = L.spans[L.cur];
+    if (sp) sp.scrollIntoView({block:'nearest', behavior:REDUCE ? 'auto' : 'smooth'});
+  }
+}
+function playSentence(i){
+  endSeg();
+  Clip.stop();
+  const a = getAudio();
+  a.currentTime = DATA.audio.t[i][0];
+  if (L.loop) L.loopIdx = i;
+  a.play().catch(function(){});
+  listenUpdate();
+}
+function seekBy(d){
+  endSeg();
+  const a = getAudio();
+  a.currentTime = Math.min(DATA.audio.dur, Math.max(0, a.currentTime + d));
+  listenUpdate();
+}
+function setRate(r){
+  ui.rate = r; lsSet(LS_UI, ui);
+  if (L.audio) L.audio.playbackRate = r;
+  $$('.rate-b', L.el.box).forEach(function(b){ const on = Number(b.dataset.r) === r; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
+}
+function applyTextVisibility(){
+  L.el.tr.hidden = !ui.tx;
+  L.el.off.hidden = !!ui.tx;
+}
+function renderListenText(){
+  if (!L.el.tr) return;
+  L.el.tr.replaceChildren();
+  BLOCKS.forEach(function(b){
+    const sec = h('section', {class:'blk blk-' + b.type});
+    const el = h(b.type === 'title' ? 'h2' : 'p', {class:b.type === 'title' ? 'a-title' : b.type === 'sub' ? 'a-deck' : 'a-para'});
+    b.idx.forEach(function(i, k){
+      if (k > 0) el.append(' ');
+      const sp = h('span', {class:'ls', 'data-i':i, tabindex:0, role:'button', 'aria-label':'从这一句开始播放'}, marked(S[i].en));
+      sp.addEventListener('click', function(){ playSentence(i); });
+      sp.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); playSentence(i); } });
+      el.append(sp);
+    });
+    sec.append(el);
+    L.el.tr.append(sec);
+  });
+  L.spans = $$('.ls', L.el.tr);
+  markListenSentence(false);
+}
+function renderListen(){
+  const box = $('#listenBox');
+  if (!DATA.audio || !box || L.el.box) return;
+  L.el.box = box;
+  const A = DATA.audio;
+  L.el.play = h('button', {type:'button', class:'btn pri big', 'aria-pressed':'false', onclick:function(){
+    endSeg();
+    Clip.stop();
+    const a = getAudio();
+    if (a.paused || a.ended){ if (a.ended) a.currentTime = 0; a.play().catch(function(){}); } else a.pause();
+  }}, '播放');
+  L.el.range = h('input', {type:'range', class:'lp-range', min:0, max:A.dur, step:0.1, value:0, 'aria-label':'播放进度'});
+  L.el.range.addEventListener('pointerdown', function(){ L.drag = true; });
+  L.el.range.addEventListener('input', function(){
+    const a = getAudio();
+    a.currentTime = Number(L.el.range.value);
+    L.el.now.textContent = fmtT(a.currentTime);
+    const k = sentAt(a.currentTime);
+    if (k !== L.cur){ L.cur = k; markListenSentence(false); }
+  });
+  const endDrag = function(){ L.drag = false; };
+  L.el.range.addEventListener('change', endDrag);
+  L.el.range.addEventListener('pointerup', endDrag);
+  L.el.range.addEventListener('pointercancel', endDrag);
+  L.el.now = h('span', null, '0:00');
+  L.el.msg = h('p', {class:'lp-msg', hidden:true, role:'alert'});
+  const rates = h('div', {class:'chips', role:'group', 'aria-label':'播放速度'});
+  RATES.forEach(function(r){
+    rates.append(h('button', {type:'button', class:'chip rate-b', 'data-r':r, 'aria-pressed':'false', onclick:function(){ setRate(r); }}, r + '×'));
+  });
+  const loopCb = h('input', {type:'checkbox'});
+  loopCb.addEventListener('change', function(){
+    L.loop = loopCb.checked;
+    L.loopIdx = L.loop ? (L.cur >= 0 ? L.cur : 0) : -1;
+  });
+  const txCb = h('input', {type:'checkbox'});
+  txCb.checked = !!ui.tx;
+  txCb.addEventListener('change', function(){ ui.tx = txCb.checked; lsSet(LS_UI, ui); applyTextVisibility(); });
+  L.el.tr = h('div', {class:'tr'});
+  L.el.off = h('p', {class:'tr-off'}, '原文已隐藏。先盲听一遍，听完再勾选“显示原文”对照。');
+  box.append(
+    h('div', {class:'card lp'},
+      h('h2', {class:'h2'}, '听力'),
+      h('p', {class:'lead'}, '整篇文章的朗读（AI 合成的' + (LANG !== 'en' ? XL : (DATA.audio.voice || '').charAt(0) === 'b' ? '英式' : '美式') + '发音，语速略慢）。先盲听，再对照原文；点原文里的任意一句，就从那一句开始播放。'),
+      h('div', {class:'lp-row'},
+        h('button', {type:'button', class:'btn', onclick:function(){ seekBy(-5); }}, '后退 5 秒'),
+        L.el.play,
+        h('button', {type:'button', class:'btn', onclick:function(){ seekBy(5); }}, '前进 5 秒')
+      ),
+      h('div', null, L.el.range, h('div', {class:'lp-time'}, L.el.now, h('span', null, fmtT(A.dur)))),
+      h('div', null, h('p', {class:'meta'}, '播放速度'), h('div', {class:'row'}, rates)),
+      h('div', {class:'lp-row'},
+        h('label', {class:'lp-opt'}, loopCb, '单句循环（当前这一句反复听）'),
+        h('label', {class:'lp-opt'}, txCb, '显示原文')
+      ),
+      L.el.msg
+    ),
+    L.el.off,
+    L.el.tr
+  );
+  setRate(ui.rate || 1);
+  renderListenText();
+  applyTextVisibility();
+}
+function renderAll(){
+  renderMast();
+  renderArticle();
+  renderListen();
+  renderWords();
+  renderThink();
+  if (quiz.phase === 'start') renderQuiz();
+}
+function init(){
+  Clip.onBeforePlay(stopNarrationForClip);
+  window.addEventListener('pagehide', settle);
+  document.addEventListener('visibilitychange', function(){ if (document.hidden) settle(); });
+  if (LANG !== 'en'){
+    const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), LANG === 'ja' ? ' 显示读音' : LANG === 'yue' ? ' 显示粤拼' : ' 显示罗马音');
+    $('#optZh').parentNode.after(rl);
+    $('#optRom').checked = !!ui[ROMK];
+    document.body.classList.toggle('show-rom', !!ui[ROMK]);
+    $('#optRom').addEventListener('change', function(){ ui[ROMK] = this.checked; lsSet(LS_UI, ui); document.body.classList.toggle('show-rom', ui[ROMK]); });
+    const tt = $('.tab[data-tab="think"]');
+    if (tt) tt.textContent = LANG === 'ja' ? '语法' : '句型';
+  }
+  $('#optZh').checked = !!ui.zh;
+  $('#optHi').checked = !!ui.hi;
+  $('#optZh').addEventListener('change', function(){ ui.zh = this.checked; lsSet(LS_UI, ui); $('#article').classList.toggle('show-zh', ui.zh); });
+  $('#optHi').addEventListener('change', function(){ ui.hi = this.checked; lsSet(LS_UI, ui); renderArticle(); renderListenText(); });
+  const chips = $('#chips');
+  ['all','new','learning','mastered'].forEach(function(f){
+    chips.append(h('button', {type:'button', class:'chip', 'data-f':f, onclick:function(){ vFilter = f; renderWords(); }}, f));
+  });
+  document.addEventListener('selectionchange', function(){ clearTimeout(selTimer); selTimer = setTimeout(placeAddBtn, 180); });
+  window.addEventListener('resize', hideAddBtn);
+  $('#wordSearch').addEventListener('input', function(){ vQuery = this.value; renderWords(); });
+  $$('.tab').forEach(function(b){
+    b.addEventListener('click', function(){ try { location.hash = b.dataset.tab; } catch(e){} showTab(b.dataset.tab); });
+  });
+  window.addEventListener('hashchange', function(){ showTab(location.hash.replace('#','')); });
+  if (DATA.audio) $('.tab[data-tab="listen"]').hidden = false;
+  renderAll();
+  showTab(location.hash.replace('#','') || 'read');
+  initCloud();
+}
+init();
+})();
+</script>
+</body>
+</html>

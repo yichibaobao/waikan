@@ -1817,7 +1817,9 @@ function normalize(d){
   return out;
 }
 let state = normalize(lsGet(LS_STATE));
-let ui = Object.assign({zh:false, hi:true, rom:LANG === 'yue'}, lsGet(LS_UI) || {});   /* Cantonese shows its Jyutping by default */
+let ui = Object.assign({zh:false, hi:true, rom:false, romYue:true}, lsGet(LS_UI) || {});
+/* the reading switch is kept per section: Cantonese shows its Jyutping by default (romYue), Korean and Japanese hide theirs (rom) */
+const ROMK = LANG === 'yue' ? 'romYue' : 'rom';
 let ref = null, saveTimer = null, saving = false, again = false, lastJSON = '', touched = false;
 
 function getS(id){ const e = state.vocab[id]; return (e && e.s) || 'new'; }
@@ -2663,9 +2665,9 @@ function init(){
   if (LANG !== 'en'){
     const rl = h('label', null, h('input', {type:'checkbox', id:'optRom'}), LANG === 'ja' ? ' 显示读音' : LANG === 'yue' ? ' 显示粤拼' : ' 显示罗马音');
     $('#optZh').parentNode.after(rl);
-    $('#optRom').checked = !!ui.rom;
-    document.body.classList.toggle('show-rom', !!ui.rom);
-    $('#optRom').addEventListener('change', function(){ ui.rom = this.checked; lsSet(LS_UI, ui); document.body.classList.toggle('show-rom', ui.rom); });
+    $('#optRom').checked = !!ui[ROMK];
+    document.body.classList.toggle('show-rom', !!ui[ROMK]);
+    $('#optRom').addEventListener('change', function(){ ui[ROMK] = this.checked; lsSet(LS_UI, ui); document.body.classList.toggle('show-rom', ui[ROMK]); });
     const tt = $('.tab[data-tab="think"]');
     if (tt) tt.textContent = LANG === 'ja' ? '语法' : '句型';
   }

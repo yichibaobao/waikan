@@ -929,7 +929,7 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"root":"../","review":"../review-yue/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":false,"href":"../ja/"},{"label":"粤语入门","icon":"🥟","on":true,"href":"./"}],"articles":[{"slug":"yue-hello","date":"2026-11-09","title":"你好，我係阿詩","deck":"第 1 课：打招呼、说自己的名字、说自己是哪里人。","tags":["第 1 课","打招呼"],"source":{"type":"original"},"words":73,"vocab":10,"fresh":10,"lsKey":"wk-yue-hello-state","audio":true}]};
+const SITE = {"root":"../","review":"../review-yue/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":false,"href":"../ja/"},{"label":"粤语入门","icon":"🥟","on":true,"href":"./"}],"articles":[{"slug":"yue-cha-chaan-teng","date":"2026-11-10","title":"唔該，要一杯奶茶","deck":"第 2 课：在茶餐厅点早餐，问“还是”，问价钱。","tags":["第 2 课","点餐"],"source":{"type":"original"},"words":60,"vocab":10,"fresh":10,"lsKey":"wk-yue-cha-chaan-teng-state","audio":true},{"slug":"yue-hello","date":"2026-11-09","title":"你好，我係阿詩","deck":"第 1 课：打招呼、说自己的名字、说自己是哪里人。","tags":["第 1 课","打招呼"],"source":{"type":"original"},"words":73,"vocab":10,"fresh":10,"lsKey":"wk-yue-hello-state","audio":true}]};
 const A = SITE.articles;
 SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, h('span', {class:'em', 'aria-hidden':'true'}, l.icon), l.label)); });
 (function(){
