@@ -28,7 +28,11 @@ import numpy as np
 import soundfile as sf
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from tts_text import spoken_text, text_hash, clip_items, clips_hash  # noqa: E402
+from tts_text import spoken_text, text_hash, clip_items, clips_hash, split_speaker  # noqa: E402
+# dialogue voices (meta.speakers = {"阿詩": "f", "阿明": "m"}): the narrator's voice for other lines
+DIALOGUE_VOICES = {"ko": {"f": "ko-KR-SunHiNeural", "m": "ko-KR-InJoonNeural"},
+                   "yue": {"f": "zh-HK-HiuGaaiNeural", "m": "zh-HK-WanLungNeural"},
+                   "ja": {"f": "ja-JP-NanamiNeural", "m": "ja-JP-KeitaNeural"}}
 from refs import resolve_refs  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -151,17 +155,27 @@ def make_clips(a, raw, pronounce, k):
 
 def make_narration(a, raw, pronounce, k):
     sents = raw["data"]["sents"]
+    speakers = raw["meta"].get("speakers") or {}
+    lang = raw["meta"].get("lang", "en")
+    if speakers:
+        if a.engine != "edge" or lang not in DIALOGUE_VOICES:
+            sys.exit("meta.speakers needs the edge engine and a language with dialogue voices")
+        bad = [n for n, g in speakers.items() if g not in ("f", "m")]
+        if bad:
+            sys.exit(f"meta.speakers: give each speaker 'f' or 'm' ({bad})")
     chunks = [np.zeros(int(LEAD * SR), dtype=np.float32)]
     t = LEAD
     times = []
     for n, s in enumerate(sents):
-        text = spoken_text(s, pronounce)
-        samples, sr = k.create(text, voice=a.voice, speed=a.speed, lang=a.lang)
+        text = spoken_text(s, pronounce, speakers)
+        who = split_speaker(s["en"], speakers)[0]
+        voice = DIALOGUE_VOICES[lang][speakers[who]] if who else a.voice
+        samples, sr = k.create(text, voice=voice, speed=a.speed, lang=a.lang)
         assert sr == SR, sr
         samples = samples.astype(np.float32)
         dur = len(samples) / SR
         times.append([round(t, 2), round(t + dur, 2)])
-        print(f"  {n:2d}  {t:6.2f}-{t + dur:6.2f}  {text[:70]}", flush=True)
+        print(f"  {n:2d}  {t:6.2f}-{t + dur:6.2f}  {voice[-14:]:14s} {text[:60]}", flush=True)
         chunks.append(samples)
         t += dur
         nxt = sents[n + 1] if n + 1 < len(sents) else None
@@ -177,7 +191,7 @@ def make_narration(a, raw, pronounce, k):
         t += pause
     mp3 = os.path.join(ROOT, "a", a.slug, "audio.mp3")
     total = encode_mp3(np.concatenate(chunks), mp3, a.bitrate, raw["meta"]["title"])
-    meta = dict(voice=a.voice, speed=a.speed, dur=round(total, 2), hash=text_hash(sents, pronounce), t=times)
+    meta = dict(voice=a.voice, speed=a.speed, dur=round(total, 2), hash=text_hash(sents, pronounce, speakers or None), t=times)
     json.dump(meta, open(os.path.join(ROOT, "content", a.slug, "audio.json"), "w", encoding="utf-8"), ensure_ascii=False)
     print(f"wrote {os.path.relpath(mp3, ROOT)} ({os.path.getsize(mp3) // 1024} KB, {total:.1f}s) and content/{a.slug}/audio.json")
 

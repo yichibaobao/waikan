@@ -14,7 +14,11 @@
    "type": "original"
   },
   "note": "这是为粤语零基础写的原创短文，仅供学习。读音用粤拼标注，数字是声调（1–6），以录音为准。",
-  "pronounce": {}
+  "pronounce": {},
+  "speakers": {
+   "阿詩": "f",
+   "伙計": "m"
+  }
  },
  "data": {
   "sents": [

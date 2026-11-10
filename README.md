@@ -58,6 +58,10 @@ written in Hong Kong; every sentence, word and example carries `rom` in Jyutping
 (tone numbers optional; in sentences, a space between syllables): `romOk` in common.js and `toks` in quizkit.js. For that, a
 Cantonese word's cloze answer is its `core`. Audio: `tools/make_audio.py <slug>` picks Microsoft's zh-HK-HiuGaaiNeural at speed 0.85.
 
+Dialogues (Korean and Cantonese lessons): write each line as `名字：台词` / `이름: 대사` and list the speakers in
+`meta.speakers`, e.g. `{"阿詩": "f", "伙計": "m"}`. The narration then leaves the names out and reads each line in a female or
+male voice (DIALOGUE_VOICES in make_audio.py); the listening exam also drops the name from what you have to write.
+
 ## Japanese section (日语中级)
 
 One page per lesson of the user's online course (`content/ja-<lesson>/`, `meta.lang: "ja"`; home `ja/`, review `review-ja/`).

@@ -25,7 +25,7 @@ import sys
 import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from tts_text import text_hash, clip_items, clips_hash  # noqa: E402
+from tts_text import text_hash, clip_items, clips_hash, split_speaker, strip_rom_speaker  # noqa: E402
 from refs import resolve_refs  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -227,7 +227,7 @@ def attach_audio(slug, meta, data, raw):
     mp3 = os.path.join(ROOT, "a", slug, "audio.mp3")
     check(os.path.isfile(mp3), f"[{slug}] audio.json exists but a/{slug}/audio.mp3 is missing")
     check(len(au["t"]) == len(data["sents"]), f"[{slug}] audio has {len(au['t'])} timings for {len(data['sents'])} sentences; rerun make_audio.py")
-    check(au["hash"] == text_hash(data["sents"], raw["meta"].get("pronounce", {})),
+    check(au["hash"] == text_hash(data["sents"], raw["meta"].get("pronounce", {}), raw["meta"].get("speakers")),
           f"[{slug}] the article text changed after its audio was made; rerun tools/make_audio.py {slug}")
     for a, b in au["t"]:
         check(0 <= a < b <= au["dur"] + 0.5, f"[{slug}] bad audio timing {a}-{b}")
@@ -300,9 +300,16 @@ def listen_sents(data):
 
 def listen_json(slug, meta, data):
     a = data["audio"]
-    return dict(slug=slug, title=meta["title"], audio=dict(src=a["src"]),
-                sents=[dict(i=s["i"], en=s["en"], zh=s["zh"], t=a["t"][s["i"]], **({"rom": s["rom"]} if data.get("lang") == "yue" else {}))
-                       for s in listen_sents(data)])
+    sp = meta.get("speakers")
+
+    def one(s):
+        # dictation asks for what is said, not who says it: drop "阿詩：" (and its reading) from dialogue lines
+        who, en = split_speaker(s["en"], sp)
+        x = dict(i=s["i"], en=en, zh=re.sub(r"^[^：:]{1,8}[：:]", "", s["zh"]) if who else s["zh"], t=a["t"][s["i"]])
+        if data.get("lang") == "yue":
+            x["rom"] = strip_rom_speaker(s["rom"]) if who else s["rom"]
+        return x
+    return dict(slug=slug, title=meta["title"], audio=dict(src=a["src"]), sents=[one(s) for s in listen_sents(data)])
 
 
 def foot_html(meta):
