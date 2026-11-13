@@ -929,7 +929,7 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"root":"../","review":"../review-ja/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":true,"href":"./"},{"label":"粤语入门","icon":"🥟","on":false,"href":"../yue/"}],"articles":[{"slug":"ja-11","date":"2026-11-06","title":"雪の町で、のんびり暮らす","deck":"第 11 课：17 个单词、7 个语法点，配一篇只用本课内容写的短文。","tags":["第 11 课","ていく／てくる","らしい","ずに"],"source":{"type":"original"},"words":467,"vocab":24,"fresh":24,"lsKey":"wk-ja-11-state","audio":true}]};
+const SITE = {"root":"../","review":"../review-ja/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":false,"href":"../ko/"},{"label":"日语中级","icon":"🌸","on":true,"href":"./"},{"label":"粤语入门","icon":"🥟","on":false,"href":"../yue/"}],"articles":[{"slug":"ja-12","date":"2026-11-13","title":"隣の部屋のギター","deck":"第 12 课：16 个单词、7 个语法点，配一篇只用本课内容写的短文。","tags":["第 12 课","受害被动","～おかげで","～っぱなし"],"source":{"type":"original"},"words":538,"vocab":23,"fresh":23,"lsKey":"wk-ja-12-state","audio":true},{"slug":"ja-11","date":"2026-11-06","title":"雪の町で、のんびり暮らす","deck":"第 11 课：17 个单词、7 个语法点，配一篇只用本课内容写的短文。","tags":["第 11 课","ていく／てくる","らしい","ずに"],"source":{"type":"original"},"words":467,"vocab":24,"fresh":24,"lsKey":"wk-ja-11-state","audio":true}]};
 const A = SITE.articles;
 SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, h('span', {class:'em', 'aria-hidden':'true'}, l.icon), l.label)); });
 (function(){
