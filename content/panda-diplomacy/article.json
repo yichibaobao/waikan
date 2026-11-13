@@ -1,0 +1,1714 @@
+{
+ "meta": {
+  "slug": "panda-diplomacy",
+  "date": "2026-11-14",
+  "title": "Borrowed bears: how China lends pandas, and leverages them",
+  "deck": "No panda truly leaves China. The country lends them out for fat fees and formidable soft power — and takes them back whenever it likes.",
+  "short": "Borrowed Bears",
+  "tags": [
+   "趣闻",
+   "外交与文化"
+  ],
+  "source": {
+   "type": "original"
+  },
+  "note": "这是一篇仿《经济学人》风格的原创练习文章，不是真实外刊的转载。文中的事实是概括性描述，仅供语言学习，请不要当作引用来源。",
+  "pronounce": {
+   "Mao": "Mao",
+   "Richard Nixon": "Richard Nixon",
+   "Edinburgh": "Edinburgh",
+   "Chengdu": "Chengdu"
+  }
+ },
+ "data": {
+  "sents": [
+   {
+    "kind": "title",
+    "en": "Borrowed bears: how China lends pandas, and leverages them",
+    "zh": "借来的熊猫：中国怎样借出大熊猫，又怎样把它们当作筹码",
+    "notes": [
+     "borrowed：借来的。这里用过去分词当形容词。",
+     "leverage：利用……来获取优势，把某物当筹码。"
+    ]
+   },
+   {
+    "kind": "sub",
+    "en": "No panda truly leaves China. The country lends them out for hefty fees and considerable soft power, and takes them back whenever it chooses.",
+    "zh": "没有哪只大熊猫真正离开中国。国家以高昂的费用和相当大的软实力为条件把它们借出去，又随时可以把它们收回来。",
+    "notes": [
+     "lend out：借出（向外）。对比 borrow（借入）。",
+     "hefty：数额大的、可观的。",
+     "soft power：软实力，靠吸引而非强迫来影响别国。",
+     "whenever it chooses：想什么时候就什么时候。"
+    ]
+   },
+   {
+    "kind": "sub",
+    "en": "Every cub born abroad belongs to Beijing, and goes home at age two.",
+    "zh": "每一只在国外出生的幼崽都属于北京，两岁时就要回中国。",
+    "notes": [
+     "cub：幼崽（熊、虎、狮等）。",
+     "belong to：属于。",
+     "at age two：两岁时，也可以说 at the age of two。"
+    ]
+   },
+   {
+    "kind": "body",
+    "en": "The arrangement dates to 1972, when Mao Zedong gifted a pair of pandas to America after Richard Nixon's visit.",
+    "zh": "这一做法可以追溯到 1972 年，当时毛泽东在理查德·尼克松访华之后赠送了一对大熊猫给美国。",
+    "notes": [
+     "date to：追溯到、始于某时期。",
+     "a pair of：一对、一双。",
+     "gift（动词）：赠送。这里用过去式 gifted。"
+    ],
+    "p": 1
+   },
+   {
+    "kind": "body",
+    "en": "Those were outright gifts. Today the bears are strictly on loan, at around a million dollars a year per pair.",
+    "zh": "那时是完全的赠予。如今大熊猫严格来说是租借的，每对每年约一百万美元。",
+    "notes": [
+     "outright：彻底的、完全的。",
+     "on loan：借出、出借状态。",
+     "strictly：严格地。"
+    ],
+    "p": 2
+   },
+   {
+    "kind": "body",
+    "en": "Zoos queue for the privilege, and a lucky few secure a pair.",
+    "zh": "各动物园争相争取这一特权，少数幸运的获得了一对。",
+    "notes": [
+     "queue for：排队争取、争相获取。",
+     "the privilege：特权、荣幸。",
+     "a lucky few：少数幸运者。few 单独用表示“很少”，a lucky few 指少数几个幸运的。",
+     "secure（动词）：获得、弄到（不容易得到的东西）。"
+    ],
+    "p": 3
+   },
+   {
+    "kind": "body",
+    "en": "In return they build a forested enclosure, commit to bamboo shipments and pledge funds for conservation in China.",
+    "zh": "作为回报，它们要建造一个林围栏，承诺竹子的定期运送，并保证为中国的保护工作提供资金。",
+    "notes": [
+     "in return：作为回报。",
+     "forested enclosure：有树木的围场。enclosure = 围起来的空间。",
+     "commit to：承诺做某事、投入。",
+     "pledge：保证给予、认捐（资金等）。"
+    ],
+    "p": 4
+   },
+   {
+    "kind": "body",
+    "en": "The money is framed as research funding, not rent.",
+    "zh": "这笔钱被称作研究经费，而不是租金。",
+    "notes": [
+     "frame as：把……说成、包装成。",
+     "research funding：研究经费。",
+     "not rent：而不是租金。省略了 is。"
+    ],
+    "p": 5
+   },
+   {
+    "kind": "body",
+    "en": "Cynics call it a panda tax.",
+    "zh": "持怀疑态度的人称之为熊猫税。",
+    "notes": [
+     "cynic：怀疑别人动机的人、愤世嫉俗者。",
+     "call it ...：把它叫作……。"
+    ],
+    "p": 6
+   },
+   {
+    "kind": "body",
+    "en": "The bears pay their way in other ways, too.",
+    "zh": "大熊猫在其他方面也能自己挣回成本。",
+    "notes": [
+     "pay one's way：自己挣回成本、自给自足。",
+     "in other ways：在其他方面。"
+    ],
+    "p": 7
+   },
+   {
+    "kind": "body",
+    "en": "A resident panda can boost a zoo's footfall by half, and merchandise sells briskly.",
+    "zh": "一只常驻大熊猫可以使动物园的客流量增长一半，周边商品也卖得很火。",
+    "notes": [
+     "resident：常驻的、居住的。",
+     "boost：提升、猛增。",
+     "footfall：客流量、踏进店门的人数。",
+     "merchandise：商品、周边产品。",
+     "briskly：快速地、火热地。"
+    ],
+    "p": 8
+   },
+   {
+    "kind": "body",
+    "en": "Some zoos have recouped their annual fee within months of a panda's debut.",
+    "zh": "有些动物园在大熊猫首秀后几个月内就赚回了年度费用。",
+    "notes": [
+     "recoup：收回（成本）、弥补。",
+     "annual fee：年度费用。",
+     "debut：首次亮相、首秀。"
+    ],
+    "p": 9
+   },
+   {
+    "kind": "body",
+    "en": "Yet the bears are not merely a draw; they are a diplomatic signal.",
+    "zh": "然而大熊猫不只是招揽游客的招牌，它们还是一个外交信号。",
+    "notes": [
+     "a draw：吸引力、招揽人的东西。",
+     "diplomatic：外交的。",
+     "not merely ... but ...：不只是……而是……。"
+    ],
+    "p": 10
+   },
+   {
+    "kind": "body",
+    "en": "When relations warm, pandas go out.",
+    "zh": "关系回暖时，大熊猫就借出去。",
+    "notes": [
+     "relations：关系（国与国之间）。",
+     "warm（动词）：变暖、改善。"
+    ],
+    "p": 11
+   },
+   {
+    "kind": "body",
+    "en": "When they sour, pandas come home.",
+    "zh": "关系恶化时，大熊猫就被接回来。",
+    "notes": [
+     "sour（动词）：变酸、恶化（关系等）。"
+    ],
+    "p": 12
+   },
+   {
+    "kind": "body",
+    "en": "In 2013, amid a territorial dispute, China abruptly recalled a cub from a Japanese zoo.",
+    "zh": "2013 年，在领土争端期间，中国突然从一家日本动物园召回了一只幼崽。",
+    "notes": [
+     "amid：在……之中（常接事件、冲突等）。",
+     "territorial dispute：领土争端。",
+     "abruptly：突然地。",
+     "recall：召回、叫回。"
+    ],
+    "p": 13
+   },
+   {
+    "kind": "body",
+    "en": "In 2023 a pair in Edinburgh was returned and not replaced, coinciding with chillier ties.",
+    "zh": "2023 年，爱丁堡的一对大熊猫被归还且未获替换，恰好与更冷淡的双边关系同步。",
+    "notes": [
+     "replace：替换、替代。",
+     "coincide with：与……同时发生。",
+     "chillier：更冷淡的，chilly 的比较级。"
+    ],
+    "p": 14
+   },
+   {
+    "kind": "body",
+    "en": "The message needs no translation.",
+    "zh": "这个信号不需要翻译。",
+    "notes": [
+     "need no translation：不需要翻译，引申为不言自明。",
+     "translation：翻译。"
+    ],
+    "p": 15
+   },
+   {
+    "kind": "body",
+    "en": "Pandas are also, quietly, a breeding bet.",
+    "zh": "大熊猫也在悄悄地成为一场繁殖赌注。",
+    "notes": [
+     "quietly：悄悄地、不张扬地。",
+     "breeding：繁殖、繁育。",
+     "a bet：一场赌注、押注。"
+    ],
+    "p": 16
+   },
+   {
+    "kind": "body",
+    "en": "The population in the wild hovers near 1,800, and genetic diversity matters.",
+    "zh": "野生种群数量徘徊在 1,800 上下，基因多样性很重要。",
+    "notes": [
+     "in the wild：在野外。",
+     "hover：徘徊、维持在某一水平上下。",
+     "genetic diversity：基因多样性。",
+     "matter：要紧、重要。"
+    ],
+    "p": 17
+   },
+   {
+    "kind": "body",
+    "en": "Each foreign-born cub broadens the gene pool slightly, which conservationists welcome.",
+    "zh": "每一只国外出生的幼崽都会略微拓宽基因库，这是保护工作者所乐见的。",
+    "notes": [
+     "broaden：拓宽、扩大。",
+     "gene pool：基因库。",
+     "slightly：略微、稍微。",
+     "conservationist：自然保护工作者。"
+    ],
+    "p": 18
+   },
+   {
+    "kind": "body",
+    "en": "When the cub flies back to Chengdu, it joins a breeding programme that pairs animals carefully.",
+    "zh": "当幼崽飞回成都，它会加入一个精心配对的繁育项目。",
+    "notes": [
+     "fly back：飞回。",
+     "breeding programme：繁育项目。",
+     "pair（动词）：配对。",
+     "carefully：精心地、仔细地。"
+    ],
+    "p": 19
+   },
+   {
+    "kind": "body",
+    "en": "Whether the strategy owes more to science or statecraft is debatable, but the bears do not seem to mind.",
+    "zh": "这一策略更多是出于科学还是政治手腕，尚有争议，但大熊猫似乎并不介意。",
+    "notes": [
+     "owe A to B：把 A 归因于 B。",
+     "science：科学。",
+     "statecraft：治国术、政治手腕。",
+     "debatable：有争议的、可讨论的。",
+     "seem to：似乎。"
+    ],
+    "p": 20
+   },
+   {
+    "kind": "body",
+    "en": "They sleep up to 14 hours a day, chew bamboo for most of the rest, and draw crowds wherever they go.",
+    "zh": "它们每天睡多达 14 个小时，其余大部分时间在嚼竹子，走到哪里都能吸引人群。",
+    "notes": [
+     "up to：多达、最多。",
+     "chew：嚼。",
+     "draw crowds：吸引人群。"
+    ],
+    "p": 21
+   },
+   {
+    "kind": "body",
+    "en": "Few animals have been so thoroughly woven into a country's foreign policy.",
+    "zh": "很少有动物被如此彻底地编织进一个国家的外交政策中。",
+    "notes": [
+     "thoroughly：彻底地。",
+     "weave into：编织进、融入。woven 是 weave 的过去分词。",
+     "foreign policy：外交政策。"
+    ],
+    "p": 22
+   }
+  ],
+  "vocab": [
+   {
+    "id": 1,
+    "expr": "borrow",
+    "zh": "借入（借进）",
+    "m": [
+     "borrowed"
+    ],
+    "note": "borrow 是借入，lend 是借出。I borrowed a book from the library. The library lent me a book.",
+    "core": "borrow",
+    "forms": [
+     "borrow",
+     "borrowed",
+     "borrowing",
+     "borrows"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She [[borrowed]] three books from the library.",
+      "zh": "她从图书馆借了三本书。"
+     },
+     {
+      "en": "Can I [[borrow]] your umbrella?",
+      "zh": "我能借一下你的伞吗？"
+     }
+    ]
+   },
+   {
+    "id": 2,
+    "expr": "lend out",
+    "zh": "借出（向外）",
+    "m": [
+     "lends"
+    ],
+    "note": "lend out 强调“借出去”给别人。对比 borrow（借入）。",
+    "core": "lends",
+    "forms": [
+     "lends",
+     "lend out",
+     "lent out",
+     "lends out",
+     "lending out",
+     "lent"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The museum [[lent out]] paintings to other galleries.",
+      "zh": "博物馆把画借给了其他美术馆。"
+     },
+     {
+      "en": "They [[lent]] their car [[out]] to a neighbour.",
+      "zh": "他们把车借给了邻居。"
+     }
+    ]
+   },
+   {
+    "id": 3,
+    "expr": "leverage",
+    "zh": "利用……获取优势；把……当筹码",
+    "m": [
+     "leverages"
+    ],
+    "note": "原指杠杆，引申为“利用某物来获取最大优势”。",
+    "core": "leverage",
+    "forms": [
+     "leverage",
+     "leveraged",
+     "leveraging",
+     "leverages"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The company [[leveraged]] its brand to enter new markets.",
+      "zh": "公司利用自己的品牌进入新市场。"
+     },
+     {
+      "en": "She [[leveraged]] her network to find a job.",
+      "zh": "她利用自己的人脉找工作。"
+     }
+    ]
+   },
+   {
+    "id": 4,
+    "expr": "hefty",
+    "zh": "数额大的；可观的",
+    "m": [
+     "hefty"
+    ],
+    "note": "形容数额、体积等很大。a hefty fine（一大笔罚款），a hefty meal（一顿丰盛的饭）。",
+    "core": "hefty",
+    "forms": [
+     "hefty"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He received a [[hefty]] bonus at year-end.",
+      "zh": "他年底拿到了一大笔奖金。"
+     },
+     {
+      "en": "The fine was a [[hefty]] sum.",
+      "zh": "罚款是一大笔钱。"
+     }
+    ]
+   },
+   {
+    "id": 5,
+    "expr": "soft power",
+    "zh": "软实力",
+    "m": [
+     "soft power"
+    ],
+    "note": "靠吸引和说服（而非武力）来影响别国的能力。文化、体育、教育都算软实力。",
+    "core": "soft power",
+    "forms": [
+     "soft power"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Pop music is part of a country's [[soft power]].",
+      "zh": "流行音乐是一个国家软实力的一部分。"
+     },
+     {
+      "en": "The film festival boosted the nation's [[soft power]].",
+      "zh": "电影节提升了该国的软实力。"
+     }
+    ]
+   },
+   {
+    "id": 6,
+    "expr": "cub",
+    "zh": "幼崽（熊、虎、狮等）",
+    "m": [
+     "cub"
+    ],
+    "note": "专指食肉动物的幼崽。小熊叫 bear cub，小虎叫 tiger cub。",
+    "core": "cub",
+    "forms": [
+     "cub",
+     "cubs"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The [[cub]] clung to its mother.",
+      "zh": "幼崽紧紧贴着妈妈。"
+     },
+     {
+      "en": "Two [[cubs]] were born at the zoo last spring.",
+      "zh": "去年春天动物园出生了两只幼崽。"
+     }
+    ]
+   },
+   {
+    "id": 7,
+    "expr": "belong to",
+    "zh": "属于",
+    "m": [
+     "belongs to"
+    ],
+    "note": "注意没有被动语态。不能说 It is belonged to。",
+    "core": "belong to",
+    "forms": [
+     "belong to",
+     "belongs to",
+     "belonged to",
+     "belonging to"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "This land [[belongs to]] the state.",
+      "zh": "这片土地属于国家。"
+     },
+     {
+      "en": "The idea [[belongs to]] no single person.",
+      "zh": "这个想法不属于任何一个人。"
+     }
+    ]
+   },
+   {
+    "id": 8,
+    "expr": "date to",
+    "zh": "追溯到；始于",
+    "m": [
+     "dates to"
+    ],
+    "note": "也可以说 date back to。表示某事物的起源时间。",
+    "core": "date to",
+    "forms": [
+     "date to",
+     "dates to",
+     "dated to",
+     "dating to",
+     "dates back to"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The tradition [[dates to]] the 15th century.",
+      "zh": "这个传统可以追溯到十五世纪。"
+     },
+     {
+      "en": "The castle [[dates back to]] 1200.",
+      "zh": "这座城堡始建于 1200 年。"
+     }
+    ]
+   },
+   {
+    "id": 9,
+    "expr": "a pair of",
+    "zh": "一对；一双",
+    "m": [
+     "pair"
+    ],
+    "note": "a pair of shoes / gloves / pandas。两件配在一起用的东西。",
+    "core": "pair",
+    "forms": [
+     "pair",
+     "pairs",
+     "a pair of"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She bought [[a pair of]] earrings.",
+      "zh": "她买了一对耳环。"
+     },
+     {
+      "en": "I need [[a pair of]] chopsticks.",
+      "zh": "我需要一双筷子。"
+     }
+    ]
+   },
+   {
+    "id": 10,
+    "expr": "gift（动词）",
+    "zh": "赠送",
+    "m": [
+     "gifted"
+    ],
+    "note": "gift 作动词比 give 更正式，常用于官方赠送。",
+    "core": "gift",
+    "forms": [
+     "gift",
+     "gifted",
+     "gifting",
+     "gifts"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The mayor [[gifted]] a painting to the school.",
+      "zh": "市长把一幅画赠送给了学校。"
+     },
+     {
+      "en": "They [[gifted]] her a laptop for graduation.",
+      "zh": "他们送了她一台笔记本电脑作为毕业礼物。"
+     }
+    ]
+   },
+   {
+    "id": 11,
+    "expr": "outright",
+    "zh": "彻底的；完全的",
+    "m": [
+     "outright"
+    ],
+    "note": "当形容词用：彻底的、完全的。当副词用：毫不犹豫地、公开地。",
+    "core": "outright",
+    "forms": [
+     "outright"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "It was an [[outright]] victory.",
+      "zh": "这是一场完胜。"
+     },
+     {
+      "en": "She [[outright]] refused to help.",
+      "zh": "她断然拒绝了帮忙。"
+     }
+    ]
+   },
+   {
+    "id": 12,
+    "expr": "on loan",
+    "zh": "借出（状态）",
+    "m": [
+     "on loan"
+    ],
+    "note": "The painting is on loan from the Louvre.（这幅画是从卢浮宫借来的。）",
+    "core": "on loan",
+    "forms": [
+     "on loan"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The exhibit is [[on loan]] from a private collection.",
+      "zh": "展品来自私人收藏的借展。"
+     },
+     {
+      "en": "The player is [[on loan]] from another club.",
+      "zh": "这名球员是从另一个俱乐部租借来的。"
+     }
+    ]
+   },
+   {
+    "id": 13,
+    "expr": "strictly",
+    "zh": "严格地",
+    "m": [
+     "strictly"
+    ],
+    "note": "强调严格遵守、不含糊。strictly speaking（严格来说）。",
+    "core": "strictly",
+    "forms": [
+     "strictly"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "This is [[strictly]] between us.",
+      "zh": "这件事只有你我知道，绝不外传。"
+     },
+     {
+      "en": "[[Strictly]] speaking, a tomato is a fruit.",
+      "zh": "严格来说，番茄是一种水果。"
+     }
+    ]
+   },
+   {
+    "id": 14,
+    "expr": "queue for",
+    "zh": "排队争取",
+    "m": [
+     "queue"
+    ],
+    "note": "英式英语常用 queue，美式英语用 line up。这里引申为“争相争取”。",
+    "core": "queue",
+    "forms": [
+     "queue",
+     "queued",
+     "queuing",
+     "queues"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Fans [[queued for]] hours to buy tickets.",
+      "zh": "粉丝们排了几个小时的队买票。"
+     },
+     {
+      "en": "People [[queued up]] for the free samples.",
+      "zh": "人们排队领取免费样品。"
+     }
+    ]
+   },
+   {
+    "id": 15,
+    "expr": "the privilege",
+    "zh": "特权；荣幸",
+    "m": [
+     "privilege"
+    ],
+    "note": "It's a privilege to meet you.（见到您是荣幸。）",
+    "core": "privilege",
+    "forms": [
+     "privilege",
+     "privileges"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Education is a [[privilege]] in some countries.",
+      "zh": "在某些国家，教育是一种特权。"
+     },
+     {
+      "en": "It was a [[privilege]] to work with her.",
+      "zh": "能和她共事是一种荣幸。"
+     }
+    ]
+   },
+   {
+    "id": 16,
+    "expr": "a lucky few",
+    "zh": "少数幸运者",
+    "m": [
+     "lucky few"
+    ],
+    "note": "few 单独用表示“几乎没有”，a few 表示“几个”，a lucky few 指“少数幸运的（人或物）”。",
+    "core": "lucky few",
+    "forms": [
+     "lucky few",
+     "a lucky few"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Many applied; [[a lucky few]] were chosen.",
+      "zh": "很多人申请了，少数幸运者被选中。"
+     },
+     {
+      "en": "Only [[a lucky few]] saw the meteor shower.",
+      "zh": "只有少数幸运的人看到了流星雨。"
+     }
+    ]
+   },
+   {
+    "id": 17,
+    "expr": "secure（动词）",
+    "zh": "获得；弄到（不易得到的东西）",
+    "m": [
+     "secure"
+    ],
+    "note": "secure 作动词比 get 更正式，强调经过努力获得。",
+    "core": "secure",
+    "forms": [
+     "secure",
+     "secured",
+     "securing",
+     "secures"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He [[secured]] a loan from the bank.",
+      "zh": "他从银行拿到了贷款。"
+     },
+     {
+      "en": "The team [[secured]] a spot in the finals.",
+      "zh": "队伍获得了决赛的名额。"
+     }
+    ]
+   },
+   {
+    "id": 18,
+    "expr": "in return",
+    "zh": "作为回报",
+    "m": [
+     "in return"
+    ],
+    "note": "give sth and get sth in return（给出去某物，换回某物作为回报）。",
+    "core": "in return",
+    "forms": [
+     "in return"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She helped him; [[in return]], he bought her dinner.",
+      "zh": "她帮了他；作为回报，他请她吃晚饭。"
+     },
+     {
+      "en": "They want nothing [[in return]].",
+      "zh": "他们不要任何回报。"
+     }
+    ]
+   },
+   {
+    "id": 19,
+    "expr": "commit to",
+    "zh": "承诺做某事；投入",
+    "m": [
+     "commit to"
+    ],
+    "note": "commit to + 名词或 -ing。The company committed to reducing emissions.",
+    "core": "commit to",
+    "forms": [
+     "commit to",
+     "committed to",
+     "committing to",
+     "commits to",
+     "committed"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "She [[committed to]] saving 10% of her salary.",
+      "zh": "她承诺把工资的 10% 存起来。"
+     },
+     {
+      "en": "The government [[committed]] funds [[to]] the project.",
+      "zh": "政府向该项目拨了资金。"
+     }
+    ]
+   },
+   {
+    "id": 20,
+    "expr": "pledge",
+    "zh": "保证给予；认捐",
+    "m": [
+     "pledge"
+    ],
+    "note": "pledge money / support：保证给予金钱或支持。比 promise 更正式。",
+    "core": "pledge",
+    "forms": [
+     "pledge",
+     "pledged",
+     "pledging",
+     "pledges"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "He [[pledged]] a million dollars to the charity.",
+      "zh": "他向慈善机构认捐了一百万美元。"
+     },
+     {
+      "en": "They [[pledged]] to rebuild the school.",
+      "zh": "他们承诺重建学校。"
+     }
+    ]
+   },
+   {
+    "id": 21,
+    "expr": "frame as",
+    "zh": "把……说成；包装成",
+    "m": [
+     "framed"
+    ],
+    "note": "frame 本义是“装框架”，引申为“用某种说法来描述”。",
+    "core": "frame",
+    "forms": [
+     "frame",
+     "framed",
+     "framing",
+     "frames"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The tax was [[framed as]] a health measure.",
+      "zh": "这项税被说成是健康措施。"
+     },
+     {
+      "en": "She [[framed]] the question [[as]] a suggestion.",
+      "zh": "她把问题包装成了一个建议。"
+     }
+    ]
+   },
+   {
+    "id": 22,
+    "expr": "cynic",
+    "zh": "怀疑别人动机的人",
+    "m": [
+     "cynics"
+    ],
+    "note": "cynic 认为人的行为都出于自私。形容词 cynical。",
+    "core": "cynic",
+    "forms": [
+     "cynic",
+     "cynics"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "[[Cynics]] said the donation was for publicity.",
+      "zh": "持怀疑态度的人说那笔捐款是为了出风头。"
+     },
+     {
+      "en": "Don't be a [[cynic]] — sometimes people are genuinely kind.",
+      "zh": "别总怀疑别人的动机——有时候人是真心善意的。"
+     }
+    ]
+   },
+   {
+    "id": 23,
+    "expr": "pay one's way",
+    "zh": "自己挣回成本；自给自足",
+    "m": [
+     "pay their way"
+    ],
+    "note": "表示某物能自己产出价值来抵消成本。",
+    "core": "pay their way",
+    "forms": [
+     "pay their way",
+     "pay one's way",
+     "paid one's way",
+     "pays its way",
+     "paid its way",
+     "pay his way"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The cafe [[paid its way]] within a year.",
+      "zh": "咖啡馆一年内就自负盈亏了。"
+     },
+     {
+      "en": "He worked to [[pay his way]] through college.",
+      "zh": "他打工挣钱读完大学。"
+     }
+    ]
+   },
+   {
+    "id": 24,
+    "expr": "resident",
+    "zh": "常驻的；居住的",
+    "m": [
+     "resident"
+    ],
+    "note": "作形容词：常驻的。作名词：居民。a resident panda = 常驻大熊猫。",
+    "core": "resident",
+    "forms": [
+     "resident",
+     "residents"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The zoo's [[resident]] tiger is a big attraction.",
+      "zh": "动物园常驻的老虎是一大看点。"
+     },
+     {
+      "en": "Local [[residents]] protested the plan.",
+      "zh": "当地居民抗议了该计划。"
+     }
+    ]
+   },
+   {
+    "id": 25,
+    "expr": "boost",
+    "zh": "提升；猛增",
+    "m": [
+     "boost"
+    ],
+    "note": "boost sales / confidence / numbers：提升销量/信心/数字。",
+    "core": "boost",
+    "forms": [
+     "boost",
+     "boosted",
+     "boosting",
+     "boosts"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The ad campaign [[boosted]] sales by 20%.",
+      "zh": "广告活动让销量增长了 20%。"
+     },
+     {
+      "en": "Good news [[boosted]] her confidence.",
+      "zh": "好消息增强了她的信心。"
+     }
+    ]
+   },
+   {
+    "id": 26,
+    "expr": "footfall",
+    "zh": "客流量",
+    "m": [
+     "footfall"
+    ],
+    "note": "商业用语，指走进店门或场所的人数。foot（脚）+ fall（落下）= 踏进门的次数。",
+    "core": "footfall",
+    "forms": [
+     "footfall"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The new mall has seen a drop in [[footfall]].",
+      "zh": "新商场的客流量下降了。"
+     },
+     {
+      "en": "High [[footfall]] means more sales.",
+      "zh": "客流量大意味着更多销售。"
+     }
+    ]
+   },
+   {
+    "id": 27,
+    "expr": "merchandise",
+    "zh": "商品；周边产品",
+    "m": [
+     "merchandise"
+    ],
+    "note": "可缩写为 merch。在动物园语境指熊猫玩偶、明信片等周边。",
+    "core": "merchandise",
+    "forms": [
+     "merchandise"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Band [[merchandise]] sells well at concerts.",
+      "zh": "乐队的周边在演唱会上卖得很好。"
+     },
+     {
+      "en": "The store displays its [[merchandise]] in the window.",
+      "zh": "商店把商品摆在橱窗里展示。"
+     }
+    ]
+   },
+   {
+    "id": 28,
+    "expr": "briskly",
+    "zh": "快速地；火热地",
+    "m": [
+     "briskly"
+    ],
+    "note": "brisk（轻快的、活跃的）+ -ly。Selling briskly = 卖得很快。",
+    "core": "briskly",
+    "forms": [
+     "briskly"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Tickets sold [[briskly]] on the first day.",
+      "zh": "门票第一天卖得很火。"
+     },
+     {
+      "en": "She walked [[briskly]] down the street.",
+      "zh": "她快步走在街上。"
+     }
+    ]
+   },
+   {
+    "id": 29,
+    "expr": "recoup",
+    "zh": "收回（成本）；弥补",
+    "m": [
+     "recouped"
+    ],
+    "note": "recoup one's investment / costs / losses：收回投资/成本/损失。",
+    "core": "recoup",
+    "forms": [
+     "recoup",
+     "recouped",
+     "recouping",
+     "recoups"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The company [[recouped]] its losses within a year.",
+      "zh": "公司在一年内弥补了损失。"
+     },
+     {
+      "en": "She [[recouped]] her investment by selling the flat.",
+      "zh": "她卖掉公寓收回了投资。"
+     }
+    ]
+   },
+   {
+    "id": 30,
+    "expr": "debut",
+    "zh": "首次亮相；首秀",
+    "m": [
+     "debut"
+    ],
+    "note": "可当名词或动词。读音为 /ˈdeɪbjuː/，来自法语，t 不发音。",
+    "core": "debut",
+    "forms": [
+     "debut",
+     "debuted",
+     "debuts"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The singer made her [[debut]] at 16.",
+      "zh": "这位歌手 16 岁首次登台。"
+     },
+     {
+      "en": "The film [[debuted]] at the festival.",
+      "zh": "这部电影在电影节上首映。"
+     }
+    ]
+   },
+   {
+    "id": 31,
+    "expr": "a draw",
+    "zh": "吸引力；招揽人的东西",
+    "m": [
+     "draw"
+    ],
+    "note": "draw 在这里是名词：吸引人的事物。a tourist draw = 旅游卖点。",
+    "core": "draw",
+    "forms": [
+     "draw",
+     "draws"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The fountain is [[a draw]] for tourists.",
+      "zh": "喷泉是吸引游客的卖点。"
+     },
+     {
+      "en": "Free coffee is always [[a draw]].",
+      "zh": "免费咖啡总是有吸引力的。"
+     }
+    ]
+   },
+   {
+    "id": 32,
+    "expr": "diplomatic",
+    "zh": "外交的",
+    "m": [
+     "diplomatic"
+    ],
+    "note": "diplomatic relations（外交关系），diplomatic signal（外交信号）。",
+    "core": "diplomatic",
+    "forms": [
+     "diplomatic"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The two countries broke [[diplomatic]] ties.",
+      "zh": "两国断绝了外交关系。"
+     },
+     {
+      "en": "Her answer was [[diplomatic]].",
+      "zh": "她的回答很圆滑。"
+     }
+    ]
+   },
+   {
+    "id": 33,
+    "expr": "sour（动词）",
+    "zh": "变酸；恶化",
+    "m": [
+     "sour"
+    ],
+    "note": "本义是变酸，引申为关系等恶化。sour relations / sour a deal。",
+    "core": "sour",
+    "forms": [
+     "sour",
+     "soured",
+     "souring",
+     "sours"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The dispute [[soured]] relations between the two teams.",
+      "zh": "争端恶化了两支队伍之间的关系。"
+     },
+     {
+      "en": "The deal [[soured]] after weeks of talks.",
+      "zh": "经过数周谈判，交易泡汤了。"
+     }
+    ]
+   },
+   {
+    "id": 34,
+    "expr": "amid",
+    "zh": "在……之中",
+    "m": [
+     "amid"
+    ],
+    "note": "后面常接事件、冲突、混乱等。amid the chaos（在混乱之中）。",
+    "core": "amid",
+    "forms": [
+     "amid"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The company collapsed [[amid]] a scandal.",
+      "zh": "公司在一场丑闻中倒闭了。"
+     },
+     {
+      "en": "[[Amid]] the noise, nobody heard the alarm.",
+      "zh": "在嘈杂声中，没人听到警报。"
+     }
+    ]
+   },
+   {
+    "id": 35,
+    "expr": "territorial dispute",
+    "zh": "领土争端",
+    "m": [
+     "territorial dispute"
+    ],
+    "note": "territorial（领土的）+ dispute（争端）。",
+    "core": "territorial dispute",
+    "forms": [
+     "territorial dispute",
+     "territorial disputes"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The [[territorial dispute]] has lasted decades.",
+      "zh": "这场领土争端持续了几十年。"
+     },
+     {
+      "en": "Both sides refuse to compromise on the [[territorial dispute]].",
+      "zh": "双方在领土争端上互不让步。"
+     }
+    ]
+   },
+   {
+    "id": 36,
+    "expr": "abruptly",
+    "zh": "突然地",
+    "m": [
+     "abruptly"
+    ],
+    "note": "abrupt（突然的）+ -ly。比 suddenly 更强调“没有预兆”。",
+    "core": "abruptly",
+    "forms": [
+     "abruptly"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The meeting ended [[abruptly]].",
+      "zh": "会议突然结束了。"
+     },
+     {
+      "en": "He [[abruptly]] left the room.",
+      "zh": "他突然离开了房间。"
+     }
+    ]
+   },
+   {
+    "id": 37,
+    "expr": "recall",
+    "zh": "召回；叫回",
+    "m": [
+     "recalled"
+    ],
+    "note": "recall an ambassador / a product / a person：召回大使/产品/人。",
+    "core": "recall",
+    "forms": [
+     "recall",
+     "recalled",
+     "recalling",
+     "recalls"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The embassy [[recalled]] all its staff.",
+      "zh": "大使馆召回了所有员工。"
+     },
+     {
+      "en": "The firm [[recalled]] 10,000 cars for a safety check.",
+      "zh": "公司召回了 10,000 辆汽车进行安全检查。"
+     }
+    ]
+   },
+   {
+    "id": 38,
+    "expr": "coincide with",
+    "zh": "与……同时发生",
+    "m": [
+     "coinciding"
+    ],
+    "note": "coincide /ˌkəʊɪnˈsaɪd/。两个事件在同一时间发生。",
+    "core": "coincide",
+    "forms": [
+     "coincide",
+     "coincided",
+     "coinciding",
+     "coincides"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "His visit [[coincided with]] the festival.",
+      "zh": "他的到访恰逢节日。"
+     },
+     {
+      "en": "The price rise [[coincided]] with a shortage of supply.",
+      "zh": "涨价恰好发生在供应短缺的时候。"
+     }
+    ]
+   },
+   {
+    "id": 39,
+    "expr": "breeding",
+    "zh": "繁殖；繁育",
+    "m": [
+     "breeding"
+    ],
+    "note": "breeding programme（繁育项目），breeding season（繁殖季节）。",
+    "core": "breeding",
+    "forms": [
+     "breeding"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The zoo runs a [[breeding]] programme for rare turtles.",
+      "zh": "动物园有一个稀有龟类的繁育项目。"
+     },
+     {
+      "en": "Spring is the [[breeding]] season for most birds.",
+      "zh": "春天是大多数鸟类的繁殖季节。"
+     }
+    ]
+   },
+   {
+    "id": 40,
+    "expr": "hover",
+    "zh": "徘徊；维持在某一水平上下",
+    "m": [
+     "hovers"
+    ],
+    "note": "数字在某水平上下波动用 hover。Unemployment hovers around 5%。",
+    "core": "hover",
+    "forms": [
+     "hover",
+     "hovered",
+     "hovering",
+     "hovers"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Inflation [[hovers]] near 3%.",
+      "zh": "通胀率徘徊在 3% 上下。"
+     },
+     {
+      "en": "The bird [[hovered]] above the water.",
+      "zh": "鸟在水面上悬停。"
+     }
+    ]
+   },
+   {
+    "id": 41,
+    "expr": "broaden",
+    "zh": "拓宽；扩大",
+    "m": [
+     "broadens"
+    ],
+    "note": "broaden one's horizons（开阔眼界），broaden the gene pool（拓宽基因库）。",
+    "core": "broaden",
+    "forms": [
+     "broaden",
+     "broadened",
+     "broadening",
+     "broadens"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Travel can [[broaden]] your horizons.",
+      "zh": "旅行能开阔眼界。"
+     },
+     {
+      "en": "The road was [[broadened]] to four lanes.",
+      "zh": "马路被拓宽到了四车道。"
+     }
+    ]
+   },
+   {
+    "id": 42,
+    "expr": "statecraft",
+    "zh": "治国术；政治手腕",
+    "m": [
+     "statecraft"
+    ],
+    "note": "state（国家）+ craft（手艺）= 治国的手艺。",
+    "core": "statecraft",
+    "forms": [
+     "statecraft"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "The treaty was a triumph of [[statecraft]].",
+      "zh": "这条约是治国手腕的胜利。"
+     },
+     {
+      "en": "He wrote a book on modern [[statecraft]].",
+      "zh": "他写了一本关于现代治国术的书。"
+     }
+    ]
+   },
+   {
+    "id": 43,
+    "expr": "debatable",
+    "zh": "有争议的；可讨论的",
+    "m": [
+     "debatable"
+    ],
+    "note": "It is debatable whether ...：……尚有争议。",
+    "core": "debatable",
+    "forms": [
+     "debatable"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "It is [[debatable]] whether the plan will work.",
+      "zh": "这个计划是否行得通还有争议。"
+     },
+     {
+      "en": "His claim is highly [[debatable]].",
+      "zh": "他的说法大有争议。"
+     }
+    ]
+   },
+   {
+    "id": 44,
+    "expr": "weave into",
+    "zh": "编织进；融入",
+    "m": [
+     "woven"
+    ],
+    "note": "weave 的过去式是 wove，过去分词是 woven。be woven into = 被融入、被编织进。",
+    "core": "weave",
+    "forms": [
+     "weave",
+     "wove",
+     "woven",
+     "weaving",
+     "weaves"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "Music is [[woven into]] everyday life here.",
+      "zh": "音乐融入了这里的日常生活。"
+     },
+     {
+      "en": "She [[wove]] the story [[into]] her speech.",
+      "zh": "她把故事编进了演讲中。"
+     }
+    ]
+   }
+  ],
+  "cloze": [
+   {
+    "id": 1,
+    "i": 0,
+    "ans": "borrowed",
+    "hint": "借入（借进）"
+   },
+   {
+    "id": 2,
+    "i": 0,
+    "ans": "lends",
+    "hint": "借出（向外）"
+   },
+   {
+    "id": 3,
+    "i": 0,
+    "ans": "leverages",
+    "hint": "利用……获取优势；把……当筹码"
+   },
+   {
+    "id": 4,
+    "i": 1,
+    "ans": "hefty",
+    "hint": "数额大的；可观的"
+   },
+   {
+    "id": 5,
+    "i": 1,
+    "ans": "soft power",
+    "hint": "软实力"
+   },
+   {
+    "id": 6,
+    "i": 2,
+    "ans": "cub",
+    "hint": "幼崽（熊、虎、狮等）"
+   },
+   {
+    "id": 7,
+    "i": 2,
+    "ans": "belongs to",
+    "hint": "属于"
+   },
+   {
+    "id": 8,
+    "i": 3,
+    "ans": "dates to",
+    "hint": "追溯到；始于"
+   },
+   {
+    "id": 9,
+    "i": 3,
+    "ans": "pair",
+    "hint": "一对；一双"
+   },
+   {
+    "id": 10,
+    "i": 3,
+    "ans": "gifted",
+    "hint": "赠送"
+   },
+   {
+    "id": 11,
+    "i": 4,
+    "ans": "outright",
+    "hint": "彻底的；完全的"
+   },
+   {
+    "id": 12,
+    "i": 4,
+    "ans": "on loan",
+    "hint": "借出（状态）"
+   },
+   {
+    "id": 13,
+    "i": 4,
+    "ans": "strictly",
+    "hint": "严格地"
+   },
+   {
+    "id": 14,
+    "i": 5,
+    "ans": "queue",
+    "hint": "排队争取"
+   },
+   {
+    "id": 15,
+    "i": 5,
+    "ans": "privilege",
+    "hint": "特权；荣幸"
+   },
+   {
+    "id": 16,
+    "i": 5,
+    "ans": "lucky few",
+    "hint": "少数幸运者"
+   },
+   {
+    "id": 17,
+    "i": 5,
+    "ans": "secure",
+    "hint": "获得；弄到（不易得到的东西）"
+   },
+   {
+    "id": 18,
+    "i": 6,
+    "ans": "in return",
+    "hint": "作为回报"
+   },
+   {
+    "id": 19,
+    "i": 6,
+    "ans": "commit to",
+    "hint": "承诺做某事；投入"
+   },
+   {
+    "id": 20,
+    "i": 6,
+    "ans": "pledge",
+    "hint": "保证给予；认捐"
+   },
+   {
+    "id": 21,
+    "i": 7,
+    "ans": "framed",
+    "hint": "把……说成；包装成"
+   },
+   {
+    "id": 22,
+    "i": 8,
+    "ans": "cynics",
+    "hint": "怀疑别人动机的人"
+   },
+   {
+    "id": 23,
+    "i": 9,
+    "ans": "pay their way",
+    "hint": "自己挣回成本；自给自足"
+   },
+   {
+    "id": 24,
+    "i": 10,
+    "ans": "resident",
+    "hint": "常驻的；居住的"
+   },
+   {
+    "id": 25,
+    "i": 10,
+    "ans": "boost",
+    "hint": "提升；猛增"
+   },
+   {
+    "id": 26,
+    "i": 10,
+    "ans": "footfall",
+    "hint": "客流量"
+   },
+   {
+    "id": 27,
+    "i": 10,
+    "ans": "merchandise",
+    "hint": "商品；周边产品"
+   },
+   {
+    "id": 28,
+    "i": 10,
+    "ans": "briskly",
+    "hint": "快速地；火热地"
+   },
+   {
+    "id": 29,
+    "i": 11,
+    "ans": "recouped",
+    "hint": "收回（成本）；弥补"
+   },
+   {
+    "id": 30,
+    "i": 11,
+    "ans": "debut",
+    "hint": "首次亮相；首秀"
+   },
+   {
+    "id": 31,
+    "i": 12,
+    "ans": "draw",
+    "hint": "吸引力；招揽人的东西"
+   },
+   {
+    "id": 32,
+    "i": 12,
+    "ans": "diplomatic",
+    "hint": "外交的"
+   },
+   {
+    "id": 33,
+    "i": 14,
+    "ans": "sour",
+    "hint": "变酸；恶化"
+   },
+   {
+    "id": 34,
+    "i": 15,
+    "ans": "amid",
+    "hint": "在……之中"
+   },
+   {
+    "id": 35,
+    "i": 15,
+    "ans": "territorial dispute",
+    "hint": "领土争端"
+   },
+   {
+    "id": 36,
+    "i": 15,
+    "ans": "abruptly",
+    "hint": "突然地"
+   },
+   {
+    "id": 37,
+    "i": 15,
+    "ans": "recalled",
+    "hint": "召回；叫回"
+   },
+   {
+    "id": 38,
+    "i": 16,
+    "ans": "coinciding",
+    "hint": "与……同时发生"
+   },
+   {
+    "id": 39,
+    "i": 18,
+    "ans": "breeding",
+    "hint": "繁殖；繁育"
+   },
+   {
+    "id": 40,
+    "i": 19,
+    "ans": "hovers",
+    "hint": "徘徊；维持在某一水平上下"
+   },
+   {
+    "id": 41,
+    "i": 20,
+    "ans": "broadens",
+    "hint": "拓宽；扩大"
+   },
+   {
+    "id": 42,
+    "i": 22,
+    "ans": "statecraft",
+    "hint": "治国术；政治手腕"
+   },
+   {
+    "id": 43,
+    "i": 22,
+    "ans": "debatable",
+    "hint": "有争议的；可讨论的"
+   },
+   {
+    "id": 44,
+    "i": 24,
+    "ans": "woven",
+    "hint": "编织进；融入"
+   }
+  ],
+  "breakdown": {
+   "en": "Whether the strategy owes more to science or statecraft is debatable, but the bears do not seem to mind.",
+   "points": [
+    "主语是 Whether ... statecraft 这整个从句：策略是出于科学还是政治手腕，尚有争议。",
+    "owe A to B：把 A 归因于 B。owes more to science or statecraft = 更多归功于科学还是政治。",
+    "do not seem to mind：似乎不介意。seem to = 似乎，do not 否定。",
+    "whether ... or ...：是……还是……，引导选择疑问。"
+   ]
+  }
+ }
+}
