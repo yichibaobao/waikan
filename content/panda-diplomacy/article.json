@@ -3,7 +3,7 @@
   "slug": "panda-diplomacy",
   "date": "2026-11-14",
   "title": "Borrowed bears: how China lends pandas, and leverages them",
-  "deck": "No panda truly leaves China. The country lends them out for fat fees and formidable soft power — and takes them back whenever it likes.",
+  "deck": "No panda truly leaves China. The country lends them out for hefty fees and considerable soft power, and takes them back whenever it chooses.",
   "short": "Borrowed Bears",
   "tags": [
    "趣闻",
@@ -44,8 +44,8 @@
    },
    {
     "kind": "sub",
-    "en": "Every cub born abroad belongs to Beijing, and goes home at age two.",
-    "zh": "每一只在国外出生的幼崽都属于北京，两岁时就要回中国。",
+    "en": "Every cub born abroad belongs to Beijing, and goes home before it turns four.",
+    "zh": "每只在海外出生的幼崽都归北京所有，四岁前就要回国。",
     "notes": [
      "cub：幼崽（熊、虎、狮等）。",
      "belong to：属于。",
@@ -185,24 +185,23 @@
    },
    {
     "kind": "body",
-    "en": "In 2013, amid a territorial dispute, China abruptly recalled a cub from a Japanese zoo.",
-    "zh": "2013 年，在领土争端期间，中国突然从一家日本动物园召回了一只幼崽。",
+    "en": "In 2023, amid a long trade dispute with America, China let its loans lapse and recalled the pandas from Washington's National Zoo.",
+    "zh": "2023 年，在中美长期的贸易争端中，中国没有续签租借协议，召回了华盛顿国家动物园的大熊猫。",
     "notes": [
-     "amid：在……之中（常接事件、冲突等）。",
-     "territorial dispute：领土争端。",
-     "abruptly：突然地。",
-     "recall：召回、叫回。"
+     "amid：在……之中，后面接冲突、争端等。",
+     "let sth lapse：让（协议、会员资格等）到期失效、不再续签。",
+     "recall：召回。"
     ],
     "p": 13
    },
    {
     "kind": "body",
-    "en": "In 2023 a pair in Edinburgh was returned and not replaced, coinciding with chillier ties.",
-    "zh": "2023 年，爱丁堡的一对大熊猫被归还且未获替换，恰好与更冷淡的双边关系同步。",
+    "en": "Weeks later, a pair in Edinburgh was sent home too and not replaced, coinciding with chillier ties with Britain.",
+    "zh": "几周后，爱丁堡的一对大熊猫也被送回国，且没有新的接替，恰逢中英关系转冷。",
     "notes": [
-     "replace：替换、替代。",
-     "coincide with：与……同时发生。",
-     "chillier：更冷淡的，chilly 的比较级。"
+     "Weeks later：几周之后。",
+     "was sent home ... and not replaced：被送回，且没有补上新的。",
+     "coinciding with：与……同时发生，现在分词作伴随状语。"
     ],
     "p": 14
    },
@@ -457,33 +456,6 @@
     ]
    },
    {
-    "id": 7,
-    "expr": "belong to",
-    "zh": "属于",
-    "m": [
-     "belongs to"
-    ],
-    "note": "注意没有被动语态。不能说 It is belonged to。",
-    "core": "belong to",
-    "forms": [
-     "belong to",
-     "belongs to",
-     "belonged to",
-     "belonging to"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "This land [[belongs to]] the state.",
-      "zh": "这片土地属于国家。"
-     },
-     {
-      "en": "The idea [[belongs to]] no single person.",
-      "zh": "这个想法不属于任何一个人。"
-     }
-    ]
-   },
-   {
     "id": 8,
     "expr": "date to",
     "zh": "追溯到；始于",
@@ -633,33 +605,6 @@
      {
       "en": "[[Strictly]] speaking, a tomato is a fruit.",
       "zh": "严格来说，番茄是一种水果。"
-     }
-    ]
-   },
-   {
-    "id": 14,
-    "expr": "queue for",
-    "zh": "排队争取",
-    "m": [
-     "queue"
-    ],
-    "note": "英式英语常用 queue，美式英语用 line up。这里引申为“争相争取”。",
-    "core": "queue",
-    "forms": [
-     "queue",
-     "queued",
-     "queuing",
-     "queues"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Fans [[queued for]] hours to buy tickets.",
-      "zh": "粉丝们排了几个小时的队买票。"
-     },
-     {
-      "en": "People [[queued up]] for the free samples.",
-      "zh": "人们排队领取免费样品。"
      }
     ]
    },
@@ -1078,31 +1023,6 @@
     ]
    },
    {
-    "id": 31,
-    "expr": "a draw",
-    "zh": "吸引力；招揽人的东西",
-    "m": [
-     "draw"
-    ],
-    "note": "draw 在这里是名词：吸引人的事物。a tourist draw = 旅游卖点。",
-    "core": "draw",
-    "forms": [
-     "draw",
-     "draws"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "The fountain is [[a draw]] for tourists.",
-      "zh": "喷泉是吸引游客的卖点。"
-     },
-     {
-      "en": "Free coffee is always [[a draw]].",
-      "zh": "免费咖啡总是有吸引力的。"
-     }
-    ]
-   },
-   {
     "id": 32,
     "expr": "diplomatic",
     "zh": "外交的",
@@ -1179,50 +1099,53 @@
    },
    {
     "id": 35,
-    "expr": "territorial dispute",
-    "zh": "领土争端",
+    "expr": "trade dispute",
+    "zh": "贸易争端",
     "m": [
-     "territorial dispute"
+     "trade dispute"
     ],
-    "note": "territorial（领土的）+ dispute（争端）。",
-    "core": "territorial dispute",
+    "note": "trade（贸易）+ dispute（争端）。a trade war 是“贸易战”，比 dispute 更激烈。",
+    "core": "trade dispute",
     "forms": [
-     "territorial dispute",
-     "territorial disputes"
+     "trade dispute",
+     "trade disputes"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "The [[territorial dispute]] has lasted decades.",
-      "zh": "这场领土争端持续了几十年。"
+      "en": "The two countries are locked in a [[trade dispute]].",
+      "zh": "两国陷入了一场贸易争端。"
      },
      {
-      "en": "Both sides refuse to compromise on the [[territorial dispute]].",
-      "zh": "双方在领土争端上互不让步。"
+      "en": "Farmers suffered most from the [[trade dispute]].",
+      "zh": "农民在这场贸易争端中受害最深。"
      }
     ]
    },
    {
     "id": 36,
-    "expr": "abruptly",
-    "zh": "突然地",
+    "expr": "let sth lapse",
+    "zh": "让……到期失效、不再续期",
     "m": [
-     "abruptly"
+     "lapse"
     ],
-    "note": "abrupt（突然的）+ -ly。比 suddenly 更强调“没有预兆”。",
-    "core": "abruptly",
+    "note": "lapse 作动词：（协议、保险、会员资格）到期失效。let my membership lapse（会员到期没续）。名词 a lapse 还有“小失误”的意思：a lapse of memory（一时忘记）。",
+    "core": "lapse",
     "forms": [
-     "abruptly"
+     "lapse",
+     "lapsed",
+     "lapses",
+     "let it lapse"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "The meeting ended [[abruptly]].",
-      "zh": "会议突然结束了。"
+      "en": "I let my gym membership [[lapse]].",
+      "zh": "我的健身房会员到期没续。"
      },
      {
-      "en": "He [[abruptly]] left the room.",
-      "zh": "他突然离开了房间。"
+      "en": "The contract will [[lapse]] at the end of the year.",
+      "zh": "这份合同年底到期失效。"
      }
     ]
    },
@@ -1473,12 +1396,6 @@
     "hint": "幼崽（熊、虎、狮等）"
    },
    {
-    "id": 7,
-    "i": 2,
-    "ans": "belongs to",
-    "hint": "属于"
-   },
-   {
     "id": 8,
     "i": 3,
     "ans": "dates to",
@@ -1513,12 +1430,6 @@
     "i": 4,
     "ans": "strictly",
     "hint": "严格地"
-   },
-   {
-    "id": 14,
-    "i": 5,
-    "ans": "queue",
-    "hint": "排队争取"
    },
    {
     "id": 15,
@@ -1617,12 +1528,6 @@
     "hint": "首次亮相；首秀"
    },
    {
-    "id": 31,
-    "i": 12,
-    "ans": "draw",
-    "hint": "吸引力；招揽人的东西"
-   },
-   {
     "id": 32,
     "i": 12,
     "ans": "diplomatic",
@@ -1643,14 +1548,14 @@
    {
     "id": 35,
     "i": 15,
-    "ans": "territorial dispute",
-    "hint": "领土争端"
+    "ans": "trade dispute",
+    "hint": "贸易争端"
    },
    {
     "id": 36,
     "i": 15,
-    "ans": "abruptly",
-    "hint": "突然地"
+    "ans": "lapse",
+    "hint": "到期失效（let ... ___）"
    },
    {
     "id": 37,

@@ -261,10 +261,37 @@ function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTE
 /* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
 function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* Japanese pages may list readings for hard kanji (meta.ruby = {"騒々": "そうぞう"}); text is then drawn with <ruby> */
+let RUBY = null, RUBY_RE = null;
+function setRuby(map){
+  const keys = Object.keys(map || {}).filter(Boolean).sort(function(a, b){ return b.length - a.length; });
+  RUBY = keys.length ? map : null;
+  RUBY_RE = keys.length ? new RegExp(keys.map(esc).join('|'), 'g') : null;
+}
+function rubyNodes(t){
+  t = String(t);
+  if (!RUBY_RE) return [document.createTextNode(t)];
+  const out = [];
+  let last = 0, m;
+  RUBY_RE.lastIndex = 0;
+  while ((m = RUBY_RE.exec(t))){
+    if (m.index > last) out.push(document.createTextNode(t.slice(last, m.index)));
+    out.push(h('ruby', null, m[0], h('rt', null, RUBY[m[0]])));
+    last = m.index + m[0].length;
+  }
+  if (last < t.length) out.push(document.createTextNode(t.slice(last)));
+  return out;
+}
+/* the text of a node or range without the readings drawn above kanji */
+function plainText(frag){
+  const c = frag.cloneNode ? frag.cloneNode(true) : frag;
+  if (c.querySelectorAll) Array.prototype.slice.call(c.querySelectorAll('rt')).forEach(function(r){ r.parentNode.removeChild(r); });
+  return c.textContent;
+}
 /* example sentences mark their target as [[target]] */
 function exNodes(s){
   const out = [];
-  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push.apply(out, k % 2 ? [h('b', null, rubyNodes(part))] : rubyNodes(part)); });
   return out;
 }
 function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
@@ -929,7 +956,7 @@ const Who = (function(){
 if (!Who.boot()) return;     /* nobody chosen yet: the picker is showing, the page waits for the reload after the choice */
 Who.chip($('#whoMount'), 'full');
 
-const SITE = {"root":"../","review":"../review-ko/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":true,"href":"./"},{"label":"日语中级","icon":"🌸","on":false,"href":"../ja/"},{"label":"粤语入门","icon":"🥟","on":false,"href":"../yue/"}],"articles":[{"slug":"ko-phone-call","date":"2026-11-14","title":"전화 걸어요","deck":"第 7 课：用韩语打电话、约朋友出来。","tags":["第 7 课","打电话"],"source":{"type":"original"},"words":46,"vocab":16,"fresh":16,"lsKey":"wk-ko-phone-call-state","audio":false},{"slug":"ko-weather","date":"2026-11-13","title":"오늘 날씨 어때요?","deck":"第 6 课：问天气，说“有点冷”“下雨”“没有”。","tags":["第 6 课","天气"],"source":{"type":"original"},"words":29,"vocab":13,"fresh":13,"lsKey":"wk-ko-weather-state","audio":true},{"slug":"ko-weekend","date":"2026-11-12","title":"주말에 뭐 해요?","deck":"第 5 课：问周末做什么，用“……呢？”反问，邀请对方一起。","tags":["第 5 课","周末"],"source":{"type":"original"},"words":31,"vocab":10,"fresh":10,"lsKey":"wk-ko-weekend-state","audio":true},{"slug":"ko-where","date":"2026-11-11","title":"화장실이 어디예요?","deck":"第 4 课：问路，问“在哪里”，说远近和方向。","tags":["第 4 课","问路"],"source":{"type":"original"},"words":24,"vocab":12,"fresh":12,"lsKey":"wk-ko-where-state","audio":true},{"slug":"ko-what-is-this","date":"2026-11-10","title":"이거 뭐예요?","deck":"第 3 课：在市场问“这是什么”、问辣不辣、说“不”。","tags":["第 3 课","市场"],"source":{"type":"original"},"words":26,"vocab":15,"fresh":15,"lsKey":"wk-ko-what-is-this-state","audio":true},{"slug":"ko-ordering-coffee","date":"2026-11-09","title":"커피 한 잔 주세요","deck":"第 2 课：在咖啡馆点单、问价钱、说谢谢。","tags":["第 2 课","点单"],"source":{"type":"original"},"words":19,"vocab":12,"fresh":12,"lsKey":"wk-ko-ordering-coffee-state","audio":true},{"slug":"ko-first-meeting","date":"2026-11-06","title":"처음 만나요","deck":"第 1 课：用韩语打招呼、介绍自己。","tags":["第 1 课","打招呼"],"source":{"type":"original"},"words":15,"vocab":11,"fresh":11,"lsKey":"wk-ko-first-meeting-state","audio":true}]};
+const SITE = {"root":"../","review":"../review-ko/","langs":[{"label":"英文外刊","icon":"📰","on":false,"href":"../"},{"label":"韩语入门","icon":"🌷","on":true,"href":"./"},{"label":"日语中级","icon":"🌸","on":false,"href":"../ja/"},{"label":"粤语入门","icon":"🥟","on":false,"href":"../yue/"}],"articles":[{"slug":"ko-phone-call","date":"2026-11-14","title":"전화 걸어요","deck":"第 7 课：用韩语打电话、约朋友出来。","tags":["第 7 课","打电话"],"source":{"type":"original"},"words":46,"vocab":11,"fresh":11,"lsKey":"wk-ko-phone-call-state","audio":true},{"slug":"ko-weather","date":"2026-11-13","title":"오늘 날씨 어때요?","deck":"第 6 课：问天气，说“有点冷”“下雨”“没有”。","tags":["第 6 课","天气"],"source":{"type":"original"},"words":29,"vocab":13,"fresh":13,"lsKey":"wk-ko-weather-state","audio":true},{"slug":"ko-weekend","date":"2026-11-12","title":"주말에 뭐 해요?","deck":"第 5 课：问周末做什么，用“……呢？”反问，邀请对方一起。","tags":["第 5 课","周末"],"source":{"type":"original"},"words":31,"vocab":10,"fresh":10,"lsKey":"wk-ko-weekend-state","audio":true},{"slug":"ko-where","date":"2026-11-11","title":"화장실이 어디예요?","deck":"第 4 课：问路，问“在哪里”，说远近和方向。","tags":["第 4 课","问路"],"source":{"type":"original"},"words":24,"vocab":12,"fresh":12,"lsKey":"wk-ko-where-state","audio":true},{"slug":"ko-what-is-this","date":"2026-11-10","title":"이거 뭐예요?","deck":"第 3 课：在市场问“这是什么”、问辣不辣、说“不”。","tags":["第 3 课","市场"],"source":{"type":"original"},"words":26,"vocab":15,"fresh":15,"lsKey":"wk-ko-what-is-this-state","audio":true},{"slug":"ko-ordering-coffee","date":"2026-11-09","title":"커피 한 잔 주세요","deck":"第 2 课：在咖啡馆点单、问价钱、说谢谢。","tags":["第 2 课","点单"],"source":{"type":"original"},"words":19,"vocab":12,"fresh":12,"lsKey":"wk-ko-ordering-coffee-state","audio":true},{"slug":"ko-first-meeting","date":"2026-11-06","title":"처음 만나요","deck":"第 1 课：用韩语打招呼、介绍自己。","tags":["第 1 课","打招呼"],"source":{"type":"original"},"words":15,"vocab":11,"fresh":11,"lsKey":"wk-ko-first-meeting-state","audio":true}]};
 const A = SITE.articles;
 SITE.langs.forEach(function(l){ $('#langs').append(h('a', {class:'lang' + (l.on ? ' on' : ''), href:l.href, 'aria-current':l.on ? 'page' : null}, h('span', {class:'em', 'aria-hidden':'true'}, l.icon), l.label)); });
 (function(){

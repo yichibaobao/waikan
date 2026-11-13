@@ -354,10 +354,37 @@ function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTE
 /* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
 function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* Japanese pages may list readings for hard kanji (meta.ruby = {"騒々": "そうぞう"}); text is then drawn with <ruby> */
+let RUBY = null, RUBY_RE = null;
+function setRuby(map){
+  const keys = Object.keys(map || {}).filter(Boolean).sort(function(a, b){ return b.length - a.length; });
+  RUBY = keys.length ? map : null;
+  RUBY_RE = keys.length ? new RegExp(keys.map(esc).join('|'), 'g') : null;
+}
+function rubyNodes(t){
+  t = String(t);
+  if (!RUBY_RE) return [document.createTextNode(t)];
+  const out = [];
+  let last = 0, m;
+  RUBY_RE.lastIndex = 0;
+  while ((m = RUBY_RE.exec(t))){
+    if (m.index > last) out.push(document.createTextNode(t.slice(last, m.index)));
+    out.push(h('ruby', null, m[0], h('rt', null, RUBY[m[0]])));
+    last = m.index + m[0].length;
+  }
+  if (last < t.length) out.push(document.createTextNode(t.slice(last)));
+  return out;
+}
+/* the text of a node or range without the readings drawn above kanji */
+function plainText(frag){
+  const c = frag.cloneNode ? frag.cloneNode(true) : frag;
+  if (c.querySelectorAll) Array.prototype.slice.call(c.querySelectorAll('rt')).forEach(function(r){ r.parentNode.removeChild(r); });
+  return c.textContent;
+}
 /* example sentences mark their target as [[target]] */
 function exNodes(s){
   const out = [];
-  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push.apply(out, k % 2 ? [h('b', null, rubyNodes(part))] : rubyNodes(part)); });
   return out;
 }
 function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
@@ -1227,7 +1254,7 @@ const Kit = (function(){
   }
   function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
   function speakLine(item, v){
-    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), LANG === 'yue' && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), (LANG === 'yue' || LANG === 'ko') && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
   }
   function extraBox(item, res, o){
     const box = h('div', {class:'fb-x'});
@@ -1706,7 +1733,7 @@ const Kit = (function(){
 
 Who.chip($('#whoMount'), 'tiny');
 
-const INDEX = {"articles":[{"slug":"ko-phone-call","lang":"ko","title":"전화 걸어요","short":"第 7 课 · 전화 걸어요","date":"2026-11-14","clips":false,"ls":[],"w":[[1,"전화","电话"],[2,"걸다","打（电话）；挂"],[3,"여보세요","喂（打电话专用）"],[4,"씨","先生/女士（称呼后缀）"],[5,"네","是；好的（回应时用）"],[6,"바쁘다","忙"],[7,"안","不（否定前缀）"],[8,"같이","一起"],[9,"영화","电影"],[10,"-ㄹ래요","……好吗？要不要……？（提议/询问意愿）"],[11,"좋다","好；不错"],[12,"몇 시","几点"],[13,"세 시","三点"],[14,"영화관","电影院"],[15,"앞","前面"],[16,"알겠다","知道了；明白了"]],"r":[]},{"slug":"ko-weather","lang":"ko","title":"오늘 날씨 어때요?","short":"第 6 课 · 오늘 날씨 어때요?","date":"2026-11-13","clips":true,"ls":[[1,4],[2,5],[3,6],[4,4],[5,4],[6,3]],"w":[[1,"오늘","今天"],[2,"날씨","天气"],[3,"어떻다","怎么样"],[4,"아침","早上；早饭"],[5,"아빠","爸爸"],[6,"좀","有点、稍微；请（缓和语气）"],[7,"춥다","冷（天气）"],[8,"그리고","而且、还有、然后"],[9,"비","雨"],[10,"오다","来；（雨、雪）下"],[11,"우산","雨伞"],[12,"없다","没有；不在"],[13,"가져가다","带走、拿去"]],"r":[]},{"slug":"ko-weekend","lang":"ko","title":"주말에 뭐 해요?","short":"第 5 课 · 주말에 뭐 해요?","date":"2026-11-12","clips":true,"ls":[[1,4],[2,6],[3,4],[4,3],[5,4],[6,5],[7,2]],"w":[[1,"주말","周末"],[2,"하다","做"],[3,"학교","学校"],[4,"이야기하다","聊天、说话"],[5,"씨","……先生 / 小姐（接在名字后）"],[6,"영화","电影"],[7,"집","家、房子"],[8,"쉬다","休息"],[9,"같이","一起"],[10,"좋다","好"]],"r":[]},{"slug":"ko-where","lang":"ko","title":"화장실이 어디예요?","short":"第 4 课 · 화장실이 어디예요?","date":"2026-11-11","clips":true,"ls":[[1,4],[2,4],[3,5],[4,2],[5,5],[6,2]],"w":[[1,"화장실","洗手间、厕所"],[2,"어디","哪里"],[3,"역","车站"],[4,"길","路"],[5,"묻다","问"],[6,"저기요","不好意思、打扰一下（叫人）"],[7,"저기","那里（离两人都远）"],[8,"오른쪽","右边"],[9,"가다","去、走"],[10,"멀다","远"],[11,"가깝다","近"],[12,"고맙습니다","谢谢"]],"r":[]},{"slug":"ko-what-is-this","lang":"ko","title":"이거 뭐예요?","short":"第 3 课 · 이거 뭐예요?","date":"2026-11-10","clips":true,"ls":[[1,6],[2,3],[3,4],[4,2],[5,4],[6,5]],"w":[[1,"이거","这个（离我近的东西）"],[2,"저거","那个（离我们都远的东西）"],[3,"뭐예요","是什么？"],[4,"떡볶이","辣炒年糕"],[5,"맛있다","好吃"],[6,"맵다","辣"],[7,"아니요","不、不是（回答）"],[8,"안","不（放在动词、形容词前）"],[9,"그럼","那么、那样的话"],[10,"하나","一（个）"],[11,"시장","市场"],[12,"보다","看、见"],[13,"음식","食物、饭菜"],[14,"찾다","找；找到"],[15,"정말","真的、真"]],"r":[]},{"slug":"ko-ordering-coffee","lang":"ko","title":"커피 한 잔 주세요","short":"第 2 课 · 커피 한 잔 주세요","date":"2026-11-09","clips":true,"ls":[[1,3],[2,2],[3,4],[5,2],[6,2]],"w":[[1,"한","一（放在量词前）"],[2,"주세요","请给我……"],[3,"어서 오세요","欢迎光临"],[4,"잔","杯（量词）"],[5,"아메리카노","美式咖啡"],[6,"얼마예요","多少钱？"],[7,"원","韩元（货币单位）"],[8,"여기","这里"],[9,"있다","有；在"],[10,"감사합니다","谢谢（正式、礼貌）"],[11,"주문하다","点（菜、饮料）、订购"],[12,"오천","五千"]],"r":[]},{"slug":"ko-first-meeting","lang":"ko","title":"처음 만나요","short":"第 1 课 · 처음 만나요","date":"2026-11-06","clips":true,"ls":[[1,4],[3,2],[4,2],[5,2],[6,2]],"w":[[1,"안녕하세요","你好（礼貌的问候）"],[2,"저","我（谦虚、礼貌）"],[3,"학생","学生"],[4,"처음","第一次、初次"],[5,"만나다","见面、遇见"],[6,"카페","咖啡馆"],[7,"친구","朋友"],[8,"커피","咖啡"],[9,"좋아하다","喜欢"],[10,"만나서 반가워요","很高兴认识你"],[11,"새","新的"]],"r":[]}]};
+const INDEX = {"articles":[{"slug":"ko-phone-call","lang":"ko","title":"전화 걸어요","short":"第 7 课 · 전화 걸어요","date":"2026-11-14","clips":true,"ls":[[1,4],[2,6],[3,6],[4,8],[5,5],[6,7],[7,8]],"w":[[1,"전화","电话"],[2,"걸다","打（电话）；挂"],[3,"여보세요","喂（打电话专用）"],[5,"네","是；好的（回应时用）"],[6,"바쁘다","忙"],[10,"-ㄹ래요","……好吗？要不要……？（提议/询问意愿）"],[12,"몇 시","几点"],[13,"세 시","三点"],[14,"영화관","电影院"],[15,"앞","前面"],[16,"알겠다","知道了；明白了"]],"r":[]},{"slug":"ko-weather","lang":"ko","title":"오늘 날씨 어때요?","short":"第 6 课 · 오늘 날씨 어때요?","date":"2026-11-13","clips":true,"ls":[[1,4],[2,5],[3,6],[4,4],[5,4],[6,3]],"w":[[1,"오늘","今天"],[2,"날씨","天气"],[3,"어떻다","怎么样"],[4,"아침","早上；早饭"],[5,"아빠","爸爸"],[6,"좀","有点、稍微；请（缓和语气）"],[7,"춥다","冷（天气）"],[8,"그리고","而且、还有、然后"],[9,"비","雨"],[10,"오다","来；（雨、雪）下"],[11,"우산","雨伞"],[12,"없다","没有；不在"],[13,"가져가다","带走、拿去"]],"r":[]},{"slug":"ko-weekend","lang":"ko","title":"주말에 뭐 해요?","short":"第 5 课 · 주말에 뭐 해요?","date":"2026-11-12","clips":true,"ls":[[1,4],[2,6],[3,4],[4,3],[5,4],[6,5],[7,2]],"w":[[1,"주말","周末"],[2,"하다","做"],[3,"학교","学校"],[4,"이야기하다","聊天、说话"],[5,"씨","……先生 / 小姐（接在名字后）"],[6,"영화","电影"],[7,"집","家、房子"],[8,"쉬다","休息"],[9,"같이","一起"],[10,"좋다","好"]],"r":[]},{"slug":"ko-where","lang":"ko","title":"화장실이 어디예요?","short":"第 4 课 · 화장실이 어디예요?","date":"2026-11-11","clips":true,"ls":[[1,4],[2,4],[3,5],[4,2],[5,5],[6,2]],"w":[[1,"화장실","洗手间、厕所"],[2,"어디","哪里"],[3,"역","车站"],[4,"길","路"],[5,"묻다","问"],[6,"저기요","不好意思、打扰一下（叫人）"],[7,"저기","那里（离两人都远）"],[8,"오른쪽","右边"],[9,"가다","去、走"],[10,"멀다","远"],[11,"가깝다","近"],[12,"고맙습니다","谢谢"]],"r":[]},{"slug":"ko-what-is-this","lang":"ko","title":"이거 뭐예요?","short":"第 3 课 · 이거 뭐예요?","date":"2026-11-10","clips":true,"ls":[[1,6],[2,3],[3,4],[4,2],[5,4],[6,5]],"w":[[1,"이거","这个（离我近的东西）"],[2,"저거","那个（离我们都远的东西）"],[3,"뭐예요","是什么？"],[4,"떡볶이","辣炒年糕"],[5,"맛있다","好吃"],[6,"맵다","辣"],[7,"아니요","不、不是（回答）"],[8,"안","不（放在动词、形容词前）"],[9,"그럼","那么、那样的话"],[10,"하나","一（个）"],[11,"시장","市场"],[12,"보다","看、见"],[13,"음식","食物、饭菜"],[14,"찾다","找；找到"],[15,"정말","真的、真"]],"r":[]},{"slug":"ko-ordering-coffee","lang":"ko","title":"커피 한 잔 주세요","short":"第 2 课 · 커피 한 잔 주세요","date":"2026-11-09","clips":true,"ls":[[1,3],[2,2],[3,4],[5,2],[6,2]],"w":[[1,"한","一（放在量词前）"],[2,"주세요","请给我……"],[3,"어서 오세요","欢迎光临"],[4,"잔","杯（量词）"],[5,"아메리카노","美式咖啡"],[6,"얼마예요","多少钱？"],[7,"원","韩元（货币单位）"],[8,"여기","这里"],[9,"있다","有；在"],[10,"감사합니다","谢谢（正式、礼貌）"],[11,"주문하다","点（菜、饮料）、订购"],[12,"오천","五千"]],"r":[]},{"slug":"ko-first-meeting","lang":"ko","title":"처음 만나요","short":"第 1 课 · 처음 만나요","date":"2026-11-06","clips":true,"ls":[[1,4],[3,2],[4,2],[5,2],[6,2]],"w":[[1,"안녕하세요","你好（礼貌的问候）"],[2,"저","我（谦虚、礼貌）"],[3,"학생","学生"],[4,"처음","第一次、初次"],[5,"만나다","见面、遇见"],[6,"카페","咖啡馆"],[7,"친구","朋友"],[8,"커피","咖啡"],[9,"좋아하다","喜欢"],[10,"만나서 반가워요","很高兴认识你"],[11,"새","新的"]],"r":[]}]};
 const ARTS = INDEX.articles;                 /* newest first */
 const AMAP = {}, ALL = [], BYKEY = {};
 ARTS.forEach(function(a){

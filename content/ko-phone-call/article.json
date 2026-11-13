@@ -17,7 +17,7 @@
   "pronounce": {},
   "speakers": {
    "민지": "f",
-   "수진": "f"
+   "준호": "m"
   }
  },
  "data": {
@@ -34,31 +34,31 @@
    },
    {
     "kind": "sub",
-    "en": "민지가 수진에게 전화를 걸어요.",
-    "rom": "minjiga sujinege jeonhwareul georeoyo.",
-    "zh": "敏智给秀珍打电话。",
+    "en": "민지가 준호에게 전화를 걸어요.",
+    "rom": "minjiga junhoege jeonhwareul georeoyo.",
+    "zh": "敏智给俊浩打电话。",
     "notes": [
-     "에게：给（某人），接在名词后表示动作的对象。수진에게 = 给秀珍。",
+     "에게：给（某人），接在名词后表示动作的对象。준호에게 = 给俊浩。",
      "전화를 걸어요：打电话。을/를 是宾语助词，전화 后用 를（元音结尾）。"
     ]
    },
    {
     "kind": "body",
-    "en": "민지: 여보세요? 수진 씨, 저 민지예요.",
-    "rom": "minji: yeoboseyo? sujin ssi, jeo minjiyeyo.",
-    "zh": "敏智：喂？秀珍，我是敏智。",
+    "en": "민지: 여보세요? 준호 씨, 저 민지예요.",
+    "rom": "minji: yeoboseyo? junho ssi, jeo minjiyeyo.",
+    "zh": "敏智：喂？俊浩，我是敏智。",
     "notes": [
      "여보세요：电话里的“喂”。只有打电话时用，面对面不用。",
-     "씨：加在名字后面表示礼貌的称呼，相当于“某某先生/女士”。수진 씨 = 秀珍小姐。",
+     "씨：加在名字后面表示礼貌的称呼，相当于“某某先生/女士”。준호 씨 = 俊浩小姐。",
      "저 민지예요：我是敏智。저 是第 1 课学的“我”（谦称），예요 = 是（元音结尾后用）。"
     ],
     "p": 1
    },
    {
     "kind": "body",
-    "en": "수진: 어, 민지! 안녕하세요? 안 바빠요?",
-    "rom": "sujin: eo, minji! annyeonghaseyo? an bappayo?",
-    "zh": "秀珍：哦，敏智！你好吗？不忙吧？",
+    "en": "준호: 어, 민지! 안녕하세요? 안 바빠요?",
+    "rom": "junho: eo, minji! annyeonghaseyo? an bappayo?",
+    "zh": "俊浩：哦，敏智！你好吗？不忙吧？",
     "notes": [
      "어：哦、啊，表示惊讶或回应。",
      "바빠요：忙，原形 바쁘다。안 바빠요 = 不忙。",
@@ -69,7 +69,7 @@
    {
     "kind": "body",
     "en": "민지: 네, 안 바빠요. 오늘 같이 영화 볼래요?",
-    "rom": "minji: ne, an bappayo. oneul gachi yeonghwa bolraeyo?",
+    "rom": "minji: ne, an bappayo. oneul gachi yeonghwa bollaeyo?",
     "zh": "敏智：嗯，不忙。今天一起看电影好吗？",
     "notes": [
      "네：是、好的，回应别人时最常用的词。",
@@ -81,9 +81,9 @@
    },
    {
     "kind": "body",
-    "en": "수진: 좋아요! 몇 시에 만나요?",
-    "rom": "sujin: joayo! myot sie mannayo?",
-    "zh": "秀珍：好呀！几点见面？",
+    "en": "준호: 좋아요! 몇 시에 만나요?",
+    "rom": "junho: joayo! myeot sie mannayo?",
+    "zh": "俊浩：好呀！几点见面？",
     "notes": [
      "좋아요：好、不错，原形 좋다。答应别人时常用。",
      "몇 시：几点。몇 = 几（数字），시 = 点（时间量词）。",
@@ -107,9 +107,9 @@
    },
    {
     "kind": "body",
-    "en": "수진: 네, 알겠어요. 세 시에 영화관 앞에서 만나요.",
-    "rom": "sujin: ne, algeseoyo. se sie yeonghwagwan apeseo mannayo.",
-    "zh": "秀珍：好的，知道了。三点在电影院前面见。",
+    "en": "준호: 네, 알겠어요. 세 시에 영화관 앞에서 만나요.",
+    "rom": "junho: ne, algesseoyo. se sie yeonghwagwan apeseo mannayo.",
+    "zh": "俊浩：好的，知道了。三点在电影院前面见。",
     "notes": [
      "알겠어요：知道了、明白了，原形 알겠다。打电话和聊天时常用。",
      "这句话重复了敏智说的时间和地点，表示确认。"
@@ -140,7 +140,7 @@
      },
      {
       "en": "[[전화]]가 왔어요.",
-      "rom": "jeonhwa wasseoyo.",
+      "rom": "jeonhwaga wasseoyo.",
       "zh": "来电话了。"
      }
     ]
@@ -166,7 +166,7 @@
     "ex": [
      {
       "en": "친구에게 전화를 [[걸어요]].",
-      "rom": "chingege jeonhwareul georeoyo.",
+      "rom": "chinguege jeonhwareul georeoyo.",
       "zh": "给朋友打电话。"
      },
      {
@@ -197,36 +197,9 @@
       "zh": "喂？你是哪位？"
      },
      {
-      "en": "[[여보세요]]? 거기 수진 씨예요?",
-      "rom": "yeoboseyo? geogi sujin ssiyeyo?",
-      "zh": "喂？是秀珍吗？"
-     }
-    ]
-   },
-   {
-    "id": 4,
-    "expr": "씨",
-    "rom": "ssi",
-    "zh": "先生/女士（称呼后缀）",
-    "m": [
-     "씨"
-    ],
-    "note": "加在名字后面，表示礼貌。수진 씨 = 秀珍小姐。不可以单独使用。",
-    "core": "씨",
-    "forms": [
-     "씨"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "김 [[씨]] 안녕하세요?",
-      "rom": "gim ssi annyeonghaseyo?",
-      "zh": "金先生您好？"
-     },
-     {
-      "en": "수진 [[씨]] 안 바빠요?",
-      "rom": "sujin ssi an bappayo?",
-      "zh": "秀珍小姐忙吗？"
+      "en": "[[여보세요]]? 거기 준호 씨예요?",
+      "rom": "yeoboseyo? geogi junho ssiyeyo?",
+      "zh": "喂？是俊浩吗？"
      }
     ]
    },
@@ -252,7 +225,7 @@
      },
      {
       "en": "[[네]], 알겠어요.",
-      "rom": "ne, algeseoyo.",
+      "rom": "ne, algesseoyo.",
       "zh": "好的，知道了。"
      }
     ]
@@ -289,87 +262,6 @@
     ]
    },
    {
-    "id": 7,
-    "expr": "안",
-    "rom": "an",
-    "zh": "不（否定前缀）",
-    "m": [
-     "안"
-    ],
-    "note": "放在动词或形容词前表示否定。안 가요 = 不去。안 바빠요 = 不忙。",
-    "core": "안",
-    "forms": [
-     "안"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "[[안]] 가요.",
-      "rom": "an gayo.",
-      "zh": "不去。"
-     },
-     {
-      "en": "[[안]] 바빠요.",
-      "rom": "an bappayo.",
-      "zh": "不忙。"
-     }
-    ]
-   },
-   {
-    "id": 8,
-    "expr": "같이",
-    "rom": "gachi",
-    "zh": "一起",
-    "m": [
-     "같이"
-    ],
-    "note": "같이 读 gachi，ㅎ 不发音。같이 가요 = 一起去。",
-    "core": "같이",
-    "forms": [
-     "같이"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "[[같이]] 가요.",
-      "rom": "gachi gayo.",
-      "zh": "一起去。"
-     },
-     {
-      "en": "[[같이]] 먹어요.",
-      "rom": "gachi meogeoyo.",
-      "zh": "一起吃。"
-     }
-    ]
-   },
-   {
-    "id": 9,
-    "expr": "영화",
-    "rom": "yeonghwa",
-    "zh": "电影",
-    "m": [
-     "영화"
-    ],
-    "note": "영화를 보다 = 看电影。영화관 = 电影院。",
-    "core": "영화",
-    "forms": [
-     "영화"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "[[영화]]를 봐요.",
-      "rom": "yeonghwareul bwayo.",
-      "zh": "看电影。"
-     },
-     {
-      "en": "이 [[영화]] 재미있어요?",
-      "rom": "i yeonghwa jaemiisseoyo?",
-      "zh": "这部电影有意思吗？"
-     }
-    ]
-   },
-   {
     "id": 10,
     "expr": "-ㄹ래요",
     "rom": "-llaeyo",
@@ -381,60 +273,31 @@
     "core": "ㄹ래요",
     "forms": [
      "ㄹ래요",
-     "을래요",
-     "볼래요",
      "갈래요",
+     "래요",
+     "마실래요",
      "먹을래요",
-     "래요"
+     "볼래요",
+     "을래요"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "커피 마실 [[래요]]?",
-      "rom": "kopi masil raeyo?",
+      "en": "커피 [[마실래요]]?",
+      "rom": "keopi masillaeyo?",
       "zh": "要喝咖啡吗？"
      },
      {
       "en": "영화 [[볼래요]]?",
-      "rom": "yeonghwa bolraeyo?",
+      "rom": "yeonghwa bollaeyo?",
       "zh": "看电影好吗？"
-     }
-    ]
-   },
-   {
-    "id": 11,
-    "expr": "좋다",
-    "rom": "gota",
-    "zh": "好；不错",
-    "m": [
-     "좋아요"
-    ],
-    "note": "答应别人提议时说 좋아요（好呀）。原形 좋다，ㅗ + 아 = 와，所以 좋아요。",
-    "core": "좋다",
-    "forms": [
-     "좋다",
-     "좋아요",
-     "좋았어요",
-     "좋"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "[[좋아요]]! 같이 가요.",
-      "rom": "joayo! gachi gayo.",
-      "zh": "好呀！一起去。"
-     },
-     {
-      "en": "이 책 정말 [[좋아요]].",
-      "rom": "i chaek jeongmal joayo.",
-      "zh": "这本书真好。"
      }
     ]
    },
    {
     "id": 12,
     "expr": "몇 시",
-    "rom": "myot si",
+    "rom": "myeot si",
     "zh": "几点",
     "m": [
      "몇 시"
@@ -449,12 +312,12 @@
     "ex": [
      {
       "en": "지금 [[몇 시]]예요?",
-      "rom": "jigeum myot siyeyo?",
+      "rom": "jigeum myeot siyeyo?",
       "zh": "现在几点了？"
      },
      {
       "en": "[[몇 시]]에 만나요?",
-      "rom": "myot sie mannayo?",
+      "rom": "myeot sie mannayo?",
       "zh": "几点见面？"
      }
     ]
@@ -509,7 +372,7 @@
      },
      {
       "en": "[[영화관]]이 어디예요?",
-      "rom": "yeonghwagwan-i eodiyeyo?",
+      "rom": "yeonghwagwani eodiyeyo?",
       "zh": "电影院在哪里？"
      }
     ]
@@ -562,7 +425,7 @@
     "ex": [
      {
       "en": "[[알겠어요]]. 내일 가요.",
-      "rom": "algeseoyo. naeil gayo.",
+      "rom": "algesseoyo. naeil gayo.",
       "zh": "知道了。明天去。"
      },
      {
@@ -593,12 +456,6 @@
     "hint": "是；好的（回应时用）"
    },
    {
-    "id": 4,
-    "i": 2,
-    "ans": "여보세요",
-    "hint": "喂（打电话专用）"
-   },
-   {
     "id": 5,
     "i": 2,
     "ans": "씨",
@@ -611,34 +468,10 @@
     "hint": "忙（礼貌说法）"
    },
    {
-    "id": 7,
-    "i": 4,
-    "ans": "안",
-    "hint": "不（否定前缀）"
-   },
-   {
-    "id": 8,
-    "i": 4,
-    "ans": "같이",
-    "hint": "一起"
-   },
-   {
-    "id": 9,
-    "i": 4,
-    "ans": "영화",
-    "hint": "电影"
-   },
-   {
     "id": 10,
     "i": 4,
     "ans": "볼래요",
     "hint": "……好吗？要不要……（提议）"
-   },
-   {
-    "id": 11,
-    "i": 5,
-    "ans": "좋아요",
-    "hint": "好；不错（礼貌说法）"
    },
    {
     "id": 12,
@@ -672,7 +505,7 @@
    }
   ],
   "breakdown": {
-   "en": "수진: 네, 알겠어요. 세 시에 영화관 앞에서 만나요.",
+   "en": "준호: 네, 알겠어요. 세 시에 영화관 앞에서 만나요.",
    "points": [
     "알겠어요：知道了、收到。比 알아요（我知道）更像“我明白了你的意思”。打电话时常用。",
     "세 시에：三点。에 接在时间后面，表示“在（某个时间）”。한 시（1 点）、두 시（2 点）、세 시（3 点）、네 시（4 点）。",

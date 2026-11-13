@@ -255,6 +255,11 @@ html[data-lang="yue"] .rom{letter-spacing:.02em}
 .rom{display:none;margin:6px 0 0;font:400 14px/1.6 var(--font-ui);color:var(--muted);letter-spacing:.01em}
 .show-rom .rom{display:block}
 html[data-lang="ja"] .w-rom,html[data-lang="yue"] .w-rom{display:block}
+/* Korean word cards always show the romanization of the word and its examples (the switch is for the article) */
+html[data-lang="ko"] .word .rom,html[data-lang="ko"] #thinkBox .rom{display:block}
+.w-rom{font-size:15px;letter-spacing:.02em}
+html[data-lang="ko"] .w-rom::before{content:"读音  ";color:var(--muted);font-size:12px;letter-spacing:0}
+ruby rt{font-size:.5em;font-weight:400;color:var(--muted);letter-spacing:0}
 .g-conn{margin:6px 0;font-size:14.5px;line-height:1.6}
 .note{margin-top:12px;padding:16px 18px;background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);scroll-margin-top:120px}
 .note-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
@@ -442,10 +447,37 @@ function norm(s){ return String(s).toLowerCase().replace(new RegExp('[^' + LETTE
 /* a vocabulary term inside a text: no letter just before it; after it no Latin letter (Korean particles and endings may follow) */
 function termRe(terms, flags){ return new RegExp('(?<![A-Za-z\\uac00-\\ud7a3])(?:' + terms.map(esc).join('|') + ')(?![A-Za-z])', flags); }
 function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+/* Japanese pages may list readings for hard kanji (meta.ruby = {"騒々": "そうぞう"}); text is then drawn with <ruby> */
+let RUBY = null, RUBY_RE = null;
+function setRuby(map){
+  const keys = Object.keys(map || {}).filter(Boolean).sort(function(a, b){ return b.length - a.length; });
+  RUBY = keys.length ? map : null;
+  RUBY_RE = keys.length ? new RegExp(keys.map(esc).join('|'), 'g') : null;
+}
+function rubyNodes(t){
+  t = String(t);
+  if (!RUBY_RE) return [document.createTextNode(t)];
+  const out = [];
+  let last = 0, m;
+  RUBY_RE.lastIndex = 0;
+  while ((m = RUBY_RE.exec(t))){
+    if (m.index > last) out.push(document.createTextNode(t.slice(last, m.index)));
+    out.push(h('ruby', null, m[0], h('rt', null, RUBY[m[0]])));
+    last = m.index + m[0].length;
+  }
+  if (last < t.length) out.push(document.createTextNode(t.slice(last)));
+  return out;
+}
+/* the text of a node or range without the readings drawn above kanji */
+function plainText(frag){
+  const c = frag.cloneNode ? frag.cloneNode(true) : frag;
+  if (c.querySelectorAll) Array.prototype.slice.call(c.querySelectorAll('rt')).forEach(function(r){ r.parentNode.removeChild(r); });
+  return c.textContent;
+}
 /* example sentences mark their target as [[target]] */
 function exNodes(s){
   const out = [];
-  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push(k % 2 ? h('b', null, part) : document.createTextNode(part)); });
+  s.split(/\[\[(.+?)\]\]/).forEach(function(part, k){ if (part) out.push.apply(out, k % 2 ? [h('b', null, rubyNodes(part))] : rubyNodes(part)); });
   return out;
 }
 function exPlain(s){ return s.replace(/\[\[|\]\]/g, ''); }
@@ -1315,7 +1347,7 @@ const Kit = (function(){
   }
   function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
   function speakLine(item, v){
-    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), LANG === 'yue' && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), (LANG === 'yue' || LANG === 'ko') && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
   }
   function extraBox(item, res, o){
     const box = h('div', {class:'fb-x'});
@@ -1798,6 +1830,7 @@ const DATA = {"sents":[{"kind":"title","en":"唔該，地鐵站喺邊度？","ro
 const SLUG = 'yue-asking-the-way';
 const REVIEW_URL = '../../review-yue/';
 const S = DATA.sents;
+if (DATA.ruby) setRuby(DATA.ruby);
 const VMAP = {};
 DATA.vocab.forEach(function(v){ VMAP[v.id] = v; });
 DATA.cloze.forEach(function(c){ VMAP[c.id].cloze = {before:c.before, ans:c.ans, after:c.after, hint:c.hint, szh:c.szh}; });
@@ -1921,18 +1954,18 @@ async function initCloud(){
 /* ---------- vocabulary highlighting ---------- */
 function marked(text, opt){
   opt = opt || {};
-  if (!(opt.force || ui.hi)) return [document.createTextNode(text)];
+  if (!(opt.force || ui.hi)) return rubyNodes(text);
   const out = [];
   let last = 0, m;
   TERM_RE.lastIndex = 0;
   while ((m = TERM_RE.exec(text))){
     const id = TERM_MAP[m[0].toLowerCase()];
     if (opt.only && opt.only !== id) continue;
-    if (m.index > last) out.push(document.createTextNode(text.slice(last, m.index)));
-    out.push(h('mark', {class:'vw' + (VMAP[id].mine ? ' uw' : ''), 'data-v':id, title:VMAP[id].zh}, m[0]));
+    if (m.index > last) out.push.apply(out, rubyNodes(text.slice(last, m.index)));
+    out.push(h('mark', {class:'vw' + (VMAP[id].mine ? ' uw' : ''), 'data-v':id, title:VMAP[id].zh}, rubyNodes(m[0])));
     last = m.index + m[0].length;
   }
-  if (last < text.length) out.push(document.createTextNode(text.slice(last)));
+  if (last < text.length) out.push.apply(out, rubyNodes(text.slice(last)));
   return out;
 }
 
@@ -2369,7 +2402,8 @@ function selInfo(){
   const pre = document.createRange();
   pre.selectNodeContents(a); pre.setEnd(r.startContainer, r.startOffset);
   const i = Number(a.dataset.i), en = S[i].en;
-  let o = pre.toString().length, t = r.toString();
+  /* readings above kanji (<rt>) are not part of the sentence */
+  let o = plainText(pre.cloneContents()).length, t = plainText(r.cloneContents());
   /* drop spaces and punctuation at both ends: "elves," -> "elves" */
   const lead = t.match(new RegExp('^[^' + LETTERS + '0-9]*', 'i'))[0].length;
   o += lead; t = t.slice(lead);

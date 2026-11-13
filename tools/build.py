@@ -98,6 +98,11 @@ def prepare(slug, raw):
     meta.setdefault("lang", "en")
     check(meta["lang"] in SECTIONS, f"{where} meta.lang must be one of {sorted(SECTIONS)}")
     data["lang"] = meta["lang"]
+    if meta.get("ruby"):
+        # Japanese: readings shown above hard kanji, {"漢字": "かんじ"} (longest match first, see rubyNodes in common.js)
+        check(meta["lang"] == "ja" and isinstance(meta["ruby"], dict) and all(k and v for k, v in meta["ruby"].items()),
+              f"{where} meta.ruby is for Japanese: a map of kanji to kana")
+        data["ruby"] = meta["ruby"]
     ko = meta["lang"] in ("ko", "ja", "yue")   # these need a reading line (rom): romanization / kana / Jyutping
 
     # ---- sentences
