@@ -325,6 +325,10 @@ mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
 .uw-err{margin:0 0 8px;min-height:1px;font-size:13.5px;color:#C2416F}
 .uw-toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));z-index:80;transform:translateX(-50%);max-width:calc(100vw - 32px);padding:11px 18px;border-radius:999px;background:#3B2F2A;color:#fff;font-size:14px;box-shadow:var(--shadow)}
 
+.w-ipa{margin:0;font:500 15px/1.5 var(--font-ui);color:var(--accent);letter-spacing:.02em}
+.list-link{margin:-4px 0 14px;font-size:14px}
+.list-link a{color:var(--accent);font-weight:700;text-decoration:none}
+
 /* flashcards */
 .fc-opt{display:flex;align-items:center;gap:8px;margin:4px 0 14px;font-size:14px;color:var(--muted);cursor:pointer}
 .fc-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
@@ -405,6 +409,7 @@ mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
       <input class="search" id="wordSearch" type="search" placeholder="搜索表达、中文或例句" autocomplete="off" aria-label="搜索词汇">
     </div>
     <div class="chips mb14" id="chips"></div>
+    <p class="list-link"><a href="list.html">📄 本课单词表（音标 + 每词两个例句，可打印）</a></p>
     <div id="wordList"></div>
   </section>
 
@@ -1383,7 +1388,7 @@ const Kit = (function(){
   }
   function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
   function speakLine(item, v){
-    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), (LANG === 'yue' || LANG === 'ko') && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), (LANG === 'yue' || LANG === 'ko') && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : v.ipa ? h('span', {class:'meta'}, ' ' + v.ipa) : null, '　', v.zh);
   }
   function extraBox(item, res, o){
     const box = h('div', {class:'fb-x'});
@@ -2204,6 +2209,7 @@ function wordCard(v){
   return h('article', {class:'word', 'data-id':v.id},
     h('div', {class:'word-top'}, h('div', {class:'w-head'}, h('h3', {class:'w-expr'}, v.expr, v.extra ? h('span', {class:'w-tag'}, '新增') : null, v.kind === 'grammar' ? h('span', {class:'w-tag'}, '语法') : null, v.from ? h('span', {class:'w-tag'}, '出自 ' + v.from) : null, v.mine ? h('span', {class:'w-tag uw-tag'}, '我加的') : null), speakBtn('w' + v.id, v.core)), seg),
     v.rom ? h('p', {class:'rom w-rom'}, v.rom) : null,
+    v.ipa ? h('p', {class:'w-ipa'}, v.ipa) : null,
     h('p', {class:'w-zh'}, v.zh),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
@@ -2456,7 +2462,7 @@ function fcFace(v, side){
   const word = side === 'w';
   const kids = [];
   if (word){
-    kids.push(h('p', {class:'fc-word'}, v.expr), v.rom ? h('p', {class:'fc-rom'}, v.rom) : null);
+    kids.push(h('p', {class:'fc-word'}, v.expr), v.rom || v.ipa ? h('p', {class:'fc-rom'}, v.rom || v.ipa) : null);
     if (v.kind === 'grammar') kids.push(h('p', {class:'fc-tag'}, '语法'));
   } else {
     kids.push(h('p', {class:'fc-zh'}, v.zh));
@@ -2471,7 +2477,7 @@ function fcCard(){
   const front = h('div', {class:'fc-face fc-front'}, fcFace(v, fc.dir === 'w' ? 'w' : 'z'), h('p', {class:'fc-hint'}, '点卡片翻面'));
   const x = v.ex && v.ex[0];
   const back = h('div', {class:'fc-face fc-back'},
-    fc.dir === 'w' ? h('p', {class:'fc-mini'}, v.expr, v.rom ? h('span', null, '  ' + v.rom) : null) : null,
+    fc.dir === 'w' ? h('p', {class:'fc-mini'}, v.expr, v.rom || v.ipa ? h('span', null, '  ' + (v.rom || v.ipa)) : null) : null,
     fcFace(v, fc.dir === 'w' ? 'z' : 'w'),
     fc.dir === 'w' ? null : h('p', {class:'fc-zh sm'}, v.zh),
     v.note ? h('p', {class:'fc-note'}, v.note) : null,

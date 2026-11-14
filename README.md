@@ -118,6 +118,14 @@ do not (they are not words). The results are stored in `wk-srs-v1` as `ex[]` rec
 `a/<slug>/listen.json` is built from `audio.json` (the sentence timings) and `article.json`; the page loads it lazily, like `words.json`.
 `tools/tests/srs.test.js` pins the rules; change them there and in `tools/shared/srs.js` together.
 
+## Phonetics and the printable word list (单词表)
+
+English words carry British IPA in `"ipa": "/ˈmaɪnd/"`. `tools/make_ipa.py` writes it (espeak's RP voice through phonemizer,
+converted to dictionary symbols), so after writing a new English article run
+`~/.cache/waikan-tts/venv/bin/python tools/make_ipa.py <slug>`; a value written by hand is kept. Korean, Japanese and Cantonese use `rom`.
+The article page shows the phonetics on word cards, flashcards and quiz feedback, and every article gets `a/<slug>/list.html`:
+a plain, printable list of its words (phonetics, meaning, the first two examples), linked from the 词汇 tab.
+
 ## Flashcards (背单词)
 
 Every article page has a 背单词 tab: the article's words (and the learner's own) as cards to flip. Front = the word with its reading

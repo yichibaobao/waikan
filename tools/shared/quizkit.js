@@ -114,7 +114,7 @@ const Kit = (function(){
   }
   function nextLabel(o){ return (o.isLast ? o.isLast() : o.last) ? '看成绩' : '下一题'; }
   function speakLine(item, v){
-    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), (LANG === 'yue' || LANG === 'ko') && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : null, '　', v.zh);
+    return h('p', null, clipBtn(item.clips, 'w' + v.id, v.core), item.clips ? ' ' : null, h('b', null, v.expr), (LANG === 'yue' || LANG === 'ko') && v.rom ? h('span', {class:'meta'}, ' ' + v.rom) : v.ipa ? h('span', {class:'meta'}, ' ' + v.ipa) : null, '　', v.zh);
   }
   function extraBox(item, res, o){
     const box = h('div', {class:'fb-x'});

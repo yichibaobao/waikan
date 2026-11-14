@@ -146,6 +146,8 @@ def prepare(slug, raw):
         v.setdefault("syn", [])
         v.setdefault("note", "")
         check(v["core"] in v["forms"], f"{where} vocab {vid}: core must be one of forms")
+        if v.get("ipa") is not None:
+            check(re.fullmatch(r"/[^/]+/", v["ipa"] or ""), f"{where} vocab {vid}: ipa is written between slashes, e.g. /ˈmaɪnd/ (tools/make_ipa.py makes it)")
         if meta["lang"] == "yue":
             check(re.fullmatch(r"[a-z]+[1-6]( [a-z]+[1-6])*", v["rom"]), f"{where} vocab {vid}: rom must be Jyutping with tone numbers, e.g. 'nei5 hou2'")
         if not seen:
@@ -280,7 +282,7 @@ def words_json(slug, meta, data):
         c = cl[v["id"]]
         words.append(dict(
             id=v["id"], expr=v["expr"], zh=v["zh"], core=v["core"], forms=v["forms"], syn=v["syn"], note=v["note"],
-            m=v["m"], ctx=v["ctx"], ex=v["ex"], **{k: v[k] for k in ("rom", "kind", "conn", "pick") if k in v},
+            m=v["m"], ctx=v["ctx"], ex=v["ex"], **{k: v[k] for k in ("rom", "ipa", "kind", "conn", "pick") if k in v},
             cloze=dict(before=c["before"], ans=c["ans"], after=c["after"], hint=c["hint"], szh=c["szh"])))
     return dict(slug=slug, title=meta["title"], clips=data.get("clips"), words=words)
 
@@ -315,6 +317,49 @@ def listen_json(slug, meta, data):
             x["rom"] = strip_rom_speaker(s["rom"]) if who else s["rom"]
         return x
     return dict(slug=slug, title=meta["title"], audio=dict(src=a["src"]), sents=[one(s) for s in listen_sents(data)])
+
+
+LIST_CSS = """
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#F2E3D6;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff;--surface-2:#FBEFE4}
+html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.6 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:820px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn{appearance:none;border:0;border-radius:999px;padding:8px 16px;background:var(--accent);color:#fff;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer}
+h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:0 0 18px;color:var(--muted);font-size:13.5px}
+.w{padding:14px 16px;margin-bottom:10px;background:var(--surface);border-radius:18px;box-shadow:0 8px 24px -16px rgba(122,84,58,.35);break-inside:avoid;page-break-inside:avoid}
+.h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.n{min-width:1.6em;color:var(--muted);font:700 13px/1 ui-monospace,Menlo,monospace}
+.e{font-weight:800;font-size:19px;line-height:1.35} .p{color:var(--accent);font-weight:500;font-size:15px;letter-spacing:.02em} .z{font-weight:600}
+.tag{padding:0 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:11px;line-height:1.7}
+ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
+@media print{body{background:#fff;font-size:12.5px}.noprint{display:none}.w{box-shadow:none;border:1px solid #ddd;padding:8px 12px;margin-bottom:6px}h1{font-size:20px}}
+"""
+
+
+def list_html(slug, meta, data, sec):
+    """A plain, printable word list of one article: the word, its phonetics (IPA / romanization / reading), meaning and two examples."""
+    e = htmllib.escape
+    lang = meta["lang"]
+
+    def mark(s):
+        return re.sub(r"\[\[(.+?)\]\]", lambda m: "<b>" + m.group(1) + "</b>", e(s, quote=False))
+    rows = []
+    for n, v in enumerate(data["vocab"], 1):
+        pron = v.get("ipa") if lang == "en" else v.get("rom")
+        tags = ('<span class="tag">语法</span>' if v.get("kind") == "grammar" else "") + (f'<span class="tag">出自 {e(v["from"])}</span>' if v.get("from") else "")
+        exs = "".join(f'<li>{mark(x["en"])}' + (f'<span class="r">{e(x["rom"])}</span>' if x.get("rom") else "") + f'<span class="t">{e(x["zh"])}</span></li>'
+                      for x in v["ex"][:2])
+        rows.append(f'<div class="w"><div class="h"><span class="n">{n}</span><span class="e">{e(v["expr"])}</span>'
+                    + (f'<span class="p">{e(pron)}</span>' if pron else "") + f'<span class="z">{e(v["zh"])}</span>{tags}</div><ol>{exs}</ol></div>')
+    label = {"en": "音标为英式（DJ）音标，由程序生成，以录音为准。", "ko": "读音为韩国官方罗马字。", "ja": "读音为假名。", "yue": "读音为粤拼，数字是声调。"}[lang]
+    return (f'<!doctype html><html lang="zh-CN" data-lang="{lang}"><head><meta charset="utf-8">'
+            f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 单词表 · {e(sec["brand"])}</title>'
+            f'<style>{LIST_CSS}</style></head><body><div class="in">'
+            f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><button class="btn" type="button" onclick="window.print()">打印 / 存成 PDF</button></div>'
+            f'<h1>{e(meta["short"])} · 单词表</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词 · 每个词两个例句。{label}</p>'
+            + "".join(rows) + '</div></body></html>')
 
 
 def foot_html(meta):
@@ -365,6 +410,7 @@ def main():
         out = os.path.join(ROOT, "a", slug)
         os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
+        open(os.path.join(out, "list.html"), "w", encoding="utf-8").write(list_html(slug, meta, data, sec))
         syntax_check(page, slug)
         wj = words_json(slug, meta, data)
         open(os.path.join(out, "words.json"), "w", encoding="utf-8").write(json.dumps(wj, ensure_ascii=False, separators=(",", ":")))
