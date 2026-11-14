@@ -334,8 +334,56 @@ h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:
 .e{font-weight:800;font-size:19px;line-height:1.35} .p{color:var(--accent);font-weight:500;font-size:15px;letter-spacing:.02em} .z{font-weight:600}
 .tag{padding:0 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:11px;line-height:1.7}
 ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
-@media print{body{background:#fff;font-size:12.5px}.noprint{display:none}.w{box-shadow:none;border:1px solid #ddd;padding:8px 12px;margin-bottom:6px}h1{font-size:20px}}
+.prev{appearance:none;border:2px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--muted);font-weight:700;font-size:13px;font-family:inherit;cursor:pointer}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:279mm}
+/* one-page layout (printing, or the 预览一页纸 button): A4, columns, small type; the script picks the largest size that fits */
+@page{size:A4;margin:9mm}
+body.printing{background:#fff}
+.printing .in{width:192mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.32}
+.printing .top{display:none}
+.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.9em;margin:0 0 .6em}
+.printing .sheet{column-count:var(--cols,2);column-gap:5mm;column-rule:0.3pt solid #ccc}
+.printing .w{background:none;box-shadow:none;border-radius:0;padding:0 0 .35em;margin:0 0 .35em;border-bottom:0.3pt solid #ddd}
+.printing .e{font-size:1.15em} .printing .p,.printing .z{font-size:1em} .printing .n{font-size:.9em;min-width:1.4em}
+.printing .tag{font-size:.8em}
+.printing ol{margin:.15em 0 0;padding-left:1.3em} .printing li{margin:0}
+.printing .r,.printing .t{display:inline;font-size:.92em} .printing .r::before,.printing .t::before{content:" · "}
+@media print{.noprint,.top{display:none}}
 """
+
+
+LIST_JS = """<script>
+/* fit the whole list on one A4 page: two columns from 13px type down to 6.5px, then three columns down to 6px (a very long list may still need a second page) */
+(function(){
+  var root = document.documentElement, body = document.body, sheet = document.querySelector('.in');
+  function fits(){ return sheet.scrollHeight <= document.getElementById('mm').getBoundingClientRect().height; }
+  function fit(){
+    body.classList.add('printing');
+    var tries = [[2, 13, 6.5], [3, 8, 6]];
+    for (var k = 0; k < tries.length; k++){
+      root.style.setProperty('--cols', tries[k][0]);
+      for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){
+        root.style.setProperty('--fs', fs + 'px');
+        if (fits()) return;
+      }
+    }
+  }
+  var preview = false;
+  function done(){ if (!preview) body.classList.remove('printing'); }
+  window.addEventListener('beforeprint', fit);
+  window.addEventListener('afterprint', done);
+  var b = document.getElementById('prev');
+  b.addEventListener('click', function(){
+    preview = !preview;
+    if (preview){ fit(); var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+      bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9';
+      bar.innerHTML = '<button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+      bar.children[0].onclick = function(){ b.click(); }; bar.children[1].onclick = function(){ window.print(); };
+      body.appendChild(bar); }
+    else { body.classList.remove('printing'); var x = document.getElementById('pbar'); if (x) x.remove(); }
+  });
+})();
+</script>"""
 
 
 def list_html(slug, meta, data, sec):
@@ -357,9 +405,10 @@ def list_html(slug, meta, data, sec):
     return (f'<!doctype html><html lang="zh-CN" data-lang="{lang}"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 单词表 · {e(sec["brand"])}</title>'
             f'<style>{LIST_CSS}</style></head><body><div class="in">'
-            f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><button class="btn" type="button" onclick="window.print()">打印 / 存成 PDF</button></div>'
+            f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev">预览一页纸</button> '
+            f'<button class="btn" type="button" onclick="window.print()">打印 / 存成 PDF</button></span></div>'
             f'<h1>{e(meta["short"])} · 单词表</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词 · 每个词两个例句。{label}</p>'
-            + "".join(rows) + '</div></body></html>')
+            + '<div class="sheet">' + "".join(rows) + '</div></div><div id="mm"></div>' + LIST_JS + '</body></html>')
 
 
 def foot_html(meta):
