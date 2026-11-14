@@ -118,6 +118,13 @@ do not (they are not words). The results are stored in `wk-srs-v1` as `ex[]` rec
 `a/<slug>/listen.json` is built from `audio.json` (the sentence timings) and `article.json`; the page loads it lazily, like `words.json`.
 `tools/tests/srs.test.js` pins the rules; change them there and in `tools/shared/srs.js` together.
 
+## Flashcards (背单词)
+
+Every article page has a 背单词 tab: the article's words (and the learner's own) as cards to flip. Front = the word with its reading
+(or the meaning, if reversed); tap / Space flips; 不认识 / 认识 (keys 1 / 2, ← / →, or a swipe on a phone). An unknown card comes back
+later in the same round; the round ends with a list of the cards that were missed at first. Every grade is a review answer (`srsRecord`),
+so flashcards feed the same spaced-repetition plan as the quizzes. Optional automatic pronunciation (`ui.fcAuto`, on by default).
+
 ## Words the learner adds (选中 → 加入生词)
 
 On an article's 精读 tab, selecting a word or phrase inside one sentence shows a "＋ 加入生词" button. The learner writes the Chinese
