@@ -40,6 +40,8 @@ button,input,textarea{font:inherit;color:inherit}
 .tab{appearance:none;position:relative;background:none;border:0;padding:9px 4px 12px;font:700 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
 .tab:hover{color:var(--fg)}
 .tab.on{color:var(--accent)}
+.tab{white-space:nowrap}
+@media (max-width:440px){.tab{font-size:13px;padding-left:1px;padding-right:1px;letter-spacing:-.02em}}
 .tab.on::after{content:"";position:absolute;left:50%;bottom:4px;width:22px;height:4px;margin-left:-11px;border-radius:999px;background:var(--accent)}
 
 main{padding-block:22px 56px}
@@ -329,6 +331,18 @@ mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
 .list-link{margin:-4px 0 14px;font-size:14px}
 .list-link a{color:var(--accent);font-weight:700;text-decoration:none}
 
+/* back-translation */
+.tr-row{padding:8px 0;border-bottom:1px dashed var(--line)}
+.tr-row:last-child{border-bottom:0}
+.tr-zh{margin:0 0 4px;font-size:15.5px;line-height:1.65}
+.tr-enrow{display:flex;align-items:flex-start;gap:8px}
+.tr-en{flex:1;margin:0;padding:6px 10px;border-radius:12px;background:var(--surface-2);font:400 16.5px/1.6 var(--font-read);cursor:pointer}
+.tr-en.hide{color:var(--muted);font:600 13px/1.6 var(--font-ui);letter-spacing:.02em;background:repeating-linear-gradient(135deg,var(--surface-2) 0 10px,var(--bg) 10px 20px)}
+.tr-q{margin:4px 0 12px;font-size:17px;line-height:1.7;font-weight:600}
+.tr-out{margin:10px 0}
+.tr-score{margin:6px 0;font-size:14px;color:var(--muted)}
+.tr-score b{color:var(--accent);font-size:16px}
+
 /* flashcards */
 .fc-opt{display:flex;align-items:center;gap:8px;margin:4px 0 14px;font-size:14px;color:var(--muted);cursor:pointer}
 .fc-opt input{accent-color:var(--accent);width:16px;height:16px;margin:0}
@@ -385,6 +399,7 @@ mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
       <button type="button" class="tab" role="tab" data-tab="words">词汇</button>
       <button type="button" class="tab" role="tab" data-tab="cards">背单词</button>
       <button type="button" class="tab" role="tab" data-tab="quiz">自测</button>
+      <button type="button" class="tab" role="tab" data-tab="trans" hidden>回译</button>
       <button type="button" class="tab" role="tab" data-tab="think">长句</button>
     </nav>
   </div>
@@ -415,6 +430,10 @@ mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
 
   <section class="view" id="view-cards" role="tabpanel" hidden>
     <div id="cardBox"></div>
+  </section>
+
+  <section class="view" id="view-trans" role="tabpanel" hidden>
+    <div id="transBox"></div>
   </section>
 
   <section class="view" id="view-quiz" role="tabpanel" hidden>
@@ -1892,7 +1911,7 @@ function buildTerms(){
 }
 buildTerms();
 const SLABEL = {new:'未学', learning:'学习中', mastered:'已掌握'};
-const TABS = ['read','listen','words','cards','quiz','think'];
+const TABS = ['read','listen','words','cards','quiz','trans','think'];
 const LS_STATE = 'wk-ja-11-state';
 const LS_UI = 'fk-ui-v1';
 const REDUCE = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2022,7 +2041,7 @@ function renderMast(){
 /* ---------- tabs ---------- */
 let cur = null;
 function showTab(t){
-  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio)) t = 'read';
+  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio) || (t === 'trans' && LANG !== 'en')) t = 'read';
   const changed = cur !== null && cur !== t;
   cur = t;
   $$('.view').forEach(function(v){ v.hidden = v.id !== 'view-' + t; });
@@ -2033,6 +2052,7 @@ function showTab(t){
   });
   if (t === 'quiz' && quiz.phase === 'start') renderQuiz();
   if (t === 'cards' && fc.phase === 'start') renderCards();
+  if (t === 'trans' && (changed || !$('#transBox').firstChild)) renderTrans();
   if (t === 'words' && changed) renderWords();
   if (changed) window.scrollTo(0, 0);
 }
@@ -2407,6 +2427,130 @@ function quizResult(){
   }}, '逐题回看'));
   card.append(row);
   return card;
+}
+
+/* ---------- back-translation (回译, English articles): read the Chinese, write the English, compare with the original ----------
+   对照背诵: every sentence with its Chinese; the English is hidden until tapped (for learning it by heart).
+   逐句回译: one Chinese sentence at a time, write the English, then compare word by word with the original.
+   全文回译: the whole article in Chinese, a box under each paragraph, then compare everything at once.
+   Drafts are kept in the article's progress (state.ans: "bt<i>" per sentence, "bp<k>" per paragraph). */
+const tr = {mode:'recite', i:0, shown:{}, all:false, revealed:{}, full:false};
+function trBlocks(){ return BLOCKS.filter(function(b){ return b.idx.length; }); }
+function trOrder(){ const o = []; trBlocks().forEach(function(b){ b.idx.forEach(function(i){ o.push(i); }); }); return o; }
+function setAns(k, val){
+  const t = val.replace(/\s+$/, '');
+  if (t) state.ans[k] = t.slice(0, 2000); else delete state.ans[k];
+  touch();
+}
+function trCompare(ref, val){
+  const a = Kit.toks(ref), b = Kit.toks(val), d = Kit.lcsHits(a, b);
+  const hit = d.ha.filter(Boolean).length;
+  return {pct:a.length ? Math.round(hit / a.length * 100) : 0, extra:b.length - d.hb.filter(Boolean).length,
+          ref:Kit.chunkDiff(ref, d.ha), mine:Kit.chunkDiff(val, d.hb)};
+}
+function trScore(c){
+  return h('p', {class:'tr-score'}, h('b', null, c.pct + '%'), ' 的原文单词你写到了',
+    c.extra ? '，另外多写了 ' + c.extra + ' 个词' : '', '。划线的是有出入的地方；意思对、表达自然也算好的翻译。');
+}
+function renderTrans(){
+  const box = $('#transBox');
+  const modes = [['recite', '对照背诵'], ['sent', '逐句回译'], ['full', '全文回译']];
+  const lead = {recite:'先背：每句中文下面藏着英文原文，点一下显示。背熟后切到“逐句回译”或“全文回译”自己写。',
+    sent:'看一句中文，写出英文，再和原文逐词对照。草稿会自动保存。',
+    full:'整篇中文一次看完，每段下面写英文，写完点“对照全文”。草稿会自动保存。'}[tr.mode];
+  box.replaceChildren(h('div', {class:'card'},
+    h('p', {class:'eyebrow'}, '回译练习'),
+    fcChips(modes, tr.mode, function(m){ tr.mode = m; renderTrans(); }),
+    h('p', {class:'lead'}, lead)),
+    tr.mode === 'recite' ? trRecite() : tr.mode === 'sent' ? trSent() : trFull());
+}
+function trRecite(){
+  const wrap = h('div', {class:'mt12'});
+  const tools = h('div', {class:'row mb14'},
+    h('button', {type:'button', class:'btn sm', onclick:function(){ tr.all = !tr.all; tr.shown = {}; renderTrans(); }}, tr.all ? '全部隐藏英文' : '全部显示英文'));
+  wrap.append(tools);
+  trBlocks().forEach(function(b){
+    const card = h('div', {class:'card mb12 tr-blk'});
+    b.idx.forEach(function(i){
+      const s = S[i], open = tr.all || tr.shown[i];
+      const en = h('p', {class:'tr-en' + (open ? '' : ' hide'), role:'button', tabindex:0, 'aria-label':open ? s.en : '点一下显示英文'}, open ? s.en : '点一下显示英文');
+      en.addEventListener('click', function(){ tr.shown[i] = !tr.shown[i]; renderTrans(); });
+      card.append(h('div', {class:'tr-row'}, h('p', {class:'tr-zh'}, s.zh), h('div', {class:'tr-enrow'}, en, open ? sentBtn(s.en) : null)));
+    });
+    wrap.append(card);
+  });
+  return wrap;
+}
+function trSent(){
+  const order = trOrder();
+  if (tr.i >= order.length) tr.i = 0;
+  const i = order[tr.i], s = S[i], key = 'bt' + i;
+  const done = order.filter(function(j){ return state.ans['bt' + j]; }).length;
+  const ta = h('textarea', {class:'q-area', rows:3, maxlength:2000, placeholder:'把这句话写成英文', 'aria-label':'写出英文'});
+  ta.value = state.ans[key] || '';
+  ta.addEventListener('input', function(){ setAns(key, ta.value); });
+  const out = h('div', {class:'tr-out'});
+  const words = sentenceTerms(s.en);
+  const hint = h('p', {class:'q-hint'});
+  function reveal(){
+    tr.revealed[i] = true;
+    const val = ta.value.trim();
+    out.replaceChildren(
+      val ? trScore(trCompare(s.en, val)) : null,
+      h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), val ? trCompare(s.en, val).ref : s.en, ' ', sentBtn(s.en)),
+      val ? h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), trCompare(s.en, val).mine) : null);
+  }
+  const card = h('div', {class:'card mt12'},
+    h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (tr.i + 1) + ' 句 / ' + order.length + '　已写 ' + done + ' 句')),
+    h('p', {class:'tr-q'}, s.zh),
+    hint, ta, out,
+    h('div', {class:'row'},
+      h('button', {type:'button', class:'btn pri', onclick:reveal}, '对照原文'),
+      words.length ? h('button', {type:'button', class:'btn', onclick:function(){ hint.textContent = '本句生词：' + words.map(function(v){ return v.expr + '（' + v.zh + '）'; }).join('，'); }}, '提示：本句生词') : null),
+    h('div', {class:'row mt12'},
+      h('button', {type:'button', class:'btn sm', disabled:tr.i === 0, onclick:function(){ tr.i--; renderTrans(); }}, '‹ 上一句'),
+      h('button', {type:'button', class:'btn sm', disabled:tr.i >= order.length - 1, onclick:function(){ tr.i++; renderTrans(); }}, '下一句 ›')));
+  if (tr.revealed[i]) setTimeout(reveal, 0);
+  ta.addEventListener('keydown', function(e){ if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); reveal(); } });
+  return card;
+}
+function sentenceTerms(text){
+  const ids = [], seen = {};
+  const re = new RegExp(TERM_RE.source, 'gi');
+  let m;
+  while ((m = re.exec(text))){ const id = TERM_MAP[m[0].toLowerCase()]; if (id !== undefined && !seen[id]){ seen[id] = 1; ids.push(id); } }
+  return ids.map(function(id){ return VMAP[id]; });
+}
+function trFull(){
+  const wrap = h('div', {class:'mt12'});
+  let refAll = '', mineAll = '', written = 0;
+  trBlocks().forEach(function(b, k){
+    const key = 'bp' + k, ref = b.idx.map(function(i){ return S[i].en; }).join(' ');
+    const ta = h('textarea', {class:'q-area', rows:Math.min(8, 2 + b.idx.length), maxlength:2000, placeholder:'写出这一段的英文', 'aria-label':'第 ' + (k + 1) + ' 段的英文'});
+    ta.value = state.ans[key] || '';
+    ta.addEventListener('input', function(){ setAns(key, ta.value); });
+    const card = h('div', {class:'card mb12'},
+      h('p', {class:'eyebrow'}, b.type === 'title' ? '标题' : b.type === 'sub' ? '导语' : '第 ' + (k - 1) + ' 段'),
+      h('p', {class:'tr-q'}, b.idx.map(function(i){ return S[i].zh; }).join('')),
+      ta);
+    if (tr.full){
+      const val = ta.value.trim();
+      if (val){ const c = trCompare(ref, val); card.append(trScore(c), h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), c.ref), h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), c.mine)); }
+      else card.append(h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), ref));
+      if (val){ refAll += ' ' + ref; mineAll += ' ' + val; written++; }
+    }
+    wrap.append(card);
+  });
+  const total = tr.full && mineAll.trim() ? trCompare(refAll, mineAll).pct : null;
+  wrap.append(h('div', {class:'row'},
+    h('button', {type:'button', class:'btn pri', onclick:function(){ tr.full = !tr.full; renderTrans(); if (tr.full) window.scrollTo(0, 0); }}, tr.full ? '收起原文，继续写' : '对照全文'),
+    h('button', {type:'button', class:'btn', onclick:function(){
+      if (!confirm('清空这篇的全文回译草稿，重新写？')) return;
+      Object.keys(state.ans).forEach(function(k){ if (k.indexOf('bp') === 0) delete state.ans[k]; });
+      touch(); tr.full = false; renderTrans();
+    }}, '清空重写')));
+  if (total !== null) wrap.prepend(h('div', {class:'card mb12'}, h('p', {class:'tr-score'}, '已写 ' + written + ' / ' + trBlocks().length + ' 段；这些段落里，原文单词你写到了 ', h('b', null, total + '%'), '。')));
+  return wrap;
 }
 
 /* ---------- flashcards: one article's words as cards to flip (背单词) ----------
@@ -2920,6 +3064,7 @@ function init(){
   });
   window.addEventListener('hashchange', function(){ showTab(location.hash.replace('#','')); });
   if (DATA.audio) $('.tab[data-tab="listen"]').hidden = false;
+  if (LANG === 'en') $('.tab[data-tab="trans"]').hidden = false;
   renderAll();
   showTab(location.hash.replace('#','') || 'read');
   initCloud();

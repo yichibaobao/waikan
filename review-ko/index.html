@@ -40,6 +40,8 @@ button,input,textarea{font:inherit;color:inherit}
 .tab{appearance:none;position:relative;background:none;border:0;padding:9px 4px 12px;font:700 14px/1 var(--font-ui);color:var(--muted);cursor:pointer}
 .tab:hover{color:var(--fg)}
 .tab.on{color:var(--accent)}
+.tab{white-space:nowrap}
+@media (max-width:440px){.tab{font-size:13px;padding-left:1px;padding-right:1px;letter-spacing:-.02em}}
 .tab.on::after{content:"";position:absolute;left:50%;bottom:4px;width:22px;height:4px;margin-left:-11px;border-radius:999px;background:var(--accent)}
 
 main{padding-block:22px 56px}
