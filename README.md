@@ -47,7 +47,7 @@ A lesson is short: a title, one sub line, about 5 body sentences and 8-10 words.
 (Revised Romanization), shown by the 显示罗马音 switch (off by default). Notes are in Chinese and explain particles and endings.
 Pages know their language from `<html data-lang>` (`LANG`, `XL` in `common.js`): answer checking, highlighting and dictation accept Hangul,
 and Korean particles may follow a highlighted term. Audio: `tools/make_audio.py <slug>` picks Microsoft's online voices for Korean
-(`--engine edge`, voice `ko-KR-SunHiNeural`, speed 0.85; needs `pip install edge-tts` in the TTS venv and internet).
+(`--engine edge`, voice `ko-KR-HyunsuMultilingualNeural` at normal speed, dialogue women `ko-KR-SunHiNeural`; needs `pip install edge-tts` in the TTS venv and internet). Slowing a synthetic voice down made it sound robotic, so learners slow playback down in the player instead.
 
 ## Cantonese section (粤语入门)
 
@@ -56,7 +56,7 @@ Lessons with `meta.lang = "yue"` go to `yue/` (home) and `review-yue/` (review),
 written in Hong Kong; every sentence, word and example carries `rom` in Jyutping with tone numbers (the build checks the word
 `rom` format, e.g. `nei5 hou2`). The 显示粤拼 switch is on by default. Answers may be typed in characters or in Jyutping
 (tone numbers optional; in sentences, a space between syllables): `romOk` in common.js and `toks` in quizkit.js. For that, a
-Cantonese word's cloze answer is its `core`. Audio: `tools/make_audio.py <slug>` picks Microsoft's zh-HK-HiuGaaiNeural at speed 0.85.
+Cantonese word's cloze answer is its `core`. Audio: `tools/make_audio.py <slug>` picks Microsoft's zh-HK-HiuMaanNeural at normal speed (dialogue men: zh-HK-WanLungNeural).
 
 Dialogues (Korean and Cantonese lessons): write each line as `名字：台词` / `이름: 대사` and list the speakers in
 `meta.speakers`, e.g. `{"阿詩": "f", "伙計": "m"}`. The narration then leaves the names out and reads each line in a female or

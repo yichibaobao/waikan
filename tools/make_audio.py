@@ -30,8 +30,8 @@ import soundfile as sf
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tts_text import spoken_text, text_hash, clip_items, clips_hash, split_speaker  # noqa: E402
 # dialogue voices (meta.speakers = {"阿詩": "f", "阿明": "m"}): the narrator's voice for other lines
-DIALOGUE_VOICES = {"ko": {"f": "ko-KR-SunHiNeural", "m": "ko-KR-InJoonNeural"},
-                   "yue": {"f": "zh-HK-HiuGaaiNeural", "m": "zh-HK-WanLungNeural"},
+DIALOGUE_VOICES = {"ko": {"f": "ko-KR-SunHiNeural", "m": "ko-KR-HyunsuMultilingualNeural"},
+                   "yue": {"f": "zh-HK-HiuMaanNeural", "m": "zh-HK-WanLungNeural"},
                    "ja": {"f": "ja-JP-NanamiNeural", "m": "ja-JP-KeitaNeural"}}
 from refs import resolve_refs  # noqa: E402
 
@@ -56,8 +56,8 @@ def main():
     ap.add_argument("--voice", default="af_heart", help="American: af_heart af_bella af_nicole af_sarah am_michael am_adam am_eric ...; British: bf_emma bf_isabella bm_george bm_lewis ...")
     ap.add_argument("--lang", default=None, help="en-us or en-gb; default: from the voice (a* = American, b* = British)")
     ap.add_argument("--speed", type=float, default=0.95)
-    ap.add_argument("--bitrate", default="56k", help="narration bitrate")
-    ap.add_argument("--clip-bitrate", default="40k", help="word/example sprite bitrate")
+    ap.add_argument("--bitrate", default="64k", help="narration bitrate")
+    ap.add_argument("--clip-bitrate", default="64k", help="word/example sprite bitrate")
     ap.add_argument("--only", choices=["narration", "clips"], help="make just one of the two files")
     a = ap.parse_args()
     raw = json.load(open(os.path.join(ROOT, "content", a.slug, "article.json"), encoding="utf-8"))
@@ -65,13 +65,13 @@ def main():
     if err:
         sys.exit(err)
     lang = raw["meta"].get("lang", "en")
-    korean = lang in ("ko", "yue")     # beginners: read a little slower
     a.engine = a.engine or ("edge" if lang in ("ko", "ja", "yue") else "kokoro")
     if a.engine == "edge":
         if a.voice == "af_heart":
-            a.voice = {"ko": "ko-KR-SunHiNeural", "ja": "ja-JP-NanamiNeural", "yue": "zh-HK-HiuGaaiNeural"}.get(lang, "en-US-AriaNeural")
-        if korean and a.speed == 0.95:
-            a.speed = 0.85          # slower for beginners
+            # chosen by the learner (2026-11-15): the most natural-sounding voices; normal speed, since slowing a synthetic voice makes it sound robotic
+            a.voice = {"ko": "ko-KR-HyunsuMultilingualNeural", "ja": "ja-JP-NanamiNeural", "yue": "zh-HK-HiuMaanNeural"}.get(lang, "en-US-AriaNeural")
+        if lang in ("ko", "yue") and a.speed == 0.95:
+            a.speed = 1.0
         k = EdgeVoice()
     else:
         if not (a.model and a.voices):
