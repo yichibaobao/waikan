@@ -187,7 +187,8 @@
       "rom": "daai3 go3 seoi2 zeon1 ceot1 heoi3.",
       "zh": "带个水瓶出去。"
      }
-    ]
+    ],
+    "say": "帶遮"
    },
    {
     "id": 4,
@@ -214,7 +215,8 @@
       "rom": "ze3 baa2 ze1 bei2 ngo5 dak1 m4 dak1?",
       "zh": "借把伞给我行吗？"
      }
-    ]
+    ],
+    "say": "一把遮"
    },
    {
     "id": 5,
@@ -592,7 +594,8 @@
       "rom": "ngo5 heoi3 maai4.",
       "zh": "我也去。"
      }
-    ]
+    ],
+    "say": "帶埋"
    },
    {
     "id": 19,
@@ -619,7 +622,8 @@
       "rom": "ni1 gin6 lau1 hou2 nyun5.",
       "zh": "这件外套很暖和。"
      }
-    ]
+    ],
+    "say": "件褸"
    }
   ],
   "cloze": [

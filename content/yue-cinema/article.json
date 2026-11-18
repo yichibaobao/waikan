@@ -436,7 +436,8 @@
       "rom": "ngo5 soeng2 jiu3 go2 gin6.",
       "zh": "我想要那件。"
      }
-    ]
+    ],
+    "say": "嗰個"
    },
    {
     "id": 13,
@@ -463,7 +464,8 @@
       "rom": "ni1 coeng4 bo1 hou2 zing1 coi2.",
       "zh": "这场球赛很精彩。"
      }
-    ]
+    ],
+    "say": "嗰場"
    },
    {
     "id": 14,
@@ -490,7 +492,8 @@
       "rom": "ngo5 soeng2 co5 coeng1 hau2 wai2.",
       "zh": "我想坐靠窗的座位。"
      }
-    ]
+    ],
+    "say": "請坐"
    },
    {
     "id": 15,
@@ -571,7 +574,8 @@
       "rom": "ngo5 lau4 zo2 go3 wai2 bei2 nei5.",
       "zh": "我给你留了个位子。"
      }
-    ]
+    ],
+    "say": "有冇位"
    },
    {
     "id": 18,
