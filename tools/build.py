@@ -157,7 +157,7 @@ def prepare(slug, raw):
             check(hit, f"{where} vocab {vid}: no sentence contains its terms")
             v.setdefault("ctx", hit["en"])
         check(any(word_re(t).search(v["ctx"]) for t in v["m"]), f"{where} vocab {vid}: ctx lacks its own term")
-        check(2 <= len(v.get("ex", [])) <= 3, f"{where} vocab {vid} ({v['expr']}): give 2-3 examples")
+        check(2 <= len(v.get("ex", [])) <= 5, f"{where} vocab {vid} ({v['expr']}): give 2-5 examples")
         for q in v.get("pick", []):
             check(q.get("q") and len(q.get("opts", [])) >= 2 and 0 <= q.get("a", -1) < len(q["opts"]) and q.get("why"),
                   f"{where} vocab {vid}: each pick needs q, 2+ opts, a valid answer index a and why")
