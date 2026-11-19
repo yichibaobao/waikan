@@ -459,6 +459,7 @@ def list_html(slug, meta, data, sec):
             f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev2">预览正反两页</button> '
             f'<button class="prev" type="button" id="prev">预览一页纸</button> '
             f'<a class="prev" href="check.html" style="text-decoration:none">✅ 背单词打卡表</a> '
+            f'<a class="prev" href="ex.html" style="text-decoration:none">✍️ 例句默写纸</a> '
             + (f'<a class="prev" href="trans.html" style="text-decoration:none">🖨 回译练习纸</a> ' if lang in ("en", "ja") else "") +
             f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
             f'<p class="tip noprint">打印正反两页：先点“预览正反两页”，再点“打印”，在打印设置里选“双面打印”（长边翻转）。</p>'
@@ -678,6 +679,80 @@ def trans_html(slug, meta, data, sec):
             f'</div>{TRANS_JS}</body></html>')
 
 
+EX_CSS = TRANS_CSS.replace('html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7}',
+    'html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}') + """
+.w{break-inside:avoid;page-break-inside:avoid;margin:0 0 10px}
+.wh{margin:0 0 2px;font-weight:800;font-size:15px} .wh i{font-style:normal;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace;margin-right:6px}
+.wh span{font-weight:600;color:var(--muted);font-size:13px;margin-left:8px}
+.wh span.x{margin-left:0;color:var(--fg);font-weight:800;font-size:15px}
+.nohead .wh .x{display:none}
+.zh2{margin:2px 0 0 1.9em;font-size:14.5px;line-height:1.55}
+.cl{margin:2px 0 0 1.9em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.m-cloze .ln,.m-sent .cl{display:none}
+.one .e1{display:none}
+.a .x{color:var(--muted);font-size:.9em}
+@media print{.wh{font-size:11.5px} .wh span,.wh i{font-size:9.5px} .wh span.x{font-size:11.5px} .zh2{font-size:10.5px} .cl{font-size:11px;line-height:2.1} .w{margin:0 0 6px}}
+"""
+
+EX_JS = """<script>
+(function(){
+  var b = document.body, key = 'wk-ex-print', st = {mode:'sent', one:false, head:true, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, head:r.head !== false, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), head = document.getElementById('head'), ans = document.getElementById('withans');
+  function draw(){
+    b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
+    b.classList.toggle('one', st.one); b.classList.toggle('nohead', !st.head); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; head.checked = st.head; ans.checked = st.ans;
+  }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
+  one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
+  head.addEventListener('change', function(){ st.head = head.checked; save(); draw(); });
+  ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script>"""
+
+
+def ex_html(slug, meta, data, sec):
+    """A printable dictation sheet of the words' example sentences: 整句默写 (the Chinese, lines to write the sentence) or 挖空填词
+    (the sentence with the word blanked out), the first one or two examples of each word, answers on a new page."""
+    e = htmllib.escape
+    lang = meta["lang"]
+    XL = {"en": "英文", "ko": "韩语", "ja": "日语", "yue": "粤语"}[lang]
+    per_line = {"en": 48, "ko": 30}.get(lang, 24)
+    ws, ans, n = [], [], 0
+    for wn, v in enumerate(data["vocab"], 1):
+        items = []
+        for k, x in enumerate(v["ex"][:2]):
+            n += 1
+            lab = f"{wn}-{k + 1}"
+            plain = x["en"].replace("[[", "").replace("]]", "")
+            cl = re.sub(r"\[\[(.+?)\]\]", lambda m: "<u>" + e(m.group(1)) + "</u>", e(x["en"], quote=False))
+            lines = max(1, -(-len(plain) // per_line))
+            items.append(f'<div class="e{k}"><p class="zh2"><b>{lab}</b> {e(x["zh"])}</p><p class="cl">{cl}</p>' + '<div class="ln"></div>' * lines + '</div>')
+            ans.append(f'<p class="a e{k}"><b>{lab}</b>' + re.sub(r"\[\[(.+?)\]\]", lambda m: "<strong>" + e(m.group(1)) + "</strong>", e(x["en"], quote=False))
+                       + (f'<span class="r">{e(x["rom"])}</span>' if x.get("rom") else "") + '</p>')
+        ws.append(f'<div class="w"><p class="wh"><i>{wn}</i><span class="x">{e(v["expr"])}</span><span>{e(v["zh"])}</span></p>{"".join(items)}</div>')
+    return (f'<!doctype html><html lang="zh-CN" data-lang="{lang}"><head><meta charset="utf-8">'
+            f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 例句默写纸 · {e(sec["brand"])}</title>'
+            f'<style>{EX_CSS}</style></head><body class="m-sent"><div class="in">'
+            f'<div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> '
+            f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
+            f'<h1>{e(meta["short"])} · 例句默写纸</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词的例句 · 看中文写出{XL}例句（或填出空着的词），写完再看最后的答案。'
+            f'　姓名 ________　日期 ________</p>'
+            f'<div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label>'
+            f'<label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label>'
+            f'<label><input type="checkbox" id="one"> 每个词只要 1 句</label>'
+            f'<label><input type="checkbox" id="head"> 显示生词本身</label>'
+            f'<label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div>'
+            f'<div class="sheet">{"".join(ws)}<div class="ans"><h2>答案（例句原文，生词加粗）</h2>{"".join(ans)}</div></div>'
+            f'<p class="foot">“显示生词本身”不勾时只显示中文意思，难度更高。选项会记住，下次打开还是这样。</p>'
+            f'</div>{EX_JS}</body></html>')
+
+
 def foot_html(meta):
     parts = []
     note = meta.get("note")
@@ -728,6 +803,7 @@ def main():
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
         open(os.path.join(out, "list.html"), "w", encoding="utf-8").write(list_html(slug, meta, data, sec))
         open(os.path.join(out, "check.html"), "w", encoding="utf-8").write(check_html(slug, meta, data, sec))
+        open(os.path.join(out, "ex.html"), "w", encoding="utf-8").write(ex_html(slug, meta, data, sec))
         tp = os.path.join(out, "trans.html")
         if meta["lang"] in ("en", "ja"):
             open(tp, "w", encoding="utf-8").write(trans_html(slug, meta, data, sec))
