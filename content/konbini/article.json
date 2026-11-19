@@ -333,7 +333,8 @@
       "zh": "厨房每到周五就缺人手。"
      }
     ],
-    "ipa": "/hændz/"
+    "ipa": "/hændz/",
+    "def": "workers, especially people who do physical work"
    },
    {
     "id": 2,
@@ -359,7 +360,8 @@
       "zh": "长时间工作让她吃不消，脸上都能看出疲惫。"
      }
     ],
-    "ipa": "/streɪn ɒn/"
+    "ipa": "/streɪn ɒn/",
+    "def": "the pressure or difficulty that something has to deal with"
    },
    {
     "id": 3,
@@ -387,7 +389,8 @@
       "zh": "你上班路上能帮我寄一下这封信吗？"
      }
     ],
-    "ipa": "/pəʊst/"
+    "ipa": "/pəʊst/",
+    "def": "to send a letter or parcel by post (British English)"
    },
    {
     "id": 4,
@@ -415,7 +418,8 @@
       "zh": "夜里很难给医院排够人手。"
      }
     ],
-    "ipa": "/stɑːf/"
+    "ipa": "/stɑːf/",
+    "def": "to provide the workers for a place; to work in a place"
    },
    {
     "id": 5,
@@ -445,7 +449,34 @@
       "zh": "市中心便宜的公寓越来越难找。"
      }
     ],
-    "ipa": "/ɡrəʊ skeəs/"
+    "ipa": "/ɡrəʊ skeəs/",
+    "def": "to become hard to find or get because there is not enough",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "plentiful",
+      "zh": "充足的",
+      "diff": "scarce 是“稀少、不够”；反义 plentiful 是“充足、很多”。",
+      "ex": [
+       {
+        "en": "Food was [[plentiful]] that summer.",
+        "zh": "那年夏天食物很充足。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "rare",
+      "zh": "罕见的",
+      "diff": "scarce 指本来该有、需要的东西供应不足（如食物、人手）；rare 指本来就少见（如稀有动物）。",
+      "ex": [
+       {
+        "en": "This is a [[rare]] bird.",
+        "zh": "这是一种罕见的鸟。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 6,
@@ -472,7 +503,8 @@
       "zh": "这块地以前归教会所有。"
      }
     ],
-    "ipa": "/bɪˈlɒŋ tuː/"
+    "ipa": "/bɪˈlɒŋ tuː/",
+    "def": "to be owned by someone, or to be part of a group"
    },
    {
     "id": 7,
@@ -500,7 +532,8 @@
       "zh": "暴风雨过后这家店一直没补货。"
      }
     ],
-    "ipa": "/rɪˈstɒk/"
+    "ipa": "/rɪˈstɒk/",
+    "def": "to fill shelves or a store with new goods to replace those that have been sold"
    },
    {
     "id": 8,
@@ -526,7 +559,8 @@
       "zh": "收银台前排着长队。"
      }
     ],
-    "ipa": "/tɪl/"
+    "ipa": "/tɪl/",
+    "def": "the drawer or machine in a shop where money is kept and payments are taken"
    },
    {
     "id": 9,
@@ -552,7 +586,8 @@
       "zh": "他开了一家当地人叫“蓝门”的咖啡馆。"
      }
     ],
-    "ipa": "/nəʊn ˈləʊkəlɪ æz/"
+    "ipa": "/nəʊn ˈləʊkəlɪ æz/",
+    "def": "called a particular name by the people who live in a place"
    },
    {
     "id": 10,
@@ -578,7 +613,8 @@
       "zh": "学校每个班都配了一个。"
      }
     ],
-    "ipa": "/wɒn fɔːr ˈevrɪ/"
+    "ipa": "/wɒn fɔːr ˈevrɪ/",
+    "def": "used to show how common something is compared with the number of people"
    },
    {
     "id": 11,
@@ -607,7 +643,8 @@
       "zh": "这个爱好慢慢变成了一门生意。"
      }
     ],
-    "ipa": "/ɡrəʊ ˌɪntʊ/"
+    "ipa": "/ɡrəʊ ˌɪntʊ/",
+    "def": "to develop and become something bigger or different over time"
    },
    {
     "id": 12,
@@ -634,7 +671,8 @@
       "zh": "对很多人来说，网络如今就是一种公用事业。"
      }
     ],
-    "ipa": "/ˈpʌblɪk juːˈtɪlɪtɪ/"
+    "ipa": "/ˈpʌblɪk juːˈtɪlɪtɪ/",
+    "def": "a service such as water, gas or electricity that is provided for everyone"
    },
    {
     "id": 13,
@@ -662,7 +700,8 @@
       "zh": "我去学校接了孩子。"
      }
     ],
-    "ipa": "/kəˈlekt/"
+    "ipa": "/kəˈlekt/",
+    "def": "to go and get something that is waiting for you"
    },
    {
     "id": 14,
@@ -691,7 +730,22 @@
       "zh": "他从取款机取了两百英镑。"
      }
     ],
-    "ipa": "/wɪθˈdrɔː kæʃ/"
+    "ipa": "/wɪθˈdrɔː kæʃ/",
+    "def": "to take money out of a bank account",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "deposit",
+      "zh": "存入",
+      "diff": "withdraw 是从账户取出；deposit 是存进去。",
+      "ex": [
+       {
+        "en": "I [[deposited]] the cheque this morning.",
+        "zh": "我今天早上把支票存了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -719,7 +773,22 @@
       "zh": "我们本来指望野餐那天天气好。"
      }
     ],
-    "ipa": "/kaʊnt ɒn/"
+    "ipa": "/kaʊnt ɒn/",
+    "def": "to depend on someone or something; to be sure that something will happen",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "rely on",
+      "zh": "依靠",
+      "diff": "两者常可互换。count on 更口语，常带“确信对方不会让我失望”；rely on 更中性，也可指长期依赖。",
+      "ex": [
+       {
+        "en": "You can [[rely on]] her.",
+        "zh": "你可以信赖她。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 16,
@@ -747,7 +816,8 @@
       "zh": "她的说法全靠一个证人。"
      }
     ],
-    "ipa": "/rest ɒn/"
+    "ipa": "/rest ɒn/",
+    "def": "to depend on or be based on something"
    },
    {
     "id": 17,
@@ -773,7 +843,8 @@
       "zh": "飞行员要经过训练，因为几乎容不得出错。"
      }
     ],
-    "ipa": "/ruːm fɔːr ˈerə/"
+    "ipa": "/ruːm fɔːr ˈerə/",
+    "def": "the amount by which you can make a mistake without causing a problem"
    },
    {
     "id": 18,
@@ -800,7 +871,8 @@
       "zh": "当了二十年经理之后，她自己开了一家加盟店。"
      }
     ],
-    "ipa": "/ˈfrɑːntʃaɪz ˈəʊnə/"
+    "ipa": "/ˈfrɑːntʃaɪz ˈəʊnə/",
+    "def": "a person who owns and runs a shop that belongs to a larger chain under its name"
    },
    {
     "id": 19,
@@ -826,7 +898,8 @@
       "zh": "他因为超速交了一大笔罚款。"
      }
     ],
-    "ipa": "/ˈheftɪ ʃeə/"
+    "ipa": "/ˈheftɪ ʃeə/",
+    "def": "a large part or percentage of something"
    },
    {
     "id": 20,
@@ -852,7 +925,8 @@
       "zh": "他们帮忙修房子，换来了免交房租。"
      }
     ],
-    "ipa": "/ɪn rɪˈtɜːn fɔː/"
+    "ipa": "/ɪn rɪˈtɜːn fɔː/",
+    "def": "as an exchange for something"
    },
    {
     "id": 21,
@@ -880,7 +954,8 @@
       "zh": "上周一半的菜都浪费了。"
      }
     ],
-    "ipa": "/ɡəʊ tə weɪst/"
+    "ipa": "/ɡəʊ tə weɪst/",
+    "def": "to not be used, so that it is wasted"
    },
    {
     "id": 22,
@@ -908,7 +983,8 @@
       "zh": "如今城里有成千上万间办公室空着。"
      }
     ],
-    "ipa": "/sɪt ˈemptɪ/"
+    "ipa": "/sɪt ˈemptɪ/",
+    "def": "to stay unused and with no one in it"
    },
    {
     "id": 23,
@@ -933,7 +1009,8 @@
       "zh": "他记不住人名是出了名的。"
      }
     ],
-    "ipa": "/ˈfeɪməslɪ/"
+    "ipa": "/ˈfeɪməslɪ/",
+    "def": "in a way that is well known"
    },
    {
     "id": 24,
@@ -959,7 +1036,8 @@
       "zh": "团队连轴转修这个漏洞。"
      }
     ],
-    "ipa": "/əˈraʊnd ðə klɒk/"
+    "ipa": "/əˈraʊnd ðə klɒk/",
+    "def": "all day and all night without stopping"
    },
    {
     "id": 25,
@@ -984,7 +1062,8 @@
       "zh": "人们越来越多地在网上购物。"
      }
     ],
-    "ipa": "/ɪŋˈkriːsɪŋlɪ/"
+    "ipa": "/ɪŋˈkriːsɪŋlɪ/",
+    "def": "more and more"
    },
    {
     "id": 26,
@@ -1010,7 +1089,8 @@
       "zh": "劳动年龄人口减少，意味着纳税人变少。"
      }
     ],
-    "ipa": "/ˈwɜːkɪˈŋeɪdʒ ˌpɒpjʊˈleɪʃən/"
+    "ipa": "/ˈwɜːkɪˈŋeɪdʒ ˌpɒpjʊˈleɪʃən/",
+    "def": "all the people in a country who are old enough to work"
    },
    {
     "id": 27,
@@ -1038,7 +1118,8 @@
       "zh": "这个职位空了六个月。"
      }
     ],
-    "ipa": "/ɡəʊ ʌnˈfɪld/"
+    "ipa": "/ɡəʊ ʌnˈfɪld/",
+    "def": "(of a job) to stay empty because no one can be found to do it"
    },
    {
     "id": 28,
@@ -1064,7 +1145,8 @@
       "zh": "夜班工资稍高一点。"
      }
     ],
-    "ipa": "/naɪt ʃɪft/"
+    "ipa": "/naɪt ʃɪft/",
+    "def": "a period of work during the night"
    },
    {
     "id": 29,
@@ -1092,7 +1174,8 @@
       "zh": "我们招了临时工来填补暑期的空缺。"
      }
     ],
-    "ipa": "/ˈkʌvə ðə ɡæps/"
+    "ipa": "/ˈkʌvə ðə ɡæps/",
+    "def": "to do the work or provide what is missing when there are not enough people or things"
    },
    {
     "id": 30,
@@ -1120,7 +1203,8 @@
       "zh": "他一连几个小时打游戏。"
      }
     ],
-    "ipa": "/fɔː wiːks ɒn end/"
+    "ipa": "/fɔː wiːks ɒn end/",
+    "def": "for many weeks without a break"
    },
    {
     "id": 31,
@@ -1146,7 +1230,8 @@
       "zh": "她的裙子是当晚大家谈论最多的话题。"
      }
     ],
-    "ipa": "/ˈtɔːkɪŋ pɔɪnt/"
+    "ipa": "/ˈtɔːkɪŋ pɔɪnt/",
+    "def": "a subject that many people discuss"
    },
    {
     "id": 32,
@@ -1174,7 +1259,8 @@
       "zh": "房租占我开支的三分之一。"
      }
     ],
-    "ipa": "/meɪk ʌp/"
+    "ipa": "/meɪk ʌp/",
+    "def": "to form a particular part or amount of something"
    },
    {
     "id": 33,
@@ -1202,7 +1288,8 @@
       "zh": "厨师们喜欢尝试新口味。"
      }
     ],
-    "ipa": "/ekˈsperɪmənt wɪð/"
+    "ipa": "/ekˈsperɪmənt wɪð/",
+    "def": "to try new ideas or methods to see how well they work"
    },
    {
     "id": 34,
@@ -1230,7 +1317,8 @@
       "zh": "物价上涨正一点点吃掉人们的积蓄。"
      }
     ],
-    "ipa": "/tʃɪp əˈweɪ æt/"
+    "ipa": "/tʃɪp əˈweɪ æt/",
+    "def": "to gradually make something smaller or weaker"
    },
    {
     "id": 35,
@@ -1255,7 +1343,28 @@
       "zh": "她让自己在团队里不可或缺。"
      }
     ],
-    "ipa": "/ˌɪndɪˈspensəbəl/"
+    "ipa": "/ˌɪndɪˈspensəbəl/",
+    "def": "so important or useful that you cannot manage without it",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "essential",
+      "zh": "必不可少的",
+      "diff": "essential 指“必需、最基本的”；indispensable 语气更强，强调“少了它就完全不行”。",
+      "ex": [
+       {
+        "en": "Water is [[essential]] for life.",
+        "zh": "水是生命必需的。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "dispensable",
+      "zh": "可有可无的",
+      "diff": "去掉 in- 就是反义 dispensable：可以不要的。"
+     }
+    ]
    },
    {
     "id": 36,
@@ -1280,7 +1389,8 @@
       "zh": "当初让小镇安全的那些规定，现在正在被取消。"
      }
     ],
-    "ipa": "/ɪnðə fɜːst pleɪs/"
+    "ipa": "/ɪnðə fɜːst pleɪs/",
+    "def": "at the beginning; used when asking or explaining why something happened at all"
    },
    {
     "id": 37,
@@ -1306,7 +1416,8 @@
       "zh": "那座老旧的桥需要维修。"
      }
     ],
-    "ipa": "/ˈeɪdʒɪŋ/"
+    "ipa": "/ˈeɪdʒɪŋ/",
+    "def": "becoming older, so that there are more old people"
    },
    {
     "id": 38,
@@ -1335,7 +1446,22 @@
       "zh": "干净的水很容易被当作理所当然。"
      }
     ],
-    "ipa": "/teɪk fɔː ˈɡrɑːntɪd/"
+    "ipa": "/teɪk fɔː ˈɡrɑːntɪd/",
+    "def": "to expect something to always be there and not appreciate it",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "appreciate",
+      "zh": "珍惜；感激",
+      "diff": "take sth for granted 是“不当回事”；appreciate 正好相反，是“珍惜、懂得它的价值”。",
+      "ex": [
+       {
+        "en": "I really [[appreciate]] your help.",
+        "zh": "非常感谢你的帮助。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 39,
@@ -1363,7 +1489,8 @@
       "zh": "政府花了几十亿救助那家航空公司。"
      }
     ],
-    "ipa": "/prɒp ʌp/"
+    "ipa": "/prɒp ʌp/",
+    "def": "to support something so that it does not fall or fail"
    },
    {
     "id": 40,
@@ -1389,7 +1516,8 @@
       "zh": "为了填补预算缺口，税涨了。"
      }
     ],
-    "ipa": "/ˈʃɔːtfɔːl/"
+    "ipa": "/ˈʃɔːtfɔːl/",
+    "def": "the amount by which something is less than what you need"
    },
    {
     "id": 41,
@@ -1417,7 +1545,22 @@
       "zh": "压力常常会反映在睡眠上。"
      }
     ],
-    "ipa": "/ʃəʊ ʌp/"
+    "ipa": "/ʃəʊ ʌp/",
+    "def": "to appear or become easy to see",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "turn up",
+      "zh": "出现；到场",
+      "diff": "两者都可指人“到场”（He showed up / turned up late.）。show up 还可指东西“显现出来”；turn up 还可指找不到的东西“被找到”。",
+      "ex": [
+       {
+        "en": "My lost keys [[turned up]] in my coat pocket.",
+        "zh": "我丢的钥匙在大衣口袋里找到了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 42,
@@ -1442,7 +1585,22 @@
       "zh": "每个人迟早都会犯这个错。"
      }
     ],
-    "ipa": "/ˈsuːnər ɔː ˈleɪtə/"
+    "ipa": "/ˈsuːnər ɔː ˈleɪtə/",
+    "def": "at some time in the future, certainly",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "eventually",
+      "zh": "最终",
+      "diff": "sooner or later 口语，强调“迟早会发生，躲不掉”；eventually 是“经过一段时间后终于”。",
+      "ex": [
+       {
+        "en": "He [[eventually]] found a job.",
+        "zh": "他最终找到了工作。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 43,
@@ -1474,7 +1632,8 @@
      }
     ],
     "extra": true,
-    "ipa": "/əˌmʌŋ ðə fɜːst tuː/"
+    "ipa": "/əˌmʌŋ ðə fɜːst tuː/",
+    "def": "one of the earliest people or things to do something"
    }
   ],
   "cloze": [

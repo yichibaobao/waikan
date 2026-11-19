@@ -309,7 +309,8 @@
       "zh": "一夜之间雨变成了雪。"
      }
     ],
-    "ipa": "/tɜːn ˌɪntʊ/"
+    "ipa": "/tɜːn ˌɪntʊ/",
+    "def": "to change someone or something into something different"
    },
    {
     "id": 2,
@@ -334,7 +335,22 @@
       "zh": "长途飞行是对无聊的考验。"
      }
     ],
-    "ipa": "/ˈbɔːdəm/"
+    "ipa": "/ˈbɔːdəm/",
+    "def": "the feeling of being bored because nothing interesting is happening",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "bored / boring",
+      "zh": "感到无聊的 / 令人无聊的",
+      "diff": "boredom 是名词“无聊感”。形容词：人觉得无聊用 bored；事物让人无聊用 boring。",
+      "ex": [
+       {
+        "en": "I'm [[bored]]. This film is so [[boring]].",
+        "zh": "我好无聊，这部电影太没意思了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 3,
@@ -363,7 +379,8 @@
       "zh": "街头歌手很快就吸引了一群人。"
      }
     ],
-    "ipa": "/drɔː/"
+    "ipa": "/drɔː/",
+    "def": "to attract people to come and watch or take part"
    },
    {
     "id": 4,
@@ -389,7 +406,8 @@
       "zh": "别给我剧透情节！"
      }
     ],
-    "ipa": "/plɒt/"
+    "ipa": "/plɒt/",
+    "def": "the series of events that form the story of a book, film or play"
    },
    {
     "id": 5,
@@ -414,7 +432,8 @@
       "zh": "他对足球一点兴趣都没有。"
      }
     ],
-    "ipa": "/wɒtˌsəʊˈevə/"
+    "ipa": "/wɒtˌsəʊˈevə/",
+    "def": "at all; used after a negative to make it stronger"
    },
    {
     "id": 6,
@@ -440,7 +459,8 @@
       "zh": "年轻人渴望新想法。"
      }
     ],
-    "ipa": "/ˈhʌŋɡrɪ fɔː/"
+    "ipa": "/ˈhʌŋɡrɪ fɔː/",
+    "def": "wanting something very much"
    },
    {
     "id": 7,
@@ -468,7 +488,22 @@
       "zh": "永远别以为公交会准时。"
      }
     ],
-    "ipa": "/əˈsjuːm/"
+    "ipa": "/əˈsjuːm/",
+    "def": "to think that something is true without having proof",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "presume",
+      "zh": "推测",
+      "diff": "两者很像。assume 是“没有证据就认为”；presume 更正式，常是“根据已有情况推定”。",
+      "ex": [
+       {
+        "en": "I [[presume]] you've heard the news.",
+        "zh": "我想你已经听说这个消息了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 8,
@@ -494,7 +529,8 @@
       "zh": "她是一名体育节目主持人。"
      }
     ],
-    "ipa": "/ˈbrɔːdkɑːstə/"
+    "ipa": "/ˈbrɔːdkɑːstə/",
+    "def": "a company that makes radio or TV programmes; a person who speaks on radio or TV"
    },
    {
     "id": 9,
@@ -519,7 +555,8 @@
       "zh": "账单须在周五前全额付清。"
      }
     ],
-    "ipa": "/ɪn fʊl/"
+    "ipa": "/ɪn fʊl/",
+    "def": "with nothing left out; completely"
    },
    {
     "id": 10,
@@ -544,7 +581,8 @@
       "zh": "上个月几乎没下雨。"
      }
     ],
-    "ipa": "/tə spiːk ɒv/"
+    "ipa": "/tə spiːk ɒv/",
+    "def": "worth mentioning; used after a negative to say there is very little of something"
    },
    {
     "id": 11,
@@ -572,7 +610,8 @@
       "zh": "下周继续收看。"
      }
     ],
-    "ipa": "/tjuːn ɪn/"
+    "ipa": "/tjuːn ɪn/",
+    "def": "to watch or listen to a particular programme or channel"
    },
    {
     "id": 12,
@@ -597,7 +636,8 @@
       "zh": "每个人都会在某个时候感到孤独。"
      }
     ],
-    "ipa": "/æt sʌm pɔɪnt/"
+    "ipa": "/æt sʌm pɔɪnt/",
+    "def": "at a time that is not exactly known or stated"
    },
    {
     "id": 13,
@@ -622,7 +662,8 @@
       "zh": "雨连续下了三天。"
      }
     ],
-    "ipa": "/wɪˌðaʊt ə breɪk/"
+    "ipa": "/wɪˌðaʊt ə breɪk/",
+    "def": "continuously, without stopping to rest"
    },
    {
     "id": 14,
@@ -647,7 +688,8 @@
       "zh": "嶙峋的群山耸立在湖的上方。"
      }
     ],
-    "ipa": "/ˈdʒæɡɪd/"
+    "ipa": "/ˈdʒæɡɪd/",
+    "def": "with rough, sharp, uneven edges or points"
    },
    {
     "id": 15,
@@ -675,7 +717,8 @@
       "zh": "我们捡柴准备生火。"
      }
     ],
-    "ipa": "/ˈɡæðə/"
+    "ipa": "/ˈɡæðə/",
+    "def": "to come together in one place; to collect things"
    },
    {
     "id": 16,
@@ -749,7 +792,8 @@
       "zh": "他们围坐在炉火边讲故事。"
      }
     ],
-    "ipa": "/hɑːθ/"
+    "ipa": "/hɑːθ/",
+    "def": "the floor of a fireplace; a person's home"
    },
    {
     "id": 18,
@@ -775,7 +819,8 @@
       "zh": "她半开玩笑地怪罪那只猫。"
      }
     ],
-    "ipa": "/ˈhɑːfˈsɪərɪəslɪ/"
+    "ipa": "/ˈhɑːfˈsɪərɪəslɪ/",
+    "def": "partly joking and partly meaning it"
    },
    {
     "id": 19,
@@ -803,7 +848,8 @@
       "zh": "书一摞摞堆在地上。"
      }
     ],
-    "ipa": "/stæk/"
+    "ipa": "/stæk/",
+    "def": "to put things neatly on top of each other; a neat pile of things"
    },
    {
     "id": 20,
@@ -831,7 +877,8 @@
       "zh": "我的耐心快用完了。"
      }
     ],
-    "ipa": "/weə θɪn/"
+    "ipa": "/weə θɪn/",
+    "def": "to become less interesting or less acceptable because it has gone on too long"
    },
    {
     "id": 21,
@@ -859,7 +906,8 @@
       "zh": "她努力证明他们看错了。"
      }
     ],
-    "ipa": "/pruːvd rɒŋ/"
+    "ipa": "/pruːvd rɒŋ/",
+    "def": "to be shown to have been mistaken"
    },
    {
     "id": 22,
@@ -886,7 +934,8 @@
       "zh": "她后来被称为爵士女王。"
      }
     ],
-    "ipa": "/keɪm təbɪ nəʊn/"
+    "ipa": "/keɪm təbɪ nəʊn/",
+    "def": "to gradually start being called a particular name"
    },
    {
     "id": 23,
@@ -912,7 +961,22 @@
       "zh": "这个想法很受欢迎。"
      }
     ],
-    "ipa": "/əˈpiːl/"
+    "ipa": "/əˈpiːl/",
+    "def": "a quality that makes people like or want something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "appeal to",
+      "zh": "吸引；呼吁",
+      "diff": "动词 appeal to sb 是“吸引某人”（The idea appeals to me.）；也可指“向……呼吁”。",
+      "ex": [
+       {
+        "en": "The idea really [[appeals to]] me.",
+        "zh": "这个主意很合我的心意。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 24,
@@ -940,7 +1004,34 @@
       "zh": "他连菜单都没看一眼。"
      }
     ],
-    "ipa": "/ɡlɑːns æt/"
+    "ipa": "/ɡlɑːns æt/",
+    "def": "to look at something quickly for a short time",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "glimpse",
+      "zh": "瞥见",
+      "diff": "glance at 是“主动看一眼”；catch a glimpse of 是“无意中瞥见一眼、只看到一下”。",
+      "ex": [
+       {
+        "en": "I caught a [[glimpse]] of her in the crowd.",
+        "zh": "我在人群中瞥见了她一眼。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "stare at",
+      "zh": "盯着看",
+      "diff": "glance 是很快看一眼；stare 是长时间盯着看。",
+      "ex": [
+       {
+        "en": "Stop [[staring at]] me!",
+        "zh": "别盯着我看！"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 25,
@@ -965,7 +1056,22 @@
       "zh": "他未经允许就把车开走了。"
      }
     ],
-    "ipa": "/pəˈmɪʃən/"
+    "ipa": "/pəˈmɪʃən/",
+    "def": "the act of allowing someone to do something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "permit",
+      "zh": "许可证；允许",
+      "diff": "permission 是不可数名词“许可”（ask for permission）；permit 作名词是“许可证”（a parking permit），作动词是“允许”。",
+      "ex": [
+       {
+        "en": "You need a [[permit]] to park here.",
+        "zh": "在这里停车需要许可证。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 26,
@@ -993,7 +1099,8 @@
       "zh": "退休后他终于放慢了节奏。"
      }
     ],
-    "ipa": "/sləʊ daʊn/"
+    "ipa": "/sləʊ daʊn/",
+    "def": "to become slower, or to make something slower"
    },
    {
     "id": 27,
@@ -1022,7 +1129,8 @@
       "zh": "这个标题就是为了吸引你的注意。"
      }
     ],
-    "ipa": "/ɡræb əˈtenʃən/"
+    "ipa": "/ɡræb əˈtenʃən/",
+    "def": "to make people notice something"
    },
    {
     "id": 28,
@@ -1050,7 +1158,8 @@
       "zh": "她把那封信保留了很多年。"
      }
     ],
-    "ipa": "/həʊld ɒn tuː/"
+    "ipa": "/həʊld ɒn tuː/",
+    "def": "to hold something tightly; to keep something and not lose it"
    },
    {
     "id": 29,
@@ -1076,7 +1185,8 @@
       "zh": "我讨厌留悬念的结尾！"
      }
     ],
-    "ipa": "/ˈklɪfhæŋə/"
+    "ipa": "/ˈklɪfhæŋə/",
+    "def": "an exciting ending to an episode that leaves you wanting to know what happens next"
    },
    {
     "id": 30,
@@ -1104,7 +1214,8 @@
       "zh": "这份工作对你要求很高。"
      }
     ],
-    "ipa": "/ɑːsks ˈnʌθɪŋ ɒv/"
+    "ipa": "/ɑːsks ˈnʌθɪŋ ɒv/",
+    "def": "to make no demands on someone"
    },
    {
     "id": 31,
@@ -1132,7 +1243,8 @@
       "zh": "她的努力得到了回报。"
      }
     ],
-    "ipa": "/rɪˈwɔːd/"
+    "ipa": "/rɪˈwɔːd/",
+    "def": "to give someone something good because of what they have done"
    },
    {
     "id": 32,
@@ -1157,7 +1269,22 @@
       "zh": "感谢您的耐心等待。"
      }
     ],
-    "ipa": "/ˈpeɪʃəns/"
+    "ipa": "/ˈpeɪʃəns/",
+    "def": "the ability to wait calmly or keep trying without becoming annoyed",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "impatience",
+      "zh": "不耐烦",
+      "diff": "patience 耐心；加 im- 变反义 impatience。形容词 patient / impatient。",
+      "ex": [
+       {
+        "en": "She waited with growing [[impatience]].",
+        "zh": "她等得越来越不耐烦。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 33,
@@ -1182,7 +1309,8 @@
       "zh": "他们在海边度过了休养身心的一周。"
      }
     ],
-    "ipa": "/rɪˈstɔːrəˌtɪv/"
+    "ipa": "/rɪˈstɔːrəˌtɪv/",
+    "def": "making you feel healthy, strong or calm again"
    },
    {
     "id": 34,
@@ -1207,7 +1335,8 @@
       "zh": "这座城市看起来和五十年前差不多。"
      }
     ],
-    "ipa": "/mʌtʃ laɪk/"
+    "ipa": "/mʌtʃ laɪk/",
+    "def": "very similar to"
    },
    {
     "id": 35,
@@ -1232,7 +1361,8 @@
       "zh": "他还在上班。"
      }
     ],
-    "ipa": "/æt wɜːk/"
+    "ipa": "/æt wɜːk/",
+    "def": "having an effect or influence; doing work"
    },
    {
     "id": 36,
@@ -1260,7 +1390,22 @@
       "zh": "我钦佩她的勇气。"
      }
     ],
-    "ipa": "/ədˈmaɪə/"
+    "ipa": "/ədˈmaɪə/",
+    "def": "to respect someone for what they have done; to look at something with pleasure",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "admit",
+      "zh": "承认",
+      "diff": "拼写相近：admire 是“欣赏、钦佩”；admit 是“承认”。",
+      "ex": [
+       {
+        "en": "He [[admitted]] his mistake.",
+        "zh": "他承认了错误。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 37,
@@ -1286,7 +1431,8 @@
       "zh": "我搞不懂她为什么走。"
      }
     ],
-    "ipa": "/hɑːd tə ˈfæðəm/"
+    "ipa": "/hɑːd tə ˈfæðəm/",
+    "def": "very difficult to understand"
    },
    {
     "id": 38,
@@ -1313,7 +1459,8 @@
       "zh": "她的作品本身就说明了一切。"
      }
     ],
-    "ipa": "/spiːk fɔː ðemˈselvz/"
+    "ipa": "/spiːk fɔː ðemˈselvz/",
+    "def": "to show something clearly so that no further explanation is needed"
    },
    {
     "id": 39,
@@ -1338,7 +1485,22 @@
       "zh": "房间里安静得出奇。"
      }
     ],
-    "ipa": "/ˈɒdlɪ/"
+    "ipa": "/ˈɒdlɪ/",
+    "def": "in a strange or unexpected way",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "strangely",
+      "zh": "奇怪地",
+      "diff": "两者意思一样；oddly 稍口语，常用于句首表示“说来奇怪”（Oddly enough, ...）。",
+      "ex": [
+       {
+        "en": "[[Strangely]], no one heard anything.",
+        "zh": "奇怪的是，没人听到任何动静。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 40,
@@ -1364,7 +1526,22 @@
      }
     ],
     "ipa": "/ˈɡrɪpɪŋ/",
-    "say": "gripping."
+    "say": "gripping.",
+    "def": "so exciting or interesting that it holds your attention completely",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "exciting",
+      "zh": "令人兴奋的",
+      "diff": "exciting 是普通的“刺激、令人兴奋”；gripping 专指故事、比赛等“扣人心弦，让人放不下”。",
+      "ex": [
+       {
+        "en": "It was an [[exciting]] match.",
+        "zh": "那是一场激动人心的比赛。"
+       }
+      ]
+     }
+    ]
    }
   ],
   "cloze": [

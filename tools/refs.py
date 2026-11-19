@@ -6,7 +6,7 @@ build.py and make_audio.py see a complete entry; the review schedule stays the o
 import json
 import os
 
-COPIED = ("expr", "zh", "note", "core", "forms", "syn", "ex", "say", "ipa")
+COPIED = ("expr", "zh", "note", "core", "forms", "syn", "ex", "say", "ipa", "def", "cf")
 
 
 def resolve_refs(slug, raw, content_dir):

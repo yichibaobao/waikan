@@ -457,7 +457,8 @@
      "slumped into"
     ],
     "syn": [],
-    "ipa": "/slʌmp ˈɒntʊ/"
+    "ipa": "/slʌmp ˈɒntʊ/",
+    "def": "to sit or fall down heavily onto something because you are tired or relaxed"
    },
    {
     "id": 2,
@@ -486,7 +487,8 @@
      "dozing off"
     ],
     "syn": [],
-    "ipa": "/dəʊz ɒf/"
+    "ipa": "/dəʊz ɒf/",
+    "def": "to fall asleep for a short time, especially when you did not mean to"
    },
    {
     "id": 3,
@@ -516,7 +518,8 @@
      "be stuffed with"
     ],
     "syn": [],
-    "ipa": "/stʌft wɪð/"
+    "ipa": "/stʌft wɪð/",
+    "def": "completely filled with things, often too full"
    },
    {
     "id": 4,
@@ -544,7 +547,34 @@
     "syn": [
      "unlikely"
     ],
-    "ipa": "/ɪmˈprɒbəbəl/"
+    "ipa": "/ɪmˈprɒbəbəl/",
+    "def": "not likely to be true or to happen; surprising",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "unlikely",
+      "zh": "不大可能的",
+      "diff": "unlikely 是最普通的说法；improbable 更书面，常带“出人意料、难以置信”的意味。",
+      "ex": [
+       {
+        "en": "It's [[unlikely]] to rain today.",
+        "zh": "今天不太可能下雨。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "impossible",
+      "zh": "不可能的",
+      "diff": "impossible 是“完全不可能”，improbable 只是“可能性很小”，还有可能发生。",
+      "ex": [
+       {
+        "en": "It's not [[impossible]], just very improbable.",
+        "zh": "不是不可能，只是可能性很小。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 5,
@@ -578,7 +608,8 @@
      "stepped forward",
      "stepping forward"
     ],
-    "ipa": "/kʌm ˈfɔːwəd/"
+    "ipa": "/kʌm ˈfɔːwəd/",
+    "def": "to offer to help, give information or claim something, especially to the police or an official"
    },
    {
     "id": 6,
@@ -604,7 +635,22 @@
      "staggering"
     ],
     "syn": [],
-    "ipa": "/ˈstæɡərɪŋ/"
+    "ipa": "/ˈstæɡərɪŋ/",
+    "def": "so large or surprising that it is hard to believe",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "astonishing",
+      "zh": "令人惊讶的",
+      "diff": "两者都表示“惊人”。staggering 多形容数字、规模大得吓人；astonishing 更侧重让人吃惊的感受，可用于任何事。",
+      "ex": [
+       {
+        "en": "She made an [[astonishing]] recovery.",
+        "zh": "她恢复得令人惊叹。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 7,
@@ -630,7 +676,8 @@
      "by sheer volume"
     ],
     "syn": [],
-    "ipa": "/baɪ ʃɪə ˈvɒljuːm/"
+    "ipa": "/baɪ ʃɪə ˈvɒljuːm/",
+    "def": "because of the very large amount or number alone"
    },
    {
     "id": 8,
@@ -659,7 +706,8 @@
      "leading the pack"
     ],
     "syn": [],
-    "ipa": "/liːd ðə pæk/"
+    "ipa": "/liːd ðə pæk/",
+    "def": "to be ahead of all the others in a race or competition"
    },
    {
     "id": 9,
@@ -691,7 +739,8 @@
      "were another story"
     ],
     "syn": [],
-    "ipa": "/əˈnʌðə ˈstɔːrɪ/"
+    "ipa": "/əˈnʌðə ˈstɔːrɪ/",
+    "def": "used to say that something is completely different from what you have just mentioned"
    },
    {
     "id": 10,
@@ -725,7 +774,8 @@
      "entitled to"
     ],
     "syn": [],
-    "ipa": "/enˈtaɪtəl/"
+    "ipa": "/enˈtaɪtəl/",
+    "def": "to give someone the right to have or do something"
    },
    {
     "id": 11,
@@ -754,7 +804,34 @@
      "waiving"
     ],
     "syn": [],
-    "ipa": "/weɪv/"
+    "ipa": "/weɪv/",
+    "def": "to choose not to demand a right, payment or rule that you could insist on",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "give up",
+      "zh": "放弃",
+      "diff": "give up 是日常说法，放弃的东西很广；waive 是正式用语，专指放弃权利、费用、规定等“本可以要求的东西”。",
+      "ex": [
+       {
+        "en": "The bank agreed to [[waive]] the fee.",
+        "zh": "银行同意免掉这笔费用。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "wave",
+      "zh": "挥手",
+      "diff": "发音一样，拼写不同：wave 是“挥手、挥动”，waive 是“放弃（权利、费用）”。",
+      "ex": [
+       {
+        "en": "She [[waved]] goodbye.",
+        "zh": "她挥手告别。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 12,
@@ -780,7 +857,8 @@
      "infrastructure"
     ],
     "syn": [],
-    "ipa": "/ˈɪnfrəˌstrʌktʃə/"
+    "ipa": "/ˈɪnfrəˌstrʌktʃə/",
+    "def": "the basic systems and structures that a country or organization needs in order to work"
    },
    {
     "id": 13,
@@ -808,7 +886,8 @@
     "syn": [
      "gloriously boring"
     ],
-    "ipa": "/ˈɡlɔːrɪəslɪ dʌl/"
+    "ipa": "/ˈɡlɔːrɪəslɪ dʌl/",
+    "def": "boring in a way that is actually good or pleasing"
    },
    {
     "id": 14,
@@ -837,7 +916,8 @@
      "lessons that travel"
     ],
     "syn": [],
-    "ipa": "/ə ˈlesən ðæt ˈtrævəlz/"
+    "ipa": "/ə ˈlesən ðæt ˈtrævəlz/",
+    "def": "an idea or method that can work well in other places too"
    },
    {
     "id": 15,
@@ -863,7 +943,8 @@
      "counterintuitively"
     ],
     "syn": [],
-    "ipa": "/ˌkaʊntərɪnˈtjuːɪˌtɪvlɪ/"
+    "ipa": "/ˌkaʊntərɪnˈtjuːɪˌtɪvlɪ/",
+    "def": "in a way that is different from what you would naturally expect"
    },
    {
     "id": 16,
@@ -890,7 +971,8 @@
      "exhortations"
     ],
     "syn": [],
-    "ipa": "/eɡzɔːˈteɪʃən/"
+    "ipa": "/eɡzɔːˈteɪʃən/",
+    "def": "a strong attempt to persuade someone to do something"
    },
    {
     "id": 17,
@@ -919,7 +1001,8 @@
      "legislating"
     ],
     "syn": [],
-    "ipa": "/ˈledʒɪˌsleɪt/"
+    "ipa": "/ˈledʒɪˌsleɪt/",
+    "def": "to make a law about something; to control something by law"
    },
    {
     "id": 18,
@@ -953,7 +1036,22 @@
      "swore",
      "swearing"
     ],
-    "ipa": "/kɜːs/"
+    "ipa": "/kɜːs/",
+    "def": "to swear or say angry, rude words because something has gone wrong",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "swear",
+      "zh": "骂脏话",
+      "diff": "swear 指说脏话本身；curse 也可指说脏话，还可指“诅咒某人”或懊恼地骂几句。",
+      "ex": [
+       {
+        "en": "He hit his thumb and [[swore]] loudly.",
+        "zh": "他砸到拇指，大声骂了一句。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 19,
@@ -989,7 +1087,8 @@
      "register",
      "registered"
     ],
-    "ipa": "/lɒɡ/"
+    "ipa": "/lɒɡ/",
+    "def": "to record something officially, especially in a list or computer system"
    },
    {
     "id": 20,
@@ -1021,7 +1120,34 @@
      "be obliged to"
     ],
     "syn": [],
-    "ipa": "/əˈblaɪdʒ/"
+    "ipa": "/əˈblaɪdʒ/",
+    "def": "to make someone do something because of a law, rule or duty",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "force",
+      "zh": "强迫",
+      "diff": "force 是用力量或压力逼人做；oblige 多指法律、规则、义务要求人必须做，更正式。",
+      "ex": [
+       {
+        "en": "They [[forced]] him to sign.",
+        "zh": "他们逼他签了字。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "be obliged (to sb)",
+      "zh": "感激（某人）",
+      "diff": "be obliged to do 是“必须做”；I'm much obliged (to you) 是很客气的“非常感谢”。",
+      "ex": [
+       {
+        "en": "I'm much [[obliged]] to you for your help.",
+        "zh": "非常感谢你的帮助。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 21,
@@ -1049,7 +1175,8 @@
      "station attendant"
     ],
     "syn": [],
-    "ipa": "/əˈtendənt/"
+    "ipa": "/əˈtendənt/",
+    "def": "a person whose job is to serve or help people in a public place"
    },
    {
     "id": 22,
@@ -1079,7 +1206,8 @@
      "payable"
     ],
     "syn": [],
-    "ipa": "/ˈpeɪəbəl/"
+    "ipa": "/ˈpeɪəbəl/",
+    "def": "that must be paid, or that can be paid, to someone"
    },
    {
     "id": 23,
@@ -1110,7 +1238,8 @@
      "spectacular"
     ],
     "syn": [],
-    "ipa": "/spekˈtækjʊlə/"
+    "ipa": "/spekˈtækjʊlə/",
+    "def": "very impressive to look at; or, very great or extreme"
    },
    {
     "id": 24,
@@ -1142,7 +1271,8 @@
      "finders, keepers"
     ],
     "syn": [],
-    "ipa": "/ˈfaɪndəz ˈkiːpəz/"
+    "ipa": "/ˈfaɪndəz ˈkiːpəz/",
+    "def": "a saying meaning that a person who finds something has the right to keep it"
    },
    {
     "id": 25,
@@ -1173,7 +1303,8 @@
      "civic"
     ],
     "syn": [],
-    "ipa": "/ˈsɪvɪk/"
+    "ipa": "/ˈsɪvɪk/",
+    "def": "connected with a town or city, or with the duties and pride of its citizens"
    },
    {
     "id": 26,
@@ -1207,7 +1338,8 @@
      "mostly",
      "mainly"
     ],
-    "ipa": "/ˈlɑːdʒlɪ/"
+    "ipa": "/ˈlɑːdʒlɪ/",
+    "def": "mostly; to a large degree"
    },
    {
     "id": 27,
@@ -1238,7 +1370,8 @@
      "one stop too late"
     ],
     "syn": [],
-    "ipa": "/wɒn stɒp tuː leɪt/"
+    "ipa": "/wɒn stɒp tuː leɪt/",
+    "def": "a stop after the one where you should have got off"
    },
    {
     "id": 28,
@@ -1269,7 +1402,8 @@
      "minus"
     ],
     "syn": [],
-    "ipa": "/ˈmaɪnəs/"
+    "ipa": "/ˈmaɪnəs/",
+    "def": "without something that should be there (informal)"
    },
    {
     "id": 29,
@@ -1301,7 +1435,8 @@
      "by the time that"
     ],
     "syn": [],
-    "ipa": "/baɪ ðə taɪm/"
+    "ipa": "/baɪ ðə taɪm/",
+    "def": "at or before the moment when something happens"
    },
    {
     "id": 30,
@@ -1336,7 +1471,8 @@
      "belonging",
      "belongings"
     ],
-    "ipa": "/pəˈzeʃən/"
+    "ipa": "/pəˈzeʃən/",
+    "def": "something that you own or have with you"
    },
    {
     "id": 31,
@@ -1367,7 +1503,8 @@
      "and all"
     ],
     "syn": [],
-    "ipa": "/ænd ɔːl/"
+    "ipa": "/ænd ɔːl/",
+    "def": "used to show that something is included as well, often surprisingly (informal)"
    },
    {
     "id": 32,
@@ -1410,7 +1547,34 @@
      "submitted",
      "submitting"
     ],
-    "ipa": "/hænd ɪn/"
+    "ipa": "/hænd ɪn/",
+    "def": "to give something to a person in authority",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "hand out",
+      "zh": "分发",
+      "diff": "hand in 是“交上去”（交给老师、上级、警察）；hand out 是“发下去”（发给一群人）。",
+      "ex": [
+       {
+        "en": "The teacher [[handed out]] the test papers.",
+        "zh": "老师把试卷发了下去。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "hand over",
+      "zh": "移交",
+      "diff": "hand over 指把东西或控制权交给对方，常带“不得不交出”的意味，不一定是交给上级。",
+      "ex": [
+       {
+        "en": "He [[handed over]] the keys to the new owner.",
+        "zh": "他把钥匙交给了新房主。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 33,
@@ -1441,7 +1605,22 @@
      "in practice"
     ],
     "syn": [],
-    "ipa": "/ɪn ˈpræktɪs/"
+    "ipa": "/ɪn ˈpræktɪs/",
+    "def": "what really happens, rather than what should happen in theory",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "in theory",
+      "zh": "理论上",
+      "diff": "in theory 讲“按道理应该怎样”，in practice 讲“实际上怎样”，两者常成对出现，形成对比。",
+      "ex": [
+       {
+        "en": "[[In theory]] it's free; in practice you pay a fee.",
+        "zh": "理论上免费，实际上要交费。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 34,
@@ -1472,7 +1651,8 @@
      "reportedly"
     ],
     "syn": [],
-    "ipa": "/rɪˈpɔːtɪdlɪ/"
+    "ipa": "/rɪˈpɔːtɪdlɪ/",
+    "def": "according to what people say or what has been reported"
    },
    {
     "id": 35,
@@ -1507,7 +1687,8 @@
      "lying in"
     ],
     "syn": [],
-    "ipa": "/laɪ ɪn/"
+    "ipa": "/laɪ ɪn/",
+    "def": "to exist in or be caused by something"
    },
    {
     "id": 36,
@@ -1542,7 +1723,8 @@
      "not only",
      "not simply"
     ],
-    "ipa": "/nɒt ˈmɪəlɪ/"
+    "ipa": "/nɒt ˈmɪəlɪ/",
+    "def": "not only; used to say that something is more than what has been said"
    },
    {
     "id": 37,
@@ -1574,7 +1756,22 @@
      "virtues"
     ],
     "syn": [],
-    "ipa": "/ˈvɜːtʃuː/"
+    "ipa": "/ˈvɜːtʃuː/",
+    "def": "a good quality or habit in a person or thing",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "value",
+      "zh": "价值；价值观",
+      "diff": "virtue 是人的美德或事物的优点；value 是价值、价格，复数 values 指价值观。",
+      "ex": [
+       {
+        "en": "Family [[values]] matter to her.",
+        "zh": "她很看重家庭观念。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 38,
@@ -1606,7 +1803,8 @@
      "no amount of will"
     ],
     "syn": [],
-    "ipa": "/nəʊ əˈmaʊnt ɒv/"
+    "ipa": "/nəʊ əˈmaʊnt ɒv/",
+    "def": "used to say that even a very large quantity of something will not achieve a result"
    },
    {
     "id": 39,
@@ -1640,7 +1838,22 @@
      "make from scratch"
     ],
     "syn": [],
-    "ipa": "/frɒm skrætʃ/"
+    "ipa": "/frɒm skrætʃ/",
+    "def": "from the very beginning, without using anything that existed before",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "from the start",
+      "zh": "从一开始",
+      "diff": "from scratch 强调“从零开始做”，不借用任何现成的东西；from the start 只是说时间“从一开始就……”。",
+      "ex": [
+       {
+        "en": "I knew [[from the start]] that it was a bad idea.",
+        "zh": "我一开始就知道这不是个好主意。"
+       }
+      ]
+     }
+    ]
    }
   ],
   "cloze": [

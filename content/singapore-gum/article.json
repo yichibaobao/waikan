@@ -278,7 +278,8 @@
       "zh": "他靠一张嘴摆脱了困境。"
      }
     ],
-    "ipa": "/ˈstɪkɪ ˌsɪtʃuːˈeɪʃən/"
+    "ipa": "/ˈstɪkɪ ˌsɪtʃuːˈeɪʃən/",
+    "def": "a difficult or embarrassing situation"
    },
    {
     "id": 2,
@@ -304,7 +305,8 @@
       "zh": "古代雅典是一个强大的城邦。"
      }
     ],
-    "ipa": "/ˈsɪtɪˈsteɪt/"
+    "ipa": "/ˈsɪtɪˈsteɪt/",
+    "def": "a city that is also an independent country"
    },
    {
     "id": 3,
@@ -333,7 +335,8 @@
       "zh": "价格几乎没有下降的迹象。"
      }
     ],
-    "ipa": "/ʃəʊ ˈlɪtəl saɪn ɒv/"
+    "ipa": "/ʃəʊ ˈlɪtəl saɪn ɒv/",
+    "def": "to seem very unlikely to do something"
    },
    {
     "id": 4,
@@ -361,7 +364,16 @@
       "zh": "暴风雨丝毫没有减弱的迹象。"
      }
     ],
-    "ipa": "/rɪˈlent/"
+    "ipa": "/rɪˈlent/",
+    "def": "to finally agree to something after refusing; (of bad weather) to become less strong",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "give in",
+      "zh": "屈服",
+      "diff": "give in 是普通的“屈服、让步”；relent 更书面，指之前很强硬的人终于“心软、松口”。"
+     }
+    ]
    },
    {
     "id": 5,
@@ -388,7 +400,22 @@
       "zh": "医生们对她的病情感到困惑。"
      }
     ],
-    "ipa": "/ˈbæflɪŋ/"
+    "ipa": "/ˈbæflɪŋ/",
+    "def": "impossible to understand or explain",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "confusing",
+      "zh": "令人困惑的",
+      "diff": "confusing 是“让人搞不清楚”；baffling 语气更强，指“完全想不通、莫名其妙”。",
+      "ex": [
+       {
+        "en": "The instructions are really [[confusing]].",
+        "zh": "说明书写得很让人糊涂。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 6,
@@ -416,7 +443,8 @@
       "zh": "这个价格让一些人吃了一惊。"
      }
     ],
-    "ipa": "/reɪz ˈaɪbraʊz/"
+    "ipa": "/reɪz ˈaɪbraʊz/",
+    "def": "to make people surprised or slightly shocked"
    },
    {
     "id": 7,
@@ -441,7 +469,8 @@
       "zh": "她的理由很简单：太贵了。"
      }
     ],
-    "ipa": "/ˈriːzənɪŋ/"
+    "ipa": "/ˈriːzənɪŋ/",
+    "def": "the process of thinking about something in a logical way; the reasons behind an opinion"
    },
    {
     "id": 8,
@@ -469,7 +498,8 @@
       "zh": "那件外套一定贵得要命。"
      }
     ],
-    "ipa": "/spend ə ˈfɔːtʃuːn/"
+    "ipa": "/spend ə ˈfɔːtʃuːn/",
+    "def": "to spend a very large amount of money"
    },
    {
     "id": 9,
@@ -498,7 +528,8 @@
       "zh": "我花了十分钟把冰刮掉。"
      }
     ],
-    "ipa": "/skreɪp ɒf/"
+    "ipa": "/skreɪp ɒf/",
+    "def": "to remove something from a surface by rubbing it with something sharp or hard"
    },
    {
     "id": 10,
@@ -524,7 +555,8 @@
       "zh": "楼梯间又黑又冷。"
      }
     ],
-    "ipa": "/ˈsteəwel/"
+    "ipa": "/ˈsteəwel/",
+    "def": "the space in a building that contains the stairs"
    },
    {
     "id": 11,
@@ -549,7 +581,8 @@
       "zh": "电视坏了，这成了压垮骆驼的最后一根稻草。"
      }
     ],
-    "ipa": "/ðə lɑːst strɔː/"
+    "ipa": "/ðə lɑːst strɔː/",
+    "def": "the last in a series of bad things that makes you finally lose patience"
    },
    {
     "id": 12,
@@ -575,7 +608,8 @@
       "zh": "据大多数说法，火是从厨房烧起来的。"
      }
     ],
-    "ipa": "/əˈkɔːdɪŋ tə məʊst əˈkaʊnts/"
+    "ipa": "/əˈkɔːdɪŋ tə məʊst əˈkaʊnts/",
+    "def": "according to what most people have said or written about something"
    },
    {
     "id": 13,
@@ -604,7 +638,8 @@
       "zh": "雕像一夜之间被人破坏了。"
      }
     ],
-    "ipa": "/ˈvændəl/"
+    "ipa": "/ˈvændəl/",
+    "def": "a person who deliberately damages public property"
    },
    {
     "id": 14,
@@ -632,7 +667,50 @@
       "zh": "和谈再次陷入僵局。"
      }
     ],
-    "ipa": "/stɔːl/"
+    "ipa": "/stɔːl/",
+    "def": "(of an engine or vehicle) to stop suddenly; to delay doing something; to stop making progress",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "stop",
+      "zh": "停止",
+      "diff": "stop 是最普通的“停下”，可以是主动、正常地停；stall 是意外地“熄火、停滞”，车或发动机突然停下、谈判或计划卡住不动，常带“出了问题”的意思。",
+      "ex": [
+       {
+        "en": "The bus [[stopped]] at the lights.",
+        "zh": "公交车在红绿灯前停下了。"
+       },
+       {
+        "en": "The car [[stalled]] at the lights.",
+        "zh": "车在红绿灯前熄火了。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "stall (= delay)",
+      "zh": "拖延",
+      "diff": "stall 还可以指人“故意拖延时间、敷衍”，这时接近 delay，但 delay 是中性的“推迟”，stall 带“故意拖”的意思。",
+      "ex": [
+       {
+        "en": "Stop [[stalling]] and give me an answer.",
+        "zh": "别拖了，给我个答复。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "start (up)",
+      "zh": "发动",
+      "diff": "车熄火是 stall，重新发动是 start (up)。",
+      "ex": [
+       {
+        "en": "The engine won't [[start]].",
+        "zh": "发动机打不着火。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -658,7 +736,22 @@
       "zh": "一个错误就可能毁了你的名声。"
      }
     ],
-    "ipa": "/ˌrepjuːˈteɪʃən/"
+    "ipa": "/ˌrepjuːˈteɪʃən/",
+    "def": "the opinion that people have about someone or something, based on what has happened in the past",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "fame",
+      "zh": "名气",
+      "diff": "fame 只表示“出名”；reputation 是“名声”，可好可坏（a good / bad reputation）。",
+      "ex": [
+       {
+        "en": "She has a [[reputation]] for being late.",
+        "zh": "她出了名的爱迟到。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 16,
@@ -687,7 +780,22 @@
       "zh": "她以从不迟到为荣。"
      }
     ],
-    "ipa": "/praɪd wɒnˈself ɒn/"
+    "ipa": "/praɪd wɒnˈself ɒn/",
+    "def": "to be proud of a quality or skill that you have",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "be proud of",
+      "zh": "为……自豪",
+      "diff": "be proud of 用得最广；pride oneself on 强调“对自己的某种品质或能力引以为豪”，主语通常是自己的特点。",
+      "ex": [
+       {
+        "en": "I'm so [[proud of]] you.",
+        "zh": "我真为你骄傲。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 17,
@@ -712,7 +820,8 @@
       "zh": "她的桌子总是整整齐齐。"
      }
     ],
-    "ipa": "/ˈɔːdəlɪ/"
+    "ipa": "/ˈɔːdəlɪ/",
+    "def": "arranged or organized in a neat, tidy way; behaving well"
    },
    {
     "id": 18,
@@ -740,7 +849,8 @@
       "zh": "出汗有助于调节体温。"
      }
     ],
-    "ipa": "/ˈreɡjʊˌleɪt/"
+    "ipa": "/ˈreɡjʊˌleɪt/",
+    "def": "to control an activity or process, usually by rules"
    },
    {
     "id": 19,
@@ -768,7 +878,8 @@
       "zh": "沙滩上满是垃圾。"
      }
     ],
-    "ipa": "/ˈlɪtə/"
+    "ipa": "/ˈlɪtə/",
+    "def": "to leave rubbish on the ground in a public place; rubbish left lying around"
    },
    {
     "id": 20,
@@ -796,7 +907,16 @@
       "zh": "宝宝把药吐了出来。"
      }
     ],
-    "ipa": "/spɪt/"
+    "ipa": "/spɪt/",
+    "def": "to force liquid or food out of your mouth",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "spit / spat",
+      "zh": "过去式",
+      "diff": "spit 的过去式和过去分词是 spat（英式）或 spit（美式）。"
+     }
+    ]
    },
    {
     "id": 21,
@@ -824,7 +944,8 @@
       "zh": "马桶坏了，冲不下去。"
      }
     ],
-    "ipa": "/flʌʃ/"
+    "ipa": "/flʌʃ/",
+    "def": "to clean a toilet by making water pass through it"
    },
    {
     "id": 22,
@@ -849,7 +970,8 @@
       "zh": "去巴黎就得接受人多。"
      }
     ],
-    "ipa": "/pɑːt ɒvðə diːl/"
+    "ipa": "/pɑːt ɒvðə diːl/",
+    "def": "something you must accept as part of an arrangement"
    },
    {
     "id": 23,
@@ -874,7 +996,8 @@
       "zh": "他讨厌政府什么都管。"
      }
     ],
-    "ipa": "/ˈnænɪ steɪt/"
+    "ipa": "/ˈnænɪ steɪt/",
+    "def": "a government that is thought to control people's lives too much"
    },
    {
     "id": 24,
@@ -899,7 +1022,22 @@
       "zh": "我不挑，哪家餐厅都行。"
      }
     ],
-    "ipa": "/ˈfʌsɪ/"
+    "ipa": "/ˈfʌsɪ/",
+    "def": "too worried about small details; hard to please",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "picky",
+      "zh": "挑剔的",
+      "diff": "picky 口语，多指吃东西、挑选“挑剔”；fussy 也可指挑剔，还可指对小事“大惊小怪、过分讲究”。",
+      "ex": [
+       {
+        "en": "He's a [[picky]] eater.",
+        "zh": "他很挑食。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 25,
@@ -924,7 +1062,8 @@
       "zh": "他保持冷静，毫不在意。"
      }
     ],
-    "ipa": "/ʌnˈbɒðəd/"
+    "ipa": "/ʌnˈbɒðəd/",
+    "def": "not worried or annoyed by something"
    },
    {
     "id": 26,
@@ -952,7 +1091,8 @@
       "zh": "专家指出风险很小。"
      }
     ],
-    "ipa": "/pɔɪnt aʊt/"
+    "ipa": "/pɔɪnt aʊt/",
+    "def": "to tell someone about a fact or mention something they had not noticed"
    },
    {
     "id": 27,
@@ -977,7 +1117,16 @@
       "zh": "他的驾驶记录毫无污点。"
      }
     ],
-    "ipa": "/ˈspɒtləs/"
+    "ipa": "/ˈspɒtləs/",
+    "def": "perfectly clean",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "clean",
+      "zh": "干净的",
+      "diff": "clean 是普通的“干净”；spotless 语气强得多，是“一点污渍都没有、一尘不染”。"
+     }
+    ]
    },
    {
     "id": 28,
@@ -1003,7 +1152,8 @@
       "zh": "农民希望这项贸易协议能帮到他们。"
      }
     ],
-    "ipa": "/treɪd diːl/"
+    "ipa": "/treɪd diːl/",
+    "def": "an agreement between countries about buying and selling goods"
    },
    {
     "id": 29,
@@ -1029,7 +1179,8 @@
       "zh": "任何药店都能买到。"
      }
     ],
-    "ipa": "/ˈfɑːməsɪ/"
+    "ipa": "/ˈfɑːməsɪ/",
+    "def": "a shop or part of a shop where medicines are prepared and sold"
    },
    {
     "id": 30,
@@ -1056,7 +1207,22 @@
       "zh": "她决定辞职。"
      }
     ],
-    "ipa": "/kwɪt/"
+    "ipa": "/kwɪt/",
+    "def": "to stop doing something; to leave a job",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "quite / quiet",
+      "zh": "相当 / 安静的",
+      "diff": "三个词形近：quit 戒掉、辞职；quite 相当；quiet 安静的。",
+      "ex": [
+       {
+        "en": "It's [[quite]] [[quiet]] here.",
+        "zh": "这里相当安静。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 31,
@@ -1081,7 +1247,22 @@
       "zh": "她不停追问，终于得到了答复。"
      }
     ],
-    "ipa": "/pəˈsɪstənt/"
+    "ipa": "/pəˈsɪstənt/",
+    "def": "continuing for a long time, often in an annoying way; refusing to give up",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "consistent",
+      "zh": "一贯的、前后一致的",
+      "diff": "persistent 是“持续不断、坚持”（常指让人烦的东西一直不走）；consistent 是“始终如一、前后一致”，多为褒义。",
+      "ex": [
+       {
+        "en": "Her work is very [[consistent]].",
+        "zh": "她的工作水平一直很稳定。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 32,
@@ -1107,7 +1288,8 @@
       "zh": "她爱读希腊神话。"
      }
     ],
-    "ipa": "/mɪθ/"
+    "ipa": "/mɪθ/",
+    "def": "an ancient story; an idea that many people believe but that is not true"
    },
    {
     "id": 33,
@@ -1135,7 +1317,8 @@
       "zh": "你的想法和事实对不上。"
      }
     ],
-    "ipa": "/fɪt/"
+    "ipa": "/fɪt/",
+    "def": "to match or agree with something"
    },
    {
     "id": 34,
@@ -1165,7 +1348,8 @@
       "zh": "公司方面则否认一切。"
      }
     ],
-    "ipa": "/fɔː wɒnz pɑːt/"
+    "ipa": "/fɔː wɒnz pɑːt/",
+    "def": "used to give your own opinion, as different from others'"
    },
    {
     "id": 35,
@@ -1191,7 +1375,22 @@
       "zh": "她对这个消息漠不关心。"
      }
     ],
-    "ipa": "/ɪnˈdɪfrəns/"
+    "ipa": "/ɪnˈdɪfrəns/",
+    "def": "a lack of interest or concern",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "concern",
+      "zh": "关心",
+      "diff": "indifference 是“漠不关心”；concern / interest 是“关心、在意”。形容词 indifferent to sth 对……无所谓。",
+      "ex": [
+       {
+        "en": "He is [[indifferent]] to fashion.",
+        "zh": "他对时尚毫无兴趣。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 36,
@@ -1219,7 +1418,8 @@
       "zh": "尽量别丢了锻炼的习惯。"
      }
     ],
-    "ipa": "/luːz ðə ˈhæbɪt/"
+    "ipa": "/luːz ðə ˈhæbɪt/",
+    "def": "to stop doing something you used to do regularly"
    },
    {
     "id": 37,
@@ -1297,7 +1497,8 @@
       "zh": "给我一天时间琢磨你的提议。"
      }
     ],
-    "ipa": "/tʃuː ɒn/"
+    "ipa": "/tʃuː ɒn/",
+    "def": "to bite food many times; to think carefully about something for a period of time"
    }
   ],
   "cloze": [

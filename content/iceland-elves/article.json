@@ -306,7 +306,8 @@
       "zh": "小心碰头，天花板很低。"
      }
     ],
-    "ipa": "/maɪnd/"
+    "ipa": "/maɪnd/",
+    "def": "to be careful about something; to pay attention to it"
    },
    {
     "id": 2,
@@ -334,7 +335,8 @@
       "zh": "她宁可绕远走，避开那条车多的路。"
      }
     ],
-    "ipa": "/ðə lɒŋ weɪ raʊnd/"
+    "ipa": "/ðə lɒŋ weɪ raʊnd/",
+    "def": "to travel by a longer route than the most direct one"
    },
    {
     "id": 3,
@@ -361,7 +363,8 @@
       "zh": "摄制组一早就来布置灯光。"
      }
     ],
-    "ipa": "/kruː/"
+    "ipa": "/kruː/",
+    "def": "a group of people who work together, especially on a job outside"
    },
    {
     "id": 4,
@@ -387,7 +390,8 @@
       "zh": "这家公司已经濒临倒闭。"
      }
     ],
-    "ipa": "/ɒnðɪ edʒ ɒv/"
+    "ipa": "/ɒnðɪ edʒ ɒv/",
+    "def": "at the outer part of a place, close to where it ends"
    },
    {
     "id": 5,
@@ -415,7 +419,8 @@
       "zh": "暴风雨过后，河水冲垮了那堵老墙。"
      }
     ],
-    "ipa": "/blɑːst θruː/"
+    "ipa": "/blɑːst θruː/",
+    "def": "to make a way through something using explosives or great force"
    },
    {
     "id": 6,
@@ -443,7 +448,28 @@
       "zh": "我丢的钥匙在洗衣机里找到了。"
      }
     ],
-    "ipa": "/tɜːn ʌp/"
+    "ipa": "/tɜːn ʌp/",
+    "def": "to arrive or appear, often unexpectedly",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "turn down",
+      "zh": "拒绝；调低",
+      "diff": "turn up 是“出现”（也可指调大音量）；turn down 是“拒绝”或“调小”。",
+      "ex": [
+       {
+        "en": "She [[turned down]] the job offer.",
+        "zh": "她拒绝了那份工作。"
+       }
+      ]
+     },
+     {
+      "rel": "syn",
+      "w": "show up",
+      "zh": "出现、到场",
+      "diff": "指人到场时两者常可互换，都很口语。"
+     }
+    ]
    },
    {
     "id": 7,
@@ -469,7 +495,8 @@
       "zh": "奶奶懂很多厨房里的老窍门。"
      }
     ],
-    "ipa": "/lɔː/"
+    "ipa": "/lɔː/",
+    "def": "knowledge and stories about a subject, passed on by people over time"
    },
    {
     "id": 8,
@@ -497,7 +524,8 @@
       "zh": "他把对音乐的热爱传给了孩子们。"
      }
     ],
-    "ipa": "/pɑːs daʊn/"
+    "ipa": "/pɑːs daʊn/",
+    "def": "to give knowledge, skills or objects to younger people who will live after you"
    },
    {
     "id": 9,
@@ -528,7 +556,22 @@
       "zh": "别生气，我只是开玩笑。"
      }
     ],
-    "ipa": "/teɪk əˈfens/"
+    "ipa": "/teɪk əˈfens/",
+    "def": "to feel upset or hurt by something someone says or does",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "offend",
+      "zh": "冒犯",
+      "diff": "人作主语、自己生气用 take offence；让别人生气用 offend sb（Sorry, I didn't mean to offend you.）。",
+      "ex": [
+       {
+        "en": "I hope I didn't [[offend]] you.",
+        "zh": "希望我没冒犯到你。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 10,
@@ -556,7 +599,22 @@
       "zh": "鸟儿被噪音惊扰了。"
      }
     ],
-    "ipa": "/dɪˈstɜːb/"
+    "ipa": "/dɪˈstɜːb/",
+    "def": "to interrupt someone or make them feel worried; to move things out of their place",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "bother",
+      "zh": "打扰；费心",
+      "diff": "disturb 多指打断别人正在做的事（工作、睡觉）；bother 更口语，指烦扰、让人心烦，也可指“费心去做”。",
+      "ex": [
+       {
+        "en": "Sorry to [[bother]] you, but can I ask something?",
+        "zh": "不好意思打扰一下，我能问个问题吗？"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 11,
@@ -585,7 +643,16 @@
       "zh": "他发誓以前从没见过她。"
      }
     ],
-    "ipa": "/sweə/"
+    "ipa": "/sweə/",
+    "def": "to say very firmly that something is true",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "curse",
+      "zh": "咒骂",
+      "diff": "swear 有两个意思：“发誓、断言”和“骂脏话”；curse 主要是骂人、诅咒，没有“发誓”的意思。"
+     }
+    ]
    },
    {
     "id": 12,
@@ -615,7 +682,8 @@
       "zh": "这个周末再下雨的可能不能排除。"
      }
     ],
-    "ipa": "/ruːl aʊt/"
+    "ipa": "/ruːl aʊt/",
+    "def": "to decide that something is not possible or not suitable"
    },
    {
     "id": 13,
@@ -643,7 +711,8 @@
       "zh": "她耸耸肩，笑了笑，算是回答。"
      }
     ],
-    "ipa": "/ʃrʌɡ/"
+    "ipa": "/ʃrʌɡ/",
+    "def": "to raise your shoulders to show that you do not know or do not care"
    },
    {
     "id": 14,
@@ -668,7 +737,8 @@
       "zh": "我检查了两遍烤箱，小心点没错。"
      }
     ],
-    "ipa": "/ˈbetə seɪf ðən ˈsɒrɪ/"
+    "ipa": "/ˈbetə seɪf ðən ˈsɒrɪ/",
+    "def": "used to say that it is better to be careful now than to be sorry later"
    },
    {
     "id": 15,
@@ -694,7 +764,34 @@
       "zh": "她借钱给朋友很谨慎。"
      }
     ],
-    "ipa": "/ˈkɔːʃəs/"
+    "ipa": "/ˈkɔːʃəs/",
+    "def": "careful to avoid danger or risks",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "careful",
+      "zh": "小心的",
+      "diff": "careful 最常用；cautious 更正式，强调因为怕有危险而“谨慎、不冒险”。",
+      "ex": [
+       {
+        "en": "Be [[careful]] with that knife.",
+        "zh": "用那把刀小心点。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "reckless",
+      "zh": "鲁莽的",
+      "diff": "reckless 指不顾危险、鲁莽行事，是 cautious 的反义。",
+      "ex": [
+       {
+        "en": "He was fined for [[reckless]] driving.",
+        "zh": "他因鲁莽驾驶被罚款。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 16,
@@ -722,7 +819,8 @@
       "zh": "天气影响人们的穿着。"
      }
     ],
-    "ipa": "/ʃeɪp/"
+    "ipa": "/ʃeɪp/",
+    "def": "to influence the way that someone or something develops"
    },
    {
     "id": 17,
@@ -750,7 +848,8 @@
       "zh": "我们的航班改飞了另一个机场。"
      }
     ],
-    "ipa": "/rɪˈruːt/"
+    "ipa": "/rɪˈruːt/",
+    "def": "to send something along a different route"
    },
    {
     "id": 18,
@@ -778,7 +877,8 @@
       "zh": "你能抽几分钟帮我一下吗？"
      }
     ],
-    "ipa": "/speə/"
+    "ipa": "/speə/",
+    "def": "to save someone or something from harm or damage; to make time or money available"
    },
    {
     "id": 19,
@@ -803,7 +903,16 @@
       "zh": "他偶尔会忘带钥匙。"
      }
     ],
-    "ipa": "/əˈkeɪʒənəlɪ/"
+    "ipa": "/əˈkeɪʒənəlɪ/",
+    "def": "sometimes, but not often",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "sometimes",
+      "zh": "有时",
+      "diff": "频率从高到低：often > sometimes > occasionally > rarely。occasionally 比 sometimes 更少。"
+     }
+    ]
    },
    {
     "id": 20,
@@ -829,7 +938,8 @@
       "zh": "操场上吵架时，老师常充当调解人。"
      }
     ],
-    "ipa": "/ˈmiːdɪˌeɪtə/"
+    "ipa": "/ˈmiːdɪˌeɪtə/",
+    "def": "a person who helps two sides who disagree to reach an agreement"
    },
    {
     "id": 21,
@@ -858,7 +968,22 @@
       "zh": "打印机每周一都坏。"
      }
     ],
-    "ipa": "/breɪk daʊn/"
+    "ipa": "/breɪk daʊn/",
+    "def": "(of a machine) to stop working; (of a person) to lose control of your feelings",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "break up",
+      "zh": "分手；解散",
+      "diff": "break down 是“坏掉、崩溃”；break up 是“分手、（会议、人群）散开”。",
+      "ex": [
+       {
+        "en": "They [[broke up]] after two years.",
+        "zh": "他们交往两年后分手了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 22,
@@ -887,7 +1012,8 @@
       "zh": "很多孩子冬天会生病。"
      }
     ],
-    "ipa": "/fɔːl ɪl/"
+    "ipa": "/fɔːl ɪl/",
+    "def": "to become sick"
    },
    {
     "id": 23,
@@ -916,7 +1042,8 @@
       "zh": "我想知道这个恶作剧是谁干的。"
      }
     ],
-    "ipa": "/bɪˈhaɪnd/"
+    "ipa": "/bɪˈhaɪnd/",
+    "def": "to be the cause of something or to secretly control it"
    },
    {
     "id": 24,
@@ -942,7 +1069,8 @@
       "zh": "孩子们爬上了河边的一块大石头。"
      }
     ],
-    "ipa": "/ˈbəʊldə/"
+    "ipa": "/ˈbəʊldə/",
+    "def": "a very large rock"
    },
    {
     "id": 25,
@@ -968,7 +1096,8 @@
       "zh": "双方协商一致，终止了合同。"
      }
     ],
-    "ipa": "/baɪ əˈɡriːmənt/"
+    "ipa": "/baɪ əˈɡriːmənt/",
+    "def": "because everyone involved has agreed"
    },
    {
     "id": 26,
@@ -996,7 +1125,22 @@
       "zh": "我自己试过之前一直不信。"
      }
     ],
-    "ipa": "/ˈskeptɪk/"
+    "ipa": "/ˈskeptɪk/",
+    "def": "a person who doubts that claims or beliefs are true (British spelling; American: skeptic)",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "cynic",
+      "zh": "愤世嫉俗的人",
+      "diff": "sceptic 是“对说法持怀疑态度、要证据”；cynic 是“认为人都自私、不相信别人的好意”。",
+      "ex": [
+       {
+        "en": "Don't be such a [[cynic]] — some people really do want to help.",
+        "zh": "别那么愤世嫉俗，有些人是真心想帮忙的。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 27,
@@ -1028,7 +1172,8 @@
       "zh": "青少年常对父母翻白眼。"
      }
     ],
-    "ipa": "/rəʊl ðeər aɪz/"
+    "ipa": "/rəʊl ðeər aɪz/",
+    "def": "to move your eyes upwards to show that you are annoyed or think something is silly"
    },
    {
     "id": 28,
@@ -1055,7 +1200,8 @@
       "zh": "你不在的时候谁来替你？"
      }
     ],
-    "ipa": "/ˈstænˈdɪn/"
+    "ipa": "/ˈstænˈdɪn/",
+    "def": "a person or thing that takes the place of another for a time"
    },
    {
     "id": 29,
@@ -1081,7 +1227,22 @@
       "zh": "她画山水风景。"
      }
     ],
-    "ipa": "/ˈlændskeɪp/"
+    "ipa": "/ˈlændskeɪp/",
+    "def": "everything you can see when you look across a large area of land",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "scenery",
+      "zh": "风景",
+      "diff": "scenery 是不可数名词，指好看的自然风光；landscape 是可数名词，指一片土地的整体面貌，也可指风景画。",
+      "ex": [
+       {
+        "en": "We stopped to enjoy the [[scenery]].",
+        "zh": "我们停下来欣赏风景。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 30,
@@ -1109,7 +1270,8 @@
       "zh": "他们想推平公园，修个停车场。"
      }
     ],
-    "ipa": "/ˈbʊldəʊz/"
+    "ipa": "/ˈbʊldəʊz/",
+    "def": "to knock down or flatten something with a bulldozer; to force something through"
    },
    {
     "id": 31,
@@ -1136,7 +1298,8 @@
       "zh": "森林一旦没了，就很难恢复。"
      }
     ],
-    "ipa": "/pʊt bæk/"
+    "ipa": "/pʊt bæk/",
+    "def": "to return something to the place where it was before"
    },
    {
     "id": 32,
@@ -1164,7 +1327,8 @@
       "zh": "政客常常搬出历史来争取支持。"
      }
     ],
-    "ipa": "/ɪnˈvəʊk/"
+    "ipa": "/ɪnˈvəʊk/",
+    "def": "to mention a law, idea or person to support what you are saying or doing"
    },
    {
     "id": 33,
@@ -1193,7 +1357,8 @@
       "zh": "她多年来一直为干净的饮用水奔走。"
      }
     ],
-    "ipa": "/kæmˈpeɪn fɔː/"
+    "ipa": "/kæmˈpeɪn fɔː/",
+    "def": "to work in an organized way to get something you want, such as a change in the law"
    },
    {
     "id": 34,
@@ -1219,7 +1384,8 @@
       "zh": "这片沼泽在 1990 年成了自然保护区。"
      }
     ],
-    "ipa": "/ˈneɪtʃə rɪˈzɜːv/"
+    "ipa": "/ˈneɪtʃə rɪˈzɜːv/",
+    "def": "an area of land where animals and plants are protected"
    },
    {
     "id": 35,
@@ -1245,7 +1411,8 @@
       "zh": "修理咖啡馆让坏了的烤面包机重新派上用场。"
      }
     ],
-    "ipa": "/ə ˈsekənd laɪf/"
+    "ipa": "/ə ˈsekənd laɪf/",
+    "def": "a new chance to be used or to exist after something seemed finished"
    },
    {
     "id": 36,
@@ -1271,7 +1438,8 @@
       "zh": "考古学家在田地下发现了一处古代住所。"
      }
     ],
-    "ipa": "/ˈdwelɪŋ/"
+    "ipa": "/ˈdwelɪŋ/",
+    "def": "a house or place where someone lives (formal)"
    },
    {
     "id": 37,
@@ -1299,7 +1467,8 @@
       "zh": "他不信她的话，但决定先配合着。"
      }
     ],
-    "ipa": "/pleɪ əˈlɒŋ/"
+    "ipa": "/pleɪ əˈlɒŋ/",
+    "def": "to pretend to agree with someone or go along with a game or joke"
    },
    {
     "id": 38,
@@ -1325,7 +1494,8 @@
       "zh": "这次旅行很便宜，部分原因是我们露营。"
      }
     ],
-    "ipa": "/ˈpɑːtlɪ bɪˈkɒz/"
+    "ipa": "/ˈpɑːtlɪ bɪˈkɒz/",
+    "def": "for a reason that is one of several reasons"
    },
    {
     "id": 39,
@@ -1353,7 +1523,8 @@
       "zh": "她的咖啡馆赚的钱够付房租。"
      }
     ],
-    "ipa": "/brɪŋ ɪn/"
+    "ipa": "/brɪŋ ɪn/",
+    "def": "to make money; to introduce something new"
    },
    {
     "id": 40,
@@ -1378,7 +1549,8 @@
       "zh": "不管用不用，你都得付钱。"
      }
     ],
-    "ipa": "/ˈweðər ɔː nɒt/"
+    "ipa": "/ˈweðər ɔː nɒt/",
+    "def": "used to say that something is true in either case"
    },
    {
     "id": 41,
@@ -1406,7 +1578,26 @@
       "zh": "我的教练一直相信我。"
      }
     ],
-    "ipa": "/bɪˈliːv ɪn/"
+    "ipa": "/bɪˈliːv ɪn/",
+    "def": "to be sure that someone or something exists; to trust someone",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "believe",
+      "zh": "相信（某人的话）",
+      "diff": "believe sb 是相信某人说的是真话；believe in sb/sth 是相信其存在或相信其价值、能力。",
+      "ex": [
+       {
+        "en": "I [[believe]] you.",
+        "zh": "我相信你说的。"
+       },
+       {
+        "en": "I [[believe in]] you.",
+        "zh": "我对你有信心。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 42,
@@ -1431,7 +1622,8 @@
       "zh": "这房间该好好打扫一下了。"
      }
     ],
-    "ipa": "/kʊd duː wɪð/"
+    "ipa": "/kʊd duː wɪð/",
+    "def": "to need or want something very much"
    },
    {
     "id": 43,
@@ -1458,7 +1650,8 @@
       "zh": "有些冰岛人相信学校后面那块大石头里住着一个精灵。"
      }
     ],
-    "ipa": "/elf/"
+    "ipa": "/elf/",
+    "def": "a small, imaginary creature with magic powers and pointed ears, found in old stories"
    },
    {
     "id": 44,

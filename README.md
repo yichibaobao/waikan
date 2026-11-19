@@ -135,6 +135,14 @@ Drafts are kept in the article's progress (`state.ans`: `bt<i>` per sentence, `b
 Japanese articles compare character by character, and an answer written in kana is also compared with the sentence's reading
 (`rom`); the better match counts. The original is shown with its furigana and reading.
 
+## English definitions and 辨析 (English articles)
+
+Every English vocab entry (not grammar) has `def`, a short English-English definition in plain words (build.py requires it).
+Entries that are easy to mix up also have `cf`: a list of `{"rel": "syn" | "ant" | "cf", "w": "stall", "zh": "熄火；拖延",
+"diff": "中文说明区别", "ex": [{"en": "The car [[stalled]].", "zh": "车熄火了。"}]}` (near synonym, opposite, or look-alike).
+The word card shows the definition under the meaning and a 辨析 box under the examples; flashcards and the reading notes show the
+definition; the printable word list shows both in short form. Unit-test refs copy both.
+
 ## Flashcards (背单词)
 
 Every article page has a 背单词 tab: the article's words (and the learner's own) as cards to flip. Front = the word with its reading

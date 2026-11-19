@@ -300,7 +300,8 @@
       "zh": "小店常常被大型连锁店压着打。"
      }
     ],
-    "ipa": "/aʊtˈɡʌnd/"
+    "ipa": "/aʊtˈɡʌnd/",
+    "def": "having fewer or weaker weapons than an enemy; beaten by a stronger opponent"
    },
    {
     "id": 2,
@@ -325,7 +326,8 @@
       "zh": "新西兰有好几种不会飞的鸟。"
      }
     ],
-    "ipa": "/ˈflaɪtləs/"
+    "ipa": "/ˈflaɪtləs/",
+    "def": "(of a bird) not able to fly"
    },
    {
     "id": 3,
@@ -352,7 +354,8 @@
       "zh": "我们出发去找城里最好吃的披萨。"
      }
     ],
-    "ipa": "/set aʊt tuː/"
+    "ipa": "/set aʊt tuː/",
+    "def": "to begin a task with a particular aim"
    },
    {
     "id": 4,
@@ -380,7 +383,8 @@
       "zh": "新法律旨在清除街上的垃圾。"
      }
     ],
-    "ipa": "/rɪd ɒv/"
+    "ipa": "/rɪd ɒv/",
+    "def": "to remove something unwanted from a person or place"
    },
    {
     "id": 5,
@@ -407,7 +411,8 @@
       "zh": "结果那个传言是真的。"
      }
     ],
-    "ipa": "/ɪt tɜːnd aʊt/"
+    "ipa": "/ɪt tɜːnd aʊt/",
+    "def": "used to say what was discovered in the end, often something surprising"
    },
    {
     "id": 6,
@@ -434,7 +439,8 @@
       "zh": "抱歉，我今晚另有安排。"
      }
     ],
-    "ipa": "/hæv ˈʌðə plænz/"
+    "ipa": "/hæv ˈʌðə plænz/",
+    "def": "to intend to do something different"
    },
    {
     "id": 7,
@@ -459,7 +465,34 @@
       "zh": "这栋楼以前是工厂。"
      }
     ],
-    "ipa": "/ˈfɔːmə/"
+    "ipa": "/ˈfɔːmə/",
+    "def": "having had a particular job or position in the past",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "current",
+      "zh": "现任的",
+      "diff": "former 是“以前的、前任的”；current 是“现在的、现任的”。",
+      "ex": [
+       {
+        "en": "Who is the [[current]] champion?",
+        "zh": "现任冠军是谁？"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "the former / the latter",
+      "zh": "前者 / 后者",
+      "diff": "the former 还可以指“（两者中的）前者”，the latter 指“后者”。",
+      "ex": [
+       {
+        "en": "Of tea and coffee, I prefer [[the former]].",
+        "zh": "茶和咖啡里，我更喜欢前者（茶）。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 8,
@@ -485,7 +518,8 @@
       "zh": "这笔补贴让公交票价保持在低水平。"
      }
     ],
-    "ipa": "/ˈsʌbsɪdɪ/"
+    "ipa": "/ˈsʌbsɪdɪ/",
+    "def": "money that a government pays to help a business or to lower prices"
    },
    {
     "id": 9,
@@ -514,7 +548,8 @@
       "zh": "一辆出租车不知从哪儿冒了出来。"
      }
     ],
-    "ipa": "/məˈtɪərɪəˌlaɪz/"
+    "ipa": "/məˈtɪərɪəˌlaɪz/",
+    "def": "to happen or appear as expected or promised (British spelling; American: materialize)"
    },
    {
     "id": 10,
@@ -542,7 +577,22 @@
       "zh": "年轻人正在迁往城市。"
      }
     ],
-    "ipa": "/maɪˈɡreɪt/"
+    "ipa": "/maɪˈɡreɪt/",
+    "def": "(of animals) to travel to a different place, usually when the season changes",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "emigrate / immigrate",
+      "zh": "移居国外 / 移入",
+      "diff": "migrate 多指动物季节性迁徙；人永久移出本国是 emigrate，移入某国是 immigrate。",
+      "ex": [
+       {
+        "en": "Her family [[emigrated]] to Canada.",
+        "zh": "她一家移民去了加拿大。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 11,
@@ -567,7 +617,8 @@
       "zh": "他们给了我一个无法拒绝的条件。"
      }
     ],
-    "ipa": "/ɪrɪˈzɪstɪbəl/"
+    "ipa": "/ɪrɪˈzɪstɪbəl/",
+    "def": "so strong or attractive that you cannot refuse or resist it"
    },
    {
     "id": 12,
@@ -595,7 +646,8 @@
       "zh": "请不要踩踏花草。"
      }
     ],
-    "ipa": "/ˈtræmpəl/"
+    "ipa": "/ˈtræmpəl/",
+    "def": "to step heavily on something so that it is damaged"
    },
    {
     "id": 13,
@@ -623,7 +675,8 @@
       "zh": "拉开窗帘让光线进来。"
      }
     ],
-    "ipa": "/let ɪn/"
+    "ipa": "/let ɪn/",
+    "def": "to allow someone or something to enter"
    },
    {
     "id": 14,
@@ -651,7 +704,22 @@
       "zh": "她一周就能读完一本书。"
      }
     ],
-    "ipa": "/dɪˈvaʊə/"
+    "ipa": "/dɪˈvaʊə/",
+    "def": "to eat something quickly and hungrily; to read something eagerly",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "eat up",
+      "zh": "吃光",
+      "diff": "eat up 只是“吃完”；devour 强调“狼吞虎咽、一下子吃光”，画面感更强。",
+      "ex": [
+       {
+        "en": "Eat up your vegetables!",
+        "zh": "把蔬菜吃完！"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -679,7 +747,8 @@
       "zh": "您的订单明天发货。"
      }
     ],
-    "ipa": "/dɪˈspætʃ/"
+    "ipa": "/dɪˈspætʃ/",
+    "def": "to send someone or something somewhere for a purpose"
    },
    {
     "id": 16,
@@ -704,7 +773,8 @@
       "zh": "他的失误给了对手新的把柄。"
      }
     ],
-    "ipa": "/ˌæmjuːˈnɪʃən/"
+    "ipa": "/ˌæmjuːˈnɪʃən/",
+    "def": "bullets and other things fired from guns; facts used to win an argument"
    },
    {
     "id": 17,
@@ -729,7 +799,8 @@
       "zh": "这笔交易纸面上看起来不错。"
      }
     ],
-    "ipa": "/ɒn ˈpeɪpə/"
+    "ipa": "/ɒn ˈpeɪpə/",
+    "def": "in theory, judging by the facts or plans, though maybe not in reality"
    },
    {
     "id": 18,
@@ -755,7 +826,8 @@
       "zh": "我们挣的和花的完全对不上。"
      }
     ],
-    "ipa": "/mɪˈsmætʃ/"
+    "ipa": "/mɪˈsmætʃ/",
+    "def": "a situation where two people or things do not suit each other or are unequal"
    },
    {
     "id": 19,
@@ -783,7 +855,22 @@
       "zh": "玩具撒得满地都是。"
      }
     ],
-    "ipa": "/ˈskætə/"
+    "ipa": "/ˈskætə/",
+    "def": "to move quickly in different directions; to throw things over an area",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "gather",
+      "zh": "聚集",
+      "diff": "scatter 是四散开；gather 是聚到一起。",
+      "ex": [
+       {
+        "en": "A crowd [[gathered]] outside.",
+        "zh": "外面聚了一群人。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 20,
@@ -809,7 +896,8 @@
       "zh": "我刚一坐下，电话就响了。"
      }
     ],
-    "ipa": "/ðə ˈməʊmənt/"
+    "ipa": "/ðə ˈməʊmənt/",
+    "def": "as soon as something happens"
    },
    {
     "id": 21,
@@ -837,7 +925,8 @@
       "zh": "我不下令就别开火。"
      }
     ],
-    "ipa": "/ˈəʊpən faɪə/"
+    "ipa": "/ˈəʊpən faɪə/",
+    "def": "to start shooting"
    },
    {
     "id": 22,
@@ -862,7 +951,8 @@
       "zh": "说明书含糊得让人恼火。"
      }
     ],
-    "ipa": "/ˈmædənɪŋlɪ/"
+    "ipa": "/ˈmædənɪŋlɪ/",
+    "def": "in a way that is very annoying"
    },
    {
     "id": 23,
@@ -889,7 +979,16 @@
       "zh": "记者们在他家门口堵住了他。"
      }
     ],
-    "ipa": "/ˈæmbʊʃ/"
+    "ipa": "/ˈæmbʊʃ/",
+    "def": "a surprise attack by people who have been hiding and waiting",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "attack",
+      "zh": "攻击",
+      "diff": "attack 是一般的“攻击”；ambush 专指“事先埋伏、出其不意地袭击”。"
+     }
+    ]
    },
    {
     "id": 24,
@@ -917,7 +1016,8 @@
       "zh": "我每次用打印机它都卡纸。"
      }
     ],
-    "ipa": "/dʒæm/"
+    "ipa": "/dʒæm/",
+    "def": "(of a machine) to become stuck and stop working; to fill a place completely"
    },
    {
     "id": 25,
@@ -945,7 +1045,8 @@
       "zh": "门上方装了一个摄像头。"
      }
     ],
-    "ipa": "/maʊnt/"
+    "ipa": "/maʊnt/",
+    "def": "to fix something firmly in position on something else"
    },
    {
     "id": 26,
@@ -973,7 +1074,8 @@
       "zh": "小偷跑得比警察还快。"
      }
     ],
-    "ipa": "/aʊˈtrʌn/"
+    "ipa": "/aʊˈtrʌn/",
+    "def": "to run faster than someone or something"
    },
    {
     "id": 27,
@@ -998,7 +1100,8 @@
       "zh": "这家新店头一年开得磕磕绊绊。"
      }
     ],
-    "ipa": "/ˈbʌmpɪ/"
+    "ipa": "/ˈbʌmpɪ/",
+    "def": "(of a road or journey) uneven, with many rough parts that shake you"
    },
    {
     "id": 28,
@@ -1027,7 +1130,28 @@
       "zh": "她退出了比赛。"
      }
     ],
-    "ipa": "/wɪθˈdrɔː/"
+    "ipa": "/wɪθˈdrɔː/",
+    "def": "to take soldiers away from a place; to take back or stop offering something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "withdraw (money)",
+      "zh": "取钱",
+      "diff": "withdraw 既可指军队“撤退”，也可指从银行“取钱”，还可指“收回（说过的话、提议）”。",
+      "ex": [
+       {
+        "en": "I'd like to [[withdraw]] £100.",
+        "zh": "我想取 100 英镑。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "advance",
+      "zh": "前进",
+      "diff": "军事上，withdraw / retreat 是撤退，advance 是推进。"
+     }
+    ]
    },
    {
     "id": 29,
@@ -1052,7 +1176,8 @@
       "zh": "这场审判简直是对正义的嘲弄。"
      }
     ],
-    "ipa": "/ˈmɒkərɪ/"
+    "ipa": "/ˈmɒkərɪ/",
+    "def": "comments or behaviour that make someone or something look stupid"
    },
    {
     "id": 30,
@@ -1077,7 +1202,22 @@
       "zh": "她问了我一个让人难堪的问题。"
      }
     ],
-    "ipa": "/ˈɔːkwəd/"
+    "ipa": "/ˈɔːkwəd/",
+    "def": "making you feel embarrassed or uncomfortable; difficult to handle",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "embarrassing",
+      "zh": "令人尴尬的",
+      "diff": "embarrassing 侧重“让人丢脸、难为情”；awkward 还可指气氛“别扭、冷场”，或东西“不好用、难处理”。",
+      "ex": [
+       {
+        "en": "There was an [[awkward]] silence.",
+        "zh": "出现了一阵尴尬的沉默。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 31,
@@ -1104,7 +1244,8 @@
       "zh": "应员工要求，会议改了时间。"
      }
     ],
-    "ipa": "/æt rɪˈkwest/"
+    "ipa": "/æt rɪˈkwest/",
+    "def": "because someone has asked for it"
    },
    {
     "id": 32,
@@ -1131,7 +1272,8 @@
       "zh": "他们对官方数字提出质疑。"
      }
     ],
-    "ipa": "/dɪsˈpjuːtɪd/"
+    "ipa": "/dɪsˈpjuːtɪd/",
+    "def": "that people argue about or disagree with"
    },
    {
     "id": 33,
@@ -1158,7 +1300,8 @@
       "zh": "保守估计，维修要花一年。"
      }
     ],
-    "ipa": "/ˈestɪməts/"
+    "ipa": "/ˈestɪməts/",
+    "def": "according to the calculations or guesses of particular people"
    },
    {
     "id": 34,
@@ -1183,7 +1326,22 @@
       "zh": "她负责营销团队。"
      }
     ],
-    "ipa": "/ɪn tʃɑːdʒ/"
+    "ipa": "/ɪn tʃɑːdʒ/",
+    "def": "having control of or responsibility for something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "in charge of / in the charge of",
+      "zh": "负责 / 由……负责",
+      "diff": "人 + in charge of + 事：某人负责某事；事 + in the charge of + 人：某事由某人负责。",
+      "ex": [
+       {
+        "en": "She is [[in charge of]] the team.",
+        "zh": "她负责这个团队。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 35,
@@ -1211,7 +1369,8 @@
       "zh": "评论家把这部电影比作一场梦。"
      }
     ],
-    "ipa": "/ˈlaɪkən/"
+    "ipa": "/ˈlaɪkən/",
+    "def": "to say that one thing is similar to another"
    },
    {
     "id": 36,
@@ -1239,7 +1398,8 @@
       "zh": "这个游戏就是和电脑斗智。"
      }
     ],
-    "ipa": "/pɪt əˈɡenst/"
+    "ipa": "/pɪt əˈɡenst/",
+    "def": "to make someone or something fight or compete against another"
    },
    {
     "id": 37,
@@ -1264,7 +1424,8 @@
       "zh": "蛮力解不开这道谜题。"
      }
     ],
-    "ipa": "/bruːt fɔːs/"
+    "ipa": "/bruːt fɔːs/",
+    "def": "physical strength or violence used instead of skill or intelligence"
    },
    {
     "id": 38,
@@ -1290,7 +1451,8 @@
       "zh": "有人悬赏要他的人头。"
      }
     ],
-    "ipa": "/ˈbaʊntɪ/"
+    "ipa": "/ˈbaʊntɪ/",
+    "def": "money paid as a reward for catching or killing something; a large amount of something good"
    },
    {
     "id": 39,
@@ -1317,7 +1479,34 @@
       "zh": "我们需要一张更结实的桌子。"
      }
     ],
-    "ipa": "/ˈstɜːdɪ/"
+    "ipa": "/ˈstɜːdɪ/",
+    "def": "strong and not easily broken or damaged",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "solid",
+      "zh": "坚固的；实心的",
+      "diff": "sturdy 多形容家具、鞋子、人的身体“结实、经得住”；solid 侧重“坚固、实心、不空”。",
+      "ex": [
+       {
+        "en": "The table is made of [[solid]] wood.",
+        "zh": "这张桌子是实木做的。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "flimsy",
+      "zh": "不结实的",
+      "diff": "flimsy 指东西“单薄、容易坏”，是 sturdy 的反义。",
+      "ex": [
+       {
+        "en": "The tent was too [[flimsy]] for the storm.",
+        "zh": "这顶帐篷太单薄，扛不住暴风雨。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 40,
@@ -1345,7 +1534,22 @@
       "zh": "别让孩子们走丢了。"
      }
     ],
-    "ipa": "/ˈwɒndə/"
+    "ipa": "/ˈwɒndə/",
+    "def": "to walk slowly without a clear purpose or direction",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "wonder",
+      "zh": "想知道；惊奇",
+      "diff": "只差一个字母：wander /ˈwɒndə/ 是“漫步、闲逛”；wonder /ˈwʌndə/ 是“想知道、好奇”。",
+      "ex": [
+       {
+        "en": "I [[wonder]] why she left.",
+        "zh": "我想知道她为什么走了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 41,
@@ -1420,7 +1624,8 @@
       "zh": "天气一如既往地灰蒙蒙的。"
      }
     ],
-    "ipa": "/ˌkærɪktəˈrɪstɪklɪ/"
+    "ipa": "/ˌkærɪktəˈrɪstɪklɪ/",
+    "def": "in a way that is typical of a particular person or thing"
    }
   ],
   "cloze": [

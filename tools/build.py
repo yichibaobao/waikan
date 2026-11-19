@@ -158,6 +158,13 @@ def prepare(slug, raw):
             v.setdefault("ctx", hit["en"])
         check(any(word_re(t).search(v["ctx"]) for t in v["m"]), f"{where} vocab {vid}: ctx lacks its own term")
         check(2 <= len(v.get("ex", [])) <= 5, f"{where} vocab {vid} ({v['expr']}): give 2-5 examples")
+        if meta["lang"] == "en" and v.get("kind") != "grammar" and not v.get("mine"):
+            check(v.get("def") and not re.search(r"[\u4e00-\u9fff]", v["def"]), f"{where} vocab {vid} ({v['expr']}): def (an English-English definition) is required")
+        for c in v.get("cf", []):
+            check(isinstance(c, dict) and c.get("w") and c.get("rel") in ("syn", "ant", "cf") and c.get("diff"),
+                  f"{where} vocab {vid}: each cf needs w, rel (syn / ant / cf) and diff")
+            for x in c.get("ex", []):
+                check(x.get("en") and x.get("zh"), f"{where} vocab {vid}: cf examples need en and zh")
         for q in v.get("pick", []):
             check(q.get("q") and len(q.get("opts", [])) >= 2 and 0 <= q.get("a", -1) < len(q["opts"]) and q.get("why"),
                   f"{where} vocab {vid}: each pick needs q, 2+ opts, a valid answer index a and why")
@@ -282,7 +289,7 @@ def words_json(slug, meta, data):
         c = cl[v["id"]]
         words.append(dict(
             id=v["id"], expr=v["expr"], zh=v["zh"], core=v["core"], forms=v["forms"], syn=v["syn"], note=v["note"],
-            m=v["m"], ctx=v["ctx"], ex=v["ex"], **{k: v[k] for k in ("rom", "ipa", "kind", "conn", "pick") if k in v},
+            m=v["m"], ctx=v["ctx"], ex=v["ex"], **{k: v[k] for k in ("rom", "ipa", "kind", "conn", "pick", "def", "cf") if k in v},
             cloze=dict(before=c["before"], ans=c["ans"], after=c["after"], hint=c["hint"], szh=c["szh"])))
     return dict(slug=slug, title=meta["title"], clips=data.get("clips"), words=words)
 
@@ -332,6 +339,7 @@ h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:
 .h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
 .n{min-width:1.6em;color:var(--muted);font:700 13px/1 ui-monospace,Menlo,monospace}
 .e{font-weight:800;font-size:19px;line-height:1.35} .p{color:var(--accent);font-weight:500;font-size:15px;letter-spacing:.02em} .z{font-weight:600}
+.d{margin:2px 0 0 2.2em;font-style:italic;font-size:14px} .c{margin:2px 0 0 2.2em;color:var(--muted);font-size:13px} .c b{color:var(--fg)}
 .tag{padding:0 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:11px;line-height:1.7}
 ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
 .prev{appearance:none;border:2px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--muted);font-weight:700;font-size:13px;font-family:inherit;cursor:pointer}
@@ -346,6 +354,8 @@ body.printing{background:#fff}
 .printing .w{background:none;box-shadow:none;border-radius:0;padding:0 0 .35em;margin:0 0 .35em;border-bottom:0.3pt solid #ddd}
 .printing .e{font-size:1.15em} .printing .p,.printing .z{font-size:1em} .printing .n{font-size:.9em;min-width:1.4em}
 .printing .tag{font-size:.8em}
+.printing .d,.printing .c{font-size:.92em;margin:.1em 0 0 1.3em}
+.printing.no-cf .c,.printing.no-def .d{display:none}
 .printing ol{margin:.15em 0 0;padding-left:1.3em} .printing li{margin:0}
 .printing .r,.printing .t{display:inline;font-size:.92em} .printing .r::before,.printing .t::before{content:" · "}
 @media print{.noprint,.top{display:none}}
@@ -357,19 +367,25 @@ LIST_JS = """<script>
 (function(){
   var root = document.documentElement, body = document.body, sheet = document.querySelector('.in');
   function fits(){ return sheet.scrollHeight <= document.getElementById('mm').getBoundingClientRect().height; }
+  /* if the full list does not fit even at the smallest size, leave out the 辨析 line, then the English definition */
+  var LEVELS = ['', 'no-cf', 'no-cf no-def'];
+  function setLevel(l){ body.classList.remove('no-cf', 'no-def'); if (l) l.split(' ').forEach(function(c){ body.classList.add(c); }); }
   function fit(){
     body.classList.add('printing');
     var tries = [[2, 13, 6.5], [3, 8, 6]];
-    for (var k = 0; k < tries.length; k++){
-      root.style.setProperty('--cols', tries[k][0]);
-      for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){
-        root.style.setProperty('--fs', fs + 'px');
-        if (fits()) return;
+    for (var L = 0; L < LEVELS.length; L++){
+      setLevel(LEVELS[L]);
+      for (var k = 0; k < tries.length; k++){
+        root.style.setProperty('--cols', tries[k][0]);
+        for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){
+          root.style.setProperty('--fs', fs + 'px');
+          if (fits()) return;
+        }
       }
     }
   }
   var preview = false;
-  function done(){ if (!preview) body.classList.remove('printing'); }
+  function done(){ if (!preview){ body.classList.remove('printing'); setLevel(''); } }
   window.addEventListener('beforeprint', fit);
   window.addEventListener('afterprint', done);
   var b = document.getElementById('prev');
@@ -380,7 +396,7 @@ LIST_JS = """<script>
       bar.innerHTML = '<button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
       bar.children[0].onclick = function(){ b.click(); }; bar.children[1].onclick = function(){ window.print(); };
       body.appendChild(bar); }
-    else { body.classList.remove('printing'); var x = document.getElementById('pbar'); if (x) x.remove(); }
+    else { body.classList.remove('printing'); setLevel(''); var x = document.getElementById('pbar'); if (x) x.remove(); }
   });
 })();
 </script>"""
@@ -399,8 +415,11 @@ def list_html(slug, meta, data, sec):
         tags = ('<span class="tag">语法</span>' if v.get("kind") == "grammar" else "") + (f'<span class="tag">出自 {e(v["from"])}</span>' if v.get("from") else "")
         exs = "".join(f'<li>{mark(x["en"])}' + (f'<span class="r">{e(x["rom"])}</span>' if x.get("rom") else "") + f'<span class="t">{e(x["zh"])}</span></li>'
                       for x in v["ex"][:2])
+        extra = (f'<div class="d">{e(v["def"])}</div>' if v.get("def") else "")
+        if v.get("cf"):
+            extra += '<div class="c">辨析：' + "；".join(f'{ {"syn": "≈", "ant": "↔", "cf": "≠"}[c["rel"]]} <b>{e(c["w"])}</b> {e(c.get("zh", ""))}' for c in v["cf"]) + '</div>'
         rows.append(f'<div class="w"><div class="h"><span class="n">{n}</span><span class="e">{e(v["expr"])}</span>'
-                    + (f'<span class="p">{e(pron)}</span>' if pron else "") + f'<span class="z">{e(v["zh"])}</span>{tags}</div><ol>{exs}</ol></div>')
+                    + (f'<span class="p">{e(pron)}</span>' if pron else "") + f'<span class="z">{e(v["zh"])}</span>{tags}</div>{extra}<ol>{exs}</ol></div>')
     label = {"en": "音标为英式（DJ）音标，由程序生成，以录音为准。", "ko": "读音为韩国官方罗马字。", "ja": "读音为假名。", "yue": "读音为粤拼，数字是声调。"}[lang]
     return (f'<!doctype html><html lang="zh-CN" data-lang="{lang}"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 单词表 · {e(sec["brand"])}</title>'

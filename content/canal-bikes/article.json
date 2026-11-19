@@ -296,7 +296,8 @@
       "zh": "今天的“渔获”有两辆旧自行车和一把椅子。"
      }
     ],
-    "ipa": "/kætʃ/"
+    "ipa": "/kætʃ/",
+    "def": "something that has been caught, such as fish; a hidden problem"
    },
    {
     "id": 2,
@@ -325,7 +326,22 @@
      }
     ],
     "ipa": "/hɔːl/",
-    "say": "haul."
+    "say": "haul.",
+    "def": "to pull something heavy with a lot of effort",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "drag",
+      "zh": "拖",
+      "diff": "drag 是贴着地面拖；haul 强调用很大力气拉重物，也常用于拉网、拖船。",
+      "ex": [
+       {
+        "en": "He [[dragged]] the suitcase upstairs.",
+        "zh": "他把箱子拖上了楼。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 3,
@@ -351,7 +367,8 @@
       "zh": "坐船是游览水道的最好方式。"
      }
     ],
-    "ipa": "/ˈwɔːtəˌweɪ/"
+    "ipa": "/ˈwɔːtəˌweɪ/",
+    "def": "a river or canal that boats can travel on"
    },
    {
     "id": 4,
@@ -379,7 +396,8 @@
       "zh": "对方人数是我们的三倍。"
      }
     ],
-    "ipa": "/aʊtˈnʌmbə/"
+    "ipa": "/aʊtˈnʌmbə/",
+    "def": "to be greater in number than someone or something"
    },
    {
     "id": 5,
@@ -407,7 +425,22 @@
       "zh": "飞机滑翔着降向跑道。"
      }
     ],
-    "ipa": "/ɡlaɪd/"
+    "ipa": "/ɡlaɪd/",
+    "def": "to move smoothly and quietly, as if without effort",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "slide",
+      "zh": "滑动",
+      "diff": "slide 是贴着表面滑（slide on ice）；glide 强调平稳、安静、优雅地滑行，也可以在空中滑翔。",
+      "ex": [
+       {
+        "en": "The kids [[slid]] down the hill on a sledge.",
+        "zh": "孩子们坐着雪橇从山坡上滑下来。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 6,
@@ -435,7 +468,8 @@
       "zh": "把面包蘸到汤里。"
      }
     ],
-    "ipa": "/dɪp/"
+    "ipa": "/dɪp/",
+    "def": "to put something into a liquid for a short time"
    },
    {
     "id": 7,
@@ -460,7 +494,22 @@
       "zh": "这笔交易的细节仍然不清不楚。"
      }
     ],
-    "ipa": "/ˈmɜːkɪ/"
+    "ipa": "/ˈmɜːkɪ/",
+    "def": "(of water) dark and dirty so that you cannot see through it; not clear or honest",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "clear",
+      "zh": "清澈的",
+      "diff": "murky 是浑浊的；clear 是清澈见底的。",
+      "ex": [
+       {
+        "en": "The water was so [[clear]] we could see the fish.",
+        "zh": "水清澈得能看见鱼。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 8,
@@ -487,7 +536,8 @@
       "zh": "我的耳机线总是缠在一起。"
      }
     ],
-    "ipa": "/ˈtæŋɡəl/"
+    "ipa": "/ˈtæŋɡəl/",
+    "def": "a mass of things such as wires or hair that are twisted together untidily"
    },
    {
     "id": 9,
@@ -515,7 +565,8 @@
       "zh": "请把那个滴水的龙头修一下。"
      }
     ],
-    "ipa": "/ˈdrɪpɪŋ/"
+    "ipa": "/ˈdrɪpɪŋ/",
+    "def": "very wet, with liquid falling off in drops"
    },
    {
     "id": 10,
@@ -543,7 +594,22 @@
       "zh": "大门用铁链锁着。"
      }
     ],
-    "ipa": "/ˈfɑːsən/"
+    "ipa": "/ˈfɑːsən/",
+    "def": "to close or fix something firmly",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "unfasten",
+      "zh": "解开",
+      "diff": "fasten 系紧、扣上；unfasten 解开。飞机上常听到 Fasten your seat belts.",
+      "ex": [
+       {
+        "en": "Please [[fasten]] your seat belt.",
+        "zh": "请系好安全带。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 11,
@@ -568,7 +634,8 @@
       "zh": "船的残骸被冲上了海滩。"
      }
     ],
-    "ipa": "/ˈrekɪdʒ/"
+    "ipa": "/ˈrekɪdʒ/",
+    "def": "the broken parts of something that has been badly damaged"
    },
    {
     "id": 12,
@@ -596,7 +663,8 @@
       "zh": "她把书堆在桌上。"
      }
     ],
-    "ipa": "/paɪl/"
+    "ipa": "/paɪl/",
+    "def": "to put things on top of each other; a heap of things"
    },
    {
     "id": 13,
@@ -624,7 +692,8 @@
       "zh": "分手后，她很难走出来。"
      }
     ],
-    "ipa": "/muːv ɒn/"
+    "ipa": "/muːv ɒn/",
+    "def": "to leave a place and go somewhere else; to start a new subject or activity"
    },
    {
     "id": 14,
@@ -652,7 +721,22 @@
       "zh": "你不存钱，最后会身无分文。"
      }
     ],
-    "ipa": "/end ʌp/"
+    "ipa": "/end ʌp/",
+    "def": "to finally be in a particular place or situation, often without planning it",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "end",
+      "zh": "结束",
+      "diff": "end 只是“结束”；end up 强调“最后落得、最后到了（意料之外的）地方或状态”，后接 doing / in / at / as。",
+      "ex": [
+       {
+        "en": "We [[ended up]] staying until midnight.",
+        "zh": "我们最后待到了半夜。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -678,7 +762,8 @@
       "zh": "它真正的年代还有一些争议。"
      }
     ],
-    "ipa": "/ə ˈmætər ɒv dɪˈbeɪt/"
+    "ipa": "/ə ˈmætər ɒv dɪˈbeɪt/",
+    "def": "something that people disagree about"
    },
    {
     "id": 16,
@@ -706,7 +791,22 @@
       "zh": "他是被短信分手的。"
      }
     ],
-    "ipa": "/dʌmp/"
+    "ipa": "/dʌmp/",
+    "def": "to drop or leave something carelessly, especially in a place where it should not be",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "throw away",
+      "zh": "扔掉",
+      "diff": "throw away 是把东西当垃圾正常扔掉；dump 常指“随意乱扔、倾倒在不该扔的地方”。",
+      "ex": [
+       {
+        "en": "Don't [[throw away]] that box.",
+        "zh": "别把那个盒子扔了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 17,
@@ -734,7 +834,8 @@
       "zh": "孩子们捉弄了他们的老师。"
      }
     ],
-    "ipa": "/ˈpræŋkstə/"
+    "ipa": "/ˈpræŋkstə/",
+    "def": "a person who likes playing tricks on people"
    },
    {
     "id": 18,
@@ -760,7 +861,8 @@
       "zh": "晚上出去玩了以后，他一觉睡到中午。"
      }
     ],
-    "ipa": "/ə naɪt aʊt/"
+    "ipa": "/ə naɪt aʊt/",
+    "def": "an evening when you go out to enjoy yourself"
    },
    {
     "id": 19,
@@ -787,7 +889,16 @@
       "zh": "暴风雨毁了花园。"
      }
     ],
-    "ipa": "/rek/"
+    "ipa": "/rek/",
+    "def": "something that has been badly damaged or is in very bad condition",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "wreckage",
+      "zh": "残骸（总称）",
+      "diff": "wreck 是可数名词，指一个残骸（a wreck）；wreckage 是不可数名词，指一堆碎片残骸的总称。"
+     }
+    ]
    },
    {
     "id": 20,
@@ -813,7 +924,8 @@
       "zh": "去徒步要穿得一层一层的。"
      }
     ],
-    "ipa": "/leɪə/"
+    "ipa": "/leɪə/",
+    "def": "an amount of something that covers a surface or lies between other things"
    },
    {
     "id": 21,
@@ -838,7 +950,8 @@
       "zh": "这个节日规模盛大。"
      }
     ],
-    "ipa": "/skeɪl/"
+    "ipa": "/skeɪl/",
+    "def": "the size or extent of something"
    },
    {
     "id": 22,
@@ -863,7 +976,8 @@
       "zh": "她走到哪儿都带着一本破旧的笔记本。"
      }
     ],
-    "ipa": "/ˈbætəd/"
+    "ipa": "/ˈbætəd/",
+    "def": "old and damaged because it has been used a lot"
    },
    {
     "id": 23,
@@ -888,7 +1002,22 @@
       "zh": "火车六点整准时开出。"
      }
     ],
-    "ipa": "/prɪˈsaɪslɪ/"
+    "ipa": "/prɪˈsaɪslɪ/",
+    "def": "exactly; used to emphasize that something is completely true",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "exactly",
+      "zh": "确切地；正是",
+      "diff": "precisely 和 exactly 都可表示“正是、精确地”；precisely 稍正式。回答别人时说 Exactly! 更口语。",
+      "ex": [
+       {
+        "en": "That's [[exactly]] what I meant.",
+        "zh": "我正是这个意思。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 24,
@@ -914,7 +1043,8 @@
       "zh": "这个月我们达到了销售目标。"
      }
     ],
-    "ipa": "/ˈtɑːɡɪt/"
+    "ipa": "/ˈtɑːɡɪt/",
+    "def": "a result you try to achieve; a person or thing that is chosen to be attacked or criticized"
    },
    {
     "id": 25,
@@ -940,7 +1070,8 @@
       "zh": "我醒来时头疼得厉害。"
      }
     ],
-    "ipa": "/ˈhedeɪk/"
+    "ipa": "/ˈhedeɪk/",
+    "def": "a pain in your head; something that causes you problems"
    },
    {
     "id": 26,
@@ -966,7 +1097,8 @@
       "zh": "那栋老旧的多层楼被拆了。"
      }
     ],
-    "ipa": "/ˈmʌltɪˈstɔːrɪ/"
+    "ipa": "/ˈmʌltɪˈstɔːrɪ/",
+    "def": "having several floors (British spelling)"
    },
    {
     "id": 27,
@@ -991,7 +1123,8 @@
       "zh": "据说他是村里最有钱的人。"
      }
     ],
-    "ipa": "/rɪˈpjuːtɪdlɪ/"
+    "ipa": "/rɪˈpjuːtɪdlɪ/",
+    "def": "according to what people generally say or believe"
    },
    {
     "id": 28,
@@ -1017,7 +1150,8 @@
       "zh": "丢失的自行车存放在港口附近的一个仓库里。"
      }
     ],
-    "ipa": "/ˈdepəʊ/"
+    "ipa": "/ˈdepəʊ/",
+    "def": "a place where goods or vehicles are stored"
    },
    {
     "id": 29,
@@ -1045,7 +1179,8 @@
       "zh": "她的家族可以追溯到 17 世纪。"
      }
     ],
-    "ipa": "/treɪs bæk tuː/"
+    "ipa": "/treɪs bæk tuː/",
+    "def": "to find where something came from by following its history"
    },
    {
     "id": 30,
@@ -1073,7 +1208,8 @@
       "zh": "开了一次会，他们就放弃了这个主意。"
      }
     ],
-    "ipa": "/skræp/"
+    "ipa": "/skræp/",
+    "def": "to get rid of something old, often to use its materials again; to cancel a plan"
    },
    {
     "id": 31,
@@ -1101,7 +1237,22 @@
       "zh": "这个袋子是用回收塑料做的。"
      }
     ],
-    "ipa": "/rɪˈsaɪkəl/"
+    "ipa": "/rɪˈsaɪkəl/",
+    "def": "to treat used materials so that they can be used again",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "reuse",
+      "zh": "重复使用",
+      "diff": "reuse 是原样再用（再次用塑料袋）；recycle 是经过加工变成新材料再用。",
+      "ex": [
+       {
+        "en": "You can [[reuse]] these bags.",
+        "zh": "这些袋子可以重复使用。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 32,
@@ -1174,7 +1325,22 @@
       "zh": "孩子们看到小狗高兴坏了。"
      }
     ],
-    "ipa": "/dɪˈlaɪtɪd/"
+    "ipa": "/dɪˈlaɪtɪd/",
+    "def": "very pleased",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "pleased",
+      "zh": "高兴的",
+      "diff": "程度：pleased（高兴）< happy < delighted（非常高兴）。",
+      "ex": [
+       {
+        "en": "I'm [[pleased]] to meet you.",
+        "zh": "很高兴认识你。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 34,
@@ -1200,7 +1366,16 @@
       "zh": "街头斗殴成了众人围观的场面。"
      }
     ],
-    "ipa": "/ˈspektəkəl/"
+    "ipa": "/ˈspektəkəl/",
+    "def": "an unusual or impressive sight or event",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "spectacles",
+      "zh": "眼镜（旧式）",
+      "diff": "复数 spectacles 在英式英语里也可以指“眼镜”（= glasses），较旧式。"
+     }
+    ]
    },
    {
     "id": 35,
@@ -1226,7 +1401,8 @@
       "zh": "那只是一次例行检查。"
      }
     ],
-    "ipa": "/ruːˈtiːn/"
+    "ipa": "/ruːˈtiːn/",
+    "def": "the usual order in which you do things"
    },
    {
     "id": 36,
@@ -1251,7 +1427,22 @@
       "zh": "他的童年平平无奇。"
      }
     ],
-    "ipa": "/ˌʌnrɪˈmɑːkəbəl/"
+    "ipa": "/ˌʌnrɪˈmɑːkəbəl/",
+    "def": "ordinary and not special in any way",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "remarkable",
+      "zh": "非凡的",
+      "diff": "remarkable 是“值得注意的、非凡的”；加 un- 变 unremarkable，平平无奇。",
+      "ex": [
+       {
+        "en": "She made a [[remarkable]] recovery.",
+        "zh": "她恢复得非常好。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 37,
@@ -1276,7 +1467,8 @@
       "zh": "这部电影冷静地展现了战争。"
      }
     ],
-    "ipa": "/ʌnˌsentɪˈmentəl/"
+    "ipa": "/ʌnˌsentɪˈmentəl/",
+    "def": "not allowing feelings to affect your decisions; practical"
    },
    {
     "id": 38,
@@ -1301,7 +1493,8 @@
       "zh": "成功只是时间问题。"
      }
     ],
-    "ipa": "/ə ˈmætər ɒv taɪm/"
+    "ipa": "/ə ˈmætər ɒv taɪm/",
+    "def": "used to say that something will certainly happen soon"
    }
   ],
   "cloze": [

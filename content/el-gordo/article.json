@@ -297,7 +297,22 @@
       "zh": "我可没钱天天打车。"
      }
     ],
-    "ipa": "/ˈkænɒt əˈfɔːd tuː/"
+    "ipa": "/ˈkænɒt əˈfɔːd tuː/",
+    "def": "to not have enough money to buy something; to be unable to risk something happening",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "afford (to buy)",
+      "zh": "买得起",
+      "diff": "can't afford sth 是“买不起”；can't afford to do 还可以指“承担不起做某事的后果”（We can't afford to wait.）。",
+      "ex": [
+       {
+        "en": "We [[can't afford to]] lose this customer.",
+        "zh": "我们可丢不起这个客户。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 2,
@@ -325,7 +340,22 @@
       "zh": "第一章可以跳过。"
      }
     ],
-    "ipa": "/skɪp/"
+    "ipa": "/skɪp/",
+    "def": "to not do or attend something you usually do; to leave something out",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "miss",
+      "zh": "错过；缺席",
+      "diff": "skip 是“故意不做、跳过”（skip breakfast 不吃早饭）；miss 多是“错过”，可能并非故意（miss the bus）。",
+      "ex": [
+       {
+        "en": "I [[missed]] the last train.",
+        "zh": "我没赶上末班车。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 3,
@@ -353,7 +383,8 @@
       "zh": "我不信那些炒作。"
      }
     ],
-    "ipa": "/baɪ ˌɪntʊ/"
+    "ipa": "/baɪ ˌɪntʊ/",
+    "def": "to pay for a share of something; to believe in an idea"
    },
    {
     "id": 4,
@@ -381,7 +412,8 @@
       "zh": "别漏掉任何细节。"
      }
     ],
-    "ipa": "/left aʊt/"
+    "ipa": "/left aʊt/",
+    "def": "to not be included in a group or activity"
    },
    {
     "id": 5,
@@ -409,7 +441,8 @@
       "zh": "他们的友谊从上学时就开始了。"
      }
     ],
-    "ipa": "/deɪt bæk/"
+    "ipa": "/deɪt bæk/",
+    "def": "to have existed since a particular time in the past"
    },
    {
     "id": 6,
@@ -437,7 +470,8 @@
       "zh": "这档节目每周日晚上播出。"
      }
     ],
-    "ipa": "/ˈbrɔːdkɑːst/"
+    "ipa": "/ˈbrɔːdkɑːst/",
+    "def": "to send out a programme on television or radio"
    },
    {
     "id": 7,
@@ -462,7 +496,8 @@
       "zh": "这栋楼独特的红屋顶很好认。"
      }
     ],
-    "ipa": "/dɪˈstɪŋktɪv/"
+    "ipa": "/dɪˈstɪŋktɪv/",
+    "def": "having a quality that makes something easy to recognize and different from others"
    },
    {
     "id": 8,
@@ -490,7 +525,8 @@
       "zh": "僧侣们唱起缓慢的诵经调。"
      }
     ],
-    "ipa": "/tʃɑːnt/"
+    "ipa": "/tʃɑːnt/",
+    "def": "words or a phrase that are repeated many times in a rhythm"
    },
    {
     "id": 9,
@@ -516,7 +552,8 @@
       "zh": "只有少数客人待到很晚。"
      }
     ],
-    "ipa": "/ˈfrækʃən/"
+    "ipa": "/ˈfrækʃən/",
+    "def": "a small part or amount of something; a number such as ½"
    },
    {
     "id": 10,
@@ -543,7 +580,8 @@
       "zh": "她更进一步，直接辞了职。"
      }
     ],
-    "ipa": "/ɡəʊ ˈfɜːðə/"
+    "ipa": "/ɡəʊ ˈfɜːðə/",
+    "def": "to do more or go to a greater degree than others"
    },
    {
     "id": 11,
@@ -570,7 +608,22 @@
       "zh": "全班分成了三组。"
      }
     ],
-    "ipa": "/splɪt/"
+    "ipa": "/splɪt/",
+    "def": "to divide something into parts and share it",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "share",
+      "zh": "分享；分担",
+      "diff": "split 强调“分成几份”（split the bill 平摊账单）；share 强调“共同拥有或使用”。",
+      "ex": [
+       {
+        "en": "Let's [[split]] the bill.",
+        "zh": "我们 AA 吧。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 12,
@@ -598,7 +651,8 @@
       "zh": "邻居们每年夏天凑钱办一次聚会。"
      }
     ],
-    "ipa": "/klʌb təˈɡeðə/"
+    "ipa": "/klʌb təˈɡeðə/",
+    "def": "(of a group of people) to share the cost of something"
    },
    {
     "id": 13,
@@ -623,7 +677,8 @@
       "zh": "酒店就在老城的中心。"
      }
     ],
-    "ipa": "/ðə hɑːt ɒv/"
+    "ipa": "/ðə hɑːt ɒv/",
+    "def": "the most central or important part of something"
    },
    {
     "id": 14,
@@ -651,7 +706,8 @@
       "zh": "有什么事就给我打电话。"
      }
     ],
-    "ipa": "/kʌm ʌp/"
+    "ipa": "/kʌm ʌp/",
+    "def": "(of a number) to be chosen in a draw; to be mentioned or to happen"
    },
    {
     "id": 15,
@@ -679,7 +735,34 @@
       "zh": "她辞职去创办自己的公司。"
      }
     ],
-    "ipa": "/rɪˈzaɪn/"
+    "ipa": "/rɪˈzaɪn/",
+    "def": "to officially leave your job",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "quit",
+      "zh": "辞职；放弃",
+      "diff": "quit 是口语的“辞职、不干了”；resign 是正式地递交辞呈。",
+      "ex": [
+       {
+        "en": "He [[quit]] his job to travel.",
+        "zh": "他辞了工作去旅行。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "retire",
+      "zh": "退休",
+      "diff": "resign 是主动辞职；retire 是到了年龄退休。",
+      "ex": [
+       {
+        "en": "My dad [[retired]] at sixty.",
+        "zh": "我爸爸六十岁退休。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 16,
@@ -707,7 +790,8 @@
       "zh": "你能出几英镑吗？"
      }
     ],
-    "ipa": "/tʃɪp ɪn/"
+    "ipa": "/tʃɪp ɪn/",
+    "def": "to give a small amount of money towards something along with other people"
    },
    {
     "id": 17,
@@ -734,7 +818,8 @@
       "zh": "他不想被人提起自己的错误。"
      }
     ],
-    "ipa": "/rɪˈmaɪndɪd ɒv/"
+    "ipa": "/rɪˈmaɪndɪd ɒv/",
+    "def": "to be made to remember something"
    },
    {
     "id": 18,
@@ -762,7 +847,8 @@
       "zh": "做饭的活落到了我头上。"
      }
     ],
-    "ipa": "/fɔːl ɒn/"
+    "ipa": "/fɔːl ɒn/",
+    "def": "to be the responsibility of someone; (of a date) to happen on a particular day"
    },
    {
     "id": 19,
@@ -788,7 +874,8 @@
       "zh": "家庭开支一直在涨。"
      }
     ],
-    "ipa": "/ˈhaʊshəʊld/"
+    "ipa": "/ˈhaʊshəʊld/",
+    "def": "all the people living together in one house"
    },
    {
     "id": 20,
@@ -814,7 +901,8 @@
       "zh": "她回顾自己的选择，自嘲地笑了笑。"
      }
     ],
-    "ipa": "/ˈruːfəl/"
+    "ipa": "/ˈruːfəl/",
+    "def": "showing that you are sorry or sad about something, often in a slightly amused way"
    },
    {
     "id": 21,
@@ -840,7 +928,8 @@
       "zh": "他们在不被看好的情况下赢了。"
      }
     ],
-    "ipa": "/ðɪ ɒdz ɒv/"
+    "ipa": "/ðɪ ɒdz ɒv/",
+    "def": "how likely it is that something will happen"
    },
    {
     "id": 22,
@@ -866,7 +955,22 @@
       "zh": "他们获胜的希望很渺茫。"
      }
     ],
-    "ipa": "/slɪm/"
+    "ipa": "/slɪm/",
+    "def": "(of a chance) very small; thin in an attractive way",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "small",
+      "zh": "小的",
+      "diff": "说机会小，slim 和 small 都可以；slim chance 更地道。slim 形容人是“苗条”，褒义；thin 只是“瘦”。",
+      "ex": [
+       {
+        "en": "There's only a [[slim]] chance of rain.",
+        "zh": "下雨的可能性很小。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 23,
@@ -894,7 +998,8 @@
       "zh": "这个游戏经常发小奖。"
      }
     ],
-    "ipa": "/peɪ aʊt/"
+    "ipa": "/peɪ aʊt/",
+    "def": "to pay a large amount of money, for example as a prize"
    },
    {
     "id": 24,
@@ -921,7 +1026,22 @@
       "zh": "他们全额退了钱。"
      }
     ],
-    "ipa": "/rɪˈfʌnd/"
+    "ipa": "/rɪˈfʌnd/",
+    "def": "an amount of money that is given back to you",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "refund (verb)",
+      "zh": "退款（动词）",
+      "diff": "refund 作名词时重音在前 /ˈriːfʌnd/，作动词时重音在后 /rɪˈfʌnd/。",
+      "ex": [
+       {
+        "en": "They [[refunded]] my money.",
+        "zh": "他们把钱退给我了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 25,
@@ -949,7 +1069,22 @@
       "zh": "乘客们抱怨晚点。"
      }
     ],
-    "ipa": "/ˈɡrʌmbəl/"
+    "ipa": "/ˈɡrʌmbəl/",
+    "def": "to complain about something in a quiet, bad-tempered way",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "complain",
+      "zh": "抱怨",
+      "diff": "complain 是普通的“抱怨、投诉”；grumble 是小声嘟囔着发牢骚，常常不正式提出。",
+      "ex": [
+       {
+        "en": "She [[complained]] to the manager.",
+        "zh": "她向经理投诉了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 26,
@@ -975,7 +1110,8 @@
       "zh": "带把伞总没错。"
      }
     ],
-    "ipa": "/bet/"
+    "ipa": "/bet/",
+    "def": "an amount of money that you risk on the result of something"
    },
    {
     "id": 27,
@@ -1001,7 +1137,8 @@
       "zh": "婚礼按照古老的仪式进行。"
      }
     ],
-    "ipa": "/ˈrɪtʃuːəl/"
+    "ipa": "/ˈrɪtʃuːəl/",
+    "def": "a set of actions that are always done in the same way, often as a tradition"
    },
    {
     "id": 28,
@@ -1077,7 +1214,8 @@
       "zh": "农民春天给庄稼喷药。"
      }
     ],
-    "ipa": "/spreɪ/"
+    "ipa": "/spreɪ/",
+    "def": "to cover something with small drops of liquid"
    },
    {
     "id": 30,
@@ -1103,7 +1241,8 @@
       "zh": "街上挂着一条横幅宣布节日。"
      }
     ],
-    "ipa": "/ˈbænə/"
+    "ipa": "/ˈbænə/",
+    "def": "a long piece of cloth with words on it, carried or hung up for people to see"
    },
    {
     "id": 31,
@@ -1133,7 +1272,16 @@
       "zh": "这家酒店以美景自豪。"
      }
     ],
-    "ipa": "/bəʊst ɒv/"
+    "ipa": "/bəʊst ɒv/",
+    "def": "to talk with too much pride about something you have or have done",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "show off",
+      "zh": "炫耀",
+      "diff": "boast 多指用嘴“吹嘘”；show off 也可以是拿东西出来“显摆”。"
+     }
+    ]
    },
    {
     "id": 32,
@@ -1159,7 +1307,8 @@
       "zh": "很多球迷都有些小迷信。"
      }
     ],
-    "ipa": "/ˈsuːpəˈstɪʃən/"
+    "ipa": "/ˈsuːpəˈstɪʃən/",
+    "def": "a belief that certain objects or actions bring good or bad luck"
    },
    {
     "id": 33,
@@ -1189,7 +1338,8 @@
       "zh": "每个人都要尽一份力。"
      }
     ],
-    "ipa": "/pleɪ wɒnz pɑːt/"
+    "ipa": "/pleɪ wɒnz pɑːt/",
+    "def": "to do your share of the work in something"
    },
    {
     "id": 34,
@@ -1215,7 +1365,8 @@
       "zh": "音乐是我释放压力的方式。"
      }
     ],
-    "ipa": "/ˈaʊtlet/"
+    "ipa": "/ˈaʊtlet/",
+    "def": "a shop or place that sells a company's products; a way of expressing strong feelings"
    },
    {
     "id": 35,
@@ -1243,7 +1394,8 @@
       "zh": "把乳霜揉进皮肤里。"
      }
     ],
-    "ipa": "/rʌb/"
+    "ipa": "/rʌb/",
+    "def": "to move your hand or an object backwards and forwards over a surface while pressing it"
    },
    {
     "id": 36,
@@ -1268,7 +1420,22 @@
       "zh": "尽管很有名，她生活得很简朴。"
      }
     ],
-    "ipa": "/fɔːr ɔːl/"
+    "ipa": "/fɔːr ɔːl/",
+    "def": "despite something",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "despite",
+      "zh": "尽管",
+      "diff": "for all 很口语，常带“尽管有这么多……（却）”的语气；despite / in spite of 是普通的“尽管”。",
+      "ex": [
+       {
+        "en": "[[Despite]] the rain, we went out.",
+        "zh": "尽管下雨，我们还是出去了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 37,
@@ -1294,7 +1461,22 @@
       "zh": "订到这家酒店，我们真是走大运了。"
      }
     ],
-    "ipa": "/ˈdʒækpɒt/"
+    "ipa": "/ˈdʒækpɒt/",
+    "def": "the biggest prize in a lottery or competition",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "hit the jackpot",
+      "zh": "中头奖；走大运",
+      "diff": "hit the jackpot 也常用来比喻“突然交好运、大获成功”。",
+      "ex": [
+       {
+        "en": "We really [[hit the jackpot]] with this flat.",
+        "zh": "我们租到这套房子真是走大运了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 38,
@@ -1319,7 +1501,8 @@
       "zh": "队员们觉得大家是同舟共济的。"
      }
     ],
-    "ipa": "/ɪn ɪt təˈɡeðə/"
+    "ipa": "/ɪn ɪt təˈɡeðə/",
+    "def": "to be in the same difficult situation as other people and face it together"
    },
    {
     "id": 39,
@@ -1344,7 +1527,8 @@
       "zh": "去的路上就是乐趣所在。"
      }
     ],
-    "ipa": "/hɑːf ðə fʌn/"
+    "ipa": "/hɑːf ðə fʌn/",
+    "def": "a large part of the enjoyment of something"
    }
   ],
   "cloze": [

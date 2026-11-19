@@ -309,7 +309,8 @@
       "zh": "她扫了几个和弦，开始唱歌。"
      }
     ],
-    "ipa": "/strʌm/"
+    "ipa": "/strʌm/",
+    "def": "to play a guitar by moving your fingers across the strings"
    },
    {
     "id": 2,
@@ -334,7 +335,8 @@
       "zh": "我的钥匙不可能凭空消失吧！"
      }
     ],
-    "ipa": "/θɪn eə/"
+    "ipa": "/θɪn eə/",
+    "def": "the air around you, as if it contains nothing at all"
    },
    {
     "id": 3,
@@ -362,7 +364,22 @@
       "zh": "我们学校每年春天办一次书展。"
      }
     ],
-    "ipa": "/həʊst/"
+    "ipa": "/həʊst/",
+    "def": "to organize an event and be the place where it happens",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "hold",
+      "zh": "举行",
+      "diff": "hold 是“举行”（会议、比赛），只说办了这件事；host 强调“作为东道主、主人”来办。",
+      "ex": [
+       {
+        "en": "The meeting will be [[held]] on Friday.",
+        "zh": "会议将在周五举行。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 4,
@@ -387,7 +404,22 @@
       "zh": "不管是有意还是偶然，这个计划奏效了。"
      }
     ],
-    "ipa": "/baɪ dɪˈzaɪn/"
+    "ipa": "/baɪ dɪˈzaɪn/",
+    "def": "on purpose; because it was planned that way",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "by accident",
+      "zh": "偶然地",
+      "diff": "by design 是“有意为之”；by accident / by chance 是“偶然、不小心”。",
+      "ex": [
+       {
+        "en": "I found it [[by accident]].",
+        "zh": "我是偶然发现的。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 5,
@@ -413,7 +445,8 @@
       "zh": "只是友谊赛，输赢无所谓。"
      }
     ],
-    "ipa": "/steɪks/"
+    "ipa": "/steɪks/",
+    "def": "what you could win or lose in a situation"
    },
    {
     "id": 6,
@@ -439,7 +472,8 @@
       "zh": "小小的厨房也是这套公寓的魅力之一。"
      }
     ],
-    "ipa": "/tʃɑːm/"
+    "ipa": "/tʃɑːm/",
+    "def": "a quality that makes people like someone or something"
    },
    {
     "id": 7,
@@ -467,7 +501,8 @@
       "zh": "演出大获成功。"
      }
     ],
-    "ipa": "/ˈrɔːrɪŋ/"
+    "ipa": "/ˈrɔːrɪŋ/",
+    "def": "making a very loud, deep noise; very successful"
    },
    {
     "id": 8,
@@ -496,7 +531,8 @@
       "zh": "闹钟一响她就从床上蹦起来。"
      }
     ],
-    "ipa": "/liːp/"
+    "ipa": "/liːp/",
+    "def": "to jump high or far"
    },
    {
     "id": 9,
@@ -526,7 +562,8 @@
       "zh": "他一尝那药就皱起了脸。"
      }
     ],
-    "ipa": "/pʊl ˈfeɪsɪz/"
+    "ipa": "/pʊl ˈfeɪsɪz/",
+    "def": "to make strange or funny expressions with your face"
    },
    {
     "id": 10,
@@ -599,7 +636,8 @@
       "zh": "那位老人成了公园里的老面孔。"
      }
     ],
-    "ipa": "/ˈfɪkstʃə/"
+    "ipa": "/ˈfɪkstʃə/",
+    "def": "an event that happens regularly; something fixed in place in a building"
    },
    {
     "id": 12,
@@ -627,7 +665,8 @@
       "zh": "商店在争抢越来越少的顾客。"
      }
     ],
-    "ipa": "/kəmˈpiːt fɔː/"
+    "ipa": "/kəmˈpiːt fɔː/",
+    "def": "to try to win something that others are also trying to win"
    },
    {
     "id": 13,
@@ -702,7 +741,22 @@
       "zh": "你可以放心她会保守秘密。"
      }
     ],
-    "ipa": "/rɪˈlaɪ ɒn/"
+    "ipa": "/rɪˈlaɪ ɒn/",
+    "def": "to need or depend on someone or something",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "depend on",
+      "zh": "依靠；取决于",
+      "diff": "两者都可表示“依靠”。depend on 还有“取决于”的意思（It depends on the weather.），rely on 没有。",
+      "ex": [
+       {
+        "en": "It [[depends on]] the weather.",
+        "zh": "那要看天气。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -727,7 +781,22 @@
       "zh": "两国之间的界线只是想象中的，并没有围栏。"
      }
     ],
-    "ipa": "/ɪˈmædʒɪnərɪ/"
+    "ipa": "/ɪˈmædʒɪnərɪ/",
+    "def": "existing only in your mind, not in the real world",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "imaginative",
+      "zh": "富有想象力的",
+      "diff": "imaginary 是“想象出来的、不存在的”；imaginative 是“有想象力、有创意的”。",
+      "ex": [
+       {
+        "en": "She's a very [[imaginative]] writer.",
+        "zh": "她是一位很有想象力的作家。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 16,
@@ -753,7 +822,8 @@
       "zh": "好老师也需要一点台风。"
      }
     ],
-    "ipa": "/steɪdʒ ˈprezəns/"
+    "ipa": "/steɪdʒ ˈprezəns/",
+    "def": "a quality that makes a performer hold the attention of an audience"
    },
    {
     "id": 17,
@@ -778,7 +848,8 @@
       "zh": "也就是说，我们需要更多时间。"
      }
     ],
-    "ipa": "/ɪn ˈʌðə wɜːdz/"
+    "ipa": "/ɪn ˈʌðə wɜːdz/",
+    "def": "used to explain something in a different, simpler way"
    },
    {
     "id": 18,
@@ -806,7 +877,22 @@
       "zh": "花了好几个小时才说服他去看医生。"
      }
     ],
-    "ipa": "/kənˈvɪns/"
+    "ipa": "/kənˈvɪns/",
+    "def": "to make someone believe that something is true",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "persuade",
+      "zh": "劝说",
+      "diff": "convince 侧重“使相信”（convince sb that...）；persuade 侧重“劝人去做”（persuade sb to do）。",
+      "ex": [
+       {
+        "en": "I [[persuaded]] him to come.",
+        "zh": "我劝他来了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 19,
@@ -831,7 +917,8 @@
       "zh": "就算弹错音，只要弹得自信也挺好听。"
      }
     ],
-    "ipa": "/wɪð kənˈvɪkʃən/"
+    "ipa": "/wɪð kənˈvɪkʃən/",
+    "def": "in a way that shows you strongly believe in what you are doing"
    },
    {
     "id": 20,
@@ -856,7 +943,8 @@
       "zh": "他为迟到编了一套复杂的借口。"
      }
     ],
-    "ipa": "/ɪˈlæbəˌreɪt/"
+    "ipa": "/ɪˈlæbəˌreɪt/",
+    "def": "carefully planned and full of detail"
    },
    {
     "id": 21,
@@ -884,7 +972,8 @@
       "zh": "孩子们扮成了各种动物。"
      }
     ],
-    "ipa": "/dres ʌp/"
+    "ipa": "/dres ʌp/",
+    "def": "to put on special or formal clothes; to wear a costume"
    },
    {
     "id": 22,
@@ -913,7 +1002,16 @@
       "zh": "别显摆了，好好把饭吃完。"
      }
     ],
-    "ipa": "/ʃəʊ ɒf/"
+    "ipa": "/ʃəʊ ɒf/",
+    "def": "to try to impress people by showing them what you can do or own",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "show up",
+      "zh": "出现",
+      "diff": "show off 是“炫耀”；show up 是“出现、到场”。"
+     }
+    ]
    },
    {
     "id": 23,
@@ -940,7 +1038,8 @@
       "zh": "影评人讨厌这部电影，观众却不这么看。"
      }
     ],
-    "ipa": "/beɡ tə ˈdɪfə/"
+    "ipa": "/beɡ tə ˈdɪfə/",
+    "def": "used to say politely that you disagree"
    },
    {
     "id": 24,
@@ -965,7 +1064,8 @@
       "zh": "我们把这个问题一点一点地过了一遍。"
      }
     ],
-    "ipa": "/freɪm baɪ freɪm/"
+    "ipa": "/freɪm baɪ freɪm/",
+    "def": "one picture after another; very slowly and in great detail"
    },
    {
     "id": 25,
@@ -993,7 +1093,22 @@
       "zh": "我妈坚持要开车送我去车站。"
      }
     ],
-    "ipa": "/ɪnˈsɪst/"
+    "ipa": "/ɪnˈsɪst/",
+    "def": "to say firmly that something is true or must happen, even if others disagree",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "persist",
+      "zh": "坚持（做下去）",
+      "diff": "insist 是“坚持说、坚持要求”（insist on / that）；persist 是“坚持做下去、持续”（persist in doing）。",
+      "ex": [
+       {
+        "en": "If the pain [[persists]], see a doctor.",
+        "zh": "如果一直疼，就去看医生。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 26,
@@ -1018,7 +1133,8 @@
       "zh": "我没那个体力逛一整天街。"
      }
     ],
-    "ipa": "/ˈstæmɪnə/"
+    "ipa": "/ˈstæmɪnə/",
+    "def": "the physical or mental strength to keep doing something for a long time"
    },
    {
     "id": 27,
@@ -1043,7 +1159,8 @@
       "zh": "她气喘吁吁地赶到，好在没迟到。"
      }
     ],
-    "ipa": "/ˌaʊtəv breθ/"
+    "ipa": "/ˌaʊtəv breθ/",
+    "def": "breathing very fast because you have been running or working hard"
    },
    {
     "id": 28,
@@ -1074,7 +1191,8 @@
       "zh": "这支乐队毫不掩饰自己的政治立场。"
      }
     ],
-    "ipa": "/ɒn wɒnz sliːv/"
+    "ipa": "/ɒn wɒnz sliːv/",
+    "def": "to show your feelings or opinions openly"
    },
    {
     "id": 29,
@@ -1105,7 +1223,8 @@
       "zh": "这张沙发占了半个房间。"
      }
     ],
-    "ipa": "/teɪk ʌp/"
+    "ipa": "/teɪk ʌp/",
+    "def": "to start doing a new hobby or activity; to use space or time"
    },
    {
     "id": 30,
@@ -1133,7 +1252,8 @@
       "zh": "这首歌唱出了那个夏天的氛围。"
      }
     ],
-    "ipa": "/ˈkæptʃə/"
+    "ipa": "/ˈkæptʃə/",
+    "def": "to catch someone; to show or describe something very well"
    },
    {
     "id": 31,
@@ -1158,7 +1278,22 @@
       "zh": "那只是个无伤大雅的玩笑。"
      }
     ],
-    "ipa": "/ˈhɑːmləs/"
+    "ipa": "/ˈhɑːmləs/",
+    "def": "not able or not likely to cause harm",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "harmful",
+      "zh": "有害的",
+      "diff": "-less 表示“没有”，-ful 表示“有”：harmless 无害，harmful 有害。",
+      "ex": [
+       {
+        "en": "Smoking is [[harmful]] to your health.",
+        "zh": "吸烟有害健康。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 32,
@@ -1183,7 +1318,22 @@
       "zh": "这个主意一开始听起来很荒唐。"
      }
     ],
-    "ipa": "/əbˈsɜːd/"
+    "ipa": "/əbˈsɜːd/",
+    "def": "completely silly or unreasonable",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "ridiculous",
+      "zh": "荒谬可笑的",
+      "diff": "两者都表示荒唐可笑，常可互换；absurd 更书面，有时强调“完全不合逻辑”。",
+      "ex": [
+       {
+        "en": "That's a [[ridiculous]] idea.",
+        "zh": "这主意太荒唐了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 33,
@@ -1208,7 +1358,8 @@
       "zh": "一杯冰柠檬水很解渴提神。"
      }
     ],
-    "ipa": "/rɪˈfreʃɪŋ/"
+    "ipa": "/rɪˈfreʃɪŋ/",
+    "def": "pleasantly new and different; making you feel less tired"
    },
    {
     "id": 34,
@@ -1236,7 +1387,22 @@
       "zh": "这家公司被指责隐瞒真相。"
      }
     ],
-    "ipa": "/əˈkjuːzd ɒv/"
+    "ipa": "/əˈkjuːzd ɒv/",
+    "def": "to be said to have done something wrong",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "be charged with",
+      "zh": "被（正式）起诉",
+      "diff": "be accused of 可以是任何人的指责；be charged with 是警方或法庭正式提出指控。",
+      "ex": [
+       {
+        "en": "He was [[charged with]] theft.",
+        "zh": "他被控盗窃。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 35,
@@ -1261,7 +1427,8 @@
       "zh": "有钱人家能给孩子买来不公平的优势。"
      }
     ],
-    "ipa": "/ʌnˈfeər ədˈvɑːntɪdʒ/"
+    "ipa": "/ʌnˈfeər ədˈvɑːntɪdʒ/",
+    "def": "a benefit that is unfair to the other people taking part"
    },
    {
     "id": 36,
@@ -1287,7 +1454,8 @@
       "zh": "吵闹的音乐让我心烦。"
      }
     ],
-    "ipa": "/nɜːv/"
+    "ipa": "/nɜːv/",
+    "def": "courage to do something difficult; one of the fibres that carry messages in your body"
    },
    {
     "id": 37,
@@ -1312,7 +1480,22 @@
       "zh": "我们原则上同意，但细节还需要再谈。"
      }
     ],
-    "ipa": "/ɪn ˈprɪnsɪpəl/"
+    "ipa": "/ɪn ˈprɪnsɪpəl/",
+    "def": "in theory; as a general idea, though not always in fact",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "in practice",
+      "zh": "实际上",
+      "diff": "in principle 是“原则上（同意或可行）”，常引出“但实际上……”。",
+      "ex": [
+       {
+        "en": "[[In principle]] I agree, but in practice it won't work.",
+        "zh": "原则上我同意，但实际上行不通。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 38,
@@ -1338,7 +1521,8 @@
       "zh": "在消息传得飞快的时代，谣言传得更快。"
      }
     ],
-    "ipa": "/ɪn ən eɪdʒ wen/"
+    "ipa": "/ɪn ən eɪdʒ wen/",
+    "def": "during a period of time when something is common or true"
    },
    {
     "id": 39,
@@ -1364,7 +1548,8 @@
       "zh": "国王镇压了起义。"
      }
     ],
-    "ipa": "/rɪˈbelɪən/"
+    "ipa": "/rɪˈbelɪən/",
+    "def": "fighting against authority or rules"
    },
    {
     "id": 40,
@@ -1390,7 +1575,22 @@
      }
     ],
     "ipa": "/sɔː/",
-    "say": "sore."
+    "say": "sore.",
+    "def": "painful, especially because a muscle has been used too much",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "painful",
+      "zh": "疼痛的",
+      "diff": "sore 多指肌肉、喉咙等“酸痛、发炎痛”（a sore throat）；painful 泛指任何让人疼的事物。",
+      "ex": [
+       {
+        "en": "I have a [[sore]] throat.",
+        "zh": "我嗓子疼。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 41,
@@ -1416,7 +1616,8 @@
       "zh": "看她笑得这么开心，应该是考过了。"
      }
     ],
-    "ipa": "/ˈdʒʌdʒɪŋ baɪ/"
+    "ipa": "/ˈdʒʌdʒɪŋ baɪ/",
+    "def": "used to give the reason why you think something is true"
    },
    {
     "id": 42,
@@ -1441,7 +1642,26 @@
       "zh": "他看起来一点也不开心。"
      }
     ],
-    "ipa": "/ˈenɪˌθɪŋ bʌt/"
+    "ipa": "/ˈenɪˌθɪŋ bʌt/",
+    "def": "not at all",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "nothing but",
+      "zh": "只是、仅仅",
+      "diff": "两者容易搞反：anything but = 绝不是；nothing but = 只是、全都是。",
+      "ex": [
+       {
+        "en": "He's [[nothing but]] trouble.",
+        "zh": "他净是惹麻烦。"
+       },
+       {
+        "en": "The trip was [[anything but]] relaxing.",
+        "zh": "这趟旅行一点也不轻松。"
+       }
+      ]
+     }
+    ]
    }
   ],
   "cloze": [

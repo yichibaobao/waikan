@@ -11,6 +11,7 @@ h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:
 .h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
 .n{min-width:1.6em;color:var(--muted);font:700 13px/1 ui-monospace,Menlo,monospace}
 .e{font-weight:800;font-size:19px;line-height:1.35} .p{color:var(--accent);font-weight:500;font-size:15px;letter-spacing:.02em} .z{font-weight:600}
+.d{margin:2px 0 0 2.2em;font-style:italic;font-size:14px} .c{margin:2px 0 0 2.2em;color:var(--muted);font-size:13px} .c b{color:var(--fg)}
 .tag{padding:0 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:11px;line-height:1.7}
 ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
 .prev{appearance:none;border:2px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--muted);font-weight:700;font-size:13px;font-family:inherit;cursor:pointer}
@@ -25,6 +26,8 @@ body.printing{background:#fff}
 .printing .w{background:none;box-shadow:none;border-radius:0;padding:0 0 .35em;margin:0 0 .35em;border-bottom:0.3pt solid #ddd}
 .printing .e{font-size:1.15em} .printing .p,.printing .z{font-size:1em} .printing .n{font-size:.9em;min-width:1.4em}
 .printing .tag{font-size:.8em}
+.printing .d,.printing .c{font-size:.92em;margin:.1em 0 0 1.3em}
+.printing.no-cf .c,.printing.no-def .d{display:none}
 .printing ol{margin:.15em 0 0;padding-left:1.3em} .printing li{margin:0}
 .printing .r,.printing .t{display:inline;font-size:.92em} .printing .r::before,.printing .t::before{content:" · "}
 @media print{.noprint,.top{display:none}}
@@ -33,19 +36,25 @@ body.printing{background:#fff}
 (function(){
   var root = document.documentElement, body = document.body, sheet = document.querySelector('.in');
   function fits(){ return sheet.scrollHeight <= document.getElementById('mm').getBoundingClientRect().height; }
+  /* if the full list does not fit even at the smallest size, leave out the 辨析 line, then the English definition */
+  var LEVELS = ['', 'no-cf', 'no-cf no-def'];
+  function setLevel(l){ body.classList.remove('no-cf', 'no-def'); if (l) l.split(' ').forEach(function(c){ body.classList.add(c); }); }
   function fit(){
     body.classList.add('printing');
     var tries = [[2, 13, 6.5], [3, 8, 6]];
-    for (var k = 0; k < tries.length; k++){
-      root.style.setProperty('--cols', tries[k][0]);
-      for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){
-        root.style.setProperty('--fs', fs + 'px');
-        if (fits()) return;
+    for (var L = 0; L < LEVELS.length; L++){
+      setLevel(LEVELS[L]);
+      for (var k = 0; k < tries.length; k++){
+        root.style.setProperty('--cols', tries[k][0]);
+        for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){
+          root.style.setProperty('--fs', fs + 'px');
+          if (fits()) return;
+        }
       }
     }
   }
   var preview = false;
-  function done(){ if (!preview) body.classList.remove('printing'); }
+  function done(){ if (!preview){ body.classList.remove('printing'); setLevel(''); } }
   window.addEventListener('beforeprint', fit);
   window.addEventListener('afterprint', done);
   var b = document.getElementById('prev');
@@ -56,7 +65,7 @@ body.printing{background:#fff}
       bar.innerHTML = '<button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
       bar.children[0].onclick = function(){ b.click(); }; bar.children[1].onclick = function(){ window.print(); };
       body.appendChild(bar); }
-    else { body.classList.remove('printing'); var x = document.getElementById('pbar'); if (x) x.remove(); }
+    else { body.classList.remove('printing'); setLevel(''); var x = document.getElementById('pbar'); if (x) x.remove(); }
   });
 })();
 </script></body></html>

@@ -277,7 +277,8 @@
       "zh": "人群一下子安静下来。"
      }
     ],
-    "ipa": "/hʌʃ/"
+    "ipa": "/hʌʃ/",
+    "def": "used to tell someone to be quiet; a period of silence"
    },
    {
     "id": 2,
@@ -302,7 +303,22 @@
       "zh": "她工作效率很高。"
      }
     ],
-    "ipa": "/ɪˈfɪʃənsɪ/"
+    "ipa": "/ɪˈfɪʃənsɪ/",
+    "def": "the quality of doing something well without wasting time, money or energy",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "effectiveness",
+      "zh": "有效性、效果",
+      "diff": "efficiency 是“效率高、不浪费”（又快又省）；effectiveness 是“有效果、达到目的”，不管花了多少成本。形容词 efficient / effective 同理。",
+      "ex": [
+       {
+        "en": "The new drug is very [[effective]].",
+        "zh": "这种新药很有效。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 3,
@@ -329,7 +345,8 @@
       "zh": "他们为度假存了一笔钱。"
      }
     ],
-    "ipa": "/set əˈsaɪd/"
+    "ipa": "/set əˈsaɪd/",
+    "def": "to keep something, such as time or money, for a particular purpose"
    },
    {
     "id": 4,
@@ -355,7 +372,8 @@
       "zh": "工作很辛苦，但她乐在其中。"
      }
     ],
-    "ipa": "/wʊd ˌnɒtəv ɪt ˌenɪ ˈʌðə weɪ/"
+    "ipa": "/wʊd ˌnɒtəv ɪt ˌenɪ ˈʌðə weɪ/",
+    "def": "used to say that you are happy with a situation as it is, even if it has disadvantages"
    },
    {
     "id": 5,
@@ -429,7 +447,8 @@
       "zh": "很多百货商店正在关门。"
      }
     ],
-    "ipa": "/dɪˈpɑːtmənt stɔː/"
+    "ipa": "/dɪˈpɑːtmənt stɔː/",
+    "def": "a large shop that sells many different kinds of goods in different sections"
    },
    {
     "id": 7,
@@ -455,7 +474,8 @@
       "zh": "网购正在冲击实体商业街。"
      }
     ],
-    "ipa": "/haɪ striːt/"
+    "ipa": "/haɪ striːt/",
+    "def": "the main street of a town, where most shops are (British English)"
    },
    {
     "id": 8,
@@ -481,7 +501,8 @@
       "zh": "这两个故事相似得出奇。"
      }
     ],
-    "ipa": "/ˈɪərɪlɪ/"
+    "ipa": "/ˈɪərɪlɪ/",
+    "def": "in a strange and slightly frightening way"
    },
    {
     "id": 9,
@@ -507,7 +528,8 @@
       "zh": "铁路罢工让车站都关了。"
      }
     ],
-    "ipa": "/straɪk/"
+    "ipa": "/straɪk/",
+    "def": "a period when workers refuse to work, in order to get better pay or conditions"
    },
    {
     "id": 10,
@@ -535,7 +557,22 @@
       "zh": "新法律限制烟花的销售。"
      }
     ],
-    "ipa": "/rɪˈstrɪkt/"
+    "ipa": "/rɪˈstrɪkt/",
+    "def": "to limit or control the size, amount or range of something",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "limit",
+      "zh": "限制",
+      "diff": "limit 侧重“设定上限、不超过某个数量”；restrict 侧重“约束、不让自由行动”，常用于规定、法律。",
+      "ex": [
+       {
+        "en": "Please [[limit]] your answer to 100 words.",
+        "zh": "回答请限制在 100 字以内。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 11,
@@ -560,7 +597,8 @@
       "zh": "她体质好，很少生病。"
      }
     ],
-    "ipa": "/ˌkɒnstɪˈtjuːʃən/"
+    "ipa": "/ˌkɒnstɪˈtjuːʃən/",
+    "def": "the set of basic laws and principles by which a country is governed"
    },
    {
     "id": 12,
@@ -586,7 +624,16 @@
       "zh": "这是一部关于友情的振奋人心的电影。"
      }
     ],
-    "ipa": "/ʌˈplɪft/"
+    "ipa": "/ʌˈplɪft/",
+    "def": "a feeling of hope and happiness; something that improves your mood",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "upset",
+      "zh": "使心烦",
+      "diff": "uplift 让人振奋；upset 让人难过、心烦，正好相反。"
+     }
+    ]
    },
    {
     "id": 13,
@@ -612,7 +659,8 @@
       "zh": "这次我破个例。"
      }
     ],
-    "ipa": "/ɪkˈsepʃən/"
+    "ipa": "/ɪkˈsepʃən/",
+    "def": "a person or thing that does not follow a general rule"
    },
    {
     "id": 14,
@@ -640,7 +688,22 @@
       "zh": "不应该剥夺孩子玩耍的权利。"
      }
     ],
-    "ipa": "/dɪˈpraɪv ɒv/"
+    "ipa": "/dɪˈpraɪv ɒv/",
+    "def": "to take something away from someone, or to stop them from having it",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "rob sb of sth",
+      "zh": "抢劫；夺走",
+      "diff": "deprive sb of sth 和 rob sb of sth 结构一样（人 + of + 东西）；rob 多指抢劫，也可比喻“夺走”机会、快乐等。",
+      "ex": [
+       {
+        "en": "The injury [[robbed]] him of his chance to play.",
+        "zh": "伤病让他失去了上场的机会。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -668,7 +731,8 @@
       "zh": "新开的面包店生意兴隆。"
      }
     ],
-    "ipa": "/duː ə ˈrɔːrɪŋ treɪd/"
+    "ipa": "/duː ə ˈrɔːrɪŋ treɪd/",
+    "def": "to sell a lot of something very quickly"
    },
    {
     "id": 16,
@@ -696,7 +760,8 @@
       "zh": "需要什么就敲我的门。"
      }
     ],
-    "ipa": "/nɒk ɒn/"
+    "ipa": "/nɒk ɒn/",
+    "def": "to hit a door or window with your hand so that people inside hear you"
    },
    {
     "id": 17,
@@ -724,7 +789,22 @@
       "zh": "森林绵延好几英里。"
      }
     ],
-    "ipa": "/ɪkˈstend/"
+    "ipa": "/ɪkˈstend/",
+    "def": "to make something longer or larger; to reach as far as a particular point",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "expand",
+      "zh": "扩大",
+      "diff": "extend 侧重往长度、时间方向“延长、延伸”（extend a visa 延签）；expand 侧重整体“扩大、膨胀”（expand a business）。",
+      "ex": [
+       {
+        "en": "The company plans to [[expand]] into Asia.",
+        "zh": "公司计划扩展到亚洲。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 18,
@@ -753,7 +833,8 @@
       "zh": "她父母不赞成这个主意。"
      }
     ],
-    "ipa": "/fraʊn əˌpɒn/"
+    "ipa": "/fraʊn əˌpɒn/",
+    "def": "to disapprove of something"
    },
    {
     "id": 19,
@@ -782,7 +863,8 @@
       "zh": "草该割了。"
      }
     ],
-    "ipa": "/məʊ/"
+    "ipa": "/məʊ/",
+    "def": "to cut grass using a machine"
    },
    {
     "id": 20,
@@ -810,7 +892,8 @@
       "zh": "我们每个月有一次消防演习。"
      }
     ],
-    "ipa": "/drɪl/"
+    "ipa": "/drɪl/",
+    "def": "to make a hole in something using a special tool"
    },
    {
     "id": 21,
@@ -837,7 +920,8 @@
       "zh": "托盘哐啷一声掉在地上。"
      }
     ],
-    "ipa": "/ˈklætə/"
+    "ipa": "/ˈklætə/",
+    "def": "a loud noise made by hard objects hitting each other"
    },
    {
     "id": 22,
@@ -864,7 +948,8 @@
       "zh": "照这个逻辑，白天短了，活也该少了。"
      }
     ],
-    "ipa": "/ðə ˈlɒdʒɪk ɡəʊz/"
+    "ipa": "/ðə ˈlɒdʒɪk ɡəʊz/",
+    "def": "used to explain the reasoning behind a belief or rule"
    },
    {
     "id": 23,
@@ -890,7 +975,8 @@
       "zh": "熊曾经打开过车门。"
      }
     ],
-    "ipa": "/həvbɪn nəʊn tuː/"
+    "ipa": "/həvbɪn nəʊn tuː/",
+    "def": "used to say that someone sometimes does something surprising"
    },
    {
     "id": 24,
@@ -918,7 +1004,8 @@
       "zh": "她转过身来看。"
      }
     ],
-    "ipa": "/spɪn/"
+    "ipa": "/spɪn/",
+    "def": "to turn round and round quickly; (of a washing machine) to remove water from clothes by turning fast"
    },
    {
     "id": 25,
@@ -944,7 +1031,8 @@
       "zh": "这家零售商在欧洲有 300 家店。"
      }
     ],
-    "ipa": "/ˈriːteɪlə/"
+    "ipa": "/ˈriːteɪlə/",
+    "def": "a business that sells goods to the public in shops"
    },
    {
     "id": 26,
@@ -972,7 +1060,34 @@
       "zh": "政府打算放宽规定。"
      }
     ],
-    "ipa": "/ˈluːsən/"
+    "ipa": "/ˈluːsən/",
+    "def": "to make something less tight or less strict",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "tighten",
+      "zh": "收紧",
+      "diff": "loosen 放松、放宽；tighten 收紧、加强（tighten the rules 收紧规定）。",
+      "ex": [
+       {
+        "en": "The government [[tightened]] the rules.",
+        "zh": "政府收紧了规定。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "lose / loose",
+      "zh": "失去 / 松的",
+      "diff": "loosen 是动词“松开”；loose 是形容词“松的”；lose 是动词“丢失”，只有一个 o。",
+      "ex": [
+       {
+        "en": "These trousers are a bit [[loose]].",
+        "zh": "这条裤子有点松。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 27,
@@ -999,7 +1114,22 @@
      }
     ],
     "ipa": "/fɪəs/",
-    "say": "fierce competition"
+    "say": "fierce competition",
+    "def": "very strong or intense; angry and ready to attack",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "intense",
+      "zh": "强烈的",
+      "diff": "fierce 常形容竞争、争论、动物“激烈、凶猛”；intense 侧重程度“强烈”，可形容感情、热度、压力等。",
+      "ex": [
+       {
+        "en": "The heat was [[intense]].",
+        "zh": "热得厉害。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 28,
@@ -1025,7 +1155,8 @@
       "zh": "两家对手公司加入了同一个联盟。"
      }
     ],
-    "ipa": "/ʌnˈlaɪklɪ əˈlaɪəns/"
+    "ipa": "/ʌnˈlaɪklɪ əˈlaɪəns/",
+    "def": "a group of people or organizations who work together although they usually disagree"
    },
    {
     "id": 29,
@@ -1053,7 +1184,8 @@
       "zh": "工会号召罢工。"
      }
     ],
-    "ipa": "/treɪd ˈjuːnɪən/"
+    "ipa": "/treɪd ˈjuːnɪən/",
+    "def": "an organization of workers that tries to improve their pay and conditions (British English)"
    },
    {
     "id": 30,
@@ -1078,7 +1210,16 @@
       "zh": "我早上的咖啡雷打不动。"
      }
     ],
-    "ipa": "/ˈseɪkrɪd/"
+    "ipa": "/ˈseɪkrɪd/",
+    "def": "very important and treated with great respect, often for religious reasons",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "holy",
+      "zh": "神圣的",
+      "diff": "holy 多与宗教直接相关（holy water）；sacred 也可用于宗教，还可比喻“不可侵犯、极其重要”的东西。"
+     }
+    ]
    },
    {
     "id": 31,
@@ -1106,7 +1247,8 @@
       "zh": "法官支持了工人。"
      }
     ],
-    "ipa": "/saɪd wɪð/"
+    "ipa": "/saɪd wɪð/",
+    "def": "to support one person or group in an argument"
    },
    {
     "id": 32,
@@ -1135,7 +1277,8 @@
       "zh": "出乎我们意料，那家店居然开着。"
      }
     ],
-    "ipa": "/tə wɒnz səˈpraɪz/"
+    "ipa": "/tə wɒnz səˈpraɪz/",
+    "def": "used to say that something surprised you a little"
    },
    {
     "id": 33,
@@ -1163,7 +1306,22 @@
       "zh": "她终于意识到他是对的。"
      }
     ],
-    "ipa": "/kʌm tuː/"
+    "ipa": "/kʌm tuː/",
+    "def": "to gradually start to feel or think something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "become",
+      "zh": "变成",
+      "diff": "become 是状态的改变（become angry）；come to + 动词（如 love、realise）强调感情或认识“慢慢地、渐渐地”形成。",
+      "ex": [
+       {
+        "en": "I [[came to]] realise she was right.",
+        "zh": "我渐渐意识到她是对的。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 34,
@@ -1189,7 +1347,16 @@
       "zh": "她是我的一个远房亲戚。"
      }
     ],
-    "ipa": "/ˈreləˌtɪv/"
+    "ipa": "/ˈreləˌtɪv/",
+    "def": "a member of your family",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "relation",
+      "zh": "亲戚；关系",
+      "diff": "relative 和 relation 都可以指“亲戚”；但 relation 主要意思是“关系”，所以说“亲戚”时 relative 更清楚。"
+     }
+    ]
    },
    {
     "id": 35,
@@ -1217,7 +1384,22 @@
       "zh": "考试时别在每道题上磨蹭。"
      }
     ],
-    "ipa": "/ˈlɪŋɡər ˈəʊvə/"
+    "ipa": "/ˈlɪŋɡər ˈəʊvə/",
+    "def": "to spend a long time doing something because you are enjoying it",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "linger",
+      "zh": "逗留；挥之不去",
+      "diff": "linger 单用还可以指气味、感觉“久久不散”。",
+      "ex": [
+       {
+        "en": "The smell [[lingered]] for days.",
+        "zh": "那股味道好几天都没散。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 36,
@@ -1244,7 +1426,8 @@
       "zh": "晚上十点以后我的手机就静音了。"
      }
     ],
-    "ipa": "/ɡəʊ kwaɪət/"
+    "ipa": "/ɡəʊ kwaɪət/",
+    "def": "to become silent or less active"
    },
    {
     "id": 37,
@@ -1270,7 +1453,8 @@
       "zh": "这张照片让人想起快乐的日子。"
      }
     ],
-    "ipa": "/rɪˈmaɪndə/"
+    "ipa": "/rɪˈmaɪndə/",
+    "def": "something that makes you remember or think about something"
    },
    {
     "id": 38,
@@ -1296,7 +1480,16 @@
      }
     ],
     "ipa": "/prəˈdʌktɪv/",
-    "say": "a productive day"
+    "say": "a productive day",
+    "def": "achieving a lot; producing a large amount of something",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "unproductive",
+      "zh": "无成效的",
+      "diff": "productive 有成效；unproductive 白忙一场、没成果。"
+     }
+    ]
    },
    {
     "id": 39,
@@ -1321,7 +1514,22 @@
       "zh": "她开会总是很准时。"
      }
     ],
-    "ipa": "/ˈpʌŋktʃuːəl/"
+    "ipa": "/ˈpʌŋktʃuːəl/",
+    "def": "arriving or doing something at exactly the right time",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "on time",
+      "zh": "准时",
+      "diff": "on time 是短语，用在句子后面（arrive on time）；punctual 是形容词，形容人“守时”的品质（She is always punctual.）。",
+      "ex": [
+       {
+        "en": "The train arrived [[on time]].",
+        "zh": "火车准时到达。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 40,
@@ -1346,7 +1554,8 @@
       "zh": "她还是那么忙。"
      }
     ],
-    "ipa": "/æz ˈevə/"
+    "ipa": "/æz ˈevə/",
+    "def": "used to say that something is still the same as it has always been"
    }
   ],
   "cloze": [

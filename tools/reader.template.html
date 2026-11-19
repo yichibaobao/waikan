@@ -92,6 +92,19 @@ ruby rt{font-size:.5em;font-weight:400;color:var(--muted);letter-spacing:0}
 .ex-body{min-width:0}
 .w-tag{display:inline-block;margin-left:8px;padding:1px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font:700 11px/1.6 var(--font-ui);vertical-align:3px;white-space:nowrap}
 .w-note{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted)}
+.w-def{margin:0;font:italic 400 14.5px/1.6 var(--font-read);color:var(--fg)}
+.w-defl{display:inline-block;margin-right:7px;padding:0 7px;border-radius:6px;background:var(--surface-2);color:var(--muted);font:700 11px/1.7 var(--font-ui);font-style:normal;vertical-align:1px}
+.w-cf{display:grid;gap:10px;padding:10px 12px;border-radius:14px;background:var(--surface-2)}
+.cf-h{margin:0;font-size:14.5px;line-height:1.5}
+.cf-h b{font:600 15.5px/1.5 var(--font-read)}
+.cf-rel{display:inline-block;margin-right:7px;padding:0 7px;border-radius:6px;font:700 11px/1.7 var(--font-ui);vertical-align:1px;background:var(--accent-soft);color:var(--accent)}
+.cf-ant{background:#F6DEDA;color:#A4473A}
+.cf-cf{background:#E3E6F5;color:#4A5590}
+.cf-diff{margin:3px 0 0;font-size:13.5px;line-height:1.6}
+.cf-ex{margin:4px 0 0;padding-left:10px;border-left:3px solid var(--line)}
+.cf-ex .ex-en{font-size:14.5px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cf-ant{background:#4A2C27;color:#F0B3A8} :root:not([data-theme="light"]) .cf-cf{background:#2E3352;color:#B9C1F0}}
+:root[data-theme="dark"] .cf-ant{background:#4A2C27;color:#F0B3A8} :root[data-theme="dark"] .cf-cf{background:#2E3352;color:#B9C1F0}
 .w-exh{margin:2px 0 -3px;font-size:12px;color:var(--muted)}
 .w-ex{margin:0;padding:0;list-style:none;display:grid;gap:9px}
 .w-ex li{padding-left:12px;border-left:3px solid var(--accent-soft);border-radius:2px}
@@ -505,6 +518,7 @@ function sentenceWords(s){
       return h('details', {class:'nw'},
         h('summary', null, h('b', null, v.expr), '　', v.zh),
         h('div', {class:'nw-body'},
+          defLine(v),
           v.note ? h('p', null, v.note) : null,
           x ? h('p', {class:'nw-ex'}, exPlain(x.en), '　', x.zh) : null,
           h('button', {type:'button', class:'btn sm', onclick:function(){ gotoWord(id); }}, '看完整词卡 →')
@@ -582,6 +596,18 @@ function statusSeg(id, after){
   sync();
   return seg;
 }
+/* English-English definition and the 辨析 box (near synonyms, opposites and look-alikes, with how they differ) */
+const CF_REL = {syn:'近义', ant:'反义', cf:'易混'};
+function defLine(v){ return v.def ? h('p', {class:'w-def'}, h('span', {class:'w-defl'}, '英英'), v.def) : null; }
+function cfBox(v){
+  if (!v.cf || !v.cf.length) return null;
+  return h('div', {class:'w-cf'}, h('p', {class:'w-exh'}, '辨析'), v.cf.map(function(c){
+    return h('div', {class:'cf-row'},
+      h('p', {class:'cf-h'}, h('span', {class:'cf-rel cf-' + c.rel}, CF_REL[c.rel] || '辨析'), h('b', null, c.w), c.zh ? '　' + c.zh : null),
+      h('p', {class:'cf-diff'}, c.diff),
+      (c.ex || []).map(function(x){ return h('div', {class:'cf-ex'}, h('span', {class:'ex-en'}, exNodes(x.en)), h('span', {class:'ex-zh'}, x.zh)); }));
+  }));
+}
 function wordCard(v){
   const e = state.vocab[v.id] || {};
   const meta = h('p', {class:'w-meta'}, metaText(v.id));
@@ -598,12 +624,14 @@ function wordCard(v){
     v.rom ? h('p', {class:'rom w-rom'}, v.rom) : null,
     v.ipa ? h('p', {class:'w-ipa'}, v.ipa) : null,
     h('p', {class:'w-zh'}, v.zh),
+    defLine(v),
     v.note ? h('p', {class:'w-note'}, v.note) : null,
     h('div', {class:'w-ctxrow'}, sentBtn(v.ctx), h('p', {class:'w-ctx'}, marked(v.ctx, {force:true, only:v.id}))),
     v.ex && v.ex.length && !v.mine ? h('p', {class:'w-exh'}, '例句') : null,
     v.ex && v.ex.length && !v.mine ? h('ul', {class:'w-ex'}, v.ex.map(function(x, k){
       return h('li', {class:'ex-row'}, speakBtn('e' + v.id + '_' + k, exPlain(x.en)), h('div', {class:'ex-body'}, h('span', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('span', {class:'rom'}, x.rom) : null, h('span', {class:'ex-zh'}, x.zh)));
     })) : null,
+    cfBox(v),
     h('label', {class:'w-mine'}, h('span', null, '我的造句'), ta),
     meta,
     v.mine ? h('div', {class:'row'},
@@ -621,7 +649,7 @@ function renderWords(){
   const items = DATA.vocab.filter(function(v){
     if (vFilter !== 'all' && getS(v.id) !== vFilter) return false;
     if (q){
-      const hay = [v.expr, v.zh, v.ctx, v.note || ''].concat((v.ex || []).map(function(x){ return exPlain(x.en) + ' ' + x.zh; })).join(' ').toLowerCase();
+      const hay = [v.expr, v.zh, v.ctx, v.note || '', v.def || ''].concat((v.cf || []).map(function(c){ return c.w + ' ' + (c.zh || ''); })).concat((v.ex || []).map(function(x){ return exPlain(x.en) + ' ' + x.zh; })).join(' ').toLowerCase();
       if (hay.indexOf(q) < 0) return false;
     }
     return true;
@@ -1005,6 +1033,7 @@ function fcCard(){
     fc.dir === 'w' ? h('p', {class:'fc-mini'}, v.expr, v.rom || v.ipa ? h('span', null, '  ' + (v.rom || v.ipa)) : null) : null,
     fcFace(v, fc.dir === 'w' ? 'z' : 'w'),
     fc.dir === 'w' ? null : h('p', {class:'fc-zh sm'}, v.zh),
+    v.def ? h('p', {class:'fc-note'}, h('span', {class:'w-defl'}, '英英'), h('i', null, v.def)) : null,
     v.note ? h('p', {class:'fc-note'}, v.note) : null,
     x ? h('div', {class:'fc-ex'}, h('p', {class:'ex-en'}, exNodes(x.en)), x.rom ? h('p', {class:'fc-rom sm'}, x.rom) : null, h('p', {class:'ex-zh'}, x.zh)) : null);
   const card = h('div', {class:'fc-card' + (fc.flipped ? ' flip' : ''), role:'button', tabindex:0, 'aria-label':fc.flipped ? '卡片背面' : '卡片正面，点击翻面'}, front, back);

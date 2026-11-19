@@ -365,7 +365,8 @@
       "zh": "横幅上写着：“弱者万岁！”"
      }
     ],
-    "ipa": "/lɒŋ laɪv/"
+    "ipa": "/lɒŋ laɪv/",
+    "def": "used to express strong support for someone or something"
    },
    {
     "id": 40,
@@ -391,7 +392,8 @@
       "zh": "市议会并不急着按这份报告行动。"
      }
     ],
-    "ipa": "/ɪn nəʊ ˈhʌrɪ/"
+    "ipa": "/ɪn nəʊ ˈhʌrɪ/",
+    "def": "to not want to do something soon; to be happy to wait"
    },
    {
     "id": 41,
@@ -423,7 +425,8 @@
       "zh": "好几个城市改用无现金支付的速度比预期的快。"
      }
     ],
-    "ipa": "/ɡəʊ ˈkæʃləs/"
+    "ipa": "/ɡəʊ ˈkæʃləs/",
+    "def": "to stop using notes and coins and pay by card or phone instead"
    },
    {
     "id": 42,
@@ -451,7 +454,8 @@
       "zh": "在富裕国家，几乎没有哪种工作不受软件影响。"
      }
     ],
-    "ipa": "/rɪtʃ wɜːld/"
+    "ipa": "/rɪtʃ wɜːld/",
+    "def": "the group of rich, developed countries"
    },
    {
     "id": 43,
@@ -479,7 +483,8 @@
       "zh": "她轻点了两下屏幕来放大。"
      }
     ],
-    "ipa": "/tæp/"
+    "ipa": "/tæp/",
+    "def": "to touch something lightly and quickly; to pay by touching a card or phone on a reader"
    },
    {
     "id": 1,
@@ -507,7 +512,8 @@
       "zh": "她站在检票口，在包里摸索着找车票。"
      }
     ],
-    "ipa": "/ˈfʌmbəl fɔː/"
+    "ipa": "/ˈfʌmbəl fɔː/",
+    "def": "to try to find something with your hands in an awkward or clumsy way"
    },
    {
     "id": 44,
@@ -535,7 +541,8 @@
       "zh": "有些传统在人们忘了它的用途之后很久仍然留存着。"
      }
     ],
-    "ipa": "/səˈvaɪv/"
+    "ipa": "/səˈvaɪv/",
+    "def": "to continue to exist, especially despite danger or difficulty"
    },
    {
     "id": 2,
@@ -560,7 +567,34 @@
       "zh": "很少有人在害怕的时候还能完全保持理性。"
      }
     ],
-    "ipa": "/ˈræʃənəl/"
+    "ipa": "/ˈræʃənəl/",
+    "def": "based on clear thinking and reason rather than feelings",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "irrational",
+      "zh": "不理性的",
+      "diff": "在 rational 前加 ir- 就成了反义词 irrational（不讲道理、不理性）。",
+      "ex": [
+       {
+        "en": "It's an [[irrational]] fear, but I can't help it.",
+        "zh": "这种害怕没什么道理，可我控制不住。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "reasonable",
+      "zh": "合理的；讲道理的",
+      "diff": "rational 强调“靠逻辑思考”；reasonable 更口语，指“讲道理、公道、合情合理”，还可指价格公道。",
+      "ex": [
+       {
+        "en": "The price is very [[reasonable]].",
+        "zh": "价格很公道。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 45,
@@ -591,7 +625,22 @@
       "zh": "乘客得在雨里排队等出租车。"
      }
     ],
-    "ipa": "/kjuː/"
+    "ipa": "/kjuː/",
+    "def": "a line of people waiting for something (British English)",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "line",
+      "zh": "队伍（美式）",
+      "diff": "英式英语说 queue，美式英语说 line；“排队”英式是 queue (up)，美式是 stand in line。",
+      "ex": [
+       {
+        "en": "We stood in [[line]] for an hour.",
+        "zh": "我们排了一个小时的队。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 46,
@@ -619,7 +668,8 @@
       "zh": "她朝检票员晃了晃车票，就走了过去。"
      }
     ],
-    "ipa": "/weɪv/"
+    "ipa": "/weɪv/",
+    "def": "to move something you are holding from side to side or towards something"
    },
    {
     "id": 47,
@@ -648,7 +698,8 @@
       "zh": "公交车门边有一个读卡器，用来刷交通卡。"
      }
     ],
-    "ipa": "/ˈriːdə/"
+    "ipa": "/ˈriːdə/",
+    "def": "a machine that reads information from a card or phone, for example to take a payment"
    },
    {
     "id": 48,
@@ -674,7 +725,8 @@
       "zh": "博物馆称有数量惊人的外国游客。"
      }
     ],
-    "ipa": "/səˈpraɪzɪŋ ˈnʌmbə/"
+    "ipa": "/səˈpraɪzɪŋ ˈnʌmbə/",
+    "def": "more people or things than you would expect"
    },
    {
     "id": 3,
@@ -702,7 +754,8 @@
       "zh": "收银员慢慢地数出找零。"
      }
     ],
-    "ipa": "/kaʊnt aʊt/"
+    "ipa": "/kaʊnt aʊt/",
+    "def": "to count money or things one by one as you put them down"
    },
    {
     "id": 4,
@@ -730,7 +783,8 @@
       "zh": "他从容的态度让整个房间都平静下来。"
      }
     ],
-    "ipa": "/ʌnˈhʌrɪd/"
+    "ipa": "/ʌnˈhʌrɪd/",
+    "def": "relaxed and calm, not rushing"
    },
    {
     "id": 5,
@@ -755,7 +809,8 @@
       "zh": "那座老房子有一种无人照管的气息。"
      }
     ],
-    "ipa": "/eər ɒv/"
+    "ipa": "/eər ɒv/",
+    "def": "a particular quality or manner that someone or something seems to have"
    },
    {
     "id": 49,
@@ -780,7 +835,8 @@
       "zh": "退休之后他不用赶去哪儿，一份报纸能读上好几个小时。"
      }
     ],
-    "ipa": "/ˈnəʊweə tə biː/"
+    "ipa": "/ˈnəʊweə tə biː/",
+    "def": "to have no appointment or place you need to go to, so you are not in a hurry"
    },
    {
     "id": 6,
@@ -807,7 +863,8 @@
       "zh": "在有些办公室里，坦率的反馈很难得。"
      }
     ],
-    "ipa": "/ˈreərətɪ/"
+    "ipa": "/ˈreərətɪ/",
+    "def": "something that is not often found or seen"
    },
    {
     "id": 7,
@@ -833,7 +890,8 @@
       "zh": "学生们在学校花园下埋了一个时间胶囊。"
      }
     ],
-    "ipa": "/taɪm ˈkæpsjuːl/"
+    "ipa": "/taɪm ˈkæpsjuːl/",
+    "def": "a container of objects buried to be found in the future; a place that seems unchanged since the past"
    },
    {
     "id": 50,
@@ -861,7 +919,8 @@
       "zh": "经济学家的看法不同：在他们眼里，这个趋势是个警告。"
      }
     ],
-    "ipa": "/siː ɪt ˈdɪfrəntlɪ/"
+    "ipa": "/siː ɪt ˈdɪfrəntlɪ/",
+    "def": "to have a different opinion about something"
    },
    {
     "id": 51,
@@ -890,7 +949,8 @@
       "zh": "他花了三年学画画。"
      }
     ],
-    "ipa": "/spend/"
+    "ipa": "/spend/",
+    "def": "to use time doing a particular activity"
    },
    {
     "id": 8,
@@ -918,7 +978,8 @@
       "zh": "他想哄着奶奶用上智能手机。"
      }
     ],
-    "ipa": "/kəʊks/"
+    "ipa": "/kəʊks/",
+    "def": "to persuade someone gently and patiently to do something"
    },
    {
     "id": 9,
@@ -943,7 +1004,8 @@
       "zh": "这两份报告惊人地相似。"
      }
     ],
-    "ipa": "/rɪˈmɑːkəblɪ/"
+    "ipa": "/rɪˈmɑːkəblɪ/",
+    "def": "in a way that is surprising or unusual"
    },
    {
     "id": 10,
@@ -969,7 +1031,8 @@
       "zh": "小偷带着厚厚一沓钞票逃走了。"
      }
     ],
-    "ipa": "/wɒd ɒv nəʊts/"
+    "ipa": "/wɒd ɒv nəʊts/",
+    "def": "a thick roll or pile of banknotes"
    },
    {
     "id": 52,
@@ -997,7 +1060,8 @@
       "zh": "有两台取款机坏了。"
      }
     ],
-    "ipa": "/kæʃ məˈʃiːn/"
+    "ipa": "/kæʃ məˈʃiːn/",
+    "def": "a machine in a wall or bank from which you can take out money with a card (British English)"
    },
    {
     "id": 53,
@@ -1027,7 +1091,8 @@
       "zh": "停电的时候，灯全灭了。"
      }
     ],
-    "ipa": "/paʊə feɪlz/"
+    "ipa": "/paʊə feɪlz/",
+    "def": "the electricity supply stops working"
    },
    {
     "id": 11,
@@ -1055,7 +1120,8 @@
       "zh": "她的意见在这里是说得上话的。"
      }
     ],
-    "ipa": "/kaʊnt fɔː ˈsʌmθɪŋ/"
+    "ipa": "/kaʊnt fɔː ˈsʌmθɪŋ/",
+    "def": "to be important or valuable"
    },
    {
     "id": 54,
@@ -1083,7 +1149,8 @@
       "zh": "这噪音你只能忍着了。"
      }
     ],
-    "ipa": "/laɪv wɪð/"
+    "ipa": "/laɪv wɪð/",
+    "def": "to accept something unpleasant because you cannot change it"
    },
    {
     "id": 12,
@@ -1111,7 +1178,22 @@
       "zh": "女性在劳动力中的占比越来越大。"
      }
     ],
-    "ipa": "/meɪk ʌp/"
+    "ipa": "/meɪk ʌp/",
+    "def": "to form a particular part or amount of something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "make up for",
+      "zh": "弥补",
+      "diff": "make up 是“构成、占”；make up for 是“弥补、补偿”，多一个 for 意思完全不同。",
+      "ex": [
+       {
+        "en": "Nothing can [[make up for]] the lost time.",
+        "zh": "什么也弥补不了失去的时间。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 55,
@@ -1140,7 +1222,8 @@
       "zh": "网络销售占据了市场中越来越大的份额。"
      }
     ],
-    "ipa": "/ʃeər ɒv/"
+    "ipa": "/ʃeər ɒv/",
+    "def": "an increasing part or percentage of something"
    },
    {
     "id": 13,
@@ -1168,7 +1251,8 @@
       "zh": "他一紧张就容易说得很快。"
      }
     ],
-    "ipa": "/tend tuː/"
+    "ipa": "/tend tuː/",
+    "def": "to be likely to behave in a particular way or have a particular quality"
    },
    {
     "id": 56,
@@ -1200,7 +1284,8 @@
       "zh": "有些读者想要一本能捧在手里的书。"
      }
     ],
-    "ipa": "/həʊld ɪn ðeə hændz/"
+    "ipa": "/həʊld ɪn ðeə hændz/",
+    "def": "to physically hold something, so that it feels real"
    },
    {
     "id": 57,
@@ -1225,7 +1310,8 @@
       "zh": "新手机上市时，不少人要排几个小时的队。"
      }
     ],
-    "ipa": "/ˈplentɪ ɒv/"
+    "ipa": "/ˈplentɪ ɒv/",
+    "def": "a large amount or number of something; more than enough"
    },
    {
     "id": 58,
@@ -1252,7 +1338,8 @@
       "zh": "系统要是没坏，就别去修它。"
      }
     ],
-    "ipa": "/nɒt ˈbrəʊkən/"
+    "ipa": "/nɒt ˈbrəʊkən/",
+    "def": "still working properly; part of the saying that you should not change something that works well"
    },
    {
     "id": 59,
@@ -1281,7 +1368,8 @@
       "zh": "一项失败的政策，账由谁来付？"
      }
     ],
-    "ipa": "/bɪl fɔː/"
+    "ipa": "/bɪl fɔː/",
+    "def": "the cost that must be paid for something, often by someone else"
    },
    {
     "id": 14,
@@ -1309,7 +1397,8 @@
       "zh": "订单要是出错，成本就落在供应商头上。"
      }
     ],
-    "ipa": "/lænd ɒn/"
+    "ipa": "/lænd ɒn/",
+    "def": "(of a cost or duty) to become someone's responsibility"
    },
    {
     "id": 60,
@@ -1337,7 +1426,8 @@
       "zh": "改日期不另外收费。"
      }
     ],
-    "ipa": "/ˈnʌθɪŋ ˈekstrə/"
+    "ipa": "/ˈnʌθɪŋ ˈekstrə/",
+    "def": "no additional cost or item"
    },
    {
     "id": 61,
@@ -1364,7 +1454,8 @@
       "zh": "北部多雨，而南部干燥。"
      }
     ],
-    "ipa": "/ˈweəræz/"
+    "ipa": "/ˈweəræz/",
+    "def": "used to compare two facts and show how they are different"
    },
    {
     "id": 15,
@@ -1392,7 +1483,8 @@
       "zh": "公司不得不把全部记录交给监管机构。"
      }
     ],
-    "ipa": "/hænd ˈəʊvə/"
+    "ipa": "/hænd ˈəʊvə/",
+    "def": "to give something to someone, especially when they ask or force you to"
    },
    {
     "id": 16,
@@ -1419,7 +1511,8 @@
       "zh": "旅游给这个小镇带来了一部分新收入。"
      }
     ],
-    "ipa": "/slaɪs ɒv/"
+    "ipa": "/slaɪs ɒv/",
+    "def": "a part or share of something"
    },
    {
     "id": 62,
@@ -1449,7 +1542,8 @@
       "zh": "这家公司运营着一个有三百家门店的网络。"
      }
     ],
-    "ipa": "/rʌn/"
+    "ipa": "/rʌn/",
+    "def": "to manage a business, system or organization"
    },
    {
     "id": 17,
@@ -1475,7 +1569,8 @@
       "zh": "利润微薄的小农场扛不住一次歉收。"
      }
     ],
-    "ipa": "/θɪn ˈmɑːdʒɪnz/"
+    "ipa": "/θɪn ˈmɑːdʒɪnz/",
+    "def": "very small profits on each sale"
    },
    {
     "id": 63,
@@ -1501,7 +1596,8 @@
       "zh": "这两部手机的差别主要在价格。"
      }
     ],
-    "ipa": "/ˈdɪfrəns bɪˈtwiːn/"
+    "ipa": "/ˈdɪfrəns bɪˈtwiːn/",
+    "def": "the thing that decides whether something succeeds or fails"
    },
    {
     "id": 18,
@@ -1528,7 +1624,8 @@
       "zh": "市议会不情不愿地批准了这个计划。"
      }
     ],
-    "ipa": "/ˈɡrʌdʒɪŋlɪ/"
+    "ipa": "/ˈɡrʌdʒɪŋlɪ/",
+    "def": "in a way that shows you do not really want to do or accept something"
    },
    {
     "id": 19,
@@ -1558,7 +1655,22 @@
       "zh": "她的父母劝她不要退学。"
      }
     ],
-    "ipa": "/dɪˈskʌrɪdʒ/"
+    "ipa": "/dɪˈskʌrɪdʒ/",
+    "def": "to try to persuade someone not to do something; to make something less likely",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "encourage",
+      "zh": "鼓励",
+      "diff": "encourage 是让人更想做；discourage 是让人不想做。discourage sb from doing sth 劝阻某人做某事。",
+      "ex": [
+       {
+        "en": "Her teacher [[encouraged]] her to apply.",
+        "zh": "老师鼓励她去申请。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 64,
@@ -1585,7 +1697,8 @@
       "zh": "这个村子长期以来靠旅游业过活。"
      }
     ],
-    "ipa": "/hæv lɒŋ/"
+    "ipa": "/hæv lɒŋ/",
+    "def": "used to say that something has been true or has been happening for a long time"
    },
    {
     "id": 20,
@@ -1617,7 +1730,8 @@
       "zh": "向导一路轻声催着疲惫的徒步者走完最后一英里。"
      }
     ],
-    "ipa": "/nʌdʒ/"
+    "ipa": "/nʌdʒ/",
+    "def": "to gently and gradually push or encourage someone in a particular direction"
    },
    {
     "id": 21,
@@ -1645,7 +1759,8 @@
       "zh": "经理在员工面前吊着晋升的前景。"
      }
     ],
-    "ipa": "/ˈdæŋɡəl/"
+    "ipa": "/ˈdæŋɡəl/",
+    "def": "to offer something attractive to persuade someone; to hang loosely"
    },
    {
     "id": 22,
@@ -1673,7 +1788,34 @@
       "zh": "这家店对大宗订单提供返利。"
      }
     ],
-    "ipa": "/ˈriːbeɪt/"
+    "ipa": "/ˈriːbeɪt/",
+    "def": "an amount of money that is paid back to you, for example because you paid too much",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "refund",
+      "zh": "退款",
+      "diff": "refund 是把付的钱全部或部分退回（如退货）；rebate 常指事后返还的一部分钱，比如退税、返现。",
+      "ex": [
+       {
+        "en": "I took the shoes back and got a full [[refund]].",
+        "zh": "我把鞋退了，拿回了全款。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "discount",
+      "zh": "折扣",
+      "diff": "discount 是付款时直接便宜；rebate 是先付全价，之后再返还一部分。",
+      "ex": [
+       {
+        "en": "Students get a ten per cent [[discount]].",
+        "zh": "学生打九折。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 23,
@@ -1701,7 +1843,8 @@
       "zh": "失业率连续三个月缓慢上升。"
      }
     ],
-    "ipa": "/kriːp ˈʌpwəd/"
+    "ipa": "/kriːp ˈʌpwəd/",
+    "def": "to rise slowly and steadily"
    },
    {
     "id": 65,
@@ -1729,7 +1872,8 @@
       "zh": "这个计划为鼓励回收提供各种激励。"
      }
     ],
-    "ipa": "/ɪnˈsentɪv/"
+    "ipa": "/ɪnˈsentɪv/",
+    "def": "something that encourages a person to do something"
    },
    {
     "id": 66,
@@ -1756,7 +1900,8 @@
       "zh": "这类问题很少能很快解决。"
      }
     ],
-    "ipa": "/ɒv ðæt kaɪnd/"
+    "ipa": "/ɒv ðæt kaɪnd/",
+    "def": "of that type"
    },
    {
     "id": 24,
@@ -1784,7 +1929,22 @@
       "zh": "音乐声慢慢地消失了。"
      }
     ],
-    "ipa": "/feɪd/"
+    "ipa": "/feɪd/",
+    "def": "to gradually become weaker, paler or less noticeable",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "disappear",
+      "zh": "消失",
+      "diff": "disappear 是“不见了”，可以很突然；fade 是“慢慢变淡、变弱”，强调逐渐的过程。",
+      "ex": [
+       {
+        "en": "The cat [[disappeared]] under the bed.",
+        "zh": "猫一下钻到床底不见了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 25,
@@ -1812,7 +1972,22 @@
       "zh": "选民们的耐心终于耗尽了。"
      }
     ],
-    "ipa": "/rʌn aʊt/"
+    "ipa": "/rʌn aʊt/",
+    "def": "to be used up so that there is none left",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "run out of",
+      "zh": "用完（某物）",
+      "diff": "主语不同：东西作主语用 run out（Time is running out.）；人作主语用 run out of sth（We ran out of milk.）。",
+      "ex": [
+       {
+        "en": "We've [[run out of]] milk.",
+        "zh": "我们的牛奶喝完了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 26,
@@ -1840,7 +2015,8 @@
       "zh": "小小的减税就可能让犹豫不决的选民做出决定。"
      }
     ],
-    "ipa": "/tɪp ðə ˈbæləns/"
+    "ipa": "/tɪp ðə ˈbæləns/",
+    "def": "to be the thing that finally decides a result"
    },
    {
     "id": 67,
@@ -1865,7 +2041,8 @@
       "zh": "怎么劝都没能改变他的主意。"
      }
     ],
-    "ipa": "/pəˈsweɪʒən/"
+    "ipa": "/pəˈsweɪʒən/",
+    "def": "the act of making someone believe or do something by giving them reasons"
    },
    {
     "id": 27,
@@ -1890,7 +2067,8 @@
       "zh": "签租约之前先把账算清楚。"
      }
     ],
-    "ipa": "/əˈrɪθməˌtɪk/"
+    "ipa": "/əˈrɪθməˌtɪk/",
+    "def": "the basic calculations of numbers; the costs and benefits of a plan"
    },
    {
     "id": 68,
@@ -1918,7 +2096,8 @@
       "zh": "人口老龄化意味着劳动力变少。"
      }
     ],
-    "ipa": "/ˈwɜːkfɔːs/"
+    "ipa": "/ˈwɜːkfɔːs/",
+    "def": "all the people who work in a company, industry or country"
    },
    {
     "id": 28,
@@ -1947,7 +2126,22 @@
       "zh": "成本上升，利润随之缩水。"
      }
     ],
-    "ipa": "/ʃrɪŋk/"
+    "ipa": "/ʃrɪŋk/",
+    "def": "to become smaller in size or amount",
+    "cf": [
+     {
+      "rel": "ant",
+      "w": "grow",
+      "zh": "增长",
+      "diff": "shrink 是变小、减少；反义是 grow 或更正式的 expand。",
+      "ex": [
+       {
+        "en": "The town has [[grown]] a lot.",
+        "zh": "这个小镇扩大了很多。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 29,
@@ -1973,7 +2167,8 @@
       "zh": "有人从收银抽屉里拿走了钱。"
      }
     ],
-    "ipa": "/tɪl/"
+    "ipa": "/tɪl/",
+    "def": "the drawer or machine in a shop where money is kept"
    },
    {
     "id": 70,
@@ -2003,7 +2198,22 @@
       "zh": "她替三家小公司经手账目。"
      }
     ],
-    "ipa": "/ˈhændəl/"
+    "ipa": "/ˈhændəl/",
+    "def": "to deal with something or someone; to touch or move something",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "deal with",
+      "zh": "处理",
+      "diff": "两者都可表示处理问题。deal with 更口语、更常用；handle 更强调“应付得来、处理得好”，也可指用手拿、碰。",
+      "ex": [
+       {
+        "en": "I'll [[deal with]] it tomorrow.",
+        "zh": "我明天再处理这件事。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 69,
@@ -2031,7 +2241,8 @@
       "zh": "廉价机票可能附带隐性开支，比如行李费。"
      }
     ],
-    "ipa": "/ˈhɪdən ɪkˈspens/"
+    "ipa": "/ˈhɪdən ɪkˈspens/",
+    "def": "a cost that is not obvious at first"
    },
    {
     "id": 71,
@@ -2061,7 +2272,8 @@
       "zh": "她在上班路上把支票存进了银行。"
      }
     ],
-    "ipa": "/bæŋk/"
+    "ipa": "/bæŋk/",
+    "def": "to put money into a bank account"
    },
    {
     "id": 30,
@@ -2093,7 +2305,8 @@
       "zh": "父母们把周末都花在开车接送孩子上。"
      }
     ],
-    "ipa": "/ˈferɪ/"
+    "ipa": "/ˈferɪ/",
+    "def": "to carry people or goods from one place to another, often again and again"
    },
    {
     "id": 72,
@@ -2123,7 +2336,8 @@
       "zh": "有两辆运钞车停在银行外面。"
      }
     ],
-    "ipa": "/ˈɑːməd væn/"
+    "ipa": "/ˈɑːməd væn/",
+    "def": "a strong, protected vehicle used to carry money"
    },
    {
     "id": 31,
@@ -2151,7 +2365,8 @@
       "zh": "护士把水壶重新加满了。"
      }
     ],
-    "ipa": "/tɒp ʌp/"
+    "ipa": "/tɒp ʌp/",
+    "def": "to add more of something, such as money or fuel, to bring it back to a full level"
    },
    {
     "id": 73,
@@ -2181,7 +2396,8 @@
       "zh": "小店觉得刷卡收款很麻烦。"
      }
     ],
-    "ipa": "/teɪk ˈmʌnɪ/"
+    "ipa": "/teɪk ˈmʌnɪ/",
+    "def": "to receive money from customers as payment"
    },
    {
     "id": 74,
@@ -2209,7 +2425,8 @@
       "zh": "凡是涉及重型机械的工作都要经过培训。"
      }
     ],
-    "ipa": "/ɪnˈvɒlvd/"
+    "ipa": "/ɪnˈvɒlvd/",
+    "def": "when something or someone is part of a situation"
    },
    {
     "id": 32,
@@ -2235,7 +2452,8 @@
       "zh": "选民们对本地医院的感情很深。"
      }
     ],
-    "ipa": "/əˈtætʃmənt tuː/"
+    "ipa": "/əˈtætʃmənt tuː/",
+    "def": "a feeling of love or strong connection to someone or something"
    },
    {
     "id": 75,
@@ -2260,7 +2478,8 @@
       "zh": "无视这些警告信号是不理性的。"
      }
     ],
-    "ipa": "/ɪˈræʃənəl/"
+    "ipa": "/ɪˈræʃənəl/",
+    "def": "not based on clear thinking or reason"
    },
    {
     "id": 33,
@@ -2288,7 +2507,8 @@
       "zh": "许多球迷在那些低谷的年头也一直支持这支球队。"
      }
     ],
-    "ipa": "/stɪk wɪð/"
+    "ipa": "/stɪk wɪð/",
+    "def": "to continue to use or do something and not change it"
    },
    {
     "id": 76,
@@ -2316,7 +2536,8 @@
       "zh": "换用新系统的成本很容易被低估。"
      }
     ],
-    "ipa": "/kɒst ɒv ˈswɪtʃɪŋ/"
+    "ipa": "/kɒst ɒv ˈswɪtʃɪŋ/",
+    "def": "the money, time and effort needed to change from one system to another"
    },
    {
     "id": 34,
@@ -2347,7 +2568,34 @@
       "zh": "委员会漏掉了一个重要的细节。"
      }
     ],
-    "ipa": "/ˌəʊvəˈlʊk/"
+    "ipa": "/ˌəʊvəˈlʊk/",
+    "def": "to fail to notice or consider something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "oversee",
+      "zh": "监督",
+      "diff": "overlook 是“没注意到、忽略”（也可指房子“俯瞰”某处）；oversee 是“监督、管理”，两者很容易看混。",
+      "ex": [
+       {
+        "en": "She [[oversees]] the whole project.",
+        "zh": "她负责监督整个项目。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "look over",
+      "zh": "仔细查看",
+      "diff": "look over 意思几乎相反：是“把……看一遍、检查”。",
+      "ex": [
+       {
+        "en": "Could you [[look over]] my essay?",
+        "zh": "你能帮我看一下作文吗？"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 35,
@@ -2374,7 +2622,8 @@
       "zh": "这次合并，谁可能获益最多？"
      }
     ],
-    "ipa": "/stænd tə ɡeɪn/"
+    "ipa": "/stænd tə ɡeɪn/",
+    "def": "to be likely to get an advantage"
    },
    {
     "id": 36,
@@ -2403,7 +2652,34 @@
       "zh": "她的愤怒渐渐变成了悲伤。"
      }
     ],
-    "ipa": "/ɡɪv weɪ/"
+    "ipa": "/ɡɪv weɪ/",
+    "def": "to allow someone else to have what they want; or, to break or fall down",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "give in",
+      "zh": "屈服",
+      "diff": "give in 是经过争执、压力后“屈服、认输”；give way 也可指屈服，但还常指“让路”或东西“塌掉”。",
+      "ex": [
+       {
+        "en": "After hours of begging, his mum finally [[gave in]].",
+        "zh": "他求了几个小时，妈妈终于让步了。"
+       }
+      ]
+     },
+     {
+      "rel": "cf",
+      "w": "give up",
+      "zh": "放弃",
+      "diff": "give up 是“放弃、戒掉”，重点是自己不再继续做，不一定是向别人让步。",
+      "ex": [
+       {
+        "en": "He [[gave up]] smoking last year.",
+        "zh": "他去年戒了烟。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 37,
@@ -2431,7 +2707,8 @@
       "zh": "作者为更慢、更深入的阅读提出了论证。"
      }
     ],
-    "ipa": "/meɪk ə keɪs/"
+    "ipa": "/meɪk ə keɪs/",
+    "def": "to give reasons why something is true or should be done"
    },
    {
     "id": 77,
@@ -2460,7 +2737,8 @@
       "zh": "监管机构将在今年冬天为电价定价。"
      }
     ],
-    "ipa": "/set ðə praɪs/"
+    "ipa": "/set ðə praɪs/",
+    "def": "to decide how much something will cost"
    },
    {
     "id": 38,
@@ -2487,7 +2765,8 @@
       "zh": "边境上随后出现了一场紧张的对峙。"
      }
     ],
-    "ipa": "/ˈstændɒf/"
+    "ipa": "/ˈstændɒf/",
+    "def": "a situation in which two sides refuse to give way to each other"
    }
   ],
   "cloze": [

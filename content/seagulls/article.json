@@ -333,7 +333,8 @@
       "zh": "每年八月，一家人都去海边。"
      }
     ],
-    "ipa": "/ˈsiːsaɪd/"
+    "ipa": "/ˈsiːsaɪd/",
+    "def": "an area by the sea, especially a place where people go on holiday"
    },
    {
     "id": 2,
@@ -360,7 +361,34 @@
       "zh": "辞掉工作是个大胆的决定。"
      }
     ],
-    "ipa": "/bəʊld/"
+    "ipa": "/bəʊld/",
+    "def": "brave and confident; or, not afraid of being rude",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "brave",
+      "zh": "勇敢的",
+      "diff": "brave 是褒义的“勇敢”；bold 也可指勇敢、大胆，但也可带贬义“放肆、冒失”，还能形容颜色、设计“醒目”。",
+      "ex": [
+       {
+        "en": "It was [[brave]] of you to tell the truth.",
+        "zh": "你说出真相很勇敢。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "timid",
+      "zh": "胆小的",
+      "diff": "timid 指胆小、怯生生的，是 bold 的反义。",
+      "ex": [
+       {
+        "en": "The puppy was [[timid]] at first.",
+        "zh": "小狗一开始很胆小。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 3,
@@ -387,7 +415,8 @@
       "zh": "城墙是这座城镇主要的防御。"
      }
     ],
-    "ipa": "/dɪˈfens/"
+    "ipa": "/dɪˈfens/",
+    "def": "protection against attack (British spelling; American: defense)"
    },
    {
     "id": 4,
@@ -412,7 +441,8 @@
       "zh": "我马上回来。"
      }
     ],
-    "ipa": "/ɪn ə flæʃ/"
+    "ipa": "/ɪn ə flæʃ/",
+    "def": "very quickly; in a moment"
    },
    {
     "id": 5,
@@ -440,7 +470,8 @@
       "zh": "她每天中午在办公桌前拆开一个三明治。"
      }
     ],
-    "ipa": "/ʌnˈræp/"
+    "ipa": "/ʌnˈræp/",
+    "def": "to remove the paper or covering from something"
    },
    {
     "id": 6,
@@ -468,7 +499,8 @@
       "zh": "看那只鹰朝河面俯冲下去。"
      }
     ],
-    "ipa": "/swuːp daʊn/"
+    "ipa": "/swuːp daʊn/",
+    "def": "(of a bird) to fly down quickly and suddenly, especially to attack"
    },
    {
     "id": 7,
@@ -496,7 +528,8 @@
       "zh": "狗从烧烤架上叼了一根香肠就跑。"
      }
     ],
-    "ipa": "/meɪk ɒf wɪð/"
+    "ipa": "/meɪk ɒf wɪð/",
+    "def": "to steal something and quickly take it away"
    },
    {
     "id": 8,
@@ -524,7 +557,22 @@
       "zh": "她听到笑话笑得尖叫。"
      }
     ],
-    "ipa": "/ʃriːk/"
+    "ipa": "/ʃriːk/",
+    "def": "to give a loud, high cry",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "scream",
+      "zh": "尖叫",
+      "diff": "scream 最常用，可因害怕、疼痛、兴奋；shriek 声音更尖、更刺耳，常用于鸟叫或突然的尖叫。",
+      "ex": [
+       {
+        "en": "The children [[screamed]] with excitement.",
+        "zh": "孩子们兴奋地尖叫。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 9,
@@ -552,7 +600,8 @@
       "zh": "午饭后他总是躲进书房看书。"
      }
     ],
-    "ipa": "/rɪˈtriːt/"
+    "ipa": "/rɪˈtriːt/",
+    "def": "to move back or away from danger or a difficult situation"
    },
    {
     "id": 10,
@@ -580,7 +629,8 @@
       "zh": "我们等着看事情怎么发展吧。"
      }
     ],
-    "ipa": "/pleɪ aʊt/"
+    "ipa": "/pleɪ aʊt/",
+    "def": "(of events) to happen or develop in a particular way"
    },
    {
     "id": 11,
@@ -607,7 +657,8 @@
       "zh": "他冲我调皮一笑，拿走了最后一块饼干。"
      }
     ],
-    "ipa": "/ˈtʃiːkɪ/"
+    "ipa": "/ˈtʃiːkɪ/",
+    "def": "rude or lacking respect, but often in a funny or charming way"
    },
    {
     "id": 12,
@@ -635,7 +686,8 @@
       "zh": "我们在海滩上捡木头生火。"
      }
     ],
-    "ipa": "/ˈskævɪndʒ/"
+    "ipa": "/ˈskævɪndʒ/",
+    "def": "to search through waste for food or useful things"
    },
    {
     "id": 13,
@@ -663,7 +715,8 @@
       "zh": "几只鸟在垃圾里翻找。"
      }
     ],
-    "ipa": "/pɪk θruː/"
+    "ipa": "/pɪk θruː/",
+    "def": "to search carefully through a pile or container of things"
    },
    {
     "id": 14,
@@ -691,7 +744,22 @@
       "zh": "雨越下越大，人群渐渐散去。"
      }
     ],
-    "ipa": "/ˈdwɪndəl/"
+    "ipa": "/ˈdwɪndəl/",
+    "def": "to gradually become smaller or fewer",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "decrease",
+      "zh": "减少",
+      "diff": "decrease 是普通的“减少”；dwindle 强调“一点点减少，越来越少，快没了”。",
+      "ex": [
+       {
+        "en": "The number of visitors has [[decreased]].",
+        "zh": "游客数量减少了。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 15,
@@ -719,7 +787,8 @@
       "zh": "她的眼里噙满了泪水。"
      }
     ],
-    "ipa": "/fɪl ʌp wɪð/"
+    "ipa": "/fɪl ʌp wɪð/",
+    "def": "to become full of something"
    },
    {
     "id": 16,
@@ -744,7 +813,8 @@
       "zh": "他们住在一个内陆小村子里。"
      }
     ],
-    "ipa": "/ˈɪnlənd/"
+    "ipa": "/ˈɪnlənd/",
+    "def": "in or towards the middle of a country, away from the sea"
    },
    {
     "id": 17,
@@ -772,7 +842,22 @@
       "zh": "公司转向了网上销售。"
      }
     ],
-    "ipa": "/əˈdæpt/"
+    "ipa": "/əˈdæpt/",
+    "def": "to change your behaviour to suit a new situation",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "adopt",
+      "zh": "收养；采用",
+      "diff": "只差一个字母：adapt 是“适应、改编”；adopt 是“收养、采用（方法、建议）”。",
+      "ex": [
+       {
+        "en": "They [[adopted]] a new plan.",
+        "zh": "他们采用了新计划。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 18,
@@ -799,7 +884,8 @@
       "zh": "夏天新鲜水果很容易买到。"
      }
     ],
-    "ipa": "/kʌm baɪ/"
+    "ipa": "/kʌm baɪ/",
+    "def": "easy to find or get"
    },
    {
     "id": 19,
@@ -827,7 +913,22 @@
       "zh": "你不能天天迟到还不受处罚。"
      }
     ],
-    "ipa": "/ɡet əˈweɪ wɪð/"
+    "ipa": "/ɡet əˈweɪ wɪð/",
+    "def": "to do something wrong and not be punished for it",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "get away",
+      "zh": "逃走；去度假",
+      "diff": "get away 是“逃脱、出去度假”；get away with sth 是“做了坏事却没受罚”。",
+      "ex": [
+       {
+        "en": "We need to [[get away]] for a few days.",
+        "zh": "我们得出去散几天心。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 20,
@@ -857,7 +958,8 @@
       "zh": "这台打印机真让我没辙了。"
      }
     ],
-    "ipa": "/æt ðeə wɪts end/"
+    "ipa": "/æt ðeə wɪts end/",
+    "def": "so worried or tired that you do not know what to do next"
    },
    {
     "id": 21,
@@ -882,7 +984,8 @@
       "zh": "我们什么都聊，从足球到哲学。"
      }
     ],
-    "ipa": "/ˈevrɪˌθɪŋ frɒm/"
+    "ipa": "/ˈevrɪˌθɪŋ frɒm/",
+    "def": "used to show that a wide range of things is included"
    },
    {
     "id": 22,
@@ -909,7 +1012,8 @@
       "zh": "司机开车用手机会被罚款。"
      }
     ],
-    "ipa": "/faɪn/"
+    "ipa": "/faɪn/",
+    "def": "money that you must pay as a punishment for breaking a rule or law"
    },
    {
     "id": 23,
@@ -938,7 +1042,8 @@
       "zh": "高价可能会把游客吓跑。"
      }
     ],
-    "ipa": "/skeər ɒf/"
+    "ipa": "/skeər ɒf/",
+    "def": "to frighten a person or animal so that they go away"
    },
    {
     "id": 24,
@@ -966,7 +1071,22 @@
       "zh": "这个新应用一直没真正流行起来。"
      }
     ],
-    "ipa": "/kætʃ ɒn/"
+    "ipa": "/kætʃ ɒn/",
+    "def": "to begin to understand something; or, to become popular",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "catch up",
+      "zh": "赶上",
+      "diff": "catch on 是“明白过来；流行起来”；catch up (with) 是“追上、赶上（进度）”。",
+      "ex": [
+       {
+        "en": "Go ahead, I'll [[catch up]] with you.",
+        "zh": "你先走，我会赶上你的。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 25,
@@ -994,7 +1114,8 @@
       "zh": "我们得在周五前想出个计划。"
      }
     ],
-    "ipa": "/kʌm ʌp wɪð/"
+    "ipa": "/kʌm ʌp wɪð/",
+    "def": "to think of an idea, plan or answer"
    },
    {
     "id": 26,
@@ -1023,7 +1144,8 @@
       "zh": "别跟一头发怒的公牛对视。"
      }
     ],
-    "ipa": "/steə daʊn/"
+    "ipa": "/steə daʊn/",
+    "def": "to look at someone steadily until they look away or back down"
    },
    {
     "id": 27,
@@ -1051,7 +1173,22 @@
       "zh": "冬天很快就要到了。"
      }
     ],
-    "ipa": "/əˈprəʊtʃ/"
+    "ipa": "/əˈprəʊtʃ/",
+    "def": "to move closer to someone or something",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "approach to",
+      "zh": "（解决问题的）方法",
+      "diff": "动词 approach 后面直接加对象，不加 to（approach the door）；名词 approach 才用 to（a new approach to teaching）。",
+      "ex": [
+       {
+        "en": "We need a new [[approach]] to the problem.",
+        "zh": "我们需要一个解决问题的新办法。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 28,
@@ -1079,7 +1216,8 @@
       "zh": "需要帮忙就尽管给我打电话。"
      }
     ],
-    "ipa": "/ˈhezɪˌteɪt/"
+    "ipa": "/ˈhezɪˌteɪt/",
+    "def": "to pause before doing or saying something because you are unsure"
    },
    {
     "id": 29,
@@ -1108,7 +1246,8 @@
       "zh": "永远不要放弃你的梦想。"
      }
     ],
-    "ipa": "/ɡɪv ʌp/"
+    "ipa": "/ɡɪv ʌp/",
+    "def": "to stop trying to do something"
    },
    {
     "id": 30,
@@ -1133,7 +1272,22 @@
       "zh": "我们可能会彻底取消这次旅行。"
      }
     ],
-    "ipa": "/ˌɔːltəˈɡeðə/"
+    "ipa": "/ˌɔːltəˈɡeðə/",
+    "def": "completely; in total",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "all together",
+      "zh": "全部一起",
+      "diff": "altogether 是“完全；总共”；分开写的 all together 是“大家一起、全部在一起”。",
+      "ex": [
+       {
+        "en": "Let's sing it [[all together]].",
+        "zh": "我们一起唱吧。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 31,
@@ -1160,7 +1314,8 @@
       "zh": "好得不像真的优惠，要多留个心眼。"
      }
     ],
-    "ipa": "/ˈweərɪ ɒv/"
+    "ipa": "/ˈweərɪ ɒv/",
+    "def": "careful because you think there may be danger or a problem"
    },
    {
     "id": 32,
@@ -1188,7 +1343,8 @@
       "zh": "她演讲时强忍着眼泪。"
      }
     ],
-    "ipa": "/faɪt bæk/"
+    "ipa": "/faɪt bæk/",
+    "def": "to defend yourself by attacking someone who has attacked you"
    },
    {
     "id": 33,
@@ -1216,7 +1372,8 @@
       "zh": "一年免费披萨？有什么猫腻？"
      }
     ],
-    "ipa": "/ðeər ɪz ə kætʃ/"
+    "ipa": "/ðeər ɪz ə kætʃ/",
+    "def": "used to say that there is a hidden problem or disadvantage"
    },
    {
     "id": 34,
@@ -1242,7 +1399,8 @@
       "zh": "大多数事故是少数司机造成的。"
      }
     ],
-    "ipa": "/ə maɪˈnɒrɪtɪ ɒv/"
+    "ipa": "/ə maɪˈnɒrɪtɪ ɒv/",
+    "def": "a small number of people or things within a larger group"
    },
    {
     "id": 35,
@@ -1271,7 +1429,8 @@
       "zh": "我不敢从桥上往下看。"
      }
     ],
-    "ipa": "/deə tuː/"
+    "ipa": "/deə tuː/",
+    "def": "to be brave enough to do something"
    },
    {
     "id": 36,
@@ -1296,7 +1455,22 @@
       "zh": "我们差一点就没按时赶到机场。"
      }
     ],
-    "ipa": "/ˈbeəlɪ/"
+    "ipa": "/ˈbeəlɪ/",
+    "def": "only just; almost not",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "hardly",
+      "zh": "几乎不",
+      "diff": "barely 和 hardly 都表示“几乎不”。barely 更强调“刚刚够、勉强做到”（I barely passed. 勉强及格）。",
+      "ex": [
+       {
+        "en": "I can [[hardly]] hear you.",
+        "zh": "我几乎听不见你说话。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 37,
@@ -1324,7 +1498,8 @@
       "zh": "老师一直留意着后排那个安静的男孩。"
      }
     ],
-    "ipa": "/kiːp ən aɪ ɒn/"
+    "ipa": "/kiːp ən aɪ ɒn/",
+    "def": "to watch someone or something carefully"
    },
    {
     "id": 38,
@@ -1354,7 +1529,22 @@
       "zh": "我们忘了时间，错过了公交车。"
      }
     ],
-    "ipa": "/kiːp træk ɒv/"
+    "ipa": "/kiːp træk ɒv/",
+    "def": "to make sure you know what is happening or where something is",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "keep an eye on",
+      "zh": "照看",
+      "diff": "keep track of 是“随时掌握情况、记着数”；keep an eye on 是“盯着、照看”，防止出问题。",
+      "ex": [
+       {
+        "en": "Can you [[keep an eye on]] my bag?",
+        "zh": "你能帮我看一下包吗？"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 39,
@@ -1382,7 +1572,8 @@
       "zh": "乌云预示着暴风雨。"
      }
     ],
-    "ipa": "/hɪnt æt/"
+    "ipa": "/hɪnt æt/",
+    "def": "to suggest something without saying it directly"
    },
    {
     "id": 40,
@@ -1408,7 +1599,8 @@
       "zh": "有些政客完全是投机分子。"
      }
     ],
-    "ipa": "/ɒpəˈtjuːnɪst/"
+    "ipa": "/ɒpəˈtjuːnɪst/",
+    "def": "a person or animal that uses any chance to get an advantage"
    },
    {
     "id": 41,
@@ -1436,7 +1628,8 @@
       "zh": "到处都乱扔着玩具。"
      }
     ],
-    "ipa": "/laɪɪŋ əˈraʊnd/"
+    "ipa": "/laɪɪŋ əˈraʊnd/",
+    "def": "to be left somewhere carelessly or not in its proper place"
    },
    {
     "id": 42,
@@ -1463,7 +1656,8 @@
       "zh": "许多国家的蜜蜂数量在减少。"
      }
     ],
-    "ipa": "/ɪn dɪˈklaɪn/"
+    "ipa": "/ɪn dɪˈklaɪn/",
+    "def": "becoming less in number, quality or importance"
    },
    {
     "id": 43,
@@ -1488,7 +1682,8 @@
       "zh": "就在输掉比赛的时候，他还一直在笑。"
      }
     ],
-    "ipa": "/ˈiːvən æz/"
+    "ipa": "/ˈiːvən æz/",
+    "def": "at the same time as something else happens, even though it seems surprising"
    },
    {
     "id": 44,
@@ -1516,7 +1711,34 @@
       "zh": "有些人越有压力越出色。"
      }
     ],
-    "ipa": "/θraɪv/"
+    "ipa": "/θraɪv/",
+    "def": "to grow, develop or succeed well",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "flourish",
+      "zh": "繁荣、茂盛",
+      "diff": "两者都表示“长得好、兴旺”，常可互换；flourish 更书面，多用于事业、艺术、植物。",
+      "ex": [
+       {
+        "en": "The arts [[flourished]] in the city.",
+        "zh": "这座城市的艺术十分繁荣。"
+       }
+      ]
+     },
+     {
+      "rel": "ant",
+      "w": "struggle",
+      "zh": "挣扎、勉强维持",
+      "diff": "thrive 是越过越好；struggle 是苦苦支撑、过得艰难。",
+      "ex": [
+       {
+        "en": "Many small shops are [[struggling]].",
+        "zh": "很多小店都在苦苦支撑。"
+       }
+      ]
+     }
+    ]
    },
    {
     "id": 45,
@@ -1544,7 +1766,8 @@
       "zh": "你怎么解释花这么多钱是合理的？"
      }
     ],
-    "ipa": "/ˈdʒʌstɪˌfaɪ/"
+    "ipa": "/ˈdʒʌstɪˌfaɪ/",
+    "def": "difficult to give a good reason for"
    },
    {
     "id": 46,
@@ -1570,7 +1793,8 @@
       "zh": "要是其他办法都不行，我们就打车。"
      }
     ],
-    "ipa": "/wen ɔːl els feɪlz/"
+    "ipa": "/wen ɔːl els feɪlz/",
+    "def": "if no other method works"
    },
    {
     "id": 47,
@@ -1600,7 +1824,8 @@
       "zh": "她直视着他的眼睛说了不。"
      }
     ],
-    "ipa": "/lʊk ɪnðɪ aɪ/"
+    "ipa": "/lʊk ɪnðɪ aɪ/",
+    "def": "to look directly at someone, often to show that you are honest or not afraid"
    }
   ],
   "cloze": [
