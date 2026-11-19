@@ -618,14 +618,11 @@
     "m": [
      "vandals"
     ],
-    "note": "动词 vandalise（故意破坏），名词 vandalism（破坏公物的行为）。",
+    "note": "名词“破坏公物的人”。动词是 vandalise（见下一个词），破坏公物的行为叫 vandalism。",
     "core": "vandal",
     "forms": [
      "vandal",
-     "vandals",
-     "vandalise",
-     "vandalised",
-     "vandalism"
+     "vandals"
     ],
     "syn": [],
     "ex": [
@@ -634,8 +631,8 @@
       "zh": "有人把公交候车亭砸了。"
      },
      {
-      "en": "The statue was [[vandalised]] overnight.",
-      "zh": "雕像一夜之间被人破坏了。"
+      "en": "The police caught the [[vandal]] on camera.",
+      "zh": "警察通过监控拍到了那个破坏公物的人。"
      }
     ],
     "ipa": "/ˈvændəl/",
@@ -707,47 +704,6 @@
        {
         "en": "The engine won't [[start]].",
         "zh": "发动机打不着火。"
-       }
-      ]
-     }
-    ]
-   },
-   {
-    "id": 15,
-    "expr": "reputation",
-    "zh": "名声、名誉",
-    "m": [
-     "reputation"
-    ],
-    "note": "a good / bad reputation，have a reputation for（以……出名）。动词 repute 不常用。",
-    "core": "reputation",
-    "forms": [
-     "reputation",
-     "reputations"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "The restaurant has a [[reputation]] for great fish.",
-      "zh": "这家餐厅以鱼做得好而出名。"
-     },
-     {
-      "en": "One mistake can ruin your [[reputation]].",
-      "zh": "一个错误就可能毁了你的名声。"
-     }
-    ],
-    "ipa": "/ˌrepjuːˈteɪʃən/",
-    "def": "the opinion that people have about someone or something, based on what has happened in the past",
-    "cf": [
-     {
-      "rel": "cf",
-      "w": "fame",
-      "zh": "名气",
-      "diff": "fame 只表示“出名”；reputation 是“名声”，可好可坏（a good / bad reputation）。",
-      "ex": [
-       {
-        "en": "She has a [[reputation]] for being late.",
-        "zh": "她出了名的爱迟到。"
        }
       ]
      }
@@ -851,101 +807,6 @@
     ],
     "ipa": "/ˈreɡjʊˌleɪt/",
     "def": "to control an activity or process, usually by rules"
-   },
-   {
-    "id": 19,
-    "expr": "litter",
-    "zh": "乱扔垃圾；（地上的）垃圾",
-    "m": [
-     "littering"
-    ],
-    "note": "动词：Don't litter.（别乱扔垃圾。）名词：pick up litter（捡垃圾）。",
-    "core": "litter",
-    "forms": [
-     "litter",
-     "littering",
-     "littered",
-     "litters"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "You can be fined for [[littering]].",
-      "zh": "乱扔垃圾会被罚款。"
-     },
-     {
-      "en": "The beach was covered in [[litter]].",
-      "zh": "沙滩上满是垃圾。"
-     }
-    ],
-    "ipa": "/ˈlɪtə/",
-    "def": "to leave rubbish on the ground in a public place; rubbish left lying around"
-   },
-   {
-    "id": 20,
-    "expr": "spit",
-    "zh": "吐（口水）",
-    "m": [
-     "spitting"
-    ],
-    "note": "过去式 spat（英式也用 spit）。spit out：吐出来。",
-    "core": "spit",
-    "forms": [
-     "spit",
-     "spitting",
-     "spat",
-     "spits"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Please don't [[spit]] on the street.",
-      "zh": "请不要随地吐痰。"
-     },
-     {
-      "en": "The baby [[spat]] out the medicine.",
-      "zh": "宝宝把药吐了出来。"
-     }
-    ],
-    "ipa": "/spɪt/",
-    "def": "to force liquid or food out of your mouth",
-    "cf": [
-     {
-      "rel": "cf",
-      "w": "spit / spat",
-      "zh": "过去式",
-      "diff": "spit 的过去式和过去分词是 spat（英式）或 spit（美式）。"
-     }
-    ]
-   },
-   {
-    "id": 21,
-    "expr": "flush",
-    "zh": "冲（厕所）",
-    "m": [
-     "flush"
-    ],
-    "note": "flush the toilet（冲马桶）。也指脸红：She flushed with anger.",
-    "core": "flush",
-    "forms": [
-     "flush",
-     "flushes",
-     "flushed",
-     "flushing"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Remember to [[flush]] the toilet.",
-      "zh": "记得冲马桶。"
-     },
-     {
-      "en": "Something is wrong — the toilet won't [[flush]].",
-      "zh": "马桶坏了，冲不下去。"
-     }
-    ],
-    "ipa": "/flʌʃ/",
-    "def": "to clean a toilet by making water pass through it"
    },
    {
     "id": 22,
@@ -1156,75 +1017,6 @@
     "def": "an agreement between countries about buying and selling goods"
    },
    {
-    "id": 29,
-    "expr": "pharmacy",
-    "zh": "药房、药店",
-    "m": [
-     "pharmacies"
-    ],
-    "note": "英式也说 chemist's，美式也说 drugstore。pharmacist：药剂师。",
-    "core": "pharmacy",
-    "forms": [
-     "pharmacy",
-     "pharmacies"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Is there a [[pharmacy]] near here?",
-      "zh": "附近有药店吗？"
-     },
-     {
-      "en": "You can buy it at any [[pharmacy]].",
-      "zh": "任何药店都能买到。"
-     }
-    ],
-    "ipa": "/ˈfɑːməsɪ/",
-    "def": "a shop or part of a shop where medicines are prepared and sold"
-   },
-   {
-    "id": 30,
-    "expr": "quit",
-    "zh": "戒掉；辞职；停止",
-    "m": [
-     "quit"
-    ],
-    "note": "quit smoking（戒烟），quit one's job（辞职）。过去式和过去分词都是 quit。",
-    "core": "quit",
-    "forms": [
-     "quit",
-     "quits",
-     "quitting"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "He [[quit]] smoking last year.",
-      "zh": "他去年戒了烟。"
-     },
-     {
-      "en": "She decided to [[quit]] her job.",
-      "zh": "她决定辞职。"
-     }
-    ],
-    "ipa": "/kwɪt/",
-    "def": "to stop doing something; to leave a job",
-    "cf": [
-     {
-      "rel": "cf",
-      "w": "quite / quiet",
-      "zh": "相当 / 安静的",
-      "diff": "三个词形近：quit 戒掉、辞职；quite 相当；quiet 安静的。",
-      "ex": [
-       {
-        "en": "It's [[quite]] [[quiet]] here.",
-        "zh": "这里相当安静。"
-       }
-      ]
-     }
-    ]
-   },
-   {
     "id": 31,
     "expr": "persistent",
     "zh": "持续的、顽固的；坚持不懈的",
@@ -1292,33 +1084,102 @@
     "def": "an ancient story; an idea that many people believe but that is not true"
    },
    {
-    "id": 33,
-    "expr": "fit (a story)",
-    "zh": "符合、吻合",
+    "id": 39,
+    "expr": "cane (caned)",
+    "zh": "用藤条打（一种体罚）",
     "m": [
-     "fits"
+     "caned"
     ],
-    "note": "fit the description（符合描述），fit the facts（与事实相符）。",
-    "core": "fit",
+    "note": "动词 cane 指用藤条抽打，作为惩罚；名词 caning（鞭刑、藤条体罚），文中下一句的 the famous caning 就是它。get caned 被打藤条。",
+    "core": "cane",
     "forms": [
-     "fit",
-     "fits",
-     "fitted",
-     "fitting"
+     "cane",
+     "caned",
+     "canes",
+     "caning"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "He [[fits]] the description of the thief.",
-      "zh": "他符合小偷的特征。"
+      "en": "In the past, pupils could be [[caned]] for being rude to a teacher.",
+      "zh": "过去，学生对老师无礼可能会挨藤条。"
      },
      {
-      "en": "Your idea doesn't [[fit]] the facts.",
-      "zh": "你的想法和事实对不上。"
+      "en": "He was sentenced to be [[caned]] for the crime.",
+      "zh": "他因这项罪行被判鞭刑。"
      }
     ],
-    "ipa": "/fɪt/",
-    "def": "to match or agree with something"
+    "def": "to hit someone with a long, thin stick as a punishment",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "cane (noun)",
+      "zh": "手杖；（植物的）茎",
+      "diff": "名词 cane 最常见的意思是老人走路用的“手杖”，也指甘蔗、竹子的茎（sugar cane 甘蔗）；动词 cane 才是“用藤条打”。",
+      "ex": [
+       {
+        "en": "My grandfather walks with a [[cane]].",
+        "zh": "我爷爷拄着手杖走路。"
+       }
+      ]
+     },
+     {
+      "rel": "syn",
+      "w": "beat",
+      "zh": "打",
+      "diff": "beat 是一般的“打、殴打”，可以用手或任何东西；cane 专指用藤条打，而且是作为惩罚。",
+      "ex": []
+     }
+    ],
+    "ipa": "/keɪn/"
+   },
+   {
+    "id": 40,
+    "expr": "vandalise (vandalising)",
+    "zh": "故意破坏（公物、他人财物）",
+    "m": [
+     "vandalising"
+    ],
+    "note": "英式拼写 vandalise，美式 vandalize。做这种事的人是 vandal，这种行为叫 vandalism。常用被动：be vandalised。",
+    "core": "vandalise",
+    "forms": [
+     "vandalise",
+     "vandalises",
+     "vandalised",
+     "vandalising",
+     "vandalize",
+     "vandalized",
+     "vandalizing"
+    ],
+    "syn": [
+     "vandalize"
+    ],
+    "ex": [
+     {
+      "en": "Someone has [[vandalised]] the phone box again.",
+      "zh": "又有人把电话亭搞坏了。"
+     },
+     {
+      "en": "The boys were caught [[vandalising]] a school bus.",
+      "zh": "那几个男孩在破坏校车时被抓了个正着。"
+     }
+    ],
+    "def": "to deliberately damage things, especially public property (British spelling; American: vandalize)",
+    "cf": [
+     {
+      "rel": "syn",
+      "w": "damage",
+      "zh": "损坏",
+      "diff": "damage 是一般的“损坏”，可以是意外（The storm damaged the roof.）；vandalise 一定是故意的、无缘无故地破坏，多指公物。",
+      "ex": [
+       {
+        "en": "The storm [[damaged]] the roof.",
+        "zh": "暴风雨把屋顶损坏了。"
+       }
+      ]
+     }
+    ],
+    "ipa": "/ˈvændəˌlaɪz/"
    },
    {
     "id": 34,
@@ -1422,54 +1283,52 @@
     "def": "to stop doing something you used to do regularly"
    },
    {
-    "id": 37,
-    "expr": "neither + 助动词 + 主语（倒装）",
-    "zh": "……也不",
+    "id": 41,
+    "expr": "Either way",
+    "zh": "不管怎样（两种情况都一样）；无论哪种",
     "m": [
-     "neither has"
+     "Either way"
     ],
-    "note": "前面是否定句，接“……也不”时用 neither / nor + 助动词 + 主语：I can't swim, and neither can my sister.（我不会游泳，我妹妹也不会。）肯定句用 so：I like tea, and so does she.",
-    "core": "neither has",
+    "note": "前面先说了两种情况，用 either way 表示“不管是哪一种，结果都一样”。文中前两句说有人出国买口香糖、有人已经不想嚼了，either way 引出“口香糖都没回来”。常放句首，后面加逗号。",
+    "core": "either way",
     "forms": [
-     "neither has",
-     "neither",
-     "so does",
-     "so do"
+     "either way",
+     "Either way"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "I haven't seen it, and [[neither has]] Tom.",
-      "zh": "我没看过，汤姆也没看过。"
+      "en": "We can take the bus or walk — [[either way]], we'll be late.",
+      "zh": "坐公交也好，走路也好，反正我们都会迟到。"
      },
      {
-      "en": "She loves jazz, and [[so does]] her husband.",
-      "zh": "她爱爵士乐，她丈夫也爱。"
+      "en": "I don't know if he forgot or just didn't care. [[Either way]], he didn't call.",
+      "zh": "我不知道他是忘了还是根本不在乎，总之他没打电话。"
      }
     ],
-    "kind": "grammar",
-    "conn": "否定句, and neither + 助动词 + 主语（肯定句用 so + 助动词 + 主语）",
-    "say": "the gum has not come back, and neither has the mess",
-    "pick": [
+    "def": "used to say that the result is the same whichever of two things happens or is true",
+    "cf": [
      {
-      "q": "I don't like horror films, and neither ___ my brother.",
-      "opts": [
-       "does",
-       "is"
-      ],
-      "a": 0,
-      "why": "前句用 don't（do 的否定），接 neither 时用同一个助动词：neither does。"
+      "rel": "cf",
+      "w": "anyway",
+      "zh": "反正；总之",
+      "diff": "either way 前面要先摆出两种情况，再说“哪种都一样”；anyway 不需要前面有两种情况，只是“不管怎样、总之”，或用来换话题，用得更随意。",
+      "ex": [
+       {
+        "en": "It was raining, but we went out [[anyway]].",
+        "zh": "下着雨，但我们还是出去了。"
+       }
+      ]
      },
      {
-      "q": "She can speak French, and ___ can her son.",
-      "opts": [
-       "so",
-       "neither"
-      ],
-      "a": 0,
-      "why": "前句是肯定句（can speak），“也会”用 so can her son。"
+      "rel": "cf",
+      "w": "in either case",
+      "zh": "无论哪种情况",
+      "diff": "意思和 either way 一样，但更正式，多用于书面。",
+      "ex": []
      }
-    ]
+    ],
+    "ipa": "/ˈaɪðə weɪ/"
    },
    {
     "id": 38,
@@ -1587,12 +1446,6 @@
     "hint": "停顿"
    },
    {
-    "id": 15,
-    "i": 7,
-    "ans": "reputation",
-    "hint": "名声"
-   },
-   {
     "id": 16,
     "i": 8,
     "ans": "prided",
@@ -1609,24 +1462,6 @@
     "i": 8,
     "ans": "regulating",
     "hint": "规管（-ing）"
-   },
-   {
-    "id": 19,
-    "i": 9,
-    "ans": "littering",
-    "hint": "乱扔垃圾（-ing）"
-   },
-   {
-    "id": 20,
-    "i": 9,
-    "ans": "spitting",
-    "hint": "吐痰（-ing）"
-   },
-   {
-    "id": 21,
-    "i": 9,
-    "ans": "flush",
-    "hint": "冲（厕所）"
    },
    {
     "id": 22,
@@ -1671,18 +1506,6 @@
     "hint": "贸易协议（___ deal）"
    },
    {
-    "id": 29,
-    "i": 13,
-    "ans": "pharmacies",
-    "hint": "药房（复数）"
-   },
-   {
-    "id": 30,
-    "i": 13,
-    "ans": "quit",
-    "hint": "戒掉"
-   },
-   {
     "id": 31,
     "i": 15,
     "ans": "persistent",
@@ -1693,12 +1516,6 @@
     "i": 15,
     "ans": "myth",
     "hint": "（错误的）说法"
-   },
-   {
-    "id": 33,
-    "i": 17,
-    "ans": "fits",
-    "hint": "符合（三单）"
    },
    {
     "id": 34,
@@ -1719,16 +1536,28 @@
     "hint": "不再有这个习惯（lost the ___）"
    },
    {
-    "id": 37,
-    "i": 21,
-    "ans": "neither",
-    "hint": "……也不（___ has the mess）"
-   },
-   {
     "id": 38,
     "i": 22,
     "ans": "chew",
     "hint": "琢磨（___ on）"
+   },
+   {
+    "id": 39,
+    "i": 15,
+    "ans": "caned",
+    "hint": "用藤条打（过去分词）"
+   },
+   {
+    "id": 40,
+    "i": 16,
+    "ans": "vandalising",
+    "hint": "故意破坏（-ing 形式）"
+   },
+   {
+    "id": 41,
+    "i": 21,
+    "ans": "Either way",
+    "hint": "不管哪种情况"
    }
   ],
   "breakdown": {
