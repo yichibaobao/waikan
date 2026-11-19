@@ -458,10 +458,128 @@ def list_html(slug, meta, data, sec):
             f'<style>{LIST_CSS}</style></head><body><div class="in">'
             f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev2">预览正反两页</button> '
             f'<button class="prev" type="button" id="prev">预览一页纸</button> '
+            f'<a class="prev" href="check.html" style="text-decoration:none">✅ 背单词打卡表</a> '
             f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
             f'<p class="tip noprint">打印正反两页：先点“预览正反两页”，再点“打印”，在打印设置里选“双面打印”（长边翻转）。</p>'
             f'<h1>{e(meta["short"])} · 单词表</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词 · 每个词两个例句。{label}</p>'
             + '<div class="sheet">' + "".join(rows) + '</div></div><div id="mm"></div>' + LIST_JS + '</body></html>')
+
+
+CHECK_CSS = """
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#E9D8CA;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff}
+html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.5 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:980px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn,.prev{appearance:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer}
+.btn{border:0;background:var(--accent);color:#fff} .prev{border:2px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;font-size:13px}
+h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} .sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 12px;padding:12px 14px;background:var(--surface);border-radius:16px}
+.ctl label{display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600}
+.ctl input[type=date]{font:inherit;padding:4px 8px;border:2px solid var(--line);border-radius:10px;background:#fff;color:var(--fg)}
+.plan{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.plan span{padding:4px 10px;border-radius:999px;background:var(--surface);font-size:13px;border:1px solid var(--line)}
+.plan span.today{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+.wrap{overflow-x:auto;background:var(--surface);border-radius:16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border:1px solid var(--line);padding:5px 6px;text-align:left;vertical-align:middle}
+thead th{background:var(--soft);font-size:12.5px;line-height:1.3;text-align:center;white-space:nowrap}
+thead th.today{background:var(--accent);color:#fff}
+td.n{color:var(--muted);font:700 12px ui-monospace,Menlo,monospace;text-align:center;width:2.4em}
+td.e{font-weight:800} td.p{color:var(--accent);font-size:12.5px;white-space:nowrap} td.z{font-size:13px}
+td.k{width:3.6em;text-align:center;cursor:pointer;user-select:none;font-size:18px;line-height:1}
+td.k::before{content:"☐";color:#B9A99D} td.k.on::before{content:"☑";color:var(--accent)}
+td.k.today{background:#FFF3C9}
+.hidezh td.z{color:transparent} .hidezh td.z:hover{color:var(--fg)}
+.foot{margin:12px 0 0;color:var(--muted);font-size:12.5px}
+@page{size:A4;margin:9mm}
+@media print{
+  body{background:#fff;font-size:10px} .in{max-width:none;padding:0} .noprint{display:none!important}
+  h1{font-size:15px;margin:0} .sub{font-size:9px;margin:0 0 4px}
+  .plan{margin:0 0 5px;gap:3px} .plan span{padding:1px 6px;font-size:9px;background:#fff!important;color:#000!important;border-color:#999!important}
+  .wrap{overflow:visible;border-radius:0}
+  table{font-size:10px} th,td{border-color:#999;padding:2px 4px}
+  thead{display:table-header-group} tr{break-inside:avoid;page-break-inside:avoid}
+  thead th,thead th.today{background:#eee!important;color:#000!important;font-size:9px}
+  td.k{font-size:15px} td.k::before{color:#444} td.k.on::before{color:#000} td.k.today{background:none} td.n{font-size:9px} td.p{font-size:9px} td.z{font-size:9.5px}
+  .hidezh td.z{color:transparent}
+  .foot{font-size:8.5px}
+}
+"""
+
+CHECK_JS = """<script>
+/* 艾宾浩斯打卡表: review rounds on day 0 (learn), 1, 2, 4, 7, 15 and 30 after the start date. Ticks and the start date are kept in
+   this browser (localStorage); printing gives the table with empty (or ticked) boxes and the real dates in the header. */
+(function(){
+  var OFF = [0, 1, 2, 4, 7, 15, 30], NAME = ['学习', '第1次', '第2次', '第3次', '第4次', '第5次', '第6次'];
+  var WK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+  var key = 'wk-check-' + document.body.getAttribute('data-slug'), st = {start:'', c:{}, hide:false};
+  try { var raw = JSON.parse(localStorage.getItem(key) || 'null'); if (raw && typeof raw === 'object') st = {start:raw.start || '', c:raw.c || {}, hide:!!raw.hide}; } catch (e) {}
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  function ymd(d){ return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function parse(s){ var m = /^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(s || ''); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null; }
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  if (!parse(st.start)){ st.start = ymd(today); save(); }
+  var inp = document.getElementById('start'), hz = document.getElementById('hidezh');
+  inp.value = st.start; hz.checked = st.hide;
+  function draw(){
+    var s0 = parse(st.start) || today, plan = document.getElementById('plan'), ths = document.querySelectorAll('thead th.d'), tIdx = -1;
+    plan.innerHTML = '';
+    OFF.forEach(function(o, i){
+      var d = new Date(s0); d.setDate(d.getDate() + o);
+      var label = (d.getMonth() + 1) + '/' + d.getDate() + ' ' + WK[d.getDay()];
+      var isToday = d.getTime() === today.getTime(); if (isToday) tIdx = i;
+      var sp = document.createElement('span'); sp.textContent = NAME[i] + (o ? '（' + o + '天后）' : '') + '　' + label; if (isToday) sp.className = 'today';
+      plan.appendChild(sp);
+      ths[i].innerHTML = NAME[i] + '<br>' + label; ths[i].classList.toggle('today', isToday);
+    });
+    document.querySelectorAll('td.k').forEach(function(td){
+      td.classList.toggle('on', !!st.c[td.getAttribute('data-k')]);
+      td.classList.toggle('today', +td.getAttribute('data-i') === tIdx);
+    });
+    document.body.classList.toggle('hidezh', st.hide);
+  }
+  inp.addEventListener('change', function(){ if (parse(inp.value)){ st.start = inp.value; save(); draw(); } });
+  hz.addEventListener('change', function(){ st.hide = hz.checked; save(); draw(); });
+  document.querySelector('tbody').addEventListener('click', function(e){
+    var td = e.target.closest('td.k'); if (!td) return;
+    var k = td.getAttribute('data-k'); if (st.c[k]) delete st.c[k]; else st.c[k] = 1;
+    save(); draw();
+  });
+  document.getElementById('clear').addEventListener('click', function(){ if (!confirm('把这张表的勾全部清掉？')) return; st.c = {}; save(); draw(); });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script>"""
+
+
+def check_html(slug, meta, data, sec):
+    """A tick-box sheet for learning one article's words by the Ebbinghaus schedule (review 1, 2, 4, 7, 15 and 30 days after
+    the first day), with the dates filled in from a start date the learner picks; printable on A4."""
+    e = htmllib.escape
+    lang = meta["lang"]
+    rows = []
+    for n, v in enumerate(data["vocab"], 1):
+        pron = v.get("ipa") if lang == "en" else v.get("rom")
+        cells = "".join(f'<td class="k" data-i="{i}" data-k="{v["id"]}_{i}" role="checkbox"></td>' for i in range(7))
+        rows.append(f'<tr><td class="n">{n}</td><td class="e">{e(v["expr"])}</td><td class="p">{e(pron or "")}</td><td class="z">{e(v["zh"])}</td>{cells}</tr>')
+    ths = "".join('<th class="d"></th>' for _ in range(7))
+    return (f'<!doctype html><html lang="zh-CN" data-lang="{lang}"><head><meta charset="utf-8">'
+            f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 背单词打卡表 · {e(sec["brand"])}</title>'
+            f'<style>{CHECK_CSS}</style></head><body data-slug="{e(slug)}"><div class="in">'
+            f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><a class="prev" href="list.html" style="text-decoration:none">单词表</a> '
+            f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
+            f'<h1>{e(meta["short"])} · 背单词打卡表</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词 · '
+            f'按艾宾浩斯遗忘曲线：学习当天，之后第 1、2、4、7、15、30 天各复习一次，复习完在格子里打勾。</p>'
+            f'<div class="ctl noprint"><label>开始背的日期 <input type="date" id="start"></label>'
+            f'<label><input type="checkbox" id="hidezh"> 遮住中文（自测用，鼠标移上去显示）</label>'
+            f'<button class="prev" type="button" id="clear">清空打勾</button></div>'
+            f'<div class="plan" id="plan"></div>'
+            f'<div class="wrap"><table><thead><tr><th>#</th><th>单词</th><th>{"音标" if lang == "en" else "读音"}</th><th>意思</th>{ths}</tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody></table></div>'
+            f'<p class="foot">在网页上点格子就能打勾（勾记在这台设备的浏览器里）；也可以打印出来用笔打勾。黄色那一列是今天要复习的。</p>'
+            f'</div>{CHECK_JS}</body></html>')
 
 
 def foot_html(meta):
@@ -513,6 +631,7 @@ def main():
         os.makedirs(out, exist_ok=True)
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
         open(os.path.join(out, "list.html"), "w", encoding="utf-8").write(list_html(slug, meta, data, sec))
+        open(os.path.join(out, "check.html"), "w", encoding="utf-8").write(check_html(slug, meta, data, sec))
         syntax_check(page, slug)
         wj = words_json(slug, meta, data)
         open(os.path.join(out, "words.json"), "w", encoding="utf-8").write(json.dumps(wj, ensure_ascii=False, separators=(",", ":")))

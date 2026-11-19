@@ -127,6 +127,9 @@ The article page shows the phonetics on word cards, flashcards and quiz feedback
 a plain, printable list of its words (phonetics, meaning, the first two examples), linked from the 词汇 tab.
 Two print layouts: 正反两页 (the default; two A4 pages for double-sided printing, page 1 filled first, largest type that fits)
 and 一页纸 (everything on one A4 page). The script in `LIST_JS` (tools/build.py) picks the size; the choice is remembered.
+Every article also gets `a/<slug>/check.html`, a 背单词打卡表: one row per word with tick boxes for the Ebbinghaus rounds (the
+first day, then 1, 2, 4, 7, 15 and 30 days later), the dates filled in from a start date the learner picks. Ticks and the start date
+stay in the browser (`wk-check-<slug>`); the sheet prints on A4.
 
 ## Back-translation (回译, English and Japanese articles)
 
