@@ -692,7 +692,26 @@ EX_CSS = TRANS_CSS.replace('html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7
 .m-cloze .ln,.m-sent .cl{display:none}
 .one .e1{display:none}
 .a .x{color:var(--muted);font-size:.9em}
-@media print{.wh{font-size:11.5px} .wh span,.wh i{font-size:9.5px} .wh span.x{font-size:11.5px} .zh2{font-size:10.5px} .cl{font-size:11px;line-height:2.1} .w{margin:0 0 6px}}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
+.tip{margin:0 0 12px;color:var(--muted);font-size:13px}
+/* one sheet: the exercise fills the front page, the answers the back; the script picks the largest type that fits */
+@page{size:A4;margin:10mm}
+body.printing{background:#fff}
+.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
+.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
+.printing .sheet{padding:0;border-radius:0;background:none}
+.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
+.printing .w{margin:0 0 .45em}
+.printing .wh{font-size:1em;margin:0} .printing .wh span,.printing .wh i{font-size:.85em} .printing .wh span.x{font-size:1em}
+.printing .zh2{font-size:.95em;margin:.1em 0 0 1.6em;line-height:1.3} .printing .zh2 b{font-size:.85em}
+.printing .cl{font-size:1em;line-height:1.85;margin:0 0 0 1.6em}
+.printing .ln{height:2.3em;margin-left:1.6em;border-bottom:.4pt solid #888}
+.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
+.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
+.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a b{font-size:.8em} .printing .a .r{font-size:.85em}
+@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
+@media print{.noprint{display:none!important}}
 """
 
 EX_JS = """<script>
@@ -705,11 +724,58 @@ EX_JS = """<script>
     b.classList.toggle('one', st.one); b.classList.toggle('nohead', !st.head); b.classList.toggle('noans', !st.ans);
     M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; head.checked = st.head; ans.checked = st.ans;
   }
-  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} if (window.__exRefit) setTimeout(window.__exRefit, 0); }
   M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   head.addEventListener('change', function(){ st.head = head.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
+  /* fit on one sheet: exercise on the front (two columns, writing lines scale with the type), answers on the back.
+     If two examples per word cannot fit even at the smallest size, it prints one example per word and says so. */
+  var root = document.documentElement, inn = document.querySelector('.in'), qs = document.querySelector('.qs'), an = document.querySelector('.ans');
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，一页放不下，默写会排到第 2 页（共两张纸）。可以试试“挖空填词”。' : auto1 ? '两句放不下一页，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
+  function frontOK(){ return qs.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
+  function backOK(){ var cs = getComputedStyle(an); return an.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth) <= H(); }
+  function fitFront(){
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];          /* the short fill-in sentences also fit in three columns */
+    for (var c = 0; c < cols.length; c++){
+      root.style.setProperty('--qc', cols[c]);
+      for (var f = 13; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (frontOK()) return true; }
+    }
+    return false;
+  }
+  function fitBack(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (backOK()) return; } }
+  function fit(){
+    b.classList.add('printing'); auto1 = false;
+    over = false;
+    if (!fitFront()){
+      if (!st.one){ b.classList.add('one'); auto1 = true; }
+      if (!fitFront()) over = true;
+    }
+    if (st.ans) fitBack();
+    tipText();
+  }
+  function clear(){ b.classList.remove('printing'); if (auto1){ b.classList.remove('one'); auto1 = false; } }
+  window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
+  window.addEventListener('afterprint', function(){ if (!preview) clear(); });
+  window.__exRefit = function(){ if (preview){ clear(); fit(); } };
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    preview = true; fit();
+    var old = document.getElementById('pbar'); if (old) old.remove();
+    var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+    bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
+    bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); draw(); };
+    bar.children[2].onclick = function(){ window.print(); };
+    document.body.appendChild(bar);
+    tipText();
+    window.scrollTo(0, 0);
+  });
   document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
   draw();
 })();
@@ -740,6 +806,7 @@ def ex_html(slug, meta, data, sec):
             f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 例句默写纸 · {e(sec["brand"])}</title>'
             f'<style>{EX_CSS}</style></head><body class="m-sent"><div class="in">'
             f'<div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> '
+            f'<button class="prev" type="button" id="prevBtn">预览一张纸</button> '
             f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
             f'<h1>{e(meta["short"])} · 例句默写纸</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词的例句 · 看中文写出{XL}例句（或填出空着的词），写完再看最后的答案。'
             f'　姓名 ________　日期 ________</p>'
@@ -748,9 +815,10 @@ def ex_html(slug, meta, data, sec):
             f'<label><input type="checkbox" id="one"> 每个词只要 1 句</label>'
             f'<label><input type="checkbox" id="head"> 显示生词本身</label>'
             f'<label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div>'
-            f'<div class="sheet">{"".join(ws)}<div class="ans"><h2>答案（例句原文，生词加粗）</h2>{"".join(ans)}</div></div>'
+            f'<p class="tip noprint">打印成一张纸：先选好上面的选项，再点“预览一张纸”→“打印”，打印设置里选“双面打印”——正面是默写，背面是答案。</p>'
+            f'<div class="sheet"><div class="qs">{"".join(ws)}</div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list">{"".join(ans)}</div></div></div>'
             f'<p class="foot">“显示生词本身”不勾时只显示中文意思，难度更高。选项会记住，下次打开还是这样。</p>'
-            f'</div>{EX_JS}</body></html>')
+            f'</div><div id="mm"></div>{EX_JS}</body></html>')
 
 
 def foot_html(meta):
