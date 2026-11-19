@@ -342,6 +342,7 @@ mark.vw.uw{background:var(--tint-3, #FDE6EF);box-shadow:inset 0 -2px 0 #E8618F}
 .tr-out{margin:10px 0}
 .tr-score{margin:6px 0;font-size:14px;color:var(--muted)}
 .tr-score b{color:var(--accent);font-size:16px}
+.tr-rom{margin:4px 0 0;font-size:13px;color:var(--muted)}
 
 /* flashcards */
 .fc-opt{display:flex;align-items:center;gap:8px;margin:4px 0 14px;font-size:14px;color:var(--muted);cursor:pointer}
@@ -1385,6 +1386,16 @@ const Kit = (function(){
   function chunkDiff(text, hits){
     const out = [];
     let pos = 0;
+    /* Japanese has no spaces: underline character by character */
+    if (LANG === 'ja'){
+      Array.from(String(text)).forEach(function(ch){
+        const n = toks(ch).length;
+        const miss = n && !hits[pos];
+        pos += n;
+        out.push(miss ? h('span', {class:'miss-t'}, ch) : ch);
+      });
+      return out;
+    }
     text.split(/\s+/).filter(Boolean).forEach(function(chunk){
       const n = toks(chunk).length;
       let miss = false;
@@ -2041,7 +2052,7 @@ function renderMast(){
 /* ---------- tabs ---------- */
 let cur = null;
 function showTab(t){
-  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio) || (t === 'trans' && LANG !== 'en')) t = 'read';
+  if (TABS.indexOf(t) < 0 || (t === 'listen' && !DATA.audio) || (t === 'trans' && LANG !== 'en' && LANG !== 'ja')) t = 'read';
   const changed = cur !== null && cur !== t;
   cur = t;
   $$('.view').forEach(function(v){ v.hidden = v.id !== 'view-' + t; });
@@ -2429,7 +2440,7 @@ function quizResult(){
   return card;
 }
 
-/* ---------- back-translation (回译, English articles): read the Chinese, write the English, compare with the original ----------
+/* ---------- back-translation (回译, English and Japanese articles): read the Chinese, write the original language, compare with the original ----------
    对照背诵: every sentence with its Chinese; the English is hidden until tapped (for learning it by heart).
    逐句回译: one Chinese sentence at a time, write the English, then compare word by word with the original.
    全文回译: the whole article in Chinese, a box under each paragraph, then compare everything at once.
@@ -2442,22 +2453,32 @@ function setAns(k, val){
   if (t) state.ans[k] = t.slice(0, 2000); else delete state.ans[k];
   touch();
 }
-function trCompare(ref, val){
+const TR_UNIT = LANG === 'ja' ? '字' : '词', TR_JOIN = LANG === 'ja' ? '' : ' ';
+function trCompare1(ref, val){
   const a = Kit.toks(ref), b = Kit.toks(val), d = Kit.lcsHits(a, b);
   const hit = d.ha.filter(Boolean).length;
   return {pct:a.length ? Math.round(hit / a.length * 100) : 0, extra:b.length - d.hb.filter(Boolean).length,
           ref:Kit.chunkDiff(ref, d.ha), mine:Kit.chunkDiff(val, d.hb)};
 }
-function trScore(c){
-  return h('p', {class:'tr-score'}, h('b', null, c.pct + '%'), ' 的原文单词你写到了',
-    c.extra ? '，另外多写了 ' + c.extra + ' 个词' : '', '。划线的是有出入的地方；意思对、表达自然也算好的翻译。');
+/* Japanese: an answer written in kana is also compared with the reading (rom); the better match counts */
+function trCompare(ref, val, rom){
+  const c = trCompare1(ref, val);
+  if (rom){ const k = trCompare1(rom, val); if (k.pct > c.pct){ k.kana = true; return k; } }
+  return c;
 }
+function trScore(c){
+  return h('p', {class:'tr-score'}, h('b', null, c.pct + '%'), LANG === 'ja' ? ' 的原文你写到了（按字算）' : ' 的原文单词你写到了',
+    c.extra ? '，另外多写了 ' + c.extra + ' 个' + TR_UNIT : '', c.kana ? '（你写的假名较多，已按读音对照）' : '',
+    '。划线的是有出入的地方；意思对、表达自然也算好的翻译。');
+}
+function trOrig(t){ return LANG === 'ja' ? rubyNodes(t) : t; }
+function trRom(t){ return LANG === 'ja' && t ? h('p', {class:'tr-rom'}, '读音　' + t) : null; }
 function renderTrans(){
   const box = $('#transBox');
   const modes = [['recite', '对照背诵'], ['sent', '逐句回译'], ['full', '全文回译']];
-  const lead = {recite:'先背：每句中文下面藏着英文原文，点一下显示。背熟后切到“逐句回译”或“全文回译”自己写。',
-    sent:'看一句中文，写出英文，再和原文逐词对照。草稿会自动保存。',
-    full:'整篇中文一次看完，每段下面写英文，写完点“对照全文”。草稿会自动保存。'}[tr.mode];
+  const lead = {recite:'先背：每句中文下面藏着' + XL + '原文，点一下显示。背熟后切到“逐句回译”或“全文回译”自己写。',
+    sent:'看一句中文，写出' + XL + '，再和原文逐' + TR_UNIT + '对照。草稿会自动保存。' + (LANG === 'ja' ? '汉字或假名都可以写，写假名会按读音对照。' : ''),
+    full:'整篇中文一次看完，每段下面写' + XL + '，写完点“对照全文”。草稿会自动保存。'}[tr.mode];
   box.replaceChildren(h('div', {class:'card'},
     h('p', {class:'eyebrow'}, '回译练习'),
     fcChips(modes, tr.mode, function(m){ tr.mode = m; renderTrans(); }),
@@ -2467,15 +2488,15 @@ function renderTrans(){
 function trRecite(){
   const wrap = h('div', {class:'mt12'});
   const tools = h('div', {class:'row mb14'},
-    h('button', {type:'button', class:'btn sm', onclick:function(){ tr.all = !tr.all; tr.shown = {}; renderTrans(); }}, tr.all ? '全部隐藏英文' : '全部显示英文'));
+    h('button', {type:'button', class:'btn sm', onclick:function(){ tr.all = !tr.all; tr.shown = {}; renderTrans(); }}, tr.all ? '全部隐藏' + XL : '全部显示' + XL));
   wrap.append(tools);
   trBlocks().forEach(function(b){
     const card = h('div', {class:'card mb12 tr-blk'});
     b.idx.forEach(function(i){
       const s = S[i], open = tr.all || tr.shown[i];
-      const en = h('p', {class:'tr-en' + (open ? '' : ' hide'), role:'button', tabindex:0, 'aria-label':open ? s.en : '点一下显示英文'}, open ? s.en : '点一下显示英文');
+      const en = h('p', {class:'tr-en' + (open ? '' : ' hide'), role:'button', tabindex:0, 'aria-label':open ? s.en : '点一下显示' + XL}, open ? trOrig(s.en) : '点一下显示' + XL);
       en.addEventListener('click', function(){ tr.shown[i] = !tr.shown[i]; renderTrans(); });
-      card.append(h('div', {class:'tr-row'}, h('p', {class:'tr-zh'}, s.zh), h('div', {class:'tr-enrow'}, en, open ? sentBtn(s.en) : null)));
+      card.append(h('div', {class:'tr-row'}, h('p', {class:'tr-zh'}, s.zh), h('div', {class:'tr-enrow'}, en, open ? sentBtn(s.en) : null), open ? trRom(s.rom) : null));
     });
     wrap.append(card);
   });
@@ -2486,7 +2507,7 @@ function trSent(){
   if (tr.i >= order.length) tr.i = 0;
   const i = order[tr.i], s = S[i], key = 'bt' + i;
   const done = order.filter(function(j){ return state.ans['bt' + j]; }).length;
-  const ta = h('textarea', {class:'q-area', rows:3, maxlength:2000, placeholder:'把这句话写成英文', 'aria-label':'写出英文'});
+  const ta = h('textarea', {class:'q-area', rows:3, maxlength:2000, placeholder:'把这句话写成' + XL, 'aria-label':'写出' + XL});
   ta.value = state.ans[key] || '';
   ta.addEventListener('input', function(){ setAns(key, ta.value); });
   const out = h('div', {class:'tr-out'});
@@ -2495,10 +2516,12 @@ function trSent(){
   function reveal(){
     tr.revealed[i] = true;
     const val = ta.value.trim();
-    out.replaceChildren(
-      val ? trScore(trCompare(s.en, val)) : null,
-      h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), val ? trCompare(s.en, val).ref : s.en, ' ', sentBtn(s.en)),
-      val ? h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), trCompare(s.en, val).mine) : null);
+    const c = val ? trCompare(s.en, val, LANG === 'ja' ? s.rom : null) : null;
+    out.replaceChildren.apply(out, [
+      c ? trScore(c) : null,
+      h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), c && !c.kana ? c.ref : trOrig(s.en), ' ', sentBtn(s.en)),
+      c && c.kana ? h('p', {class:'df'}, h('span', {class:'df-l'}, '读音'), c.ref) : trRom(s.rom),
+      c ? h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), c.mine) : null].filter(Boolean));
   }
   const card = h('div', {class:'card mt12'},
     h('div', {class:'q-head'}, h('span', {class:'eyebrow'}, '第 ' + (tr.i + 1) + ' 句 / ' + order.length + '　已写 ' + done + ' 句')),
@@ -2523,10 +2546,11 @@ function sentenceTerms(text){
 }
 function trFull(){
   const wrap = h('div', {class:'mt12'});
-  let refAll = '', mineAll = '', written = 0;
+  let refAll = '', romAll = '', mineAll = '', written = 0;
   trBlocks().forEach(function(b, k){
-    const key = 'bp' + k, ref = b.idx.map(function(i){ return S[i].en; }).join(' ');
-    const ta = h('textarea', {class:'q-area', rows:Math.min(8, 2 + b.idx.length), maxlength:2000, placeholder:'写出这一段的英文', 'aria-label':'第 ' + (k + 1) + ' 段的英文'});
+    const key = 'bp' + k, ref = b.idx.map(function(i){ return S[i].en; }).join(TR_JOIN);
+    const rom = LANG === 'ja' ? b.idx.map(function(i){ return S[i].rom || ''; }).join(' ') : null;
+    const ta = h('textarea', {class:'q-area', rows:Math.min(8, 2 + b.idx.length), maxlength:2000, placeholder:'写出这一段的' + XL, 'aria-label':'第 ' + (k + 1) + ' 段的' + XL});
     ta.value = state.ans[key] || '';
     ta.addEventListener('input', function(){ setAns(key, ta.value); });
     const card = h('div', {class:'card mb12'},
@@ -2535,13 +2559,14 @@ function trFull(){
       ta);
     if (tr.full){
       const val = ta.value.trim();
-      if (val){ const c = trCompare(ref, val); card.append(trScore(c), h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), c.ref), h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), c.mine)); }
-      else card.append(h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), ref));
-      if (val){ refAll += ' ' + ref; mineAll += ' ' + val; written++; }
+      if (val){ const c = trCompare(ref, val, rom); card.append.apply(card, [trScore(c), h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), c.kana ? trOrig(ref) : c.ref),
+                  c.kana ? h('p', {class:'df'}, h('span', {class:'df-l'}, '读音'), c.ref) : trRom(rom), h('p', {class:'df'}, h('span', {class:'df-l'}, '你写的'), c.mine)].filter(Boolean)); }
+      else card.append.apply(card, [h('p', {class:'df'}, h('span', {class:'df-l'}, '原文'), trOrig(ref)), trRom(rom)].filter(Boolean));
+      if (val){ refAll += TR_JOIN + ref; romAll += ' ' + (rom || ''); mineAll += TR_JOIN + val; written++; }
     }
     wrap.append(card);
   });
-  const total = tr.full && mineAll.trim() ? trCompare(refAll, mineAll).pct : null;
+  const total = tr.full && mineAll.trim() ? trCompare(refAll, mineAll, LANG === 'ja' ? romAll : null).pct : null;
   wrap.append(h('div', {class:'row'},
     h('button', {type:'button', class:'btn pri', onclick:function(){ tr.full = !tr.full; renderTrans(); if (tr.full) window.scrollTo(0, 0); }}, tr.full ? '收起原文，继续写' : '对照全文'),
     h('button', {type:'button', class:'btn', onclick:function(){
@@ -2549,7 +2574,7 @@ function trFull(){
       Object.keys(state.ans).forEach(function(k){ if (k.indexOf('bp') === 0) delete state.ans[k]; });
       touch(); tr.full = false; renderTrans();
     }}, '清空重写')));
-  if (total !== null) wrap.prepend(h('div', {class:'card mb12'}, h('p', {class:'tr-score'}, '已写 ' + written + ' / ' + trBlocks().length + ' 段；这些段落里，原文单词你写到了 ', h('b', null, total + '%'), '。')));
+  if (total !== null) wrap.prepend(h('div', {class:'card mb12'}, h('p', {class:'tr-score'}, '已写 ' + written + ' / ' + trBlocks().length + ' 段；这些段落里，原文' + (LANG === 'ja' ? '' : '单词') + '你写到了 ', h('b', null, total + '%'), '。')));
   return wrap;
 }
 
@@ -3064,7 +3089,7 @@ function init(){
   });
   window.addEventListener('hashchange', function(){ showTab(location.hash.replace('#','')); });
   if (DATA.audio) $('.tab[data-tab="listen"]').hidden = false;
-  if (LANG === 'en') $('.tab[data-tab="trans"]').hidden = false;
+  if (LANG === 'en' || LANG === 'ja') $('.tab[data-tab="trans"]').hidden = false;
   renderAll();
   showTab(location.hash.replace('#','') || 'read');
   initCloud();

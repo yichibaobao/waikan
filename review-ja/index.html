@@ -1234,6 +1234,16 @@ const Kit = (function(){
   function chunkDiff(text, hits){
     const out = [];
     let pos = 0;
+    /* Japanese has no spaces: underline character by character */
+    if (LANG === 'ja'){
+      Array.from(String(text)).forEach(function(ch){
+        const n = toks(ch).length;
+        const miss = n && !hits[pos];
+        pos += n;
+        out.push(miss ? h('span', {class:'miss-t'}, ch) : ch);
+      });
+      return out;
+    }
     text.split(/\s+/).filter(Boolean).forEach(function(chunk){
       const n = toks(chunk).length;
       let miss = false;

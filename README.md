@@ -126,12 +126,14 @@ converted to dictionary symbols), so after writing a new English article run
 The article page shows the phonetics on word cards, flashcards and quiz feedback, and every article gets `a/<slug>/list.html`:
 a plain, printable list of its words (phonetics, meaning, the first two examples), linked from the 词汇 tab.
 
-## Back-translation (回译, English articles only)
+## Back-translation (回译, English and Japanese articles)
 
 The 回译 tab: 对照背诵 (each sentence's Chinese with its English hidden until tapped, for learning it by heart),
 逐句回译 (one Chinese sentence at a time; write the English and compare it word by word with the original, using the dictation
 diff in quizkit.js) and 全文回译 (the whole article in Chinese with a box under each paragraph, then compare all at once).
 Drafts are kept in the article's progress (`state.ans`: `bt<i>` per sentence, `bp<k>` per paragraph), so they travel with the progress code.
+Japanese articles compare character by character, and an answer written in kana is also compared with the sentence's reading
+(`rom`); the better match counts. The original is shown with its furigana and reading.
 
 ## Flashcards (背单词)
 
