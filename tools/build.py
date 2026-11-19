@@ -375,7 +375,10 @@ LIST_JS = """<script>
   var rows = [].slice.call(s1.children), s2 = null;
   var KEY = 'wk-list-mode', mode = 'two';
   try { mode = localStorage.getItem(KEY) === 'one' ? 'one' : 'two'; } catch (e) {}
-  function H(){ return document.getElementById('mm').getBoundingClientRect().height; }
+  /* 6% spare: browsers lay out a printed page a little differently from the screen (fonts, rounding, header lines), so a page
+     measured as exactly full on screen can push its last word onto the next sheet */
+  var SPARE = 0.94;
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
   function page1(){ return s1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
   function page2(){ var cs = getComputedStyle(s2); return s2.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
   var LEVELS = ['', 'no-cf', 'no-cf no-def'];
