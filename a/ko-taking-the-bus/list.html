@@ -16,7 +16,7 @@ h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:
 ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
 .prev{appearance:none;border:2px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--muted);font-weight:700;font-size:13px;font-family:inherit;cursor:pointer}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:279mm}
-/* one-page layout (printing, or the 预览一页纸 button): A4, columns, small type; the script picks the largest size that fits */
+/* print layout (printing, or the 预览 buttons): A4, columns, small type; the script picks the largest size that fits one or two pages */
 @page{size:A4;margin:9mm}
 body.printing{background:#fff}
 .printing .in{width:192mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.32}
@@ -28,44 +28,73 @@ body.printing{background:#fff}
 .printing .tag{font-size:.8em}
 .printing .d,.printing .c{font-size:.92em;margin:.1em 0 0 1.3em}
 .printing.no-cf .c,.printing.no-def .d{display:none}
+.printing #sheet2{break-before:page;page-break-before:always}
+@media screen{.printing #sheet2{margin-top:9mm;padding-top:9mm;border-top:1px dashed #999}}
+.tip{margin:0 0 14px;color:var(--muted);font-size:13px}
+.printing .tip{display:none}
 .printing ol{margin:.15em 0 0;padding-left:1.3em} .printing li{margin:0}
 .printing .r,.printing .t{display:inline;font-size:.92em} .printing .r::before,.printing .t::before{content:" · "}
 @media print{.noprint,.top{display:none}}
-</style></head><body><div class="in"><div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev">预览一页纸</button> <button class="btn" type="button" onclick="window.print()">打印 / 存成 PDF</button></span></div><h1>第 9 课 · 이 버스 명동에 가요? · 单词表</h1><p class="sub">2026-11-16 · 11 个词 · 每个词两个例句。读音为韩国官方罗马字。</p><div class="sheet"><div class="w"><div class="h"><span class="n">1</span><span class="e">버스</span><span class="p">beoseu</span><span class="z">公交车</span></div><ol><li><b>버스</b>가 와요.<span class="r">beoseuga wayo.</span><span class="t">公交车来了。</span></li><li>저는 <b>버스</b>로 학교에 가요.<span class="r">jeoneun beoseuro hakgyoe gayo.</span><span class="t">我坐公交车去学校。</span></li></ol></div><div class="w"><div class="h"><span class="n">2</span><span class="e">정류장</span><span class="p">jeongnyujang</span><span class="z">车站（公交站、出租车站）</span></div><ol><li><b>정류장</b>이 어디예요?<span class="r">jeongnyujangi eodiyeyo?</span><span class="t">车站在哪里？</span></li><li>다음 <b>정류장</b>에서 내려요.<span class="r">daeum jeongnyujangeseo naeryeoyo.</span><span class="t">在下一站下车。</span></li></ol></div><div class="w"><div class="h"><span class="n">3</span><span class="e">기사님</span><span class="p">gisanim</span><span class="z">司机师傅</span></div><ol><li><b>기사님</b>, 여기서 내려요.<span class="r">gisanim, yeogiseo naeryeoyo.</span><span class="t">师傅，我在这里下车。</span></li><li><b>기사님</b>이 친절해요.<span class="r">gisanimi chinjeolhaeyo.</span><span class="t">司机师傅很亲切。</span></li></ol></div><div class="w"><div class="h"><span class="n">4</span><span class="e">물어보다</span><span class="p">mureoboda</span><span class="z">问一下</span></div><ol><li>선생님께 <b>물어봐요</b>.<span class="r">seonsaengnimkke mureobwayo.</span><span class="t">去问问老师吧。</span></li><li>길을 <b>물어봐요</b>.<span class="r">gireul mureobwayo.</span><span class="t">问问路吧。</span></li></ol></div><div class="w"><div class="h"><span class="n">5</span><span class="e">건너다</span><span class="p">geonneoda</span><span class="z">穿过、过（马路、河）</span></div><ol><li>길을 <b>건너요</b>.<span class="r">gireul geonneoyo.</span><span class="t">过马路。</span></li><li>다리를 <b>건너서</b> 왼쪽으로 가세요.<span class="r">darireul geonneoseo oenjjogeuro gaseyo.</span><span class="t">过了桥往左走。</span></li></ol></div><div class="w"><div class="h"><span class="n">6</span><span class="e">타다</span><span class="p">tada</span><span class="z">坐、乘（车、飞机）</span></div><ol><li>지하철을 <b>타요</b>.<span class="r">jihacheoreul tayo.</span><span class="t">坐地铁。</span></li><li>택시를 <b>타세요</b>.<span class="r">taeksireul taseyo.</span><span class="t">请坐出租车。</span></li></ol></div><div class="w"><div class="h"><span class="n">7</span><span class="e">번</span><span class="p">beon</span><span class="z">号；次</span></div><ol><li>몇 <b>번</b> 출구예요?<span class="r">myeot beon chulguyeyo?</span><span class="t">几号出口？</span></li><li>한 <b>번</b> 더 말해 주세요.<span class="r">han beon deo malhae juseyo.</span><span class="t">请再说一次。</span></li></ol></div><div class="w"><div class="h"><span class="n">8</span><span class="e">일</span><span class="p">il</span><span class="z">一（汉字数词）</span></div><ol><li><b>일</b> 번 출구로 나가세요.<span class="r">il beon chulguro nagaseyo.</span><span class="t">请从 1 号出口出去。</span></li><li><b>일</b> 층에 있어요.<span class="r">il cheunge isseoyo.</span><span class="t">在一楼。</span></li></ol></div><div class="w"><div class="h"><span class="n">9</span><span class="e">얼마나</span><span class="p">eolmana</span><span class="z">多少、多久</span></div><ol><li><b>얼마나</b> 기다려요?<span class="r">eolmana gidaryeoyo?</span><span class="t">要等多久？</span></li><li><b>얼마나</b> 멀어요?<span class="r">eolmana meoreoyo?</span><span class="t">有多远？</span></li></ol></div><div class="w"><div class="h"><span class="n">10</span><span class="e">이십</span><span class="p">isip</span><span class="z">二十（汉字数词）</span></div><ol><li><b>이십</b> 분 기다렸어요.<span class="r">isip bun gidaryeosseoyo.</span><span class="t">等了二十分钟。</span></li><li>저는 <b>이십</b> 살이에요.<span class="r">jeoneun isip sarieyo.</span><span class="t">我二十岁。</span></li></ol></div><div class="w"><div class="h"><span class="n">11</span><span class="e">분</span><span class="p">bun</span><span class="z">分钟；分</span></div><ol><li>오 <b>분</b>만 기다려 주세요.<span class="r">o bunman gidaryeo juseyo.</span><span class="t">请等五分钟。</span></li><li>세 시 십 <b>분</b>이에요.<span class="r">se si sip bunieyo.</span><span class="t">三点十分。</span></li></ol></div></div></div><div id="mm"></div><script>
-/* fit the whole list on one A4 page: two columns from 13px type down to 6.5px, then three columns down to 6px (a very long list may still need a second page) */
+</style></head><body><div class="in"><div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev2">预览正反两页</button> <button class="prev" type="button" id="prev">预览一页纸</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><p class="tip noprint">打印正反两页：先点“预览正反两页”，再点“打印”，在打印设置里选“双面打印”（长边翻转）。</p><h1>第 9 课 · 이 버스 명동에 가요? · 单词表</h1><p class="sub">2026-11-16 · 11 个词 · 每个词两个例句。读音为韩国官方罗马字。</p><div class="sheet"><div class="w"><div class="h"><span class="n">1</span><span class="e">버스</span><span class="p">beoseu</span><span class="z">公交车</span></div><ol><li><b>버스</b>가 와요.<span class="r">beoseuga wayo.</span><span class="t">公交车来了。</span></li><li>저는 <b>버스</b>로 학교에 가요.<span class="r">jeoneun beoseuro hakgyoe gayo.</span><span class="t">我坐公交车去学校。</span></li></ol></div><div class="w"><div class="h"><span class="n">2</span><span class="e">정류장</span><span class="p">jeongnyujang</span><span class="z">车站（公交站、出租车站）</span></div><ol><li><b>정류장</b>이 어디예요?<span class="r">jeongnyujangi eodiyeyo?</span><span class="t">车站在哪里？</span></li><li>다음 <b>정류장</b>에서 내려요.<span class="r">daeum jeongnyujangeseo naeryeoyo.</span><span class="t">在下一站下车。</span></li></ol></div><div class="w"><div class="h"><span class="n">3</span><span class="e">기사님</span><span class="p">gisanim</span><span class="z">司机师傅</span></div><ol><li><b>기사님</b>, 여기서 내려요.<span class="r">gisanim, yeogiseo naeryeoyo.</span><span class="t">师傅，我在这里下车。</span></li><li><b>기사님</b>이 친절해요.<span class="r">gisanimi chinjeolhaeyo.</span><span class="t">司机师傅很亲切。</span></li></ol></div><div class="w"><div class="h"><span class="n">4</span><span class="e">물어보다</span><span class="p">mureoboda</span><span class="z">问一下</span></div><ol><li>선생님께 <b>물어봐요</b>.<span class="r">seonsaengnimkke mureobwayo.</span><span class="t">去问问老师吧。</span></li><li>길을 <b>물어봐요</b>.<span class="r">gireul mureobwayo.</span><span class="t">问问路吧。</span></li></ol></div><div class="w"><div class="h"><span class="n">5</span><span class="e">건너다</span><span class="p">geonneoda</span><span class="z">穿过、过（马路、河）</span></div><ol><li>길을 <b>건너요</b>.<span class="r">gireul geonneoyo.</span><span class="t">过马路。</span></li><li>다리를 <b>건너서</b> 왼쪽으로 가세요.<span class="r">darireul geonneoseo oenjjogeuro gaseyo.</span><span class="t">过了桥往左走。</span></li></ol></div><div class="w"><div class="h"><span class="n">6</span><span class="e">타다</span><span class="p">tada</span><span class="z">坐、乘（车、飞机）</span></div><ol><li>지하철을 <b>타요</b>.<span class="r">jihacheoreul tayo.</span><span class="t">坐地铁。</span></li><li>택시를 <b>타세요</b>.<span class="r">taeksireul taseyo.</span><span class="t">请坐出租车。</span></li></ol></div><div class="w"><div class="h"><span class="n">7</span><span class="e">번</span><span class="p">beon</span><span class="z">号；次</span></div><ol><li>몇 <b>번</b> 출구예요?<span class="r">myeot beon chulguyeyo?</span><span class="t">几号出口？</span></li><li>한 <b>번</b> 더 말해 주세요.<span class="r">han beon deo malhae juseyo.</span><span class="t">请再说一次。</span></li></ol></div><div class="w"><div class="h"><span class="n">8</span><span class="e">일</span><span class="p">il</span><span class="z">一（汉字数词）</span></div><ol><li><b>일</b> 번 출구로 나가세요.<span class="r">il beon chulguro nagaseyo.</span><span class="t">请从 1 号出口出去。</span></li><li><b>일</b> 층에 있어요.<span class="r">il cheunge isseoyo.</span><span class="t">在一楼。</span></li></ol></div><div class="w"><div class="h"><span class="n">9</span><span class="e">얼마나</span><span class="p">eolmana</span><span class="z">多少、多久</span></div><ol><li><b>얼마나</b> 기다려요?<span class="r">eolmana gidaryeoyo?</span><span class="t">要等多久？</span></li><li><b>얼마나</b> 멀어요?<span class="r">eolmana meoreoyo?</span><span class="t">有多远？</span></li></ol></div><div class="w"><div class="h"><span class="n">10</span><span class="e">이십</span><span class="p">isip</span><span class="z">二十（汉字数词）</span></div><ol><li><b>이십</b> 분 기다렸어요.<span class="r">isip bun gidaryeosseoyo.</span><span class="t">等了二十分钟。</span></li><li>저는 <b>이십</b> 살이에요.<span class="r">jeoneun isip sarieyo.</span><span class="t">我二十岁。</span></li></ol></div><div class="w"><div class="h"><span class="n">11</span><span class="e">분</span><span class="p">bun</span><span class="z">分钟；分</span></div><ol><li>오 <b>분</b>만 기다려 주세요.<span class="r">o bunman gidaryeo juseyo.</span><span class="t">请等五分钟。</span></li><li>세 시 십 <b>분</b>이에요.<span class="r">se si sip bunieyo.</span><span class="t">三点十分。</span></li></ol></div></div></div><div id="mm"></div><script>
+/* print layouts. 正反两页 (default): the list split over two A4 pages, page 1 filled first, with the largest type that fits;
+   一页纸: everything on one A4 page. Both use columns; if a list still does not fit at the smallest size, the 辨析 line and then
+   the English definition are left out. The chosen layout is remembered and is also used by the browser's own print command. */
 (function(){
-  var root = document.documentElement, body = document.body, sheet = document.querySelector('.in');
-  function fits(){ return sheet.scrollHeight <= document.getElementById('mm').getBoundingClientRect().height; }
-  /* if the full list does not fit even at the smallest size, leave out the 辨析 line, then the English definition */
+  var root = document.documentElement, body = document.body, inn = document.querySelector('.in'), s1 = document.querySelector('.sheet');
+  var rows = [].slice.call(s1.children), s2 = null;
+  var KEY = 'wk-list-mode', mode = 'two';
+  try { mode = localStorage.getItem(KEY) === 'one' ? 'one' : 'two'; } catch (e) {}
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height; }
+  function page1(){ return s1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
+  function page2(){ var cs = getComputedStyle(s2); return s2.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
   var LEVELS = ['', 'no-cf', 'no-cf no-def'];
   function setLevel(l){ body.classList.remove('no-cf', 'no-def'); if (l) l.split(' ').forEach(function(c){ body.classList.add(c); }); }
-  function fit(){
-    body.classList.add('printing');
+  function size(cols, fs){ root.style.setProperty('--cols', cols); root.style.setProperty('--fs', fs + 'px'); }
+  function put(k){ rows.forEach(function(r, i){ (i < k || !s2 ? s1 : s2).appendChild(r); }); }
+  function unsplit(){ if (s2){ s2.remove(); s2 = null; } put(rows.length); }
+  function fitOne(){
     var tries = [[2, 13, 6.5], [3, 8, 6]];
     for (var L = 0; L < LEVELS.length; L++){
       setLevel(LEVELS[L]);
-      for (var k = 0; k < tries.length; k++){
-        root.style.setProperty('--cols', tries[k][0]);
-        for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){
-          root.style.setProperty('--fs', fs + 'px');
-          if (fits()) return;
-        }
-      }
+      for (var k = 0; k < tries.length; k++)
+        for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){ size(tries[k][0], fs); if (page1()) return; }
     }
   }
+  function fitTwo(){
+    s2 = document.createElement('div'); s2.className = 'sheet'; s2.id = 'sheet2'; s1.parentNode.insertBefore(s2, s1.nextSibling);
+    var tries = [[2, 14, 7], [3, 9, 6]], n = rows.length;
+    for (var L = 0; L < LEVELS.length; L++){
+      setLevel(LEVELS[L]);
+      for (var t = 0; t < tries.length; t++)
+        for (var fs = tries[t][1]; fs >= tries[t][2]; fs -= 0.25){
+          size(tries[t][0], fs);
+          var lo = 0, hi = n;                       /* the most words that fit on page 1 */
+          while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); put(mid); if (page1()) lo = mid; else hi = mid - 1; }
+          put(lo);
+          if (page1() && page2() <= H()) return;
+        }
+    }
+  }
+  function fit(){ body.classList.add('printing'); unsplit(); setLevel(''); if (mode === 'two') fitTwo(); else fitOne(); }
   var preview = false;
-  function done(){ if (!preview){ body.classList.remove('printing'); setLevel(''); } }
-  window.addEventListener('beforeprint', fit);
+  function clear(){ body.classList.remove('printing'); setLevel(''); unsplit(); }
+  function done(){ if (!preview) clear(); }
+  window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', done);
-  var b = document.getElementById('prev');
-  b.addEventListener('click', function(){
-    preview = !preview;
-    if (preview){ fit(); var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
-      bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9';
-      bar.innerHTML = '<button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
-      bar.children[0].onclick = function(){ b.click(); }; bar.children[1].onclick = function(){ window.print(); };
-      body.appendChild(bar); }
-    else { body.classList.remove('printing'); setLevel(''); var x = document.getElementById('pbar'); if (x) x.remove(); }
-  });
+  function open(m){
+    mode = m; try { localStorage.setItem(KEY, m); } catch (e) {}
+    preview = true; fit();
+    var old = document.getElementById('pbar'); if (old) old.remove();
+    var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+    bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9';
+    bar.innerHTML = '<button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+    bar.children[0].onclick = function(){ preview = false; clear(); bar.remove(); };
+    bar.children[1].onclick = function(){ window.print(); };
+    body.appendChild(bar);
+    window.scrollTo(0, 0);
+  }
+  document.getElementById('prev2').addEventListener('click', function(){ open('two'); });
+  document.getElementById('prev').addEventListener('click', function(){ open('one'); });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
 })();
 </script></body></html>

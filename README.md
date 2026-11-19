@@ -125,6 +125,8 @@ converted to dictionary symbols), so after writing a new English article run
 `~/.cache/waikan-tts/venv/bin/python tools/make_ipa.py <slug>`; a value written by hand is kept. Korean, Japanese and Cantonese use `rom`.
 The article page shows the phonetics on word cards, flashcards and quiz feedback, and every article gets `a/<slug>/list.html`:
 a plain, printable list of its words (phonetics, meaning, the first two examples), linked from the 词汇 tab.
+Two print layouts: 正反两页 (the default; two A4 pages for double-sided printing, page 1 filled first, largest type that fits)
+and 一页纸 (everything on one A4 page). The script in `LIST_JS` (tools/build.py) picks the size; the choice is remembered.
 
 ## Back-translation (回译, English and Japanese articles)
 
