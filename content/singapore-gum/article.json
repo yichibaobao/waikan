@@ -927,35 +927,6 @@
     "def": "not worried or annoyed by something"
    },
    {
-    "id": 26,
-    "expr": "point out",
-    "zh": "指出",
-    "m": [
-     "point out"
-    ],
-    "note": "point out that ... / point sth out：He pointed out a mistake.（他指出了一个错误。）",
-    "core": "point out",
-    "forms": [
-     "point out",
-     "points out",
-     "pointed out",
-     "pointing out"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "She [[pointed out]] a mistake in my essay.",
-      "zh": "她指出了我文章里的一个错误。"
-     },
-     {
-      "en": "Experts [[point out]] that the risk is small.",
-      "zh": "专家指出风险很小。"
-     }
-    ],
-    "ipa": "/pɔɪnt aʊt/",
-    "def": "to tell someone about a fact or mention something they had not noticed"
-   },
-   {
     "id": 27,
     "expr": "spotless",
     "zh": "一尘不染的、非常干净的",
@@ -988,33 +959,6 @@
       "diff": "clean 是普通的“干净”；spotless 语气强得多，是“一点污渍都没有、一尘不染”。"
      }
     ]
-   },
-   {
-    "id": 28,
-    "expr": "trade deal",
-    "zh": "贸易协议",
-    "m": [
-     "trade deal"
-    ],
-    "note": "a trade deal between two countries。free trade agreement：自由贸易协定。",
-    "core": "trade deal",
-    "forms": [
-     "trade deal",
-     "trade deals"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "The two countries signed a new [[trade deal]].",
-      "zh": "两国签了一项新的贸易协议。"
-     },
-     {
-      "en": "Farmers hope the [[trade deal]] will help them.",
-      "zh": "农民希望这项贸易协议能帮到他们。"
-     }
-    ],
-    "ipa": "/treɪd diːl/",
-    "def": "an agreement between countries about buying and selling goods"
    },
    {
     "id": 31,
@@ -1488,22 +1432,10 @@
     "hint": "不在意的"
    },
    {
-    "id": 26,
-    "i": 12,
-    "ans": "point",
-    "hint": "指出（___ out）"
-   },
-   {
     "id": 27,
     "i": 12,
     "ans": "spotless",
     "hint": "一尘不染的"
-   },
-   {
-    "id": 28,
-    "i": 13,
-    "ans": "trade",
-    "hint": "贸易协议（___ deal）"
    },
    {
     "id": 31,
