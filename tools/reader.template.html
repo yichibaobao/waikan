@@ -866,7 +866,8 @@ function renderTrans(){
   box.replaceChildren(h('div', {class:'card'},
     h('p', {class:'eyebrow'}, '回译练习'),
     fcChips(modes, tr.mode, function(m){ tr.mode = m; renderTrans(); }),
-    h('p', {class:'lead'}, lead)),
+    h('p', {class:'lead'}, lead),
+    h('p', {class:'list-link'}, h('a', {href:'trans.html'}, '🖨 打印回译练习纸（中文 + 横线写' + XL + '，最后附答案）'))),
     tr.mode === 'recite' ? trRecite() : tr.mode === 'sent' ? trSent() : trFull());
 }
 function trRecite(){

@@ -130,6 +130,8 @@ and 一页纸 (everything on one A4 page). The script in `LIST_JS` (tools/build.
 Every article also gets `a/<slug>/check.html`, a 背单词打卡表: one row per word with tick boxes for the Ebbinghaus rounds (the
 first day, then 1, 2, 4, 7, 15 and 30 days later), the dates filled in from a start date the learner picks. Ticks and the start date
 stay in the browser (`wk-check-<slug>`); the sheet prints on A4.
+English and Japanese articles also get `a/<slug>/trans.html`, a printable 回译练习纸: each Chinese sentence (grouped by paragraph)
+with ruled lines to write the original on, optional word hints, and the original text as an answer key starting on a new page.
 
 ## Back-translation (回译, English and Japanese articles)
 

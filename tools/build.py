@@ -459,6 +459,7 @@ def list_html(slug, meta, data, sec):
             f'<div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev2">预览正反两页</button> '
             f'<button class="prev" type="button" id="prev">预览一页纸</button> '
             f'<a class="prev" href="check.html" style="text-decoration:none">✅ 背单词打卡表</a> '
+            + (f'<a class="prev" href="trans.html" style="text-decoration:none">🖨 回译练习纸</a> ' if lang in ("en", "ja") else "") +
             f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
             f'<p class="tip noprint">打印正反两页：先点“预览正反两页”，再点“打印”，在打印设置里选“双面打印”（长边翻转）。</p>'
             f'<h1>{e(meta["short"])} · 单词表</h1><p class="sub">{e(meta["date"])} · {len(data["vocab"])} 个词 · 每个词两个例句。{label}</p>'
@@ -582,6 +583,101 @@ def check_html(slug, meta, data, sec):
             f'</div>{CHECK_JS}</body></html>')
 
 
+TRANS_CSS = """
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#E9D8CA;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff}
+html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.6 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:820px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn,.prev{appearance:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.btn{border:0;background:var(--accent);color:#fff} .prev{border:2px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;font-size:13px}
+h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 0 6px;font-size:18px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 14px;padding:12px 14px;background:var(--surface);border-radius:16px}
+.ctl label{display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600}
+.sheet{background:var(--surface);border-radius:16px;padding:16px 18px}
+.blk{margin:0 0 6px;color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.04em}
+.q{break-inside:avoid;page-break-inside:avoid;margin:0 0 12px}
+.zh{margin:0;font-size:15.5px;line-height:1.6} .zh b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 13px ui-monospace,Menlo,monospace}
+.hint{display:none;margin:2px 0 0 1.9em;color:var(--muted);font-size:12.5px}
+.hints .hint{display:block}
+.ln{height:30px;margin-left:1.9em;border-bottom:1px solid #C9B8AA}
+.gap{height:8px}
+.ans{margin-top:22px}
+.noans .ans{display:none}
+.a{margin:0 0 6px;font:400 15px/1.55 Georgia,'Times New Roman',serif} .a b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.a .r{display:block;margin-left:2.2em;color:var(--muted);font:400 12.5px/1.5 ui-rounded,system-ui,sans-serif}
+.foot{margin:12px 0 0;color:var(--muted);font-size:12.5px}
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:#fff} .in{max-width:none;padding:0} .noprint{display:none!important}
+  h1{font-size:16px;margin:0} .sub{font-size:9.5px;margin:0 0 6px}
+  .sheet{padding:0;border-radius:0}
+  .zh{font-size:11.5px} .zh b{font-size:10px} .hint{font-size:9.5px}
+  .q{margin:0 0 7px} .ln{height:8.5mm;border-bottom-color:#999}
+  .ans{margin-top:0;break-before:page;page-break-before:always}
+  h2{font-size:14px} .a{font-size:11px;margin:0 0 3px} .a b{font-size:9px} .a .r{font-size:9.5px}
+  .foot{display:none}
+}
+"""
+
+TRANS_JS = """<script>
+(function(){
+  var b = document.body, key = 'wk-trans-print';
+  var st = {hints:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {hints:!!r.hints, ans:r.ans !== false}; } catch (e) {}
+  var h = document.getElementById('hints'), a = document.getElementById('withans');
+  function draw(){ b.classList.toggle('hints', st.hints); b.classList.toggle('noans', !st.ans); h.checked = st.hints; a.checked = st.ans; }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  h.addEventListener('change', function(){ st.hints = h.checked; save(); draw(); });
+  a.addEventListener('change', function(){ st.ans = a.checked; save(); draw(); });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script>"""
+
+
+def trans_html(slug, meta, data, sec):
+    """A printable back-translation sheet (English and Japanese articles): each Chinese sentence with lines to write the original
+    language on, grouped by paragraph; the original text follows on a new page as the answer key."""
+    e = htmllib.escape
+    lang = meta["lang"]
+    XL = {"en": "英文", "ja": "日语"}[lang]
+    per_line = 48 if lang == "en" else 24          # how much handwriting fits on one line, roughly
+    sents = data["sents"]
+    groups = [("标题", [s for s in sents if s.get("kind") == "title"]), ("导语", [s for s in sents if s.get("kind") == "sub"])]
+    for p in sorted({s["p"] for s in sents if s.get("p")}):
+        groups.append((f"第 {p} 段", [s for s in sents if s.get("p") == p]))
+    vocab = [v for v in data["vocab"] if v.get("kind") != "grammar"]
+    qs, ans, n = [], [], 0
+    for label, ss in groups:
+        if not ss:
+            continue
+        qs.append(f'<p class="blk">{label}</p>')
+        for s in ss:
+            n += 1
+            words = [v for v in vocab if any(word_re(t).search(s["en"]) for t in v["m"])]
+            hint = ("提示：" + "；".join(f'{e(v["expr"])}（{e(v["zh"])}）' for v in words)) if words else ""
+            lines = max(1, -(-len(s["en"]) // per_line))
+            qs.append(f'<div class="q"><p class="zh"><b>{n}</b>{e(s["zh"])}</p>' + (f'<p class="hint">{hint}</p>' if hint else "")
+                      + '<div class="ln"></div>' * lines + '</div>')
+            ans.append(f'<p class="a"><b>{n}</b>{e(s["en"])}' + (f'<span class="r">{e(s["rom"])}</span>' if lang == "ja" and s.get("rom") else "") + '</p>')
+        qs.append('<div class="gap"></div>')
+    return (f'<!doctype html><html lang="zh-CN" data-lang="{lang}"><head><meta charset="utf-8">'
+            f'<meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(meta["short"])} · 回译练习纸 · {e(sec["brand"])}</title>'
+            f'<style>{TRANS_CSS}</style></head><body><div class="in">'
+            f'<div class="top noprint"><a class="back" href="./#trans">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> '
+            f'<button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div>'
+            f'<h1>{e(meta["short"])} · 回译练习纸</h1><p class="sub">{e(meta["date"])} · {n} 句 · 看中文，在横线上写出{XL}原文；写完再看最后的参考答案。'
+            f'　姓名 ________　日期 ________</p>'
+            f'<div class="ctl noprint"><label><input type="checkbox" id="withans"> 附参考答案（另起一页）</label>'
+            f'<label><input type="checkbox" id="hints"> 每句下面提示本句生词</label></div>'
+            f'<div class="sheet">{"".join(qs)}<div class="ans"><h2>参考答案（{XL}原文）</h2>{"".join(ans)}</div></div>'
+            f'<p class="foot">打印时可以双面打印；答案会从新的一页开始，不想先看到答案可以把那一页撕下来放一边。</p>'
+            f'</div>{TRANS_JS}</body></html>')
+
+
 def foot_html(meta):
     parts = []
     note = meta.get("note")
@@ -632,6 +728,11 @@ def main():
         open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
         open(os.path.join(out, "list.html"), "w", encoding="utf-8").write(list_html(slug, meta, data, sec))
         open(os.path.join(out, "check.html"), "w", encoding="utf-8").write(check_html(slug, meta, data, sec))
+        tp = os.path.join(out, "trans.html")
+        if meta["lang"] in ("en", "ja"):
+            open(tp, "w", encoding="utf-8").write(trans_html(slug, meta, data, sec))
+        elif os.path.isfile(tp):
+            os.remove(tp)
         syntax_check(page, slug)
         wj = words_json(slug, meta, data)
         open(os.path.join(out, "words.json"), "w", encoding="utf-8").write(json.dumps(wj, ensure_ascii=False, separators=(",", ":")))
