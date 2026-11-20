@@ -15,72 +15,76 @@ h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:
 .tag{padding:0 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:11px;line-height:1.7}
 ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
 .prev{appearance:none;border:2px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--muted);font-weight:700;font-size:13px;font-family:inherit;cursor:pointer}
-#mm{position:absolute;left:-9999px;top:0;width:1px;height:279mm}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 /* print layout (printing, or the 预览 buttons): A4, columns, small type; the script picks the largest size that fits one or two pages */
-@page{size:A4;margin:9mm}
+@page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:192mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.32}
-.printing .top{display:none}
+.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;line-height:1.32}
+.printing .top,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none} .printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden} .pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.cols{display:flex;gap:4mm;align-items:flex-start} .col{flex:1 1 0;min-width:0;overflow:hidden} .col + .col{border-left:.3pt solid #ccc;padding-left:2mm}
 .printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.9em;margin:0 0 .6em}
-.printing .sheet{column-count:var(--cols,2);column-gap:5mm;column-rule:0.3pt solid #ccc}
 .printing .w{background:none;box-shadow:none;border-radius:0;padding:0 0 .35em;margin:0 0 .35em;border-bottom:0.3pt solid #ddd}
 .printing .e{font-size:1.15em} .printing .p,.printing .z{font-size:1em} .printing .n{font-size:.9em;min-width:1.4em}
 .printing .tag{font-size:.8em}
 .printing .d,.printing .c{font-size:.92em;margin:.1em 0 0 1.3em}
 .printing.no-cf .c,.printing.no-def .d{display:none}
-.printing #sheet2{break-before:page;page-break-before:always}
-@media screen{.printing #sheet2{margin-top:9mm;padding-top:9mm;border-top:1px dashed #999}}
 .tip{margin:0 0 14px;color:var(--muted);font-size:13px}
 .printing .tip{display:none}
 .printing ol{margin:.15em 0 0;padding-left:1.3em} .printing li{margin:0}
 .printing .r,.printing .t{display:inline;font-size:.92em} .printing .r::before,.printing .t::before{content:" · "}
 @media print{.noprint,.top{display:none}}
 </style></head><body><div class="in"><div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev2">预览正反两页</button> <button class="prev" type="button" id="prev">预览一页纸</button> <a class="prev" href="check.html" style="text-decoration:none">✅ 背单词打卡表</a> <a class="prev" href="ex.html" style="text-decoration:none">✍️ 例句默写纸</a> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><p class="tip noprint">打印正反两页：先点“预览正反两页”，再点“打印”，在打印设置里选“双面打印”（长边翻转）。</p><h1>第 9 课 · 生日快樂！ · 单词表</h1><p class="sub">2026-11-18 · 19 个词 · 每个词两个例句。读音为粤拼，数字是声调。</p><div class="sheet"><div class="w"><div class="h"><span class="n">1</span><span class="e">生日快樂</span><span class="p">saang1 jat6 faai3 lok6</span><span class="z">生日快乐</span></div><ol><li>祝你<b>生日快樂</b>！<span class="r">zuk1 nei5 saang1 jat6 faai3 lok6!</span><span class="t">祝你生日快乐！</span></li><li>媽咪，<b>生日快樂</b>！<span class="r">maa1 mi4, saang1 jat6 faai3 lok6!</span><span class="t">妈妈，生日快乐！</span></li></ol></div><div class="w"><div class="h"><span class="n">2</span><span class="e">今日</span><span class="p">gam1 jat6</span><span class="z">今天</span></div><ol><li><b>今日</b>好熱。<span class="r">gam1 jat6 hou2 jit6.</span><span class="t">今天很热。</span></li><li><b>今日</b>星期幾？<span class="r">gam1 jat6 sing1 kei4 gei2?</span><span class="t">今天星期几？</span></li></ol></div><div class="w"><div class="h"><span class="n">3</span><span class="e">生日</span><span class="p">saang1 jat6</span><span class="z">生日</span></div><ol><li>你幾時<b>生日</b>？<span class="r">nei5 gei2 si4 saang1 jat6?</span><span class="t">你什么时候生日？</span></li><li>聽日係我<b>生日</b>。<span class="r">ting1 jat6 hai6 ngo5 saang1 jat6.</span><span class="t">明天是我生日。</span></li></ol></div><div class="w"><div class="h"><span class="n">4</span><span class="e">咗</span><span class="p">zo2</span><span class="z">了（动作完成）</span></div><ol><li>我食<b>咗</b>飯喇。<span class="r">ngo5 sik6 zo2 faan6 laa3.</span><span class="t">我吃了饭了。</span></li><li>佢返<b>咗</b>屋企。<span class="r">keoi5 faan1 zo2 uk1 kei2.</span><span class="t">他回家了。</span></li></ol></div><div class="w"><div class="h"><span class="n">5</span><span class="e">禮物</span><span class="p">lai5 mat6</span><span class="z">礼物</span></div><ol><li>呢個<b>禮物</b>好靚。<span class="r">ni1 go3 lai5 mat6 hou2 leng3.</span><span class="t">这个礼物很漂亮。</span></li><li>我買咗<b>禮物</b>畀媽咪。<span class="r">ngo5 maai5 zo2 lai5 mat6 bei2 maa1 mi4.</span><span class="t">我给妈妈买了礼物。</span></li></ol></div><div class="w"><div class="h"><span class="n">6</span><span class="e">份</span><span class="p">fan6</span><span class="z">份（礼物、报纸、工作的量词）</span></div><ol><li>呢<b>份</b>工好辛苦。<span class="r">ni1 fan6 gung1 hou2 san1 fu2.</span><span class="t">这份工作很辛苦。</span></li><li>一<b>份</b>早餐。<span class="r">jat1 fan6 zou2 caan1.</span><span class="t">一份早餐。</span></li></ol></div><div class="w"><div class="h"><span class="n">7</span><span class="e">送</span><span class="p">sung3</span><span class="z">送（礼物）；送（人）</span></div><ol><li>呢束花<b>送</b>畀你。<span class="r">ni1 cuk1 faa1 sung3 bei2 nei5.</span><span class="t">这束花送给你。</span></li><li>我<b>送</b>你去車站。<span class="r">ngo5 sung3 nei5 heoi3 ce1 zaam6.</span><span class="t">我送你去车站。</span></li></ol></div><div class="w"><div class="h"><span class="n">8</span><span class="e">嘩</span><span class="p">waa3</span><span class="z">哇（惊叹）</span></div><ol><li><b>嘩</b>，好大呀！<span class="r">waa3, hou2 daai6 aa3!</span><span class="t">哇，好大啊！</span></li><li><b>嘩</b>，你好叻！<span class="r">waa3, nei5 hou2 lek1!</span><span class="t">哇，你真厉害！</span></li></ol></div><div class="w"><div class="h"><span class="n">9</span><span class="e">多謝</span><span class="p">do1 ze6</span><span class="z">谢谢（收到礼物、别人帮忙）</span></div><ol><li><b>多謝</b>你嘅禮物！<span class="r">do1 ze6 nei5 ge3 lai5 mat6!</span><span class="t">谢谢你的礼物！</span></li><li>「你好靚。」「<b>多謝</b>！」<span class="r">nei5 hou2 leng3. do1 ze6!</span><span class="t">“你真漂亮。”“谢谢！”</span></li></ol></div><div class="w"><div class="h"><span class="n">10</span><span class="e">開</span><span class="p">hoi1</span><span class="z">打开；开</span></div><ol><li>唔該<b>開</b>窗。<span class="r">m4 goi1 hoi1 coeng1.</span><span class="t">麻烦开一下窗。</span></li><li>間鋪頭幾點<b>開</b>？<span class="r">gaan1 pou3 tau2 gei2 dim2 hoi1?</span><span class="t">那家店几点开门？</span></li></ol></div><div class="w"><div class="h"><span class="n">11</span><span class="e">估</span><span class="p">gu2</span><span class="z">猜</span></div><ol><li>你<b>估</b>吓我幾多歲？<span class="r">nei5 gu2 haa5 ngo5 gei2 do1 seoi3?</span><span class="t">你猜我多少岁？</span></li><li>真係<b>估</b>唔到！<span class="r">zan1 hai6 gu2 m4 dou3!</span><span class="t">真是想不到！</span></li></ol></div><div class="w"><div class="h"><span class="n">12</span><span class="e">乜嘢</span><span class="p">mat1 je5</span><span class="z">什么</span></div><ol><li>你做緊<b>乜嘢</b>？<span class="r">nei5 zou6 gan2 mat1 je5?</span><span class="t">你在做什么？</span></li><li>呢個係<b>乜嘢</b>？<span class="r">ni1 go3 hai6 mat1 je5?</span><span class="t">这是什么？</span></li></ol></div><div class="w"><div class="h"><span class="n">13</span><span class="e">係咪</span><span class="p">hai6 mai6</span><span class="z">是不是</span></div><ol><li><b>係咪</b>你呀？<span class="r">hai6 mai6 nei5 aa3?</span><span class="t">是你吗？</span></li><li>佢<b>係咪</b>老師？<span class="r">keoi5 hai6 mai6 lou5 si1?</span><span class="t">他是不是老师？</span></li></ol></div><div class="w"><div class="h"><span class="n">14</span><span class="e">書</span><span class="p">syu1</span><span class="z">书</span></div><ol><li>我鍾意睇<b>書</b>。<span class="r">ngo5 zung1 ji3 tai2 syu1.</span><span class="t">我喜欢看书。</span></li><li>呢本<b>書</b>好好睇。<span class="r">ni1 bun2 syu1 hou2 hou2 tai2.</span><span class="t">这本书很好看。</span></li></ol></div><div class="w"><div class="h"><span class="n">15</span><span class="e">蛋糕</span><span class="p">daan6 gou1</span><span class="z">蛋糕</span></div><ol><li>我想食<b>蛋糕</b>。<span class="r">ngo5 soeng2 sik6 daan6 gou1.</span><span class="t">我想吃蛋糕。</span></li><li>呢個<b>蛋糕</b>好甜。<span class="r">ni1 go3 daan6 gou1 hou2 tim4.</span><span class="t">这个蛋糕很甜。</span></li></ol></div><div class="w"><div class="h"><span class="n">16</span><span class="e">今年</span><span class="p">gam1 nin2</span><span class="z">今年</span></div><ol><li><b>今年</b>好凍。<span class="r">gam1 nin2 hou2 dung3.</span><span class="t">今年很冷。</span></li><li>我<b>今年</b>去咗日本。<span class="r">ngo5 gam1 nin2 heoi3 zo2 jat6 bun2.</span><span class="t">我今年去了日本。</span></li></ol></div><div class="w"><div class="h"><span class="n">17</span><span class="e">幾多歲</span><span class="p">gei2 do1 seoi3</span><span class="z">多少岁</span></div><ol><li>你個仔<b>幾多歲</b>？<span class="r">nei5 go3 zai2 gei2 do1 seoi3?</span><span class="t">你儿子几岁了？</span></li><li>佢今年<b>幾多歲</b>？<span class="r">keoi5 gam1 nin2 gei2 do1 seoi3?</span><span class="t">他今年多少岁？</span></li></ol></div><div class="w"><div class="h"><span class="n">18</span><span class="e">廿五</span><span class="p">jaa6 ng5</span><span class="z">二十五</span></div><ol><li>佢<b>廿五</b>歲。<span class="r">keoi5 jaa6 ng5 seoi3.</span><span class="t">他二十五岁。</span></li><li><b>廿五</b>號見。<span class="r">jaa6 ng5 hou6 gin3.</span><span class="t">二十五号见。</span></li></ol></div><div class="w"><div class="h"><span class="n">19</span><span class="e">我哋</span><span class="p">ngo5 dei6</span><span class="z">我们</span></div><ol><li><b>我哋</b>去飲茶啦。<span class="r">ngo5 dei6 heoi3 jam2 caa4 laa1.</span><span class="t">我们去饮茶吧。</span></li><li><b>我哋</b>係同學。<span class="r">ngo5 dei6 hai6 tung4 hok6.</span><span class="t">我们是同学。</span></li></ol></div></div></div><div id="mm"></div><script>
-/* print layouts. 正反两页 (default): the list split over two A4 pages, page 1 filled first, with the largest type that fits;
-   一页纸: everything on one A4 page. Both use columns; if a list still does not fit at the smallest size, the 辨析 line and then
-   the English definition are left out. The chosen layout is remembered and is also used by the browser's own print command. */
+/* print layouts. 正反两页 (default): the list on two A4 pages, page 1 filled first, with the largest type that fits;
+   一页纸: everything on one A4 page. The words are copied into explicit pages with side-by-side columns (no CSS multi-column:
+   Safari/WebKit lays those out wrongly when printing). If a list still does not fit at the smallest size, the 辨析 line and
+   then the English definition are left out. The chosen layout is remembered and also used by the browser's own print command. */
 (function(){
-  var root = document.documentElement, body = document.body, inn = document.querySelector('.in'), s1 = document.querySelector('.sheet');
-  var rows = [].slice.call(s1.children), s2 = null;
+  var body = document.body, inn = document.querySelector('.in'), sheet = document.querySelector('.sheet');
+  var pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
   var KEY = 'wk-list-mode', mode = 'two';
   try { mode = localStorage.getItem(KEY) === 'one' ? 'one' : 'two'; } catch (e) {}
-  /* 6% spare: browsers lay out a printed page a little differently from the screen (fonts, rounding, header lines), so a page
-     measured as exactly full on screen can push its last word onto the next sheet */
   var SPARE = 0.94;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function page1(){ return s1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function page2(){ var cs = getComputedStyle(s2); return s2.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function layout(ncol, fs, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail, els = [].slice.call(sheet.children).map(function(x){ return x.cloneNode(true); });
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0) pg.appendChild(header());
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
+    }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
   var LEVELS = ['', 'no-cf', 'no-cf no-def'];
   function setLevel(l){ body.classList.remove('no-cf', 'no-def'); if (l) l.split(' ').forEach(function(c){ body.classList.add(c); }); }
-  function size(cols, fs){ root.style.setProperty('--cols', cols); root.style.setProperty('--fs', fs + 'px'); }
-  function put(k){ rows.forEach(function(r, i){ (i < k || !s2 ? s1 : s2).appendChild(r); }); }
-  function unsplit(){ if (s2){ s2.remove(); s2 = null; } put(rows.length); }
-  function fitOne(){
-    var tries = [[2, 13, 6.5], [3, 8, 6]];
-    for (var L = 0; L < LEVELS.length; L++){
-      setLevel(LEVELS[L]);
-      for (var k = 0; k < tries.length; k++)
-        for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){ size(tries[k][0], fs); if (page1()) return; }
-    }
-  }
-  function fitTwo(){
-    s2 = document.createElement('div'); s2.className = 'sheet'; s2.id = 'sheet2'; s1.parentNode.insertBefore(s2, s1.nextSibling);
-    var tries = [[2, 14, 7], [3, 9, 6]], n = rows.length;
+  function fit(){
+    body.classList.add('printing'); setLevel('');
+    var max = mode === 'two' ? 2 : 1, tries = mode === 'two' ? [[2, 14, 7], [3, 9, 6]] : [[2, 13, 6.5], [3, 8, 6]];
     for (var L = 0; L < LEVELS.length; L++){
       setLevel(LEVELS[L]);
       for (var t = 0; t < tries.length; t++)
-        for (var fs = tries[t][1]; fs >= tries[t][2]; fs -= 0.25){
-          size(tries[t][0], fs);
-          var lo = 0, hi = n;                       /* the most words that fit on page 1 */
-          while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); put(mid); if (page1()) lo = mid; else hi = mid - 1; }
-          put(lo);
-          if (page1() && page2() <= H()) return;
-        }
+        for (var fs = tries[t][1]; fs >= tries[t][2]; fs -= 0.25) if (layout(tries[t][0], fs, max) <= max) return;
     }
+    layout(3, 6, 9);                                      /* does not fit: smallest size, as many pages as needed */
   }
-  function fit(){ body.classList.add('printing'); unsplit(); setLevel(''); if (mode === 'two') fitTwo(); else fitOne(); }
   var preview = false;
-  function clear(){ body.classList.remove('printing'); setLevel(''); unsplit(); }
+  function clear(){ body.classList.remove('printing'); setLevel(''); pages.innerHTML = ''; }
   function done(){ if (!preview) clear(); }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', done);

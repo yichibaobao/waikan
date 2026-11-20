@@ -50,24 +50,28 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
 .a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
-.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
-.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
-.printing .sheet{padding:0;border-radius:0;background:none}
-.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing #qs2{break-before:page;page-break-before:always}
-@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .it{margin:0 0 .5em}
-.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
-.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
-.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
-.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
 @media print{.noprint{display:none!important}}
 </style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 5 课 · 呢件衫好靚！ · 例句默写纸</h1><p class="sub">2026-11-13 · 生词例句 · 看中文写出粤语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">这个好吃。</p><p class="cl"><u>呢</u>個好食。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这里是哪里？</p><p class="cl"><u>呢</u>度係邊度？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">买了两件衣服。</p><p class="cl">買咗兩<u>件</u>衫。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这件事很重要。</p><p class="cl">呢<u>件</u>事好重要。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我想买衣服。</p><p class="cl">我想買<u>衫</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这件衣服很旧。</p><p class="cl">呢件<u>衫</u>好舊。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你今天好漂亮！</p><p class="cl">你今日好<u>靚</u>！</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这里风景很美。</p><p class="cl">呢度風景好<u>靚</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们去逛街吧。</p><p class="cl">我哋去<u>行街</u>啦。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她很喜欢逛街。</p><p class="cl">佢好鍾意<u>行街</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">看电影好不好？</p><p class="cl"><u>睇</u>戲好唔好？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我在看书。</p><p class="cl">我喺度<u>睇</u>書。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">等我一下。</p><p class="cl">等<u>吓</u>我。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你问一下他吧。</p><p class="cl">你問<u>吓</u>佢啦。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">“很冷吗？”“是啊。”</p><p class="cl">「好凍呀？」「<u>係呀</u>。」</p><div class="ln"></div></div><div class="it e1"><p class="zh2">对啊，我也觉得。</p><p class="cl"><u>係呀</u>，我都覺得。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">好吃，不过很贵。</p><p class="cl">好食，<u>不過</u>好貴。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我想去，不过没空。</p><p class="cl">我想去，<u>不過</u>唔得閒。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">香港的房子很贵。</p><p class="cl">香港啲樓好<u>貴</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">太贵了！</p><p class="cl">太<u>貴</u>喇！</p><div class="ln"></div></div><div class="it e0"><p class="zh2">下雨了哦！</p><p class="cl">落雨<u>喎</u>！</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他说不来哦。</p><p class="cl">佢唔嚟<u>喎</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">那我们走吧。</p><p class="cl"><u>咁</u>我哋走啦。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那你想怎样？</p><p class="cl"><u>咁</u>你想點？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这里的东西很便宜。</p><p class="cl">呢度啲嘢好<u>平</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">可以便宜点吗？</p><p class="cl">可唔可以<u>平</u>啲？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">走快点！</p><p class="cl">行快<u>啲</u>！</p><div class="ln"></div></div><div class="it e1"><p class="zh2">大一点行吗？</p><p class="cl">大<u>啲</u>得唔得？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你的衣服很好看。</p><p class="cl">你件衫好<u>好睇</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这部电影好不好看？</p><p class="cl">呢套戲<u>好睇</u>唔好睇？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我可以试一下吗？</p><p class="cl">我可唔可以<u>試</u>吓？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你试一下这个。</p><p class="cl">你<u>試</u>吓呢個。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我先喝杯水。</p><p class="cl">我飲杯水<u>先</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你先走吧。</p><p class="cl">你行<u>先</u>啦。</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><strong>呢</strong>個好食。<span class="r">ni1 go3 hou2 sik6.</span></p><p class="a e1"><strong>呢</strong>度係邊度？<span class="r">ni1 dou6 hai6 bin1 dou6?</span></p><p class="a e0">買咗兩<strong>件</strong>衫。<span class="r">maai5 zo2 loeng5 gin6 saam1.</span></p><p class="a e1">呢<strong>件</strong>事好重要。<span class="r">ni1 gin6 si6 hou2 zung6 jiu3.</span></p><p class="a e0">我想買<strong>衫</strong>。<span class="r">ngo5 soeng2 maai5 saam1.</span></p><p class="a e1">呢件<strong>衫</strong>好舊。<span class="r">ni1 gin6 saam1 hou2 gau6.</span></p><p class="a e0">你今日好<strong>靚</strong>！<span class="r">nei5 gam1 jat6 hou2 leng3!</span></p><p class="a e1">呢度風景好<strong>靚</strong>。<span class="r">ni1 dou6 fung1 ging2 hou2 leng3.</span></p><p class="a e0">我哋去<strong>行街</strong>啦。<span class="r">ngo5 dei6 heoi3 haang4 gaai1 laa1.</span></p><p class="a e1">佢好鍾意<strong>行街</strong>。<span class="r">keoi5 hou2 zung1 ji3 haang4 gaai1.</span></p><p class="a e0"><strong>睇</strong>戲好唔好？<span class="r">tai2 hei3 hou2 m4 hou2?</span></p><p class="a e1">我喺度<strong>睇</strong>書。<span class="r">ngo5 hai2 dou6 tai2 syu1.</span></p><p class="a e0">等<strong>吓</strong>我。<span class="r">dang2 haa5 ngo5.</span></p><p class="a e1">你問<strong>吓</strong>佢啦。<span class="r">nei5 man6 haa5 keoi5 laa1.</span></p><p class="a e0">「好凍呀？」「<strong>係呀</strong>。」<span class="r">hou2 dung3 aa3? hai6 aa3.</span></p><p class="a e1"><strong>係呀</strong>，我都覺得。<span class="r">hai6 aa3, ngo5 dou1 gok3 dak1.</span></p><p class="a e0">好食，<strong>不過</strong>好貴。<span class="r">hou2 sik6, bat1 gwo3 hou2 gwai3.</span></p><p class="a e1">我想去，<strong>不過</strong>唔得閒。<span class="r">ngo5 soeng2 heoi3, bat1 gwo3 m4 dak1 haan4.</span></p><p class="a e0">香港啲樓好<strong>貴</strong>。<span class="r">hoeng1 gong2 di1 lau2 hou2 gwai3.</span></p><p class="a e1">太<strong>貴</strong>喇！<span class="r">taai3 gwai3 laa3!</span></p><p class="a e0">落雨<strong>喎</strong>！<span class="r">lok6 jyu5 wo3!</span></p><p class="a e1">佢唔嚟<strong>喎</strong>。<span class="r">keoi5 m4 lai4 wo3.</span></p><p class="a e0"><strong>咁</strong>我哋走啦。<span class="r">gam2 ngo5 dei6 zau2 laa1.</span></p><p class="a e1"><strong>咁</strong>你想點？<span class="r">gam2 nei5 soeng2 dim2?</span></p><p class="a e0">呢度啲嘢好<strong>平</strong>。<span class="r">ni1 dou6 di1 je5 hou2 peng4.</span></p><p class="a e1">可唔可以<strong>平</strong>啲？<span class="r">ho2 m4 ho2 ji5 peng4 di1?</span></p><p class="a e0">行快<strong>啲</strong>！<span class="r">haang4 faai3 di1!</span></p><p class="a e1">大<strong>啲</strong>得唔得？<span class="r">daai6 di1 dak1 m4 dak1?</span></p><p class="a e0">你件衫好<strong>好睇</strong>。<span class="r">nei5 gin6 saam1 hou2 hou2 tai2.</span></p><p class="a e1">呢套戲<strong>好睇</strong>唔好睇？<span class="r">ni1 tou3 hei3 hou2 tai2 m4 hou2 tai2?</span></p><p class="a e0">我可唔可以<strong>試</strong>吓？<span class="r">ngo5 ho2 m4 ho2 ji5 si3 haa5?</span></p><p class="a e1">你<strong>試</strong>吓呢個。<span class="r">nei5 si3 haa5 ni1 go3.</span></p><p class="a e0">我飲杯水<strong>先</strong>。<span class="r">ngo5 jam2 bui1 seoi2 sin1.</span></p><p class="a e1">你行<strong>先</strong>啦。<span class="r">nei5 haang4 sin1 laa1.</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
 /* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
@@ -87,46 +91,75 @@ body.printing{background:#fff}
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
 
-  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
-  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
-  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
-  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
-  function split(){
-    var vis = visible(), lo = 0, hi = vis.length;
-    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
-    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
-    putVis(lo);
-    return p1() && inner(q2) <= H();
-  }
-  function fitEx(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];
-    for (var c = 0; c < cols.length; c++){
-      root.style.setProperty('--qc', cols[c]);
-      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
     }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
     return false;
   }
-  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
   function tipText(){
     var t = document.getElementById('ptip'); if (!t) return;
     t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
     t.style.display = t.textContent ? '' : 'none';
   }
-  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); unsplit(); auto1 = over = false;
-    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    b.classList.add('printing'); auto1 = over = false;
     if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitEx()) over = true;
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
     }
     if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
   document.getElementById('prevBtn').addEventListener('click', function(){

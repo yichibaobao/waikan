@@ -15,72 +15,76 @@ h1{margin:6px 0 2px;font-weight:800;font-size:26px;line-height:1.3} .sub{margin:
 .tag{padding:0 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-weight:700;font-size:11px;line-height:1.7}
 ol{margin:8px 0 0;padding-left:1.6em} li{margin:4px 0} li b{color:var(--accent)} .r,.t{display:block;color:var(--muted);font-size:13.5px} .r{letter-spacing:.01em}
 .prev{appearance:none;border:2px solid var(--line);border-radius:999px;padding:6px 14px;background:var(--surface);color:var(--muted);font-weight:700;font-size:13px;font-family:inherit;cursor:pointer}
-#mm{position:absolute;left:-9999px;top:0;width:1px;height:279mm}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 /* print layout (printing, or the 预览 buttons): A4, columns, small type; the script picks the largest size that fits one or two pages */
-@page{size:A4;margin:9mm}
+@page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:192mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.32}
-.printing .top{display:none}
+.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;line-height:1.32}
+.printing .top,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none} .printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden} .pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.cols{display:flex;gap:4mm;align-items:flex-start} .col{flex:1 1 0;min-width:0;overflow:hidden} .col + .col{border-left:.3pt solid #ccc;padding-left:2mm}
 .printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.9em;margin:0 0 .6em}
-.printing .sheet{column-count:var(--cols,2);column-gap:5mm;column-rule:0.3pt solid #ccc}
 .printing .w{background:none;box-shadow:none;border-radius:0;padding:0 0 .35em;margin:0 0 .35em;border-bottom:0.3pt solid #ddd}
 .printing .e{font-size:1.15em} .printing .p,.printing .z{font-size:1em} .printing .n{font-size:.9em;min-width:1.4em}
 .printing .tag{font-size:.8em}
 .printing .d,.printing .c{font-size:.92em;margin:.1em 0 0 1.3em}
 .printing.no-cf .c,.printing.no-def .d{display:none}
-.printing #sheet2{break-before:page;page-break-before:always}
-@media screen{.printing #sheet2{margin-top:9mm;padding-top:9mm;border-top:1px dashed #999}}
 .tip{margin:0 0 14px;color:var(--muted);font-size:13px}
 .printing .tip{display:none}
 .printing ol{margin:.15em 0 0;padding-left:1.3em} .printing li{margin:0}
 .printing .r,.printing .t{display:inline;font-size:.92em} .printing .r::before,.printing .t::before{content:" · "}
 @media print{.noprint,.top{display:none}}
 </style></head><body><div class="in"><div class="top noprint"><a class="back" href="./">‹ 回到文章</a><span><button class="prev" type="button" id="prev2">预览正反两页</button> <button class="prev" type="button" id="prev">预览一页纸</button> <a class="prev" href="check.html" style="text-decoration:none">✅ 背单词打卡表</a> <a class="prev" href="ex.html" style="text-decoration:none">✍️ 例句默写纸</a> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><p class="tip noprint">打印正反两页：先点“预览正反两页”，再点“打印”，在打印设置里选“双面打印”（长边翻转）。</p><h1>第 8 课 · 어디가 아파요? · 单词表</h1><p class="sub">2026-11-15 · 14 个词 · 每个词两个例句。读音为韩国官方罗马字。</p><div class="sheet"><div class="w"><div class="h"><span class="n">1</span><span class="e">아프다</span><span class="p">apeuda</span><span class="z">疼、不舒服；生病</span></div><ol><li>배가 <b>아파요</b>.<span class="r">baega apayo.</span><span class="t">肚子疼。</span></li><li>어제 많이 <b>아팠어요</b>.<span class="r">eoje mani apasseoyo.</span><span class="t">昨天病得很厉害。</span></li></ol></div><div class="w"><div class="h"><span class="n">2</span><span class="e">감기</span><span class="p">gamgi</span><span class="z">感冒</span></div><ol><li><b>감기</b> 조심하세요.<span class="r">gamgi josimhaseyo.</span><span class="t">小心别感冒。</span></li><li><b>감기</b>약 있어요?<span class="r">gamgiyak isseoyo?</span><span class="t">有感冒药吗？</span></li></ol></div><div class="w"><div class="h"><span class="n">3</span><span class="e">걸리다</span><span class="p">geollida</span><span class="z">得（病）；花（时间）</span></div><ol><li>감기에 <b>걸렸어요</b>.<span class="r">gamgie geollyeosseoyo.</span><span class="t">我感冒了。</span></li><li>집까지 30분 <b>걸려요</b>.<span class="r">jipkkaji samsipbun geollyeoyo.</span><span class="t">到家要 30 分钟。</span></li></ol></div><div class="w"><div class="h"><span class="n">4</span><span class="e">병원</span><span class="p">byeongwon</span><span class="z">医院</span></div><ol><li><b>병원</b>이 어디예요?<span class="r">byeongwoni eodiyeyo?</span><span class="t">医院在哪里？</span></li><li>내일 <b>병원</b>에 가요.<span class="r">naeil byeongwone gayo.</span><span class="t">明天去医院。</span></li></ol></div><div class="w"><div class="h"><span class="n">5</span><span class="e">의사</span><span class="p">uisa</span><span class="z">医生</span></div><ol><li>우리 언니는 <b>의사</b>예요.<span class="r">uri eonnineun uisayeyo.</span><span class="t">我姐姐是医生。</span></li><li><b>의사</b> 선생님, 감사합니다.<span class="r">uisa seonsaengnim, gamsahamnida.</span><span class="t">医生，谢谢您。</span></li></ol></div><div class="w"><div class="h"><span class="n">6</span><span class="e">머리</span><span class="p">meori</span><span class="z">头；头发</span></div><ol><li><b>머리</b>가 너무 아파요.<span class="r">meoriga neomu apayo.</span><span class="t">头太疼了。</span></li><li><b>머리</b>를 잘랐어요.<span class="r">meorireul jallasseoyo.</span><span class="t">剪了头发。</span></li></ol></div><div class="w"><div class="h"><span class="n">7</span><span class="e">열</span><span class="p">yeol</span><span class="z">发烧、热度</span></div><ol><li>아이가 <b>열</b>이 나요.<span class="r">aiga yeori nayo.</span><span class="t">孩子发烧了。</span></li><li><b>열</b>이 내렸어요.<span class="r">yeori naeryeosseoyo.</span><span class="t">退烧了。</span></li></ol></div><div class="w"><div class="h"><span class="n">8</span><span class="e">나다</span><span class="p">nada</span><span class="z">出现、产生（烧、声音、味道等）</span></div><ol><li>좋은 냄새가 <b>나요</b>.<span class="r">joeun naemsaega nayo.</span><span class="t">有股好闻的味道。</span></li><li>이상한 소리가 <b>나요</b>.<span class="r">isanghan soriga nayo.</span><span class="t">有奇怪的声音。</span></li></ol></div><div class="w"><div class="h"><span class="n">9</span><span class="e">언제</span><span class="p">eonje</span><span class="z">什么时候</span></div><ol><li>생일이 <b>언제</b>예요?<span class="r">saengiri eonjeyeyo?</span><span class="t">你生日是什么时候？</span></li><li><b>언제</b> 만나요?<span class="r">eonje mannayo?</span><span class="t">什么时候见面？</span></li></ol></div><div class="w"><div class="h"><span class="n">10</span><span class="e">어제</span><span class="p">eoje</span><span class="z">昨天</span></div><ol><li><b>어제</b> 뭐 했어요?<span class="r">eoje mwo haesseoyo?</span><span class="t">昨天做了什么？</span></li><li><b>어제</b>는 비가 왔어요.<span class="r">eojeneun biga wasseoyo.</span><span class="t">昨天下雨了。</span></li></ol></div><div class="w"><div class="h"><span class="n">11</span><span class="e">목</span><span class="p">mok</span><span class="z">脖子；嗓子</span></div><ol><li><b>목</b>이 아파요.<span class="r">mogi apayo.</span><span class="t">嗓子疼。</span></li><li><b>목</b>이 말라요.<span class="r">mogi mallayo.</span><span class="t">口渴（嗓子干）。</span></li></ol></div><div class="w"><div class="h"><span class="n">12</span><span class="e">약</span><span class="p">yak</span><span class="z">药</span></div><ol><li><b>약</b>을 먹었어요?<span class="r">yageul meogeosseoyo?</span><span class="t">吃药了吗？</span></li><li>이 <b>약</b>은 하루에 세 번 먹어요.<span class="r">i yageun harue se beon meogeoyo.</span><span class="t">这个药一天吃三次。</span></li></ol></div><div class="w"><div class="h"><span class="n">13</span><span class="e">먹다</span><span class="p">meokda</span><span class="z">吃（也用于吃药）</span></div><ol><li>밥 <b>먹었어요</b>?<span class="r">bap meogeosseoyo?</span><span class="t">吃饭了吗？</span></li><li>빵을 <b>먹고</b> 학교에 가요.<span class="r">ppangeul meokgo hakgyoe gayo.</span><span class="t">吃了面包去学校。</span></li></ol></div><div class="w"><div class="h"><span class="n">14</span><span class="e">푹</span><span class="p">puk</span><span class="z">好好地、充分地（休息、睡）</span></div><ol><li>오늘은 <b>푹</b> 주무세요.<span class="r">oneureun puk jumuseyo.</span><span class="t">今天好好睡一觉。</span></li><li>주말에 <b>푹</b> 쉬었어요.<span class="r">jumare puk swieosseoyo.</span><span class="t">周末好好休息了。</span></li></ol></div></div></div><div id="mm"></div><script>
-/* print layouts. 正反两页 (default): the list split over two A4 pages, page 1 filled first, with the largest type that fits;
-   一页纸: everything on one A4 page. Both use columns; if a list still does not fit at the smallest size, the 辨析 line and then
-   the English definition are left out. The chosen layout is remembered and is also used by the browser's own print command. */
+/* print layouts. 正反两页 (default): the list on two A4 pages, page 1 filled first, with the largest type that fits;
+   一页纸: everything on one A4 page. The words are copied into explicit pages with side-by-side columns (no CSS multi-column:
+   Safari/WebKit lays those out wrongly when printing). If a list still does not fit at the smallest size, the 辨析 line and
+   then the English definition are left out. The chosen layout is remembered and also used by the browser's own print command. */
 (function(){
-  var root = document.documentElement, body = document.body, inn = document.querySelector('.in'), s1 = document.querySelector('.sheet');
-  var rows = [].slice.call(s1.children), s2 = null;
+  var body = document.body, inn = document.querySelector('.in'), sheet = document.querySelector('.sheet');
+  var pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
   var KEY = 'wk-list-mode', mode = 'two';
   try { mode = localStorage.getItem(KEY) === 'one' ? 'one' : 'two'; } catch (e) {}
-  /* 6% spare: browsers lay out a printed page a little differently from the screen (fonts, rounding, header lines), so a page
-     measured as exactly full on screen can push its last word onto the next sheet */
   var SPARE = 0.94;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function page1(){ return s1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function page2(){ var cs = getComputedStyle(s2); return s2.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function layout(ncol, fs, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail, els = [].slice.call(sheet.children).map(function(x){ return x.cloneNode(true); });
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0) pg.appendChild(header());
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
+    }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
   var LEVELS = ['', 'no-cf', 'no-cf no-def'];
   function setLevel(l){ body.classList.remove('no-cf', 'no-def'); if (l) l.split(' ').forEach(function(c){ body.classList.add(c); }); }
-  function size(cols, fs){ root.style.setProperty('--cols', cols); root.style.setProperty('--fs', fs + 'px'); }
-  function put(k){ rows.forEach(function(r, i){ (i < k || !s2 ? s1 : s2).appendChild(r); }); }
-  function unsplit(){ if (s2){ s2.remove(); s2 = null; } put(rows.length); }
-  function fitOne(){
-    var tries = [[2, 13, 6.5], [3, 8, 6]];
-    for (var L = 0; L < LEVELS.length; L++){
-      setLevel(LEVELS[L]);
-      for (var k = 0; k < tries.length; k++)
-        for (var fs = tries[k][1]; fs >= tries[k][2]; fs -= 0.25){ size(tries[k][0], fs); if (page1()) return; }
-    }
-  }
-  function fitTwo(){
-    s2 = document.createElement('div'); s2.className = 'sheet'; s2.id = 'sheet2'; s1.parentNode.insertBefore(s2, s1.nextSibling);
-    var tries = [[2, 14, 7], [3, 9, 6]], n = rows.length;
+  function fit(){
+    body.classList.add('printing'); setLevel('');
+    var max = mode === 'two' ? 2 : 1, tries = mode === 'two' ? [[2, 14, 7], [3, 9, 6]] : [[2, 13, 6.5], [3, 8, 6]];
     for (var L = 0; L < LEVELS.length; L++){
       setLevel(LEVELS[L]);
       for (var t = 0; t < tries.length; t++)
-        for (var fs = tries[t][1]; fs >= tries[t][2]; fs -= 0.25){
-          size(tries[t][0], fs);
-          var lo = 0, hi = n;                       /* the most words that fit on page 1 */
-          while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); put(mid); if (page1()) lo = mid; else hi = mid - 1; }
-          put(lo);
-          if (page1() && page2() <= H()) return;
-        }
+        for (var fs = tries[t][1]; fs >= tries[t][2]; fs -= 0.25) if (layout(tries[t][0], fs, max) <= max) return;
     }
+    layout(3, 6, 9);                                      /* does not fit: smallest size, as many pages as needed */
   }
-  function fit(){ body.classList.add('printing'); unsplit(); setLevel(''); if (mode === 'two') fitTwo(); else fitOne(); }
   var preview = false;
-  function clear(){ body.classList.remove('printing'); setLevel(''); unsplit(); }
+  function clear(){ body.classList.remove('printing'); setLevel(''); pages.innerHTML = ''; }
   function done(){ if (!preview) clear(); }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', done);

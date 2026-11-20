@@ -50,24 +50,28 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
 .a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
-.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
-.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
-.printing .sheet{padding:0;border-radius:0;background:none}
-.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing #qs2{break-before:page;page-break-before:always}
-@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .it{margin:0 0 .5em}
-.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
-.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
-.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
-.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
 @media print{.noprint{display:none!important}}
 </style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 12 课 · 隣の部屋のギター · 例句默写纸</h1><p class="sub">2026-11-13 · 生词例句 · 看中文写出日语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">车站前总是人很多，很吵。</p><p class="cl">駅前はいつも人が多くて<u>騒々しい</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">昨天的会议从早上开始就吵吵嚷嚷的。</p><p class="cl">昨日の会議は朝から<u>騒々しかった</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">下课铃响了。</p><p class="cl">授業の終わりのチャイムが<u>鳴った</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">司机按了好几次喇叭。</p><p class="cl">運転手が何度もクラクションを<u>鳴らした</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">在电车上被旁边的人踩了脚。</p><p class="cl">電車で隣の人に足を<u>踏まれた</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">出门前被雨淋了，衣服湿了。</p><p class="cl">出かける前に雨に<u>降られて</u>、服がぬれた。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">旅行累了，一觉睡到天亮。</p><p class="cl">旅行の疲れで、朝まで<u>ぐっすり</u>眠った。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">宝宝睡得正香。</p><p class="cl">赤ちゃんが<u>ぐっすり</u>寝ている。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">狗在房间里走来走去。</p><p class="cl">犬が部屋の中を<u>行ったり来たり</u>している。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">今天雨下下停停。</p><p class="cl">今日は雨が<u>降ったりやんだり</u>だ。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这个说明太难，完全看不懂。</p><p class="cl">この説明は難しくて、<u>さっぱり</u>わからない。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">冲了个澡，神清气爽。</p><p class="cl">シャワーを浴びて、<u>さっぱり</u>した。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">不许在车站墙上乱涂乱画。</p><p class="cl">駅の壁に<u>落書き</u>をしてはいけない。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">小时候经常在本子上乱画。</p><p class="cl">子供のころ、ノートによく<u>落書き</u>をした。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">深夜打电话，给人添麻烦了。</p><p class="cl">夜遅くに電話して、<u>迷惑</u>をかけてしまった。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">车站前乱停的自行车让大家很头疼。</p><p class="cl">駅前の放置自転車に、みんな<u>迷惑</u>している。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">邻居投诉了噪音问题。</p><p class="cl">騒音について、近所から<u>苦情</u>が出た。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">投诉了店员的态度。</p><p class="cl">店員の態度に<u>苦情</u>を言った。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">虽说是学生，也不是没钱。</p><p class="cl">学生だ<u>からといって</u>、お金がないわけではない。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">有名不一定就是好店。</p><p class="cl">有名だ<u>からといって</u>、いい店だとは限らない。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">贵的药不一定就有效。</p><p class="cl">高い薬が<u>必ずしも</u>よく効くとは限らない。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">老师说的也未必都对。</p><p class="cl">先生の言うことが<u>必ずしも</u>正しいわけではない。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">学会这份工作费了好大劲。</p><p class="cl">この仕事を覚えるのに、ずいぶん<u>苦労</u>した。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">不想让父母操心受累。</p><p class="cl">両親に<u>苦労</u>をかけたくない。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">孩子把牛奶洒在桌上了。</p><p class="cl">子供がテーブルに牛乳を<u>こぼした</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">爸爸常发工作上的牢骚。</p><p class="cl">父はよく仕事の愚痴を<u>こぼす</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">因为路上堵车，我迟到了。</p><p class="cl">道が込んでいた<u>ものですから</u>、遅れてしまいました。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">因为太好吃了，全吃光了。</p><p class="cl">あまりにおいしかった<u>ものだから</u>、全部食べてしまった。</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">考试没过，很受打击。</p><p class="cl">試験に落ちて、<u>ショック</u>を受けた。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那条新闻给镇上的人带来很大冲击。</p><p class="cl">そのニュースは町の人に大きな<u>ショック</u>を与えた。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">对老人考虑得不够周到。</p><p class="cl">お年寄りへの<u>配慮</u>が足りなかった。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">顾及对方的心情说话。</p><p class="cl">相手の気持ちに<u>配慮</u>して話す。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这个价格是含税的。</p><p class="cl">この料金には税金が<u>含まれて</u>いる。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">柠檬含有大量维生素 C。</p><p class="cl">レモンはビタミンCを多く<u>含んで</u>いる。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">请这边走。</p><p class="cl">どうぞこちらへ<u>おいでください</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">社长在会议室。</p><p class="cl">社長は会議室に<u>おいでになります</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">狗追着球跑了。</p><p class="cl">犬がボールを<u>追いかけて</u>走っていく。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他一直在追逐儿时的梦想。</p><p class="cl">彼は子供のころからの夢を<u>追いかけている</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">跑着追上了前面的人。</p><p class="cl">走って、前の人に<u>追いついた</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">事到如今后悔也来不及了。</p><p class="cl">今さら後悔しても<u>追いつかない</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">太紧张了，把名字说错了。</p><p class="cl">緊張<u>のあまり</u>、名前を言い間違えた。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">吓得连声音都发不出来。</p><p class="cl">驚き<u>のあまり</u>、声も出なかった。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">开着电视就睡着了。</p><p class="cl">テレビを<u>つけっぱなし</u>で寝てしまった。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请不要开着水龙头不关。</p><p class="cl">水を<u>出しっぱなし</u>にしないでください。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">多亏了老师，我考试及格了。</p><p class="cl">先生の<u>おかげで</u>、試験に合格できました。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">多亏早睡，今天早上精神很好。</p><p class="cl">早く寝た<u>おかげで</u>、今朝は元気だ。</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0">駅前はいつも人が多くて<strong>騒々しい</strong>。<span class="r">えきまえは いつも ひとが おおくて そうぞうしい。</span></p><p class="a e1">昨日の会議は朝から<strong>騒々しかった</strong>。<span class="r">きのうの かいぎは あさから そうぞうしかった。</span></p><p class="a e0">授業の終わりのチャイムが<strong>鳴った</strong>。<span class="r">じゅぎょうの おわりの チャイムが なった。</span></p><p class="a e1">運転手が何度もクラクションを<strong>鳴らした</strong>。<span class="r">うんてんしゅが なんども クラクションを ならした。</span></p><p class="a e0">電車で隣の人に足を<strong>踏まれた</strong>。<span class="r">でんしゃで となりの ひとに あしを ふまれた。</span></p><p class="a e1">出かける前に雨に<strong>降られて</strong>、服がぬれた。<span class="r">でかける まえに あめに ふられて、ふくが ぬれた。</span></p><p class="a e0">旅行の疲れで、朝まで<strong>ぐっすり</strong>眠った。<span class="r">りょこうの つかれで、あさまで ぐっすり ねむった。</span></p><p class="a e1">赤ちゃんが<strong>ぐっすり</strong>寝ている。<span class="r">あかちゃんが ぐっすり ねて いる。</span></p><p class="a e0">犬が部屋の中を<strong>行ったり来たり</strong>している。<span class="r">いぬが へやの なかを いったり きたり して いる。</span></p><p class="a e1">今日は雨が<strong>降ったりやんだり</strong>だ。<span class="r">きょうは あめが ふったり やんだり だ。</span></p><p class="a e0">この説明は難しくて、<strong>さっぱり</strong>わからない。<span class="r">この せつめいは むずかしくて、さっぱり わからない。</span></p><p class="a e1">シャワーを浴びて、<strong>さっぱり</strong>した。<span class="r">シャワーを あびて、さっぱり した。</span></p><p class="a e0">駅の壁に<strong>落書き</strong>をしてはいけない。<span class="r">えきの かべに らくがきを しては いけない。</span></p><p class="a e1">子供のころ、ノートによく<strong>落書き</strong>をした。<span class="r">こどもの ころ、ノートに よく らくがきを した。</span></p><p class="a e0">夜遅くに電話して、<strong>迷惑</strong>をかけてしまった。<span class="r">よる おそくに でんわ して、めいわくを かけて しまった。</span></p><p class="a e1">駅前の放置自転車に、みんな<strong>迷惑</strong>している。<span class="r">えきまえの ほうち じてんしゃに、みんな めいわく して いる。</span></p><p class="a e0">騒音について、近所から<strong>苦情</strong>が出た。<span class="r">そうおんに ついて、きんじょから くじょうが でた。</span></p><p class="a e1">店員の態度に<strong>苦情</strong>を言った。<span class="r">てんいんの たいどに くじょうを いった。</span></p><p class="a e0">学生だ<strong>からといって</strong>、お金がないわけではない。<span class="r">がくせいだからと いって、おかねが ない わけでは ない。</span></p><p class="a e1">有名だ<strong>からといって</strong>、いい店だとは限らない。<span class="r">ゆうめいだからと いって、いい みせだとは かぎらない。</span></p><p class="a e0">高い薬が<strong>必ずしも</strong>よく効くとは限らない。<span class="r">たかい くすりが かならずしも よく きくとは かぎらない。</span></p><p class="a e1">先生の言うことが<strong>必ずしも</strong>正しいわけではない。<span class="r">せんせいの いう ことが かならずしも ただしい わけでは ない。</span></p><p class="a e0">この仕事を覚えるのに、ずいぶん<strong>苦労</strong>した。<span class="r">この しごとを おぼえるのに、ずいぶん くろう した。</span></p><p class="a e1">両親に<strong>苦労</strong>をかけたくない。<span class="r">りょうしんに くろうを かけたく ない。</span></p><p class="a e0">子供がテーブルに牛乳を<strong>こぼした</strong>。<span class="r">こどもが テーブルに ぎゅうにゅうを こぼした。</span></p><p class="a e1">父はよく仕事の愚痴を<strong>こぼす</strong>。<span class="r">ちちは よく しごとの ぐちを こぼす。</span></p><p class="a e0">道が込んでいた<strong>ものですから</strong>、遅れてしまいました。<span class="r">みちが こんで いた ものですから、おくれて しまいました。</span></p><p class="a e1">あまりにおいしかった<strong>ものだから</strong>、全部食べてしまった。<span class="r">あまりに おいしかった ものだから、ぜんぶ たべて しまった。</span></p><p class="a e0">試験に落ちて、<strong>ショック</strong>を受けた。<span class="r">しけんに おちて、ショックを うけた。</span></p><p class="a e1">そのニュースは町の人に大きな<strong>ショック</strong>を与えた。<span class="r">その ニュースは まちの ひとに おおきな ショックを あたえた。</span></p><p class="a e0">お年寄りへの<strong>配慮</strong>が足りなかった。<span class="r">おとしよりへの はいりょが たりなかった。</span></p><p class="a e1">相手の気持ちに<strong>配慮</strong>して話す。<span class="r">あいての きもちに はいりょ して はなす。</span></p><p class="a e0">この料金には税金が<strong>含まれて</strong>いる。<span class="r">この りょうきんには ぜいきんが ふくまれて いる。</span></p><p class="a e1">レモンはビタミンCを多く<strong>含んで</strong>いる。<span class="r">レモンは ビタミンシーを おおく ふくんで いる。</span></p><p class="a e0">どうぞこちらへ<strong>おいでください</strong>。<span class="r">どうぞ こちらへ おいで ください。</span></p><p class="a e1">社長は会議室に<strong>おいでになります</strong>。<span class="r">しゃちょうは かいぎしつに おいでに なります。</span></p><p class="a e0">犬がボールを<strong>追いかけて</strong>走っていく。<span class="r">いぬが ボールを おいかけて はしって いく。</span></p><p class="a e1">彼は子供のころからの夢を<strong>追いかけている</strong>。<span class="r">かれは こどもの ころからの ゆめを おいかけて いる。</span></p><p class="a e0">走って、前の人に<strong>追いついた</strong>。<span class="r">はしって、まえの ひとに おいついた。</span></p><p class="a e1">今さら後悔しても<strong>追いつかない</strong>。<span class="r">いまさら こうかい しても おいつかない。</span></p><p class="a e0">緊張<strong>のあまり</strong>、名前を言い間違えた。<span class="r">きんちょうの あまり、なまえを いいまちがえた。</span></p><p class="a e1">驚き<strong>のあまり</strong>、声も出なかった。<span class="r">おどろきの あまり、こえも でなかった。</span></p><p class="a e0">テレビを<strong>つけっぱなし</strong>で寝てしまった。<span class="r">テレビを つけっぱなしで ねて しまった。</span></p><p class="a e1">水を<strong>出しっぱなし</strong>にしないでください。<span class="r">みずを だしっぱなしに しないで ください。</span></p><p class="a e0">先生の<strong>おかげで</strong>、試験に合格できました。<span class="r">せんせいの おかげで、しけんに ごうかく できました。</span></p><p class="a e1">早く寝た<strong>おかげで</strong>、今朝は元気だ。<span class="r">はやく ねた おかげで、けさは げんきだ。</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
 /* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
@@ -87,46 +91,75 @@ body.printing{background:#fff}
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
 
-  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
-  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
-  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
-  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
-  function split(){
-    var vis = visible(), lo = 0, hi = vis.length;
-    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
-    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
-    putVis(lo);
-    return p1() && inner(q2) <= H();
-  }
-  function fitEx(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];
-    for (var c = 0; c < cols.length; c++){
-      root.style.setProperty('--qc', cols[c]);
-      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
     }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
     return false;
   }
-  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
   function tipText(){
     var t = document.getElementById('ptip'); if (!t) return;
     t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
     t.style.display = t.textContent ? '' : 'none';
   }
-  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); unsplit(); auto1 = over = false;
-    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    b.classList.add('printing'); auto1 = over = false;
     if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitEx()) over = true;
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
     }
     if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
   document.getElementById('prevBtn').addEventListener('click', function(){

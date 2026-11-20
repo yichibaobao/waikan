@@ -50,24 +50,28 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
 .a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
-.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
-.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
-.printing .sheet{padding:0;border-radius:0;background:none}
-.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing #qs2{break-before:page;page-break-before:always}
-@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .it{margin:0 0 .5em}
-.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
-.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
-.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
-.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
 @media print{.noprint{display:none!important}}
 </style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>Gone Fishing, for Bicycles · 例句默写纸</h1><p class="sub">2026-11-16 · 生词例句 · 看中文写出英文例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">渔民们满载而归。</p><p class="cl">The fishermen brought home a big <u>catch</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">今天的“渔获”有两辆旧自行车和一把椅子。</p><p class="cl">Today's <u>catch</u> includes two old bikes and a chair.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">他们把船拖上了沙滩。</p><p class="cl">They <u>hauled</u> the boat onto the beach.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">消防员把车从河里拖了出来。</p><p class="cl">Firefighters <u>hauled</u> the car out of the river.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">城市里纵横交错着狭窄的水道。</p><p class="cl">The city is crossed by narrow <u>waterways</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">坐船是游览水道的最好方式。</p><p class="cl">Boats are the best way to see the <u>waterways</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">夏天游客比本地人还多。</p><p class="cl">Tourists <u>outnumber</u> locals in summer.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">对方人数是我们的三倍。</p><p class="cl">We were <u>outnumbered</u> three to one.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">滑冰的人在冰上滑过。</p><p class="cl">The skater <u>glided</u> across the ice.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">飞机滑翔着降向跑道。</p><p class="cl">A plane <u>glides</u> down to the runway.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她把脚趾探进水里。</p><p class="cl">She <u>dipped</u> her toes in the water.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">把面包蘸到汤里。</p><p class="cl"><u>Dip</u> the bread in the soup.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">河水太浑，看不见底。</p><p class="cl">The river was too <u>murky</u> to see the bottom.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这笔交易的细节仍然不清不楚。</p><p class="cl">The details of the deal remain <u>murky</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">电视后面是一团乱糟糟的电线。</p><p class="cl">There was a <u>tangle</u> of cables behind the TV.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我的耳机线总是缠在一起。</p><p class="cl">My headphones are always <u>tangled</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他从雨里进来，浑身湿透。</p><p class="cl">He came in from the rain, <u>dripping</u> wet.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请把那个滴水的龙头修一下。</p><p class="cl">Fix that <u>dripping</u> tap, please.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">请系好安全带。</p><p class="cl">Please <u>fasten</u> your seat belt.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">大门用铁链锁着。</p><p class="cl">The gate was <u>fastened</u> with a chain.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">救援人员在残骸中搜寻。</p><p class="cl">Rescuers searched the <u>wreckage</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">船的残骸被冲上了海滩。</p><p class="cl"><u>Wreckage</u> from the boat washed up on the beach.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">脏碗碟堆满了水槽。</p><p class="cl">Dirty dishes <u>piled</u> up in the sink.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她把书堆在桌上。</p><p class="cl">She <u>piled</u> the books on the table.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们进入下一个话题吧。</p><p class="cl">Let's <u>move on</u> to the next topic.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">分手后，她很难走出来。</p><p class="cl">After the break-up, she found it hard to <u>move on</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">我们迷了路，最后到了另一个镇。</p><p class="cl">We got lost and <u>ended up</u> in the wrong town.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你不存钱，最后会身无分文。</p><p class="cl">If you don't save, you'll <u>end up</u> broke.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">谁先发明的还有争议。</p><p class="cl">Who invented it first is <u>a matter of debate</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">它真正的年代还有一些争议。</p><p class="cl">Its real age is <u>a matter of some debate</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">有人把一张旧沙发扔在路边。</p><p class="cl">Someone <u>dumped</u> an old sofa by the road.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他是被短信分手的。</p><p class="cl">He was <u>dumped</u> by text message.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">一个恶作剧的人把路锥扣在了雕像头上。</p><p class="cl">A <u>prankster</u> put a traffic cone on the statue.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">孩子们捉弄了他们的老师。</p><p class="cl">The kids played a <u>prank</u> on their teacher.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们为她过生日出去玩了一晚。</p><p class="cl">We had <u>a night out</u> for her birthday.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">晚上出去玩了以后，他一觉睡到中午。</p><p class="cl">After <u>a night out</u>, he slept until noon.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他的第一辆车是辆破车。</p><p class="cl">His first car was an old <u>wreck</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">暴风雨毁了花园。</p><p class="cl">The storm <u>wrecked</u> the garden.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">桌子上落了厚厚一层灰。</p><p class="cl">The table was covered in a thick <u>layer</u> of dust.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">去徒步要穿得一层一层的。</p><p class="cl">Wear <u>layers</u> when you go hiking.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">没人料到破坏的程度这么大。</p><p class="cl">Nobody expected the <u>scale</u> of the damage.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个节日规模盛大。</p><p class="cl">The festival is held on a huge <u>scale</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他还开着一辆破旧的面包车。</p><p class="cl">He still drives a <u>battered</u> old van.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她走到哪儿都带着一本破旧的笔记本。</p><p class="cl">She carries a <u>battered</u> notebook everywhere.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这正是我给你打电话的原因。</p><p class="cl">That is <u>precisely</u> why I called you.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">火车六点整准时开出。</p><p class="cl">The train left at <u>precisely</u> six.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">游客很容易成为小偷的目标。</p><p class="cl">Tourists are an easy <u>target</u> for pickpockets.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个月我们达到了销售目标。</p><p class="cl">We hit our sales <u>target</u> this month.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">找保姆总是件头疼的事。</p><p class="cl">Finding a babysitter is always a <u>headache</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我醒来时头疼得厉害。</p><p class="cl">I woke up with a terrible <u>headache</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们把车停在了一个多层停车场。</p><p class="cl">We parked in a <u>multi-storey</u> car park.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那栋老旧的多层楼被拆了。</p><p class="cl">The old <u>multi-storey</u> building was pulled down.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">据说这家餐厅的意面是全城最好吃的。</p><p class="cl">The restaurant <u>reputedly</u> serves the best pasta in town.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">据说他是村里最有钱的人。</p><p class="cl">He is <u>reputedly</u> the richest man in the village.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">公交车晚上开回总站。</p><p class="cl">The buses return to the <u>depot</u> at night.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">丢失的自行车存放在港口附近的一个仓库里。</p><p class="cl">Lost bikes are kept at a <u>depot</u> near the port.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">火灾追查到是一支蜡烛引起的。</p><p class="cl">The fire was <u>traced back to</u> a candle.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她的家族可以追溯到 17 世纪。</p><p class="cl">Her family can be <u>traced back to</u> the 1600s.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">旧火车将被报废。</p><p class="cl">The old trains will be <u>scrapped</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">开了一次会，他们就放弃了这个主意。</p><p class="cl">They <u>scrapped</u> the idea after one meeting.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们的瓶子全部回收利用。</p><p class="cl">We <u>recycle</u> all our bottles.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个袋子是用回收塑料做的。</p><p class="cl">This bag is made of <u>recycled</u> plastic.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">与其说这是工作，不如说是爱好。</p><p class="cl">It's <u>not so much</u> a job as a hobby.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">与其说她生气，不如说她失望。</p><p class="cl">She was <u>not so much</u> angry as disappointed.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我非常乐意帮忙。</p><p class="cl">I'd be <u>delighted</u> to help.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">孩子们看到小狗高兴坏了。</p><p class="cl">The children were <u>delighted</u> with the puppy.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">烟花真是壮观的景象。</p><p class="cl">The fireworks were a wonderful <u>spectacle</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">街头斗殴成了众人围观的场面。</p><p class="cl">The fight in the street became a public <u>spectacle</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">锻炼是我每天的固定安排。</p><p class="cl">Exercise is part of my daily <u>routine</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那只是一次例行检查。</p><p class="cl">It was just a <u>routine</u> check.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这个小镇本身相当平淡无奇。</p><p class="cl">The town itself is fairly <u>unremarkable</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他的童年平平无奇。</p><p class="cl">He had an <u>unremarkable</u> childhood.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">扔旧东西的时候她一点也不感情用事。</p><p class="cl">She is <u>unsentimental</u> about throwing old things away.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">这部电影冷静地展现了战争。</p><p class="cl">The film gives an <u>unsentimental</u> picture of war.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他发现只是迟早的事。</p><p class="cl">It's only <u>a matter of time</u> before he finds out.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">成功只是时间问题。</p><p class="cl">Success is <u>a matter of time</u>.</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0">The fishermen brought home a big <strong>catch</strong>.</p><p class="a e1">Today's <strong>catch</strong> includes two old bikes and a chair.</p><p class="a e0">They <strong>hauled</strong> the boat onto the beach.</p><p class="a e1">Firefighters <strong>hauled</strong> the car out of the river.</p><p class="a e0">The city is crossed by narrow <strong>waterways</strong>.</p><p class="a e1">Boats are the best way to see the <strong>waterways</strong>.</p><p class="a e0">Tourists <strong>outnumber</strong> locals in summer.</p><p class="a e1">We were <strong>outnumbered</strong> three to one.</p><p class="a e0">The skater <strong>glided</strong> across the ice.</p><p class="a e1">A plane <strong>glides</strong> down to the runway.</p><p class="a e0">She <strong>dipped</strong> her toes in the water.</p><p class="a e1"><strong>Dip</strong> the bread in the soup.</p><p class="a e0">The river was too <strong>murky</strong> to see the bottom.</p><p class="a e1">The details of the deal remain <strong>murky</strong>.</p><p class="a e0">There was a <strong>tangle</strong> of cables behind the TV.</p><p class="a e1">My headphones are always <strong>tangled</strong>.</p><p class="a e0">He came in from the rain, <strong>dripping</strong> wet.</p><p class="a e1">Fix that <strong>dripping</strong> tap, please.</p><p class="a e0">Please <strong>fasten</strong> your seat belt.</p><p class="a e1">The gate was <strong>fastened</strong> with a chain.</p><p class="a e0">Rescuers searched the <strong>wreckage</strong>.</p><p class="a e1"><strong>Wreckage</strong> from the boat washed up on the beach.</p><p class="a e0">Dirty dishes <strong>piled</strong> up in the sink.</p><p class="a e1">She <strong>piled</strong> the books on the table.</p><p class="a e0">Let's <strong>move on</strong> to the next topic.</p><p class="a e1">After the break-up, she found it hard to <strong>move on</strong>.</p><p class="a e0">We got lost and <strong>ended up</strong> in the wrong town.</p><p class="a e1">If you don't save, you'll <strong>end up</strong> broke.</p><p class="a e0">Who invented it first is <strong>a matter of debate</strong>.</p><p class="a e1">Its real age is <strong>a matter of some debate</strong>.</p><p class="a e0">Someone <strong>dumped</strong> an old sofa by the road.</p><p class="a e1">He was <strong>dumped</strong> by text message.</p><p class="a e0">A <strong>prankster</strong> put a traffic cone on the statue.</p><p class="a e1">The kids played a <strong>prank</strong> on their teacher.</p><p class="a e0">We had <strong>a night out</strong> for her birthday.</p><p class="a e1">After <strong>a night out</strong>, he slept until noon.</p><p class="a e0">His first car was an old <strong>wreck</strong>.</p><p class="a e1">The storm <strong>wrecked</strong> the garden.</p><p class="a e0">The table was covered in a thick <strong>layer</strong> of dust.</p><p class="a e1">Wear <strong>layers</strong> when you go hiking.</p><p class="a e0">Nobody expected the <strong>scale</strong> of the damage.</p><p class="a e1">The festival is held on a huge <strong>scale</strong>.</p><p class="a e0">He still drives a <strong>battered</strong> old van.</p><p class="a e1">She carries a <strong>battered</strong> notebook everywhere.</p><p class="a e0">That is <strong>precisely</strong> why I called you.</p><p class="a e1">The train left at <strong>precisely</strong> six.</p><p class="a e0">Tourists are an easy <strong>target</strong> for pickpockets.</p><p class="a e1">We hit our sales <strong>target</strong> this month.</p><p class="a e0">Finding a babysitter is always a <strong>headache</strong>.</p><p class="a e1">I woke up with a terrible <strong>headache</strong>.</p><p class="a e0">We parked in a <strong>multi-storey</strong> car park.</p><p class="a e1">The old <strong>multi-storey</strong> building was pulled down.</p><p class="a e0">The restaurant <strong>reputedly</strong> serves the best pasta in town.</p><p class="a e1">He is <strong>reputedly</strong> the richest man in the village.</p><p class="a e0">The buses return to the <strong>depot</strong> at night.</p><p class="a e1">Lost bikes are kept at a <strong>depot</strong> near the port.</p><p class="a e0">The fire was <strong>traced back to</strong> a candle.</p><p class="a e1">Her family can be <strong>traced back to</strong> the 1600s.</p><p class="a e0">The old trains will be <strong>scrapped</strong>.</p><p class="a e1">They <strong>scrapped</strong> the idea after one meeting.</p><p class="a e0">We <strong>recycle</strong> all our bottles.</p><p class="a e1">This bag is made of <strong>recycled</strong> plastic.</p><p class="a e0">It's <strong>not so much</strong> a job as a hobby.</p><p class="a e1">She was <strong>not so much</strong> angry as disappointed.</p><p class="a e0">I'd be <strong>delighted</strong> to help.</p><p class="a e1">The children were <strong>delighted</strong> with the puppy.</p><p class="a e0">The fireworks were a wonderful <strong>spectacle</strong>.</p><p class="a e1">The fight in the street became a public <strong>spectacle</strong>.</p><p class="a e0">Exercise is part of my daily <strong>routine</strong>.</p><p class="a e1">It was just a <strong>routine</strong> check.</p><p class="a e0">The town itself is fairly <strong>unremarkable</strong>.</p><p class="a e1">He had an <strong>unremarkable</strong> childhood.</p><p class="a e0">She is <strong>unsentimental</strong> about throwing old things away.</p><p class="a e1">The film gives an <strong>unsentimental</strong> picture of war.</p><p class="a e0">It's only <strong>a matter of time</strong> before he finds out.</p><p class="a e1">Success is <strong>a matter of time</strong>.</p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
 /* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
@@ -87,46 +91,75 @@ body.printing{background:#fff}
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
 
-  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
-  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
-  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
-  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
-  function split(){
-    var vis = visible(), lo = 0, hi = vis.length;
-    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
-    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
-    putVis(lo);
-    return p1() && inner(q2) <= H();
-  }
-  function fitEx(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];
-    for (var c = 0; c < cols.length; c++){
-      root.style.setProperty('--qc', cols[c]);
-      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
     }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
     return false;
   }
-  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
   function tipText(){
     var t = document.getElementById('ptip'); if (!t) return;
     t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
     t.style.display = t.textContent ? '' : 'none';
   }
-  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); unsplit(); auto1 = over = false;
-    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    b.classList.add('printing'); auto1 = over = false;
     if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitEx()) over = true;
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
     }
     if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
   document.getElementById('prevBtn').addEventListener('click', function(){

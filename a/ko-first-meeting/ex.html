@@ -50,24 +50,28 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
 .a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
-.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
-.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
-.printing .sheet{padding:0;border-radius:0;background:none}
-.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing #qs2{break-before:page;page-break-before:always}
-@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .it{margin:0 0 .5em}
-.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
-.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
-.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
-.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
 @media print{.noprint{display:none!important}}
 </style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 1 课 · 처음 만나요 · 例句默写纸</h1><p class="sub">2026-11-06 · 生词例句 · 看中文写出韩语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">老师好。</p><p class="cl"><u>안녕하세요</u>, 선생님.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">大家好！</p><p class="cl">여러분, <u>안녕하세요</u>!</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我是智勋。</p><p class="cl"><u>저</u>는 지훈이에요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我也是学生。</p><p class="cl"><u>저</u>도 학생이에요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">敏洙是学生。</p><p class="cl">민수는 <u>학생</u>이에요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">学生很多。</p><p class="cl"><u>학생</u>이 많아요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我是第一次来韩国。</p><p class="cl">한국은 <u>처음</u>이에요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">初次见面（很正式）。</p><p class="cl"><u>처음</u> 뵙겠습니다.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我明天见朋友。</p><p class="cl">내일 친구를 <u>만나요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们在咖啡馆见吧。</p><p class="cl">카페에서 <u>만나요</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">去咖啡馆。</p><p class="cl"><u>카페</u>에 가요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这家咖啡馆很好。</p><p class="cl">이 <u>카페</u>가 좋아요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">敏智是我的朋友。</p><p class="cl">민지는 제 <u>친구</u>예요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">见朋友。</p><p class="cl"><u>친구</u>를 만나요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">请给我咖啡。</p><p class="cl"><u>커피</u> 주세요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">咖啡很好喝。</p><p class="cl"><u>커피</u>가 맛있어요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我喜欢音乐。</p><p class="cl">저는 음악을 <u>좋아해요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你喜欢猫吗？</p><p class="cl">고양이를 <u>좋아해요</u>?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我也很高兴认识你。</p><p class="cl">저도 <u>반가워요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">很高兴认识您（更正式）。</p><p class="cl">만나서 <u>반갑습니다</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">买了新衣服。</p><p class="cl"><u>새</u> 옷을 샀어요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">新学校很好。</p><p class="cl"><u>새</u> 학교가 좋아요.</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><strong>안녕하세요</strong>, 선생님.<span class="r">annyeonghaseyo, seonsaengnim.</span></p><p class="a e1">여러분, <strong>안녕하세요</strong>!<span class="r">yeoreobun, annyeonghaseyo!</span></p><p class="a e0"><strong>저</strong>는 지훈이에요.<span class="r">jeoneun jihunieyo.</span></p><p class="a e1"><strong>저</strong>도 학생이에요.<span class="r">jeodo haksaengieyo.</span></p><p class="a e0">민수는 <strong>학생</strong>이에요.<span class="r">minsuneun haksaengieyo.</span></p><p class="a e1"><strong>학생</strong>이 많아요.<span class="r">haksaengi manayo.</span></p><p class="a e0">한국은 <strong>처음</strong>이에요.<span class="r">hangugeun cheoeumieyo.</span></p><p class="a e1"><strong>처음</strong> 뵙겠습니다.<span class="r">cheoeum boepgetseumnida.</span></p><p class="a e0">내일 친구를 <strong>만나요</strong>.<span class="r">naeil chingureul mannayo.</span></p><p class="a e1">카페에서 <strong>만나요</strong>.<span class="r">kapeeseo mannayo.</span></p><p class="a e0"><strong>카페</strong>에 가요.<span class="r">kapee gayo.</span></p><p class="a e1">이 <strong>카페</strong>가 좋아요.<span class="r">i kapega joayo.</span></p><p class="a e0">민지는 제 <strong>친구</strong>예요.<span class="r">minjineun je chinguyeyo.</span></p><p class="a e1"><strong>친구</strong>를 만나요.<span class="r">chingureul mannayo.</span></p><p class="a e0"><strong>커피</strong> 주세요.<span class="r">keopi juseyo.</span></p><p class="a e1"><strong>커피</strong>가 맛있어요.<span class="r">keopiga masisseoyo.</span></p><p class="a e0">저는 음악을 <strong>좋아해요</strong>.<span class="r">jeoneun eumageul joahaeyo.</span></p><p class="a e1">고양이를 <strong>좋아해요</strong>?<span class="r">goyangireul joahaeyo?</span></p><p class="a e0">저도 <strong>반가워요</strong>.<span class="r">jeodo bangawoyo.</span></p><p class="a e1">만나서 <strong>반갑습니다</strong>.<span class="r">mannaseo bangapseumnida.</span></p><p class="a e0"><strong>새</strong> 옷을 샀어요.<span class="r">sae oseul sasseoyo.</span></p><p class="a e1"><strong>새</strong> 학교가 좋아요.<span class="r">sae hakgyoga joayo.</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
 /* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
@@ -87,46 +91,75 @@ body.printing{background:#fff}
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
 
-  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
-  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
-  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
-  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
-  function split(){
-    var vis = visible(), lo = 0, hi = vis.length;
-    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
-    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
-    putVis(lo);
-    return p1() && inner(q2) <= H();
-  }
-  function fitEx(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];
-    for (var c = 0; c < cols.length; c++){
-      root.style.setProperty('--qc', cols[c]);
-      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
     }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
     return false;
   }
-  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
   function tipText(){
     var t = document.getElementById('ptip'); if (!t) return;
     t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
     t.style.display = t.textContent ? '' : 'none';
   }
-  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); unsplit(); auto1 = over = false;
-    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    b.classList.add('printing'); auto1 = over = false;
     if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitEx()) over = true;
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
     }
     if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
   document.getElementById('prevBtn').addEventListener('click', function(){

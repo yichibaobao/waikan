@@ -50,24 +50,28 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
 .a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
-.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
-.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
-.printing .sheet{padding:0;border-radius:0;background:none}
-.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing #qs2{break-before:page;page-break-before:always}
-@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .it{margin:0 0 .5em}
-.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
-.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
-.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
-.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
 @media print{.noprint{display:none!important}}
 </style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 9 课 · 이 버스 명동에 가요? · 例句默写纸</h1><p class="sub">2026-11-16 · 生词例句 · 看中文写出韩语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">公交车来了。</p><p class="cl"><u>버스</u>가 와요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我坐公交车去学校。</p><p class="cl">저는 <u>버스</u>로 학교에 가요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">车站在哪里？</p><p class="cl"><u>정류장</u>이 어디예요?</p><div class="ln"></div></div><div class="it e1"><p class="zh2">在下一站下车。</p><p class="cl">다음 <u>정류장</u>에서 내려요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">师傅，我在这里下车。</p><p class="cl"><u>기사님</u>, 여기서 내려요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">司机师傅很亲切。</p><p class="cl"><u>기사님</u>이 친절해요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">去问问老师吧。</p><p class="cl">선생님께 <u>물어봐요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">问问路吧。</p><p class="cl">길을 <u>물어봐요</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">过马路。</p><p class="cl">길을 <u>건너요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">过了桥往左走。</p><p class="cl">다리를 <u>건너서</u> 왼쪽으로 가세요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">坐地铁。</p><p class="cl">지하철을 <u>타요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请坐出租车。</p><p class="cl">택시를 <u>타세요</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">几号出口？</p><p class="cl">몇 <u>번</u> 출구예요?</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请再说一次。</p><p class="cl">한 <u>번</u> 더 말해 주세요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">请从 1 号出口出去。</p><p class="cl"><u>일</u> 번 출구로 나가세요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">在一楼。</p><p class="cl"><u>일</u> 층에 있어요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">要等多久？</p><p class="cl"><u>얼마나</u> 기다려요?</p><div class="ln"></div></div><div class="it e1"><p class="zh2">有多远？</p><p class="cl"><u>얼마나</u> 멀어요?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">等了二十分钟。</p><p class="cl"><u>이십</u> 분 기다렸어요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我二十岁。</p><p class="cl">저는 <u>이십</u> 살이에요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">请等五分钟。</p><p class="cl">오 <u>분</u>만 기다려 주세요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">三点十分。</p><p class="cl">세 시 십 <u>분</u>이에요.</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><strong>버스</strong>가 와요.<span class="r">beoseuga wayo.</span></p><p class="a e1">저는 <strong>버스</strong>로 학교에 가요.<span class="r">jeoneun beoseuro hakgyoe gayo.</span></p><p class="a e0"><strong>정류장</strong>이 어디예요?<span class="r">jeongnyujangi eodiyeyo?</span></p><p class="a e1">다음 <strong>정류장</strong>에서 내려요.<span class="r">daeum jeongnyujangeseo naeryeoyo.</span></p><p class="a e0"><strong>기사님</strong>, 여기서 내려요.<span class="r">gisanim, yeogiseo naeryeoyo.</span></p><p class="a e1"><strong>기사님</strong>이 친절해요.<span class="r">gisanimi chinjeolhaeyo.</span></p><p class="a e0">선생님께 <strong>물어봐요</strong>.<span class="r">seonsaengnimkke mureobwayo.</span></p><p class="a e1">길을 <strong>물어봐요</strong>.<span class="r">gireul mureobwayo.</span></p><p class="a e0">길을 <strong>건너요</strong>.<span class="r">gireul geonneoyo.</span></p><p class="a e1">다리를 <strong>건너서</strong> 왼쪽으로 가세요.<span class="r">darireul geonneoseo oenjjogeuro gaseyo.</span></p><p class="a e0">지하철을 <strong>타요</strong>.<span class="r">jihacheoreul tayo.</span></p><p class="a e1">택시를 <strong>타세요</strong>.<span class="r">taeksireul taseyo.</span></p><p class="a e0">몇 <strong>번</strong> 출구예요?<span class="r">myeot beon chulguyeyo?</span></p><p class="a e1">한 <strong>번</strong> 더 말해 주세요.<span class="r">han beon deo malhae juseyo.</span></p><p class="a e0"><strong>일</strong> 번 출구로 나가세요.<span class="r">il beon chulguro nagaseyo.</span></p><p class="a e1"><strong>일</strong> 층에 있어요.<span class="r">il cheunge isseoyo.</span></p><p class="a e0"><strong>얼마나</strong> 기다려요?<span class="r">eolmana gidaryeoyo?</span></p><p class="a e1"><strong>얼마나</strong> 멀어요?<span class="r">eolmana meoreoyo?</span></p><p class="a e0"><strong>이십</strong> 분 기다렸어요.<span class="r">isip bun gidaryeosseoyo.</span></p><p class="a e1">저는 <strong>이십</strong> 살이에요.<span class="r">jeoneun isip sarieyo.</span></p><p class="a e0">오 <strong>분</strong>만 기다려 주세요.<span class="r">o bunman gidaryeo juseyo.</span></p><p class="a e1">세 시 십 <strong>분</strong>이에요.<span class="r">se si sip bunieyo.</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
 /* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
@@ -87,46 +91,75 @@ body.printing{background:#fff}
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
 
-  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
-  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
-  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
-  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
-  function split(){
-    var vis = visible(), lo = 0, hi = vis.length;
-    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
-    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
-    putVis(lo);
-    return p1() && inner(q2) <= H();
-  }
-  function fitEx(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];
-    for (var c = 0; c < cols.length; c++){
-      root.style.setProperty('--qc', cols[c]);
-      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
     }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
     return false;
   }
-  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
   function tipText(){
     var t = document.getElementById('ptip'); if (!t) return;
     t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
     t.style.display = t.textContent ? '' : 'none';
   }
-  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); unsplit(); auto1 = over = false;
-    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    b.classList.add('printing'); auto1 = over = false;
     if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitEx()) over = true;
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
     }
     if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
   document.getElementById('prevBtn').addEventListener('click', function(){

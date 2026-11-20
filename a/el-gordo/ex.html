@@ -50,24 +50,28 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
 .a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
-.printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
-.printing .top,.printing .ctl,.printing .foot,.printing .tip{display:none}
-.printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
-.printing .sheet{padding:0;border-radius:0;background:none}
-.printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing #qs2{break-before:page;page-break-before:always}
-@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .it{margin:0 0 .5em}
-.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
-.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
-.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
-.printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-@media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
 @media print{.noprint{display:none!important}}
 </style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>The Ticket You Can&#x27;t Skip · 例句默写纸</h1><p class="sub">2026-11-15 · 生词例句 · 看中文写出英文例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">我们丢不起这个客户。</p><p class="cl">We <u>cannot afford to</u> lose this customer.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我可没钱天天打车。</p><p class="cl">I <u>can&#x27;t afford to</u> take a taxi every day.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">考试前别不吃早饭。</p><p class="cl">Don't <u>skip</u> breakfast before an exam.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">第一章可以跳过。</p><p class="cl">You can <u>skip</u> the first chapter.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">五个朋友合买了同一张彩票。</p><p class="cl">Five friends <u>bought into</u> the same ticket.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我不信那些炒作。</p><p class="cl">I don't <u>buy into</u> all that hype.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">没人喜欢被冷落的感觉。</p><p class="cl">Nobody likes to feel <u>left out</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">别漏掉任何细节。</p><p class="cl">Don't <u>leave out</u> any details.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这座城堡可追溯到 12 世纪。</p><p class="cl">The castle <u>dates back</u> to the 12th century.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们的友谊从上学时就开始了。</p><p class="cl">Their friendship <u>dates back</u> to school.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">比赛会现场直播。</p><p class="cl">The match will be <u>broadcast</u> live.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这档节目每周日晚上播出。</p><p class="cl">The show <u>broadcasts</u> every Sunday night.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她的笑声很有特点。</p><p class="cl">She has a very <u>distinctive</u> laugh.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这栋楼独特的红屋顶很好认。</p><p class="cl">The building's <u>distinctive</u> red roof is easy to spot.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">人群开始齐声喊他的名字。</p><p class="cl">The crowd began to <u>chant</u> his name.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">僧侣们唱起缓慢的诵经调。</p><p class="cl">Monks sang a slow <u>chant</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">价格只是原价的零头。</p><p class="cl">It costs a <u>fraction</u> of the original price.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">只有少数客人待到很晚。</p><p class="cl">Only a <u>fraction</u> of the guests stayed late.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">有些学校更进一步，完全禁止带手机。</p><p class="cl">Some schools <u>go further</u> and ban phones completely.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">她更进一步，直接辞了职。</p><p class="cl">She <u>went further</u> and quit her job.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们 AA 吧。</p><p class="cl">Let's <u>split</u> the bill.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">全班分成了三组。</p><p class="cl">The class <u>split</u> into three groups.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们凑钱给他买了辆自行车。</p><p class="cl">We <u>clubbed together</u> to buy him a bike.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">邻居们每年夏天凑钱办一次聚会。</p><p class="cl">The neighbours <u>club together</u> for a party every summer.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">信任是任何友谊的核心。</p><p class="cl">Trust is <u>the heart of</u> any friendship.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">酒店就在老城的中心。</p><p class="cl">The hotel is in <u>the heart of</u> the old town.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">谈话中提到了他的名字。</p><p class="cl">His name <u>came up</u> in the conversation.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">有什么事就给我打电话。</p><p class="cl">If anything <u>comes up</u>, call me.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">那位部长被迫辞职。</p><p class="cl">The minister was forced to <u>resign</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她辞职去创办自己的公司。</p><p class="cl">She <u>resigned</u> to start her own company.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们大家一起凑钱给她买生日礼物。</p><p class="cl">We all <u>chipped in</u> for her birthday present.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你能出几英镑吗？</p><p class="cl">Can you <u>chip in</u> a few pounds?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">每次闻到玫瑰香，我就想起奶奶。</p><p class="cl">I'm <u>reminded of</u> my grandmother whenever I smell roses.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">他不想被人提起自己的错误。</p><p class="cl">He doesn't want to be <u>reminded of</u> his mistake.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">今年我生日正好是星期天。</p><p class="cl">My birthday <u>falls on</u> a Sunday this year.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">做饭的活落到了我头上。</p><p class="cl">The job of cooking <u>fell on</u> me.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">几乎每户人家都有洗衣机。</p><p class="cl">Almost every <u>household</u> has a washing machine.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">家庭开支一直在涨。</p><p class="cl"><u>Household</u> costs keep rising.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他苦笑了一下。</p><p class="cl">He gave a <u>rueful</u> smile.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她回顾自己的选择，自嘲地笑了笑。</p><p class="cl">She looked back on her choice with a <u>rueful</u> laugh.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">那种事发生的可能性微乎其微。</p><p class="cl"><u>The odds of</u> that happening are tiny.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们在不被看好的情况下赢了。</p><p class="cl">They won against the <u>odds</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">下雨的可能性很小。</p><p class="cl">There's only a <u>slim</u> chance of rain.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们获胜的希望很渺茫。</p><p class="cl">Their hopes of winning are <u>slim</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">保险公司很快就赔付了。</p><p class="cl">The insurance company <u>paid out</u> quickly.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个游戏经常发小奖。</p><p class="cl">The game <u>pays out</u> small prizes often.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我想退款。</p><p class="cl">I'd like a <u>refund</u>, please.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们全额退了钱。</p><p class="cl">They <u>refunded</u> the full price.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他总在抱怨他的老板。</p><p class="cl">He's always <u>grumbling</u> about his boss.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">乘客们抱怨晚点。</p><p class="cl">Passengers <u>grumbled</u> about the delay.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他在那匹马上下了注。</p><p class="cl">He placed a <u>bet</u> on the horse.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">带把伞总没错。</p><p class="cl">Taking an umbrella is a safe <u>bet</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">下午茶是我们家的固定习惯。</p><p class="cl">Tea in the afternoon is a family <u>ritual</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">婚礼按照古老的仪式进行。</p><p class="cl">The wedding followed an ancient <u>ritual</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们刚到就下起了雨。</p><p class="cl"><u>No sooner</u> had we arrived than it started to rain.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">她刚走他就打来了电话。</p><p class="cl"><u>No sooner</u> had she left than he called.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">孩子们互相喷水。</p><p class="cl">The kids <u>sprayed</u> each other with water.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">农民春天给庄稼喷药。</p><p class="cl">Farmers <u>spray</u> the crops in spring.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">球迷举起了一条巨大的横幅。</p><p class="cl">Fans held up a huge <u>banner</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">街上挂着一条横幅宣布节日。</p><p class="cl">A <u>banner</u> across the street announced the festival.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">他喜欢炫耀他的车。</p><p class="cl">He likes to <u>boast about</u> his car.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这家酒店以美景自豪。</p><p class="cl">The hotel <u>boasts of</u> a fine view.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">那只是迷信。</p><p class="cl">It's just a <u>superstition</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">很多球迷都有些小迷信。</p><p class="cl">Many sports fans have little <u>superstitions</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">运气也起了作用。</p><p class="cl">Luck <u>played its part</u>, too.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">每个人都要尽一份力。</p><p class="cl">Everyone must <u>play their part</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这家连锁店在全国有 200 家门店。</p><p class="cl">The chain has 200 <u>outlets</u> across the country.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">音乐是我释放压力的方式。</p><p class="cl">Music is my <u>outlet</u> for stress.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他揉了揉疲惫的眼睛。</p><p class="cl">He <u>rubbed</u> his tired eyes.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">把乳霜揉进皮肤里。</p><p class="cl"><u>Rub</u> the cream into your skin.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">尽管有种种问题，我还是爱这座城市。</p><p class="cl"><u>For all</u> its problems, I love this city.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">尽管很有名，她生活得很简朴。</p><p class="cl"><u>For all</u> her fame, she lives simply.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她上周中了头奖。</p><p class="cl">She won the <u>jackpot</u> last week.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">订到这家酒店，我们真是走大运了。</p><p class="cl">We really hit the <u>jackpot</u> with this hotel.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">别担心，我们是一条船上的。</p><p class="cl">Don't worry, we're all <u>in it together</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">队员们觉得大家是同舟共济的。</p><p class="cl">The team felt they were <u>in it together</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">计划旅行本身就是乐趣的一半。</p><p class="cl">Planning the trip is <u>half the fun</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">去的路上就是乐趣所在。</p><p class="cl">Getting there is <u>half the fun</u>.</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0">We <strong>cannot afford to</strong> lose this customer.</p><p class="a e1">I <strong>can&#x27;t afford to</strong> take a taxi every day.</p><p class="a e0">Don't <strong>skip</strong> breakfast before an exam.</p><p class="a e1">You can <strong>skip</strong> the first chapter.</p><p class="a e0">Five friends <strong>bought into</strong> the same ticket.</p><p class="a e1">I don't <strong>buy into</strong> all that hype.</p><p class="a e0">Nobody likes to feel <strong>left out</strong>.</p><p class="a e1">Don't <strong>leave out</strong> any details.</p><p class="a e0">The castle <strong>dates back</strong> to the 12th century.</p><p class="a e1">Their friendship <strong>dates back</strong> to school.</p><p class="a e0">The match will be <strong>broadcast</strong> live.</p><p class="a e1">The show <strong>broadcasts</strong> every Sunday night.</p><p class="a e0">She has a very <strong>distinctive</strong> laugh.</p><p class="a e1">The building's <strong>distinctive</strong> red roof is easy to spot.</p><p class="a e0">The crowd began to <strong>chant</strong> his name.</p><p class="a e1">Monks sang a slow <strong>chant</strong>.</p><p class="a e0">It costs a <strong>fraction</strong> of the original price.</p><p class="a e1">Only a <strong>fraction</strong> of the guests stayed late.</p><p class="a e0">Some schools <strong>go further</strong> and ban phones completely.</p><p class="a e1">She <strong>went further</strong> and quit her job.</p><p class="a e0">Let's <strong>split</strong> the bill.</p><p class="a e1">The class <strong>split</strong> into three groups.</p><p class="a e0">We <strong>clubbed together</strong> to buy him a bike.</p><p class="a e1">The neighbours <strong>club together</strong> for a party every summer.</p><p class="a e0">Trust is <strong>the heart of</strong> any friendship.</p><p class="a e1">The hotel is in <strong>the heart of</strong> the old town.</p><p class="a e0">His name <strong>came up</strong> in the conversation.</p><p class="a e1">If anything <strong>comes up</strong>, call me.</p><p class="a e0">The minister was forced to <strong>resign</strong>.</p><p class="a e1">She <strong>resigned</strong> to start her own company.</p><p class="a e0">We all <strong>chipped in</strong> for her birthday present.</p><p class="a e1">Can you <strong>chip in</strong> a few pounds?</p><p class="a e0">I'm <strong>reminded of</strong> my grandmother whenever I smell roses.</p><p class="a e1">He doesn't want to be <strong>reminded of</strong> his mistake.</p><p class="a e0">My birthday <strong>falls on</strong> a Sunday this year.</p><p class="a e1">The job of cooking <strong>fell on</strong> me.</p><p class="a e0">Almost every <strong>household</strong> has a washing machine.</p><p class="a e1"><strong>Household</strong> costs keep rising.</p><p class="a e0">He gave a <strong>rueful</strong> smile.</p><p class="a e1">She looked back on her choice with a <strong>rueful</strong> laugh.</p><p class="a e0"><strong>The odds of</strong> that happening are tiny.</p><p class="a e1">They won against the <strong>odds</strong>.</p><p class="a e0">There's only a <strong>slim</strong> chance of rain.</p><p class="a e1">Their hopes of winning are <strong>slim</strong>.</p><p class="a e0">The insurance company <strong>paid out</strong> quickly.</p><p class="a e1">The game <strong>pays out</strong> small prizes often.</p><p class="a e0">I'd like a <strong>refund</strong>, please.</p><p class="a e1">They <strong>refunded</strong> the full price.</p><p class="a e0">He's always <strong>grumbling</strong> about his boss.</p><p class="a e1">Passengers <strong>grumbled</strong> about the delay.</p><p class="a e0">He placed a <strong>bet</strong> on the horse.</p><p class="a e1">Taking an umbrella is a safe <strong>bet</strong>.</p><p class="a e0">Tea in the afternoon is a family <strong>ritual</strong>.</p><p class="a e1">The wedding followed an ancient <strong>ritual</strong>.</p><p class="a e0"><strong>No sooner</strong> had we arrived than it started to rain.</p><p class="a e1"><strong>No sooner</strong> had she left than he called.</p><p class="a e0">The kids <strong>sprayed</strong> each other with water.</p><p class="a e1">Farmers <strong>spray</strong> the crops in spring.</p><p class="a e0">Fans held up a huge <strong>banner</strong>.</p><p class="a e1">A <strong>banner</strong> across the street announced the festival.</p><p class="a e0">He likes to <strong>boast about</strong> his car.</p><p class="a e1">The hotel <strong>boasts of</strong> a fine view.</p><p class="a e0">It's just a <strong>superstition</strong>.</p><p class="a e1">Many sports fans have little <strong>superstitions</strong>.</p><p class="a e0">Luck <strong>played its part</strong>, too.</p><p class="a e1">Everyone must <strong>play their part</strong>.</p><p class="a e0">The chain has 200 <strong>outlets</strong> across the country.</p><p class="a e1">Music is my <strong>outlet</strong> for stress.</p><p class="a e0">He <strong>rubbed</strong> his tired eyes.</p><p class="a e1"><strong>Rub</strong> the cream into your skin.</p><p class="a e0"><strong>For all</strong> its problems, I love this city.</p><p class="a e1"><strong>For all</strong> her fame, she lives simply.</p><p class="a e0">She won the <strong>jackpot</strong> last week.</p><p class="a e1">We really hit the <strong>jackpot</strong> with this hotel.</p><p class="a e0">Don't worry, we're all <strong>in it together</strong>.</p><p class="a e1">The team felt they were <strong>in it together</strong>.</p><p class="a e0">Planning the trip is <strong>half the fun</strong>.</p><p class="a e1">Getting there is <strong>half the fun</strong>.</p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
 /* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
@@ -87,46 +91,75 @@ body.printing{background:#fff}
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
 
-  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
-  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
-  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
-  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
-  function split(){
-    var vis = visible(), lo = 0, hi = vis.length;
-    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
-    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
-    putVis(lo);
-    return p1() && inner(q2) <= H();
-  }
-  function fitEx(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];
-    for (var c = 0; c < cols.length; c++){
-      root.style.setProperty('--qc', cols[c]);
-      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
     }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
     return false;
   }
-  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
   function tipText(){
     var t = document.getElementById('ptip'); if (!t) return;
     t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
     t.style.display = t.textContent ? '' : 'none';
   }
-  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); unsplit(); auto1 = over = false;
-    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    b.classList.add('printing'); auto1 = over = false;
     if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitEx()) over = true;
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
     }
     if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
   document.getElementById('prevBtn').addEventListener('click', function(){
