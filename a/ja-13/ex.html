@@ -1,0 +1,180 @@
+<!doctype html><html lang="zh-CN" data-lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第 13 课 · パン屋の一年 · 例句默写纸 · 日语中级</title><style>
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#E9D8CA;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff}
+html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.6 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:820px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn,.prev{appearance:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.btn{border:0;background:var(--accent);color:#fff} .prev{border:2px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;font-size:13px}
+h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 0 6px;font-size:18px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 14px;padding:12px 14px;background:var(--surface);border-radius:16px}
+.ctl label{display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600}
+.sheet{background:var(--surface);border-radius:16px;padding:16px 18px}
+.blk{margin:0 0 6px;color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.04em}
+.q{break-inside:avoid;page-break-inside:avoid;margin:0 0 12px}
+.zh{margin:0;font-size:15.5px;line-height:1.6} .zh b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 13px ui-monospace,Menlo,monospace}
+.hint{display:none;margin:2px 0 0 1.9em;color:var(--muted);font-size:12.5px}
+.hints .hint{display:block}
+.ln{height:30px;margin-left:1.9em;border-bottom:1px solid #C9B8AA}
+.gap{height:8px}
+.ans{margin-top:22px}
+.noans .ans{display:none}
+.a{margin:0 0 6px;font:400 15px/1.55 Georgia,'Times New Roman',serif} .a b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.a .r{display:block;margin-left:2.2em;color:var(--muted);font:400 12.5px/1.5 ui-rounded,system-ui,sans-serif}
+.foot{margin:12px 0 0;color:var(--muted);font-size:12.5px}
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:#fff} .in{max-width:none;padding:0} .noprint{display:none!important}
+  h1{font-size:16px;margin:0} .sub{font-size:9.5px;margin:0 0 6px}
+  .sheet{padding:0;border-radius:0}
+  .zh{font-size:11.5px} .zh b{font-size:10px} .hint{font-size:9.5px}
+  .q{margin:0 0 7px} .ln{height:8.5mm;border-bottom-color:#999}
+  .ans{margin-top:0;break-before:page;page-break-before:always}
+  h2{font-size:14px} .a{font-size:11px;margin:0 0 3px} .a b{font-size:9px} .a .r{font-size:9.5px}
+  .foot{display:none}
+}
+
+.sheet{counter-reset:q}
+.it{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;counter-increment:q}
+.zh2{margin:0;font-size:14.5px;line-height:1.55}
+.zh2::before,.a::before{display:inline-block;min-width:2em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.zh2::before{content:counter(q)}
+.cl{margin:2px 0 0 2em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.it .ln{margin-left:2em}
+.m-cloze .ln,.m-sent .cl{display:none}
+.one .e1{display:none}
+.list{counter-reset:a}
+.a{counter-increment:a} .a::before{content:counter(a)}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
+.tip{margin:0 0 12px;color:var(--muted);font-size:13px}
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
+@page{size:A4;margin:10mm}
+body.printing{background:#fff}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
+@media print{.noprint{display:none!important}}
+</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 13 课 · パン屋の一年 · 例句默写纸</h1><p class="sub">2026-11-20 · 生词例句 · 看中文写出日语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">大学毕业以后，我一次也没见过她。</p><p class="cl">大学を卒業して<u>以来</u>、一度も彼女に会っていない。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">搬到这个镇子以后，我每天早上都沿着河边散步。</p><p class="cl">この町に引っ越して<u>以来</u>、毎朝川沿いを散歩している。</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">时间过得真快啊。</p><p class="cl"><u>月日</u>がたつのは本当に早いものだ。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">从那以后，十年的岁月过去了。</p><p class="cl">あれから十年の<u>月日</u>が流れた。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我把饭和菜装进了饭盒。</p><p class="cl">お弁当箱にご飯とおかずを<u>詰めた</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">旅行前一晚，我先把行李装进了包里。</p><p class="cl">旅行の前の晩、かばんに荷物を<u>詰めて</u>おいた。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">在车站附近租了一个按月付费的停车位。</p><p class="cl">駅の近くに<u>月ぎめ</u>の駐車場を借りた。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个房间可以按月租。</p><p class="cl">この部屋は<u>月ぎめ</u>で借りられる。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">新的车站大楼受到镇上人们的关注。</p><p class="cl">新しい駅ビルが町の人たちの<u>注目</u>を集めている。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这位年轻歌手现在最受关注。</p><p class="cl">この若い歌手は、今いちばん<u>注目されて</u>いる。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">考试前，把重要的公式好好记住吧。</p><p class="cl">試験の前に、大事な公式をしっかり<u>頭に入れて</u>おこう。</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">出门前我把地图记在了脑子里。</p><p class="cl">出かける前に地図を<u>頭に入れた</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我把想到的点子记在了记事本上。</p><p class="cl">思いついたアイデアを手帳に<u>書き留めた</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">趁还没忘，先把电话号码记下来吧。</p><p class="cl">電話番号を忘れないうちに<u>書き留めて</u>おこう。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他虽然住得很近，却一次也没来玩过。</p><p class="cl">彼は近くに住んでい<u>ながら</u>、一度も遊びに来ない。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">明知道对身体不好，却总是忍不住半夜吃拉面。</p><p class="cl">体に悪いと知り<u>ながら</u>、つい夜中にラーメンを食べてしまう。</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">我弄错了约好的日子，提早一天去了。</p><p class="cl">約束の日を<u>勘違いして</u>、一日早く行ってしまった。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">因为背影很像，我把陌生人错当成了朋友。</p><p class="cl">後ろ姿が似ていたので、知らない人を友達と<u>勘違いした</u>。</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">到这么晚，你究竟去哪儿了？</p><p class="cl">こんな時間まで、<u>一体</u>どこにいたの？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">到底是谁打破了这扇窗户呢？</p><p class="cl"><u>一体</u>誰がこの窓を割ったんだろう。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">昨天累得几乎走不动路。</p><p class="cl">昨日は歩けない<u>ほど</u>疲れていた。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这碗拉面辣得让人流眼泪。</p><p class="cl">このラーメンは、涙が出る<u>ほど</u>辛い。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">即使被反对，我也要继续这份工作。</p><p class="cl"><u>たとえ</u>反対されても、私はこの仕事を続ける。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">哪怕是家小店，我也想有一家自己的店。</p><p class="cl"><u>たとえ</u>小さな店でも、自分の店を持ちたい。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">重要的约定我不会忘的。</p><p class="cl">大事な約束を忘れ<u>たりしない</u>よ。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">不管多辛苦，我都不会半途而废。</p><p class="cl">どんなにつらくても、途中でやめ<u>たりしない</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">一按开关，房间一下子亮了。</p><p class="cl">スイッチを押すと、部屋が<u>ぱっと</u>明るくなった。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">被叫到名字，他猛地站了起来。</p><p class="cl">名前を呼ばれて、彼は<u>ぱっと</u>立ち上がった。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">药片太大，怎么也咽不下去。</p><p class="cl">錠剤が大きくて、なかなか<u>飲み込めない</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">只要领会了做法，之后就简单了。</p><p class="cl">一度やり方を<u>飲み込んで</u>しまえば、あとは簡単だ。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">适度的运动对身心都有好处。</p><p class="cl"><u>適度な</u>運動は、心にも体にもいい。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">学习中间要适当休息。</p><p class="cl">勉強の間に、<u>適度に</u>休みを取りましょう。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这项工程还需要半年。</p><p class="cl">この工事には、あと半年を<u>要する</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">使用这台机器需要小心。</p><p class="cl">この機械の扱いには、注意を<u>要する</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">奶奶的病时好时坏。</p><p class="cl">祖母の病気は<u>一進一退</u>を続けている。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">比赛一直互有攻守，进入了下半场。</p><p class="cl">試合は<u>一進一退</u>のまま、後半に入った。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这趟公交车每十五分钟一班。</p><p class="cl">このバスは十五分<u>ごとに</u>来る。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">每次来这个镇子，新店都会变多。</p><p class="cl">この町は、来る<u>ごとに</u>新しい店が増えている。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这家面包店可以吃到刚烤好的面包。</p><p class="cl">このパン屋では、焼き<u>たて</u>のパンが食べられる。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请不要碰刚刷好的油漆。</p><p class="cl">塗り<u>たて</u>のペンキに触らないでください。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">老玩同一个游戏，终于还是腻了。</p><p class="cl">同じゲームばかりしていたら、さすがに<u>あきた</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这首歌听多少遍都不腻。</p><p class="cl">この歌は何回聞いても<u>あきない</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">医生嘱咐过，我在节制饮酒。</p><p class="cl">医者に言われて、お酒を<u>慎んで</u>いる。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">开会时说话请注意分寸。</p><p class="cl">会議では、言葉を<u>慎んで</u>ください。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">事故过去一年了。</p><p class="cl">事故から一年が<u>経過した</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">随着时间流逝，疼痛渐渐消失了。</p><p class="cl">時間が<u>経過する</u>につれて、痛みは消えていった。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我在超市偶然碰上了以前的同学。</p><p class="cl">スーパーで昔の同級生にばったり<u>出くわした</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">在山路上撞见熊的话，该怎么办？</p><p class="cl">山道でクマに<u>出くわしたら</u>、どうすればいいの？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">学生们在教室外面吵吵嚷嚷的。</p><p class="cl">教室の外で学生たちが<u>わいわい</u>騒いでいる。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">周末和朋友热热闹闹地吃了火锅。</p><p class="cl">週末は友達と<u>わいわい</u>鍋を食べた。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">午休时和同事闲聊了一会儿。</p><p class="cl">昼休みに同僚と<u>雑談した</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">上课一开始，老师总会先闲聊几句。</p><p class="cl">授業の最初に、先生はいつも少し<u>雑談</u>をする。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">睡前我会把手机放得离自己远远的。</p><p class="cl">寝る前は、スマホを自分から<u>遠ざけて</u>いる。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请把药放在孩子够不着的地方。</p><p class="cl">薬は子供の手から<u>遠ざけて</u>ください。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我一直以为今天放假，结果睡过头了。</p><p class="cl">今日は休みだと<u>思い込んで</u>、寝坊してしまった。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他深信那件事是真的。</p><p class="cl">彼はその話を本当だと<u>思い込んで</u>いる。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我非常理解这部电影的主人公。</p><p class="cl">この映画の主人公に、とても<u>共感した</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她的话引起了很多人的共鸣。</p><p class="cl">彼女の言葉は、多くの人の<u>共感</u>を呼んだ。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我拧干湿毛巾，晾到了外面。</p><p class="cl">ぬれたタオルを<u>しぼって</u>、外に干した。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我往沙拉上挤了柠檬汁。</p><p class="cl">サラダにレモンを<u>しぼった</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">改天再一起去喝酒吧。</p><p class="cl"><u>そのうち</u>、また一緒に飲みに行こう。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">别担心，过些日子就习惯了。</p><p class="cl">心配しないで。<u>そのうち</u>慣れるから。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">一进房间，一幅大画映入眼帘。</p><p class="cl">部屋に入ると、大きな絵が<u>目に入った</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">小孩看到什么都想摸一摸。</p><p class="cl">子供は、<u>目に入る</u>ものを何でも触りたがる。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">看样子明天好像要下雪。</p><p class="cl"><u>どうやら</u>、明日は雪が降るらしい。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">看来是走错路了。</p><p class="cl"><u>どうやら</u>道を間違えたようだ。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">晚上十点以后请把音乐开小声。</p><p class="cl">夜十時<u>以降</u>は、音楽を小さくしてください。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">下周一以后的话，什么时候都可以。</p><p class="cl">来週の月曜日<u>以降</u>なら、いつでも大丈夫です。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">电话没人接。也就是说，大家都出门了。</p><p class="cl">電話に誰も出ない。<u>つまり</u>、みんな出かけているという<u>ことだ</u>。</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">他是我妈妈的弟弟，也就是我的舅舅。</p><p class="cl">彼は母の弟、<u>つまり</u>私のおじさんだ。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">熬了一个通宵，总算把报告写完了。</p><p class="cl">徹夜して、<u>どうにか</u>レポートを書き終えた。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">托您的福，我总算过得还不错。</p><p class="cl">おかげさまで、<u>どうにか</u>元気にやっています。</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0">大学を卒業して<strong>以来</strong>、一度も彼女に会っていない。<span class="r">だいがくを そつぎょう して いらい、いちども かのじょに あって いない。</span></p><p class="a e1">この町に引っ越して<strong>以来</strong>、毎朝川沿いを散歩している。<span class="r">この まちに ひっこして いらい、まいあさ かわぞいを さんぽ して いる。</span></p><p class="a e0"><strong>月日</strong>がたつのは本当に早いものだ。<span class="r">つきひが たつのは ほんとうに はやい ものだ。</span></p><p class="a e1">あれから十年の<strong>月日</strong>が流れた。<span class="r">あれから じゅうねんの つきひが ながれた。</span></p><p class="a e0">お弁当箱にご飯とおかずを<strong>詰めた</strong>。<span class="r">おべんとうばこに ごはんと おかずを つめた。</span></p><p class="a e1">旅行の前の晩、かばんに荷物を<strong>詰めて</strong>おいた。<span class="r">りょこうの まえの ばん、かばんに にもつを つめて おいた。</span></p><p class="a e0">駅の近くに<strong>月ぎめ</strong>の駐車場を借りた。<span class="r">えきの ちかくに つきぎめの ちゅうしゃじょうを かりた。</span></p><p class="a e1">この部屋は<strong>月ぎめ</strong>で借りられる。<span class="r">この へやは つきぎめで かりられる。</span></p><p class="a e0">新しい駅ビルが町の人たちの<strong>注目</strong>を集めている。<span class="r">あたらしい えきビルが まちの ひとたちの ちゅうもくを あつめて いる。</span></p><p class="a e1">この若い歌手は、今いちばん<strong>注目されて</strong>いる。<span class="r">この わかい かしゅは、いま いちばん ちゅうもく されて いる。</span></p><p class="a e0">試験の前に、大事な公式をしっかり<strong>頭に入れて</strong>おこう。<span class="r">しけんの まえに、だいじな こうしきを しっかり あたまに いれて おこう。</span></p><p class="a e1">出かける前に地図を<strong>頭に入れた</strong>。<span class="r">でかける まえに ちずを あたまに いれた。</span></p><p class="a e0">思いついたアイデアを手帳に<strong>書き留めた</strong>。<span class="r">おもいついた アイデアを てちょうに かきとめた。</span></p><p class="a e1">電話番号を忘れないうちに<strong>書き留めて</strong>おこう。<span class="r">でんわ ばんごうを わすれない うちに かきとめて おこう。</span></p><p class="a e0">彼は近くに住んでい<strong>ながら</strong>、一度も遊びに来ない。<span class="r">かれは ちかくに すんで いながら、いちども あそびに こない。</span></p><p class="a e1">体に悪いと知り<strong>ながら</strong>、つい夜中にラーメンを食べてしまう。<span class="r">からだに わるいと しりながら、つい よなかに ラーメンを たべて しまう。</span></p><p class="a e0">約束の日を<strong>勘違いして</strong>、一日早く行ってしまった。<span class="r">やくそくの ひを かんちがい して、いちにち はやく いって しまった。</span></p><p class="a e1">後ろ姿が似ていたので、知らない人を友達と<strong>勘違いした</strong>。<span class="r">うしろすがたが にて いたので、しらない ひとを ともだちと かんちがい した。</span></p><p class="a e0">こんな時間まで、<strong>一体</strong>どこにいたの？<span class="r">こんな じかんまで、いったい どこに いたの？</span></p><p class="a e1"><strong>一体</strong>誰がこの窓を割ったんだろう。<span class="r">いったい だれが この まどを わったんだろう。</span></p><p class="a e0">昨日は歩けない<strong>ほど</strong>疲れていた。<span class="r">きのうは あるけない ほど つかれて いた。</span></p><p class="a e1">このラーメンは、涙が出る<strong>ほど</strong>辛い。<span class="r">この ラーメンは、なみだが でる ほど からい。</span></p><p class="a e0"><strong>たとえ</strong>反対されても、私はこの仕事を続ける。<span class="r">たとえ はんたい されても、わたしは この しごとを つづける。</span></p><p class="a e1"><strong>たとえ</strong>小さな店でも、自分の店を持ちたい。<span class="r">たとえ ちいさな みせでも、じぶんの みせを もちたい。</span></p><p class="a e0">大事な約束を忘れ<strong>たりしない</strong>よ。<span class="r">だいじな やくそくを わすれたり しないよ。</span></p><p class="a e1">どんなにつらくても、途中でやめ<strong>たりしない</strong>。<span class="r">どんなに つらくても、とちゅうで やめたり しない。</span></p><p class="a e0">スイッチを押すと、部屋が<strong>ぱっと</strong>明るくなった。<span class="r">スイッチを おすと、へやが ぱっと あかるく なった。</span></p><p class="a e1">名前を呼ばれて、彼は<strong>ぱっと</strong>立ち上がった。<span class="r">なまえを よばれて、かれは ぱっと たちあがった。</span></p><p class="a e0">錠剤が大きくて、なかなか<strong>飲み込めない</strong>。<span class="r">じょうざいが おおきくて、なかなか のみこめない。</span></p><p class="a e1">一度やり方を<strong>飲み込んで</strong>しまえば、あとは簡単だ。<span class="r">いちど やりかたを のみこんで しまえば、あとは かんたんだ。</span></p><p class="a e0"><strong>適度な</strong>運動は、心にも体にもいい。<span class="r">てきどな うんどうは、こころにも からだにも いい。</span></p><p class="a e1">勉強の間に、<strong>適度に</strong>休みを取りましょう。<span class="r">べんきょうの あいだに、てきどに やすみを とりましょう。</span></p><p class="a e0">この工事には、あと半年を<strong>要する</strong>。<span class="r">この こうじには、あと はんとしを ようする。</span></p><p class="a e1">この機械の扱いには、注意を<strong>要する</strong>。<span class="r">この きかいの あつかいには、ちゅういを ようする。</span></p><p class="a e0">祖母の病気は<strong>一進一退</strong>を続けている。<span class="r">そぼの びょうきは いっしん いったいを つづけて いる。</span></p><p class="a e1">試合は<strong>一進一退</strong>のまま、後半に入った。<span class="r">しあいは いっしん いったいの まま、こうはんに はいった。</span></p><p class="a e0">このバスは十五分<strong>ごとに</strong>来る。<span class="r">この バスは じゅうごふん ごとに くる。</span></p><p class="a e1">この町は、来る<strong>ごとに</strong>新しい店が増えている。<span class="r">この まちは、くる ごとに あたらしい みせが ふえて いる。</span></p><p class="a e0">このパン屋では、焼き<strong>たて</strong>のパンが食べられる。<span class="r">この パンやでは、やきたての パンが たべられる。</span></p><p class="a e1">塗り<strong>たて</strong>のペンキに触らないでください。<span class="r">ぬりたての ペンキに さわらないで ください。</span></p><p class="a e0">同じゲームばかりしていたら、さすがに<strong>あきた</strong>。<span class="r">おなじ ゲームばかり して いたら、さすがに あきた。</span></p><p class="a e1">この歌は何回聞いても<strong>あきない</strong>。<span class="r">この うたは なんかい きいても あきない。</span></p><p class="a e0">医者に言われて、お酒を<strong>慎んで</strong>いる。<span class="r">いしゃに いわれて、おさけを つつしんで いる。</span></p><p class="a e1">会議では、言葉を<strong>慎んで</strong>ください。<span class="r">かいぎでは、ことばを つつしんで ください。</span></p><p class="a e0">事故から一年が<strong>経過した</strong>。<span class="r">じこから いちねんが けいか した。</span></p><p class="a e1">時間が<strong>経過する</strong>につれて、痛みは消えていった。<span class="r">じかんが けいか する につれて、いたみは きえて いった。</span></p><p class="a e0">スーパーで昔の同級生にばったり<strong>出くわした</strong>。<span class="r">スーパーで むかしの どうきゅうせいに ばったり でくわした。</span></p><p class="a e1">山道でクマに<strong>出くわしたら</strong>、どうすればいいの？<span class="r">やまみちで クマに でくわしたら、どう すれば いいの？</span></p><p class="a e0">教室の外で学生たちが<strong>わいわい</strong>騒いでいる。<span class="r">きょうしつの そとで がくせいたちが わいわい さわいで いる。</span></p><p class="a e1">週末は友達と<strong>わいわい</strong>鍋を食べた。<span class="r">しゅうまつは ともだちと わいわい なべを たべた。</span></p><p class="a e0">昼休みに同僚と<strong>雑談した</strong>。<span class="r">ひるやすみに どうりょうと ざつだん した。</span></p><p class="a e1">授業の最初に、先生はいつも少し<strong>雑談</strong>をする。<span class="r">じゅぎょうの さいしょに、せんせいは いつも すこし ざつだんを する。</span></p><p class="a e0">寝る前は、スマホを自分から<strong>遠ざけて</strong>いる。<span class="r">ねる まえは、スマホを じぶんから とおざけて いる。</span></p><p class="a e1">薬は子供の手から<strong>遠ざけて</strong>ください。<span class="r">くすりは こどもの てから とおざけて ください。</span></p><p class="a e0">今日は休みだと<strong>思い込んで</strong>、寝坊してしまった。<span class="r">きょうは やすみだと おもいこんで、ねぼう して しまった。</span></p><p class="a e1">彼はその話を本当だと<strong>思い込んで</strong>いる。<span class="r">かれは その はなしを ほんとうだと おもいこんで いる。</span></p><p class="a e0">この映画の主人公に、とても<strong>共感した</strong>。<span class="r">この えいがの しゅじんこうに、とても きょうかん した。</span></p><p class="a e1">彼女の言葉は、多くの人の<strong>共感</strong>を呼んだ。<span class="r">かのじょの ことばは、おおくの ひとの きょうかんを よんだ。</span></p><p class="a e0">ぬれたタオルを<strong>しぼって</strong>、外に干した。<span class="r">ぬれた タオルを しぼって、そとに ほした。</span></p><p class="a e1">サラダにレモンを<strong>しぼった</strong>。<span class="r">サラダに レモンを しぼった。</span></p><p class="a e0"><strong>そのうち</strong>、また一緒に飲みに行こう。<span class="r">そのうち、また いっしょに のみに いこう。</span></p><p class="a e1">心配しないで。<strong>そのうち</strong>慣れるから。<span class="r">しんぱい しないで。そのうち なれるから。</span></p><p class="a e0">部屋に入ると、大きな絵が<strong>目に入った</strong>。<span class="r">へやに はいると、おおきな えが めに はいった。</span></p><p class="a e1">子供は、<strong>目に入る</strong>ものを何でも触りたがる。<span class="r">こどもは、めに はいる ものを なんでも さわりたがる。</span></p><p class="a e0"><strong>どうやら</strong>、明日は雪が降るらしい。<span class="r">どうやら、あしたは ゆきが ふる らしい。</span></p><p class="a e1"><strong>どうやら</strong>道を間違えたようだ。<span class="r">どうやら みちを まちがえた ようだ。</span></p><p class="a e0">夜十時<strong>以降</strong>は、音楽を小さくしてください。<span class="r">よる じゅうじ いこうは、おんがくを ちいさく して ください。</span></p><p class="a e1">来週の月曜日<strong>以降</strong>なら、いつでも大丈夫です。<span class="r">らいしゅうの げつようび いこう なら、いつでも だいじょうぶです。</span></p><p class="a e0">電話に誰も出ない。<strong>つまり</strong>、みんな出かけているという<strong>ことだ</strong>。<span class="r">でんわに だれも でない。つまり、みんな でかけて いると いう ことだ。</span></p><p class="a e1">彼は母の弟、<strong>つまり</strong>私のおじさんだ。<span class="r">かれは ははの おとうと、つまり わたしの おじさんだ。</span></p><p class="a e0">徹夜して、<strong>どうにか</strong>レポートを書き終えた。<span class="r">てつや して、どうにか レポートを かきおえた。</span></p><p class="a e1">おかげさまで、<strong>どうにか</strong>元気にやっています。<span class="r">おかげさまで、どうにか げんきに やって います。</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+/* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
+   (front and back of one sheet) with the largest type that fits, page 1 filled first; the answers follow on a new page. If even
+   two pages are not enough, one example per word is used (and the preview says so). */
+(function(){
+  var b = document.body, root = document.documentElement, key = 'wk-ex-print', st = {mode:'sent', one:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), ans = document.getElementById('withans');
+  function draw(){
+    b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
+    b.classList.toggle('one', st.one); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; ans.checked = st.ans;
+  }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
+  one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
+  ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
+
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
+    }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
+    return false;
+  }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function fit(){
+    b.classList.add('printing'); auto1 = over = false;
+    if (!fitEx()){
+      if (!st.one){ b.classList.add('one'); auto1 = true; }
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
+    }
+    if (st.ans) fitAns();
+    tipText();
+  }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
+  window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
+  window.addEventListener('afterprint', function(){ if (!preview) clear(); });
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    preview = true; fit();
+    var old = document.getElementById('pbar'); if (old) old.remove();
+    var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+    bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
+    bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); };
+    bar.children[2].onclick = function(){ window.print(); };
+    document.body.appendChild(bar);
+    tipText();
+    window.scrollTo(0, 0);
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script></body></html>
