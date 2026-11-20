@@ -36,20 +36,21 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
   .foot{display:none}
 }
 
-.w{break-inside:avoid;page-break-inside:avoid;margin:0 0 10px}
-.wh{margin:0 0 2px;font-weight:800;font-size:15px} .wh i{font-style:normal;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace;margin-right:6px}
-.wh span{font-weight:600;color:var(--muted);font-size:13px;margin-left:8px}
-.wh span.x{margin-left:0;color:var(--fg);font-weight:800;font-size:15px}
-.nohead .wh .x{display:none}
-.zh2{margin:2px 0 0 1.9em;font-size:14.5px;line-height:1.55}
-.cl{margin:2px 0 0 1.9em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.sheet{counter-reset:q}
+.it{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;counter-increment:q}
+.zh2{margin:0;font-size:14.5px;line-height:1.55}
+.zh2::before,.a::before{display:inline-block;min-width:2em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.zh2::before{content:counter(q)}
+.cl{margin:2px 0 0 2em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
 .cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.it .ln{margin-left:2em}
 .m-cloze .ln,.m-sent .cl{display:none}
 .one .e1{display:none}
-.a .x{color:var(--muted);font-size:.9em}
+.list{counter-reset:a}
+.a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* one sheet: the exercise fills the front page, the answers the back; the script picks the largest type that fits */
+/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
 .printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
@@ -57,73 +58,84 @@ body.printing{background:#fff}
 .printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
 .printing .sheet{padding:0;border-radius:0;background:none}
 .printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing .w{margin:0 0 .45em}
-.printing .wh{font-size:1em;margin:0} .printing .wh span,.printing .wh i{font-size:.85em} .printing .wh span.x{font-size:1em}
-.printing .zh2{font-size:.95em;margin:.1em 0 0 1.6em;line-height:1.3} .printing .zh2 b{font-size:.85em}
-.printing .cl{font-size:1em;line-height:1.85;margin:0 0 0 1.6em}
-.printing .ln{height:2.3em;margin-left:1.6em;border-bottom:.4pt solid #888}
+.printing #qs2{break-before:page;page-break-before:always}
+@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
+.printing .it{margin:0 0 .5em}
+.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
+.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
 .printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a b{font-size:.8em} .printing .a .r{font-size:.85em}
 @media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
+.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
+.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
 @media print{.noprint{display:none!important}}
-</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览一张纸</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 4 课 · 聽日幾點見？ · 例句默写纸</h1><p class="sub">2026-11-12 · 16 个词的例句 · 看中文写出粤语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="head"> 显示生词本身</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印成一张纸：先选好上面的选项，再点“预览一张纸”→“打印”，打印设置里选“双面打印”——正面是默写，背面是答案。</p><div class="sheet"><div class="qs"><div class="w"><p class="wh"><i>1</i><span class="x">聽日</span><span>明天</span></p><div class="e0"><p class="zh2"><b>1-1</b> 明天见！</p><p class="cl"><u>聽日</u>見！</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>1-2</b> 明天很冷。</p><p class="cl"><u>聽日</u>好凍。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>2</i><span class="x">幾點</span><span>几点</span></p><div class="e0"><p class="zh2"><b>2-1</b> 现在几点？</p><p class="cl">而家<u>幾點</u>呀？</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>2-2</b> 你几点上班？</p><p class="cl">你<u>幾點</u>返工？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>3</i><span class="x">見</span><span>见、见面</span></p><div class="e0"><p class="zh2"><b>3-1</b> 回头见！</p><p class="cl">遲啲<u>見</u>！</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>3-2</b> 几点见？</p><p class="cl">幾點<u>見</u>呀？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>4</i><span class="x">想</span><span>想、想要</span></p><div class="e0"><p class="zh2"><b>4-1</b> 我想去香港。</p><p class="cl">我<u>想</u>去香港。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>4-2</b> 你想吃什么？</p><p class="cl">你<u>想</u>食咩？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>5</i><span class="x">約</span><span>约（人）</span></p><div class="e0"><p class="zh2"><b>5-1</b> 我约了他。</p><p class="cl">我<u>約</u>咗佢。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>5-2</b> 约他吃饭吧。</p><p class="cl"><u>約</u>佢食飯啦。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>6</i><span class="x">食晏</span><span>吃午饭</span></p><div class="e0"><p class="zh2"><b>6-1</b> 一起吃午饭吧。</p><p class="cl">一齊<u>食晏</u>啦。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>6-2</b> 你吃午饭了吗？</p><p class="cl">你<u>食晏</u>未呀？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>7</i><span class="x">得唔得閒</span><span>有没有空？</span></p><div class="e0"><p class="zh2"><b>7-1</b> 你有没有空？</p><p class="cl">你<u>得唔得閒</u>呀？</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>7-2</b> 今晚有空吗？</p><p class="cl">今晚<u>得唔得閒</u>？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>8</i><span class="x">得閒</span><span>有空</span></p><div class="e0"><p class="zh2"><b>8-1</b> 我今天有空。</p><p class="cl">我今日<u>得閒</u>。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>8-2</b> 你什么时候有空？</p><p class="cl">你幾時<u>得閒</u>？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>9</i><span class="x">做</span><span>做、干</span></p><div class="e0"><p class="zh2"><b>9-1</b> 你在做什么？</p><p class="cl">你<u>做</u>緊咩？</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>9-2</b> 我想做作业。</p><p class="cl">我想<u>做</u>功課。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>10</i><span class="x">一齊</span><span>一起</span></p><div class="e0"><p class="zh2"><b>10-1</b> 我们一起去吧。</p><p class="cl">我哋<u>一齊</u>去啦。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>10-2</b> 一起拍照！</p><p class="cl"><u>一齊</u>影相！</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>11</i><span class="x">好唔好</span><span>好不好？（提议）</span></p><div class="e0"><p class="zh2"><b>11-1</b> 去饮茶好不好？</p><p class="cl">飲茶<u>好唔好</u>？</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>11-2</b> 明天去好不好？</p><p class="cl">聽日去<u>好唔好</u>？</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>12</i><span class="x">好呀</span><span>好啊（答应）</span></p><div class="e0"><p class="zh2"><b>12-1</b> “去不去？”“好啊！”</p><p class="cl">「去唔去？」「<u>好呀</u>！」</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>12-2</b> 好啊，一起去。</p><p class="cl"><u>好呀</u>，一齊去。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>13</i><span class="x">十二</span><span>十二</span></p><div class="e0"><p class="zh2"><b>13-1</b> 十二点见。</p><p class="cl"><u>十二</u>點見。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>13-2</b> 我有十二本书。</p><p class="cl">我有<u>十二</u>本書。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>14</i><span class="x">點</span><span>点（钟）</span></p><div class="e0"><p class="zh2"><b>14-1</b> 现在三点。</p><p class="cl">而家三<u>點</u>。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>14-2</b> 五点等你。</p><p class="cl">五<u>點</u>等你。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>15</i><span class="x">半</span><span>半</span></p><div class="e0"><p class="zh2"><b>15-1</b> 三点半见。</p><p class="cl">三點<u>半</u>見。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>15-2</b> 吃了一半。</p><p class="cl">食咗一<u>半</u>。</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>16</i><span class="x">等</span><span>等</span></p><div class="e0"><p class="zh2"><b>16-1</b> 等一下。</p><p class="cl"><u>等</u>一陣。</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>16-2</b> 我在这里等你。</p><p class="cl">我喺度<u>等</u>你。</p><div class="ln"></div></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><b>1-1</b><strong>聽日</strong>見！<span class="r">ting1 jat6 gin3!</span></p><p class="a e1"><b>1-2</b><strong>聽日</strong>好凍。<span class="r">ting1 jat6 hou2 dung3.</span></p><p class="a e0"><b>2-1</b>而家<strong>幾點</strong>呀？<span class="r">ji4 gaa1 gei2 dim2 aa3?</span></p><p class="a e1"><b>2-2</b>你<strong>幾點</strong>返工？<span class="r">nei5 gei2 dim2 faan1 gung1?</span></p><p class="a e0"><b>3-1</b>遲啲<strong>見</strong>！<span class="r">ci4 di1 gin3!</span></p><p class="a e1"><b>3-2</b>幾點<strong>見</strong>呀？<span class="r">gei2 dim2 gin3 aa3?</span></p><p class="a e0"><b>4-1</b>我<strong>想</strong>去香港。<span class="r">ngo5 soeng2 heoi3 hoeng1 gong2.</span></p><p class="a e1"><b>4-2</b>你<strong>想</strong>食咩？<span class="r">nei5 soeng2 sik6 me1?</span></p><p class="a e0"><b>5-1</b>我<strong>約</strong>咗佢。<span class="r">ngo5 joek3 zo2 keoi5.</span></p><p class="a e1"><b>5-2</b><strong>約</strong>佢食飯啦。<span class="r">joek3 keoi5 sik6 faan6 laa1.</span></p><p class="a e0"><b>6-1</b>一齊<strong>食晏</strong>啦。<span class="r">jat1 cai4 sik6 aan3 laa1.</span></p><p class="a e1"><b>6-2</b>你<strong>食晏</strong>未呀？<span class="r">nei5 sik6 aan3 mei6 aa3?</span></p><p class="a e0"><b>7-1</b>你<strong>得唔得閒</strong>呀？<span class="r">nei5 dak1 m4 dak1 haan4 aa3?</span></p><p class="a e1"><b>7-2</b>今晚<strong>得唔得閒</strong>？<span class="r">gam1 maan5 dak1 m4 dak1 haan4?</span></p><p class="a e0"><b>8-1</b>我今日<strong>得閒</strong>。<span class="r">ngo5 gam1 jat6 dak1 haan4.</span></p><p class="a e1"><b>8-2</b>你幾時<strong>得閒</strong>？<span class="r">nei5 gei2 si4 dak1 haan4?</span></p><p class="a e0"><b>9-1</b>你<strong>做</strong>緊咩？<span class="r">nei5 zou6 gan2 me1?</span></p><p class="a e1"><b>9-2</b>我想<strong>做</strong>功課。<span class="r">ngo5 soeng2 zou6 gung1 fo3.</span></p><p class="a e0"><b>10-1</b>我哋<strong>一齊</strong>去啦。<span class="r">ngo5 dei6 jat1 cai4 heoi3 laa1.</span></p><p class="a e1"><b>10-2</b><strong>一齊</strong>影相！<span class="r">jat1 cai4 jing2 soeng2!</span></p><p class="a e0"><b>11-1</b>飲茶<strong>好唔好</strong>？<span class="r">jam2 caa4 hou2 m4 hou2?</span></p><p class="a e1"><b>11-2</b>聽日去<strong>好唔好</strong>？<span class="r">ting1 jat6 heoi3 hou2 m4 hou2?</span></p><p class="a e0"><b>12-1</b>「去唔去？」「<strong>好呀</strong>！」<span class="r">heoi3 m4 heoi3? hou2 aa3!</span></p><p class="a e1"><b>12-2</b><strong>好呀</strong>，一齊去。<span class="r">hou2 aa3, jat1 cai4 heoi3.</span></p><p class="a e0"><b>13-1</b><strong>十二</strong>點見。<span class="r">sap6 ji6 dim2 gin3.</span></p><p class="a e1"><b>13-2</b>我有<strong>十二</strong>本書。<span class="r">ngo5 jau5 sap6 ji6 bun2 syu1.</span></p><p class="a e0"><b>14-1</b>而家三<strong>點</strong>。<span class="r">ji4 gaa1 saam1 dim2.</span></p><p class="a e1"><b>14-2</b>五<strong>點</strong>等你。<span class="r">ng5 dim2 dang2 nei5.</span></p><p class="a e0"><b>15-1</b>三點<strong>半</strong>見。<span class="r">saam1 dim2 bun3 gin3.</span></p><p class="a e1"><b>15-2</b>食咗一<strong>半</strong>。<span class="r">sik6 zo2 jat1 bun3.</span></p><p class="a e0"><b>16-1</b><strong>等</strong>一陣。<span class="r">dang2 jat1 zan6.</span></p><p class="a e1"><b>16-2</b>我喺度<strong>等</strong>你。<span class="r">ngo5 hai2 dou6 dang2 nei5.</span></p></div></div></div><p class="foot">“显示生词本身”不勾时只显示中文意思，难度更高。选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 4 课 · 聽日幾點見？ · 例句默写纸</h1><p class="sub">2026-11-12 · 生词例句 · 看中文写出粤语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">明天见！</p><p class="cl"><u>聽日</u>見！</p><div class="ln"></div></div><div class="it e1"><p class="zh2">明天很冷。</p><p class="cl"><u>聽日</u>好凍。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">现在几点？</p><p class="cl">而家<u>幾點</u>呀？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你几点上班？</p><p class="cl">你<u>幾點</u>返工？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">回头见！</p><p class="cl">遲啲<u>見</u>！</p><div class="ln"></div></div><div class="it e1"><p class="zh2">几点见？</p><p class="cl">幾點<u>見</u>呀？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我想去香港。</p><p class="cl">我<u>想</u>去香港。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你想吃什么？</p><p class="cl">你<u>想</u>食咩？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我约了他。</p><p class="cl">我<u>約</u>咗佢。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">约他吃饭吧。</p><p class="cl"><u>約</u>佢食飯啦。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">一起吃午饭吧。</p><p class="cl">一齊<u>食晏</u>啦。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你吃午饭了吗？</p><p class="cl">你<u>食晏</u>未呀？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你有没有空？</p><p class="cl">你<u>得唔得閒</u>呀？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">今晚有空吗？</p><p class="cl">今晚<u>得唔得閒</u>？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我今天有空。</p><p class="cl">我今日<u>得閒</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你什么时候有空？</p><p class="cl">你幾時<u>得閒</u>？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你在做什么？</p><p class="cl">你<u>做</u>緊咩？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我想做作业。</p><p class="cl">我想<u>做</u>功課。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们一起去吧。</p><p class="cl">我哋<u>一齊</u>去啦。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">一起拍照！</p><p class="cl"><u>一齊</u>影相！</p><div class="ln"></div></div><div class="it e0"><p class="zh2">去饮茶好不好？</p><p class="cl">飲茶<u>好唔好</u>？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">明天去好不好？</p><p class="cl">聽日去<u>好唔好</u>？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">“去不去？”“好啊！”</p><p class="cl">「去唔去？」「<u>好呀</u>！」</p><div class="ln"></div></div><div class="it e1"><p class="zh2">好啊，一起去。</p><p class="cl"><u>好呀</u>，一齊去。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">十二点见。</p><p class="cl"><u>十二</u>點見。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我有十二本书。</p><p class="cl">我有<u>十二</u>本書。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">现在三点。</p><p class="cl">而家三<u>點</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">五点等你。</p><p class="cl">五<u>點</u>等你。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">三点半见。</p><p class="cl">三點<u>半</u>見。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">吃了一半。</p><p class="cl">食咗一<u>半</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">等一下。</p><p class="cl"><u>等</u>一陣。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我在这里等你。</p><p class="cl">我喺度<u>等</u>你。</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><strong>聽日</strong>見！<span class="r">ting1 jat6 gin3!</span></p><p class="a e1"><strong>聽日</strong>好凍。<span class="r">ting1 jat6 hou2 dung3.</span></p><p class="a e0">而家<strong>幾點</strong>呀？<span class="r">ji4 gaa1 gei2 dim2 aa3?</span></p><p class="a e1">你<strong>幾點</strong>返工？<span class="r">nei5 gei2 dim2 faan1 gung1?</span></p><p class="a e0">遲啲<strong>見</strong>！<span class="r">ci4 di1 gin3!</span></p><p class="a e1">幾點<strong>見</strong>呀？<span class="r">gei2 dim2 gin3 aa3?</span></p><p class="a e0">我<strong>想</strong>去香港。<span class="r">ngo5 soeng2 heoi3 hoeng1 gong2.</span></p><p class="a e1">你<strong>想</strong>食咩？<span class="r">nei5 soeng2 sik6 me1?</span></p><p class="a e0">我<strong>約</strong>咗佢。<span class="r">ngo5 joek3 zo2 keoi5.</span></p><p class="a e1"><strong>約</strong>佢食飯啦。<span class="r">joek3 keoi5 sik6 faan6 laa1.</span></p><p class="a e0">一齊<strong>食晏</strong>啦。<span class="r">jat1 cai4 sik6 aan3 laa1.</span></p><p class="a e1">你<strong>食晏</strong>未呀？<span class="r">nei5 sik6 aan3 mei6 aa3?</span></p><p class="a e0">你<strong>得唔得閒</strong>呀？<span class="r">nei5 dak1 m4 dak1 haan4 aa3?</span></p><p class="a e1">今晚<strong>得唔得閒</strong>？<span class="r">gam1 maan5 dak1 m4 dak1 haan4?</span></p><p class="a e0">我今日<strong>得閒</strong>。<span class="r">ngo5 gam1 jat6 dak1 haan4.</span></p><p class="a e1">你幾時<strong>得閒</strong>？<span class="r">nei5 gei2 si4 dak1 haan4?</span></p><p class="a e0">你<strong>做</strong>緊咩？<span class="r">nei5 zou6 gan2 me1?</span></p><p class="a e1">我想<strong>做</strong>功課。<span class="r">ngo5 soeng2 zou6 gung1 fo3.</span></p><p class="a e0">我哋<strong>一齊</strong>去啦。<span class="r">ngo5 dei6 jat1 cai4 heoi3 laa1.</span></p><p class="a e1"><strong>一齊</strong>影相！<span class="r">jat1 cai4 jing2 soeng2!</span></p><p class="a e0">飲茶<strong>好唔好</strong>？<span class="r">jam2 caa4 hou2 m4 hou2?</span></p><p class="a e1">聽日去<strong>好唔好</strong>？<span class="r">ting1 jat6 heoi3 hou2 m4 hou2?</span></p><p class="a e0">「去唔去？」「<strong>好呀</strong>！」<span class="r">heoi3 m4 heoi3? hou2 aa3!</span></p><p class="a e1"><strong>好呀</strong>，一齊去。<span class="r">hou2 aa3, jat1 cai4 heoi3.</span></p><p class="a e0"><strong>十二</strong>點見。<span class="r">sap6 ji6 dim2 gin3.</span></p><p class="a e1">我有<strong>十二</strong>本書。<span class="r">ngo5 jau5 sap6 ji6 bun2 syu1.</span></p><p class="a e0">而家三<strong>點</strong>。<span class="r">ji4 gaa1 saam1 dim2.</span></p><p class="a e1">五<strong>點</strong>等你。<span class="r">ng5 dim2 dang2 nei5.</span></p><p class="a e0">三點<strong>半</strong>見。<span class="r">saam1 dim2 bun3 gin3.</span></p><p class="a e1">食咗一<strong>半</strong>。<span class="r">sik6 zo2 jat1 bun3.</span></p><p class="a e0"><strong>等</strong>一陣。<span class="r">dang2 jat1 zan6.</span></p><p class="a e1">我喺度<strong>等</strong>你。<span class="r">ngo5 hai2 dou6 dang2 nei5.</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+/* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
+   (front and back of one sheet) with the largest type that fits, page 1 filled first; the answers follow on a new page. If even
+   two pages are not enough, one example per word is used (and the preview says so). */
 (function(){
-  var b = document.body, key = 'wk-ex-print', st = {mode:'sent', one:false, head:true, ans:true};
-  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, head:r.head !== false, ans:r.ans !== false}; } catch (e) {}
-  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), head = document.getElementById('head'), ans = document.getElementById('withans');
+  var b = document.body, root = document.documentElement, key = 'wk-ex-print', st = {mode:'sent', one:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), ans = document.getElementById('withans');
   function draw(){
     b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
-    b.classList.toggle('one', st.one); b.classList.toggle('nohead', !st.head); b.classList.toggle('noans', !st.ans);
-    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; head.checked = st.head; ans.checked = st.ans;
+    b.classList.toggle('one', st.one); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; ans.checked = st.ans;
   }
-  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} if (window.__exRefit) setTimeout(window.__exRefit, 0); }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
   M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
-  head.addEventListener('change', function(){ st.head = head.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
-  /* fit on one sheet: exercise on the front (two columns, writing lines scale with the type), answers on the back.
-     If two examples per word cannot fit even at the smallest size, it prints one example per word and says so. */
-  var root = document.documentElement, inn = document.querySelector('.in'), qs = document.querySelector('.qs'), an = document.querySelector('.ans');
-  var SPARE = 0.95, auto1 = false, over = false, preview = false;
-  function tipText(){
-    var t = document.getElementById('ptip'); if (!t) return;
-    t.textContent = over ? '这课词太多，一页放不下，默写会排到第 2 页（共两张纸）。可以试试“挖空填词”。' : auto1 ? '两句放不下一页，已自动改成每个词 1 句。' : '';
-    t.style.display = t.textContent ? '' : 'none';
-  }
+
+  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
+  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function frontOK(){ return qs.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function backOK(){ var cs = getComputedStyle(an); return an.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth) <= H(); }
-  function fitFront(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];          /* the short fill-in sentences also fit in three columns */
+  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
+  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
+  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
+  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
+  function split(){
+    var vis = visible(), lo = 0, hi = vis.length;
+    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
+    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
+    putVis(lo);
+    return p1() && inner(q2) <= H();
+  }
+  function fitEx(){
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
     for (var c = 0; c < cols.length; c++){
       root.style.setProperty('--qc', cols[c]);
-      for (var f = 13; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (frontOK()) return true; }
+      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
     }
     return false;
   }
-  function fitBack(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (backOK()) return; } }
+  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); auto1 = false;
-    over = false;
-    if (!fitFront()){
+    b.classList.add('printing'); unsplit(); auto1 = over = false;
+    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitFront()) over = true;
+      if (!fitEx()) over = true;
     }
-    if (st.ans) fitBack();
+    if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); if (auto1){ b.classList.remove('one'); auto1 = false; } }
+  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
-  window.__exRefit = function(){ if (preview){ clear(); fit(); } };
   document.getElementById('prevBtn').addEventListener('click', function(){
     preview = true; fit();
     var old = document.getElementById('pbar'); if (old) old.remove();
     var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
     bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
     bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
-    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); draw(); };
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); };
     bar.children[2].onclick = function(){ window.print(); };
     document.body.appendChild(bar);
     tipText();

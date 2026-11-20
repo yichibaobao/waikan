@@ -36,20 +36,21 @@ h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 
   .foot{display:none}
 }
 
-.w{break-inside:avoid;page-break-inside:avoid;margin:0 0 10px}
-.wh{margin:0 0 2px;font-weight:800;font-size:15px} .wh i{font-style:normal;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace;margin-right:6px}
-.wh span{font-weight:600;color:var(--muted);font-size:13px;margin-left:8px}
-.wh span.x{margin-left:0;color:var(--fg);font-weight:800;font-size:15px}
-.nohead .wh .x{display:none}
-.zh2{margin:2px 0 0 1.9em;font-size:14.5px;line-height:1.55}
-.cl{margin:2px 0 0 1.9em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.sheet{counter-reset:q}
+.it{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;counter-increment:q}
+.zh2{margin:0;font-size:14.5px;line-height:1.55}
+.zh2::before,.a::before{display:inline-block;min-width:2em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.zh2::before{content:counter(q)}
+.cl{margin:2px 0 0 2em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
 .cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.it .ln{margin-left:2em}
 .m-cloze .ln,.m-sent .cl{display:none}
 .one .e1{display:none}
-.a .x{color:var(--muted);font-size:.9em}
+.list{counter-reset:a}
+.a{counter-increment:a} .a::before{content:counter(a)}
 #mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
 .tip{margin:0 0 12px;color:var(--muted);font-size:13px}
-/* one sheet: the exercise fills the front page, the answers the back; the script picks the largest type that fits */
+/* print: the exercise on two pages (front and back of one sheet), the answers on a third page; the script picks the largest type */
 @page{size:A4;margin:10mm}
 body.printing{background:#fff}
 .printing .in{width:190mm;max-width:none;padding:0;margin:0 auto;font-size:var(--fs,9px);line-height:1.35}
@@ -57,73 +58,84 @@ body.printing{background:#fff}
 .printing h1{font-size:1.5em;margin:0} .printing .sub{font-size:.85em;margin:0 0 .5em}
 .printing .sheet{padding:0;border-radius:0;background:none}
 .printing .qs{column-count:var(--qc,2);column-gap:5mm;column-rule:.3pt solid #ccc}
-.printing .w{margin:0 0 .45em}
-.printing .wh{font-size:1em;margin:0} .printing .wh span,.printing .wh i{font-size:.85em} .printing .wh span.x{font-size:1em}
-.printing .zh2{font-size:.95em;margin:.1em 0 0 1.6em;line-height:1.3} .printing .zh2 b{font-size:.85em}
-.printing .cl{font-size:1em;line-height:1.85;margin:0 0 0 1.6em}
-.printing .ln{height:2.3em;margin-left:1.6em;border-bottom:.4pt solid #888}
+.printing #qs2{break-before:page;page-break-before:always}
+@media screen{.printing #qs2{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
+.printing .it{margin:0 0 .5em}
+.printing .zh2{font-size:1em;line-height:1.3} .printing .zh2::before,.printing .a::before{font-size:.85em}
+.printing .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.printing .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
 .printing .ans{margin-top:0;break-before:page;page-break-before:always;font-size:var(--fa,9px)}
-.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
-.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a b{font-size:.8em} .printing .a .r{font-size:.85em}
 @media screen{.printing .ans{margin-top:10mm;padding-top:8mm;border-top:1px dashed #999}}
+.printing .ans h2{font-size:1.2em;margin:0 0 .3em} .printing .ans .list{column-count:2;column-gap:5mm}
+.printing .a{font-size:1em;margin:0 0 .25em;break-inside:avoid} .printing .a .r{font-size:.85em}
 @media print{.noprint{display:none!important}}
-</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览一张纸</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 4 课 · 화장실이 어디예요? · 例句默写纸</h1><p class="sub">2026-11-11 · 12 个词的例句 · 看中文写出韩语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="head"> 显示生词本身</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印成一张纸：先选好上面的选项，再点“预览一张纸”→“打印”，打印设置里选“双面打印”——正面是默写，背面是答案。</p><div class="sheet"><div class="qs"><div class="w"><p class="wh"><i>1</i><span class="x">화장실</span><span>洗手间、厕所</span></p><div class="e0"><p class="zh2"><b>1-1</b> 洗手间在哪里？</p><p class="cl"><u>화장실</u>이 어디예요?</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>1-2</b> 去洗手间。</p><p class="cl"><u>화장실</u>에 가요.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>2</i><span class="x">어디</span><span>哪里</span></p><div class="e0"><p class="zh2"><b>2-1</b> 你家在哪里？</p><p class="cl">집이 <u>어디</u>예요?</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>2-2</b> 去哪儿？</p><p class="cl"><u>어디</u> 가요?</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>3</i><span class="x">역</span><span>车站</span></p><div class="e0"><p class="zh2"><b>3-1</b> 车站很近。</p><p class="cl"><u>역</u>이 가까워요.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>3-2</b> 去首尔站。</p><p class="cl">서울<u>역</u>에 가요.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>4</i><span class="x">길</span><span>路</span></p><div class="e0"><p class="zh2"><b>4-1</b> 请走这条路。</p><p class="cl">이 <u>길</u>로 가세요.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>4-2</b> 路很宽。</p><p class="cl"><u>길</u>이 넓어요.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>5</i><span class="x">묻다</span><span>问</span></p><div class="e0"><p class="zh2"><b>5-1</b> 问老师。</p><p class="cl">선생님께 <u>물어요</u>.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>5-2</b> 问名字。</p><p class="cl">이름을 <u>물어요</u>.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>6</i><span class="x">저기요</span><span>不好意思、打扰一下（叫人）</span></p><div class="e0"><p class="zh2"><b>6-1</b> 不好意思，这个多少钱？</p><p class="cl"><u>저기요</u>, 이거 얼마예요?</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>6-2</b> 服务员！请给我水。</p><p class="cl"><u>저기요</u>! 물 주세요.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>7</i><span class="x">저기</span><span>那里（离两人都远）</span></p><div class="e0"><p class="zh2"><b>7-1</b> 那边有家咖啡馆。</p><p class="cl"><u>저기</u> 카페가 있어요.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>7-2</b> 请往那边走。</p><p class="cl"><u>저기</u>로 가세요.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>8</i><span class="x">오른쪽</span><span>右边</span></p><div class="e0"><p class="zh2"><b>8-1</b> 往右走。</p><p class="cl"><u>오른쪽</u>으로 가세요.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>8-2</b> 车站在右边。</p><p class="cl">역은 <u>오른쪽</u>에 있어요.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>9</i><span class="x">가다</span><span>去、走</span></p><div class="e0"><p class="zh2"><b>9-1</b> 去学校。</p><p class="cl">학교에 <u>가요</u>.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>9-2</b> 请往这边走。</p><p class="cl">이쪽으로 <u>가세요</u>.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>10</i><span class="x">멀다</span><span>远</span></p><div class="e0"><p class="zh2"><b>10-1</b> 家很远。</p><p class="cl">집이 <u>멀어요</u>.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>10-2</b> 车站远吗？</p><p class="cl">역이 <u>멀어요</u>?</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>11</i><span class="x">가깝다</span><span>近</span></p><div class="e0"><p class="zh2"><b>11-1</b> 学校很近。</p><p class="cl">학교가 <u>가까워요</u>.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>11-2</b> 车站非常近。</p><p class="cl">역이 아주 <u>가까워요</u>.</p><div class="ln"></div></div></div><div class="w"><p class="wh"><i>12</i><span class="x">고맙습니다</span><span>谢谢</span></p><div class="e0"><p class="zh2"><b>12-1</b> 谢谢你帮我。</p><p class="cl">도와줘서 <u>고맙습니다</u>.</p><div class="ln"></div></div><div class="e1"><p class="zh2"><b>12-2</b> 真的谢谢！</p><p class="cl">정말 <u>고맙습니다</u>!</p><div class="ln"></div></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><b>1-1</b><strong>화장실</strong>이 어디예요?<span class="r">hwajangsiri eodiyeyo?</span></p><p class="a e1"><b>1-2</b><strong>화장실</strong>에 가요.<span class="r">hwajangsire gayo.</span></p><p class="a e0"><b>2-1</b>집이 <strong>어디</strong>예요?<span class="r">jibi eodiyeyo?</span></p><p class="a e1"><b>2-2</b><strong>어디</strong> 가요?<span class="r">eodi gayo?</span></p><p class="a e0"><b>3-1</b><strong>역</strong>이 가까워요.<span class="r">yeogi gakkawoyo.</span></p><p class="a e1"><b>3-2</b>서울<strong>역</strong>에 가요.<span class="r">seoullyeoge gayo.</span></p><p class="a e0"><b>4-1</b>이 <strong>길</strong>로 가세요.<span class="r">i gillo gaseyo.</span></p><p class="a e1"><b>4-2</b><strong>길</strong>이 넓어요.<span class="r">giri neolbeoyo.</span></p><p class="a e0"><b>5-1</b>선생님께 <strong>물어요</strong>.<span class="r">seonsaengnimkke mureoyo.</span></p><p class="a e1"><b>5-2</b>이름을 <strong>물어요</strong>.<span class="r">ireumeul mureoyo.</span></p><p class="a e0"><b>6-1</b><strong>저기요</strong>, 이거 얼마예요?<span class="r">jeogiyo, igeo eolmayeyo?</span></p><p class="a e1"><b>6-2</b><strong>저기요</strong>! 물 주세요.<span class="r">jeogiyo! mul juseyo.</span></p><p class="a e0"><b>7-1</b><strong>저기</strong> 카페가 있어요.<span class="r">jeogi kapega isseoyo.</span></p><p class="a e1"><b>7-2</b><strong>저기</strong>로 가세요.<span class="r">jeogiro gaseyo.</span></p><p class="a e0"><b>8-1</b><strong>오른쪽</strong>으로 가세요.<span class="r">oreunjjogeuro gaseyo.</span></p><p class="a e1"><b>8-2</b>역은 <strong>오른쪽</strong>에 있어요.<span class="r">yeogeun oreunjjoge isseoyo.</span></p><p class="a e0"><b>9-1</b>학교에 <strong>가요</strong>.<span class="r">hakgyoe gayo.</span></p><p class="a e1"><b>9-2</b>이쪽으로 <strong>가세요</strong>.<span class="r">ijjogeuro gaseyo.</span></p><p class="a e0"><b>10-1</b>집이 <strong>멀어요</strong>.<span class="r">jibi meoreoyo.</span></p><p class="a e1"><b>10-2</b>역이 <strong>멀어요</strong>?<span class="r">yeogi meoreoyo?</span></p><p class="a e0"><b>11-1</b>학교가 <strong>가까워요</strong>.<span class="r">hakgyoga gakkawoyo.</span></p><p class="a e1"><b>11-2</b>역이 아주 <strong>가까워요</strong>.<span class="r">yeogi aju gakkawoyo.</span></p><p class="a e0"><b>12-1</b>도와줘서 <strong>고맙습니다</strong>.<span class="r">dowajwoseo gomapseumnida.</span></p><p class="a e1"><b>12-2</b>정말 <strong>고맙습니다</strong>!<span class="r">jeongmal gomapseumnida!</span></p></div></div></div><p class="foot">“显示生词本身”不勾时只显示中文意思，难度更高。选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 4 课 · 화장실이 어디예요? · 例句默写纸</h1><p class="sub">2026-11-11 · 生词例句 · 看中文写出韩语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">洗手间在哪里？</p><p class="cl"><u>화장실</u>이 어디예요?</p><div class="ln"></div></div><div class="it e1"><p class="zh2">去洗手间。</p><p class="cl"><u>화장실</u>에 가요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你家在哪里？</p><p class="cl">집이 <u>어디</u>예요?</p><div class="ln"></div></div><div class="it e1"><p class="zh2">去哪儿？</p><p class="cl"><u>어디</u> 가요?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">车站很近。</p><p class="cl"><u>역</u>이 가까워요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">去首尔站。</p><p class="cl">서울<u>역</u>에 가요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">请走这条路。</p><p class="cl">이 <u>길</u>로 가세요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">路很宽。</p><p class="cl"><u>길</u>이 넓어요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">问老师。</p><p class="cl">선생님께 <u>물어요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">问名字。</p><p class="cl">이름을 <u>물어요</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">不好意思，这个多少钱？</p><p class="cl"><u>저기요</u>, 이거 얼마예요?</p><div class="ln"></div></div><div class="it e1"><p class="zh2">服务员！请给我水。</p><p class="cl"><u>저기요</u>! 물 주세요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">那边有家咖啡馆。</p><p class="cl"><u>저기</u> 카페가 있어요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请往那边走。</p><p class="cl"><u>저기</u>로 가세요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">往右走。</p><p class="cl"><u>오른쪽</u>으로 가세요.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">车站在右边。</p><p class="cl">역은 <u>오른쪽</u>에 있어요.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">去学校。</p><p class="cl">학교에 <u>가요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">请往这边走。</p><p class="cl">이쪽으로 <u>가세요</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">家很远。</p><p class="cl">집이 <u>멀어요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">车站远吗？</p><p class="cl">역이 <u>멀어요</u>?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">学校很近。</p><p class="cl">학교가 <u>가까워요</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">车站非常近。</p><p class="cl">역이 아주 <u>가까워요</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">谢谢你帮我。</p><p class="cl">도와줘서 <u>고맙습니다</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">真的谢谢！</p><p class="cl">정말 <u>고맙습니다</u>!</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><strong>화장실</strong>이 어디예요?<span class="r">hwajangsiri eodiyeyo?</span></p><p class="a e1"><strong>화장실</strong>에 가요.<span class="r">hwajangsire gayo.</span></p><p class="a e0">집이 <strong>어디</strong>예요?<span class="r">jibi eodiyeyo?</span></p><p class="a e1"><strong>어디</strong> 가요?<span class="r">eodi gayo?</span></p><p class="a e0"><strong>역</strong>이 가까워요.<span class="r">yeogi gakkawoyo.</span></p><p class="a e1">서울<strong>역</strong>에 가요.<span class="r">seoullyeoge gayo.</span></p><p class="a e0">이 <strong>길</strong>로 가세요.<span class="r">i gillo gaseyo.</span></p><p class="a e1"><strong>길</strong>이 넓어요.<span class="r">giri neolbeoyo.</span></p><p class="a e0">선생님께 <strong>물어요</strong>.<span class="r">seonsaengnimkke mureoyo.</span></p><p class="a e1">이름을 <strong>물어요</strong>.<span class="r">ireumeul mureoyo.</span></p><p class="a e0"><strong>저기요</strong>, 이거 얼마예요?<span class="r">jeogiyo, igeo eolmayeyo?</span></p><p class="a e1"><strong>저기요</strong>! 물 주세요.<span class="r">jeogiyo! mul juseyo.</span></p><p class="a e0"><strong>저기</strong> 카페가 있어요.<span class="r">jeogi kapega isseoyo.</span></p><p class="a e1"><strong>저기</strong>로 가세요.<span class="r">jeogiro gaseyo.</span></p><p class="a e0"><strong>오른쪽</strong>으로 가세요.<span class="r">oreunjjogeuro gaseyo.</span></p><p class="a e1">역은 <strong>오른쪽</strong>에 있어요.<span class="r">yeogeun oreunjjoge isseoyo.</span></p><p class="a e0">학교에 <strong>가요</strong>.<span class="r">hakgyoe gayo.</span></p><p class="a e1">이쪽으로 <strong>가세요</strong>.<span class="r">ijjogeuro gaseyo.</span></p><p class="a e0">집이 <strong>멀어요</strong>.<span class="r">jibi meoreoyo.</span></p><p class="a e1">역이 <strong>멀어요</strong>?<span class="r">yeogi meoreoyo?</span></p><p class="a e0">학교가 <strong>가까워요</strong>.<span class="r">hakgyoga gakkawoyo.</span></p><p class="a e1">역이 아주 <strong>가까워요</strong>.<span class="r">yeogi aju gakkawoyo.</span></p><p class="a e0">도와줘서 <strong>고맙습니다</strong>.<span class="r">dowajwoseo gomapseumnida.</span></p><p class="a e1">정말 <strong>고맙습니다</strong>!<span class="r">jeongmal gomapseumnida!</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+/* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
+   (front and back of one sheet) with the largest type that fits, page 1 filled first; the answers follow on a new page. If even
+   two pages are not enough, one example per word is used (and the preview says so). */
 (function(){
-  var b = document.body, key = 'wk-ex-print', st = {mode:'sent', one:false, head:true, ans:true};
-  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, head:r.head !== false, ans:r.ans !== false}; } catch (e) {}
-  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), head = document.getElementById('head'), ans = document.getElementById('withans');
+  var b = document.body, root = document.documentElement, key = 'wk-ex-print', st = {mode:'sent', one:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), ans = document.getElementById('withans');
   function draw(){
     b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
-    b.classList.toggle('one', st.one); b.classList.toggle('nohead', !st.head); b.classList.toggle('noans', !st.ans);
-    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; head.checked = st.head; ans.checked = st.ans;
+    b.classList.toggle('one', st.one); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; ans.checked = st.ans;
   }
-  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} if (window.__exRefit) setTimeout(window.__exRefit, 0); }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
   M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
   one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
-  head.addEventListener('change', function(){ st.head = head.checked; save(); draw(); });
   ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
-  /* fit on one sheet: exercise on the front (two columns, writing lines scale with the type), answers on the back.
-     If two examples per word cannot fit even at the smallest size, it prints one example per word and says so. */
-  var root = document.documentElement, inn = document.querySelector('.in'), qs = document.querySelector('.qs'), an = document.querySelector('.ans');
-  var SPARE = 0.95, auto1 = false, over = false, preview = false;
-  function tipText(){
-    var t = document.getElementById('ptip'); if (!t) return;
-    t.textContent = over ? '这课词太多，一页放不下，默写会排到第 2 页（共两张纸）。可以试试“挖空填词”。' : auto1 ? '两句放不下一页，已自动改成每个词 1 句。' : '';
-    t.style.display = t.textContent ? '' : 'none';
-  }
+
+  var inn = document.querySelector('.in'), q1 = document.getElementById('qs1'), an = document.querySelector('.ans');
+  var items = [].slice.call(q1.children), q2 = null, SPARE = 0.95, auto1 = false, over = false, preview = false;
   function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
-  function frontOK(){ return qs.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
-  function backOK(){ var cs = getComputedStyle(an); return an.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth) <= H(); }
-  function fitFront(){
-    var cols = st.mode === 'cloze' ? [2, 3] : [2];          /* the short fill-in sentences also fit in three columns */
+  function inner(el){ var cs = getComputedStyle(el); return el.getBoundingClientRect().height - parseFloat(cs.paddingTop) - parseFloat(cs.borderTopWidth); }
+  function p1(){ return q1.getBoundingClientRect().bottom - inn.getBoundingClientRect().top <= H(); }
+  function put(k){ items.forEach(function(it, i){ (i < k || !q2 ? q1 : q2).appendChild(it); }); }
+  function visible(){ return items.filter(function(it){ return getComputedStyle(it).display !== 'none'; }); }
+  function split(){
+    var vis = visible(), lo = 0, hi = vis.length;
+    function putVis(k){ var cut = k < vis.length ? items.indexOf(vis[k]) : items.length; put(cut); }
+    while (lo < hi){ var mid = Math.ceil((lo + hi) / 2); putVis(mid); if (p1()) lo = mid; else hi = mid - 1; }
+    putVis(lo);
+    return p1() && inner(q2) <= H();
+  }
+  function fitEx(){
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
     for (var c = 0; c < cols.length; c++){
       root.style.setProperty('--qc', cols[c]);
-      for (var f = 13; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (frontOK()) return true; }
+      for (var f = 14; f >= 7.5; f -= 0.25){ root.style.setProperty('--fs', f + 'px'); if (split()) return true; }
     }
     return false;
   }
-  function fitBack(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (backOK()) return; } }
+  function fitAns(){ for (var f = 12; f >= 6; f -= 0.25){ root.style.setProperty('--fa', f + 'px'); if (inner(an) <= H()) return; } }
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function unsplit(){ if (q2){ q2.remove(); q2 = null; } put(items.length); }
   function fit(){
-    b.classList.add('printing'); auto1 = false;
-    over = false;
-    if (!fitFront()){
+    b.classList.add('printing'); unsplit(); auto1 = over = false;
+    q2 = document.createElement('div'); q2.className = 'qs'; q2.id = 'qs2'; q1.parentNode.insertBefore(q2, q1.nextSibling);
+    if (!fitEx()){
       if (!st.one){ b.classList.add('one'); auto1 = true; }
-      if (!fitFront()) over = true;
+      if (!fitEx()) over = true;
     }
-    if (st.ans) fitBack();
+    if (st.ans) fitAns();
     tipText();
   }
-  function clear(){ b.classList.remove('printing'); if (auto1){ b.classList.remove('one'); auto1 = false; } }
+  function clear(){ b.classList.remove('printing'); unsplit(); if (auto1){ auto1 = false; draw(); } }
   window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
   window.addEventListener('afterprint', function(){ if (!preview) clear(); });
-  window.__exRefit = function(){ if (preview){ clear(); fit(); } };
   document.getElementById('prevBtn').addEventListener('click', function(){
     preview = true; fit();
     var old = document.getElementById('pbar'); if (old) old.remove();
     var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
     bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
     bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
-    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); draw(); };
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); };
     bar.children[2].onclick = function(){ window.print(); };
     document.body.appendChild(bar);
     tipText();

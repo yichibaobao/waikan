@@ -132,10 +132,10 @@ first day, then 1, 2, 4, 7, 15 and 30 days later), the dates filled in from a st
 stay in the browser (`wk-check-<slug>`); the sheet prints on A4.
 English and Japanese articles also get `a/<slug>/trans.html`, a printable 回译练习纸: each Chinese sentence (grouped by paragraph)
 with ruled lines to write the original on, optional word hints, and the original text as an answer key starting on a new page.
-Every article also gets `a/<slug>/ex.html`, a printable 例句默写纸 of the words' first two examples: 整句默写 (Chinese + lines)
-or 挖空填词 (the sentence with the word blanked), optionally one example per word or without the word itself. 预览一张纸 fits it on one
-sheet: the exercise on the front (two columns, three for 挖空填词), the answers on the back; when two examples per word do not fit, it
-uses one; a very long list (70+ words) can still spill onto a second front page.
+Every article also gets `a/<slug>/ex.html`, a printable 例句默写纸 of the words' first two examples (numbered sentences, no word
+headings): 整句默写 (Chinese + lines) or 挖空填词 (the sentence with the word blanked), optionally one example per word. Printing puts
+the exercise on the two sides of one sheet (page 1 filled first, largest type that fits; one example per word if two do not fit)
+and the answers on a third page.
 
 ## Back-translation (回译, English and Japanese articles)
 
