@@ -1,0 +1,180 @@
+<!doctype html><html lang="zh-CN" data-lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>For Better or for Worse · 例句默写纸 · 外刊精读</title><style>
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#E9D8CA;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff}
+html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.6 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:820px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn,.prev{appearance:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.btn{border:0;background:var(--accent);color:#fff} .prev{border:2px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;font-size:13px}
+h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 0 6px;font-size:18px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 14px;padding:12px 14px;background:var(--surface);border-radius:16px}
+.ctl label{display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600}
+.sheet{background:var(--surface);border-radius:16px;padding:16px 18px}
+.blk{margin:0 0 6px;color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.04em}
+.q{break-inside:avoid;page-break-inside:avoid;margin:0 0 12px}
+.zh{margin:0;font-size:15.5px;line-height:1.6} .zh b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 13px ui-monospace,Menlo,monospace}
+.hint{display:none;margin:2px 0 0 1.9em;color:var(--muted);font-size:12.5px}
+.hints .hint{display:block}
+.ln{height:30px;margin-left:1.9em;border-bottom:1px solid #C9B8AA}
+.gap{height:8px}
+.ans{margin-top:22px}
+.noans .ans{display:none}
+.a{margin:0 0 6px;font:400 15px/1.55 Georgia,'Times New Roman',serif} .a b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.a .r{display:block;margin-left:2.2em;color:var(--muted);font:400 12.5px/1.5 ui-rounded,system-ui,sans-serif}
+.foot{margin:12px 0 0;color:var(--muted);font-size:12.5px}
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:#fff} .in{max-width:none;padding:0} .noprint{display:none!important}
+  h1{font-size:16px;margin:0} .sub{font-size:9.5px;margin:0 0 6px}
+  .sheet{padding:0;border-radius:0}
+  .zh{font-size:11.5px} .zh b{font-size:10px} .hint{font-size:9.5px}
+  .q{margin:0 0 7px} .ln{height:8.5mm;border-bottom-color:#999}
+  .ans{margin-top:0;break-before:page;page-break-before:always}
+  h2{font-size:14px} .a{font-size:11px;margin:0 0 3px} .a b{font-size:9px} .a .r{font-size:9.5px}
+  .foot{display:none}
+}
+
+.sheet{counter-reset:q}
+.it{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;counter-increment:q}
+.zh2{margin:0;font-size:14.5px;line-height:1.55}
+.zh2::before,.a::before{display:inline-block;min-width:2em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.zh2::before{content:counter(q)}
+.cl{margin:2px 0 0 2em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.it .ln{margin-left:2em}
+.m-cloze .ln,.m-sent .cl{display:none}
+.one .e1{display:none}
+.list{counter-reset:a}
+.a{counter-increment:a} .a::before{content:counter(a)}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
+.tip{margin:0 0 12px;color:var(--muted);font-size:13px}
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
+@page{size:A4;margin:10mm}
+body.printing{background:#fff}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
+@media print{.noprint{display:none!important}}
+</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>For Better or for Worse · 例句默写纸</h1><p class="sub">2026-11-22 · 生词例句 · 看中文写出英文例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">不管好坏，我们只能用这辆车了。</p><p class="cl"><u>For better or worse</u>, we're stuck with this car.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们承诺无论顺境逆境都要在一起。</p><p class="cl">They promised to stay together <u>for better or for worse</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">我们在一个安静的渔村住了一周。</p><p class="cl">We spent a week in a <u>sleepy</u> fishing village.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">宝宝开始犯困了。</p><p class="cl">The baby is getting <u>sleepy</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这座城市将举办下一届奥运会。</p><p class="cl">The city will <u>stage</u> the next Olympic Games.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">工人们在工厂外举行了抗议。</p><p class="cl">Workers <u>staged</u> a protest outside the factory.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">每年夏天都有成千上万的游客涌上这座岛。</p><p class="cl">Thousands of tourists <u>descend on</u> the island every summer.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">假期亲戚们一窝蜂地来了我家。</p><p class="cl">My relatives <u>descended on</u> us for the holidays.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我得拼命跑才赶上末班车。</p><p class="cl">I had to <u>sprint</u> to catch the last train.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她向终点线冲刺。</p><p class="cl">She <u>sprinted</u> towards the finish line.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他把外套往椅背上一搭。</p><p class="cl">He <u>slung</u> his jacket over the back of the chair.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她肩上挎着个包走了进来。</p><p class="cl">She walked in with a bag <u>slung over</u> her shoulder.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">没人确定这首歌的来历。</p><p class="cl">Nobody is sure about the <u>origins</u> of the song.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个词源自拉丁语。</p><p class="cl">The word has Latin <u>origins</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">据说这部电影是根据真实故事改编的。</p><p class="cl">The film is <u>supposedly</u> based on a true story.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">据说他是镇上最好的厨师。</p><p class="cl">He's <u>supposedly</u> the best cook in town.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">根据当地传说，这湖里住着一只怪物。</p><p class="cl">In local <u>folklore</u>, the lake is home to a monster.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">她研究斯堪的纳维亚的民间传说。</p><p class="cl">She studies Scandinavian <u>folklore</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这门课很受想当作家的人欢迎。</p><p class="cl">The course is popular with <u>would-be</u> writers.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">一个企图行窃的人被店主抓住了。</p><p class="cl">A <u>would-be</u> thief was caught by the shop owner.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">奶奶给我们讲鬼和女巫的故事。</p><p class="cl">Grandma told us <u>tales</u> of ghosts and witches.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这是一个关于爱与失去的故事。</p><p class="cl">It's a <u>tale</u> of love and loss.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">警察在黎明时突袭了这栋楼。</p><p class="cl">Police <u>raided</u> the building at dawn.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">孩子们放学后把冰箱翻了个遍。</p><p class="cl">The kids <u>raided</u> the fridge after school.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">那个古老的故事里，国王躲在一棵树上。</p><p class="cl">The old story <u>has</u> the king hiding in a tree.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那位喜剧演员让我们笑了一整晚。</p><p class="cl">The comedian <u>had</u> us laughing all night.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他为什么走，谁也说不准。</p><p class="cl">Why he left is <u>anyone&#x27;s guess</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">火车什么时候到，谁也不知道。</p><p class="cl">When the train will arrive is <u>anyone&#x27;s guess</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">酒店借节日涨价赚钱。</p><p class="cl">Hotels <u>cash in on</u> the festival by raising prices.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">他被指责利用自己的名气捞好处。</p><p class="cl">He was accused of <u>cashing in on</u> his famous name.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他们嘲笑我的计划，可它成功了。</p><p class="cl">They <u>scoffed</u> at my plan, but it worked.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">别不屑，这是有可能的。</p><p class="cl">Don't <u>scoff</u>; it could happen.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">新手机配备了更大的屏幕。</p><p class="cl">The new phone <u>features</u> a larger screen.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这部电影有好几位明星出演。</p><p class="cl">The film <u>features</u> several famous actors.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">钱是我们计划最大的障碍。</p><p class="cl">Money is the biggest <u>obstacle</u> to our plans.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那匹马跳过了每一个障碍。</p><p class="cl">The horse jumped over every <u>obstacle</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">来的人很少，其实几乎没人来。</p><p class="cl">Few people, <u>indeed</u> almost nobody, came.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这顿饭真的很好吃。</p><p class="cl">It was a very good meal <u>indeed</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她拎着沉重的袋子。</p><p class="cl">She was <u>weighed down</u> with heavy bags.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他被债务压得喘不过气。</p><p class="cl">He felt <u>weighed down</u> by his debts.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这艘船装着石头当压舱物。</p><p class="cl">The ship carried rocks as <u>ballast</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们扔掉配重后，气球升了起来。</p><p class="cl">The balloon rose when they dropped the <u>ballast</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">大多数人会选便宜的票。</p><p class="cl">Most people <u>opt for</u> the cheaper ticket.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们选择了一场简单的婚礼。</p><p class="cl">We <u>opted for</u> a quiet wedding.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这幅画挂倒了。</p><p class="cl">The picture is hanging <u>upside down</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们为了找钥匙把家里翻了个底朝天。</p><p class="cl">We turned the house <u>upside down</u> looking for the keys.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">她把信紧紧贴在胸前。</p><p class="cl">She <u>clasped</u> the letter to her chest.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他双手交握放在腿上坐着。</p><p class="cl">He sat with his hands <u>clasped</u> in his lap.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">从舞台上摔下来实在有点丢脸。</p><p class="cl">Falling off the stage was rather <u>undignified</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他觉得在公共场合跳舞有失体面。</p><p class="cl">He thought dancing in public was <u>undignified</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">删掉旧照片能腾出手机空间。</p><p class="cl">Deleting old photos will <u>free up</u> space on your phone.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">新系统让员工能腾出手做别的工作。</p><p class="cl">The new system <u>frees up</u> staff for other work.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">两家公司主宰着这个市场。</p><p class="cl">Two companies <u>dominate</u> the market.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">新闻全被选举占据了。</p><p class="cl">The news was <u>dominated</u> by the election.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我不想成为孩子们的负担。</p><p class="cl">I don't want to be a <u>burden</u> on my children.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">新税对小店来说是沉重的负担。</p><p class="cl">The new tax is a heavy <u>burden</u> for small shops.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">所有员工圣诞节都拿到了奖金。</p><p class="cl">All staff got a <u>bonus</u> at Christmas.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">酒店很便宜，海景还是额外福利。</p><p class="cl">The hotel was cheap, and the sea view was a <u>bonus</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">她获得第三名，登上了领奖台。</p><p class="cl">She finished third and stepped onto the <u>podium</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">演讲者走上讲台。</p><p class="cl">The speaker walked up to the <u>podium</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">每位参赛者都会得到一件免费T恤。</p><p class="cl">Every <u>entrant</u> receives a free T-shirt.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">今年有 500 多名参赛者。</p><p class="cl">There were over 500 <u>entrants</u> this year.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">观众为跑步的人加油。</p><p class="cl">The crowd <u>cheered on</u> the runners.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">周六来为他们加油吧！</p><p class="cl">Come and <u>cheer them on</u> on Saturday!</p><div class="ln"></div></div><div class="it e0"><p class="zh2">孩子们兴高采烈地唱着歌。</p><p class="cl">The children sang <u>with gusto</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他吃晚饭吃得津津有味。</p><p class="cl">He ate his dinner <u>with gusto</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">猫把牛奶舔光了。</p><p class="cl">The cat <u>lapped up</u> the milk.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她讲了些傻笑话，孩子们听得乐不可支。</p><p class="cl">She told silly jokes and the kids <u>lapped it up</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她是金牌的有力争夺者。</p><p class="cl">She is a serious <u>contender</u> for the gold medal.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">比赛只剩下三名竞争者。</p><p class="cl">Only three <u>contenders</u> are left in the race.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">新路让行程缩短了十分钟。</p><p class="cl">The new road <u>shaves</u> ten minutes off the journey.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">夏天来了，他把胡子刮了。</p><p class="cl">He <u>shaved</u> his beard off for the summer.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">披萨纯粹主义者说菠萝不该放上去。</p><p class="cl">Pizza <u>purists</u> say pineapple doesn't belong on it.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">一些音乐纯粹主义者讨厌新版本。</p><p class="cl">Some music <u>purists</u> hate the new version.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这部剧太火了，还出了衍生剧。</p><p class="cl">The show was so popular that it got a <u>spin-off</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这个玩具是电影的周边产品。</p><p class="cl">The toy is a <u>spin-off</u> from the film.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你没抓住重点，这跟钱无关。</p><p class="cl">You're <u>missing the point</u>; it's not about money.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">说它很傻的评论家没明白它的意思。</p><p class="cl">Critics who called it silly <u>missed the point</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">考完试，学生们都喜欢放松一下。</p><p class="cl">After exams, students like to <u>let their hair down</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">来吧，就放松这一次！</p><p class="cl">Come on, <u>let your hair down</u> for once!</p><div class="ln"></div></div><div class="it e0"><p class="zh2">科学家常被刻板地认为很害羞。</p><p class="cl">Scientists are often <u>stereotyped</u> as shy.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">不是每个英国人都符合那种刻板印象。</p><p class="cl">Not every Briton fits the <u>stereotype</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">在你熟悉他之前，他挺内敛的。</p><p class="cl">He's quite <u>reserved</u> until you get to know him.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">抱歉，这张桌子已经被预订了。</p><p class="cl">Sorry, this table is <u>reserved</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">只要我们齐心协力，周五就能完成。</p><p class="cl">If we all <u>pull together</u>, we can finish by Friday.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">洪水过后，全镇齐心协力。</p><p class="cl">The town <u>pulled together</u> after the flood.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">在结冰的路上很难站稳。</p><p class="cl">It was hard to <u>keep your footing</u> on the icy path.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">她脚下一滑，掉进了河里。</p><p class="cl">She <u>lost her footing</u> and fell into the river.</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0"><strong>For better or worse</strong>, we're stuck with this car.</p><p class="a e1">They promised to stay together <strong>for better or for worse</strong>.</p><p class="a e0">We spent a week in a <strong>sleepy</strong> fishing village.</p><p class="a e1">The baby is getting <strong>sleepy</strong>.</p><p class="a e0">The city will <strong>stage</strong> the next Olympic Games.</p><p class="a e1">Workers <strong>staged</strong> a protest outside the factory.</p><p class="a e0">Thousands of tourists <strong>descend on</strong> the island every summer.</p><p class="a e1">My relatives <strong>descended on</strong> us for the holidays.</p><p class="a e0">I had to <strong>sprint</strong> to catch the last train.</p><p class="a e1">She <strong>sprinted</strong> towards the finish line.</p><p class="a e0">He <strong>slung</strong> his jacket over the back of the chair.</p><p class="a e1">She walked in with a bag <strong>slung over</strong> her shoulder.</p><p class="a e0">Nobody is sure about the <strong>origins</strong> of the song.</p><p class="a e1">The word has Latin <strong>origins</strong>.</p><p class="a e0">The film is <strong>supposedly</strong> based on a true story.</p><p class="a e1">He's <strong>supposedly</strong> the best cook in town.</p><p class="a e0">In local <strong>folklore</strong>, the lake is home to a monster.</p><p class="a e1">She studies Scandinavian <strong>folklore</strong>.</p><p class="a e0">The course is popular with <strong>would-be</strong> writers.</p><p class="a e1">A <strong>would-be</strong> thief was caught by the shop owner.</p><p class="a e0">Grandma told us <strong>tales</strong> of ghosts and witches.</p><p class="a e1">It's a <strong>tale</strong> of love and loss.</p><p class="a e0">Police <strong>raided</strong> the building at dawn.</p><p class="a e1">The kids <strong>raided</strong> the fridge after school.</p><p class="a e0">The old story <strong>has</strong> the king hiding in a tree.</p><p class="a e1">The comedian <strong>had</strong> us laughing all night.</p><p class="a e0">Why he left is <strong>anyone&#x27;s guess</strong>.</p><p class="a e1">When the train will arrive is <strong>anyone&#x27;s guess</strong>.</p><p class="a e0">Hotels <strong>cash in on</strong> the festival by raising prices.</p><p class="a e1">He was accused of <strong>cashing in on</strong> his famous name.</p><p class="a e0">They <strong>scoffed</strong> at my plan, but it worked.</p><p class="a e1">Don't <strong>scoff</strong>; it could happen.</p><p class="a e0">The new phone <strong>features</strong> a larger screen.</p><p class="a e1">The film <strong>features</strong> several famous actors.</p><p class="a e0">Money is the biggest <strong>obstacle</strong> to our plans.</p><p class="a e1">The horse jumped over every <strong>obstacle</strong>.</p><p class="a e0">Few people, <strong>indeed</strong> almost nobody, came.</p><p class="a e1">It was a very good meal <strong>indeed</strong>.</p><p class="a e0">She was <strong>weighed down</strong> with heavy bags.</p><p class="a e1">He felt <strong>weighed down</strong> by his debts.</p><p class="a e0">The ship carried rocks as <strong>ballast</strong>.</p><p class="a e1">The balloon rose when they dropped the <strong>ballast</strong>.</p><p class="a e0">Most people <strong>opt for</strong> the cheaper ticket.</p><p class="a e1">We <strong>opted for</strong> a quiet wedding.</p><p class="a e0">The picture is hanging <strong>upside down</strong>.</p><p class="a e1">We turned the house <strong>upside down</strong> looking for the keys.</p><p class="a e0">She <strong>clasped</strong> the letter to her chest.</p><p class="a e1">He sat with his hands <strong>clasped</strong> in his lap.</p><p class="a e0">Falling off the stage was rather <strong>undignified</strong>.</p><p class="a e1">He thought dancing in public was <strong>undignified</strong>.</p><p class="a e0">Deleting old photos will <strong>free up</strong> space on your phone.</p><p class="a e1">The new system <strong>frees up</strong> staff for other work.</p><p class="a e0">Two companies <strong>dominate</strong> the market.</p><p class="a e1">The news was <strong>dominated</strong> by the election.</p><p class="a e0">I don't want to be a <strong>burden</strong> on my children.</p><p class="a e1">The new tax is a heavy <strong>burden</strong> for small shops.</p><p class="a e0">All staff got a <strong>bonus</strong> at Christmas.</p><p class="a e1">The hotel was cheap, and the sea view was a <strong>bonus</strong>.</p><p class="a e0">She finished third and stepped onto the <strong>podium</strong>.</p><p class="a e1">The speaker walked up to the <strong>podium</strong>.</p><p class="a e0">Every <strong>entrant</strong> receives a free T-shirt.</p><p class="a e1">There were over 500 <strong>entrants</strong> this year.</p><p class="a e0">The crowd <strong>cheered on</strong> the runners.</p><p class="a e1">Come and <strong>cheer them on</strong> on Saturday!</p><p class="a e0">The children sang <strong>with gusto</strong>.</p><p class="a e1">He ate his dinner <strong>with gusto</strong>.</p><p class="a e0">The cat <strong>lapped up</strong> the milk.</p><p class="a e1">She told silly jokes and the kids <strong>lapped it up</strong>.</p><p class="a e0">She is a serious <strong>contender</strong> for the gold medal.</p><p class="a e1">Only three <strong>contenders</strong> are left in the race.</p><p class="a e0">The new road <strong>shaves</strong> ten minutes off the journey.</p><p class="a e1">He <strong>shaved</strong> his beard off for the summer.</p><p class="a e0">Pizza <strong>purists</strong> say pineapple doesn't belong on it.</p><p class="a e1">Some music <strong>purists</strong> hate the new version.</p><p class="a e0">The show was so popular that it got a <strong>spin-off</strong>.</p><p class="a e1">The toy is a <strong>spin-off</strong> from the film.</p><p class="a e0">You're <strong>missing the point</strong>; it's not about money.</p><p class="a e1">Critics who called it silly <strong>missed the point</strong>.</p><p class="a e0">After exams, students like to <strong>let their hair down</strong>.</p><p class="a e1">Come on, <strong>let your hair down</strong> for once!</p><p class="a e0">Scientists are often <strong>stereotyped</strong> as shy.</p><p class="a e1">Not every Briton fits the <strong>stereotype</strong>.</p><p class="a e0">He's quite <strong>reserved</strong> until you get to know him.</p><p class="a e1">Sorry, this table is <strong>reserved</strong>.</p><p class="a e0">If we all <strong>pull together</strong>, we can finish by Friday.</p><p class="a e1">The town <strong>pulled together</strong> after the flood.</p><p class="a e0">It was hard to <strong>keep your footing</strong> on the icy path.</p><p class="a e1">She <strong>lost her footing</strong> and fell into the river.</p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+/* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
+   (front and back of one sheet) with the largest type that fits, page 1 filled first; the answers follow on a new page. If even
+   two pages are not enough, one example per word is used (and the preview says so). */
+(function(){
+  var b = document.body, root = document.documentElement, key = 'wk-ex-print', st = {mode:'sent', one:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), ans = document.getElementById('withans');
+  function draw(){
+    b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
+    b.classList.toggle('one', st.one); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; ans.checked = st.ans;
+  }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
+  one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
+  ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
+
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
+    }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
+    return false;
+  }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function fit(){
+    b.classList.add('printing'); auto1 = over = false;
+    if (!fitEx()){
+      if (!st.one){ b.classList.add('one'); auto1 = true; }
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
+    }
+    if (st.ans) fitAns();
+    tipText();
+  }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
+  window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
+  window.addEventListener('afterprint', function(){ if (!preview) clear(); });
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    preview = true; fit();
+    var old = document.getElementById('pbar'); if (old) old.remove();
+    var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+    bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
+    bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); };
+    bar.children[2].onclick = function(){ window.print(); };
+    document.body.appendChild(bar);
+    tipText();
+    window.scrollTo(0, 0);
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script></body></html>
