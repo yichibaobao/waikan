@@ -1,0 +1,180 @@
+<!doctype html><html lang="zh-CN" data-lang="yue"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第 10 课 · 我頭痛呀！ · 例句默写纸 · 粤语入门</title><style>
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#E9D8CA;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff}
+html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.6 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:820px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn,.prev{appearance:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.btn{border:0;background:var(--accent);color:#fff} .prev{border:2px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;font-size:13px}
+h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 0 6px;font-size:18px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 14px;padding:12px 14px;background:var(--surface);border-radius:16px}
+.ctl label{display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600}
+.sheet{background:var(--surface);border-radius:16px;padding:16px 18px}
+.blk{margin:0 0 6px;color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.04em}
+.q{break-inside:avoid;page-break-inside:avoid;margin:0 0 12px}
+.zh{margin:0;font-size:15.5px;line-height:1.6} .zh b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 13px ui-monospace,Menlo,monospace}
+.hint{display:none;margin:2px 0 0 1.9em;color:var(--muted);font-size:12.5px}
+.hints .hint{display:block}
+.ln{height:30px;margin-left:1.9em;border-bottom:1px solid #C9B8AA}
+.gap{height:8px}
+.ans{margin-top:22px}
+.noans .ans{display:none}
+.a{margin:0 0 6px;font:400 15px/1.55 Georgia,'Times New Roman',serif} .a b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.a .r{display:block;margin-left:2.2em;color:var(--muted);font:400 12.5px/1.5 ui-rounded,system-ui,sans-serif}
+.foot{margin:12px 0 0;color:var(--muted);font-size:12.5px}
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:#fff} .in{max-width:none;padding:0} .noprint{display:none!important}
+  h1{font-size:16px;margin:0} .sub{font-size:9.5px;margin:0 0 6px}
+  .sheet{padding:0;border-radius:0}
+  .zh{font-size:11.5px} .zh b{font-size:10px} .hint{font-size:9.5px}
+  .q{margin:0 0 7px} .ln{height:8.5mm;border-bottom-color:#999}
+  .ans{margin-top:0;break-before:page;page-break-before:always}
+  h2{font-size:14px} .a{font-size:11px;margin:0 0 3px} .a b{font-size:9px} .a .r{font-size:9.5px}
+  .foot{display:none}
+}
+
+.sheet{counter-reset:q}
+.it{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;counter-increment:q}
+.zh2{margin:0;font-size:14.5px;line-height:1.55}
+.zh2::before,.a::before{display:inline-block;min-width:2em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.zh2::before{content:counter(q)}
+.cl{margin:2px 0 0 2em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.it .ln{margin-left:2em}
+.m-cloze .ln,.m-sent .cl{display:none}
+.one .e1{display:none}
+.list{counter-reset:a}
+.a{counter-increment:a} .a::before{content:counter(a)}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
+.tip{margin:0 0 12px;color:var(--muted);font-size:13px}
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
+@page{size:A4;margin:10mm}
+body.printing{background:#fff}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
+@media print{.noprint{display:none!important}}
+</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>第 10 课 · 我頭痛呀！ · 例句默写纸</h1><p class="sub">2026-11-23 · 生词例句 · 看中文写出粤语例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">我的头很痛。</p><p class="cl">我個<u>頭</u>好痛。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他摸了摸头。</p><p class="cl">佢摸吓個<u>頭</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我的脚很痛。</p><p class="cl">我隻腳好<u>痛</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">还痛不痛？</p><p class="cl">仲<u>痛</u>唔痛呀？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这张凳子很舒服。</p><p class="cl">呢張櫈好<u>舒服</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你是不是不舒服？</p><p class="cl">你係咪唔<u>舒服</u>呀？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我想看医生。</p><p class="cl">我想睇<u>醫生</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他爸爸是医生。</p><p class="cl">佢爸爸係<u>醫生</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我喉咙很干。</p><p class="cl">我<u>喉嚨</u>好乾。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">喉咙痛就多喝点水。</p><p class="cl"><u>喉嚨</u>痛就飲多啲水。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这件衣服又便宜又好看。</p><p class="cl">呢件衫平<u>又</u>靚。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">今天又下雨了。</p><p class="cl">今日<u>又</u>落雨。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你有没有伞？</p><p class="cl">你<u>有冇</u>遮呀？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你吃早餐了没有？</p><p class="cl">你<u>有冇</u>食早餐？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他发烧了，今天不上学。</p><p class="cl">佢<u>發燒</u>，今日唔返學。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">还发烧吗？</p><p class="cl">仲有冇<u>發燒</u>？</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我会说一点点广东话。</p><p class="cl">我識講<u>少少</u>廣東話。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">要一点点糖，谢谢。</p><p class="cl">要<u>少少</u>糖，唔該。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">昨晚你几点睡的？</p><p class="cl"><u>尋晚</u>你幾點瞓覺？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">昨晚我们去看电影了。</p><p class="cl"><u>尋晚</u>我哋去咗睇戲。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">电影七点开始。</p><p class="cl">套戲七點<u>開始</u>。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们开始吃吧！</p><p class="cl">我哋<u>開始</u>食啦！</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我感冒了，很累。</p><p class="cl">我<u>感冒</u>咗，好攰。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">下雨不带伞，很容易感冒。</p><p class="cl">落雨唔帶遮，好易<u>感冒</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">记得吃药啊。</p><p class="cl">記得食<u>藥</u>呀。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这些药一天吃三次。</p><p class="cl">呢啲<u>藥</u>一日食三次。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你想喝什么？</p><p class="cl">你想<u>飲</u>咩？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我每天喝一杯奶茶。</p><p class="cl">我每日<u>飲</u>一杯奶茶。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">麻烦给我一杯水。</p><p class="cl">唔該畀杯<u>水</u>我。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我要热水。</p><p class="cl">我要熱<u>水</u>。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">明天早点来。</p><p class="cl">聽日<u>早啲</u>嚟。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们早点走吧。</p><p class="cl">我哋<u>早啲</u>走啦。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">你几点睡觉？</p><p class="cl">你幾點<u>瞓覺</u>？</p><div class="ln"></div></div><div class="it e1"><p class="zh2">很晚了，去睡觉吧。</p><p class="cl">好夜喇，去<u>瞓覺</u>啦。</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我知道他在哪里。</p><p class="cl">我<u>知道</u>佢喺邊度。</p><div class="ln"></div></div><div class="it e1"><p class="zh2">你怎么知道的？</p><p class="cl">你點<u>知道</u>㗎？</p><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0">我個<strong>頭</strong>好痛。<span class="r">ngo5 go3 tau4 hou2 tung3.</span></p><p class="a e1">佢摸吓個<strong>頭</strong>。<span class="r">keoi5 mo2 haa5 go3 tau4.</span></p><p class="a e0">我隻腳好<strong>痛</strong>。<span class="r">ngo5 zek3 goek3 hou2 tung3.</span></p><p class="a e1">仲<strong>痛</strong>唔痛呀？<span class="r">zung6 tung3 m4 tung3 aa3?</span></p><p class="a e0">呢張櫈好<strong>舒服</strong>。<span class="r">ni1 zoeng1 dang3 hou2 syu1 fuk6.</span></p><p class="a e1">你係咪唔<strong>舒服</strong>呀？<span class="r">nei5 hai6 mai6 m4 syu1 fuk6 aa3?</span></p><p class="a e0">我想睇<strong>醫生</strong>。<span class="r">ngo5 soeng2 tai2 ji1 sang1.</span></p><p class="a e1">佢爸爸係<strong>醫生</strong>。<span class="r">keoi5 baa4 baa1 hai6 ji1 sang1.</span></p><p class="a e0">我<strong>喉嚨</strong>好乾。<span class="r">ngo5 hau4 lung4 hou2 gon1.</span></p><p class="a e1"><strong>喉嚨</strong>痛就飲多啲水。<span class="r">hau4 lung4 tung3 zau6 jam2 do1 di1 seoi2.</span></p><p class="a e0">呢件衫平<strong>又</strong>靚。<span class="r">ni1 gin6 saam1 peng4 jau6 leng3.</span></p><p class="a e1">今日<strong>又</strong>落雨。<span class="r">gam1 jat6 jau6 lok6 jyu5.</span></p><p class="a e0">你<strong>有冇</strong>遮呀？<span class="r">nei5 jau5 mou5 ze1 aa3?</span></p><p class="a e1">你<strong>有冇</strong>食早餐？<span class="r">nei5 jau5 mou5 sik6 zou2 caan1?</span></p><p class="a e0">佢<strong>發燒</strong>，今日唔返學。<span class="r">keoi5 faat3 siu1, gam1 jat6 m4 faan1 hok6.</span></p><p class="a e1">仲有冇<strong>發燒</strong>？<span class="r">zung6 jau5 mou5 faat3 siu1?</span></p><p class="a e0">我識講<strong>少少</strong>廣東話。<span class="r">ngo5 sik1 gong2 siu2 siu2 gwong2 dung1 waa2.</span></p><p class="a e1">要<strong>少少</strong>糖，唔該。<span class="r">jiu3 siu2 siu2 tong4, m4 goi1.</span></p><p class="a e0"><strong>尋晚</strong>你幾點瞓覺？<span class="r">cam4 maan5 nei5 gei2 dim2 fan3 gaau3?</span></p><p class="a e1"><strong>尋晚</strong>我哋去咗睇戲。<span class="r">cam4 maan5 ngo5 dei6 heoi3 zo2 tai2 hei3.</span></p><p class="a e0">套戲七點<strong>開始</strong>。<span class="r">tou3 hei3 cat1 dim2 hoi1 ci2.</span></p><p class="a e1">我哋<strong>開始</strong>食啦！<span class="r">ngo5 dei6 hoi1 ci2 sik6 laa1!</span></p><p class="a e0">我<strong>感冒</strong>咗，好攰。<span class="r">ngo5 gam2 mou6 zo2, hou2 gui6.</span></p><p class="a e1">落雨唔帶遮，好易<strong>感冒</strong>。<span class="r">lok6 jyu5 m4 daai3 ze1, hou2 ji6 gam2 mou6.</span></p><p class="a e0">記得食<strong>藥</strong>呀。<span class="r">gei3 dak1 sik6 joek6 aa3.</span></p><p class="a e1">呢啲<strong>藥</strong>一日食三次。<span class="r">ni1 di1 joek6 jat1 jat6 sik6 saam1 ci3.</span></p><p class="a e0">你想<strong>飲</strong>咩？<span class="r">nei5 soeng2 jam2 me1?</span></p><p class="a e1">我每日<strong>飲</strong>一杯奶茶。<span class="r">ngo5 mui5 jat6 jam2 jat1 bui1 naai5 caa4.</span></p><p class="a e0">唔該畀杯<strong>水</strong>我。<span class="r">m4 goi1 bei2 bui1 seoi2 ngo5.</span></p><p class="a e1">我要熱<strong>水</strong>。<span class="r">ngo5 jiu3 jit6 seoi2.</span></p><p class="a e0">聽日<strong>早啲</strong>嚟。<span class="r">ting1 jat6 zou2 di1 lai4.</span></p><p class="a e1">我哋<strong>早啲</strong>走啦。<span class="r">ngo5 dei6 zou2 di1 zau2 laa1.</span></p><p class="a e0">你幾點<strong>瞓覺</strong>？<span class="r">nei5 gei2 dim2 fan3 gaau3?</span></p><p class="a e1">好夜喇，去<strong>瞓覺</strong>啦。<span class="r">hou2 je6 laa3, heoi3 fan3 gaau3 laa1.</span></p><p class="a e0">我<strong>知道</strong>佢喺邊度。<span class="r">ngo5 zi1 dou3 keoi5 hai2 bin1 dou6.</span></p><p class="a e1">你點<strong>知道</strong>㗎？<span class="r">nei5 dim2 zi1 dou3 gaa3?</span></p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+/* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
+   (front and back of one sheet) with the largest type that fits, page 1 filled first; the answers follow on a new page. If even
+   two pages are not enough, one example per word is used (and the preview says so). */
+(function(){
+  var b = document.body, root = document.documentElement, key = 'wk-ex-print', st = {mode:'sent', one:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), ans = document.getElementById('withans');
+  function draw(){
+    b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
+    b.classList.toggle('one', st.one); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; ans.checked = st.ans;
+  }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
+  one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
+  ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
+
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
+    }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
+    return false;
+  }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function fit(){
+    b.classList.add('printing'); auto1 = over = false;
+    if (!fitEx()){
+      if (!st.one){ b.classList.add('one'); auto1 = true; }
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
+    }
+    if (st.ans) fitAns();
+    tipText();
+  }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
+  window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
+  window.addEventListener('afterprint', function(){ if (!preview) clear(); });
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    preview = true; fit();
+    var old = document.getElementById('pbar'); if (old) old.remove();
+    var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+    bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
+    bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); };
+    bar.children[2].onclick = function(){ window.print(); };
+    document.body.appendChild(bar);
+    tipText();
+    window.scrollTo(0, 0);
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script></body></html>
