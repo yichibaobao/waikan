@@ -641,78 +641,6 @@
     "def": "to sell a lot of something very quickly"
    },
    {
-    "id": 16,
-    "expr": "knock on",
-    "zh": "敲（门、窗）",
-    "m": [
-     "knock on"
-    ],
-    "note": "knock on the door。knock at the door 也可以。knock on wood：（美式）摸木头祈求好运。",
-    "core": "knock on",
-    "forms": [
-     "knock on",
-     "knocked on",
-     "knocks on",
-     "knocking on"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Someone is [[knocking on]] the door.",
-      "zh": "有人在敲门。"
-     },
-     {
-      "en": "Please [[knock on]] my door if you need anything.",
-      "zh": "需要什么就敲我的门。"
-     }
-    ],
-    "ipa": "/nɒk ɒn/",
-    "def": "to hit a door or window with your hand so that people inside hear you"
-   },
-   {
-    "id": 17,
-    "expr": "extend",
-    "zh": "延伸、扩展；延长",
-    "m": [
-     "extends"
-    ],
-    "note": "extend a visit（延长访问），The garden extends to the river.（花园一直延伸到河边。）名词 extension。",
-    "core": "extend",
-    "forms": [
-     "extend",
-     "extends",
-     "extended",
-     "extending"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "The deadline has been [[extended]] to Friday.",
-      "zh": "截止日期延长到了周五。"
-     },
-     {
-      "en": "The forest [[extends]] for miles.",
-      "zh": "森林绵延好几英里。"
-     }
-    ],
-    "ipa": "/ɪkˈstend/",
-    "def": "to make something longer or larger; to reach as far as a particular point",
-    "cf": [
-     {
-      "rel": "syn",
-      "w": "expand",
-      "zh": "扩大",
-      "diff": "extend 侧重往长度、时间方向“延长、延伸”（extend a visa 延签）；expand 侧重整体“扩大、膨胀”（expand a business）。",
-      "ex": [
-       {
-        "en": "The company plans to [[expand]] into Asia.",
-        "zh": "公司计划扩展到亚洲。"
-       }
-      ]
-     }
-    ]
-   },
-   {
     "id": 18,
     "expr": "frown upon / on",
     "zh": "不赞成、对……皱眉",
@@ -751,6 +679,7 @@
     ],
     "note": "mow the lawn（割草坪）。lawnmower：割草机。过去分词 mown 或 mowed。",
     "core": "mow",
+    "say": "mow the lawn",
     "forms": [
      "mow",
      "mows",
@@ -996,48 +925,6 @@
     ]
    },
    {
-    "id": 27,
-    "expr": "fierce",
-    "zh": "激烈的、凶猛的",
-    "m": [
-     "fierce"
-    ],
-    "note": "fierce competition（激烈的竞争），a fierce dog（凶猛的狗）。",
-    "core": "fierce",
-    "forms": [
-     "fierce",
-     "fiercely"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "There is [[fierce]] competition for jobs.",
-      "zh": "求职竞争很激烈。"
-     },
-     {
-      "en": "The dog looked [[fierce]] but was friendly.",
-      "zh": "那只狗看上去很凶，其实很友好。"
-     }
-    ],
-    "ipa": "/fɪəs/",
-    "say": "fierce competition",
-    "def": "very strong or intense; angry and ready to attack",
-    "cf": [
-     {
-      "rel": "syn",
-      "w": "intense",
-      "zh": "强烈的",
-      "diff": "fierce 常形容竞争、争论、动物“激烈、凶猛”；intense 侧重程度“强烈”，可形容感情、热度、压力等。",
-      "ex": [
-       {
-        "en": "The heat was [[intense]].",
-        "zh": "热得厉害。"
-       }
-      ]
-     }
-    ]
-   },
-   {
     "id": 28,
     "expr": "unlikely alliance",
     "zh": "意想不到的联盟",
@@ -1226,41 +1113,6 @@
         "zh": "我渐渐意识到她是对的。"
        }
       ]
-     }
-    ]
-   },
-   {
-    "id": 34,
-    "expr": "relative (n.)",
-    "zh": "亲戚",
-    "m": [
-     "relatives"
-    ],
-    "note": "close relatives（近亲），visit relatives（走亲戚）。形容词 relative 是“相对的”。",
-    "core": "relative",
-    "forms": [
-     "relative",
-     "relatives"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "We're visiting [[relatives]] this weekend.",
-      "zh": "这个周末我们去走亲戚。"
-     },
-     {
-      "en": "She's a distant [[relative]] of mine.",
-      "zh": "她是我的一个远房亲戚。"
-     }
-    ],
-    "ipa": "/ˈreləˌtɪv/",
-    "def": "a member of your family",
-    "cf": [
-     {
-      "rel": "cf",
-      "w": "relation",
-      "zh": "亲戚；关系",
-      "diff": "relative 和 relation 都可以指“亲戚”；但 relation 主要意思是“关系”，所以说“亲戚”时 relative 更清楚。"
      }
     ]
    },
@@ -1538,18 +1390,6 @@
     "hint": "生意兴隆（do a roaring ___）"
    },
    {
-    "id": 16,
-    "i": 9,
-    "ans": "knock",
-    "hint": "敲（___ on）"
-   },
-   {
-    "id": 17,
-    "i": 10,
-    "ans": "extends",
-    "hint": "延伸（三单）"
-   },
-   {
     "id": 18,
     "i": 11,
     "ans": "frowned",
@@ -1604,12 +1444,6 @@
     "hint": "放宽"
    },
    {
-    "id": 27,
-    "i": 15,
-    "ans": "fierce",
-    "hint": "激烈的"
-   },
-   {
     "id": 28,
     "i": 15,
     "ans": "unlikely",
@@ -1644,12 +1478,6 @@
     "i": 18,
     "ans": "come",
     "hint": "渐渐（___ to love）"
-   },
-   {
-    "id": 34,
-    "i": 19,
-    "ans": "relatives",
-    "hint": "亲戚（复数）"
    },
    {
     "id": 35,
