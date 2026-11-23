@@ -427,33 +427,6 @@
     ]
    },
    {
-    "id": 6,
-    "expr": "department store",
-    "zh": "百货商店",
-    "m": [
-     "department stores"
-    ],
-    "note": "按部门（department）分区卖各种商品的大商店。",
-    "core": "department store",
-    "forms": [
-     "department store",
-     "department stores"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "She bought the coat in a [[department store]].",
-      "zh": "她在百货商店买了这件外套。"
-     },
-     {
-      "en": "Many [[department stores]] are closing down.",
-      "zh": "很多百货商店正在关门。"
-     }
-    ],
-    "ipa": "/dɪˈpɑːtmənt stɔː/",
-    "def": "a large shop that sells many different kinds of goods in different sections"
-   },
-   {
     "id": 7,
     "expr": "high street",
     "zh": "（英式）主街、商业街",
@@ -535,49 +508,6 @@
     "def": "a period when workers refuse to work, in order to get better pay or conditions"
    },
    {
-    "id": 10,
-    "expr": "restrict",
-    "zh": "限制、约束",
-    "m": [
-     "restricted"
-    ],
-    "note": "restrict sth to ...：把……限制在……。名词 restriction（限制）。",
-    "core": "restrict",
-    "forms": [
-     "restrict",
-     "restricts",
-     "restricted",
-     "restricting"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Parking is [[restricted]] to residents.",
-      "zh": "停车仅限居民。"
-     },
-     {
-      "en": "The new law [[restricts]] the sale of fireworks.",
-      "zh": "新法律限制烟花的销售。"
-     }
-    ],
-    "ipa": "/rɪˈstrɪkt/",
-    "def": "to limit or control the size, amount or range of something",
-    "cf": [
-     {
-      "rel": "syn",
-      "w": "limit",
-      "zh": "限制",
-      "diff": "limit 侧重“设定上限、不超过某个数量”；restrict 侧重“约束、不让自由行动”，常用于规定、法律。",
-      "ex": [
-       {
-        "en": "Please [[limit]] your answer to 100 words.",
-        "zh": "回答请限制在 100 字以内。"
-       }
-      ]
-     }
-    ]
-   },
-   {
     "id": 11,
     "expr": "constitution",
     "zh": "宪法；体质",
@@ -637,33 +567,6 @@
       "diff": "uplift 让人振奋；upset 让人难过、心烦，正好相反。"
      }
     ]
-   },
-   {
-    "id": 13,
-    "expr": "exception",
-    "zh": "例外",
-    "m": [
-     "exceptions"
-    ],
-    "note": "with the exception of（除……之外），make an exception（破例）。形容词 exceptional（杰出的）。",
-    "core": "exception",
-    "forms": [
-     "exception",
-     "exceptions"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Everyone came, with the [[exception]] of Tom.",
-      "zh": "除了汤姆，大家都来了。"
-     },
-     {
-      "en": "I'll make an [[exception]] this time.",
-      "zh": "这次我破个例。"
-     }
-    ],
-    "ipa": "/ɪkˈsepʃən/",
-    "def": "a person or thing that does not follow a general rule"
    },
    {
     "id": 14,
@@ -1593,12 +1496,6 @@
     "hint": "（___ in a German town ... and you ...）"
    },
    {
-    "id": 6,
-    "i": 4,
-    "ans": "department",
-    "hint": "百货商店（___ stores）"
-   },
-   {
     "id": 7,
     "i": 4,
     "ans": "high",
@@ -1617,12 +1514,6 @@
     "hint": "罢工"
    },
    {
-    "id": 10,
-    "i": 6,
-    "ans": "restricted",
-    "hint": "限制（过去分词）"
-   },
-   {
     "id": 11,
     "i": 6,
     "ans": "constitution",
@@ -1633,12 +1524,6 @@
     "i": 6,
     "ans": "uplift",
     "hint": "提升、振奋"
-   },
-   {
-    "id": 13,
-    "i": 7,
-    "ans": "exceptions",
-    "hint": "例外（复数）"
    },
    {
     "id": 14,
