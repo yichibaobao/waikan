@@ -41,7 +41,7 @@
     "en": "Newcomers grumble; most Germans would not have it any other way.",
     "zh": "新来的人抱怨连连；大多数德国人却觉得就该这样。",
     "notes": [
-     "grumble：抱怨（之前学过）。",
+     "grumble：抱怨。",
      "would not have it any other way：不希望有任何改变，就喜欢这样。"
     ]
    },
@@ -282,39 +282,42 @@
    },
    {
     "id": 2,
-    "expr": "efficiency",
-    "zh": "效率",
+    "expr": "grumble",
+    "zh": "抱怨、发牢骚",
     "m": [
-     "efficiency"
+     "grumble"
     ],
-    "note": "形容词 efficient（高效的）。energy efficiency（能源效率）。",
-    "core": "efficiency",
+    "note": "比 complain 口语，常是小声嘀咕：grumble about the weather。名词 a grumble（牢骚）。",
+    "core": "grumble",
     "forms": [
-     "efficiency"
+     "grumble",
+     "grumbles",
+     "grumbled",
+     "grumbling"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "The new system has improved [[efficiency]].",
-      "zh": "新系统提高了效率。"
+      "en": "My dad [[grumbles]] every time it rains.",
+      "zh": "我爸每次下雨都要嘟囔几句。"
      },
      {
-      "en": "She works with great [[efficiency]].",
-      "zh": "她工作效率很高。"
+      "en": "The workers [[grumbled]] about the new rules but followed them.",
+      "zh": "工人们对新规定发了些牢骚，但还是照做了。"
      }
     ],
-    "ipa": "/ɪˈfɪʃənsɪ/",
-    "def": "the quality of doing something well without wasting time, money or energy",
+    "ipa": "/ˈɡrʌmbəl/",
+    "def": "to complain about something in a quiet, bad-tempered way",
     "cf": [
      {
-      "rel": "cf",
-      "w": "effectiveness",
-      "zh": "有效性、效果",
-      "diff": "efficiency 是“效率高、不浪费”（又快又省）；effectiveness 是“有效果、达到目的”，不管花了多少成本。形容词 efficient / effective 同理。",
+      "rel": "syn",
+      "w": "complain",
+      "zh": "抱怨、投诉",
+      "diff": "complain 是普通的“抱怨、投诉”，可以正式提出；grumble 是小声嘟囔着发牢骚，通常不会正式去投诉。",
       "ex": [
        {
-        "en": "The new drug is very [[effective]].",
-        "zh": "这种新药很有效。"
+        "en": "She [[complained]] to the manager about the noise.",
+        "zh": "她向经理投诉了噪音。"
        }
       ]
      }
@@ -1567,9 +1570,9 @@
    },
    {
     "id": 2,
-    "i": 1,
-    "ans": "efficiency",
-    "hint": "效率"
+    "i": 2,
+    "ans": "grumble",
+    "hint": "抱怨、发牢骚"
    },
    {
     "id": 3,
