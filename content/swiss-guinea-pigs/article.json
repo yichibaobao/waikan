@@ -296,6 +296,52 @@
     "ipa": "/tuːz ˈkʌmpənɪ/"
    },
    {
+    "id": 46,
+    "expr": "guinea pig",
+    "zh": "豚鼠（荷兰猪）；试验品",
+    "m": [
+     "guinea pig",
+     "guinea pigs"
+    ],
+    "note": "一种小型宠物鼠，中文也叫荷兰猪。也常比喻“试验品、被拿来做实验的人”：be a guinea pig / use sb as guinea pigs。注意 guinea 读 /ˈɡɪnɪ/，像“gi-ni”。",
+    "core": "guinea pig",
+    "forms": [
+     "guinea pig",
+     "guinea pigs"
+    ],
+    "syn": [],
+    "ex": [
+     {
+      "en": "My daughter wants a [[guinea pig]] for her birthday.",
+      "zh": "我女儿生日想要一只豚鼠。"
+     },
+     {
+      "en": "I don't want to be a [[guinea pig]] for a new drug.",
+      "zh": "我可不想当新药的试验品。"
+     },
+     {
+      "en": "The students were used as [[guinea pigs]] for the new teaching method.",
+      "zh": "这些学生被拿来当新教学法的试验品。"
+     }
+    ],
+    "def": "a small furry animal with no tail, often kept as a pet; also, a person used in a test or experiment",
+    "cf": [
+     {
+      "rel": "cf",
+      "w": "hamster",
+      "zh": "仓鼠",
+      "diff": "guinea pig 是豚鼠，体型较大、没有尾巴、爱群居；hamster 是仓鼠，体型小、常独居。",
+      "ex": [
+       {
+        "en": "Our [[hamster]] runs on its wheel all night.",
+        "zh": "我们家的仓鼠整晚都在跑轮上跑。"
+       }
+      ]
+     }
+    ],
+    "ipa": "/ˈɡɪnɪ pɪɡ/"
+   },
+   {
     "id": 2,
     "expr": "cruelty",
     "zh": "残忍、虐待",
@@ -1971,6 +2017,12 @@
     "i": 22,
     "ans": "fitting",
     "hint": "恰当的"
+   },
+   {
+    "id": 46,
+    "i": 4,
+    "ans": "guinea pigs",
+    "hint": "豚鼠"
    }
   ],
   "breakdown": {
