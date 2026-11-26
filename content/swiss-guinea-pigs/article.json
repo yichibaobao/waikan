@@ -342,59 +342,6 @@
     "ipa": "/ˈɡɪnɪ pɪɡ/"
    },
    {
-    "id": 2,
-    "expr": "cruelty",
-    "zh": "残忍、虐待",
-    "m": [
-     "cruelty"
-    ],
-    "note": "形容词 cruel（残忍的）。cruelty to animals（虐待动物）。",
-    "core": "cruelty",
-    "forms": [
-     "cruelty"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "The farm was closed after reports of [[cruelty]] to animals.",
-      "zh": "有人举报虐待动物后，这个农场被关闭了。"
-     },
-     {
-      "en": "I was shocked by the [[cruelty]] of the punishment.",
-      "zh": "这种惩罚之残忍让我震惊。"
-     }
-    ],
-    "def": "behaviour that causes pain or suffering to people or animals on purpose",
-    "ipa": "/ˈkruːəltɪ/"
-   },
-   {
-    "id": 3,
-    "expr": "entrepreneur",
-    "zh": "创业者、企业家",
-    "m": [
-     "entrepreneur"
-    ],
-    "note": "自己开公司、敢冒险做生意的人。形容词 entrepreneurial（有创业精神的）。注意拼写 -eur 结尾。",
-    "core": "entrepreneur",
-    "forms": [
-     "entrepreneur",
-     "entrepreneurs"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "She became a successful [[entrepreneur]] at 25.",
-      "zh": "她 25 岁就成了成功的创业者。"
-     },
-     {
-      "en": "The city wants to attract young [[entrepreneurs]].",
-      "zh": "这座城市想吸引年轻的创业者。"
-     }
-    ],
-    "def": "a person who starts a business, especially one that involves risk",
-    "ipa": "/ˌɒntrəprəˈnɜː/"
-   },
-   {
     "id": 4,
     "expr": "spot a gap in the market",
     "zh": "发现商机、发现市场空白",
@@ -615,35 +562,6 @@
     ],
     "def": "to make a short, high sound",
     "ipa": "/skwiːk/"
-   },
-   {
-    "id": 11,
-    "expr": "groom",
-    "zh": "（动物）梳理毛发；打扮",
-    "m": [
-     "groom"
-    ],
-    "note": "动物用舌头、爪子给自己或同伴理毛；人给宠物梳毛也用 groom。名词还有“新郎”（= bridegroom）。",
-    "core": "groom",
-    "forms": [
-     "groom",
-     "grooms",
-     "groomed",
-     "grooming"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "Monkeys spend hours [[grooming]] each other.",
-      "zh": "猴子会花好几个小时互相理毛。"
-     },
-     {
-      "en": "She [[grooms]] her dog every Sunday.",
-      "zh": "她每周日给狗梳毛。"
-     }
-    ],
-    "def": "(of an animal) to clean the fur of itself or another animal",
-    "ipa": "/ɡruːm/"
    },
    {
     "id": 12,
@@ -1716,18 +1634,6 @@
     "hint": "两个才叫伴（Two's ___）"
    },
    {
-    "id": 2,
-    "i": 1,
-    "ans": "cruelty",
-    "hint": "虐待"
-   },
-   {
-    "id": 3,
-    "i": 2,
-    "ans": "entrepreneur",
-    "hint": "创业者"
-   },
-   {
     "id": 4,
     "i": 2,
     "ans": "spotted",
@@ -1768,12 +1674,6 @@
     "i": 6,
     "ans": "squeak",
     "hint": "吱吱叫"
-   },
-   {
-    "id": 11,
-    "i": 6,
-    "ans": "groom",
-    "hint": "梳理毛发"
    },
    {
     "id": 12,
