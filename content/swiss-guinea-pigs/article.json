@@ -396,30 +396,32 @@
    },
    {
     "id": 4,
-    "expr": "a gap in the market",
-    "zh": "市场空白、商机",
+    "expr": "spot a gap in the market",
+    "zh": "发现商机、发现市场空白",
     "m": [
-     "a gap in the market"
+     "spotted a gap in the market"
     ],
-    "note": "spot / see a gap in the market：发现还没人做的生意机会。",
-    "core": "a gap in the market",
+    "note": "spot = 发现、看出（尤其是别人没注意到的东西）。a gap in the market：市场上还没人提供的东西，也就是商机。也可以说 see / find a gap in the market。",
+    "core": "spot a gap in the market",
     "forms": [
-     "a gap in the market",
-     "gap in the market"
+     "spot a gap in the market",
+     "spots a gap in the market",
+     "spotted a gap in the market",
+     "spotting a gap in the market"
     ],
     "syn": [],
     "ex": [
      {
-      "en": "He saw [[a gap in the market]] for cheap healthy lunches.",
+      "en": "He [[spotted a gap in the market]] for cheap healthy lunches.",
       "zh": "他发现便宜健康的午餐是个市场空白。"
      },
      {
-      "en": "There's clearly [[a gap in the market]] here.",
-      "zh": "这里显然有个商机。"
+      "en": "Good entrepreneurs are quick at [[spotting a gap in the market]].",
+      "zh": "好的创业者很快就能发现商机。"
      }
     ],
-    "def": "a chance to sell a product or service that nobody else is offering",
-    "ipa": "/ə ɡæp ɪnðə ˈmɑːkɪt/"
+    "def": "to notice a chance to sell a product or service that nobody else is offering",
+    "ipa": "/spɒt ə ɡæp ɪnðə ˈmɑːkɪt/"
    },
    {
     "id": 5,
@@ -751,47 +753,6 @@
     ],
     "def": "quiet and not wanting to talk to or be with others",
     "ipa": "/wɪθˈdrɔːn/"
-   },
-   {
-    "id": 15,
-    "expr": "dilemma",
-    "zh": "两难的处境",
-    "m": [
-     "dilemma"
-    ],
-    "note": "两个选择都不好、很难决定的情况：face a dilemma（面临两难）。",
-    "core": "dilemma",
-    "forms": [
-     "dilemma",
-     "dilemmas"
-    ],
-    "syn": [],
-    "ex": [
-     {
-      "en": "I'm in a [[dilemma]] about which job to take.",
-      "zh": "选哪份工作让我左右为难。"
-     },
-     {
-      "en": "Doctors often face moral [[dilemmas]].",
-      "zh": "医生常常面对道德上的两难。"
-     }
-    ],
-    "def": "a situation in which you must choose between two difficult options",
-    "cf": [
-     {
-      "rel": "syn",
-      "w": "problem",
-      "zh": "问题",
-      "diff": "problem 是任何问题；dilemma 专指“两个选项都不理想、必须二选一”的难题。",
-      "ex": [
-       {
-        "en": "We have a [[problem]] with the car.",
-        "zh": "我们的车出了点问题。"
-       }
-      ]
-     }
-    ],
-    "ipa": "/daɪˈlemə/"
    },
    {
     "id": 16,
@@ -1769,8 +1730,8 @@
    {
     "id": 4,
     "i": 2,
-    "ans": "gap",
-    "hint": "商机（a ___ in the market）"
+    "ans": "spotted",
+    "hint": "发现商机（___ a gap in the market）"
    },
    {
     "id": 5,
@@ -1831,12 +1792,6 @@
     "i": 6,
     "ans": "withdrawn",
     "hint": "孤僻的"
-   },
-   {
-    "id": 15,
-    "i": 7,
-    "ans": "dilemma",
-    "hint": "两难的处境"
    },
    {
     "id": 16,
