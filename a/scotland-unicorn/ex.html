@@ -1,0 +1,180 @@
+<!doctype html><html lang="zh-CN" data-lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Horn of Plenty · 例句默写纸 · 外刊精读</title><style>
+:root{--bg:#FFF8F1;--fg:#3B2F2A;--muted:#8C7B71;--line:#E9D8CA;--accent:#3F86D6;--soft:#E4F0FC;--surface:#fff}
+html[data-lang="ko"]{--accent:#E8618F;--soft:#FDE6EF} html[data-lang="ja"]{--accent:#3F9E6C;--soft:#DFF3E7} html[data-lang="yue"]{--accent:#D9693A;--soft:#FCE9DE}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.6 ui-rounded,'SF Pro Rounded',system-ui,-apple-system,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif}
+.in{max-width:820px;margin:0 auto;padding:24px 16px 56px}
+.top{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:6px}
+.back{color:var(--muted);text-decoration:none;font-weight:700;font-size:14px}
+.btn,.prev{appearance:none;border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;line-height:1.2;font-family:inherit;cursor:pointer;text-decoration:none;display:inline-block}
+.btn{border:0;background:var(--accent);color:#fff} .prev{border:2px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 14px;font-size:13px}
+h1{margin:6px 0 2px;font-weight:800;font-size:24px;line-height:1.3} h2{margin:0 0 6px;font-size:18px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:13.5px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 14px;padding:12px 14px;background:var(--surface);border-radius:16px}
+.ctl label{display:flex;gap:6px;align-items:center;font-size:14px;font-weight:600}
+.sheet{background:var(--surface);border-radius:16px;padding:16px 18px}
+.blk{margin:0 0 6px;color:var(--accent);font-weight:800;font-size:13px;letter-spacing:.04em}
+.q{break-inside:avoid;page-break-inside:avoid;margin:0 0 12px}
+.zh{margin:0;font-size:15.5px;line-height:1.6} .zh b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 13px ui-monospace,Menlo,monospace}
+.hint{display:none;margin:2px 0 0 1.9em;color:var(--muted);font-size:12.5px}
+.hints .hint{display:block}
+.ln{height:30px;margin-left:1.9em;border-bottom:1px solid #C9B8AA}
+.gap{height:8px}
+.ans{margin-top:22px}
+.noans .ans{display:none}
+.a{margin:0 0 6px;font:400 15px/1.55 Georgia,'Times New Roman',serif} .a b{display:inline-block;min-width:1.8em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.a .r{display:block;margin-left:2.2em;color:var(--muted);font:400 12.5px/1.5 ui-rounded,system-ui,sans-serif}
+.foot{margin:12px 0 0;color:var(--muted);font-size:12.5px}
+@page{size:A4;margin:12mm}
+@media print{
+  body{background:#fff} .in{max-width:none;padding:0} .noprint{display:none!important}
+  h1{font-size:16px;margin:0} .sub{font-size:9.5px;margin:0 0 6px}
+  .sheet{padding:0;border-radius:0}
+  .zh{font-size:11.5px} .zh b{font-size:10px} .hint{font-size:9.5px}
+  .q{margin:0 0 7px} .ln{height:8.5mm;border-bottom-color:#999}
+  .ans{margin-top:0;break-before:page;page-break-before:always}
+  h2{font-size:14px} .a{font-size:11px;margin:0 0 3px} .a b{font-size:9px} .a .r{font-size:9.5px}
+  .foot{display:none}
+}
+
+.sheet{counter-reset:q}
+.it{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;counter-increment:q}
+.zh2{margin:0;font-size:14.5px;line-height:1.55}
+.zh2::before,.a::before{display:inline-block;min-width:2em;color:var(--muted);font:700 12px ui-monospace,Menlo,monospace}
+.zh2::before{content:counter(q)}
+.cl{margin:2px 0 0 2em;font:400 15px/1.9 Georgia,'Times New Roman',serif}
+.cl u{display:inline-block;min-width:5em;border-bottom:1px solid #777;text-decoration:none;color:transparent}
+.it .ln{margin-left:2em}
+.m-cloze .ln,.m-sent .cl{display:none}
+.one .e1{display:none}
+.list{counter-reset:a}
+.a{counter-increment:a} .a::before{content:counter(a)}
+#mm{position:absolute;left:-9999px;top:0;width:1px;height:277mm}
+.tip{margin:0 0 12px;color:var(--muted);font-size:13px}
+/* print: explicit pages (div.pg) each with two (or three) side-by-side columns (div.col); the script fills them in order and
+   picks the largest type that fits. No CSS multi-column: Safari/WebKit lays columns out wrongly when printing. */
+@page{size:A4;margin:10mm}
+body.printing{background:#fff}
+.printing .in{width:186mm;max-width:none;padding:0;margin:0 auto;line-height:1.35}
+.printing .top,.printing .ctl,.printing .foot,.printing .tip,.printing .sheet,.printing .in > h1,.printing .in > .sub{display:none}
+.pages{display:none}
+.printing .pages{display:block}
+.pg{break-after:page;page-break-after:always;overflow:hidden}
+.pg:last-child{break-after:auto;page-break-after:auto}
+@media screen{.printing .pg{margin-bottom:10mm;padding-bottom:8mm;border-bottom:1px dashed #999}}
+.pg h1{font-size:1.5em;margin:0} .pg .sub{font-size:.85em;margin:0 0 .5em}
+.cols{display:flex;gap:5mm;align-items:flex-start}
+.col{flex:1 1 0;min-width:0;overflow:hidden}
+.col + .col{border-left:.3pt solid #ccc;padding-left:2.5mm}
+.pg .it{margin:0 0 .5em}
+.pg .zh2{font-size:1em;line-height:1.3} .pg .zh2::before,.pg .a::before{font-size:.85em}
+.pg .cl{font-size:1.05em;line-height:1.85;margin:0 0 0 2em}
+.pg .it .ln{height:2.3em;margin-left:2em;border-bottom:.4pt solid #888}
+.pg h2{font-size:1.2em;margin:0 0 .3em}
+.pg .a{font-size:1em;margin:0 0 .25em} .pg .a .r{font-size:.85em}
+.pg .zh2::before{content:attr(data-n)} .pg .a::before{content:attr(data-n)}
+@media print{.noprint{display:none!important}}
+</style></head><body class="m-sent"><div class="in"><div class="top noprint"><a class="back" href="./#words">‹ 回到文章</a><span><a class="prev" href="list.html">单词表</a> <button class="prev" type="button" id="prevBtn">预览打印效果</button> <button class="btn" type="button" id="printBtn">打印 / 存成 PDF</button></span></div><h1>Horn of Plenty · 例句默写纸</h1><p class="sub">2026-11-28 · 生词例句 · 看中文写出英文例句（或填出空着的词），写完再看最后的答案。　姓名 ________　日期 ________</p><div class="ctl noprint"><label><input type="radio" name="mode" value="sent"> 整句默写（看中文写整句）</label><label><input type="radio" name="mode" value="cloze"> 挖空填词（句子里空出生词）</label><label><input type="checkbox" id="one"> 每个词只要 1 句</label><label><input type="checkbox" id="withans"> 附答案（另起一页）</label></div><p class="tip noprint">打印：点“预览打印效果”→“打印”，打印设置里选“双面打印”。默写占一张纸的正反两面，答案在第三页（单独一张）。</p><div class="sheet"><div class="qs" id="qs1"><div class="it e0"><p class="zh2">这幅画画的是一位手持丰饶之角的女神。</p><p class="cl">The painting shows a goddess holding a <u>horn of plenty</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">丰收的餐桌简直是一只丰饶之角。</p><p class="cl">The harvest table was a real <u>horn of plenty</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">枫叶是加拿大的国家象征。</p><p class="cl">The maple leaf is Canada's national <u>emblem</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">球队每件球衣上都印着队徽。</p><p class="cl">The team wears its <u>emblem</u> on every shirt.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">讨论了几个小时，他们终于决定吃意大利菜。</p><p class="cl">After hours of debate, they <u>settled on</u> Italian food.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">婚礼日期定好了吗？</p><p class="cl">Have you <u>settled on</u> a date for the wedding?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他一点要走的意思都没有。</p><p class="cl">He showed no <u>inclination</u> to leave.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我的第一反应是拒绝。</p><p class="cl">My first <u>inclination</u> was to say no.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我拿旧手机换了个折扣。</p><p class="cl">I <u>traded in</u> my old phone for a discount.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们打算把它换成一辆更大的车。</p><p class="cl">We're going to <u>trade it in</u> for a bigger car.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她的借口听起来还挺可信的。</p><p class="cl">Her excuse sounded <u>plausible</u> enough.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">有没有更说得通的解释？</p><p class="cl">Is there a more <u>plausible</u> explanation?</p><div class="ln"></div></div><div class="it e0"><p class="zh2">市场里挤满了游客。</p><p class="cl">The market was <u>teeming with</u> tourists.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">春天池塘里到处是青蛙。</p><p class="cl">The pond <u>teems with</u> frogs in spring.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">马突然直立起来，把骑手摔了下去。</p><p class="cl">The horse <u>reared up</u> and threw its rider.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">广场上有一座扬起前蹄的骏马雕像。</p><p class="cl">A statue of a horse <u>rearing up</u> stands in the square.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">一只乌鸦落在篱笆上。</p><p class="cl">A crow <u>perched</u> on the fence.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她坐在桌子边上。</p><p class="cl">She <u>perched</u> on the edge of the desk.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">公交车里挤满了小学生。</p><p class="cl">The bus was <u>crammed with</u> schoolchildren.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她的包里总是塞满了书。</p><p class="cl">Her bag is always <u>crammed with</u> books.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">宝宝抱着一只毛绒兔子。</p><p class="cl">The baby hugged a <u>plush</u> rabbit.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他们住在湖边一家豪华酒店。</p><p class="cl">They stayed in a <u>plush</u> hotel by the lake.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他系着一条鲜橙色领带出现了。</p><p class="cl">He turned up <u>sporting</u> a bright orange tie.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那位歌手穿着一双银色靴子。</p><p class="cl">The singer <u>sported</u> silver boots.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">狮子甩了甩金色的鬃毛。</p><p class="cl">The lion shook its golden <u>mane</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她给小马梳鬃毛。</p><p class="cl">She brushed the pony's <u>mane</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这家咖啡馆的装饰很奇趣。</p><p class="cl">The café has <u>whimsical</u> decorations.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他的画有一种奇思妙想的魅力。</p><p class="cl">His drawings have a <u>whimsical</u> charm.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">免费礼物只是骗你邮箱的花招。</p><p class="cl">The free gift is just a <u>ploy</u> to get your email.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">哭是她要糖吃的惯用伎俩。</p><p class="cl">Crying was her usual <u>ploy</u> to get sweets.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">博物馆展出了一本精美的中世纪动物寓言集。</p><p class="cl">The museum displays a beautiful medieval <u>bestiary</u>.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">很多古老的动物寓言集里都有龙。</p><p class="cl">Dragons appear in many old <u>bestiaries</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">镇上几乎空无一人。</p><p class="cl">The town was <u>all but</u> empty.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">到午夜，派对差不多结束了。</p><p class="cl">By midnight, the party had <u>all but</u> ended.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这是对这座城市很贴切的描述。</p><p class="cl">It was an <u>apt</u> description of the city.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">给这么野的狗起名“风暴”真贴切。</p><p class="cl">“Storm” is an <u>apt</u> name for such a wild dog.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">牛奶有助于缓解辣椒的辣味。</p><p class="cl">Milk helps to <u>neutralise</u> the heat of chillies.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">这种粉末能中和酸。</p><p class="cl">This powder can <u>neutralise</u> the acid.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">那把旧吉他在拍卖会上卖了好几千。</p><p class="cl">The old guitar <u>fetched</u> thousands at auction.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">鲜鱼在这里能卖个好价钱。</p><p class="cl">Fresh fish <u>fetches</u> a good price here.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">一角鲸能潜得很深。</p><p class="cl">A <u>narwhal</u> can dive very deep.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">有人管一角鲸叫“海中独角兽”。</p><p class="cl">Some people call the <u>narwhal</u> the unicorn of the sea.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">偷猎者为了象牙杀害大象。</p><p class="cl">Poachers kill elephants for their <u>tusks</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那头野猪长着锋利的獠牙。</p><p class="cl">The wild boar had sharp <u>tusks</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">车站外有人兜售假手表。</p><p class="cl">Men <u>hawked</u> fake watches outside the station.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她整个夏天都在海滩上卖冰淇淋。</p><p class="cl">She spent the summer <u>hawking</u> ice cream on the beach.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">一个机灵的男孩向跑步的人卖柠檬水。</p><p class="cl">An <u>enterprising</u> boy sold lemonade to the runners.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">精明的当地人把空房间租出去。</p><p class="cl"><u>Enterprising</u> locals rent out their spare rooms.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这个国家为奥运会铸造了一枚纪念币。</p><p class="cl">The country <u>minted</u> a special coin for the Olympics.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">这里已经不再铸币了。</p><p class="cl">Coins are no longer <u>minted</u> here.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这座城市的纹章上是一艘金色的船。</p><p class="cl">The city's <u>coat of arms</u> shows a golden ship.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">古老的家族常有自己的纹章。</p><p class="cl">Old families often have their own <u>coat of arms</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这家酒店能容纳 200 位客人。</p><p class="cl">The hotel can <u>accommodate</u> 200 guests.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">我们会尽量满足您的要求。</p><p class="cl">We'll try to <u>accommodate</u> your request.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他答应会打电话，果然打了。</p><p class="cl">He promised to call, and he <u>duly</u> did.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">表格按要求签好交回了。</p><p class="cl">The form was <u>duly</u> signed and returned.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">苏格兰那边物价低一点。</p><p class="cl">Prices are a little lower <u>north of the border</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">在苏格兰，法律不一样。</p><p class="cl">The law is different <u>north of the border</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她的婚纱照挂在墙上最显眼的地方。</p><p class="cl">Her wedding photo takes <u>pride of place</u> on the wall.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">这辆新车在展会上占据了最显要的位置。</p><p class="cl">The new car had <u>pride of place</u> at the show.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">家里人对去哪度假意见不一。</p><p class="cl">The family was <u>divided over</u> where to go on holiday.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">科学家们在这个问题上仍有分歧。</p><p class="cl">Scientists remain <u>divided over</u> the question.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她使出全身力气推门。</p><p class="cl">She pushed the door with all her <u>might</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">那次阅兵是军事力量的展示。</p><p class="cl">The parade was a show of military <u>might</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">他又输了，苦笑了一下。</p><p class="cl">He gave a <u>wry</u> smile when he lost again.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她的书里满是带冷幽默的观察。</p><p class="cl">Her book is full of <u>wry</u> observations.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这个设计是在向 60 年代致敬。</p><p class="cl">The design is a <u>nod to</u> the 1960s.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">他的讲话里提到了他的老师，算是致意。</p><p class="cl">His speech included a <u>nod</u> to his old teacher.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">要是不管，杂草会长满。</p><p class="cl">If left <u>unchecked</u>, the weeds will take over.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">物价多年来不受控制地上涨。</p><p class="cl">Prices rose <u>unchecked</u> for years.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这首儿歌是我奶奶教我的。</p><p class="cl">My grandmother taught me this <u>nursery rhyme</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">很多童谣的来历都很奇怪。</p><p class="cl">Many <u>nursery rhymes</u> have strange origins.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">球迷在体育场外打成一团。</p><p class="cl">Fans <u>brawled</u> outside the stadium.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">两名男子在酒吧斗殴后被捕。</p><p class="cl">Two men were arrested after a <u>brawl</u> in a bar.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">我们等着暴风雨平息。</p><p class="cl">We waited for the storm to <u>subside</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她的怒气慢慢消了。</p><p class="cl">Her anger slowly <u>subsided</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">这首歌被拿去做了汽车广告。</p><p class="cl">The song was <u>co-opted</u> for a car advert.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">政客们总想把流行口号据为己用。</p><p class="cl">Politicians try to <u>co-opt</u> popular slogans.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">溜溜球热的时候，每个孩子都想要一个。</p><p class="cl">Every child wanted one during the yo-yo <u>craze</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">奶茶热丝毫没有退潮的迹象。</p><p class="cl">The <u>craze</u> for bubble tea shows no sign of ending.</p><div class="ln"></div><div class="ln"></div></div><div class="it e0"><p class="zh2">那个醉汉变得很好斗。</p><p class="cl">The drunk man became <u>belligerent</u>.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">她用挑衅的语气回答。</p><p class="cl">She replied in a <u>belligerent</u> tone.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">骑士放低长矛，冲了过去。</p><p class="cl">The knight lowered his <u>lance</u> and charged.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">博物馆里有一排古老的长矛。</p><p class="cl">The museum has a row of old <u>lances</u>.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">她多年来一直在城里推广骑自行车。</p><p class="cl">She has <u>championed</u> cycling in the city for years.</p><div class="ln"></div><div class="ln"></div></div><div class="it e1"><p class="zh2">这家报纸力挺本地商家。</p><p class="cl">The paper <u>champions</u> local businesses.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">渡渡鸟很久以前就灭绝了。</p><p class="cl">The dodo <u>went extinct</u> long ago.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">许多青蛙可能在本世纪灭绝。</p><p class="cl">Many frogs could <u>go extinct</u> this century.</p><div class="ln"></div></div><div class="it e0"><p class="zh2">只要努力，你就能通过。</p><p class="cl">Work hard <u>and</u> you will pass.</p><div class="ln"></div></div><div class="it e1"><p class="zh2">在教堂那儿左转，就能看到车站。</p><p class="cl">Turn left at the church <u>and</u> you'll see the station.</p><div class="ln"></div><div class="ln"></div></div></div><div class="ans"><h2>答案（例句原文，生词加粗）</h2><div class="list"><p class="a e0">The painting shows a goddess holding a <strong>horn of plenty</strong>.</p><p class="a e1">The harvest table was a real <strong>horn of plenty</strong>.</p><p class="a e0">The maple leaf is Canada's national <strong>emblem</strong>.</p><p class="a e1">The team wears its <strong>emblem</strong> on every shirt.</p><p class="a e0">After hours of debate, they <strong>settled on</strong> Italian food.</p><p class="a e1">Have you <strong>settled on</strong> a date for the wedding?</p><p class="a e0">He showed no <strong>inclination</strong> to leave.</p><p class="a e1">My first <strong>inclination</strong> was to say no.</p><p class="a e0">I <strong>traded in</strong> my old phone for a discount.</p><p class="a e1">We're going to <strong>trade it in</strong> for a bigger car.</p><p class="a e0">Her excuse sounded <strong>plausible</strong> enough.</p><p class="a e1">Is there a more <strong>plausible</strong> explanation?</p><p class="a e0">The market was <strong>teeming with</strong> tourists.</p><p class="a e1">The pond <strong>teems with</strong> frogs in spring.</p><p class="a e0">The horse <strong>reared up</strong> and threw its rider.</p><p class="a e1">A statue of a horse <strong>rearing up</strong> stands in the square.</p><p class="a e0">A crow <strong>perched</strong> on the fence.</p><p class="a e1">She <strong>perched</strong> on the edge of the desk.</p><p class="a e0">The bus was <strong>crammed with</strong> schoolchildren.</p><p class="a e1">Her bag is always <strong>crammed with</strong> books.</p><p class="a e0">The baby hugged a <strong>plush</strong> rabbit.</p><p class="a e1">They stayed in a <strong>plush</strong> hotel by the lake.</p><p class="a e0">He turned up <strong>sporting</strong> a bright orange tie.</p><p class="a e1">The singer <strong>sported</strong> silver boots.</p><p class="a e0">The lion shook its golden <strong>mane</strong>.</p><p class="a e1">She brushed the pony's <strong>mane</strong>.</p><p class="a e0">The café has <strong>whimsical</strong> decorations.</p><p class="a e1">His drawings have a <strong>whimsical</strong> charm.</p><p class="a e0">The free gift is just a <strong>ploy</strong> to get your email.</p><p class="a e1">Crying was her usual <strong>ploy</strong> to get sweets.</p><p class="a e0">The museum displays a beautiful medieval <strong>bestiary</strong>.</p><p class="a e1">Dragons appear in many old <strong>bestiaries</strong>.</p><p class="a e0">The town was <strong>all but</strong> empty.</p><p class="a e1">By midnight, the party had <strong>all but</strong> ended.</p><p class="a e0">It was an <strong>apt</strong> description of the city.</p><p class="a e1">“Storm” is an <strong>apt</strong> name for such a wild dog.</p><p class="a e0">Milk helps to <strong>neutralise</strong> the heat of chillies.</p><p class="a e1">This powder can <strong>neutralise</strong> the acid.</p><p class="a e0">The old guitar <strong>fetched</strong> thousands at auction.</p><p class="a e1">Fresh fish <strong>fetches</strong> a good price here.</p><p class="a e0">A <strong>narwhal</strong> can dive very deep.</p><p class="a e1">Some people call the <strong>narwhal</strong> the unicorn of the sea.</p><p class="a e0">Poachers kill elephants for their <strong>tusks</strong>.</p><p class="a e1">The wild boar had sharp <strong>tusks</strong>.</p><p class="a e0">Men <strong>hawked</strong> fake watches outside the station.</p><p class="a e1">She spent the summer <strong>hawking</strong> ice cream on the beach.</p><p class="a e0">An <strong>enterprising</strong> boy sold lemonade to the runners.</p><p class="a e1"><strong>Enterprising</strong> locals rent out their spare rooms.</p><p class="a e0">The country <strong>minted</strong> a special coin for the Olympics.</p><p class="a e1">Coins are no longer <strong>minted</strong> here.</p><p class="a e0">The city's <strong>coat of arms</strong> shows a golden ship.</p><p class="a e1">Old families often have their own <strong>coat of arms</strong>.</p><p class="a e0">The hotel can <strong>accommodate</strong> 200 guests.</p><p class="a e1">We'll try to <strong>accommodate</strong> your request.</p><p class="a e0">He promised to call, and he <strong>duly</strong> did.</p><p class="a e1">The form was <strong>duly</strong> signed and returned.</p><p class="a e0">Prices are a little lower <strong>north of the border</strong>.</p><p class="a e1">The law is different <strong>north of the border</strong>.</p><p class="a e0">Her wedding photo takes <strong>pride of place</strong> on the wall.</p><p class="a e1">The new car had <strong>pride of place</strong> at the show.</p><p class="a e0">The family was <strong>divided over</strong> where to go on holiday.</p><p class="a e1">Scientists remain <strong>divided over</strong> the question.</p><p class="a e0">She pushed the door with all her <strong>might</strong>.</p><p class="a e1">The parade was a show of military <strong>might</strong>.</p><p class="a e0">He gave a <strong>wry</strong> smile when he lost again.</p><p class="a e1">Her book is full of <strong>wry</strong> observations.</p><p class="a e0">The design is a <strong>nod to</strong> the 1960s.</p><p class="a e1">His speech included a <strong>nod</strong> to his old teacher.</p><p class="a e0">If left <strong>unchecked</strong>, the weeds will take over.</p><p class="a e1">Prices rose <strong>unchecked</strong> for years.</p><p class="a e0">My grandmother taught me this <strong>nursery rhyme</strong>.</p><p class="a e1">Many <strong>nursery rhymes</strong> have strange origins.</p><p class="a e0">Fans <strong>brawled</strong> outside the stadium.</p><p class="a e1">Two men were arrested after a <strong>brawl</strong> in a bar.</p><p class="a e0">We waited for the storm to <strong>subside</strong>.</p><p class="a e1">Her anger slowly <strong>subsided</strong>.</p><p class="a e0">The song was <strong>co-opted</strong> for a car advert.</p><p class="a e1">Politicians try to <strong>co-opt</strong> popular slogans.</p><p class="a e0">Every child wanted one during the yo-yo <strong>craze</strong>.</p><p class="a e1">The <strong>craze</strong> for bubble tea shows no sign of ending.</p><p class="a e0">The drunk man became <strong>belligerent</strong>.</p><p class="a e1">She replied in a <strong>belligerent</strong> tone.</p><p class="a e0">The knight lowered his <strong>lance</strong> and charged.</p><p class="a e1">The museum has a row of old <strong>lances</strong>.</p><p class="a e0">She has <strong>championed</strong> cycling in the city for years.</p><p class="a e1">The paper <strong>champions</strong> local businesses.</p><p class="a e0">The dodo <strong>went extinct</strong> long ago.</p><p class="a e1">Many frogs could <strong>go extinct</strong> this century.</p><p class="a e0">Work hard <strong>and</strong> you will pass.</p><p class="a e1">Turn left at the church <strong>and</strong> you'll see the station.</p></div></div></div><p class="foot">选项会记住，下次打开还是这样。</p></div><div id="mm"></div><script>
+/* 例句默写纸. Options: 整句默写 / 挖空填词, one example per word, answers. Print (or 预览): the exercise is split over two pages
+   (front and back of one sheet) with the largest type that fits, page 1 filled first; the answers follow on a new page. If even
+   two pages are not enough, one example per word is used (and the preview says so). */
+(function(){
+  var b = document.body, root = document.documentElement, key = 'wk-ex-print', st = {mode:'sent', one:false, ans:true};
+  try { var r = JSON.parse(localStorage.getItem(key) || 'null'); if (r) st = {mode:r.mode === 'cloze' ? 'cloze' : 'sent', one:!!r.one, ans:r.ans !== false}; } catch (e) {}
+  var M = document.querySelectorAll('input[name=mode]'), one = document.getElementById('one'), ans = document.getElementById('withans');
+  function draw(){
+    b.classList.toggle('m-sent', st.mode === 'sent'); b.classList.toggle('m-cloze', st.mode === 'cloze');
+    b.classList.toggle('one', st.one); b.classList.toggle('noans', !st.ans);
+    M.forEach(function(x){ x.checked = x.value === st.mode; }); one.checked = st.one; ans.checked = st.ans;
+  }
+  function save(){ try { localStorage.setItem(key, JSON.stringify(st)); } catch (e) {} }
+  M.forEach(function(x){ x.addEventListener('change', function(){ st.mode = x.value; save(); draw(); }); });
+  one.addEventListener('change', function(){ st.one = one.checked; save(); draw(); });
+  ans.addEventListener('change', function(){ st.ans = ans.checked; save(); draw(); });
+
+  /* print layout: copies of the visible items are laid into explicit pages and columns (measured on screen in mm-sized boxes) */
+  var inn = document.querySelector('.in'), pages = document.createElement('div'); pages.className = 'pages'; inn.appendChild(pages);
+  var SPARE = 0.95, auto1 = false, over = false, preview = false;
+  function H(){ return document.getElementById('mm').getBoundingClientRect().height * SPARE; }
+  function visible(sel){ return [].slice.call(document.querySelectorAll(sel)).filter(function(x){ return getComputedStyle(x).display !== 'none'; }); }
+  /* lay `els` (clones) into pages of `ncol` columns at font size fs; returns the number of pages used */
+  function layout(els, ncol, fs, head, maxPages){
+    pages.innerHTML = '';
+    var pgNo = 0, pg, cols, ci, avail;
+    function newPage(){
+      pg = document.createElement('div'); pg.className = 'pg'; pg.style.fontSize = fs + 'px'; pages.appendChild(pg);
+      if (pgNo === 0 && head) pg.appendChild(head.cloneNode(true));
+      var row = document.createElement('div'); row.className = 'cols'; pg.appendChild(row);
+      cols = []; for (var c = 0; c < ncol; c++){ var d = document.createElement('div'); d.className = 'col'; row.appendChild(d); cols.push(d); }
+      avail = H() - (row.getBoundingClientRect().top - pg.getBoundingClientRect().top);
+      ci = 0; pgNo++;
+    }
+    newPage();
+    for (var k = 0; k < els.length; k++){
+      var el = els[k]; cols[ci].appendChild(el);
+      if (cols[ci].scrollHeight > avail && cols[ci].children.length > 1){     /* full: move it to the next column / page */
+        cols[ci].removeChild(el);
+        if (++ci >= ncol){ if (pgNo >= maxPages) return 99; newPage(); }
+        cols[ci].appendChild(el);
+      }
+    }
+    return pgNo;
+  }
+  function clones(sel, attr){
+    var n = 0;
+    return visible(sel).map(function(x){ var c = x.cloneNode(true); n++; var t = c.querySelector(attr) || c; t.setAttribute('data-n', n); return c; });
+  }
+  var ansPage = null;
+  function header(){ var d = document.createElement('div'); d.appendChild(document.querySelector('h1').cloneNode(true)); d.appendChild(document.querySelector('.sub').cloneNode(true)); return d; }
+  function fitEx(){
+    var head = header();
+    var cols = st.mode === 'cloze' ? [2, 3] : [2];
+    for (var c = 0; c < cols.length; c++)
+      for (var f = 14; f >= 7.5; f -= 0.25){ var els = clones('#qs1 .it', '.zh2'); if (layout(els, cols[c], f, head, 2) <= 2) return true; }
+    return false;
+  }
+  function fitAns(){
+    var exPages = [].slice.call(pages.children);
+    var h2 = document.querySelector('.ans h2');
+    for (var f = 12; f >= 6; f -= 0.25){
+      var els = clones('.ans .a', '.a');
+      var keep = document.createDocumentFragment(); exPages.forEach(function(p){ keep.appendChild(p); });
+      var n = layout(els, 2, f, h2, 1);
+      var ap = pages.firstChild;
+      pages.insertBefore(keep, ap);
+      if (n <= 1) return;
+      pages.removeChild(ap);
+    }
+  }
+  function tipText(){
+    var t = document.getElementById('ptip'); if (!t) return;
+    t.textContent = over ? '这课词太多，两面也放不下，会多出一页。' : auto1 ? '两句放不下两面，已自动改成每个词 1 句。' : '';
+    t.style.display = t.textContent ? '' : 'none';
+  }
+  function fit(){
+    b.classList.add('printing'); auto1 = over = false;
+    if (!fitEx()){
+      if (!st.one){ b.classList.add('one'); auto1 = true; }
+      if (!fitEx()){ over = true; layout(clones('#qs1 .it', '.zh2'), st.mode === 'cloze' ? 3 : 2, 7.5, header(), 9); }
+    }
+    if (st.ans) fitAns();
+    tipText();
+  }
+  function clear(){ b.classList.remove('printing'); pages.innerHTML = ''; if (auto1){ auto1 = false; draw(); } }
+  window.addEventListener('beforeprint', function(){ if (!preview) fit(); });
+  window.addEventListener('afterprint', function(){ if (!preview) clear(); });
+  document.getElementById('prevBtn').addEventListener('click', function(){
+    preview = true; fit();
+    var old = document.getElementById('pbar'); if (old) old.remove();
+    var bar = document.createElement('div'); bar.className = 'noprint'; bar.id = 'pbar';
+    bar.style.cssText = 'position:fixed;top:10px;right:10px;z-index:9;display:flex;gap:6px;align-items:center';
+    bar.innerHTML = '<span id="ptip" style="font-size:12px;color:#8C7B71;background:#fff;padding:4px 8px;border-radius:8px"></span><button class="prev" type="button">退出预览</button> <button class="btn" type="button">打印 / 存成 PDF</button>';
+    bar.children[1].onclick = function(){ preview = false; clear(); bar.remove(); };
+    bar.children[2].onclick = function(){ window.print(); };
+    document.body.appendChild(bar);
+    tipText();
+    window.scrollTo(0, 0);
+  });
+  document.getElementById('printBtn').addEventListener('click', function(){ window.print(); });
+  draw();
+})();
+</script></body></html>
